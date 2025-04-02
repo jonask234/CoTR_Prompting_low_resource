@@ -102,7 +102,7 @@ def evaluate_qa_baseline(model_name, samples_df, lang_code):
     for idx, row in tqdm(samples_df.iterrows(), total=len(samples_df), desc=f"Processing {lang_code} samples"):
         question = row["question"]
         context = row["context"]
-        ground_truth_answers = [answer["text"] for answer in row["answers"]["text"]]
+        ground_truth_answers = row["answers"]["text"]  # answers["text"] is already a list
         
         # Get model prediction
         predicted_answer = process_qa_baseline(tokenizer, model, question, context)
@@ -119,12 +119,3 @@ def evaluate_qa_baseline(model_name, samples_df, lang_code):
     
     results_df = pd.DataFrame(results)
     return results_df
-
-# Create results directory if it doesn't exist
-os.makedirs("results", exist_ok=True)
-
-# Save results
-hindi_results.to_csv("results/baseline_qa_hindi.csv", index=False)
-vietnamese_results.to_csv("results/baseline_qa_vietnamese.csv", index=False)
-
-print("\nResults saved to CSV files in the 'results' directory.")

@@ -5,7 +5,7 @@ import numpy as np
 import os
 from src.utils.data_loaders.load_mlqa import load_mlqa_samples
 from src.experiments.baseline.qa.qa_baseline import evaluate_qa_baseline
-from evaluation.baseline.qa_metrics import calculate_qa_f1
+from evaluation.baseline.qa_metrics_baseline import calculate_qa_f1
 
 def main():
     # Choose model - you can switch to "CohereForAI/aya-23-8B" if preferred
@@ -41,7 +41,7 @@ def main():
     print(f"Average F1 Score Overall: {avg_f1_overall:.4f}")
     
     # Define base results path
-    base_results_path = "results/baseline"
+    base_results_path = "/work/bbd6522/results/baseline"
 
     # Create results directories for each language if they don't exist
     hindi_path = os.path.join(base_results_path, "hi")

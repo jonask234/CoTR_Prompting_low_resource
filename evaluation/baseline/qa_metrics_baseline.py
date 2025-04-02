@@ -26,13 +26,14 @@ def calculate_qa_f1(row: Dict[str, Any]) -> float:
     Calculate F1 score for a QA pair.
     
     Args:
-        row: Dictionary containing 'predicted_answer' and 'ground_truth' keys
+        row: Dictionary containing 'predicted_answer' and 'ground_truth_answers' keys
         
     Returns:
         float: F1 score between 0 and 1
     """
     pred_tokens = get_tokens(row['predicted_answer'])
-    truth_tokens = get_tokens(row['ground_truth'])
+    # Use the first ground truth answer for F1 calculation
+    truth_tokens = get_tokens(row['ground_truth_answers'][0])
     
     if not pred_tokens or not truth_tokens:
         return 0.0

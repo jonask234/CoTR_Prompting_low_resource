@@ -39,7 +39,7 @@ def main():
     print(f"Average F1 Score Overall (CoTR): {avg_f1_overall:.4f}")
     
     # Define base results path
-    base_results_path = "results/cotr"
+    base_results_path = "/work/bbd6522/results/cotr"
 
     # Create results directories for each language if they don't exist
     hindi_path = os.path.join(base_results_path, "hi")
