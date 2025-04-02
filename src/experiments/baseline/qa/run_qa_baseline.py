@@ -40,14 +40,20 @@ def main():
     print(f"Average F1 Score for Vietnamese: {avg_f1_vietnamese:.4f}")
     print(f"Average F1 Score Overall: {avg_f1_overall:.4f}")
     
-    # Create results directory if it doesn't exist
-    os.makedirs("results", exist_ok=True)
-    
+    # Define base results path
+    base_results_path = "results/baseline"
+
+    # Create results directories for each language if they don't exist
+    hindi_path = os.path.join(base_results_path, "hi")
+    vietnamese_path = os.path.join(base_results_path, "vi")
+    os.makedirs(hindi_path, exist_ok=True)
+    os.makedirs(vietnamese_path, exist_ok=True)
+
     # Save results
-    hindi_results.to_csv("results/baseline_qa_hindi.csv", index=False)
-    vietnamese_results.to_csv("results/baseline_qa_vietnamese.csv", index=False)
-    
-    print("\nResults saved to CSV files in the 'results' directory.")
+    hindi_results.to_csv(os.path.join(hindi_path, "baseline_qa_hindi.csv"), index=False)
+    vietnamese_results.to_csv(os.path.join(vietnamese_path, "baseline_qa_vietnamese.csv"), index=False)
+
+    print(f"\nResults saved to CSV files in the '{base_results_path}' directory, organized by language.")
 
 if __name__ == "__main__":
     main()

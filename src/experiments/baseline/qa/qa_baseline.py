@@ -5,6 +5,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 import pandas as pd
 import numpy as np
 from tqdm import tqdm
+import os
 
 def initialize_model(model_name):
     """
@@ -118,3 +119,12 @@ def evaluate_qa_baseline(model_name, samples_df, lang_code):
     
     results_df = pd.DataFrame(results)
     return results_df
+
+# Create results directory if it doesn't exist
+os.makedirs("results", exist_ok=True)
+
+# Save results
+hindi_results.to_csv("results/baseline_qa_hindi.csv", index=False)
+vietnamese_results.to_csv("results/baseline_qa_vietnamese.csv", index=False)
+
+print("\nResults saved to CSV files in the 'results' directory.")
