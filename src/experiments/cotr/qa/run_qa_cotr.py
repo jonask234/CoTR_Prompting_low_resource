@@ -17,15 +17,17 @@ from src.experiments.cotr.qa.qa_cotr import evaluate_qa_cotr
 from evaluation.cotr.qa_metrics_cotr import calculate_qa_f1, calculate_translation_quality
 from huggingface_hub import login
 from config import get_token
+from src.utils.data_loaders.load_afriqa import load_afriqa_samples
 
-def run_experiment(model_name, samples_df, lang_code, base_results_path):
+def run_experiment(model_name, samples_df, lang_code, dataset_name, base_results_path):
     """
-    Run the CoTR experiment for a specific model and language.
+    Run the CoTR experiment for a specific model, language, and dataset.
     
     Args:
         model_name: Name of the model to use
         samples_df: DataFrame containing the samples
         lang_code: Language code
+        dataset_name: Name of the dataset (e.g., 'tydiqa', 'afriqa')
         base_results_path: Base path for saving results
     """
     # Check if samples_df is empty
@@ -92,15 +94,17 @@ def run_experiment(model_name, samples_df, lang_code, base_results_path):
         lang_path = os.path.join(base_results_path, lang_code)
         os.makedirs(lang_path, exist_ok=True)
         
-        # Save results
+        # Save results - include dataset_name in the filename
         model_name_short = model_name.split('/')[-1]  # Get just the model name without the organization
-        results.to_csv(os.path.join(lang_path, f"cotr_qa_{lang_code}_{model_name_short}.csv"), index=False)
-        print(f"Results saved to {lang_path}/cotr_qa_{lang_code}_{model_name_short}.csv")
+        output_filename = f"cotr_qa_{dataset_name}_{lang_code}_{model_name_short}.csv"
+        results.to_csv(os.path.join(lang_path, output_filename), index=False)
+        print(f"Results saved to {lang_path}/{output_filename}")
         
-        # Save summary metrics to a separate file
+        # Save summary metrics to a separate file - include dataset_name in the filename
         summary = {
             'model': model_name,
             'language': lang_code,
+            'dataset': dataset_name, # Add dataset to summary
             'f1_score': avg_f1,
             'question_translation_quality': avg_q_trans,
             'answer_translation_quality': avg_a_trans,
@@ -115,11 +119,12 @@ def run_experiment(model_name, samples_df, lang_code, base_results_path):
         summary_df = pd.DataFrame([summary])
         summary_path = os.path.join(base_results_path, "summaries")
         os.makedirs(summary_path, exist_ok=True)
-        summary_df.to_csv(os.path.join(summary_path, f"summary_{lang_code}_{model_name_short}.csv"), index=False)
-        print(f"Summary metrics saved to {summary_path}/summary_{lang_code}_{model_name_short}.csv")
+        summary_filename = f"summary_{dataset_name}_{lang_code}_{model_name_short}.csv"
+        summary_df.to_csv(os.path.join(summary_path, summary_filename), index=False)
+        print(f"Summary metrics saved to {summary_path}/{summary_filename}")
         
     except Exception as e:
-        print(f"Error processing {model_name} for {lang_code}: {str(e)}")
+        print(f"Error processing {model_name} for {lang_code} ({dataset_name}): {str(e)}")
         # Keep the specific error handling for restricted models
         if "Access to model" in str(e) and "is restricted" in str(e):
             print("\nTo use the Aya model, you need to:")
@@ -142,25 +147,43 @@ def main():
     ]
     
     # Language codes for TyDi QA
-    lang_codes = {
+    tydiqa_lang_codes = {
         "swahili": "sw", 
         "indonesian": "id" # Changed from Bengali to Indonesian
     }
+    # Language codes for AfriQA
+    afriqa_lang_codes = {
+        "hausa": "ha",
+        "yoruba": "yo"
+    }
     
-    # Load data samples (50 samples each)
-    swahili_samples = load_tydiqa_samples(lang_codes["swahili"], 50)
-    indonesian_samples = load_tydiqa_samples(lang_codes["indonesian"], 50) # Changed from Bengali to Indonesian
+    num_samples_per_lang = 50 # Number of samples to load
     
-    # Define base results path
-    base_results_path = "/work/bbd6522/results/cotr"
+    # Load TyDiQA data samples
+    print("\n--- Loading TyDiQA Data ---")
+    swahili_samples = load_tydiqa_samples(tydiqa_lang_codes["swahili"], num_samples_per_lang)
+    indonesian_samples = load_tydiqa_samples(tydiqa_lang_codes["indonesian"], num_samples_per_lang)
     
-    # Run experiments for each model and language
+    # Load AfriQA data samples
+    print("\n--- Loading AfriQA Data ---")
+    hausa_samples = load_afriqa_samples(afriqa_lang_codes["hausa"], num_samples_per_lang)
+    yoruba_samples = load_afriqa_samples(afriqa_lang_codes["yoruba"], num_samples_per_lang)
+    
+    # Define base results paths - USE ONLY ONE PATH
+    base_results_path = "/work/bbd6522/results/cotr" 
+    # base_results_path_afriqa = "/work/bbd6522/results_afriqa/cotr" # Removed
+    
+    # Run TyDiQA experiments - Pass 'tydiqa' as dataset_name
+    print("\n--- Running TyDiQA CoTR Experiments ---")
     for model_name in models:
-        # Process Swahili samples
-        run_experiment(model_name, swahili_samples, "sw", base_results_path)
-        
-        # Process Indonesian samples
-        run_experiment(model_name, indonesian_samples, "id", base_results_path) # Changed from Bengali to Indonesian
+        run_experiment(model_name, swahili_samples, tydiqa_lang_codes["swahili"], "tydiqa", base_results_path)
+        run_experiment(model_name, indonesian_samples, tydiqa_lang_codes["indonesian"], "tydiqa", base_results_path)
+
+    # Run AfriQA experiments - Pass 'afriqa' as dataset_name
+    print("\n--- Running AfriQA CoTR Experiments ---")
+    for model_name in models:
+        run_experiment(model_name, hausa_samples, afriqa_lang_codes["hausa"], "afriqa", base_results_path)
+        run_experiment(model_name, yoruba_samples, afriqa_lang_codes["yoruba"], "afriqa", base_results_path)
 
 if __name__ == "__main__":
     main()
