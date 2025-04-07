@@ -7,6 +7,8 @@ import plotly.io as pio
 
 # --- Configuration ---
 BASE_RESULTS_DIR = "/work/bbd6522/results"
+# Define the output directory for plots
+PLOTS_OUTPUT_DIR = os.path.join(BASE_RESULTS_DIR, "vizualizations_qa") 
 # Set default renderer for environments like VSCode/servers
 pio.renderers.default = "vscode" 
 # --- End Configuration ---
@@ -112,6 +114,10 @@ if not results_df.empty:
     print("\n--- Average Scores ---")
     print(aggregated_results.to_string()) # Print full table
 
+    # Create the output directory for plots if it doesn't exist
+    os.makedirs(PLOTS_OUTPUT_DIR, exist_ok=True)
+    print(f"\nSaving plots to: {PLOTS_OUTPUT_DIR}")
+
     # 3. Visualize Results with Plotly
     print("\n--- Generating Visualizations ---")
 
@@ -128,11 +134,16 @@ if not results_df.empty:
             labels={'f1_score': 'Average F1 Score', 'language': 'Language', 'model': 'Model', 'pipeline': 'Pipeline'}
         )
         fig_f1.update_layout(yaxis_range=[0, max(aggregated_results['f1_score'].max() * 1.1, 0.1)]) # Adjust y-axis
-        # print("Displaying F1 Score Comparison plot...")
-        # fig_f1.show()
-        f1_filename = "f1_score_comparison.html"
-        fig_f1.write_html(f1_filename)
-        print(f"Saved F1 Score Comparison plot to: {f1_filename}")
+        # Save as PDF instead of HTML
+        f1_filename_pdf = "f1_score_comparison.pdf"
+        f1_save_path = os.path.join(PLOTS_OUTPUT_DIR, f1_filename_pdf)
+        try:
+            fig_f1.write_image(f1_save_path)
+            print(f"Saved F1 Score Comparison plot to: {f1_save_path}")
+        except ValueError as ve:
+            print(f"ERROR saving F1 plot as PDF: {ve}")
+        # fig_f1.write_html(f1_filename) # Keep HTML save commented out or remove
+        # print(f"Saved F1 Score Comparison plot to: {f1_filename}")
     except Exception as e:
         print(f"Could not generate or save F1 plot: {e}")
 
@@ -153,11 +164,16 @@ if not results_df.empty:
                          labels={'average_translation_quality': 'Avg. Translation Quality', 'language': 'Language', 'model': 'Model'}
                      )
                      fig_trans.update_layout(yaxis_range=[0, max(cotr_results['average_translation_quality'].max() * 1.1, 0.1)]) # Adjust y-axis
-                     # print("Displaying Translation Quality plot...")
-                     # fig_trans.show()
-                     trans_filename = "translation_quality_comparison.html"
-                     fig_trans.write_html(trans_filename)
-                     print(f"Saved Translation Quality plot to: {trans_filename}")
+                     # Save as PDF instead of HTML
+                     trans_filename_pdf = "translation_quality_comparison.pdf"
+                     trans_save_path = os.path.join(PLOTS_OUTPUT_DIR, trans_filename_pdf)
+                     try:
+                         fig_trans.write_image(trans_save_path)
+                         print(f"Saved Translation Quality plot to: {trans_save_path}")
+                     except ValueError as ve:
+                         print(f"ERROR saving Translation Quality plot as PDF: {ve}")
+                        # fig_trans.write_html(trans_filename)
+                        # print(f"Saved Translation Quality plot to: {trans_filename}")
                  except Exception as e:
                      print(f"Could not generate or save Translation Quality plot: {e}")
             else:
@@ -189,11 +205,17 @@ if not results_df.empty:
                          title='Average Raw COMET Scores (CoTR)',
                          labels={'comet_score': 'Avg. COMET Score', 'language': 'Language', 'model': 'Model', 'comet_direction': 'Translation Direction'}
                      )
-                     # print("Displaying Raw COMET Scores plot...")
-                     # fig_comet.show()
-                     comet_filename = "comet_score_comparison.html"
-                     fig_comet.write_html(comet_filename)
-                     print(f"Saved Raw COMET Scores plot to: {comet_filename}")
+                     # Save as PDF instead of HTML
+                     comet_filename_pdf = "comet_score_comparison.pdf"
+                     comet_save_path = os.path.join(PLOTS_OUTPUT_DIR, comet_filename_pdf)
+                     try:
+                         fig_comet.write_image(comet_save_path)
+                         print(f"Saved Raw COMET Scores plot to: {comet_save_path}")
+                     except ValueError as ve:
+                         print(f"ERROR saving COMET score plot as PDF: {ve}")
+                         print("Ensure kaleido is installed correctly ('pip install kaleido')")
+                    # fig_comet.write_html(comet_filename)
+                    # print(f"Saved Raw COMET Scores plot to: {comet_filename}")
                  except Exception as e:
                      print(f"Could not generate or save COMET score plot: {e}")
              else:
