@@ -18,8 +18,17 @@ def initialize_model(model_name):
         tokenizer, model
     """
     print(f"Initializing {model_name}...")
-    tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
-    model = AutoModelForCausalLM.from_pretrained(model_name, trust_remote_code=True)
+    cache_path = "/work/bbd6522/cache_dir" # Define cache path
+    tokenizer = AutoTokenizer.from_pretrained(
+        model_name, 
+        trust_remote_code=True,
+        cache_dir=cache_path # Add cache_dir
+    )
+    model = AutoModelForCausalLM.from_pretrained(
+        model_name, 
+        trust_remote_code=True,
+        cache_dir=cache_path # Add cache_dir
+    )
     if torch.cuda.is_available():
         model = model.to("cuda")
     return tokenizer, model

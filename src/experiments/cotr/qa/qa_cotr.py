@@ -8,11 +8,16 @@ from tqdm import tqdm
 def initialize_model(model_name: str) -> tuple:
     """Initialize the model and tokenizer."""
     print(f"Loading model {model_name}...")
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    cache_path = "/work/bbd6522/cache_dir" # Define cache path
+    tokenizer = AutoTokenizer.from_pretrained(
+        model_name,
+        cache_dir=cache_path # Add cache_dir
+    )
     model = AutoModelForCausalLM.from_pretrained(
         model_name,
         torch_dtype=torch.float16,
-        device_map="auto"
+        device_map="auto",
+        cache_dir=cache_path # Add cache_dir
     )
     return model, tokenizer
 

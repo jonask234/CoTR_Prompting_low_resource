@@ -92,13 +92,14 @@ def run_experiment(model_name, samples_df, lang_code, base_results_path):
         lang_path = os.path.join(base_results_path, lang_code)
         os.makedirs(lang_path, exist_ok=True)
         
-        # Save results - revert filename format
+        # Save results - adjust filename format to include 'tydiqa'
         model_name_short = model_name.split('/')[-1]  # Get just the model name without the organization
-        output_filename = f"cotr_qa_{lang_code}_{model_name_short}.csv" # Reverted filename
+        # Include 'tydiqa' in the filename explicitly
+        output_filename = f"cotr_qa_tydiqa_{lang_code}_{model_name_short}.csv"
         results.to_csv(os.path.join(lang_path, output_filename), index=False)
         print(f"Results saved to {lang_path}/{output_filename}")
         
-        # Save summary metrics to a separate file - revert filename format
+        # Save summary metrics - adjust filename format to include 'tydiqa'
         summary = {
             'model': model_name,
             'language': lang_code,
@@ -116,7 +117,8 @@ def run_experiment(model_name, samples_df, lang_code, base_results_path):
         summary_df = pd.DataFrame([summary])
         summary_path = os.path.join(base_results_path, "summaries")
         os.makedirs(summary_path, exist_ok=True)
-        summary_filename = f"summary_{lang_code}_{model_name_short}.csv" # Reverted filename
+        # Include 'tydiqa' in the summary filename explicitly
+        summary_filename = f"summary_qa_tydiqa_{lang_code}_{model_name_short}.csv" 
         summary_df.to_csv(os.path.join(summary_path, summary_filename), index=False)
         print(f"Summary metrics saved to {summary_path}/{summary_filename}")
         
@@ -148,13 +150,16 @@ def main():
         "swahili": "sw", 
         "indonesian": "id" 
     }
+    # Removed AfriQA languages
     
-    num_samples_per_lang = 50 # Number of samples to load
+    # num_samples_per_lang = 50 # Removed this line
     
-    # Load TyDiQA data samples
+    # Load TyDiQA data samples with updated counts
     print("\n--- Loading TyDiQA Data ---")
-    swahili_samples = load_tydiqa_samples(lang_codes["swahili"], num_samples_per_lang)
-    indonesian_samples = load_tydiqa_samples(lang_codes["indonesian"], num_samples_per_lang)
+    swahili_samples = load_tydiqa_samples(lang_codes["swahili"], 122) # Use ~10% for Swahili
+    indonesian_samples = load_tydiqa_samples(lang_codes["indonesian"], 151) # Use ~10% for Indonesian
+    
+    # Removed AfriQA data loading
     
     # Define base results paths - USE ONLY ONE PATH
     base_results_path = "/work/bbd6522/results/cotr" 

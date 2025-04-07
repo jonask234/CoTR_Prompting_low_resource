@@ -56,9 +56,10 @@ def run_experiment(model_name, samples_df, lang_code, base_results_path):
         lang_path = os.path.join(base_results_path, lang_code)
         os.makedirs(lang_path, exist_ok=True)
         
-        # Save results - revert filename format
+        # Save results - adjust filename format to include 'tydiqa'
         model_name_short = model_name.split('/')[-1]  # Get just the model name without the organization
-        output_filename = f"baseline_qa_{lang_code}_{model_name_short}.csv" # Reverted filename
+        # Include 'tydiqa' in the filename explicitly
+        output_filename = f"baseline_qa_tydiqa_{lang_code}_{model_name_short}.csv" 
         results.to_csv(os.path.join(lang_path, output_filename), index=False)
         print(f"Results saved to {lang_path}/{output_filename}")
     except Exception as e:
@@ -91,12 +92,16 @@ def main():
         "indonesian": "id" 
     }
     
-    num_samples_per_lang = 50 # Number of samples to load
+    # Removed AfriQA languages
     
-    # Load TyDiQA data samples
+    # num_samples_per_lang = 50 # Removed this line
+    
+    # Load TyDiQA data samples with updated counts
     print("\n--- Loading TyDiQA Data ---")
-    swahili_samples = load_tydiqa_samples(lang_codes["swahili"], num_samples_per_lang)
-    indonesian_samples = load_tydiqa_samples(lang_codes["indonesian"], num_samples_per_lang)
+    swahili_samples = load_tydiqa_samples(lang_codes["swahili"], 122) # Use ~10% for Swahili
+    indonesian_samples = load_tydiqa_samples(lang_codes["indonesian"], 151) # Use ~10% for Indonesian
+    
+    # Removed AfriQA data loading
     
     # Define base results paths - USE ONLY ONE PATH
     base_results_path = "/work/bbd6522/results/baseline" 

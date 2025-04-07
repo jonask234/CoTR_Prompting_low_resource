@@ -173,8 +173,9 @@ def load_tydiqa_samples(lang_code: str, num_samples: Optional[int] = None, split
     Returns:
         DataFrame containing the samples
     """
-    # Download or use cached data
-    cache_dir = download_tydiqa_data()
+    # Download or use cached data - Specify the cache directory
+    cache_dir_path = "/work/bbd6522/cache_dir"
+    cache_dir = download_tydiqa_data(cache_dir=cache_dir_path)
     
     # Map language code to TyDi QA language name
     lang_code_map = {
