@@ -5,6 +5,9 @@ import numpy as np
 from comet import download_model, load_from_checkpoint
 import torch
 
+# Set matmul precision for potential performance improvement on Tensor Cores
+torch.set_float32_matmul_precision('medium')
+
 # Initialize COMET model
 try:
     # Try to load the COMET model
