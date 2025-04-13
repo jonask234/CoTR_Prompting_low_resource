@@ -13,46 +13,49 @@ import pandas as pd
 import numpy as np
 from huggingface_hub import login
 from config import get_token
+from datasets import load_dataset
 
 # Project specific imports
-from src.utils.data_loaders.load_afrisenti import load_afrisenti_samples
-from src.experiments.cotr.sentiment.sentiment_cotr import evaluate_sentiment_cotr
-from evaluation.sentiment_metrics import calculate_sentiment_metrics
+from src.utils.data_loaders.load_news_classification import load_swahili_news, load_hausa_news
+from src.experiments.cotr.classification.classification_cotr import evaluate_classification_cotr
+from evaluation.sentiment_metrics import calculate_sentiment_metrics # Reusing for Acc/F1
 # Import COMET calculation function and availability flag from QA metrics
-from evaluation.cotr.qa_metrics_cotr import calculate_comet_score, COMET_AVAILABLE 
+from evaluation.cotr.qa_metrics_cotr import calculate_comet_score, COMET_AVAILABLE
 
-def run_sentiment_experiment_cotr(
+def run_classification_experiment_cotr(
     model_name: str,
     samples_df: pd.DataFrame,
     lang_code: str,
-    dataset_name: str, # e.g., 'afrisenti'
+    dataset_name: str, # e.g., 'masakhanews'
     base_results_path: str
 ):
     """
-    Run the CoTR sentiment analysis experiment for a specific model and language.
+    Run the CoTR text classification experiment for a specific model and language.
     """
     if samples_df.empty:
         print(f"WARNING: No samples provided for {lang_code} ({dataset_name}). Skipping CoTR experiment for {model_name}.")
         return
 
     try:
-        print(f"\nProcessing {lang_code} CoTR sentiment ({dataset_name}) with {model_name}...")
-        results_df = evaluate_sentiment_cotr(model_name, samples_df, lang_code)
+        print(f"\nProcessing {lang_code} CoTR classification ({dataset_name}) with {model_name}...")
+        # This function performs translation and English classification
+        results_df = evaluate_classification_cotr(model_name, samples_df, lang_code)
 
         if results_df.empty:
             print(f"WARNING: No CoTR results generated for {lang_code} ({dataset_name}) with {model_name}. Skipping metrics.")
             return
 
-        # Calculate sentiment metrics (Dataset-wide)
-        print("\nCalculating sentiment metrics...")
+        # Calculate classification metrics (Accuracy, Macro F1)
+        print("\nCalculating classification metrics...")
+        # Reusing the sentiment metrics function as it calculates standard Acc/F1
         metrics = calculate_sentiment_metrics(results_df)
         avg_accuracy = metrics.get('accuracy', float('nan'))
         avg_macro_f1 = metrics.get('macro_f1', float('nan'))
-        
+
         # --- Calculate Translation Quality using COMET (if available) ---
         avg_comet_source_to_en = np.nan
-        avg_translation_quality = np.nan # Normalized score (0-1)
-        # Add metrics for back-translation quality (English to LRL)
+        avg_translation_quality = np.nan
+        # Add metrics for back-translation
         avg_comet_en_to_lrl = np.nan
         avg_backtranslation_quality = np.nan
 
@@ -74,7 +77,7 @@ def run_sentiment_experiment_cotr(
                 # Calculate averages, ignoring NaNs
                 avg_comet_source_to_en = np.nanmean(results_df['comet_source_to_en'])
                 avg_translation_quality = np.nanmean(results_df['translation_quality'])
-                
+
                 # If we have back-translation data (English to LRL), calculate quality for that too
                 if 'predicted_label_en' in results_df.columns and 'predicted_label_lrl' in results_df.columns:
                     # We can only measure translation quality for non-unknown predictions
@@ -121,7 +124,7 @@ def run_sentiment_experiment_cotr(
              print(f"  Avg. Normalized Translation Quality (0-1): {avg_translation_quality:.4f}")
         else:
              print(f"  Avg. Translation Quality: Not Available")
-             
+        
         # Print back-translation information if available
         if 'en_to_lrl_different' in results_df.columns:
             print(f"  Avg. Back-translation Success Rate: {avg_backtranslation_success:.4f}")
@@ -132,8 +135,8 @@ def run_sentiment_experiment_cotr(
 
         # Save detailed results per sample
         model_name_short = model_name.split('/')[-1]
-        output_filename = f"cotr_sentiment_{dataset_name}_{lang_code}_{model_name_short}.csv"
-        # Select columns to save (add new translation quality metrics)
+        output_filename = f"cotr_classification_{dataset_name}_{lang_code}_{model_name_short}.csv"
+        # Select columns to save (include translation quality metrics)
         cols_to_save = ['id', 'original_text', 'text_en', 'ground_truth_label', 'predicted_label', 
                         'predicted_label_en', 'predicted_label_lrl', 'language']
         if 'comet_source_to_en' in results_df.columns:
@@ -154,22 +157,25 @@ def run_sentiment_experiment_cotr(
             'pipeline': 'cotr',
             'accuracy': avg_accuracy,
             'macro_f1': avg_macro_f1,
-            # Add new avg metrics (will be NaN if not calculated)
+            # Add translation metrics (will be NaN if not calculated)
             'avg_comet_source_to_en': avg_comet_source_to_en,
             'avg_translation_quality': avg_translation_quality,
             'avg_comet_en_to_lrl': avg_comet_en_to_lrl,
-            'avg_backtranslation_quality': avg_backtranslation_quality,
-            'avg_backtranslation_success': avg_backtranslation_success
+            'avg_backtranslation_quality': avg_backtranslation_quality
         }
+        # Add back-translation success if calculated
+        if 'en_to_lrl_different' in results_df.columns:
+            summary['avg_backtranslation_success'] = avg_backtranslation_success
         summary_df = pd.DataFrame([summary])
         summary_path = os.path.join(base_results_path, "summaries")
         os.makedirs(summary_path, exist_ok=True)
-        summary_filename = f"summary_cotr_sentiment_{dataset_name}_{lang_code}_{model_name_short}.csv"
-        summary_df.to_csv(os.path.join(summary_path, summary_filename), index=False)
+        summary_filename = f"summary_cotr_classification_{dataset_name}_{lang_code}_{model_name_short}.csv"
+        # Ensure consistent float formatting
+        summary_df.to_csv(os.path.join(summary_path, summary_filename), index=False, float_format='%.4f')
         print(f"Summary metrics saved to {summary_path}/{summary_filename}")
 
     except Exception as e:
-        print(f"ERROR during CoTR sentiment experiment for {model_name}, {lang_code} ({dataset_name}): {e}")
+        print(f"ERROR during CoTR classification experiment for {model_name}, {lang_code} ({dataset_name}): {e}")
         import traceback
         traceback.print_exc()
 
@@ -183,37 +189,59 @@ def main():
         "CohereForAI/aya-23-8B"
     ]
 
-    # AfriSenti languages
-    afrisenti_langs = {
-        "swahili": "sw",
-        "hausa": "ha"
+    # Using MasakhaNEWS dataset for both languages
+    datasets_to_run = {
+        "masakhane_news_swa": {"lang_code": "swa", "loader": load_swahili_news, "dataset_hf_id": "masakhane/masakhane_news"},
+        "masakhane_news_hau": {"lang_code": "hau", "loader": load_hausa_news, "dataset_hf_id": "masakhane/masakhane_news"}
     }
-    dataset_name = "afrisenti"
-    # num_samples = 500 # Remove fixed number
-
-    # Define sample sizes per language (approx 10%)
-    sample_sizes = {
-        "sw": 2516,
-        "ha": 1510
+    
+    # Define samples per language (~10% of total available samples)
+    # Swahili: 476 total samples → 10% = ~48 samples
+    # Hausa: 637 total samples → 10% = ~64 samples
+    samples_per_lang = {
+        "swa": 48,  # 10% of 476 Swahili samples
+        "hau": 64   # 10% of 637 Hausa samples
     }
+    
+    hf_token = get_token()  # Still needed for model loading
 
-    # Load data
-    print(f"\n--- Loading {dataset_name.capitalize()} Data ---")
-    sentiment_samples = {}
-    for name, code in afrisenti_langs.items():
-        num_samples = sample_sizes.get(code) # Get specific size
-        print(f"Loading {num_samples if num_samples else 'all'} samples for {name} ({code})...")
-        sentiment_samples[code] = load_afrisenti_samples(code, num_samples)
+    print(f"\n--- Loading MasakhaNEWS Classification Data (10% sample) for CoTR ---")
+    classification_samples = {} # Dictionary to store samples: {lang_code: (df, dataset_name)}
+    
+    for dataset_name, config in datasets_to_run.items():
+        lang_code = config["lang_code"]
+        loader_func = config["loader"]
+        hf_id = config["dataset_hf_id"]
+        
+        # Get language-specific sample size
+        num_samples = samples_per_lang.get(lang_code, 50)  # Default to 50 if not specified
+        
+        print(f"Loading samples for {lang_code} from {dataset_name} ({hf_id}) - Target: {num_samples} samples (~10%)")
+        try:
+            # Pass token to the loader
+            samples_df = loader_func(num_samples=num_samples, token=hf_token)
+            if samples_df is not None and not samples_df.empty:
+                classification_samples[lang_code] = samples_df
+                print(f"  Loaded {len(samples_df)} samples for {lang_code} ({dataset_name}).")
+            else:
+                print(f"  No samples loaded or returned for {lang_code} ({dataset_name}).")
+        except Exception as e:
+            print(f"ERROR loading data for {lang_code} ({dataset_name}): {e}")
+            import traceback
+            traceback.print_exc()
 
-    # Define results path - Point to subfolder within existing results
-    base_results_path = "/work/bbd6522/results/sentiment/cotr" # Updated path
+    # Define base results path for classification CoTR results
+    base_results_path = "/work/bbd6522/results/classification/cotr"
     os.makedirs(base_results_path, exist_ok=True)
 
     # Run experiments
-    print(f"\n--- Running {dataset_name.capitalize()} CoTR Sentiment Experiments ---")
+    print(f"\n--- Running MasakhaNEWS CoTR Classification Experiments ---")
     for model_name in models:
-        for lang_code, samples_df in sentiment_samples.items():
-            run_sentiment_experiment_cotr(
+        for lang_code, samples_df in classification_samples.items():
+            # Get the dataset name for this language code
+            dataset_name = next((name for name, cfg in datasets_to_run.items() 
+                               if cfg["lang_code"] == lang_code), f"masakhane_news_{lang_code}")
+            run_classification_experiment_cotr(
                 model_name,
                 samples_df,
                 lang_code,
