@@ -18,20 +18,20 @@ def parse_filename(filepath):
     filename = os.path.basename(filepath)
     parts = filename.replace('.csv', '').split('_')
     # Expected format: {pipeline}_qa_{dataset}_{lang}_{model}.csv
-    # Example: baseline_qa_tydiqa_sw_Qwen2-7B.csv -> parts = ['baseline', 'qa', 'tydiqa', 'sw', 'Qwen2-7B']
+    # Example: baseline_qa_afriqa_sw_Qwen2-7B.csv -> parts = ['baseline', 'qa', 'afriqa', 'sw', 'Qwen2-7B']
     if len(parts) < 5:
         print(f"WARN: Could not parse filename: {filename}. Skipping.")
         return None
     
     pipeline = parts[0] # baseline or cotr
-    dataset = parts[2]  # tydiqa
+    dataset = parts[2]  # tydiqa or afriqa
     lang_code = parts[3] # sw or id
     # Model name might contain underscores, join the rest
     model_name = '_'.join(parts[4:]) 
     
-    # Basic validation
-    if pipeline not in ['baseline', 'cotr'] or dataset != 'tydiqa':
-         print(f"WARN: Unexpected parts in filename: {filename}. Skipping.")
+    # Basic validation - Ensure dataset is 'afriqa'
+    if pipeline not in ['baseline', 'cotr'] or dataset != 'afriqa':
+         print(f"WARN: Unexpected parts or dataset in filename: {filename}. Skipping.")
          return None
          
     return {'pipeline': pipeline, 'language': lang_code, 'model': model_name}
@@ -112,7 +112,8 @@ if not results_df.empty:
     ).reset_index()
 
     print("\n--- Average Scores ---")
-    print(aggregated_results.to_string()) # Print full table
+    # Print full table with explicit float formatting
+    print(aggregated_results.to_string(float_format='%.4f')) 
 
     # Create the output directory for plots if it doesn't exist
     os.makedirs(PLOTS_OUTPUT_DIR, exist_ok=True)
@@ -130,7 +131,7 @@ if not results_df.empty:
             color='model',
             barmode='group',
             facet_col='pipeline', # Separate columns for 'baseline' and 'cotr'
-            title='Average F1 Score Comparison (TyDi QA)',
+            title='Average F1 Score Comparison (AfriQA)',
             labels={'f1_score': 'Average F1 Score', 'language': 'Language', 'model': 'Model', 'pipeline': 'Pipeline'}
         )
         fig_f1.update_layout(yaxis_range=[0, max(aggregated_results['f1_score'].max() * 1.1, 0.1)]) # Adjust y-axis

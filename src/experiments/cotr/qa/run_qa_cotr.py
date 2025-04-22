@@ -35,104 +35,122 @@ def run_experiment(model_name, samples_df, lang_code, base_results_path):
         
     try:
         print(f"\nProcessing {lang_code} samples with {model_name} (CoTR)...")
-        results = evaluate_qa_cotr(model_name, samples_df, lang_code)
         
-        # Check if results are empty
-        if results.empty:
-            print(f"WARNING: No results generated for {lang_code} with {model_name}. Skipping metrics calculation.")
+        # --- Call the main CoTR evaluation function --- 
+        # This function handles model loading, translations, QA, back-translation, 
+        # and extracting the ground truth string. It returns the results DataFrame.
+        results_df = evaluate_qa_cotr(model_name, samples_df, lang_code)
+
+        # --- Check if results were generated --- 
+        if results_df.empty:
+            print(f"WARNING: evaluate_qa_cotr returned empty DataFrame for {lang_code} with {model_name}. Skipping further processing.")
             return
-            
-        # Calculate F1 scores
+
+        # --- Process the results ---
+        # Make sure ground_truth column exists and is populated
+        if 'ground_truth' not in results_df.columns or results_df['ground_truth'].isnull().all():
+            print(f"WARNING: 'ground_truth' column missing or empty in results for {lang_code} with {model_name}. Cannot calculate F1.")
+            return
+
+        # Drop rows with missing ground truth
+        results_df.dropna(subset=['ground_truth'], inplace=True)
+        if results_df.empty:
+            print(f"WARNING: No valid samples remaining after checking ground truth for {lang_code} with {model_name}. Cannot calculate F1.")
+            return
+
+        # --- Calculate Metrics --- 
+        # The results_df returned by evaluate_qa_cotr should already have:
+        # 'predicted_answer', 'ground_truth' (as string), 'question', 
+        # 'question_en', 'answer_en' etc.
+
+        # Calculate F1 scores using the DataFrame
         print("\nCalculating F1 scores...")
-        results["f1_score"] = results.apply(calculate_qa_f1, axis=1)
+        # calculate_qa_f1 expects row['ground_truth'] and row['predicted_answer']
+        results_df["f1_score"] = results_df.apply(calculate_qa_f1, axis=1)
         
         # Calculate translation quality metrics
         print("Calculating translation quality metrics...")
-        translation_metrics = results.apply(calculate_translation_quality, axis=1)
-        results['question_translation_quality'] = [m['question_translation_quality'] for m in translation_metrics]
-        results['answer_translation_quality'] = [m['answer_translation_quality'] for m in translation_metrics]
-        results['average_translation_quality'] = [m['average_translation_quality'] for m in translation_metrics]
+        # Apply the function that returns a dictionary of metrics
+        translation_metrics_series = results_df.apply(calculate_translation_quality, axis=1)
         
-        # Check if COMET metrics are available
-        # Ensure translation_metrics is not empty before accessing index 0
-        has_comet = False
-        if not translation_metrics.empty:
-             has_comet = 'comet_source_to_en' in translation_metrics.iloc[0]
-        
-        if has_comet:
-            results['comet_source_to_en'] = [m.get('comet_source_to_en', 0.0) for m in translation_metrics]
-            results['comet_en_to_source'] = [m.get('comet_en_to_source', 0.0) for m in translation_metrics]
-        
-        # Calculate average metrics
-        avg_f1 = results["f1_score"].mean()
-        avg_q_trans = results["question_translation_quality"].mean()
-        avg_a_trans = results["answer_translation_quality"].mean()
-        avg_trans = results["average_translation_quality"].mean()
-        
+        # Populate DataFrame columns from the Series of metric dictionaries
+        # Use .get() with default values for safety
+        results_df['question_translation_quality'] = translation_metrics_series.apply(lambda m: m.get('question_translation_quality', 0.0))
+        results_df['answer_translation_quality'] = translation_metrics_series.apply(lambda m: m.get('answer_translation_quality', 0.0))
+        results_df['average_translation_quality'] = translation_metrics_series.apply(lambda m: m.get('average_translation_quality', 0.0))
+        results_df['comet_source_to_en'] = translation_metrics_series.apply(lambda m: m.get('comet_source_to_en', float('nan')))
+        results_df['comet_en_to_source'] = translation_metrics_series.apply(lambda m: m.get('comet_en_to_source', float('nan')))
+
+        # --- Calculate Average Metrics --- 
+        avg_f1 = results_df["f1_score"].mean()
+        avg_q_trans = results_df["question_translation_quality"].mean()
+        avg_a_trans = results_df["answer_translation_quality"].mean()
+        avg_trans = results_df["average_translation_quality"].mean()
+        # Use nanmean for COMET scores as they might be NaN if COMET failed/unavailable
+        avg_comet_src_en = np.nanmean(results_df['comet_source_to_en'].astype(float))
+        avg_comet_en_src = np.nanmean(results_df['comet_en_to_source'].astype(float))
+
+        # --- Print Summary --- 
         print(f"\nResults for {lang_code} ({model_name}, CoTR):")
         print(f"Average F1 Score: {avg_f1:.4f}")
         print(f"Average Translation Quality Metrics:")
-        
+        # Check if COMET scores are actually present (not all NaN)
+        has_comet = not results_df['comet_source_to_en'].isnull().all()
         if has_comet:
-            # Ensure columns exist before calculating mean
-            avg_comet_src_en = results['comet_source_to_en'].mean() if 'comet_source_to_en' in results.columns else float('nan')
-            avg_comet_en_src = results['comet_en_to_source'].mean() if 'comet_en_to_source' in results.columns else float('nan')
             print(f"  COMET Source→English: {avg_comet_src_en:.4f}")
             print(f"  COMET English→Source: {avg_comet_en_src:.4f}")
-            print(f"  Normalized Question Translation Quality: {avg_q_trans:.4f}")
-            print(f"  Normalized Answer Translation Quality: {avg_a_trans:.4f}")
-            print(f"  Normalized Average Translation Quality: {avg_trans:.4f}")
+            # Print normalized scores alongside raw COMET if desired, but averages are calculated above
+            print(f"  Normalized Question Translation Quality (0-1 scale): {avg_q_trans:.4f}")
+            print(f"  Normalized Answer Translation Quality (0-1 scale): {avg_a_trans:.4f}")
+            print(f"  Normalized Average Translation Quality (0-1 scale): {avg_trans:.4f}")
         else:
+            # If no COMET scores, just show the fallback/normalized quality
             print(f"  Question Translation Quality: {avg_q_trans:.4f}")
             print(f"  Answer Translation Quality: {avg_a_trans:.4f}")
             print(f"  Average Translation Quality: {avg_trans:.4f}")
-            print(f"  (Using token overlap metrics as COMET was not available)")
+            print(f"  (Using token overlap or COMET failed/unavailable)")
         
-        # Create results directory if it doesn't exist
+        # --- Save Detailed Results (DataFrame) --- 
         lang_path = os.path.join(base_results_path, lang_code)
         os.makedirs(lang_path, exist_ok=True)
-        
-        # Save results - adjust filename format to include 'tydiqa'
-        model_name_short = model_name.split('/')[-1]  # Get just the model name without the organization
-        # Include 'tydiqa' in the filename explicitly
+        model_name_short = model_name.split('/')[-1]  
         output_filename = f"cotr_qa_tydiqa_{lang_code}_{model_name_short}.csv"
-        results.to_csv(os.path.join(lang_path, output_filename), index=False)
+        # Save the DataFrame which now includes all metrics
+        results_df.to_csv(os.path.join(lang_path, output_filename), index=False)
         print(f"Results saved to {lang_path}/{output_filename}")
         
-        # Save summary metrics - adjust filename format to include 'tydiqa'
+        # --- Save Summary Metrics --- 
         summary = {
             'model': model_name,
             'language': lang_code,
             'f1_score': avg_f1,
-            'question_translation_quality': avg_q_trans,
+            'question_translation_quality': avg_q_trans, 
             'answer_translation_quality': avg_a_trans,
             'average_translation_quality': avg_trans
         }
-        
         if has_comet:
-             # Use the calculated averages, handle potential NaN
             summary['comet_source_to_en'] = avg_comet_src_en
             summary['comet_en_to_source'] = avg_comet_en_src
         
         summary_df = pd.DataFrame([summary])
         summary_path = os.path.join(base_results_path, "summaries")
         os.makedirs(summary_path, exist_ok=True)
-        # Include 'tydiqa' in the summary filename explicitly
         summary_filename = f"summary_qa_tydiqa_{lang_code}_{model_name_short}.csv" 
-        summary_df.to_csv(os.path.join(summary_path, summary_filename), index=False)
+        summary_df.to_csv(os.path.join(summary_path, summary_filename), index=False, float_format='%.4f')
         print(f"Summary metrics saved to {summary_path}/{summary_filename}")
         
     except Exception as e:
-        print(f"Error processing {model_name} for {lang_code}: {str(e)}") # Reverted error message format
-        # Keep the specific error handling for restricted models
+        print(f"Error during run_experiment for {model_name} for {lang_code} (CoTR): {str(e)}") 
+        # Keep specific error handling for restricted models
         if "Access to model" in str(e) and "is restricted" in str(e):
             print("\nTo use the Aya model, you need to:")
             print("1. Create a Hugging Face account at https://huggingface.co/join")
-            print("2. Accept the model's terms of use at https://huggingface.co/CohereForAI/aya-23-8B")
+            print("2. Accept the model's terms of use at https://huggingface.co/CohereLabs/aya-expanse-8b")
             print("3. Generate an access token at https://huggingface.co/settings/tokens")
             print("4. Run this script again with your token")
-            sys.exit(1) # Exit specifically for this auth error
-        # For other errors, maybe just log and continue if possible, or re-raise
+            sys.exit(1) 
+        # Consider re-raising or logging other exceptions
+        # raise e # Uncomment to stop execution on other errors
 
 def main():
     # Get Hugging Face token
@@ -141,34 +159,49 @@ def main():
     
     # Define models to test
     models = [
-        "Qwen/Qwen2-7B",
-        "CohereForAI/aya-23-8B"
+        "Qwen/Qwen2.5-7B-Instruct",
+        "CohereLabs/aya-expanse-8b"
     ]
     
-    # Language codes for TyDi QA
-    lang_codes = { # Renamed back
+    # Language codes for TyDiQA - focusing on Swahili and Telugu (with LRL ground truths), plus English (HRL)
+    lang_codes = { 
         "swahili": "sw", 
-        "indonesian": "id" 
+        "telugu": "te",
+        "english": "en"  # Added English (HRL) for comparison
     }
-    # Removed AfriQA languages
     
-    # num_samples_per_lang = 50 # Removed this line
+    # Load TyDiQA data samples (validation split, all samples)
+    print("\n--- Loading TyDiQA-GoldP Data with LRL Ground Truths ---")
+    tydiqa_samples = {}
+    for name, code in lang_codes.items():
+        # Use validation split which is more appropriate for evaluation
+        print(f"Loading ALL samples for {name} ({code}) from validation split to calculate 10%...")
+        # Load the full dataset first by setting num_samples=None
+        full_samples_df = load_tydiqa_samples(code, num_samples=None, split='validation')
+        
+        if not full_samples_df.empty:
+            total_loaded = len(full_samples_df)
+            # Calculate 10% of samples, ensuring at least 1 sample if dataset is very small
+            num_to_sample = max(1, int(total_loaded * 0.1)) 
+            print(f"  Loaded {total_loaded} total samples. Sampling {num_to_sample} (10%)...")
+            # Sample 10% of the data
+            tydiqa_samples[code] = full_samples_df.sample(n=num_to_sample, random_state=42) 
+            print(f"  Finished sampling {len(tydiqa_samples[code])} samples for {code}.")
+        else:
+            print(f"  WARNING: No TyDiQA samples loaded for {name} ({code}).")
+            tydiqa_samples[code] = pd.DataFrame()
     
-    # Load TyDiQA data samples with updated counts
-    print("\n--- Loading TyDiQA Data ---")
-    swahili_samples = load_tydiqa_samples(lang_codes["swahili"], 122) # Use ~10% for Swahili
-    indonesian_samples = load_tydiqa_samples(lang_codes["indonesian"], 151) # Use ~10% for Indonesian
+    # Define base results path
+    base_results_path = "/work/bbd6522/results/qa/cotr" 
     
-    # Removed AfriQA data loading
-    
-    # Define base results paths - USE ONLY ONE PATH
-    base_results_path = "/work/bbd6522/results/cotr" 
-    
-    # Run TyDiQA experiments 
-    print("\n--- Running TyDiQA CoTR Experiments ---")
+    # Run TyDiQA CoTR experiments
+    print("\n--- Running TyDiQA CoTR Experiments with LRL Ground Truth Evaluation ---")
     for model_name in models:
-        run_experiment(model_name, swahili_samples, lang_codes["swahili"], base_results_path)
-        run_experiment(model_name, indonesian_samples, lang_codes["indonesian"], base_results_path)
+        for code, samples_df in tydiqa_samples.items():
+            if not samples_df.empty:
+                run_experiment(model_name, samples_df, code, base_results_path)
+            else:
+                print(f"  Skipping {code} due to empty dataset.")
 
 if __name__ == "__main__":
     main()

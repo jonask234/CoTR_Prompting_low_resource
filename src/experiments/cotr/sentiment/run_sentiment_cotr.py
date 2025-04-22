@@ -48,6 +48,14 @@ def run_sentiment_experiment_cotr(
         metrics = calculate_sentiment_metrics(results_df)
         avg_accuracy = metrics.get('accuracy', float('nan'))
         avg_macro_f1 = metrics.get('macro_f1', float('nan'))
+        # --- Retrieve per-class metrics --- 
+        positive_precision = metrics.get('positive_precision', float('nan'))
+        positive_recall = metrics.get('positive_recall', float('nan'))
+        negative_precision = metrics.get('negative_precision', float('nan'))
+        negative_recall = metrics.get('negative_recall', float('nan'))
+        neutral_precision = metrics.get('neutral_precision', float('nan'))
+        neutral_recall = metrics.get('neutral_recall', float('nan'))
+        # --- End retrieve --- 
         
         # --- Calculate Translation Quality using COMET (if available) ---
         avg_comet_source_to_en = np.nan
@@ -115,6 +123,11 @@ def run_sentiment_experiment_cotr(
         print(f"\nOverall Metrics for {lang_code} ({dataset_name}) ({model_name}, CoTR):")
         print(f"  Accuracy: {avg_accuracy:.4f}")
         print(f"  Macro F1-Score: {avg_macro_f1:.4f}")
+        # --- Print per-class metrics --- 
+        print(f"  Positive (Prec/Recall): {positive_precision:.4f} / {positive_recall:.4f}")
+        print(f"  Negative (Prec/Recall): {negative_precision:.4f} / {negative_recall:.4f}")
+        print(f"  Neutral (Prec/Recall): {neutral_precision:.4f} / {neutral_recall:.4f}")
+        # --- End print ---
         # Print COMET score if available
         if not np.isnan(avg_comet_source_to_en):
              print(f"  Avg. Raw COMET Score (Source -> En): {avg_comet_source_to_en:.4f}")
@@ -154,7 +167,15 @@ def run_sentiment_experiment_cotr(
             'pipeline': 'cotr',
             'accuracy': avg_accuracy,
             'macro_f1': avg_macro_f1,
-            # Add new avg metrics (will be NaN if not calculated)
+            # --- Add per-class metrics to summary --- 
+            'positive_precision': positive_precision,
+            'positive_recall': positive_recall,
+            'negative_precision': negative_precision,
+            'negative_recall': negative_recall,
+            'neutral_precision': neutral_precision,
+            'neutral_recall': neutral_recall,
+            # --- End add --- 
+            # Add translation metrics (will be NaN if not calculated)
             'avg_comet_source_to_en': avg_comet_source_to_en,
             'avg_translation_quality': avg_translation_quality,
             'avg_comet_en_to_lrl': avg_comet_en_to_lrl,

@@ -1,44 +1,43 @@
 import torch
-from transformers import AutoTokenizer, AutoModelForCausalLM
 import pandas as pd
 from tqdm import tqdm
 import os
+import sys
+
+# Add project root to path to find model_initialization
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', '..'))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+from model_initialization import initialize_model
+from transformers import AutoTokenizer, AutoModelForCausalLM
 from typing import Any, List
 
 # Define expected labels (can be dynamically determined from data later)
 # EXPECTED_LABELS = ["positive", "negative", "neutral"]
 
-def initialize_model(model_name: str) -> tuple:
-    """Initialize the model and tokenizer, specifying cache directory."""
-    print(f"Loading model {model_name}...")
-    cache_path = "/work/bbd6522/cache_dir"
-    tokenizer = AutoTokenizer.from_pretrained(
-        model_name,
-        cache_dir=cache_path,
-        trust_remote_code=True # Needed for some models like Qwen
-    )
-    model = AutoModelForCausalLM.from_pretrained(
-        model_name,
-        torch_dtype=torch.float16,
-        device_map="auto",
-        cache_dir=cache_path,
-        trust_remote_code=True # Needed for some models like Qwen
-    )
-    return model, tokenizer
-
 def generate_translation_prompt(text: str, source_lang: str, target_lang: str) -> str:
     """Generate a prompt for translation."""
-    # Simple prompt, assumes model understands language codes
-    # Add language-specific prompts if needed (like for Hausa)
-    if source_lang == 'ha' and target_lang == 'en':
-        return f"Translate Hausa to English:\n\nHausa: {text}\n\nEnglish:"
-    elif source_lang == 'sw' and target_lang == 'en':
-         return f"Translate Swahili to English:\n\nSwahili: {text}\n\nEnglish:"
-    else: # Generic fallback
-        return f"Translate the following text from {source_lang} to {target_lang}:\n\n{text}\n\n{target_lang} translation:"
+    # Special handling for English to English "translation" (no-op)
+    if source_lang == 'en' and target_lang == 'en':
+        return text  # Simply return the original text for English->English
+
+    # Use full language names for better prompting
+    lang_names = {
+        "en": "English",
+        "swa": "Swahili",
+        "hau": "Hausa"
+    }
+    source_name = lang_names.get(source_lang, source_lang)
+    target_name = lang_names.get(target_lang, target_lang)
+    
+    return f"""Translate the following {source_name} text to {target_name}:
+
+{text}
+
+{target_name} translation:"""
 
 def generate_classification_prompt(text: str, labels: List[str]) -> str:
-    """Generate a zero-shot prompt for English text classification."""
+    """Generate a prompt for classification."""
     label_string = ", ".join(labels)
     prompt = f"""Classify the following English text into one of these categories: {label_string}.
 Respond with only the category name.
@@ -58,24 +57,70 @@ def translate_text(
     max_new_tokens: int = 512   # Allow longer translations if needed
 ) -> str:
     """Translate text from source language to target language using the model."""
+    # Special handling for English to English "translation" (no-op)
+    if source_lang == 'en' and target_lang == 'en':
+        return text  # No translation needed
+
     prompt = generate_translation_prompt(text, source_lang, target_lang)
+    
+    # Tokenize with truncation
     inputs = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=max_input_length)
     inputs = {k: v.to(model.device) for k, v in inputs.items()}
-
+    
     with torch.no_grad():
         outputs = model.generate(
             **inputs,
             max_new_tokens=max_new_tokens,
-            temperature=0.7, # Allow variation for translation
-            top_p=0.9,
-            do_sample=True,
+            do_sample=True, # Enable sampling for more natural output
+            temperature=0.7, # Less deterministic  
             pad_token_id=tokenizer.eos_token_id
         )
+    
+    # Decode only the newly generated tokens
     response = tokenizer.decode(outputs[0][inputs["input_ids"].shape[-1]:], skip_special_tokens=True)
+    
+    # Basic cleanup
     translation = response.strip()
+    
+    # Handle potential empty output
     if not translation:
-        translation = "[No translation generated]"
+        return "[Translation failed]"
+    
     return translation
+
+def get_label_translation(label: str, target_lang: str) -> str:
+    """
+    Get a direct mapping of English labels to target language.
+    This is more reliable than generating translations on the fly.
+    """
+    # Hard-coded translations for common news categories
+    translations = {
+        "hau": {  # Hausa
+            "politics": "siyasa",
+            "sports": "wasanni",
+            "entertainment": "nishadantarwa",
+            "technology": "fasaha",
+            "health": "lafiya",
+            "business": "kasuwanci",
+            "religion": "addini"
+        },
+        "swa": {  # Swahili
+            "politics": "siasa",
+            "sports": "michezo",
+            "entertainment": "burudani",
+            "technology": "teknolojia",
+            "health": "afya",
+            "business": "biashara",
+            "religion": "dini"
+        }
+    }
+    
+    # Check if we have a mapping for this language and label
+    if target_lang in translations and label.lower() in translations[target_lang]:
+        return translations[target_lang][label.lower()]
+    
+    # If no mapping exists, return the English label with a note
+    return f"{label}"  # Keep the English label
 
 def process_classification_english(
     model: Any,
@@ -108,14 +153,14 @@ def process_classification_english(
     final_label = "[Unknown]"
     for label in possible_labels:
         # Check for exact match or if prediction starts with the label
-        if label == predicted_label or predicted_label.startswith(label):
+        if label.lower() == predicted_label or predicted_label.startswith(label.lower()):
             final_label = label
             break
             
     # Fallback: Check if the raw output contained the label name clearly
     if final_label == "[Unknown]":
          for label in possible_labels:
-             if label in predicted_label_raw:
+             if label.lower() in predicted_label_raw:
                  final_label = label
                  break
                  
@@ -125,14 +170,20 @@ def evaluate_classification_cotr(
     model_name: str,
     samples_df: pd.DataFrame,
     lang_code: str,
+    use_lrl_ground_truth: bool = False
 ) -> pd.DataFrame:
     """
     Evaluate text classification using Chain of Translation Prompting (CoTR).
     Steps:
     1. Translate LRL text to English
     2. Perform classification in English
-    3. Translate result back to original language (optional)
-    Assumes samples_df has 'text' and 'label' columns.
+    3. Translate result back to original language
+    
+    Args:
+        model_name: Model to use
+        samples_df: DataFrame with samples
+        lang_code: Language code
+        use_lrl_ground_truth: If True, evaluation is LRL-to-LRL (ground truth in LRL)
     """
     try:
         model, tokenizer = initialize_model(model_name)
@@ -165,37 +216,17 @@ def evaluate_classification_cotr(
                 max_input_length=safe_max_input_length
             )
             
-            # Step 3: Translate the classification result back to the original language
-            # Only translate back if we have a valid prediction (not [Unknown])
+            # Step 3: Use a mapping-based approach for label translation
             if predicted_label_en != "[Unknown]":
-                # Create a prompt to translate the predicted label
-                label_translation_prompt = f"Translate the word '{predicted_label_en}' from English to {lang_code}."
-                
-                # Use the model to translate the label
-                inputs = tokenizer(label_translation_prompt, return_tensors="pt", truncation=True, max_length=safe_max_input_length)
-                inputs = {k: v.to(model.device) for k, v in inputs.items()}
-                
-                with torch.no_grad():
-                    outputs = model.generate(
-                        **inputs,
-                        max_new_tokens=20,  # Short output expected
-                        temperature=0.3,    # Less variation for label translation
-                        do_sample=False,    # Deterministic for consistency
-                        pad_token_id=tokenizer.eos_token_id
-                    )
-                
-                response = tokenizer.decode(outputs[0][inputs["input_ids"].shape[-1]:], skip_special_tokens=True)
-                predicted_label_lrl = response.strip()
-                
-                # Clean up the translated label - extract just the translated word
-                # This handles cases where model might output extra text
-                words = predicted_label_lrl.split()
-                if words:
-                    predicted_label_lrl = words[0].strip(',.?!;:"\'')
-                else:
-                    predicted_label_lrl = predicted_label_en  # Fallback to English if translation failed
+                # Use direct mapping instead of translation generation
+                predicted_label_lrl = get_label_translation(predicted_label_en, lang_code)
             else:
-                predicted_label_lrl = "[Unknown]"  # Keep unknown as is
+                predicted_label_lrl = "[Unknown]"
+
+            # Determine which predicted label to use for evaluation
+            # For LRL ground truth, use the back-translated LRL label
+            # For English ground truth, use the English prediction
+            predicted_label = predicted_label_lrl if use_lrl_ground_truth else predicted_label_en
 
             # Store results
             result = {
@@ -205,8 +236,9 @@ def evaluate_classification_cotr(
                 'ground_truth_label': ground_truth_label,
                 'predicted_label_en': predicted_label_en,  # Prediction in English
                 'predicted_label_lrl': predicted_label_lrl,  # Prediction translated back to LRL
-                'predicted_label': predicted_label_en,  # Keep English as the main prediction for evaluation
-                'language': lang_code
+                'predicted_label': predicted_label,     # Label to use for evaluation (changes based on use_lrl_ground_truth)
+                'language': lang_code,
+                'lrl_evaluation': use_lrl_ground_truth  # Flag for analysis
             }
             results.append(result)
 

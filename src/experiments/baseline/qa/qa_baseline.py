@@ -6,6 +6,7 @@ import pandas as pd
 import numpy as np
 from tqdm import tqdm
 import os
+import re
 
 def initialize_model(model_name):
     """
@@ -35,7 +36,7 @@ def initialize_model(model_name):
 
 def generate_qa_prompt(question, context):
     """
-    Generate a prompt for the QA task.
+    Generate a prompt for the QA task with explicit instructions.
     
     Args:
         question: The question
@@ -44,16 +45,130 @@ def generate_qa_prompt(question, context):
     Returns:
         Formatted prompt
     """
-    prompt = f"""Context: {context}
+    prompt = f"""Answer the following question based ONLY on the information provided in the context below.
+Keep your answer as short and direct as possible.
+- If the answer is a number, respond with just the number.
+- If the answer is a date, respond with just the date.
+- If the answer is a name, respond with just the name.
+- If the answer is a short phrase, respond with just that phrase.
+- If the answer is Yes or No, respond with only "Yes" or "No".
+- Do not add explanations, notes, or citations.
+- Do not include text like "Context:" or "Answer:" in your response.
+
+Context: {context}
 
 Question: {question}
 
 Answer:"""
     return prompt
 
-def process_qa_baseline(tokenizer, model, question, context, max_new_tokens=100, max_input_length=4096):
+def extract_answer(output_text, question, is_aya_model=False):
     """
-    Process a QA pair with the given model directly (baseline approach).
+    Extract and clean the model's answer.
+    
+    Args:
+        output_text: Raw output text from the model
+        question: The original question (for answer verification)
+        is_aya_model: Flag for model-specific processing
+        
+    Returns:
+        Cleaned answer
+    """
+    # Normalize whitespace and remove leading/trailing spaces
+    answer = output_text.strip()
+    
+    # Remove common prefixes
+    prefixes_to_remove = [
+        "answer:", "the answer is:", "answer is:", 
+        "context:", "question:", "according to the context,",
+        "based on the context,"
+    ]
+    
+    for prefix in prefixes_to_remove:
+        if answer.lower().startswith(prefix):
+            answer = answer[len(prefix):].strip()
+    
+    # Remove notes/citations/qualifiers in parentheses and brackets
+    answer = re.sub(r'\([^)]*\)', '', answer)
+    answer = re.sub(r'\[[^]]*\]', '', answer)
+    answer = re.sub(r'^\s*-\s+', '', answer)  # Remove leading bullet points
+    
+    # Remove common verbose qualifiers
+    qualifiers = [
+        "this is", "the answer is", "it is", "i believe",
+        "according to the context", "based on the information",
+        "based on the context", "the context states",
+        "this information was taken directly from wikipedia",
+        "note:", "please note"
+    ]
+    
+    for qualifier in qualifiers:
+        if answer.lower().startswith(qualifier):
+            answer = answer[len(qualifier):].strip()
+            # Remove any colons or similar characters after removing qualifiers
+            if answer.startswith(":") or answer.startswith(",") or answer.startswith("-"):
+                answer = answer[1:].strip()
+    
+    # Split the answer on the first sentence boundary and take the first part only
+    # This helps with removing explanations that follow the actual answer
+    first_sent_match = re.search(r'^(.*?[.?!])(?:\s|$)', answer)
+    if first_sent_match:
+        first_sent = first_sent_match.group(1).strip()
+        # Only use the first sentence if it's not too short compared to the full answer
+        if len(first_sent) > len(answer) * 0.3:  # At least 30% of the full answer
+            answer = first_sent
+    
+    # Clean up Yes/No answers
+    if answer.lower().startswith("yes"):
+        # Check if the answer is a clear yes with explanation
+        if re.match(r'^yes\W', answer.lower()):
+            answer = "Yes"
+    elif answer.lower().startswith("no"):
+        # Check if the answer is a clear no with explanation
+        if re.match(r'^no\W', answer.lower()):
+            answer = "No"
+            
+    # If we're still left with a multiline answer, take just the first line
+    if "\n" in answer:
+        answer = answer.split("\n")[0].strip()
+    
+    # Fix for Aya model's common verbose pattern
+    if is_aya_model and ("words" in answer and re.search(r'\d+\s*words', answer)):
+        # The Aya model often includes word counts, try to extract the actual answer
+        content_match = re.search(r'.*?(\d+\s*words)\s*[-–—:]\s*(.*)', answer)
+        if content_match:
+            answer = content_match.group(2).strip()
+    
+    # If answer starts with a long quote mark or similar, clean it
+    answer = re.sub(r'^["\'""'']+', '', answer).strip()
+    answer = re.sub(r'["\'""'']+$', '', answer).strip()
+    
+    # Final sanity check - if answer is still very long (more than 50 chars),
+    # and has sentence-looking content, try to extract just the key part
+    if len(answer) > 50 and "," in answer:
+        # For long answers with commas, often the key answer is before the first comma
+        potential_short = answer.split(",")[0].strip()
+        if 2 < len(potential_short) < 30:  # Reasonable short answer length
+            answer = potential_short
+    
+    # If the answer is extremely long (likely incorrect), truncate it
+    max_answer_length = 100
+    if len(answer) > max_answer_length:
+        answer = answer[:max_answer_length].strip()
+        
+    # Final check for empty answers
+    if not answer:
+        answer = "[No answer generated]"
+        
+    return answer
+
+def process_qa_baseline(tokenizer, model, question, context, 
+                          max_new_tokens=50,  # Reduced from 200
+                          max_input_length=4096,
+                          temperature=0.3,  # Reduced from 0.5 for more focus
+                          top_p=0.85):  # Slightly reduced
+    """
+    Process a QA pair with the given model directly (baseline).
     
     Args:
         tokenizer: The model tokenizer
@@ -62,6 +177,8 @@ def process_qa_baseline(tokenizer, model, question, context, max_new_tokens=100,
         context: The context text
         max_new_tokens: Maximum number of new tokens to generate for the answer
         max_input_length: Maximum length of the input sequence (context + question + prompt)
+        temperature: Temperature for sampling
+        top_p: Top_p for sampling
     
     Returns:
         The model's answer
@@ -74,29 +191,101 @@ def process_qa_baseline(tokenizer, model, question, context, max_new_tokens=100,
     if torch.cuda.is_available():
         inputs = {k: v.to("cuda") for k, v in inputs.items()}
     
+    # Determine if this is the Aya model for specialized processing
+    is_aya_model = "aya" in model.config._name_or_path.lower()
+    
+    # Model-specific parameter adjustments
+    gen_temperature = temperature
+    gen_top_p = top_p
+    gen_max_tokens = max_new_tokens
+    gen_do_sample = True
+    
+    # Aya model specific adjustments
+    if is_aya_model:
+        # Aya seems to respond better with slightly higher temperature
+        gen_temperature = 0.4  
+        # Use beam search with Aya for more focused answers
+        gen_do_sample = False  # Disable sampling, use beam search
+        beam_size = 3
+    
     # Generate answer
     with torch.no_grad():
-        # Ensure max_new_tokens doesn't exceed model limits if possible, but prioritize user setting
-        # Some models might have a hard limit, generate might handle this.
-        output_ids = model.generate(
-            **inputs,
-            max_new_tokens=max_new_tokens,
-            do_sample=False, # Keep False for deterministic baseline
-            # temperature=0.7, # Temperature ignored if do_sample=False
-            pad_token_id=tokenizer.eos_token_id
-        )
+        if is_aya_model and not gen_do_sample:
+            # Beam search for Aya model
+            output_ids = model.generate(
+                **inputs,
+                max_new_tokens=gen_max_tokens,
+                do_sample=False,
+                num_beams=beam_size,
+                early_stopping=True,
+                repetition_penalty=1.2,
+                pad_token_id=tokenizer.eos_token_id
+            )
+        else:
+            # Temperature sampling for other models or Aya (if sampling enabled)
+            output_ids = model.generate(
+                **inputs,
+                max_new_tokens=gen_max_tokens,
+                do_sample=gen_do_sample,
+                temperature=gen_temperature,
+                top_p=gen_top_p,
+                repetition_penalty=1.2,
+                pad_token_id=tokenizer.eos_token_id
+            )
     
     # Decode only the newly generated tokens
     output_text = tokenizer.decode(output_ids[0][inputs["input_ids"].shape[-1]:], skip_special_tokens=True)
     
-    # The decoded text *is* the answer, no need to split prompt again
-    answer = output_text.strip()
+    # Extract and clean the answer
+    answer = extract_answer(output_text, question, is_aya_model=is_aya_model)
     
-    # Handle potential empty answers
-    if not answer:
-        answer = "[No answer generated]"
-        
+    # Special handling for Yes/No questions to avoid answering with explanations
+    if is_yes_no_question(question):
+        if "yes" in answer.lower() and len(answer) > 5:
+            answer = "Yes"
+        elif "no" in answer.lower() and len(answer) > 5:
+            answer = "No"
+    
+    # Final formatting for numeric answers - try to extract just the number if appropriate
+    if is_numeric_question(question) and not answer.lower() in ["yes", "no", "[no answer generated]"]:
+        numeric_match = re.search(r'\b(\d[\d,.]*\d|\d)\b', answer)
+        if numeric_match:
+            answer = numeric_match.group(1)
+    
     return answer
+
+def is_yes_no_question(question):
+    """Check if a question is likely a yes/no question."""
+    question_lower = question.lower()
+    
+    # Check for common yes/no question patterns
+    yes_no_starters = [
+        "is ", "are ", "was ", "were ", "will ", "would ", "can ", "could ", 
+        "does ", "do ", "did ", "has ", "have ", "had ", "should ", "shall ",
+        "might ", "may "
+    ]
+    
+    for starter in yes_no_starters:
+        if question_lower.startswith(starter):
+            return True
+    
+    return False
+
+def is_numeric_question(question):
+    """Check if a question is likely expecting a numeric answer."""
+    question_lower = question.lower()
+    
+    numeric_patterns = [
+        "how many", "how much", "what year", "what date", "when", 
+        "how old", "how long", "how far", "what is the number", 
+        "what is the value", "what is the amount", "what is the percentage"
+    ]
+    
+    for pattern in numeric_patterns:
+        if pattern in question_lower:
+            return True
+    
+    return False
 
 def evaluate_qa_baseline(model_name, samples_df, lang_code):
     """
@@ -130,11 +319,18 @@ def evaluate_qa_baseline(model_name, samples_df, lang_code):
         try:
             question = row["question"]
             context = row["context"]
-            # Ensure answers field is correctly accessed
-            ground_truth_answers = row.get("answers", {}).get("text", []) 
-            if not ground_truth_answers: # Skip if no ground truth answers
-                print(f"Skipping sample {row.get('id', idx)} due to missing ground truth answers.")
-                continue
+            
+            # Handle both formats for ground truth - direct ground_truth or answers.text
+            if "ground_truth" in row and row["ground_truth"]:
+                # Fallback data format - use ground_truth directly
+                ground_truth_answer = row["ground_truth"]
+                ground_truth_answers = [ground_truth_answer]
+            else:
+                # TyDiQA format - extract from answers
+                ground_truth_answers = row.get("answers", {}).get("text", [])
+                if not ground_truth_answers:
+                    print(f"Skipping sample {row.get('id', idx)} due to missing ground truth answers.")
+                    continue
             
             # Get model prediction with truncation awareness
             predicted_answer = process_qa_baseline(
@@ -147,6 +343,7 @@ def evaluate_qa_baseline(model_name, samples_df, lang_code):
                 "question": question,
                 "context": context[:200] + "...",  # Truncated context for display/storage
                 "ground_truth_answers": ground_truth_answers,
+                "ground_truth": ground_truth_answers[0] if ground_truth_answers else None,  # Add direct ground_truth
                 "predicted_answer": predicted_answer,
                 "language": lang_code
             }
