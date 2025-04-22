@@ -12,53 +12,52 @@ if project_root not in sys.path:
 from model_initialization import initialize_model
 
 def generate_lrl_classification_prompt(text: str, lang_code: str, labels: List[str]) -> str:
-    """Generate a few-shot prompt (ENGLISH INSTRUCTIONS) for LRL text classification."""
+    """Generate a few-shot prompt (ENGLISH INSTRUCTIONS) for LRL text classification with structured format."""
     label_string = ", ".join(labels) # labels are English
     
     # Add few-shot examples (English examples for consistency)
     examples = ""
     if "sports" in labels:
         examples += """Example 1:
-Text: The basketball team scored 92 points in their victory over the defending champions.
+Text: 'The basketball team scored 92 points in their victory over the defending champions.'
 Category: sports
 
 """
     if "politics" in labels:
         examples += """Example 2:
-Text: The president announced new economic policies during yesterday's press conference.
+Text: 'The president announced new economic policies during yesterday's press conference.'
 Category: politics
 
 """
     if "health" in labels:
         examples += """Example 3:
-Text: Doctors recommend at least 30 minutes of exercise daily for cardiovascular health.
+Text: 'Doctors recommend at least 30 minutes of exercise daily for cardiovascular health.'
 Category: health
 
 """
     if "entertainment" in labels:
         examples += """Example 4:
-Text: The new movie broke box office records with its opening weekend sales.
+Text: 'The new movie broke box office records with its opening weekend sales.'
 Category: entertainment
 
 """
     if "business" in labels:
         examples += """Example 5:
-Text: The company announced its quarterly earnings report, showing a 20% increase in revenue.
+Text: 'The company announced its quarterly earnings report, showing a 20% increase in revenue.'
 Category: business
 
 """
     
-    prompt = f"""Classify the following {lang_code} text into one of these categories: {label_string}.
-Respond with only the category name in English. Do not translate the text, just classify it directly.
+    prompt = f"""Text: '{text}'
 
-{examples}Now classify this:
-Text ({lang_code}): {text}
+Classify the above {lang_code} text into one of these categories: {label_string}.
+Respond with only the category name in English.
 
-Category:"""
+{examples}Category:"""
     return prompt
 
 def generate_lrl_instruct_classification_prompt(text: str, lang_code: str, labels: List[str]) -> str:
-    """Generate a few-shot prompt (LRL INSTRUCTIONS) for LRL text classification."""
+    """Generate a few-shot prompt (LRL INSTRUCTIONS) for LRL text classification with structured format."""
     # Explicitly mention required English labels
     en_labels_string = ", ".join(labels) 
     
@@ -66,71 +65,77 @@ def generate_lrl_instruct_classification_prompt(text: str, lang_code: str, label
     examples = ""
     
     if lang_code == 'hau': # Hausa
-        instructions = f"Karkasa rubutun da ke gaba zuwa ɗaya daga cikin wadannan ɗakunan Turanci: {en_labels_string}. Ka amsa da sunan ɗakin ne kawai a Turanci, ba tare da ƙarin bayani ba."
+        instructions = f"""Text: '{text}'
+
+Karkasa rubutun da ke sama zuwa ɗaya daga cikin wadannan ɗakunan Turanci: {en_labels_string}.
+Ka amsa da sunan ɗakin ne kawai a Turanci, ba tare da ƙarin bayani ba."""
         
         # Add Hausa examples with more categories
         if "sports" in labels:
             examples += """Misali 1:
-Text: Kungiyar Real Madrid ta doke Barcelona da ci 3-0 a wasan karshe na gasar.
+Text: 'Kungiyar Real Madrid ta doke Barcelona da ci 3-0 a wasan karshe na gasar.'
 Category: sports
 
 """
         if "politics" in labels:
             examples += """Misali 2:
-Text: Shugaban kasa ya sanar da sabuwar manufofin tattalin arziki da zai sa kasar ta ci gaba.
+Text: 'Shugaban kasa ya sanar da sabuwar manufofin tattalin arziki da zai sa kasar ta ci gaba.'
 Category: politics
 
 """
         if "health" in labels:
             examples += """Misali 3:
-Text: Likitoci sun bayar da shawarar yin aikin motsa jiki na minti 30 kowace rana don lafiyar jiki.
+Text: 'Likitoci sun bayar da shawarar yin aikin motsa jiki na minti 30 kowace rana don lafiyar jiki.'
 Category: health
 
 """
         if "entertainment" in labels:
             examples += """Misali 4:
-Text: Sabon fim din ya karya tarihin sayar da tiketi a satin farko na nunawa.
+Text: 'Sabon fim din ya karya tarihin sayar da tiketi a satin farko na nunawa.'
 Category: entertainment
 
 """
         if "business" in labels:
             examples += """Misali 5:
-Text: Kamfanin ya sanar da rahoton kudin shiga na kwatan nan, inda aka nuna karuwar kashi 20%.
+Text: 'Kamfanin ya sanar da rahoton kudin shiga na kwatan nan, inda aka nuna karuwar kashi 20%.'
 Category: business
 
 """
     
     elif lang_code == 'swa': # Swahili
-        instructions = f"Ainisha maandishi yafuatayo katika mojawapo ya vikundi hivi vya Kiingereza: {en_labels_string}. Jibu kwa kutumia jina la kikundi cha Kiingereza pekee, bila maelezo zaidi."
+        instructions = f"""Text: '{text}'
+
+Ainisha maandishi yaliyo hapo juu katika mojawapo ya vikundi hivi vya Kiingereza: {en_labels_string}.
+Jibu kwa kutumia jina la kikundi cha Kiingereza pekee, bila maelezo zaidi."""
         
         # Add comprehensive Swahili examples
         if "sports" in labels:
             examples += """Mfano 1:
-Text: Timu ya mpira wa miguu ya Simba imeshinda mchezo dhidi ya Yanga kwa mabao 2-0 katika fainali.
+Text: 'Timu ya mpira wa miguu ya Simba imeshinda mchezo dhidi ya Yanga kwa mabao 2-0 katika fainali.'
 Category: sports
 
 """
         if "politics" in labels:
             examples += """Mfano 2:
-Text: Rais ametangaza sera mpya ya uchumi katika mkutano wa waandishi wa habari jana.
+Text: 'Rais ametangaza sera mpya ya uchumi katika mkutano wa waandishi wa habari jana.'
 Category: politics
 
 """
         if "health" in labels:
             examples += """Mfano 3:
-Text: Madaktari wanapendekeza kufanya mazoezi kwa dakika 30 kila siku kwa afya ya moyo.
+Text: 'Madaktari wanapendekeza kufanya mazoezi kwa dakika 30 kila siku kwa afya ya moyo.'
 Category: health
 
 """
         if "entertainment" in labels:
             examples += """Mfano 4:
-Text: Filamu mpya imevunja rekodi ya mauzo ya tiketi katika wiki ya kwanza ya kuonyeshwa.
+Text: 'Filamu mpya imevunja rekodi ya mauzo ya tiketi katika wiki ya kwanza ya kuonyeshwa.'
 Category: entertainment
 
 """
         if "business" in labels:
             examples += """Mfano 5:
-Text: Kampuni imetangaza ripoti ya mapato ya robo mwaka, ikionyesha ongezeko la asilimia 20.
+Text: 'Kampuni imetangaza ripoti ya mapato ya robo mwaka, ikionyesha ongezeko la asilimia 20.'
 Category: business
 
 """
@@ -144,9 +149,7 @@ Category: business
         
     prompt = f"""{instructions}
 
-{examples}Text ({lang_code}): {text}
-
-Category:"""
+{examples}Category:"""
     return prompt
 
 def process_classification_output(

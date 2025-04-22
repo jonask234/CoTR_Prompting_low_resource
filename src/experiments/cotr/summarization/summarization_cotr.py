@@ -32,75 +32,56 @@ def initialize_model(model_name: str) -> tuple:
     return model, tokenizer
 
 def generate_translation_prompt(text: str, source_lang: str, target_lang: str) -> str:
-    """Generate a prompt for translation."""
+    """Generate a prompt for translation with structured format."""
     # Special handling for English to English "translation" (no-op)
     if source_lang == 'en' and target_lang == 'en':
         return text
     
-    # Enhanced specialized prompts for LRLs → English
-    if target_lang == 'en':
-        if source_lang == 'sw':
-            return f"""Translate this Swahili text accurately into English. 
-Preserve the exact meaning without adding or removing information.
-
-Swahili: {text}
-
-English translation:"""
-        elif source_lang == 'te':
-            return f"""Translate this Telugu text accurately into English. 
-Preserve the exact meaning without adding or removing information.
-
-Telugu: {text}
-
-English translation:"""
-        elif source_lang == 'am':
-            return f"""Translate this Amharic text accurately into English. 
-Preserve the exact meaning without adding or removing information.
-
-Amharic: {text}
-
-English translation:"""
-    
-    # Enhanced specialized prompts for English → LRLs
-    if source_lang == 'en':
-        if target_lang == 'sw':
-            return f"""Translate this English text accurately into Swahili. 
-Preserve the exact meaning without adding or removing information.
-
-English: {text}
-
-Swahili translation:"""
-        elif target_lang == 'te':
-            return f"""Translate this English text accurately into Telugu. 
-Preserve the exact meaning without adding or removing information.
-
-English: {text}
-
-Telugu translation:"""
-        elif target_lang == 'am':
-            return f"""Translate this English text accurately into Amharic. 
-Preserve the exact meaning without adding or removing information.
-
-English: {text}
-
-Amharic translation:"""
-    
-    # Default/original prompt for other language pairs
+    # Get language names
     source_name = lang_names.get(source_lang, source_lang)
     target_name = lang_names.get(target_lang, target_lang)
     
-    return f"""Translate the following {source_name} text to {target_name} accurately:
+    # Enhanced specialized prompts for LRLs → English
+    if target_lang == 'en':
+        if source_lang in ['sw', 'te', 'am']:
+            return f"""Text: '{text}'
+
+Translate this {source_name} text to English.
+Preserve the exact meaning without adding or removing information.
+Provide only the direct translation without explanations.
+
+Translation:"""
+    
+    # Enhanced specialized prompts for English → LRLs
+    if source_lang == 'en':
+        if target_lang in ['sw', 'te', 'am']:
+            return f"""Text: '{text}'
+
+Translate this English text to {target_name}.
+Preserve the exact meaning without adding or removing information.
+Provide only the direct translation without explanations.
+
+Translation:"""
+    
+    # Default/original prompt for other language pairs - more structured
+    return f"""Text: '{text}'
+
+Translate this {source_name} text to {target_name}.
 Preserve the exact meaning and important details.
+Provide only the direct translation without explanations.
 
-{text}
-
-{target_name} translation:"""
+Translation:"""
 
 def generate_summarization_prompt(text: str) -> str:
-    """Generate a prompt for summarization in English."""
-    return f"""Summarize the following text in 2-3 sentences. Capture the key points and main message concisely.
+    """Generate a prompt for summarization in English with structured format."""
+    # Truncate long articles to 8000 chars to avoid token limits
+    if len(text) > 8000:
+        text = text[:8000] + "..."
+        
+    return f"""Text: '{text}'
 
-Text: {text}
+Summarize the above text in 2-3 sentences. Capture the main points only.
+Provide your summary in a direct, concise format without additional explanation.
 
 Summary:"""
 

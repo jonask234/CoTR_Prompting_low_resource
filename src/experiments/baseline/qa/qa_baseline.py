@@ -38,6 +38,7 @@ def generate_qa_prompt(question, context=None):
     """
     Generate a prompt for the QA task with explicit instructions.
     Now ignoring context as per professor's recommendation to use model's parametric knowledge.
+    Using more structured format with clear input/output expectations.
     
     Args:
         question: The question
@@ -46,17 +47,15 @@ def generate_qa_prompt(question, context=None):
     Returns:
         Formatted prompt
     """
-    prompt = f"""Answer the following question using your own knowledge.
-Keep your answer as short and direct as possible.
-- If the answer is a number, respond with just the number.
-- If the answer is a date, respond with just the date.
-- If the answer is a name, respond with just the name.
-- If the answer is a short phrase, respond with just that phrase.
-- If the answer is Yes or No, respond with only "Yes" or "No".
-- Do not add explanations, notes, or citations.
-- Do not include text like "Answer:" in your response.
+    prompt = f"""Question: '{question}'
 
-Question: {question}
+Answer the question using your own knowledge. Provide your answer in the following format:
+- For yes/no questions: respond with only 'Yes' or 'No'
+- For factual questions: provide just the specific fact, name, date, or number
+- For quantity questions: respond with just the number
+- For time questions: respond with just the date or time period
+- For person questions: respond with just the person's name
+- For location questions: respond with just the place name
 
 Answer:"""
     return prompt

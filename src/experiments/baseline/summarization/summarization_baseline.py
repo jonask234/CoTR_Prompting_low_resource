@@ -33,7 +33,7 @@ def initialize_model(model_name):
 
 def generate_summarization_prompt(text, lang_code="en", prompt_in_lrl=False):
     """
-    Generate a prompt for the summarization task.
+    Generate a prompt for the summarization task with structured format.
     
     Args:
         text: The text to summarize
@@ -43,10 +43,15 @@ def generate_summarization_prompt(text, lang_code="en", prompt_in_lrl=False):
     Returns:
         Formatted prompt
     """
-    # English prompt (default)
-    en_prompt = f"""Summarize the following text in 2-3 sentences:
+    # Truncate long articles to 8000 chars to avoid token limits
+    if len(text) > 8000:
+        text = text[:8000] + "..."
+        
+    # English prompt (default) - more structured format
+    en_prompt = f"""Text: '{text}'
 
-Text: {text}
+Summarize the above text in 2-3 sentences. Capture the main points only.
+Provide your summary in a direct, concise format without additional explanation.
 
 Summary:"""
 
@@ -57,17 +62,19 @@ Summary:"""
     # LRL prompts if requested
     if prompt_in_lrl:
         if lang_code == "sw":
-            # Swahili prompt
-            return f"""Fupisha maandishi yafuatayo katika sentensi 2-3:
+            # Swahili prompt - structured format
+            return f"""Maandishi: '{text}'
 
-Maandishi: {text}
+Fupisha maandishi hapo juu katika sentensi 2-3. Chukua pointi kuu tu.
+Toa muhtasari wako kwa njia ya moja kwa moja, bila maelezo ya ziada.
 
 Muhtasari:"""
         elif lang_code == "te":
-            # Telugu prompt
-            return f"""క్రింది వచనాన్ని 2-3 వాక్యాలలో సంక్షిప్తీకరించండి:
+            # Telugu prompt - structured format
+            return f"""పాఠ్యం: '{text}'
 
-పాఠ్యం: {text}
+పైన ఉన్న పాఠ్యాన్ని 2-3 వాక్యాలలో సంక్షిప్తీకరించండి. ప్రధాన అంశాలను మాత్రమే పట్టుకోండి.
+అదనపు వివరణ లేకుండా నేరుగా, సంక్షిప్తమైన ఫార్మాట్‌లో మీ సారాంశాన్ని అందించండి.
 
 సారాంశం:"""
         else:

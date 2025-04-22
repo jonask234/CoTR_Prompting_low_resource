@@ -39,68 +39,67 @@ def initialize_model(model_name: str) -> tuple:
     return model, tokenizer
 
 def generate_translation_prompt(text: str, source_lang: str, target_lang: str) -> str:
-    """Generate a prompt for translation."""
+    """Generate a prompt for translation with clear structure and output format."""
     # lang_names is now defined globally
 
     # Special handling for English to English "translation" (no-op)
     if source_lang == 'en' and target_lang == 'en':
         return text  # Simply return the original text for English->English
 
+    # Get language names
+    source_name = lang_names.get(source_lang, source_lang)
+    target_name = lang_names.get(target_lang, target_lang)
+
     # Enhanced specialized prompts for LRLs → English to improve translation quality
     if target_lang == 'en':
         if source_lang == 'sw':
-            return f"""Translate this Swahili text accurately into English. 
+            return f"""Text: '{text}'
+
+Translate this Swahili text to English.
 Preserve the exact meaning without adding or removing information.
-If the text contains a question, make sure the translated question is clear and precise.
+Provide only the direct translation without explanations.
 
-Swahili: {text}
-
-English translation:"""
+Translation:"""
         elif source_lang == 'te':
-            return f"""Translate this Telugu text accurately into English. 
+            return f"""Text: '{text}'
+
+Translate this Telugu text to English.
 Preserve the exact meaning without adding or removing information.
-If the text contains a question, make sure the translated question is clear and precise.
+Provide only the direct translation without explanations.
 
-Telugu: {text}
-
-English translation:"""
+Translation:"""
     
     # Enhanced specialized prompts for English → LRLs to improve back-translation
     if source_lang == 'en':
         if target_lang == 'sw':
-            return f"""Translate this English text accurately into Swahili. 
-Preserve the exact meaning without adding or removing information.
-Be especially precise with names, numbers, and technical terms.
-If translating a short answer, make sure it's concise and direct in Swahili.
+            return f"""Text: '{text}'
 
-English: {text}
+Translate this English text to Swahili.
+Preserve the exact meaning and be precise with names, numbers, and technical terms.
+Provide only the direct translation without explanations.
 
-Swahili translation:"""
+Translation:"""
         elif target_lang == 'te':
-            return f"""Translate this English text accurately into Telugu. 
-Preserve the exact meaning without adding or removing information.
-Be especially precise with names, numbers, and technical terms.
-If translating a short answer, make sure it's concise and direct in Telugu.
+            return f"""Text: '{text}'
 
-English: {text}
+Translate this English text to Telugu.
+Preserve the exact meaning and be precise with names, numbers, and technical terms.
+Provide only the direct translation without explanations.
 
-Telugu translation:"""
+Translation:"""
 
     # Default/original prompt for other language pairs or directions
-    source_name = lang_names.get(source_lang, source_lang)
-    target_name = lang_names.get(target_lang, target_lang)
-    
-    return f"""Translate the following {source_name} text to {target_name} accurately:
-Preserve the exact meaning, especially for questions, names, numbers, and facts.
-Don't add explanations or contextual information that's not in the original.
+    return f"""Text: '{text}'
 
-{text}
+Translate this {source_name} text to {target_name}.
+Preserve the exact meaning without adding explanations or extra context.
 
-{target_name} translation:"""
+Translation:"""
 
 def generate_qa_prompt(context=None, question=None, prompt_type="default"):
     """Generate the QA prompt for the model with explicit instructions.
     Now ignoring context as per professor's recommendation to use model's parametric knowledge.
+    Using more structured format with clear input/output expectations.
     
     Args:
         context: The context (not used anymore, kept for API compatibility)
@@ -110,18 +109,16 @@ def generate_qa_prompt(context=None, question=None, prompt_type="default"):
     Returns:
         Formatted prompt
     """
-    # Enhanced prompt focusing on model's parametric knowledge
-    prompt = f"""Answer the following question using your own knowledge.
-Give a concise and direct answer without additional explanation.
+    # Enhanced prompt focusing on model's parametric knowledge with clear formatting
+    prompt = f"""Question: '{question}'
 
-For yes/no questions, answer with only "Yes" or "No".
-For factual questions, answer with the specific fact, name, date, or number.
-For questions asking "how many", answer with just the number.
-For questions asking "when", answer with just the date or time period.
-For questions asking "who", answer with just the person's name.
-For questions about locations, answer with just the place name.
-
-Question: {question}
+Answer the question using your own knowledge. Provide your answer in the following format:
+- For yes/no questions: respond with only 'Yes' or 'No'
+- For factual questions: provide just the specific fact, name, date, or number
+- For quantity questions: respond with just the number
+- For time questions: respond with just the date or time period
+- For person questions: respond with just the person's name
+- For location questions: respond with just the place name
 
 Answer:"""
     return prompt

@@ -73,58 +73,59 @@ def preprocess_text(text: str, lang_code: str) -> str:
     return processed_text
 
 def generate_sentiment_prompt(text: str, lang_code: str = "en") -> str:
-    """Generate a zero-shot prompt for sentiment classification, with language-specific enhancements."""
+    """Generate a zero-shot prompt for sentiment classification, with structured format."""
     # Preprocess text based on language
     processed_text = preprocess_text(text, lang_code)
     
     # Enhanced prompt with language-specific context when known
     if lang_code == 'sw':  # Swahili-specific prompt in English
-        prompt = f"""Analyze the sentiment of the following Swahili text. 
-Be careful to consider Swahili linguistic patterns and social media expressions (including emojis) that express sentiments.
-Respond with only one word: positive (for positive sentiment), negative (for negative sentiment), or neutral (for neutral sentiment).
+        prompt = f"""Text: '{processed_text}'
+
+Analyze the sentiment of the Swahili text above.
+Consider Swahili linguistic patterns and social media expressions (including emojis).
+Respond with only one of these labels: positive, negative, or neutral.
 
 Examples:
-Text: "Ninafurahia sana hali ya hewa leo! 😊" 
+Text: 'Ninafurahia sana hali ya hewa leo! 😊' 
 Sentiment: positive
 
-Text: "Sikufurahishwa na huduma hii kabisa. 😡"
+Text: 'Sikufurahishwa na huduma hii kabisa. 😡'
 Sentiment: negative
 
-Text: "Mimi ni mwanafunzi wa chuo kikuu."
+Text: 'Mimi ni mwanafunzi wa chuo kikuu.'
 Sentiment: neutral
-
-Text: {processed_text}
 
 Sentiment:"""
     elif lang_code == 'ha':  # Hausa-specific prompt in English
-        prompt = f"""Analyze the sentiment of the following Hausa text.
-Consider Hausa expressions and linguistic patterns when determining sentiment.
-Respond with only one word: positive (for positive sentiment), negative (for negative sentiment), or neutral (for neutral sentiment).
+        prompt = f"""Text: '{processed_text}'
+
+Analyze the sentiment of the Hausa text above.
+Consider Hausa expressions and linguistic patterns.
+Respond with only one of these labels: positive, negative, or neutral.
 
 Examples:
-Text: "Na yi murna da jin wannan labari."
+Text: 'Na yi murna da jin wannan labari.'
 Sentiment: positive
 
-Text: "Ban yarda da wannan lamari ba."
+Text: 'Ban yarda da wannan lamari ba.'
 Sentiment: negative
 
-Text: "Ina zuwa kasuwa gobe."
+Text: 'Ina zuwa kasuwa gobe.'
 Sentiment: neutral
-
-Text: {processed_text}
 
 Sentiment:"""
     else:
         # Standard prompt for other languages
-        prompt = f"""Analyze the sentiment of the following text. Respond with only one word: positive, negative, or neutral.
+        prompt = f"""Text: '{processed_text}'
 
-Text: {processed_text}
+Analyze the sentiment of the text above.
+Respond with only one of these labels: positive, negative, or neutral.
 
 Sentiment:"""
     return prompt
 
 def generate_lrl_instruct_sentiment_prompt(text: str, lang_code: str) -> str:
-    """Generate a zero-shot prompt (LRL INSTRUCTIONS) for sentiment classification."""
+    """Generate a prompt in the low-resource language with structured format."""
     # Preprocess text based on language
     processed_text = preprocess_text(text, lang_code)
     
@@ -132,58 +133,49 @@ def generate_lrl_instruct_sentiment_prompt(text: str, lang_code: str) -> str:
     en_labels = "positive, negative, or neutral" 
     
     if lang_code == 'ha': # Hausa
-        instructions = f"Bincika yanayin wannan rubutu da ke gaba. Ka amsa da ɗaya daga cikin kalmomi na turanci kawai: {en_labels}."
+        instructions = f"Text: '{processed_text}'\n\nBincika yanayin rubutu a sama. Ka amsa da ɗaya daga cikin kalmomi na turanci kawai: {en_labels}."
         
         # Add few-shot examples for Hausa
         prompt = f"""{instructions}
 
-Mfano 1:
-Text: Na yi farin ciki da jin labarin nasara.
+Misalai:
+Text: 'Na yi farin ciki da jin labarin nasara.'
 Sentiment: positive
 
-Mfano 2:
-Text: Ba na son yadda aka yi wannan abu ba.
+Text: 'Ba na son yadda aka yi wannan abu ba.'
 Sentiment: negative
 
-Mfano 3:
-Text: Zan tafi gobe.
+Text: 'Zan tafi gobe.'
 Sentiment: neutral
-
-Text ({lang_code}): {processed_text}
 
 Sentiment:"""
         
     elif lang_code == 'sw': # Swahili
         # More explicit instructions for Swahili with emphasis on accuracy and handling emojis
-        instructions = f"""Chunguza kwa makini hisia katika maandishi yaliyotolewa, ukizingatia pia emoji na ishara zingine. 
-Zingatia kuwa maandishi yanaweza kuonyesha hisia chanya (positive), hasi (negative), au ya katikati (neutral).
+        instructions = f"""Text: '{processed_text}'
+
+Chunguza kwa makini hisia katika maandishi yaliyotolewa, ukizingatia pia emoji na ishara zingine.
 Jibu kwa Kiingereza kwa kutumia MOJA TU kati ya maneno haya: {en_labels}.
 Hakikisha majibu yako ni sahihi na sio tu kupendelea hisia chanya."""
         
         # Add balanced examples with emojis for Swahili
         prompt = f"""{instructions}
 
-Mfano 1:
-Text: Ninafurahia sana hali ya hewa leo! 😊
+Mifano:
+Text: 'Ninafurahia sana hali ya hewa leo! 😊'
 Sentiment: positive
 
-Mfano 2:
-Text: Sikufurahishwa na huduma hii kabisa, ilikuwa mbaya sana. 😠
+Text: 'Sikufurahishwa na huduma hii kabisa, ilikuwa mbaya sana. 😠'
 Sentiment: negative
 
-Mfano 3:
-Text: Labda nitaenda dukani kesho, sijaamua bado.
+Text: 'Labda nitaenda dukani kesho, sijaamua bado.'
 Sentiment: neutral
 
-Mfano 4:
-Text: Nilipata hasara kubwa katika biashara hii. 😢
+Text: 'Nilipata hasara kubwa katika biashara hii. 😢'
 Sentiment: negative
 
-Mfano 5:
-Text: Mimi ni mwanafunzi wa chuo kikuu.
+Text: 'Mimi ni mwanafunzi wa chuo kikuu.'
 Sentiment: neutral
-
-Text ({lang_code}): {processed_text}
 
 Sentiment:"""
         
