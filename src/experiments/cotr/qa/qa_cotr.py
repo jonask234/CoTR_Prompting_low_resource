@@ -98,11 +98,21 @@ Don't add explanations or contextual information that's not in the original.
 
 {target_name} translation:"""
 
-def generate_qa_prompt(context, question, prompt_type="default"):
-    """Generate the QA prompt for the model with explicit instructions."""
-    # Enhanced prompt with more specific instructions for better answers
-    prompt = f"""Answer the following question based only on the provided context.
-Give a concise and direct answer using the exact words from the context when possible.
+def generate_qa_prompt(context=None, question=None, prompt_type="default"):
+    """Generate the QA prompt for the model with explicit instructions.
+    Now ignoring context as per professor's recommendation to use model's parametric knowledge.
+    
+    Args:
+        context: The context (not used anymore, kept for API compatibility)
+        question: The question
+        prompt_type: Type of prompt to generate
+        
+    Returns:
+        Formatted prompt
+    """
+    # Enhanced prompt focusing on model's parametric knowledge
+    prompt = f"""Answer the following question using your own knowledge.
+Give a concise and direct answer without additional explanation.
 
 For yes/no questions, answer with only "Yes" or "No".
 For factual questions, answer with the specific fact, name, date, or number.
@@ -110,8 +120,6 @@ For questions asking "how many", answer with just the number.
 For questions asking "when", answer with just the date or time period.
 For questions asking "who", answer with just the person's name.
 For questions about locations, answer with just the place name.
-
-Context: {context}
 
 Question: {question}
 
@@ -277,15 +285,17 @@ def process_qa_pair(
     model: Any,
     tokenizer: Any,
     question: str,
-    context: str,
+    context: str = None,  # Now optional and unused
     max_input_length: int = 4096,
     max_new_tokens: int = 50, # Reduced from 200 to 50 for more concise answers
     temperature: float = 0.3, # Lower temperature for more focused answers
     top_p: float = 0.9,
     model_name: str = ""  # Added model_name parameter to adjust params per model
 ) -> str:
-    """Process a single QA pair using the model."""
-    prompt = generate_qa_prompt(context, question)
+    """Process a single QA pair using the model.
+    Now ignoring context as per professor's recommendation to use model's parametric knowledge.
+    """
+    prompt = generate_qa_prompt(None, question)
     
     # Check if this is a yes/no question to handle differently
     is_yes_no = is_yes_no_question(question)
@@ -382,9 +392,9 @@ def extract_answer(response: str, is_yes_no: bool = False) -> str:
     # Remove common prefixes
     prefixes_to_remove = [
         "answer:", "the answer is:", "answer is:", 
-        "context:", "question:", "according to the context,",
-        "based on the context,", "based on the information provided,",
-        "looking at the context,", "from the context,", "as per the context,"
+        "context:", "question:", "according to my knowledge,",
+        "based on my knowledge,", "as far as i know,",
+        "to the best of my knowledge,"
     ]
     
     for prefix in prefixes_to_remove:
@@ -418,40 +428,6 @@ def extract_answer(response: str, is_yes_no: bool = False) -> str:
             # The first sentence is reasonably sized (not too short, not the whole answer)
             answer = first_sentence
     
-    # Special handling for Swahili/Telugu mixed with English (mixed language responses)
-    # Check if the answer has a mix of English and non-ASCII characters
-    has_english = any(c.isalpha() and ord(c) < 128 for c in answer)
-    has_non_ascii = any(ord(c) > 127 for c in answer if c.isalpha())
-    
-    if has_english and has_non_ascii:
-        # This might be a mixed-language response
-        # Extract segments by language
-        english_parts = []
-        non_english_parts = []
-        
-        # Split by spaces and categorize by character types
-        words = answer.split()
-        for word in words:
-            # Skip punctuation-only words
-            if not any(c.isalpha() for c in word):
-                continue
-                
-            # Check if word is primarily English or non-English
-            english_chars = sum(1 for c in word if c.isalpha() and ord(c) < 128)
-            total_alpha = sum(1 for c in word if c.isalpha())
-            
-            if total_alpha > 0:
-                if english_chars / total_alpha > 0.7:
-                    english_parts.append(word)
-                else:
-                    non_english_parts.append(word)
-        
-        # Prefer the language with more content
-        if len(non_english_parts) > len(english_parts):
-            answer = " ".join(non_english_parts)
-        else:
-            answer = " ".join(english_parts)
-    
     # Clean up additional patterns
     answer = re.sub(r'^["\'""'']+', '', answer).strip()
     answer = re.sub(r'["\'""'']+$', '', answer).strip()
@@ -470,10 +446,11 @@ def evaluate_qa_cotr(
 ) -> pd.DataFrame:
     """
     Evaluate QA using Chain of Translation Prompting (CoTR) approach.
+    Now ignoring context and using only model's parametric knowledge.
     
     Steps:
-    1. Translate question and context from source language to English
-    2. Perform QA in English
+    1. Translate question from source language to English
+    2. Perform QA in English (using model's knowledge)
     3. Translate the answer back to the source language
     
     Args:
@@ -498,6 +475,7 @@ def evaluate_qa_cotr(
     # Set a practical limit, considering memory and typical context window usefulness
     safe_max_input_length = min(model_max_len, 8192) 
     print(f"Using max_input_length: {safe_max_input_length}")
+    print(f"NOTE: Context is being ignored as per professor's recommendation. Using model's parametric knowledge.")
 
     # Set language-specific parameters
     max_answer_tokens = 50  # Default
@@ -516,7 +494,7 @@ def evaluate_qa_cotr(
     for idx, row in tqdm(samples_df.iterrows(), total=len(samples_df), desc=f"Processing {lang_code} samples ({model_name} CoTR)"):
         try:
             original_question = row['question']
-            original_context = row['context']
+            original_context = row['context']  # Keep for reference but don't use
             
             # Handle both formats for ground truth - direct ground_truth or answers.text
             if "ground_truth" in row and row["ground_truth"]:
@@ -534,17 +512,8 @@ def evaluate_qa_cotr(
             question_en = translate_text(model, tokenizer, original_question, lang_code, "en", 
                                        max_input_length=safe_max_input_length, model_name=model_name)
             
-            # The TyDiQA context is already in English, but we may need to translate other datasets
-            is_context_english = is_text_english(original_context)
-            if is_context_english:
-                context_en = original_context
-            else:
-                context_en = translate_text(model, tokenizer, original_context, lang_code, "en", 
-                                           max_input_length=safe_max_input_length, 
-                                           max_new_tokens=1024, model_name=model_name)
-            
-            # Step 2: Process QA in English
-            answer_en = process_qa_pair(model, tokenizer, question_en, context_en, 
+            # Step 2: Process QA in English (without context)
+            answer_en = process_qa_pair(model, tokenizer, question_en, None, 
                                        max_input_length=safe_max_input_length,
                                        max_new_tokens=max_answer_tokens,
                                        temperature=qa_temperature,
@@ -566,10 +535,11 @@ def evaluate_qa_cotr(
                 'question': original_question,
                 'context': original_context[:200] + "..." if len(original_context) > 200 else original_context,
                 'question_en': question_en,
-                'context_en': context_en[:200] + "..." if len(context_en) > 200 else context_en,
+                'context_en': "",  # No context used
                 'answer_en': answer_en,
                 'predicted_answer': answer,
-                'ground_truth': ground_truth[0]
+                'ground_truth': ground_truth[0],
+                'context_used': False  # Flag to indicate context was not used
             }
             results.append(result)
 

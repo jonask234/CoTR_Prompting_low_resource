@@ -34,18 +34,19 @@ def initialize_model(model_name):
         model = model.to("cuda")
     return tokenizer, model
 
-def generate_qa_prompt(question, context):
+def generate_qa_prompt(question, context=None):
     """
     Generate a prompt for the QA task with explicit instructions.
+    Now ignoring context as per professor's recommendation to use model's parametric knowledge.
     
     Args:
         question: The question
-        context: The context/passage
+        context: The context/passage (not used anymore, kept for API compatibility)
     
     Returns:
         Formatted prompt
     """
-    prompt = f"""Answer the following question based ONLY on the information provided in the context below.
+    prompt = f"""Answer the following question using your own knowledge.
 Keep your answer as short and direct as possible.
 - If the answer is a number, respond with just the number.
 - If the answer is a date, respond with just the date.
@@ -53,9 +54,7 @@ Keep your answer as short and direct as possible.
 - If the answer is a short phrase, respond with just that phrase.
 - If the answer is Yes or No, respond with only "Yes" or "No".
 - Do not add explanations, notes, or citations.
-- Do not include text like "Context:" or "Answer:" in your response.
-
-Context: {context}
+- Do not include text like "Answer:" in your response.
 
 Question: {question}
 
@@ -80,8 +79,8 @@ def extract_answer(output_text, question, is_aya_model=False):
     # Remove common prefixes
     prefixes_to_remove = [
         "answer:", "the answer is:", "answer is:", 
-        "context:", "question:", "according to the context,",
-        "based on the context,"
+        "context:", "question:", "according to my knowledge,",
+        "based on my knowledge,"
     ]
     
     for prefix in prefixes_to_remove:
@@ -96,9 +95,9 @@ def extract_answer(output_text, question, is_aya_model=False):
     # Remove common verbose qualifiers
     qualifiers = [
         "this is", "the answer is", "it is", "i believe",
-        "according to the context", "based on the information",
-        "based on the context", "the context states",
-        "this information was taken directly from wikipedia",
+        "according to my knowledge", "based on the information",
+        "based on my understanding", "as far as i know",
+        "to the best of my knowledge", "historically",
         "note:", "please note"
     ]
     
@@ -132,13 +131,6 @@ def extract_answer(output_text, question, is_aya_model=False):
     if "\n" in answer:
         answer = answer.split("\n")[0].strip()
     
-    # Fix for Aya model's common verbose pattern
-    if is_aya_model and ("words" in answer and re.search(r'\d+\s*words', answer)):
-        # The Aya model often includes word counts, try to extract the actual answer
-        content_match = re.search(r'.*?(\d+\s*words)\s*[-–—:]\s*(.*)', answer)
-        if content_match:
-            answer = content_match.group(2).strip()
-    
     # If answer starts with a long quote mark or similar, clean it
     answer = re.sub(r'^["\'""'']+', '', answer).strip()
     answer = re.sub(r'["\'""'']+$', '', answer).strip()
@@ -162,28 +154,29 @@ def extract_answer(output_text, question, is_aya_model=False):
         
     return answer
 
-def process_qa_baseline(tokenizer, model, question, context, 
+def process_qa_baseline(tokenizer, model, question, context=None, 
                           max_new_tokens=50,  # Reduced from 200
                           max_input_length=4096,
                           temperature=0.3,  # Reduced from 0.5 for more focus
                           top_p=0.85):  # Slightly reduced
     """
     Process a QA pair with the given model directly (baseline).
+    Now ignoring context as per professor's recommendation to use model's parametric knowledge.
     
     Args:
         tokenizer: The model tokenizer
         model: The language model
         question: The question text
-        context: The context text
+        context: The context text (not used anymore, kept for API compatibility)
         max_new_tokens: Maximum number of new tokens to generate for the answer
-        max_input_length: Maximum length of the input sequence (context + question + prompt)
+        max_input_length: Maximum length of the input sequence
         temperature: Temperature for sampling
         top_p: Top_p for sampling
     
     Returns:
         The model's answer
     """
-    prompt = generate_qa_prompt(question, context)
+    prompt = generate_qa_prompt(question)
     
     # Tokenize with truncation
     inputs = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=max_input_length)
@@ -290,6 +283,7 @@ def is_numeric_question(question):
 def evaluate_qa_baseline(model_name, samples_df, lang_code):
     """
     Evaluate the baseline QA approach on the given samples.
+    Now using model's parametric knowledge instead of provided context.
     
     Args:
         model_name: Name of the model to use
@@ -314,11 +308,12 @@ def evaluate_qa_baseline(model_name, samples_df, lang_code):
     safe_max_input_length = min(model_max_len, 8192) 
     
     print(f"Using max_input_length: {safe_max_input_length}")
+    print(f"NOTE: Context is being ignored as per professor's recommendation. Using model's parametric knowledge.")
 
     for idx, row in tqdm(samples_df.iterrows(), total=len(samples_df), desc=f"Processing {lang_code} samples ({model_name})"):
         try:
             question = row["question"]
-            context = row["context"]
+            context = row["context"]  # Still read context for reference/reporting
             
             # Handle both formats for ground truth - direct ground_truth or answers.text
             if "ground_truth" in row and row["ground_truth"]:
@@ -332,20 +327,21 @@ def evaluate_qa_baseline(model_name, samples_df, lang_code):
                     print(f"Skipping sample {row.get('id', idx)} due to missing ground truth answers.")
                     continue
             
-            # Get model prediction with truncation awareness
+            # Get model prediction WITHOUT using context
             predicted_answer = process_qa_baseline(
-                tokenizer, model, question, context, 
+                tokenizer, model, question, None,  # Pass None for context 
                 max_input_length=safe_max_input_length
             )
             
             # Store result
             result = {
                 "question": question,
-                "context": context[:200] + "...",  # Truncated context for display/storage
+                "context": context[:200] + "...",  # Kept for reference only
                 "ground_truth_answers": ground_truth_answers,
                 "ground_truth": ground_truth_answers[0] if ground_truth_answers else None,  # Add direct ground_truth
                 "predicted_answer": predicted_answer,
-                "language": lang_code
+                "language": lang_code,
+                "context_used": False  # Flag to indicate context was not used
             }
             results.append(result)
         except Exception as e:
