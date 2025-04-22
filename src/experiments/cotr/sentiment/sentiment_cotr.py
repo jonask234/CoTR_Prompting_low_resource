@@ -162,8 +162,13 @@ def evaluate_sentiment_cotr(
             # Step 3: Translate the sentiment result back to the original language
             # Only translate back if we have a valid prediction (not [Unknown])
             if predicted_label_en != "[Unknown]":
-                # Create a prompt to translate the predicted label
-                label_translation_prompt = f"Translate the word '{predicted_label_en}' from English to {lang_code}."
+                # Create a prompt to translate the predicted label with structured format
+                label_translation_prompt = f"""Text: '{predicted_label_en}'
+
+Translate this English sentiment label to {lang_code}.
+Provide only the direct translation without explanations.
+
+Translation:"""
                 
                 # Use the model to translate the label
                 inputs = tokenizer(label_translation_prompt, return_tensors="pt", truncation=True, max_length=safe_max_input_length)
