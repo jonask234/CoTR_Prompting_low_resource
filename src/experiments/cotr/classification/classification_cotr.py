@@ -16,7 +16,7 @@ from typing import Any, List
 # EXPECTED_LABELS = ["positive", "negative", "neutral"]
 
 def generate_translation_prompt(text: str, source_lang: str, target_lang: str) -> str:
-    """Generate a prompt for translation."""
+    """Generate a prompt for translation with structured format."""
     # Special handling for English to English "translation" (no-op)
     if source_lang == 'en' and target_lang == 'en':
         return text  # Simply return the original text for English->English
@@ -30,19 +30,21 @@ def generate_translation_prompt(text: str, source_lang: str, target_lang: str) -
     source_name = lang_names.get(source_lang, source_lang)
     target_name = lang_names.get(target_lang, target_lang)
     
-    return f"""Translate the following {source_name} text to {target_name}:
+    return f"""Text: '{text}'
 
-{text}
+Translate this {source_name} text to {target_name}.
+Preserve the exact meaning without adding or removing information.
+Provide only the direct translation without explanations.
 
-{target_name} translation:"""
+Translation:"""
 
 def generate_classification_prompt(text: str, labels: List[str]) -> str:
-    """Generate a prompt for classification."""
+    """Generate a prompt for classification with structured format."""
     label_string = ", ".join(labels)
-    prompt = f"""Classify the following English text into one of these categories: {label_string}.
-Respond with only the category name.
+    prompt = f"""Text: '{text}'
 
-Text: {text}
+Classify the above text into one of these categories: {label_string}.
+Respond with only the category name in English.
 
 Category:"""
     return prompt

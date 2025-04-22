@@ -27,19 +27,41 @@ def initialize_model(model_name: str) -> tuple:
     return model, tokenizer
 
 def generate_translation_prompt(text: str, source_lang: str, target_lang: str) -> str:
-    """Generate a prompt for translation."""
+    """Generate a prompt for translation with structured format."""
     # Simple prompt, assumes model understands language codes
     # More direct prompt specifically for Hausa -> English case
     if source_lang == 'ha' and target_lang == 'en':
-        return f"Translate Hausa to English:\\n\\nHausa: {text}\\n\\nEnglish:"
-    else: # Keep original for other potential language pairs
-        return f"Translate the following text from {source_lang} to {target_lang}:\\n\\n{text}\\n\\n{target_lang} translation:"
+        return f"""Text: '{text}'
+
+Translate this Hausa text to English.
+Preserve the exact meaning without adding or removing information.
+Provide only the direct translation without explanations.
+
+Translation:"""
+    else: # Improved structured format for other language pairs
+        # Get full language names for better prompting
+        lang_names = {
+            "en": "English",
+            "ha": "Hausa",
+            "sw": "Swahili"
+        }
+        source_name = lang_names.get(source_lang, source_lang)
+        target_name = lang_names.get(target_lang, target_lang)
+        
+        return f"""Text: '{text}'
+
+Translate this {source_name} text to {target_name}.
+Preserve the exact meaning without adding or removing information.
+Provide only the direct translation without explanations.
+
+Translation:"""
 
 def generate_sentiment_prompt(text: str) -> str:
-    """Generate a zero-shot prompt for English sentiment classification."""
-    prompt = f"""Analyze the sentiment of the following English text. Respond with only one word: positive, negative, or neutral.
+    """Generate a zero-shot prompt for English sentiment classification with structured format."""
+    prompt = f"""Text: '{text}'
 
-Text: {text}
+Analyze the sentiment of the text above.
+Respond with only one of these labels: positive, negative, or neutral.
 
 Sentiment:"""
     return prompt
