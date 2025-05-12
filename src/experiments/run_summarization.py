@@ -1,5 +1,6 @@
 import sys
 import os
+import argparse
 
 # Disable tokenizer parallelism to avoid warnings
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
@@ -42,47 +43,32 @@ def calculate_rouge_scores(predictions, references):
     
     return avg_scores
 
-def run_summarization_experiment(experiment_type, model_name, lang_code, prompt_in_lrl=False):
+def run_summarization_experiment(experiment_type, model_name, samples_df, lang_code, dataset_name, base_path):
     """
     Run summarization experiment of specified type.
     
     Args:
         experiment_type: 'baseline' or 'cotr'
         model_name: Name of the model to use
+        samples_df: DataFrame containing the samples to use
         lang_code: Language code
-        prompt_in_lrl: For baseline, whether to use prompts in LRL
+        dataset_name: Name of the dataset
+        base_path: Base path for storing results
     """
-    # Skip if trying to use LRL prompts (we've removed this option)
-    if prompt_in_lrl:
-        print(f"Skipping {lang_code} for {model_name} with LRL prompts (option removed)")
-        return
-        
     # Create output directory
-    base_path = f"/work/bbd6522/results/summarization/{experiment_type}"
     os.makedirs(base_path, exist_ok=True)
     
-    # Load XL-Sum data - using 10% of samples
-    samples_df = load_xlsum_samples(lang_code, num_samples="10%")
-    
     if samples_df.empty:
-        print(f"ERROR: No samples loaded for {lang_code}.")
+        print(f"ERROR: No samples provided for {lang_code}.")
         return
     
-    print(f"Loaded {len(samples_df)} samples for {lang_code}")
-    
-    # For Aya model, reduce sample size for Telugu to avoid CUDA memory issues
-    aya_issue = "aya" in model_name.lower() and lang_code == "te"
-    if aya_issue:
-        # For Aya + Telugu, use half the samples to reduce CUDA memory pressure
-        original_len = len(samples_df)
-        samples_df = samples_df.sample(frac=0.5, random_state=42)
-        print(f"🔄 Reduced samples for Aya + Telugu from {original_len} to {len(samples_df)} to avoid memory issues")
+    print(f"Running {experiment_type} experiment with {len(samples_df)} samples")
     
     try:
         # Run appropriate experiment
         if experiment_type == 'baseline':
             prompt_tag = "_en_prompt"  # Always use English prompts now
-            results_df = evaluate_summarization_baseline(model_name, samples_df, lang_code, prompt_in_lrl=False)
+            results_df = evaluate_summarization_baseline(model_name, samples_df, lang_code)
             output_path = f"{base_path}/{lang_code}"
             method_name = "English Prompt"
         else:  # cotr
@@ -139,42 +125,95 @@ def run_summarization_experiment(experiment_type, model_name, lang_code, prompt_
         print(f"ERROR during {experiment_type} experiment for {lang_code} with {model_name}: {str(e)}")
         print("Continuing with next experiment...")
 
+def parse_args():
+    """Parse command line arguments."""
+    parser = argparse.ArgumentParser(description='Run summarization experiments with reduced sample size')
+    parser.add_argument('--lang', type=str, choices=['en', 'sw', 'te'], help='Language code to process')
+    parser.add_argument('--model', type=str, choices=['qwen', 'aya'], help='Model to use (short name)')
+    parser.add_argument('--approach', type=str, choices=['baseline', 'cotr', 'both'], default='both', 
+                        help='Approach to run (baseline, cotr, or both)')
+    parser.add_argument('--samples', type=int, default=15, help='Number of samples to process')
+    
+    return parser.parse_args()
+
 def main():
-    # Get Hugging Face token
+    # Parse command line arguments
+    args = parse_args()
+    
+    # Login to HuggingFace
     token = get_token()
     login(token=token)
     
-    # Define models to test
-    models = [
-        "Qwen/Qwen2.5-7B-Instruct",
-        "CohereLabs/aya-expanse-8b"
-    ]
+    # Define model mapping
+    model_mapping = {
+        'qwen': "Qwen/Qwen2.5-7B-Instruct",
+        'aya': "CohereLabs/aya-expanse-8b"
+    }
     
-    # Language codes to test
-    languages = ["sw", "te", "en"]
+    # Set up language codes
+    if args.lang:
+        lang_codes = [args.lang]
+    else:
+        lang_codes = ["en", "sw", "te"]
     
-    # Print dataset info
-    print("\n--- XL-Sum Dataset Statistics ---")
-    stats = get_xlsum_stats()
-    for lang_code in languages:
-        if lang_code in stats:
-            lang_stats = stats[lang_code]
-            print(f"{lang_code} ({lang_stats.get('name', 'unknown')}): "
-                f"Train: {lang_stats.get('train', 'N/A')}, "
-                f"Validation: {lang_stats.get('validation', 'N/A')}, "
-                f"Test: {lang_stats.get('test', 'N/A')}")
+    # Set up models
+    if args.model:
+        models = [model_mapping[args.model]]
+    else:
+        models = [model_mapping['qwen'], model_mapping['aya']]
     
-    # Run baseline experiments with only English prompts
-    print("\n--- Running Baseline Experiments (English prompts) ---")
+    # Load datasets
+    datasets = {}
+    for lang_code in lang_codes:
+        # Load dataset
+        samples_df = load_xlsum_samples(lang_code)
+        print(f"Loaded {len(samples_df)} total samples for {lang_code}")
+        
+        # Use very small sample size (10-15) for fast processing
+        # Use even smaller sample size for Telugu with Aya
+        if lang_code == "te" and "aya" in " ".join(models).lower():
+            num_to_sample = min(len(samples_df), 10)
+            print(f"Using very small sample size (10) for Telugu to avoid memory issues")
+        else:
+            num_to_sample = min(len(samples_df), args.samples)
+        
+        samples_df = samples_df.sample(n=num_to_sample, random_state=42)
+        print(f"Sampling {num_to_sample} samples for resource efficiency for {lang_code}")
+        
+        datasets[lang_code] = samples_df
+    
+    # Print dataset statistics
+    for lang_code, df in datasets.items():
+        print(f"{lang_code}: {len(df)} samples")
+    
+    # Create directories for results
+    baseline_path = "/work/bbd6522/results/summarization/baseline"
+    cotr_path = "/work/bbd6522/results/summarization/cotr"
+    os.makedirs(baseline_path, exist_ok=True)
+    os.makedirs(cotr_path, exist_ok=True)
+    
+    # Run experiments according to specified approach
     for model_name in models:
-        for lang_code in languages:
-            run_summarization_experiment('baseline', model_name, lang_code, prompt_in_lrl=False)
-    
-    # Run CoTR experiments
-    print("\n--- Running CoTR Experiments ---")
-    for model_name in models:
-        for lang_code in languages:
-            run_summarization_experiment('cotr', model_name, lang_code)
+        for lang_code in lang_codes:
+            if datasets[lang_code].empty:
+                print(f"Skipping {lang_code} for {model_name} - no samples available")
+                continue
+            
+            # Run baseline if specified
+            if args.approach in ['baseline', 'both']:
+                print(f"\n{'='*50}")
+                print(f"Running baseline for {model_name} on {lang_code}")
+                print(f"{'='*50}")
+                run_summarization_experiment("baseline", model_name, datasets[lang_code], 
+                                           lang_code, "xlsum", baseline_path)
+            
+            # Run CoTR if specified
+            if args.approach in ['cotr', 'both']:
+                print(f"\n{'='*50}")
+                print(f"Running CoTR for {model_name} on {lang_code}")
+                print(f"{'='*50}")
+                run_summarization_experiment("cotr", model_name, datasets[lang_code],
+                                           lang_code, "xlsum", cotr_path)
 
 if __name__ == "__main__":
     main() 

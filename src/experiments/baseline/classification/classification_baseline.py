@@ -1,308 +1,292 @@
 import torch
+from transformers import AutoTokenizer, AutoModelForCausalLM
 import pandas as pd
 from tqdm import tqdm
 import os
-import sys
-from typing import Any, List
+import re
+import time
+import traceback
+from typing import Tuple, Dict, List, Any, Optional
 
-# Add project root to path to find model_initialization
-project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', '..'))
-if project_root not in sys.path:
-    sys.path.insert(0, project_root)
-from model_initialization import initialize_model
+# Define English labels as the canonical ones
+POSSIBLE_LABELS_EN = ['health', 'religion', 'politics', 'sports', 'local', 'business', 'entertainment']
 
-def generate_lrl_classification_prompt(text: str, lang_code: str, labels: List[str]) -> str:
-    """Generate a few-shot prompt (ENGLISH INSTRUCTIONS) for LRL text classification with structured format."""
-    label_string = ", ".join(labels) # labels are English
-    
-    # Add few-shot examples (English examples for consistency)
-    examples = ""
-    if "sports" in labels:
-        examples += """Example 1:
-Text: 'The basketball team scored 92 points in their victory over the defending champions.'
-Category: sports
+def initialize_model(model_name: str) -> Tuple[Any, Any]:
+    """Initialize a model and tokenizer, specifying cache directory."""
+    print(f"Initializing {model_name}...")
+    cache_path = "/work/bbd6522/cache_dir"
+    tokenizer = AutoTokenizer.from_pretrained(
+        model_name,
+        trust_remote_code=True,
+        cache_dir=cache_path
+    )
+    model = AutoModelForCausalLM.from_pretrained(
+        model_name,
+        trust_remote_code=True,
+        cache_dir=cache_path,
+        torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
+        device_map="auto"
+    )
+    return tokenizer, model
 
-"""
-    if "politics" in labels:
-        examples += """Example 2:
-Text: 'The president announced new economic policies during yesterday's press conference.'
-Category: politics
-
-"""
-    if "health" in labels:
-        examples += """Example 3:
-Text: 'Doctors recommend at least 30 minutes of exercise daily for cardiovascular health.'
-Category: health
-
-"""
-    if "entertainment" in labels:
-        examples += """Example 4:
-Text: 'The new movie broke box office records with its opening weekend sales.'
-Category: entertainment
-
-"""
-    if "business" in labels:
-        examples += """Example 5:
-Text: 'The company announced its quarterly earnings report, showing a 20% increase in revenue.'
-Category: business
-
-"""
-    
-    prompt = f"""Text: '{text}'
-
-Classify the above {lang_code} text into one of these categories: {label_string}.
-Respond with only the category name in English.
-
-{examples}Category:"""
-    return prompt
-
-def generate_lrl_instruct_classification_prompt(text: str, lang_code: str, labels: List[str]) -> str:
-    """Generate a few-shot prompt (LRL INSTRUCTIONS) for LRL text classification with structured format."""
-    # Explicitly mention required English labels
-    en_labels_string = ", ".join(labels) 
-    
-    # Create examples in the LRL with English label outputs
-    examples = ""
-    
-    if lang_code == 'hau': # Hausa
-        instructions = f"""Text: '{text}'
-
-Karkasa rubutun da ke sama zuwa ɗaya daga cikin wadannan ɗakunan Turanci: {en_labels_string}.
-Ka amsa da sunan ɗakin ne kawai a Turanci, ba tare da ƙarin bayani ba."""
-        
-        # Add Hausa examples with more categories
-        if "sports" in labels:
-            examples += """Misali 1:
-Text: 'Kungiyar Real Madrid ta doke Barcelona da ci 3-0 a wasan karshe na gasar.'
-Category: sports
-
-"""
-        if "politics" in labels:
-            examples += """Misali 2:
-Text: 'Shugaban kasa ya sanar da sabuwar manufofin tattalin arziki da zai sa kasar ta ci gaba.'
-Category: politics
-
-"""
-        if "health" in labels:
-            examples += """Misali 3:
-Text: 'Likitoci sun bayar da shawarar yin aikin motsa jiki na minti 30 kowace rana don lafiyar jiki.'
-Category: health
-
-"""
-        if "entertainment" in labels:
-            examples += """Misali 4:
-Text: 'Sabon fim din ya karya tarihin sayar da tiketi a satin farko na nunawa.'
-Category: entertainment
-
-"""
-        if "business" in labels:
-            examples += """Misali 5:
-Text: 'Kamfanin ya sanar da rahoton kudin shiga na kwatan nan, inda aka nuna karuwar kashi 20%.'
-Category: business
-
-"""
-    
-    elif lang_code == 'swa': # Swahili
-        instructions = f"""Text: '{text}'
-
-Ainisha maandishi yaliyo hapo juu katika mojawapo ya vikundi hivi vya Kiingereza: {en_labels_string}.
-Jibu kwa kutumia jina la kikundi cha Kiingereza pekee, bila maelezo zaidi."""
-        
-        # Add comprehensive Swahili examples
-        if "sports" in labels:
-            examples += """Mfano 1:
-Text: 'Timu ya mpira wa miguu ya Simba imeshinda mchezo dhidi ya Yanga kwa mabao 2-0 katika fainali.'
-Category: sports
-
-"""
-        if "politics" in labels:
-            examples += """Mfano 2:
-Text: 'Rais ametangaza sera mpya ya uchumi katika mkutano wa waandishi wa habari jana.'
-Category: politics
-
-"""
-        if "health" in labels:
-            examples += """Mfano 3:
-Text: 'Madaktari wanapendekeza kufanya mazoezi kwa dakika 30 kila siku kwa afya ya moyo.'
-Category: health
-
-"""
-        if "entertainment" in labels:
-            examples += """Mfano 4:
-Text: 'Filamu mpya imevunja rekodi ya mauzo ya tiketi katika wiki ya kwanza ya kuonyeshwa.'
-Category: entertainment
-
-"""
-        if "business" in labels:
-            examples += """Mfano 5:
-Text: 'Kampuni imetangaza ripoti ya mapato ya robo mwaka, ikionyesha ongezeko la asilimia 20.'
-Category: business
-
-"""
-    
-    elif lang_code == 'eng':
-        print(f"WARN: LRL instructions requested for English text. Using standard English prompt.")
-        return generate_lrl_classification_prompt(text, lang_code, labels)
-    else:
-        print(f"WARN: LRL instructions not defined for {lang_code}. Falling back to English prompt.")
-        return generate_lrl_classification_prompt(text, lang_code, labels)
-        
-    prompt = f"""{instructions}
-
-{examples}Category:"""
-    return prompt
-
-def process_classification_output(
-    response: str,
-    possible_labels: List[str] # These are the English labels
+def generate_classification_prompt(
+    text: str,
+    possible_labels: List[str], # These will always be English for this function
+    lang_code: str = "en", # lang_code of the text itself
+    model_name: str = "",
+    use_few_shot: bool = True
 ) -> str:
-    """Process the model's output to extract an ENGLISH classification label."""
-    predicted_label_raw = response.strip().lower()
-    predicted_label_lines = predicted_label_raw.split('\n')
+    """
+    Generate a prompt for text classification with English instructions and English candidate labels.
+    The model is expected to output one of the provided English labels.
+    """
+    system_message = "You are an expert text classifier. Your task is to accurately categorize the provided text."
+    instruction = (
+        f"Carefully read the text below. Based on its content, classify it into ONE of the following categories: "
+        f"{', '.join(possible_labels)}. "
+        f"Your entire response must be ONLY the name of the chosen category. Do not add any other words or explanations."
+    )
+    few_shot_examples_en = ""
+    if use_few_shot:
+        few_shot_examples_en = f"""
+Examples:
+Text: 'The new healthcare bill was debated in parliament today, focusing on hospital funding and patient care.'
+Category: health
+
+Text: 'Local elections are scheduled for next month, with several candidates vying for the mayoral position.'
+Category: politics
+
+Text: 'The home team secured a stunning victory in the final minutes of the match.'
+Category: sports
+
+Text: 'A new community center opened downtown, offering various activities for residents.'
+Category: local
+
+Text: 'The company announced record profits for the third quarter, driven by strong sales in its new product line.'
+Category: business
+
+Text: 'The movie premiere was a star-studded event, with critics praising the lead actor\'s performance.'
+Category: entertainment
+
+Text: 'Thousands of pilgrims gathered for the annual religious festival, participating in traditional ceremonies and prayers.'
+Category: religion
+"""
+    prompt = f"{system_message}\\n\\n{instruction}\\n\\n"
+    if use_few_shot:
+        prompt += f"{few_shot_examples_en}\\n\\n"
+    prompt += f"Text to classify: '{text}'\\nCategory:"
+    return prompt
+
+def generate_lrl_instruct_classification_prompt(
+    text: str, # Text in LRL
+    lang_code: str, # e.g., 'sw', 'ha'
+    possible_labels_en: List[str], # Model is still asked to output English labels
+    model_name: str = "",
+    use_few_shot: bool = True
+) -> str: # Returns only the prompt string
+    """
+    Generate a prompt for text classification with LRL instructions.
+    The model is still expected to output one of the provided ENGLISH labels.
+    """
+    system_message_lrl = ""
+    instruction_lrl = ""
+    few_shot_examples_lrl = ""
     
-    # Get first non-empty line
-    predicted_label = ""
-    for line in predicted_label_lines:
-        if line.strip():
-            predicted_label = line.strip()
-            break
+    # The candidate labels listed in the LRL prompt are the English ones.
+    en_candidate_labels_str = ", ".join([f"'{label}'" for label in possible_labels_en])
+
+    if lang_code == 'sw':
+        system_message_lrl = "Wewe ni mtaalamu wa kuainisha maandishi. Kazi yako ni kuweka maandishi yaliyotolewa katika kategoria sahihi."
+        instruction_lrl = (
+            f"Soma kwa makini maandishi yaliyo hapa chini. Kulingana na yaliyomo, ainisha katika KATEGORIA MOJA kati ya hizi za Kiingereza: "
+            f"{en_candidate_labels_str}. "
+            f"Jibu lako lote lazima liwe TU jina la kategoria uliyochagua kwa Kiingereza. Usiongeze maneno mengine au maelezo."
+        )
+        if use_few_shot:
+            # Few-shot examples show LRL text mapping to an ENGLISH label
+            few_shot_examples_lrl = f"""
+Mifano:
+Maandishi: 'Muswada mpya wa afya ulijadiliwa bungeni leo, ukilenga ufadhili wa hospitali na huduma kwa wagonjwa.'
+Kategoria: {possible_labels_en[0] if possible_labels_en else 'health'} 
+
+Maandishi: 'Uchaguzi wa mitaa umepangwa kufanyika mwezi ujao, huku wagombea kadhaa wakigombea nafasi ya umeya.'
+Kategoria: {possible_labels_en[2] if len(possible_labels_en) > 2 else 'politics'}
+
+Maandishi: 'Timu ya nyumbani ilipata ushindi wa kushangaza katika dakika za mwisho za mechi.'
+Kategoria: {possible_labels_en[3] if len(possible_labels_en) > 3 else 'sports'}
+"""
+    elif lang_code == 'ha':
+        system_message_lrl = "Kai kwararren mai rarraba rubutu ne. Aikinka shine ka sanya rubutun da aka bayar cikin rukunin da ya dace."
+        instruction_lrl = (
+            f"Karanta rubutun da ke kasa a hankali. Dangane da abin da ke ciki, sanya shi cikin RUKUNI DAYA daga cikin wadannan na Turanci: "
+            f"{en_candidate_labels_str}. "
+            f"Dukkan amsarka dole ta zama KAWAI sunan rukunin da ka zaba da Turanci. Kada ka kara wasu kalmomi ko bayanai."
+        )
+        if use_few_shot:
+            few_shot_examples_lrl = f"""
+Misalai:
+Rubutu: 'An yi muhawara kan sabon kudirin kiwon lafiya a majalisa a yau, inda aka mai da hankali kan samar da kudade ga asibitoci da kula da marasa lafiya.'
+Rukuni: {possible_labels_en[0] if possible_labels_en else 'health'}
+
+Rubutu: 'An shirya gudanar da zabukan kananan hukumomi a wata mai zuwa, inda 'yan takara da dama ke neman kujerar shugaban karamar hukuma.'
+Rukuni: {possible_labels_en[2] if len(possible_labels_en) > 2 else 'politics'}
+
+Rubutu: 'Kungiyar gida ta samu nasara mai ban mamaki a cikin mintuna na karshe na wasan.'
+Rukuni: {possible_labels_en[3] if len(possible_labels_en) > 3 else 'sports'}
+"""
+    else: # Fallback for other LRLs if specific prompts aren't added
+        print(f"Warning: LRL instructions not defined for '{lang_code}'. Using English instructions as fallback.")
+        return generate_classification_prompt(text, POSSIBLE_LABELS_EN, lang_code)
+
+    prompt = f"{system_message_lrl}\\n\\n{instruction_lrl}\\n\\n"
+    if use_few_shot:
+        prompt += f"{few_shot_examples_lrl}\\n\\n"
+    # Adjust the final part of the prompt based on the LRL for clarity if desired, but still expect English label
+    final_prompt_instruction = "Kategoria:" if lang_code == 'sw' else "Rukuni:" if lang_code == 'ha' else "Category:"
+    prompt += f"Maandishi ya kuainishwa: '{text}'\\n{final_prompt_instruction}" 
     
-    if not predicted_label:
-        return "[Unknown]"
-        
-    # Remove typical prefixes that models might include
-    predicted_label = predicted_label.replace("category:", "").replace("class:", "").strip()
+    return prompt
+
+def extract_classification_label(
+    output_text: str,
+    expected_en_labels: List[str] # Always expects English labels from the model output
+) -> str:
+    """
+    Extracts the English classification label from the model's output text.
+    This version assumes the model was instructed (even in LRL) to output an English label.
+    """
+    cleaned_output = output_text.strip().lower()
     
-    # Create normalized versions of possible labels
-    normalized_labels = {label.lower(): label for label in possible_labels}
+    best_match_en = ""
+    highest_similarity = -1
     
-    # Check for exact match with case normalization
-    if predicted_label.lower() in normalized_labels:
-        return normalized_labels[predicted_label.lower()]
-            
-    # Check if prediction contains any of the labels
-    for raw_label, original_label in normalized_labels.items():
-        if raw_label in predicted_label.lower():
-            return original_label
+    prefixes_to_strip = ["category:", "label:", "the category is", "classification:", "kategoria:", "rukuni:"]
+    temp_output = cleaned_output
+    for prefix in prefixes_to_strip:
+        if temp_output.startswith(prefix):
+            temp_output = temp_output[len(prefix):].strip()
     
-    # Check for partial matches (e.g. "polit" for "politics")
-    for raw_label, original_label in normalized_labels.items():
-        # Get first 5 chars or the whole label if shorter
-        prefix_length = min(5, len(raw_label))
-        if prefix_length > 0 and raw_label[:prefix_length] in predicted_label.lower():
-            return original_label
+    if temp_output in [l.lower() for l in expected_en_labels]:
+        return temp_output
+
+    for en_label in expected_en_labels:
+        if en_label.lower() in cleaned_output:
+            similarity = len(en_label)
+            if cleaned_output == en_label.lower() or similarity > highest_similarity:
+                if cleaned_output == en_label.lower():
+                    best_match_en = en_label
+                    break
+                if similarity > highest_similarity:
+                    best_match_en = en_label
+                    highest_similarity = similarity
     
-    # Final check for common misspellings or partial matches
-    common_variants = {
-        "sport": "sports",
-        "polit": "politics",
-        "tech": "technology",
-        "entertainment": "entertainment",
-        "entertain": "entertainment",
-        "health": "health",
-        "relig": "religion",
-        "busin": "business"
+    if best_match_en:
+        return best_match_en.lower()
+    else:
+        # If no specific label is found, return a placeholder or a default
+        # This indicates the model did not produce a clearly identifiable label
+        # print(f"WARN: Could not reliably extract label. Output: '{output_text}'. Defaulting to random choice.")
+        # return random.choice(expected_en_labels) # OLD: random fallback
+        print(f"WARN: Could not reliably extract label from '{output_text[:100]}...'. Returning '[Unknown Label]'.")
+        return "[Unknown Label]" # NEW: Specific unknown label string
+
+def process_classification_baseline(
+    model: Any,
+    tokenizer: Any,
+    text: str,
+    lang_code: str,
+    model_name: str,
+    generation_params: Dict,
+    use_few_shot: bool,
+    prompt_in_lrl: bool = False
+) -> Tuple[str, float, str]: # Returns predicted_EN_label, runtime, raw_model_output
+    start_time = time.time()
+    raw_model_output = ""
+    
+    if prompt_in_lrl and lang_code != 'en':
+        prompt = generate_lrl_instruct_classification_prompt(
+            text, lang_code, POSSIBLE_LABELS_EN, model_name, use_few_shot
+        )
+    else:
+        prompt = generate_classification_prompt(
+            text, POSSIBLE_LABELS_EN, lang_code, model_name, use_few_shot
+        )
+
+    inputs = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=generation_params.get("max_input_length", 2048))
+    input_ids = inputs.input_ids.to(model.device)
+    attention_mask = inputs.attention_mask.to(model.device)
+
+    gen_params_to_use = {
+        "max_new_tokens": generation_params.get("max_tokens", 10),
+        "temperature": generation_params.get("temperature", 0.2),
+        "top_p": generation_params.get("top_p", 0.9),
+        "top_k": generation_params.get("top_k", 40),
+        "repetition_penalty": generation_params.get("repetition_penalty", 1.1),
+        "do_sample": True if generation_params.get("temperature", 0.2) > 0.01 else False,
+        "pad_token_id": tokenizer.eos_token_id
     }
-    
-    for variant, label in common_variants.items():
-        if variant in predicted_label.lower() and label in possible_labels:
-            return label
-            
-    return "[Unknown]"
+
+    try:
+        with torch.no_grad():
+            outputs = model.generate(input_ids, attention_mask=attention_mask, **gen_params_to_use)
+        
+        raw_model_output = tokenizer.decode(outputs[0][input_ids.shape[-1]:], skip_special_tokens=True)
+        predicted_en_label = extract_classification_label(raw_model_output, POSSIBLE_LABELS_EN)
+
+    except Exception as e:
+        print(f"Error during model generation or label extraction for text: '{text[:50]}...'")
+        print(traceback.format_exc())
+        predicted_en_label = "other" # Default on error
+        raw_model_output = f"[ERROR: {str(e)}]"
+
+    runtime = time.time() - start_time
+    return predicted_en_label, runtime, raw_model_output
 
 def evaluate_classification_baseline(
     model_name: str,
+    tokenizer: Any,
+    model: Any,
     samples_df: pd.DataFrame,
     lang_code: str,
-    use_lrl_ground_truth: bool, # Keep for consistency, though GT is EN here
-    prompt_in_lrl: bool = False # Add flag
+    possible_labels_en: List[str], # Canonical English labels for metrics
+    prompt_in_lrl: bool,
+    use_few_shot: bool,
+    generation_params: Dict
 ) -> pd.DataFrame:
-    """Evaluates baseline classification, selecting prompt based on flag."""
-    try:
-        model, tokenizer = initialize_model(model_name)
-    except Exception as e:
-        print(f"ERROR: Failed to initialize model {model_name}: {e}")
-        return pd.DataFrame()
-
     results = []
-    
-    # Determine possible labels from the dataset itself
-    possible_labels = sorted(list(samples_df['label'].unique()))
-    print(f"Using labels found in dataset for prompts: {possible_labels}")
-    
-    model_max_len = getattr(model.config, 'max_position_embeddings', 4096)
-    safe_max_input_length = min(model_max_len, 1024) # Adjust as needed
-    max_new_tokens = 25 # Increased slightly to allow more output
-    print(f"Using max_input_length: {safe_max_input_length}, max_new_tokens: {max_new_tokens}")
+    shot_description = "few-shot" if use_few_shot else "zero-shot"
+    prompt_lang_description = "LRL-instruct" if prompt_in_lrl and lang_code != 'en' else "EN-instruct"
 
-    # Clear description for logging which prompt template is used
-    prompt_desc = "LRLInstruct" if prompt_in_lrl else "EnInstruct" 
-    print(f"Using {prompt_desc} prompts for {lang_code}")
+    print(f"Evaluating {model_name} on {lang_code} ({prompt_lang_description}, {shot_description})...")
 
-    for idx, row in tqdm(samples_df.iterrows(), total=len(samples_df), desc=f"Processing {lang_code} baseline ({prompt_desc}) classification ({model_name})"):
-        try:
-            original_text = row['text']
-            ground_truth_label = row['label'] # Assumed to be English
+    for idx, row in tqdm(samples_df.iterrows(), total=len(samples_df), desc=f"Processing {lang_code} Classification Baseline"):
+        text = row['text']
+        ground_truth_label = row['label'] 
 
-            # Generate prompt based on flag
-            if prompt_in_lrl and lang_code in ['swa', 'hau']:
-                prompt = generate_lrl_instruct_classification_prompt(original_text, lang_code, possible_labels)
-                prompt_language = "LRL"
-            else:
-                prompt = generate_lrl_classification_prompt(original_text, lang_code, possible_labels)
-                prompt_language = "EN"
-            
-            # Debug: print prompt occasionally to verify correct template is used
-            if idx % 100 == 0:
-                print(f"\nSample prompt for {lang_code} using {prompt_language}:")
-                print(prompt[:200] + "..." if len(prompt) > 200 else prompt)
-                print("\n")
-            
-            # Tokenize and predict
-            inputs = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=safe_max_input_length)
-            inputs = {k: v.to(model.device) for k, v in inputs.items()}
+        predicted_en_label, runtime, raw_output = process_classification_baseline(
+            model, tokenizer, text, lang_code, 
+            model_name,
+            generation_params=generation_params,
+            use_few_shot=use_few_shot,
+            prompt_in_lrl=prompt_in_lrl
+        )
 
-            with torch.no_grad():
-                outputs = model.generate(
-                    **inputs,
-                    max_new_tokens=max_new_tokens,
-                    do_sample=True, # Changed to True to allow some variability
-                    temperature=0.3, # Low temperature for more focused responses
-                    top_p=0.9, # Add top_p sampling 
-                    repetition_penalty=1.2, # Add repetition penalty
-                    pad_token_id=tokenizer.eos_token_id
-                )
-            
-            response = tokenizer.decode(outputs[0][inputs["input_ids"].shape[-1]:], skip_special_tokens=True)
-            
-            # Process the output to extract the ENGLISH label
-            predicted_label = process_classification_output(response, possible_labels)
-
-            # Store results
-            result = {
+        results.append({
                 'id': row.get('id', idx),
-                'original_text': original_text,
+            'text': text,
                 'ground_truth_label': ground_truth_label,
-                'predicted_label': predicted_label, 
+            'final_predicted_label': predicted_en_label,
+            'raw_model_output': raw_output,
                 'language': lang_code,
-                'lrl_evaluation': use_lrl_ground_truth, # Store flag for consistency
-                'prompt_language': prompt_language, 
-                'raw_response': response[:100] # Store first 100 chars of raw response for debugging
-            }
-            results.append(result)
+            'runtime_seconds': runtime,
+            'prompt_language': prompt_lang_description,
+            'shot_type': shot_description,
+            'temperature': generation_params.get("temperature"),
+            'top_p': generation_params.get("top_p"),
+            'top_k': generation_params.get("top_k"),
+            'max_tokens': generation_params.get("max_tokens"),
+            'repetition_penalty': generation_params.get("repetition_penalty")
+        })
 
-        except Exception as e:
-            print(f"ERROR processing sample {row.get('id', idx)}: {e}")
-            continue
-
-    if not results:
-        print(f"WARNING: No results successfully processed for {lang_code} with {model_name} using Baseline.")
-        return pd.DataFrame()
-
-    # Print debugging statistics
     results_df = pd.DataFrame(results)
-    unknown_count = sum(results_df['predicted_label'] == "[Unknown]")
-    print(f"Unknown predictions: {unknown_count}/{len(results_df)} ({unknown_count/len(results_df)*100:.1f}%)")
-    print("Label distribution:", results_df['predicted_label'].value_counts().to_dict())
-
     return results_df

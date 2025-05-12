@@ -1,0 +1,2 @@
+model,language,approach,accuracy,macro_f1,samples_processed,runtime_seconds,runtime_per_sample,temperature,max_tokens,do_sample,entailment_precision,entailment_recall,entailment_f1,neutral_precision,neutral_recall,neutral_f1,contradiction_precision,contradiction_recall,contradiction_f1
+Qwen/Qwen2.5-7B-Instruct,sw,Baseline,0.37,0.2892162778224725,100,54.879448890686035,0.5487944889068603,0.3,20,False,0.34615384615384615,0.3103448275862069,0.32727272727272727,0.3698630136986301,0.675,0.4778761061946903,1.0,0.03225806451612903,0.0625

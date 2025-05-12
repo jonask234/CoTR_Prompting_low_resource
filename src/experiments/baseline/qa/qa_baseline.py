@@ -7,6 +7,9 @@ import numpy as np
 from tqdm import tqdm
 import os
 import re
+import time
+from collections import Counter
+from typing import Any
 
 def initialize_model(model_name):
     """
@@ -34,133 +37,285 @@ def initialize_model(model_name):
         model = model.to("cuda")
     return tokenizer, model
 
-def generate_qa_prompt(question, context=None):
+def generate_qa_prompt(question: str, context: str = None, lang_code: str = "en", model_name: str = "", use_few_shot: bool = True) -> str:
     """
-    Generate a prompt for the QA task with explicit instructions.
-    Now ignoring context as per professor's recommendation to use model's parametric knowledge.
-    Using more structured format with clear input/output expectations.
+    Generate a prompt for question answering in different languages with improved instructions.
     
     Args:
-        question: The question
-        context: The context/passage (not used anymore, kept for API compatibility)
+        question: The question to answer
+        context: Context to use (if any)
+        lang_code: Language code for language-specific prompting
+        model_name: Model name for potential model-specific prompt adjustments
+        use_few_shot: Whether to include few-shot examples in the prompt
     
     Returns:
-        Formatted prompt
+        Formatted prompt with instructions and examples
     """
-    prompt = f"""Question: '{question}'
-
-Answer the question using your own knowledge. Provide your answer in the following format:
-- For yes/no questions: respond with only 'Yes' or 'No'
-- For factual questions: provide just the specific fact, name, date, or number
-- For quantity questions: respond with just the number
-- For time questions: respond with just the date or time period
-- For person questions: respond with just the person's name
-- For location questions: respond with just the place name
-
-Answer:"""
+    # New refined instructions emphasizing parametric knowledge and concise output
+    if lang_code == "en":
+        instructions = (
+            "Answer the question accurately and very concisely using your internal knowledge.\n"
+            "Follow these rules strictly:\n"
+            "- For yes/no questions: respond with ONLY 'Yes' or 'No'.\n"
+            "- For factual questions: provide ONLY the specific fact, name, date, or number.\n"
+            "- Do NOT add any explanations, disclaimers, or conversational phrases like \"The answer is...\" or \"According to my knowledge...\".\n"
+            "- Your entire response should ideally be 1-5 words.\n"
+            "- If you do not know the answer from your internal knowledge, respond with ONLY the exact phrase 'I don\'t know'."
+        )
+        examples_header = "Examples:"
+        question_prefix = "Question:"
+        answer_prefix = "Answer:"
+        lang_examples = [\
+            {"question": "What is the capital of France?", "answer": "Paris"},\
+            {"question": "When was the United Nations founded?", "answer": "1945"},\
+            {"question": "Who wrote 'To Kill a Mockingbird'?", "answer": "Harper Lee"},\
+            {"question": "What is the speed of dark?", "answer": "I don\'t know"} # Added I don't know example
+        ]
+    elif lang_code == "sw":
+        instructions = (
+            "Jibu swali kwa usahihi na kwa ufupi sana ukitumia maarifa yako ya ndani.\n"
+            "Fuata sheria hizi kwa makini:\n"
+            "- Kwa maswali ya ndiyo/hapana: jibu KWA NENO MOJA TU 'Ndio' au 'Hapana'.\n"
+            "- Kwa maswali ya ukweli: toa UKWELI TU, jina, tarehe, au nambari husika.\n"
+            "- USIONGEZE maelezo yoyote, vikanusho, au maneno ya mazungumzo kama \"Jibu ni...\" au \"Kulingana na ninavyojua...\".\n"
+            "- Jibu lako lote linapaswa kuwa na maneno 1-5 tu.\n"
+            "- Ikiwa hujui jibu kutokana na maarifa yako ya ndani, jibu KWA MANENO HAYA TU: 'Sijui'."
+        )
+        examples_header = "Mifano:"
+        question_prefix = "Swali:"
+        answer_prefix = "Jibu:"
+        lang_examples = [\
+            {"question": "Mji mkuu wa Kenya ni upi?", "answer": "Nairobi"},\
+            {"question": "Je, Mlima Kilimanjaro uko nchi gani?", "answer": "Tanzania"},\
+            {"question": "Rais wa kwanza wa Tanzania alikuwa nani?", "answer": "Julius Nyerere"},\
+            {"question": "Kasi ya giza ni nini?", "answer": "Sijui"} # Added I don't know example
+        ]
+    elif lang_code == "te":
+        instructions = (
+            "మీ అంతర్గత జ్ఞానాన్ని ఉపయోగించి ఖచ్చితంగా మరియు చాలా క్లుప్తంగా ప్రశ్నకు సమాధానం ఇవ్వండి.\n"
+            "ఈ నియమాలను ఖచ్చితంగా పాటించండి:\n"
+            "- అవును/కాదు ప్రశ్నలకు: 'అవును' లేదా 'కాదు' అని మాత్రమే ప్రతిస్పందించండి.\n"
+            "- వాస్తవ ప్రశ్నలకు: నిర్దిష్ట వాస్తవం, పేరు, తేదీ లేదా సంఖ్యను మాత్రమే అందించండి.\n"
+            "- \"సమాధానం...\" లేదా \"నాకు తెలిసినంతవరకు...\" వంటి వివరణలు, నిరాకరణలు లేదా సంభాషణ పదబంధాలను జోడించవద్దు.\n"
+            "- మీ మొత్తం ప్రతిస్పందన ఆదర్శంగా 1-5 పదాలు ఉండాలి.\n"
+            "- మీ అంతర్గత జ్ఞానం నుండి మీకు సమాధానం తెలియకపోతే, 'నాకు తెలియదు' అనే ఖచ్చితమైన పదబంధంతో మాత్రమే ప్రతిస్పందించండి.\n"
+        )
+        examples_header = "ఉదాహరణలు:"
+        question_prefix = "ప్రశ్న:"
+        answer_prefix = "సమాధానం:"
+        lang_examples = [\
+            {"question": "భారతదేశ రాజధాని ఏది?", "answer": "న్యూఢిల్లీ"},\
+            {"question": "తెలంగాణ రాష్ట్రం ఎప్పుడు ఏర్పడింది?", "answer": "జూన్ 2, 2014"},\
+            {"question": "హైదరాబాద్ నగరాన్ని స్థాపించినది ఎవరు?", "answer": "మొహమ్మద్ ఖులీ ఖుతుబ్ షా"},\
+            {"question": "చీకటి వేగం ఎంత?", "answer": "నాకు తెలియదు"} # Added I don't know example
+        ]
+    else: # Default to English if lang_code is not recognized
+        instructions = (
+            "Answer the question accurately and very concisely using your internal knowledge.\n"
+            "Follow these rules strictly:\n"
+            "- For yes/no questions: respond with ONLY 'Yes' or 'No'.\n"
+            "- For factual questions: provide ONLY the specific fact, name, date, or number.\n"
+            "- Do NOT add any explanations, disclaimers, or conversational phrases like \"The answer is...\" or \"According to my knowledge...\".\n"
+            "- Your entire response should ideally be 1-5 words.\n"
+            "- If you do not know the answer from your internal knowledge, respond with ONLY the exact phrase 'I don\'t know'."
+        )
+        examples_header = "Examples:"
+        question_prefix = "Question:"
+        answer_prefix = "Answer:"
+        lang_examples = [\
+            {"question": "What is the capital of France?", "answer": "Paris"},\
+            {"question": "When was the United Nations founded?", "answer": "1945"},\
+            {"question": "Who wrote 'To Kill a Mockingbird'?", "answer": "Harper Lee"},\
+            {"question": "What is the speed of dark?", "answer": "I don\'t know"}
+        ]
+    
+    # Start building the prompt
+    prompt = instructions + "\n\n"
+    
+    # Add context if provided
+    if context:
+        if lang_code == "sw":
+            prompt += f"Muktadha: {context}\n\n"
+        elif lang_code == "te":
+            prompt += f"సందర్భం: {context}\n\n"
+        else: # Default to English
+            prompt += f"Context: {context}\n\n"
+        
+    # Add examples if few-shot is requested
+    if use_few_shot:
+        prompt += examples_header + "\n\n"
+        for ex in lang_examples:
+            prompt += f"{question_prefix} {ex['question']}\n"
+            prompt += f"{answer_prefix} {ex['answer']}\n\n"
+    
+    # Add the actual question to be answered
+    prompt += f"{question_prefix} {question}\n"
+    prompt += f"{answer_prefix} "
+    
     return prompt
 
-def extract_answer(output_text, question, is_aya_model=False):
+def extract_answer(text: str, question: str, lang_code: str = "en") -> str:
     """
-    Extract and clean the model's answer.
+    Extract the answer from model output with improved language-specific handling.
     
     Args:
-        output_text: Raw output text from the model
-        question: The original question (for answer verification)
-        is_aya_model: Flag for model-specific processing
+        text: The model output text
+        question: The original question
+        lang_code: Language code for language-specific handling
         
     Returns:
-        Cleaned answer
+        The cleaned/extracted answer
     """
-    # Normalize whitespace and remove leading/trailing spaces
-    answer = output_text.strip()
+    # If there's no text, return empty answer
+    if not text or text.strip() == "":
+        # Return language-specific "no answer" string
+        no_answer_map = {
+            "en": "[no answer generated]",
+            "sw": "Sijui", # Changed from "Hakuna jibu" to match prompt
+            "te": "నాకు తెలియదు" # Changed from "సమాధానం లేదు" to match prompt
+        }
+        return no_answer_map.get(lang_code, "[no answer generated]")
     
-    # Remove common prefixes
-    prefixes_to_remove = [
-        "answer:", "the answer is:", "answer is:", 
-        "context:", "question:", "according to my knowledge,",
-        "based on my knowledge,"
+    # Clean text from common patterns of noise
+    text = text.strip()
+    
+    # Normalize common "I don't know" phrases to a standard one FIRST for all languages
+    # This should catch variations before language-specific yes/no checks
+    i_dont_know_patterns = [
+        # English
+        r"^i don\'t know\.?$", r"^i do not know\.?$", r"^sorry, i don\'t know\.?$",
+        r"^i am unable to answer\.?$", r"^i cannot answer that\.?$",
+        r"^i don\'t have that information\.?$", r"^i am not sure\.?$", r"^unknown\.?$",
+        # Swahili (approximations)
+        r"^sijui\.?$", r"^sina uhakika\.?$", r"^siwezi kujibu\.?$",
+        # Telugu (approximations)
+        r"^నాకు తెలియదు\.?$", r"^నాకు ఖచ్చితంగా తెలియదు\.?$", r"^చెప్పలేను\.?$"
     ]
+    standard_i_dont_know = {
+        "en": "I don\'t know",
+        "sw": "Sijui",
+        "te": "నాకు తెలియదు"
+    }
+
+    for pattern in i_dont_know_patterns:
+        if re.match(pattern, text, re.IGNORECASE):
+            return standard_i_dont_know.get(lang_code, "I don\'t know")
     
-    for prefix in prefixes_to_remove:
-        if answer.lower().startswith(prefix):
-            answer = answer[len(prefix):].strip()
+    # Check if we need to extract the answer part from a longer response
     
-    # Remove notes/citations/qualifiers in parentheses and brackets
-    answer = re.sub(r'\([^)]*\)', '', answer)
-    answer = re.sub(r'\[[^]]*\]', '', answer)
-    answer = re.sub(r'^\s*-\s+', '', answer)  # Remove leading bullet points
+    # Language-specific prefix patterns
+    prefixes = {
+        "en": ["answer:", "the answer is:", "answer is:"],
+        "sw": ["jibu:", "jibu ni:", "jibu lake ni:"],
+        "te": ["సమాధానం:", "జవాబు:", "సమాధానం ఏమిటంటే:"]
+    }
     
-    # Remove common verbose qualifiers
-    qualifiers = [
-        "this is", "the answer is", "it is", "i believe",
-        "according to my knowledge", "based on the information",
-        "based on my understanding", "as far as i know",
-        "to the best of my knowledge", "historically",
-        "note:", "please note"
-    ]
+    # Get language-specific prefixes or default to English
+    lang_prefixes = prefixes.get(lang_code, prefixes["en"])
     
-    for qualifier in qualifiers:
-        if answer.lower().startswith(qualifier):
-            answer = answer[len(qualifier):].strip()
-            # Remove any colons or similar characters after removing qualifiers
-            if answer.startswith(":") or answer.startswith(",") or answer.startswith("-"):
-                answer = answer[1:].strip()
+    # Try to extract answer using prefixes
+    for prefix in lang_prefixes:
+        if prefix in text.lower():
+            parts = text.lower().split(prefix, 1)
+            if len(parts) > 1:
+                text = parts[1].strip()
+                # Check for potential end markers
+                for end_marker in [".", "\n", ". "]:
+                    if end_marker in text:
+                        text = text.split(end_marker, 1)[0].strip()
+                break
     
-    # Split the answer on the first sentence boundary and take the first part only
-    # This helps with removing explanations that follow the actual answer
-    first_sent_match = re.search(r'^(.*?[.?!])(?:\s|$)', answer)
-    if first_sent_match:
-        first_sent = first_sent_match.group(1).strip()
-        # Only use the first sentence if it's not too short compared to the full answer
-        if len(first_sent) > len(answer) * 0.3:  # At least 30% of the full answer
-            answer = first_sent
+    # Handle quotes in the answer
+    if text.startswith('"') and text.endswith('"'):
+        text = text[1:-1].strip()
+    elif text.startswith("'") and text.endswith("'"):
+        text = text[1:-1].strip()
     
-    # Clean up Yes/No answers
-    if answer.lower().startswith("yes"):
-        # Check if the answer is a clear yes with explanation
-        if re.match(r'^yes\W', answer.lower()):
-            answer = "Yes"
-    elif answer.lower().startswith("no"):
-        # Check if the answer is a clear no with explanation
-        if re.match(r'^no\W', answer.lower()):
-            answer = "No"
-            
-    # If we're still left with a multiline answer, take just the first line
-    if "\n" in answer:
-        answer = answer.split("\n")[0].strip()
+    # Improve handling for yes/no answers
+    yes_patterns = {
+        "en": ["yes", "yes,", "yes.", "yeah", "correct", "true", "right"],
+        "sw": ["ndio", "ndiyo", "naam", "ndivyo", "kweli", "ndiyo", "ndio kweli"],
+        "te": ["అవును", "avunu", "ఔను", "ఓను", "సరి", "నిజమే"]
+    }
     
-    # If answer starts with a long quote mark or similar, clean it
-    answer = re.sub(r'^["\'""'']+', '', answer).strip()
-    answer = re.sub(r'["\'""'']+$', '', answer).strip()
+    no_patterns = {
+        "en": ["no", "no,", "no.", "nope", "not", "false", "incorrect", "wrong"],
+        "sw": ["hapana", "la", "sivyo", "si", "siyo", "si kweli", "sikweli"],
+        "te": ["కాదు", "లేదు", "కాదండి", "వద్దు", "తప్పు"]
+    }
     
-    # Final sanity check - if answer is still very long (more than 50 chars),
-    # and has sentence-looking content, try to extract just the key part
-    if len(answer) > 50 and "," in answer:
-        # For long answers with commas, often the key answer is before the first comma
-        potential_short = answer.split(",")[0].strip()
-        if 2 < len(potential_short) < 30:  # Reasonable short answer length
-            answer = potential_short
+    # Get patterns for the language
+    yes_terms = yes_patterns.get(lang_code, yes_patterns["en"])
+    no_terms = no_patterns.get(lang_code, no_patterns["en"])
     
-    # If the answer is extremely long (likely incorrect), truncate it
-    max_answer_length = 100
-    if len(answer) > max_answer_length:
-        answer = answer[:max_answer_length].strip()
+    # Check for yes/no pattern at the beginning of the answer
+    text_lower = text.lower()
+    for yes_term in yes_terms:
+        if text_lower == yes_term or text_lower.startswith(yes_term + " "):
+            if lang_code == "sw":
+                return "Ndio"
+            elif lang_code == "te":
+                return "అవును"
+            else:
+                return "Yes"
+    
+    for no_term in no_terms:
+        if text_lower == no_term or text_lower.startswith(no_term + " "):
+            if lang_code == "sw":
+                return "Hapana"
+            elif lang_code == "te":
+                return "కాదు"
+            else:
+                return "No"
+    
+    # Handle common phrase formats
+    if lang_code == "sw":
+        if "majibu ni " in text.lower():
+            text = text.lower().split("majibu ni ", 1)[1].strip()
+        elif "jibu ni " in text.lower():
+            text = text.lower().split("jibu ni ", 1)[1].strip()
+    elif lang_code == "te":
+        if "సమాధానం " in text.lower():
+            text = text.lower().split("సమాధానం ", 1)[1].strip()
+    else:
+        if "the answer is " in text.lower():
+            text = text.lower().split("the answer is ", 1)[1].strip()
+        elif "answer is " in text.lower():
+            text = text.lower().split("answer is ", 1)[1].strip()
+    
+    # Handle period or other punctuation at the end
+    if text.endswith(".") or text.endswith(",") or text.endswith(":") or text.endswith(";"):
+        text = text[:-1].strip()
+    
+    # Handling for numeric answers
+    if is_numeric_question(question):
+        # Extract numeric values with improved regex
+        numeric_pattern = r'(\d[\d,\.\s]*\d|\d)'
+        numeric_matches = re.findall(numeric_pattern, text)
         
-    # Final check for empty answers
-    if not answer:
-        answer = "[No answer generated]"
-        
-    return answer
+        if numeric_matches:
+            # Return just the first numeric match if found
+            return numeric_matches[0].strip()
+    
+    # Return the first sentence if the answer is too long
+    if len(text.split()) > 15:  # If more than 15 words
+        sentences = re.split(r'[.!?।]+', text)
+        if sentences:
+            return sentences[0].strip()
+    
+    return text.strip()
 
 def process_qa_baseline(tokenizer, model, question, context=None, 
-                          max_new_tokens=50,  # Reduced from 200
+                          max_new_tokens=50,
                           max_input_length=4096,
-                          temperature=0.3,  # Reduced from 0.5 for more focus
-                          top_p=0.85):  # Slightly reduced
+                          temperature=0.3,
+                          top_p=0.85,
+                          lang_code="en",
+                          model_name="",
+                          use_few_shot: bool = True):
     """
     Process a QA pair with the given model directly (baseline).
-    Now ignoring context as per professor's recommendation to use model's parametric knowledge.
+    Now with language-specific parameter adjustments.
     
     Args:
         tokenizer: The model tokenizer
@@ -171,11 +326,15 @@ def process_qa_baseline(tokenizer, model, question, context=None,
         max_input_length: Maximum length of the input sequence
         temperature: Temperature for sampling
         top_p: Top_p for sampling
+        lang_code: Language code for language-specific handling
+        model_name: Name of the model for model-specific parameters
+        use_few_shot: Whether to include few-shot examples in the prompt
     
     Returns:
         The model's answer
     """
-    prompt = generate_qa_prompt(question)
+    # Generate prompt with language-specific examples
+    prompt = generate_qa_prompt(question, context, lang_code, model_name, use_few_shot=use_few_shot)
     
     # Tokenize with truncation
     inputs = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=max_input_length)
@@ -183,45 +342,95 @@ def process_qa_baseline(tokenizer, model, question, context=None,
     if torch.cuda.is_available():
         inputs = {k: v.to("cuda") for k, v in inputs.items()}
     
-    # Determine if this is the Aya model for specialized processing
-    is_aya_model = "aya" in model.config._name_or_path.lower()
-    
-    # Model-specific parameter adjustments
+    # Language and model-specific parameter adjustments
     gen_temperature = temperature
     gen_top_p = top_p
     gen_max_tokens = max_new_tokens
     gen_do_sample = True
+    gen_repetition_penalty = 1.2
+    gen_top_k = 40  # Add top_k parameter
     
-    # Aya model specific adjustments
+    # Language-specific adjustments with enhanced parameters for LRLs
+    if lang_code == "sw":  # Swahili
+        gen_temperature = 0.2  # Lower temperature for more focused answers
+        gen_top_p = 0.8
+        gen_max_tokens = 30  # Shorter responses for more precision
+        gen_repetition_penalty = 1.3  # Higher repetition penalty
+        gen_top_k = 30  # Lower top_k for more focused vocabulary selection
+    elif lang_code == "te":  # Telugu
+        gen_temperature = 0.15  # Even lower for Telugu
+        gen_top_p = 0.75
+        gen_max_tokens = 25
+        gen_repetition_penalty = 1.4  # Higher repetition penalty
+        gen_top_k = 25  # Lower top_k for Telugu
+    
+    # Model-specific adjustments with improved parameters
+    is_aya_model = "aya" in model_name.lower()
+    is_qwen_model = "qwen" in model_name.lower()
+    
     if is_aya_model:
-        # Aya seems to respond better with slightly higher temperature
-        gen_temperature = 0.4  
-        # Use beam search with Aya for more focused answers
-        gen_do_sample = False  # Disable sampling, use beam search
-        beam_size = 3
+        # Aya seems to respond better with slightly different parameters
+        if lang_code == "sw":
+            gen_temperature = 0.15
+            gen_repetition_penalty = 1.4
+            gen_top_k = 25
+        elif lang_code == "te":
+            gen_temperature = 0.1
+            gen_repetition_penalty = 1.5
+            gen_top_k = 20
+        else:
+            # For English
+            gen_temperature = 0.25  # Slightly higher than LRLs
+            gen_repetition_penalty = 1.3
+            gen_top_k = 30
+        
+        # Use beam search for Aya with non-English languages
+        if lang_code != "en":
+            gen_do_sample = False
+            beam_size = 4  # Increased from 3 for better exploration
     
-    # Generate answer
+    if is_qwen_model:
+        # Qwen parameters - optimized by language
+        if lang_code == "sw":
+            gen_temperature = 0.18
+            gen_top_p = 0.7
+            gen_repetition_penalty = 1.35
+            gen_top_k = 35
+        elif lang_code == "te":
+            gen_temperature = 0.12
+            gen_top_p = 0.65
+            gen_repetition_penalty = 1.45
+            gen_top_k = 30
+        else:
+            # For English
+            gen_temperature = 0.25
+            gen_top_p = 0.8
+            gen_repetition_penalty = 1.2
+            gen_top_k = 40
+    
+    # Generate answer with language-specific parameters
     with torch.no_grad():
-        if is_aya_model and not gen_do_sample:
-            # Beam search for Aya model
+        if not gen_do_sample:
+            # Beam search (primarily for Aya model with non-English)
             output_ids = model.generate(
                 **inputs,
                 max_new_tokens=gen_max_tokens,
                 do_sample=False,
                 num_beams=beam_size,
                 early_stopping=True,
-                repetition_penalty=1.2,
+                repetition_penalty=gen_repetition_penalty,
                 pad_token_id=tokenizer.eos_token_id
             )
         else:
-            # Temperature sampling for other models or Aya (if sampling enabled)
+            # Temperature sampling with adjusted parameters
             output_ids = model.generate(
                 **inputs,
                 max_new_tokens=gen_max_tokens,
                 do_sample=gen_do_sample,
                 temperature=gen_temperature,
                 top_p=gen_top_p,
-                repetition_penalty=1.2,
+                top_k=gen_top_k,  # Add top_k parameter
+                repetition_penalty=gen_repetition_penalty,
                 pad_token_id=tokenizer.eos_token_id
             )
     
@@ -229,128 +438,310 @@ def process_qa_baseline(tokenizer, model, question, context=None,
     output_text = tokenizer.decode(output_ids[0][inputs["input_ids"].shape[-1]:], skip_special_tokens=True)
     
     # Extract and clean the answer
-    answer = extract_answer(output_text, question, is_aya_model=is_aya_model)
+    answer = extract_answer(output_text, question, lang_code)
     
     # Special handling for Yes/No questions to avoid answering with explanations
     if is_yes_no_question(question):
-        if "yes" in answer.lower() and len(answer) > 5:
-            answer = "Yes"
-        elif "no" in answer.lower() and len(answer) > 5:
-            answer = "No"
+        # Language-specific yes/no handling
+        if lang_code == "sw":
+            if any(term in answer.lower() for term in ["ndio", "ndiyo", "naam"]):
+                answer = "Ndio" 
+            elif any(term in answer.lower() for term in ["hapana", "la", "sivyo"]):
+                answer = "Hapana"
+        elif lang_code == "te":
+            if any(term in answer.lower() for term in ["అవును", "avunu", "ఔను"]):
+                answer = "అవును" 
+            elif any(term in answer.lower() for term in ["కాదు", "లేదు", "ledu"]):
+                answer = "కాదు"
+        else:
+            if "yes" in answer.lower() and len(answer) > 5:
+                answer = "Yes"
+            elif "no" in answer.lower() and len(answer) > 5:
+                answer = "No"
     
     # Final formatting for numeric answers - try to extract just the number if appropriate
-    if is_numeric_question(question) and not answer.lower() in ["yes", "no", "[no answer generated]"]:
+    if is_numeric_question(question) and not answer.lower() in ["yes", "no", "ndio", "hapana", "అవును", "కాదు", "[no answer generated]"]:
+        # Enhanced regex that handles different number formats
         numeric_match = re.search(r'\b(\d[\d,.]*\d|\d)\b', answer)
         if numeric_match:
             answer = numeric_match.group(1)
     
     return answer
 
-def is_yes_no_question(question):
-    """Check if a question is likely a yes/no question."""
-    question_lower = question.lower()
-    
-    # Check for common yes/no question patterns
-    yes_no_starters = [
-        "is ", "are ", "was ", "were ", "will ", "would ", "can ", "could ", 
-        "does ", "do ", "did ", "has ", "have ", "had ", "should ", "shall ",
-        "might ", "may "
-    ]
-    
-    for starter in yes_no_starters:
-        if question_lower.startswith(starter):
-            return True
-    
-    return False
-
-def is_numeric_question(question):
-    """Check if a question is likely expecting a numeric answer."""
-    question_lower = question.lower()
-    
-    numeric_patterns = [
-        "how many", "how much", "what year", "what date", "when", 
-        "how old", "how long", "how far", "what is the number", 
-        "what is the value", "what is the amount", "what is the percentage"
-    ]
-    
-    for pattern in numeric_patterns:
-        if pattern in question_lower:
-            return True
-    
-    return False
-
-def evaluate_qa_baseline(model_name, samples_df, lang_code):
+def is_yes_no_question(question: str) -> bool:
     """
-    Evaluate the baseline QA approach on the given samples.
-    Now using model's parametric knowledge instead of provided context.
+    Determine if a question is a yes/no question with language awareness.
+    
+    Args:
+        question: The question text
+        
+    Returns:
+        Boolean indicating if it's a yes/no question
+    """
+    # English patterns
+    en_patterns = [
+        r'^is ', r'^are ', r'^was ', r'^were ', r'^do ', r'^does ', 
+        r'^did ', r'^has ', r'^have ', r'^had ', r'^can ', r'^could ', 
+        r'^will ', r'^would ', r'^should '
+    ]
+    
+    # Swahili patterns
+    sw_patterns = [
+        r'^je[,\s]', r'^je ', r'^ni ', r'^ni[,\s]', r'^kuna ', 
+        r'^kuna[,\s]', r'^kulikuwa '
+    ]
+    
+    # Telugu patterns
+    te_patterns = [
+        r'^ఏమి', r'^ఏది', r'^ఉందా', r'^ఉన్నాయా', r'^ఉన్నాడా', 
+        r'^ఉన్నారా', r'^అవునా', r'^కాదా'
+    ]
+    
+    # English yes/no words at the end
+    en_end_patterns = [r'\?$']
+    
+    # Combine all patterns
+    all_patterns = en_patterns + sw_patterns + te_patterns + en_end_patterns
+    
+    # Check each pattern
+    for pattern in all_patterns:
+        if re.search(pattern, question.lower()):
+            return True
+    
+    return False
+
+def is_numeric_question(question: str) -> bool:
+    """
+    Determine if a question is asking for a numeric answer.
+    
+    Args:
+        question: The question text
+        
+    Returns:
+        Boolean indicating if it's a numeric question
+    """
+    # English numeric question words
+    en_numeric_words = [
+        'how many', 'how much', 'how old', 'how long', 'how far',
+        'how often', 'how fast', 'how tall', 'how heavy',
+        'what year', 'what is the number', 'what is the amount',
+        'how high', 'how low', 'how deep', 'how wide',
+        'how big', 'how small', 'how expensive', 'how cheap',
+    ]
+    
+    # Swahili numeric question words
+    sw_numeric_words = [
+        'wangapi', 'ngapi', 'kiasi gani', 'umri gani', 'urefu gani',
+        'mara ngapi', 'kasi gani', 'thamani gani', 'bei gani',
+        'mwaka gani', 'idadi', 'hesabu', 'namba', 'tarakimu',
+    ]
+    
+    # Telugu numeric question words
+    te_numeric_words = [
+        'ఎన్ని', 'ఎంత', 'వయసు ఎంత', 'ఎంత దూరం',
+        'ఎన్ని సార్లు', 'ఎంత వేగంగా', 'ఎంత ఎత్తు',
+        'ఏ సంవత్సరం', 'సంఖ్య ఎంత',
+    ]
+    
+    # Combine all words
+    all_numeric_words = en_numeric_words + sw_numeric_words + te_numeric_words
+    
+    # Check if any numeric question word appears in the question
+    for word in all_numeric_words:
+        if word in question.lower():
+            return True
+    
+    return False
+
+def calculate_qa_f1(ground_truth, predicted_answer):
+    """
+    Calculate F1 score between ground truth and predicted answer for QA evaluation.
+    
+    Args:
+        ground_truth: Ground truth answer (string or list/dict with 'text' field)
+        predicted_answer: Model's predicted answer (string)
+        
+    Returns:
+        F1 score
+    """
+    # Handle different input formats
+    if isinstance(ground_truth, dict) and 'text' in ground_truth:
+        references = ground_truth['text']
+    elif isinstance(ground_truth, list):
+        references = ground_truth
+    else:
+        references = [str(ground_truth)]
+    
+    # Ensure predicted_answer is a string
+    prediction = str(predicted_answer)
+    
+    # Helper function to normalize text
+    def normalize_text(text):
+        # Convert to lowercase, remove punctuation
+        text = text.lower()
+        text = re.sub(r'[^\w\s]', ' ', text)
+        # Remove extra spaces
+        text = re.sub(r'\s+', ' ', text).strip()
+        return text
+    
+    # Helper function to calculate F1 between two strings
+    def calculate_f1(a_tokens, b_tokens):
+        if not a_tokens or not b_tokens:
+            return 0.0
+            
+        common = Counter(a_tokens) & Counter(b_tokens)
+        num_common = sum(common.values())
+        
+        if num_common == 0:
+            return 0.0
+            
+        precision = num_common / len(b_tokens)
+        recall = num_common / len(a_tokens)
+        
+        if precision + recall == 0:
+            return 0.0
+            
+        f1 = 2 * precision * recall / (precision + recall)
+        return f1
+    
+    # Calculate F1 scores for each reference
+    f1_scores = []
+    for reference in references:
+        if not reference:
+            continue
+            
+        # Normalize texts
+        norm_reference = normalize_text(reference)
+        norm_prediction = normalize_text(prediction)
+        
+        # Tokenize
+        ref_tokens = norm_reference.split()
+        pred_tokens = norm_prediction.split()
+        
+        # Calculate F1
+        f1 = calculate_f1(ref_tokens, pred_tokens)
+        f1_scores.append(f1)
+    
+    # Return the highest F1 score if there's any
+    if f1_scores:
+        return max(f1_scores)
+    else:
+        return 0.0
+
+def evaluate_qa_baseline(
+    model_name: str,
+    tokenizer: Any,
+    model: Any,
+    samples_df: pd.DataFrame,
+    lang_code: str,
+    use_few_shot: bool = True,
+    temperature: float = 0.3,
+    top_p: float = 0.9,
+    top_k: float = 40,
+    max_tokens: int = 50
+) -> pd.DataFrame:
+    """
+    Evaluate QA baseline approaches on a dataset.
+    Optimized parameters for better performance.
     
     Args:
         model_name: Name of the model to use
-        samples_df: DataFrame containing the samples
-        lang_code: Language code for reporting
-    
-    Returns:
-        DataFrame with predictions and metrics, or empty DataFrame if critical error
-    """
-    try:
-        tokenizer, model = initialize_model(model_name)
-    except Exception as e:
-        print(f"ERROR: Failed to initialize model {model_name}: {e}")
-        return pd.DataFrame() # Return empty if model fails to load
+        tokenizer: The model tokenizer
+        model: The language model
+        samples_df: DataFrame containing QA samples (must have 'question' and 'answer')
+        lang_code: Language code for language-specific handling
+        use_few_shot: Whether to include few-shot examples in the prompt
+        temperature: Temperature for sampling
+        top_p: Top-p sampling parameter
+        top_k: Top-k sampling parameter
+        max_tokens: Maximum number of new tokens to generate
         
+    Returns:
+        DataFrame with predictions and evaluation metrics
+    """
+    # Process each sample
     results = []
+    shot_type = "few-shot" if use_few_shot else "zero-shot"
     
-    # Determine max input length based on model if possible, fallback to default
-    # Using a potentially safer value than max_position_embeddings directly
-    model_max_len = getattr(model.config, 'max_position_embeddings', 4096)
-    # Set a practical limit, considering memory and typical context window usefulness
-    safe_max_input_length = min(model_max_len, 8192) 
-    
-    print(f"Using max_input_length: {safe_max_input_length}")
-    print(f"NOTE: Context is being ignored as per professor's recommendation. Using model's parametric knowledge.")
-
-    for idx, row in tqdm(samples_df.iterrows(), total=len(samples_df), desc=f"Processing {lang_code} samples ({model_name})"):
+    print(f"\nProcessing {len(samples_df)} samples with {shot_type} prompting...")
+    for idx, row in tqdm(samples_df.iterrows(), total=len(samples_df)):
+        question = row["question"]
+        ground_truth = row["ground_truth"]
+        context = row.get("context", "") # Get context, default to empty string if not present
+        
+        # Apply optimized parameters based on question type
+        cur_temperature = temperature
+        cur_top_p = top_p
+        cur_max_tokens = max_tokens
+        
+        # Adjust parameters based on question type for better results
+        if is_yes_no_question(question):
+            # Yes/No questions benefit from lower temperature
+            cur_temperature = max(0.1, temperature - 0.1)
+            cur_max_tokens = min(30, max_tokens)  # Shorter answers for yes/no
+        elif is_numeric_question(question):
+            # Numeric questions need precise answers
+            cur_temperature = max(0.1, temperature - 0.15)
+            cur_top_p = max(0.7, top_p - 0.1)
+            cur_max_tokens = min(25, max_tokens)  # Shorter answers for numbers
+        
+        # Process with optimized parameters
         try:
-            question = row["question"]
-            context = row["context"]  # Still read context for reference/reporting
-            
-            # Handle both formats for ground truth - direct ground_truth or answers.text
-            if "ground_truth" in row and row["ground_truth"]:
-                # Fallback data format - use ground_truth directly
-                ground_truth_answer = row["ground_truth"]
-                ground_truth_answers = [ground_truth_answer]
-            else:
-                # TyDiQA format - extract from answers
-                ground_truth_answers = row.get("answers", {}).get("text", [])
-                if not ground_truth_answers:
-                    print(f"Skipping sample {row.get('id', idx)} due to missing ground truth answers.")
-                    continue
-            
-            # Get model prediction WITHOUT using context
+            start_time = time.time()
             predicted_answer = process_qa_baseline(
-                tokenizer, model, question, None,  # Pass None for context 
-                max_input_length=safe_max_input_length
+                tokenizer, model, question, context=context, # Pass context here
+                temperature=cur_temperature,
+                top_p=cur_top_p, 
+                max_new_tokens=cur_max_tokens,
+                lang_code=lang_code,
+                model_name=model_name,
+                use_few_shot=use_few_shot
             )
+            runtime = time.time() - start_time
+            
+            # Calculate F1 score - separate function for QA metrics
+            f1_score = calculate_qa_f1(ground_truth, predicted_answer)
             
             # Store result
             result = {
                 "question": question,
-                "context": context[:200] + "...",  # Kept for reference only
-                "ground_truth_answers": ground_truth_answers,
-                "ground_truth": ground_truth_answers[0] if ground_truth_answers else None,  # Add direct ground_truth
+                "ground_truth": ground_truth,
                 "predicted_answer": predicted_answer,
+                "f1_score": f1_score,
                 "language": lang_code,
-                "context_used": False  # Flag to indicate context was not used
+                "shot_type": shot_type,
+                "runtime_seconds": runtime,
+                "model": model_name
             }
             results.append(result)
+            
         except Exception as e:
-            print(f"ERROR processing sample {row.get('id', idx)}: {e}")
-            # Optionally add a placeholder result or just skip
-            continue # Skip sample on error
+            print(f"Error processing sample: {str(e)}")
+            # Add a failed result to keep track of errors
+            results.append({
+                "question": question,
+                "ground_truth": ground_truth,
+                "predicted_answer": "[ERROR]",
+                "f1_score": 0.0,
+                "language": lang_code,
+                "shot_type": shot_type,
+                "runtime_seconds": 0.0,
+                "model": model_name,
+                "error": str(e)
+            })
     
-    if not results:
-        print(f"WARNING: No results were successfully processed for {lang_code} with {model_name}.")
-        return pd.DataFrame()
-        
+    # Convert results to DataFrame
     results_df = pd.DataFrame(results)
+    
+    # Calculate average metrics
+    if len(results_df) > 0:
+        avg_f1 = results_df["f1_score"].mean()
+        avg_runtime = results_df["runtime_seconds"].mean()
+        
+        print(f"\nResults for {lang_code} with {model_name} ({shot_type}):")
+        print(f"  Average F1 score: {avg_f1:.4f}")
+        print(f"  Average runtime: {avg_runtime:.2f} seconds")
+    else:
+        print(f"No results generated for {lang_code} with {model_name}")
+    
     return results_df

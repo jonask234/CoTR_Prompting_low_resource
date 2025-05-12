@@ -1,20 +1,26 @@
 from sklearn.metrics import accuracy_score, f1_score, classification_report
 import pandas as pd
-from typing import Dict, Any
+from typing import Dict, Any, Optional, List
 
-def calculate_classification_metrics(results_df: pd.DataFrame) -> Dict[str, Any]:
+def calculate_classification_metrics(results_df: pd.DataFrame, possible_labels_en: Optional[List[str]] = None) -> Dict[str, Any]:
     """
-    Calculate classification metrics (Accuracy, Macro F1-score, 
-    and per-class precision and recall).
-
+    Calculates classification metrics (accuracy, macro_f1, per-class precision/recall).
     Args:
-        results_df: DataFrame with 'ground_truth_label' and 'predicted_label' columns.
-
+        results_df: DataFrame with 'ground_truth_label' and 'final_predicted_label' columns.
+        possible_labels_en: Optional list of all possible English labels for generating a full report.
     Returns:
-        Dictionary containing the calculated metrics.
+        Dictionary with calculated metrics.
     """
+    if results_df.empty:
+        return {"accuracy": 0.0, "macro_f1": 0.0, "samples_processed": 0}
+
     y_true = results_df['ground_truth_label']
-    y_pred = results_df['predicted_label']
+    y_pred = results_df['final_predicted_label']
+
+    # Use all unique labels present in true or predicted if possible_labels_en is not given
+    labels_for_report = possible_labels_en
+    if not labels_for_report:
+        labels_for_report = sorted(list(set(y_true) | set(y_pred)))
 
     # Get the unique labels actually present in the ground truth for this run
     valid_labels = sorted(list(y_true.unique())) 

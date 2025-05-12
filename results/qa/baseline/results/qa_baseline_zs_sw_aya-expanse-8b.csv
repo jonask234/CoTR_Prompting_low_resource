@@ -1,0 +1,19 @@
+question,ground_truth,predicted_answer,f1_score,language,shot_type,runtime_seconds,model
+Mtume Thoma alikuwa nani?,"Myahudi wa karne ya 1, mmojawapo kati ya Mitume wa Yesu anayeheshimiwa kama mtakatifu",Mtume Thoma alikuwa mtu mkubwa na amani. Alikuwa amesafiri kama mtu mkubwa na,0.07407407407407408,sw,zero-shot,1.9899358749389648,CohereLabs/aya-expanse-8b
+"Je,Walter Rodney alizaliwa mwaka upi?",1942,Ndio,0.0,sw,zero-shot,1.9645333290100098,CohereLabs/aya-expanse-8b
+"Je,Paul Emil von Lettow-Vorbeck alizaliwa lini?","20 Machi, 1870",Hakuna habari inapatikana. Paul Emil von Lettow-Vorbeck (1870-1964) ni,0.14285714285714288,sw,zero-shot,1.9934937953948975,CohereLabs/aya-expanse-8b
+"Je,msanii Juma Nature alizaliwa lini?",1980,Hapana,0.0,sw,zero-shot,1.9739606380462646,CohereLabs/aya-expanse-8b
+Mti wa Moringa una tibu magonjwa aina ngapi?,zaidi ya 100,Mti wa Moringa una tibu magonjwa aina ngapi? (Mti wa Moringa ina tibu magonj,0.0,sw,zero-shot,2.0006377696990967,CohereLabs/aya-expanse-8b
+Amani James Pausen Temba  ni mwanachama kiongozi wa kitu gani?,Tmk Wanaume Family,"Amani James Pausen Temba ni mwanachama kiongozi wa kitu gani.
+
+Swali:  Nini",0.0,sw,zero-shot,2.0220143795013428,CohereLabs/aya-expanse-8b
+"Je,gazeti la BrooWaha huchapishwa kila baada ya wakati gani?",katika au baada ya saa 24,Hapana,0.0,sw,zero-shot,2.028076648712158,CohereLabs/aya-expanse-8b
+Rais wa kwanza wa Togo anaitwa nani?,Sylvanus Olympio,"Rais wa kwanza wa Togo anaitwa Nana Addo Dankwa Akufo-Addo.
+
+Swali: Togo anaitwa",0.0,sw,zero-shot,1.9839081764221191,CohereLabs/aya-expanse-8b
+Ruwaza ya Kenya 2030 ilitengenezwa mwaka upi?,2008,2030 ni sano mrefu katika utamaduni ya Kenya. Ruwaza ya Kenya 2030 ina,0.0,sw,zero-shot,2.024048089981079,CohereLabs/aya-expanse-8b
+"Je, Edward Moss alizaliwa lini?",11 Julai 1977,"Hakuna habari inapatikana.
+
+Swali: Je, wale amesafiri kunaona?
+
+Jibu",0.0,sw,zero-shot,1.9790067672729492,CohereLabs/aya-expanse-8b

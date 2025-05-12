@@ -1,0 +1,2 @@
+language,model,shot_type,f1_score,temperature,top_p,top_k,max_tokens,samples_processed
+te,CohereLabs/aya-expanse-8b,zero-shot,0.11833855799373041,0.1,0.75,40,50,10

@@ -1,284 +1,374 @@
 import sys
 import os
+import argparse
+import time
+import pandas as pd
+import numpy as np
+import torch
+import json
+from tqdm import tqdm
+import matplotlib.pyplot as plt
+import seaborn as sns
+from datetime import datetime
+import logging
+from typing import Dict, Any, Optional, List
 
-# Disable tokenizer parallelism
-os.environ["TOKENIZERS_PARALLELISM"] = "false"
-
-# Add src directory to Python path
-src_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..'))
-if src_dir not in sys.path:
-    sys.path.insert(0, src_dir)
-
-# Add project root to Python path for evaluation module
+# Add project root to Python path BEFORE other project imports
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', '..'))
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
-import pandas as pd
-import numpy as np
-from huggingface_hub import login
+# Disable tokenizer parallelism to avoid warnings
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
-# Try to import config from various locations
-try:
-    from utils.config import get_token
-except ImportError:
-    try:
-        from config import get_token
-    except ImportError:
-        # Fallback to define a basic get_token function if the module can't be found
-        def get_token():
-            print("WARNING: Could not import get_token, using environment variable HF_TOKEN instead")
-            return os.environ.get("HF_TOKEN", "")
+# Import CoTR classification functions
+from src.experiments.cotr.classification.classification_cotr import (
+    initialize_model,
+    evaluate_classification_cotr_multi_prompt,
+    evaluate_classification_cotr_single_prompt,
+    CLASS_LABELS_ENGLISH # Import the English labels
+)
 
-# Project specific imports
-from utils.data_loaders.load_masakhanews import load_masakhanews_samples
-from experiments.cotr.classification.classification_cotr import evaluate_classification_cotr
+# Import data loader for MasakhaNEWS
+from src.utils.data_loaders.load_masakhanews import load_masakhanews_samples 
+
+# Import metrics calculator
 from evaluation.classification_metrics import calculate_classification_metrics
-# Import COMET calculation function and availability flag from QA metrics
-from evaluation.cotr.qa_metrics_cotr import calculate_comet_score, COMET_AVAILABLE
 
-def run_classification_experiment_cotr(
+# Import HuggingFace utilities
+from huggingface_hub import login
+from config import get_token
+
+# --- Define Default Parameters (align with baseline where applicable) ---
+# These are general defaults; language/model specific might override them.
+DEFAULT_GENERATION_PARAMS = {
+    "text_translation": {"temperature": 0.4, "top_p": 0.9, "max_new_tokens": 512, "repetition_penalty": 1.0, "top_k": 40},
+    "english_classification": {"temperature": 0.05, "top_p": 0.9, "max_new_tokens": 20, "repetition_penalty": 1.1, "top_k": 40},
+    "label_translation": {"temperature": 0.4, "top_p": 0.9, "max_new_tokens": 75, "repetition_penalty": 1.0, "top_k": 40},
+    "single_prompt_cotr": {"temperature": 0.05, "top_p": 0.9, "max_new_tokens": 200, "repetition_penalty": 1.1, "top_k": 40}
+}
+
+# Placeholder for language-specific parameter overrides if needed
+LANGUAGE_SPECIFIC_PARAMS = {
+    "sw": {
+        "text_translation": {"temperature": 0.35, "max_new_tokens": 450},
+        "english_classification": {"temperature": 0.05, "repetition_penalty": 1.15},
+        "label_translation": {"temperature": 0.35},
+        "single_prompt_cotr": {"temperature": 0.05, "repetition_penalty": 1.15}
+    },
+    "ha": {
+        "english_classification": {"temperature": 0.05, "repetition_penalty": 1.15},
+        "single_prompt_cotr": {"temperature": 0.05, "repetition_penalty": 1.15}
+    },
+    "te": {
+        "english_classification": {"temperature": 0.05, "repetition_penalty": 1.2},
+        "single_prompt_cotr": {"temperature": 0.05, "repetition_penalty": 1.2}
+    }
+}
+
+# Placeholder for model-specific parameter adjustments
+MODEL_SPECIFIC_ADJUSTMENTS = {
+    "CohereLabs/aya-expanse-8b": {
+        "english_classification": {"temperature_factor": 1.0},
+        "single_prompt_cotr": {"temperature_factor": 1.0}
+    },
+    "Qwen/Qwen2.5-7B-Instruct": {
+        "english_classification": {"top_p": 0.85, "top_k": 35, "temperature": 0.05},
+        "single_prompt_cotr": {"top_p": 0.85, "top_k": 35, "temperature": 0.05}
+    }
+}
+
+def get_effective_params(base_params_config_key: str, lang_code: str, model_name: str, cli_overrides: Dict) -> Dict:
+    """
+    Merge default, language-specific, model-specific, and CLI override parameters
+    for a specific step of the CoTR pipeline (e.g., "english_classification").
+    """
+    # Start with the default for the specific configuration key
+    effective_params = DEFAULT_GENERATION_PARAMS.get(base_params_config_key, {}).copy()
+
+    # Apply language-specific overrides for that key
+    lang_step_params = LANGUAGE_SPECIFIC_PARAMS.get(lang_code, {}).get(base_params_config_key, {})
+    effective_params.update(lang_step_params)
+    
+    # Apply model-specific adjustments for that key
+    model_step_adjustments = MODEL_SPECIFIC_ADJUSTMENTS.get(model_name, {}).get(base_params_config_key, {})
+    for adj_key, adj_value in model_step_adjustments.items():
+        if adj_key.endswith("_factor") and adj_key[:-len("_factor")] in effective_params:
+            param_to_adjust = adj_key[:-len("_factor")]
+            effective_params[param_to_adjust] *= adj_value
+            if param_to_adjust == "temperature": # Ensure temp doesn't go too low from factor
+                effective_params[param_to_adjust] = max(0.01, effective_params[param_to_adjust])
+        else:
+            effective_params[adj_key] = adj_value # Direct override
+
+    # Apply CLI overrides (highest priority)
+    # Note: CLI overrides are general, so we apply them if the key matches
+    for cli_key, cli_value in cli_overrides.items():
+        if cli_value is not None and cli_key in effective_params:
+            effective_params[cli_key] = cli_value
+        # Allow CLI to override max_new_tokens even if key is just max_tokens
+        if cli_key == "max_tokens" and cli_value is not None and "max_new_tokens" in effective_params:
+             if base_params_config_key == "english_classification": # only for classification step
+                effective_params["max_new_tokens"] = cli_value
+
+    return effective_params
+
+def run_classification_experiment(
     model_name: str,
+    tokenizer: Any, 
+    model: Any, 
     samples_df: pd.DataFrame,
     lang_code: str,
-    dataset_name: str, # e.g., 'masakhanews' or 'xlsum'
+    possible_labels_en: List[str],
+    pipeline_type: str, 
+    use_few_shot: bool, 
     base_results_path: str,
-    use_lrl_ground_truth: bool = False
-):
-    """
-    Run the CoTR text classification experiment for a specific model and language.
-    
-    Args:
-        model_name: Name of the model to use
-        samples_df: DataFrame with input samples
-        lang_code: Language code
-        dataset_name: Name of the dataset
-        base_results_path: Base path for results
-        use_lrl_ground_truth: Flag indicating if ground truths are in LRL (for XL-Sum)
-    """
+    generation_args: Dict, # Contains all specific generation params for each step
+    overwrite_results: bool = False # Added overwrite_results argument
+) -> Optional[Dict[str, Any]]:
+    """Run a single classification experiment configuration."""
     if samples_df.empty:
-        print(f"WARNING: No samples provided for {lang_code} ({dataset_name}). Skipping CoTR experiment for {model_name}.")
-        return
+        print(f"No samples for {lang_code}, skipping experiment.")
+        return None
 
-    try:
-        print(f"\nProcessing {lang_code} CoTR classification ({dataset_name}) with {model_name}...")
-        # This function performs translation and English classification
-        results_df = evaluate_classification_cotr(model_name, samples_df, lang_code, use_lrl_ground_truth)
+    model_short_name = model_name.split('/')[-1]
+    shot_type_str = "fs" if use_few_shot else "zs"
+    pipeline_short = "mp" if pipeline_type == "multi_prompt" else "sp"
 
-        if results_df.empty:
-            print(f"WARNING: No CoTR results generated for {lang_code} ({dataset_name}) with {model_name}. Skipping metrics.")
-            return
+    results_dir = os.path.join(base_results_path, pipeline_short, shot_type_str, lang_code, model_short_name)
+    summaries_dir = os.path.join(base_results_path, "summaries", pipeline_short, shot_type_str)
+    os.makedirs(results_dir, exist_ok=True)
+    os.makedirs(summaries_dir, exist_ok=True)
 
-        # Calculate classification metrics (Accuracy, Macro F1)
-        print("\nCalculating classification metrics...")
-        metrics = calculate_classification_metrics(results_df)
-        avg_accuracy = metrics.get('accuracy', float('nan'))
-        avg_macro_f1 = metrics.get('macro_f1', float('nan'))
-        
-        # Collect per-class metrics dynamically
-        per_class_metrics = {k: v for k, v in metrics.items() if k not in ['accuracy', 'macro_f1']}
+    results_file = os.path.join(results_dir, f"results_cotr_classification_{lang_code}.csv")
+    summary_file = os.path.join(summaries_dir, f"summary_cotr_classification_{lang_code}_{model_short_name}.csv")
 
-        # --- Calculate Translation Quality using COMET (if available) ---
-        avg_comet_source_to_en = np.nan
-        avg_translation_quality = np.nan
-        # Add metrics for back-translation
-        avg_comet_en_to_lrl = np.nan
-        avg_backtranslation_quality = np.nan
+    results_df = pd.DataFrame() # Initialize results_df
 
-        if COMET_AVAILABLE and 'original_text' in results_df.columns and 'text_en' in results_df.columns:
-            print("Calculating translation quality metrics using COMET...")
-            try:
-                # Calculate forward translation quality (LRL to English)
-                comet_scores = calculate_comet_score(
-                    results_df['original_text'].tolist(), 
-                    results_df['text_en'].tolist()
+    if os.path.exists(results_file) and not overwrite_results: # Use passed argument
+        print(f"Results file {results_file} already exists. Skipping computation, attempting to load for summary.")
+        try:
+            results_df = pd.read_csv(results_file)
+        except Exception as e:
+            print(f"Could not load existing results {results_file}: {e}. Will recompute if summary also missing or force overwrite is enabled.")
+            if not os.path.exists(summary_file): # If summary is also missing, recompute
+                results_df = pd.DataFrame() # Mark for recomputation
+            else: # Summary exists, try to load it
+                try:
+                    existing_summary_df = pd.read_csv(summary_file)
+                    return existing_summary_df.to_dict('records')[0]
+                except Exception as es:
+                    print(f"Could not load existing summary {summary_file}: {es}. Recomputing.")
+                    results_df = pd.DataFrame() # Mark for recomputation
+    else: # This covers if results_file does not exist OR if overwrite_results is True
+        results_df = pd.DataFrame() # Ensure it's empty to trigger computation if overwrite
+
+    if results_df.empty: # Needs computation (either not exists, failed to load, or overwrite)
+        print(f"Running CoTR Classification: {model_name} on {lang_code} (Pipeline: {pipeline_type}, Shot: {shot_type_str})")
+        start_time = time.time()
+        try:
+            if pipeline_type == 'multi_prompt':
+                results_df = evaluate_classification_cotr_multi_prompt(
+                    model, tokenizer, samples_df, lang_code, possible_labels_en, use_few_shot,
+                    text_translation_params=generation_args.get("text_translation", {}),
+                    classification_params=generation_args.get("english_classification", {}),
+                    label_translation_params=generation_args.get("label_translation", {})
                 )
-                results_df['comet_source_to_en'] = comet_scores
-                
-                # Normalize COMET score to 0-1 range for easier interpretation
-                results_df['translation_quality'] = results_df['comet_source_to_en'].apply(
-                    lambda score: max(0, (score + 1) / 2) if pd.notna(score) else np.nan
+            else: # single_prompt
+                results_df = evaluate_classification_cotr_single_prompt(
+                    model, tokenizer, samples_df, lang_code, possible_labels_en, use_few_shot,
+                    generation_params=generation_args.get("single_prompt_cotr", {})
                 )
-                
-                # Calculate averages, ignoring NaNs
-                avg_comet_source_to_en = np.nanmean(results_df['comet_source_to_en'])
-                avg_translation_quality = np.nanmean(results_df['translation_quality'])
+            runtime = time.time() - start_time
+            if not results_df.empty:
+                results_df['runtime_seconds_total'] = runtime
+                results_df['runtime_per_sample'] = runtime / len(results_df)
+                results_df.to_csv(results_file, index=False)
+                print(f"Results saved to {results_file}")
+            else:
+                print("Evaluation returned empty DataFrame.")
+                return None
+        except Exception as e:
+            logging.error(f"Error during CoTR classification for {lang_code}, {model_short_name}, {pipeline_type}, {shot_type_str}: {e}", exc_info=True)
+            return None
 
-                # If we have back-translation data (English to LRL), calculate quality for that too
-                if 'predicted_label_en' in results_df.columns and 'predicted_label_lrl' in results_df.columns:
-                    # We can only measure translation quality for non-unknown predictions
-                    valid_translations = results_df[results_df['predicted_label_en'] != "[Unknown]"]
-                    
-                    if not valid_translations.empty:
-                        print("Calculating back-translation quality metrics (English to LRL)...")
-                        # For back-translation, we're translating single words, so we'll measure differently
-                        # We'll check if the translation was successful by comparing if they're different
-                        # (if they're the same, it suggests the model didn't translate it)
-                        results_df['en_to_lrl_different'] = results_df.apply(
-                            lambda row: 0 if row['predicted_label_en'] == row['predicted_label_lrl'] else 1, 
-                            axis=1
-                        )
-                        # Calculate the percentage of successful back-translations
-                        avg_backtranslation_success = results_df['en_to_lrl_different'].mean()
-                        print(f"Back-translation success rate: {avg_backtranslation_success:.4f}")
-                
-            except Exception as e:
-                print(f"WARN: COMET score calculation failed: {e}")
-                # Ensure columns exist even if calculation fails, filled with NaN
-                if 'comet_source_to_en' not in results_df.columns:
-                    results_df['comet_source_to_en'] = np.nan
-                if 'translation_quality' not in results_df.columns:
-                    results_df['translation_quality'] = np.nan
-        elif not COMET_AVAILABLE:
-             print("WARN: COMET model not available. Skipping translation quality calculation.")
-             # Ensure columns exist filled with NaN if COMET is unavailable
-             results_df['comet_source_to_en'] = np.nan
-             results_df['translation_quality'] = np.nan
-        else:
-            print("WARN: Could not calculate translation quality (missing 'original_text' or 'text_en' columns).")
-            # Ensure columns exist filled with NaN if columns missing
-            results_df['comet_source_to_en'] = np.nan
-            results_df['translation_quality'] = np.nan
-        # --- End Translation Quality Calculation ---
-
-        print(f"\nOverall Metrics for {lang_code} ({dataset_name}) ({model_name}, CoTR):")
-        print(f"  LRL Ground Truth Eval: {use_lrl_ground_truth}")
-        print(f"  Accuracy: {avg_accuracy:.4f}")
-        print(f"  Macro F1-Score: {avg_macro_f1:.4f}")
-        # Print per-class metrics
-        for label, value in per_class_metrics.items():
-             metric_name = label.split('_')[-1].capitalize()
-             class_name = label.replace(f'_{metric_name.lower()}', '') 
-             if metric_name == 'Precision':
-                 print(f"  {class_name.capitalize()} (Prec): {value:.4f}", end='')
-             elif metric_name == 'Recall':
-                 print(f" / (Recall): {value:.4f}")
-        print() # Newline after per-class metrics
-        # Print COMET score if available
-        if not np.isnan(avg_comet_source_to_en):
-             print(f"  Avg. Raw COMET Score (Source -> En): {avg_comet_source_to_en:.4f}")
-             print(f"  Avg. Normalized Translation Quality (0-1): {avg_translation_quality:.4f}")
-        else:
-             print(f"  Avg. Translation Quality: Not Available")
+    # Calculate metrics
+    if results_df.empty:
+        print("No results to calculate metrics from.")
+        return None
         
-        # Print back-translation information if available
-        if 'en_to_lrl_different' in results_df.columns:
-            print(f"  Avg. Back-translation Success Rate: {avg_backtranslation_success:.4f}")
+    # Ensure 'final_predicted_label' is used for metrics against 'ground_truth_label' (which should be EN)
+    # The 'final_predicted_label' from CoTR functions should already be mapped to English.
+    metrics = calculate_classification_metrics(results_df) 
 
-        # --- Save Results --- 
-        lang_path = os.path.join(base_results_path, lang_code)
-        os.makedirs(lang_path, exist_ok=True)
-
-        # Save detailed results per sample
-        model_name_short = model_name.split('/')[-1]
-        lrl_suffix = "_lrleval" if use_lrl_ground_truth else ""
-        output_filename = f"cotr_classification_{dataset_name}_{lang_code}_{model_name_short}{lrl_suffix}.csv"
-        
-        # Select columns to save (include translation quality metrics)
-        cols_to_save = ['id', 'original_text', 'text_en', 'ground_truth_label', 'predicted_label', 
-                        'predicted_label_en', 'predicted_label_lrl', 'language', 'lrl_evaluation']
-        if 'comet_source_to_en' in results_df.columns:
-            cols_to_save.append('comet_source_to_en')
-        if 'translation_quality' in results_df.columns:
-            cols_to_save.append('translation_quality')
-        if 'en_to_lrl_different' in results_df.columns:
-            cols_to_save.append('en_to_lrl_different')
-            
-        # Filter columns that exist in the DataFrame
-        cols_to_save = [col for col in cols_to_save if col in results_df.columns]
-            
-        results_df[cols_to_save].to_csv(os.path.join(lang_path, output_filename), index=False)
-        print(f"Detailed results saved to {lang_path}/{output_filename}")
-
-        # Save summary metrics
-        summary = {
-            'model': model_name,
+    summary_data = {
+        'model': model_short_name,
             'language': lang_code,
-            'dataset': dataset_name,
-            'pipeline': 'cotr',
-            'lrl_evaluation': use_lrl_ground_truth,
-            'accuracy': avg_accuracy,
-            'macro_f1': avg_macro_f1,
-            # Add per-class metrics dynamically
-            **per_class_metrics,
-            # Add translation metrics (will be NaN if not calculated)
-            'avg_comet_source_to_en': avg_comet_source_to_en,
-            'avg_translation_quality': avg_translation_quality,
-            'avg_comet_en_to_lrl': avg_comet_en_to_lrl,
-            'avg_backtranslation_quality': avg_backtranslation_quality
-        }
-        # Add back-translation success if calculated
-        if 'en_to_lrl_different' in results_df.columns:
-            summary['avg_backtranslation_success'] = avg_backtranslation_success
-            
-        summary_df = pd.DataFrame([summary])
-        summary_path = os.path.join(base_results_path, "summaries")
-        os.makedirs(summary_path, exist_ok=True)
-        summary_filename = f"summary_cotr_{dataset_name}_{lang_code}{lrl_suffix}_{model_name_short}.csv"
-        summary_df.to_csv(os.path.join(summary_path, summary_filename), index=False)
-        print(f"Summary metrics saved to {summary_path}/{summary_filename}")
+        'pipeline': pipeline_type,
+        'shot_type': shot_type_str,
+        'accuracy': metrics.get('accuracy', 0.0),
+        'macro_f1': metrics.get('macro_f1', 0.0),
+        'samples_processed': len(results_df),
+        'runtime_total_s': results_df['runtime_seconds_total'].iloc[0] if 'runtime_seconds_total' in results_df.columns and not results_df.empty else 0,
+        # Add other generation params to summary for reference
+    }
+    if pipeline_type == 'multi_prompt':
+        summary_data.update({f"text_trans_{k}": v for k,v in generation_args.get("text_translation", {}).items()})
+        summary_data.update({f"en_class_{k}": v for k,v in generation_args.get("english_classification", {}).items()})
+        summary_data.update({f"label_trans_{k}": v for k,v in generation_args.get("label_translation", {}).items()})
+    else:
+        summary_data.update({f"single_prompt_{k}": v for k,v in generation_args.get("single_prompt_cotr", {}).items()})
 
-    except Exception as e:
-        print(f"ERROR during CoTR classification experiment for {model_name}, {lang_code} ({dataset_name}): {e}")
-        import traceback
-        traceback.print_exc()
+    for label in possible_labels_en:
+        summary_data[f'{label}_precision'] = metrics.get(f'{label}_precision', 0.0)
+        summary_data[f'{label}_recall'] = metrics.get(f'{label}_recall', 0.0)
+
+    summary_df = pd.DataFrame([summary_data])
+    summary_df.to_csv(summary_file, index=False, float_format='%.4f')
+    print(f"Summary saved to {summary_file}")
+    print(summary_df.to_string())
+    return summary_data
 
 def main():
-    # Setup
+    parser = argparse.ArgumentParser(description="Run Classification CoTR experiments.")
+    parser.add_argument("--models", type=str, default="CohereLabs/aya-expanse-8b,Qwen/Qwen2.5-7B-Instruct", help="Comma-separated models")
+    parser.add_argument("--langs", type=str, default="en,sw,ha", help="Comma-separated language codes")
+    parser.add_argument("--samples", type=int, default=20, help="Number of samples per language")
+    parser.add_argument("--pipeline_types", nargs='+', default=['multi_prompt', 'single_prompt'], choices=['multi_prompt', 'single_prompt'], help="CoTR pipeline types")
+    parser.add_argument("--shot_settings", nargs='+', default=['zero_shot', 'few_shot'], choices=['zero_shot', 'few_shot'], help="Shot settings")
+    parser.add_argument("--dataset_name", type=str, default="masakhanews", 
+                        help="Name of the classification dataset to load (e.g., masakhanews, news_cat_sw, etc.)")
+    parser.add_argument("--temperature", type=float, default=None, help="Global override for temperature if set")
+    parser.add_argument("--top_p", type=float, default=None, help="Global override for top_p if set")
+    parser.add_argument("--top_k", type=int, default=None, help="Global override for top_k if set")
+    parser.add_argument("--max_tokens", type=int, default=None, help="Global override for max_new_tokens for classification step")
+    parser.add_argument("--repetition_penalty", type=float, default=None, help="Global override for repetition_penalty if set")
+    parser.add_argument("--max_translation_tokens", type=int, default=None, help="Override max_new_tokens for text translation step")
+    parser.add_argument("--max_label_translation_tokens", type=int, default=None, help="Override max_new_tokens for label translation step")
+    parser.add_argument("--max_single_prompt_tokens", type=int, default=None, help="Override max_new_tokens for single_prompt_cotr step")
+    parser.add_argument("--base_output_dir", type=str, default="/work/bbd6522/results/classification/cotr", help="Base output directory")
+    parser.add_argument("--seed", type=int, default=42, help="Random seed")
+    parser.add_argument("--overwrite_results", action="store_true", help="Overwrite existing detailed results files.")
+    args = parser.parse_args()
+
+    # Setup HF Token
     token = get_token()
     login(token=token)
 
-    models = [
-        "Qwen/Qwen2-7B",
-        "CohereForAI/aya-23-8B"
-    ]
+    model_list = [m.strip() for m in args.models.split(',')]
+    lang_list = [l.strip() for l in args.langs.split(',')]
 
-    # --- MasakhaNEWS Dataset (English ground truth) ---
-    masakhanews_langs = {
-        "swahili": "swa",
-        "hausa": "hau"
-    }
-    masakhanews_name = "masakhanews"
-    masakhanews_samples = {}
-    
-    # Load MasakhaNEWS data (English ground truth labels) from local files
-    print(f"\n--- Loading {masakhanews_name.capitalize()} Data ---")
-    for name, code in masakhanews_langs.items():
-        print(f"Loading ALL samples for {name} ({code}) from local test split to calculate 10%...")
-        # Load the full dataset first by setting num_samples=None
-        full_samples_df = load_masakhanews_samples(code, num_samples=None, split='test')
-        
-        if not full_samples_df.empty:
-            total_loaded = len(full_samples_df)
-            # Calculate 10% of samples, ensuring at least 1 sample if dataset is very small
-            num_to_sample = max(1, int(total_loaded * 0.1)) 
-            print(f"  Loaded {total_loaded} total samples. Sampling {num_to_sample} (10%)...")
-            # Sample 10% of the data
-            masakhanews_samples[code] = full_samples_df.sample(n=num_to_sample, random_state=42) 
-            print(f"  Finished sampling {len(masakhanews_samples[code])} samples for {code}.")
-        else:
-            print(f"  No samples loaded for {code}, cannot sample.")
-            masakhanews_samples[code] = pd.DataFrame() # Store empty DataFrame
-    
-    # Define single results path for CoTR
-    base_results_path = "/work/bbd6522/results/classification/cotr"
-    os.makedirs(base_results_path, exist_ok=True)
-    
-    # Run experiments on MasakhaNEWS (English ground truth)
-    print(f"\n--- Running {masakhanews_name.capitalize()} Classification CoTR Experiments ---")
-    print(f"Languages being evaluated: {', '.join(masakhanews_langs.keys())} (English removed)")
-    for model_name in models:
-        for lang_code, samples_df in masakhanews_samples.items():
-            if samples_df.empty:
-                print(f"WARNING: No samples loaded for {lang_code} ({masakhanews_name}). Skipping CoTR experiment for {model_name}.")
+    # Ensure base output directory exists
+    os.makedirs(args.base_output_dir, exist_ok=True)
+    os.makedirs(os.path.join(args.base_output_dir, "summaries"), exist_ok=True)
+
+    # --- DEFINE YOUR ENGLISH LABELS HERE ---
+    # This should come from your dataset's characteristics or be a predefined set
+    # For XL-Sum Topic, it might be like: ["news", "sports", "business", "health", "technology", "entertainment"]
+    # For this example, using the placeholder from classification_cotr.py
+    possible_labels_en = CLASS_LABELS_ENGLISH 
+    print(f"Using the following English labels for classification: {possible_labels_en}")
+
+    all_experiment_summaries = []
+
+    for model_name in model_list:
+        print(f"\n{'='*20} Initializing Model: {model_name} {'='*20}")
+        tokenizer_main, model_main = None, None # Initialize to None
+        try:
+            # Initialize model and tokenizer once per model string
+            tokenizer_main, model_main = initialize_model(model_name) # CHANGED unpacking order
+        except Exception as e_init:
+            logging.error(f"Failed to initialize model {model_name}: {e_init}. Skipping this model.", exc_info=True)
+            if model_main is not None: del model_main
+            if tokenizer_main is not None: del tokenizer_main
+            if torch.cuda.is_available(): torch.cuda.empty_cache()
+            continue
+
+        for lang_code in lang_list:
+            print(f"\n--- Processing Language: {lang_code} for model {model_name} ---")
+            # Load data - ensure your data loader returns 'text' and 'label' (English ground truth)
+            samples_df = load_masakhanews_samples(lang_code=lang_code, num_samples=args.samples)
+            if samples_df.empty or 'text' not in samples_df.columns or 'label' not in samples_df.columns:
+                print(f"Skipping {lang_code} for {model_name} due to missing data or columns ('text', 'label').")
                 continue
-            run_classification_experiment_cotr(
-                model_name,
-                samples_df,
-                lang_code,
-                masakhanews_name,
-                base_results_path # Use consolidated path
-            )
+            
+            # Ensure ground truth labels are among the possible_labels_en (or map them)
+            # For simplicity, we assume GT labels are already in English and match possible_labels_en
+            # If not, preprocessing/mapping would be needed here.
+            samples_df['label'] = samples_df['label'].astype(str).str.lower().str.strip()
+            # Filter out samples with labels not in our defined set, if necessary
+            # samples_df = samples_df[samples_df['label'].isin([l.lower() for l in possible_labels_en])]
+            # if samples_df.empty:
+            #     print(f"No samples remaining for {lang_code} after filtering for valid labels. Skipping.")
+            #     continue
+
+            for pipeline_type in args.pipeline_types:
+                for shot_setting in args.shot_settings:
+                    use_few_shot = (shot_setting == 'few_shot')
+                    
+                    # Create a structured generation_args dictionary
+                    cli_gen_overrides = {
+                        "temperature": args.temperature,
+                        "top_p": args.top_p,
+                        "top_k": args.top_k,
+                        "max_tokens": args.max_tokens, # For english_classification max_new_tokens
+                        "repetition_penalty": args.repetition_penalty
+                        # Note: CLI overrides for translation steps (e.g., max_translation_tokens) are handled separately if needed
+                    }
+
+                    generation_args_for_run = {
+                        "text_translation": get_effective_params("text_translation", lang_code, model_name, 
+                                                                 {"max_new_tokens": args.max_translation_tokens} # Specific CLI for trans tokens
+                                                                ),
+                        "english_classification": get_effective_params("english_classification", lang_code, model_name, cli_gen_overrides),
+                        "label_translation": get_effective_params("label_translation", lang_code, model_name, 
+                                                                  {"max_new_tokens": args.max_label_translation_tokens} # Specific CLI for label trans tokens
+                                                                 ),
+                        "single_prompt_cotr": get_effective_params("single_prompt_cotr", lang_code, model_name, 
+                                                                   {"max_new_tokens": args.max_single_prompt_tokens, **cli_gen_overrides} # single prompt uses general overrides + its own max
+                                                                  )
+                    }
+                    
+                    # Ensure max_tokens from CLI overrides the one for english_classification step
+                    if args.max_tokens is not None:
+                        generation_args_for_run["english_classification"]["max_new_tokens"] = args.max_tokens
+
+                    print(f"\n  Running config: Lang={lang_code}, Pipeline={pipeline_type}, Shot={shot_setting}")
+                    print(f"    Effective Gen Params: {json.dumps(generation_args_for_run, indent=2)}")
+
+                    summary_data = run_classification_experiment(
+                        model_name, tokenizer_main, model_main, samples_df, lang_code, 
+                        possible_labels_en, pipeline_type, use_few_shot, 
+                        args.base_output_dir, generation_args_for_run,
+                        overwrite_results=args.overwrite_results # Pass here
+                    )
+                    if summary_data:
+                        all_experiment_summaries.append(summary_data)
+        
+        # Clean up model after all its languages/configs are done
+        print(f"Finished all experiments for model {model_name}. Unloading...")
+        del model_main
+        del tokenizer_main
+        if torch.cuda.is_available(): torch.cuda.empty_cache()
+        logging.info(f"GPU memory cache cleared for {model_name}.")
+
+    if all_experiment_summaries:
+        overall_summary_df = pd.DataFrame(all_experiment_summaries)
+        summary_filename = f"cotr_classification_ALL_experiments_summary_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
+        overall_summary_path = os.path.join(args.base_output_dir, "summaries", summary_filename)
+        overall_summary_df.to_csv(overall_summary_path, index=False, float_format='%.4f')
+        print(f"\nOverall CoTR Classification Summary saved to: {overall_summary_path}")
+        print(overall_summary_df.to_string())
+
+        # Optional: Add plotting based on overall_summary_df
+        # try:
+        #     # plot_classification_metrics(overall_summary_df, os.path.join(args.base_output_dir, "plots"))
+        # except Exception as e_plot:
+        #     print(f"Error generating plots: {e_plot}")
+    else:
+        print("No CoTR classification summaries collected.")
+
+    print("\n====== CoTR Classification Script Finished ======")
 
 if __name__ == "__main__":
     main() 
