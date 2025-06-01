@@ -1,0 +1,1 @@
+# This file makes 'evaluation/cotr' a Python package 

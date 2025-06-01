@@ -36,13 +36,13 @@ EXPECTED_STRING_LABELS = {'positive', 'negative', 'neutral'}
 def _load_samples_from_split(dataset_name: str, lang_config: str, split: str, num_samples_to_load: Optional[int]) -> List[dict]:
     """Helper function to load samples from a specific split of the AfriSenti dataset."""
     samples = []
-    print(f"Attempting to load {lang_config} samples from {dataset_name} ({split} split)...")
+    print(f"Attempting to load {lang_config} samples from {dataset_name} ({split} split) via Hugging Face Hub...")
 
     try:
         # Load the specific language configuration and split
-        print(f"  Loading dataset {dataset_name} config '{lang_config}' split '{split}'...")
-        dataset = load_dataset(dataset_name, name=lang_config, split=split)
-        print("  Dataset loaded.")
+        print(f"  Loading dataset {dataset_name} config '{lang_config}' split '{split}' from Hugging Face Hub...")
+        dataset = load_dataset(dataset_name, name=lang_config, split=split, trust_remote_code=True)
+        print("  Dataset loaded from Hugging Face Hub.")
 
         dataset_size = len(dataset)
         print(f"  Full split size: {dataset_size}")
@@ -75,14 +75,33 @@ def _load_samples_from_split(dataset_name: str, lang_config: str, split: str, nu
             processed_records += 1
             example_id = example.get('ID', f'{lang_config}_{split}_{processed_records}')
             text = example.get('tweet', '')
-            label_name = example.get('label', None)
-            if isinstance(label_name, str):
-                label_name = label_name.lower()
-            else:
-                label_name = None
+            label_raw = example.get('label', None)
+            label_name = None
+
+            if isinstance(label_raw, str):
+                label_lower = label_raw.lower()
+                # Check for new style labels like "0positive", "1neutral", "2negative"
+                if label_lower.startswith(("0", "1", "2")) and len(label_lower) > 1:
+                    # Attempt to extract the part after the digit
+                    potential_label = label_lower[1:]
+                    if potential_label in EXPECTED_STRING_LABELS:
+                        label_name = potential_label
+                    # Fallback for just "positive", "negative", "neutral" if extraction fails or not prefixed
+                    elif label_lower in EXPECTED_STRING_LABELS: 
+                        label_name = label_lower
+                elif label_lower in EXPECTED_STRING_LABELS:
+                    label_name = label_lower
+            elif isinstance(label_raw, int): # Handle integer labels if they exist in some configs
+                # This part might need adjustment if integer mapping is complex
+                # For now, assuming a simple map if 0,1,2 directly correspond to neg, neu, pos or similar
+                # This part of the original LAF-MACRO was commented out, reactivating with caution:
+                temp_label_map = {0: 'positive', 1: 'neutral', 2: 'negative'} # Or whatever the correct int mapping is
+                if label_raw in temp_label_map:
+                    label_name = temp_label_map[label_raw]
 
             # Basic validation: Check text exists and label is valid
             if not text or not text.strip() or label_name not in EXPECTED_STRING_LABELS:
+                # print(f"Skipping invalid sample: Text: '{text[:50]}...', Raw Label: '{label_raw}', Parsed Label: '{label_name}'")
                 continue
 
             # Create and append the sample
@@ -129,11 +148,18 @@ def load_afrisenti_samples(
         DataFrame containing the samples ('text', 'label', 'id'), shuffled to ensure randomness.
     """
     # Use the correct dataset identifier including the organization
-    dataset_name = "masakhane/afrisenti"
+    dataset_name = "shmuhammad/AfriSenti-twitter-sentiment"
+
+    # Handle 'en' explicitly as AfriSenti does not support it
+    if lang_code == 'en':
+        print(f"INFO: The AfriSenti dataset ('{dataset_name}') used by this loader "
+              f"does not include an English ('en') configuration. Returning empty DataFrame for 'en'. "
+              f"To evaluate English, please use a dedicated English sentiment dataset and loader.")
+        return pd.DataFrame({'text': [], 'label': [], 'id': []})
 
     afrisenti_lang_config = LANG_CODE_MAP.get(lang_code)
     if not afrisenti_lang_config:
-        print(f"ERROR: Unsupported or unmapped language code '{lang_code}' for AfriSenti loader.")
+        print(f"ERROR: Unsupported or unmapped language code '{lang_code}' for AfriSenti loader (config not in LANG_CODE_MAP).")
         return pd.DataFrame({'text': [], 'label': [], 'id': []})
 
     # Check available splits (optional but good practice)
@@ -152,18 +178,18 @@ def load_afrisenti_samples(
             print(f"WARN: Requested split '{original_split}' not found for {afrisenti_lang_config}. Using '{split}' split instead.")
 
     except Exception as e:
-        print(f"WARN: Could not verify splits for {dataset_name}/{afrisenti_lang_config}: {e}. Attempting to load '{split}' split.")
+        print(f"WARN: Could not verify splits for {dataset_name}/{afrisenti_lang_config}: {e}. Attempting to load '{split}' split from Hugging Face Hub.")
 
     # If balanced sampling is not requested, use the standard loading logic
     if not balanced:
         # Load samples using standard approach
         all_samples = _load_samples_from_split(dataset_name, afrisenti_lang_config, split, num_samples)
         
-        print(f"Loaded {len(all_samples)} {afrisenti_lang_config} samples in total from the '{split}' split.")
+        print(f"Loaded {len(all_samples)} {afrisenti_lang_config} samples in total from the '{split}' split (Hugging Face Hub).")
 
         # Return DataFrame
         if not all_samples:
-            print(f"WARNING: No {afrisenti_lang_config} samples found or loaded from the '{split}' split!")
+            print(f"WARNING: No {afrisenti_lang_config} samples found or loaded from the '{split}' split (Hugging Face Hub)!")
             return pd.DataFrame({'text': [], 'label': [], 'id': []})
 
         # Create DataFrame and shuffle it to ensure random order
@@ -186,7 +212,7 @@ def load_afrisenti_samples(
         all_samples = _load_samples_from_split(dataset_name, afrisenti_lang_config, split, None)
         
         if not all_samples:
-            print(f"WARNING: No {afrisenti_lang_config} samples found or loaded from the '{split}' split!")
+            print(f"WARNING: No {afrisenti_lang_config} samples found or loaded from the '{split}' split (Hugging Face Hub)!")
             return pd.DataFrame({'text': [], 'label': [], 'id': []})
         
         # Convert to DataFrame for easier class-based filtering
@@ -247,21 +273,21 @@ def load_afrisenti_samples(
 if __name__ == '__main__':
     # Test standard loading
     hausa_samples = load_afrisenti_samples('ha', 100)
-    print("\nRandom Hausa Samples (n=100):")
+    print("\nRandom Hausa Samples (n=100) from Hugging Face Hub:")
     if not hausa_samples.empty:
         print(hausa_samples.head())
         print(hausa_samples['label'].value_counts())
 
     # Test balanced loading
     swahili_balanced = load_afrisenti_samples('sw', balanced=True)
-    print("\nBalanced Swahili Samples:")
+    print("\nBalanced Swahili Samples from Hugging Face Hub:")
     if not swahili_balanced.empty:
         print(swahili_balanced.head())
         print(swahili_balanced['label'].value_counts())
     
     # Test balanced loading with specific samples per class
     swahili_balanced_100 = load_afrisenti_samples('sw', samples_per_class=100, balanced=True)
-    print("\nBalanced Swahili Samples (100 per class):")
+    print("\nBalanced Swahili Samples (100 per class) from Hugging Face Hub:")
     if not swahili_balanced_100.empty:
         print(swahili_balanced_100.head())
         print(swahili_balanced_100['label'].value_counts())
@@ -269,7 +295,7 @@ if __name__ == '__main__':
     # Test loading more than available (should load all)
     # Assuming Swahili train split is smaller than 3000
     swahili_samples_all = load_afrisenti_samples('sw', 3000, split='train') 
-    print("\nSwahili Samples (requested 3000 from train):")
+    print("\nSwahili Samples (requested 3000 from train) from Hugging Face Hub:")
     if not swahili_samples_all.empty:
         print(swahili_samples_all.head())
         print(f"Total loaded: {len(swahili_samples_all)}")
@@ -277,7 +303,7 @@ if __name__ == '__main__':
     
     # Test loading all samples (num_samples=None)
     amh_samples_all = load_afrisenti_samples('am', None, split='train') 
-    print("\nAmharic Samples (all from train):")
+    print("\nAmharic Samples (all from train) from Hugging Face Hub:")
     if not amh_samples_all.empty:
         print(amh_samples_all.head())
         print(f"Total loaded: {len(amh_samples_all)}")

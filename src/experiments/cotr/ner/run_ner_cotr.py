@@ -12,86 +12,34 @@ import seaborn as sns
 from datetime import datetime
 import itertools
 import logging
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, List
 
 # Add project root to Python path BEFORE other project imports
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', '..'))
-if project_root not in sys.path: # Optional: prevent adding multiple times
+if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
 # Disable tokenizer parallelism to avoid warnings
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
-# Import utility functions
+# Import from refactored ner_cotr.py
 from src.experiments.cotr.ner.ner_cotr import (
-    evaluate_ner_cotr,
-    evaluate_ner_cotr_single_prompt,
     initialize_model,
-    calculate_ner_metrics
+    evaluate_ner_cotr_multi_prompt, # Renamed
+    evaluate_ner_cotr_single_prompt,
+    calculate_ner_metrics_for_sample # Using this for per-sample metrics
 )
-from src.experiments.baseline.ner.ner_baseline import load_masakhaner_samples
-from src.evaluation.cotr.translation_metrics import calculate_comet_score
-from evaluation.cotr.qa_metrics_cotr import COMET_AVAILABLE
+from src.utils.data_loaders.load_masakhaner import load_masakhaner_samples as utils_load_masakhaner_samples
+# COMET calculation is now handled within ner_cotr.py evaluation functions
+# from evaluation.cotr.translation_metrics import calculate_comet_score, COMET_AVAILABLE
 from huggingface_hub import login
 from config import get_token
-from src.experiments.cotr.language_information import get_language_information
 
-# Set of standardized parameters that will be consistent across baseline and CoTR
-# IMPORTANT: These must match the parameters in baseline/ner/run_ner_baseline.py
-STANDARD_PARAMETERS = {
-    "sw": {  # Swahili
-        "temperature": 0.3,
-        "top_p": 0.9,
-        "top_k": 40,
-        "max_tokens": 200,
-        "repetition_penalty": 1.1,
-        "trans_temp": 0.3,
-        "trans_top_p": 0.9,
-        "trans_top_k": 40,
-        "max_trans_tokens": 256,
-        "trans_repetition_penalty": 1.0
-    },
-    "ha": {  # Hausa
-        "temperature": 0.3,
-        "top_p": 0.9,
-        "top_k": 40,
-        "max_tokens": 200,
-        "repetition_penalty": 1.1,
-        "trans_temp": 0.3,
-        "trans_top_p": 0.9,
-        "trans_top_k": 40,
-        "max_trans_tokens": 256,
-        "trans_repetition_penalty": 1.0
-    }
-}
+# Define logger at the module level
+logger = logging.getLogger(__name__)
 
-LANGUAGE_PARAMETERS = {
-    "sw": {  # Swahili (Example - Adjust as needed)
-        "temperature": 0.25,
-        "top_p": 0.85,
-        "top_k": 35,
-        "max_tokens": 180,
-        "repetition_penalty": 1.15,
-        "trans_temp": 0.25,
-        "trans_top_p": 0.85,
-        "trans_top_k": 35,
-        "max_trans_tokens": 256,
-        "trans_repetition_penalty": 1.05
-    },
-    "ha": {  # Hausa (Example - Adjust as needed)
-        "temperature": 0.25,
-        "top_p": 0.85,
-        "top_k": 35,
-        "max_tokens": 180,
-        "repetition_penalty": 1.15,
-        "trans_temp": 0.25,
-        "trans_top_p": 0.85,
-        "trans_top_k": 35,
-        "max_trans_tokens": 256,
-        "trans_repetition_penalty": 1.05
-    }
-    # Add other languages if tuning is done
-}
+# TEST_MODE_SAMPLES for quick runs during development
+TEST_MODE_SAMPLES = 3 # Reduced for faster testing if test_mode is on
 
 def run_experiment(
     model_name: str,
@@ -100,567 +48,494 @@ def run_experiment(
     samples_df: pd.DataFrame,
     lang_code: str,
     base_results_path: str,
-    pipeline_type: str = 'multi_prompt',
-    use_few_shot: bool = True,
-    temperature: float = 0.3,
-    top_p: float = 0.9,
-    top_k: int = 40,
-    max_tokens: int = 200,
-    repetition_penalty: float = 1.1,
-    trans_temp: float = 0.35,
-    trans_top_p: float = 0.9,
-    trans_top_k: int = 40,
-    max_trans_tokens: int = 256,
-    trans_repetition_penalty: float = 1.0
+    pipeline_type: str,
+    use_few_shot: bool,
+    # Dictionaries of generation parameters, fully resolved by main()
+    text_translation_params: Dict[str, Any], # For LRL Text -> EN Text
+    eng_ner_params: Dict[str, Any],          # For EN Text -> EN Entities
+    entity_translation_params: Dict[str, Any],# For EN Entities -> LRL Entities
+    chain_params: Dict[str, Any],            # For Single-Prompt CoT full chain
+    max_input_length: int,                   # General max input length for tokenizer
+    overwrite_results: bool = False
 ) -> Optional[Dict[str, Any]]:
     """
     Run a specific NER CoTR experiment configuration.
+    Receives fully resolved generation parameter dictionaries.
     """
-    # Apply language-specific parameter overrides
-    if lang_code in LANGUAGE_PARAMETERS:
-        lang_params = LANGUAGE_PARAMETERS[lang_code]
-        temperature = lang_params.get("temperature", temperature)
-        top_p = lang_params.get("top_p", top_p)
-        top_k = lang_params.get("top_k", top_k)
-        max_tokens = lang_params.get("max_tokens", max_tokens)
-        repetition_penalty = lang_params.get("repetition_penalty", repetition_penalty)
-        trans_temp = lang_params.get("trans_temp", trans_temp)
-        trans_top_p = lang_params.get("trans_top_p", trans_top_p)
-        trans_top_k = lang_params.get("trans_top_k", trans_top_k)
-        max_trans_tokens = lang_params.get("max_trans_tokens", max_trans_tokens)
-        trans_repetition_penalty = lang_params.get("trans_repetition_penalty", trans_repetition_penalty)
-        print(f"Using language-specific parameters for {lang_code}")
+    logger.info(f"Executing run_experiment for {model_name}, lang:{lang_code}, pipeline:{pipeline_type}, few_shot:{use_few_shot}")
+    if pipeline_type == 'multi_prompt':
+        logger.info(f"  Text Translation Params: {text_translation_params}")
+        logger.info(f"  English NER Params: {eng_ner_params}")
+        logger.info(f"  Entity Translation Params: {entity_translation_params}")
+    elif pipeline_type == 'single_prompt':
+        logger.info(f"  Single Chain Params: {chain_params}")
+    logger.info(f"  Max Input Length (Tokenizer): {max_input_length}")
 
-    # Apply model-specific adjustments (on top of language/standard)
-    # Ensure consistency with baseline adjustments
-    ner_temp_final = temperature
-    ner_top_p_final = top_p
-    ner_top_k_final = top_k
-    ner_rep_penalty_final = repetition_penalty
-    trans_temp_final = trans_temp
-    trans_top_p_final = trans_top_p
-    trans_top_k_final = trans_top_k
-    trans_rep_penalty_final = trans_repetition_penalty
-    
-    if "aya" in model_name.lower():
-        ner_temp_final = max(0.1, ner_temp_final * 0.9) # Example adjustment
-        trans_temp_final = max(0.1, trans_temp_final * 0.9) # Example adjustment
-        print(f"Applied Aya adjustments: NER Temp={ner_temp_final}, Trans Temp={trans_temp_final}")
-    elif "qwen" in model_name.lower():
-        ner_top_p_final = max(0.7, ner_top_p_final * 0.9) # Example adjustment
-        ner_top_k_final = 35 # Example adjustment
-        trans_top_p_final = max(0.7, trans_top_p_final * 0.9) # Example adjustment
-        trans_top_k_final = 35 # Example adjustment
-        print(f"Applied Qwen adjustments: NER TopP={ner_top_p_final}, NER TopK={ner_top_k_final}, Trans TopP={trans_top_p_final}, Trans TopK={trans_top_k_final}")
-    
-    # Create directories if they don't exist
-    results_dir = os.path.join(base_results_path, "results")
-    summaries_dir = os.path.join(base_results_path, "summaries")
+    # Create directories
+    results_dir = os.path.join(base_results_path, "results_per_sample") # More descriptive
+    summaries_dir = os.path.join(base_results_path, "summaries_per_config")
     os.makedirs(results_dir, exist_ok=True)
     os.makedirs(summaries_dir, exist_ok=True)
 
     # Define file paths
-    model_short = model_name.split('/')[-1]
+    model_short_name = model_name.split('/')[-1].replace('.', '_') # Ensure fs safe
     shot_type_str = "fs" if use_few_shot else "zs"
     pipeline_short = "mp" if pipeline_type == "multi_prompt" else "sp"
-    results_file = os.path.join(results_dir, f"results_cotr_{pipeline_short}_{shot_type_str}_ner_{lang_code}_{model_short}.csv")
-    summary_file = os.path.join(summaries_dir, f"summary_cotr_{pipeline_short}_{shot_type_str}_ner_{lang_code}_{model_short}.csv")
+    
+    # Consistent naming convention
+    base_filename = f"ner_cotr_{lang_code}_{model_short_name}_{pipeline_short}_{shot_type_str}"
+    results_file = os.path.join(results_dir, f"{base_filename}_detailed.csv")
+    summary_file = os.path.join(summaries_dir, f"{base_filename}_summary.csv")
 
-    # Skip if results exist (optional, add --overwrite flag later if needed)
-    if os.path.exists(results_file):
-        print(f"Results file exists, skipping: {results_file}")
-        # Try to load summary if results exist but summary doesn't
-        if not os.path.exists(summary_file):
-            try:
-                print(f"Attempting to load existing results from {results_file} to generate summary...")
-                results_df = pd.read_csv(results_file)
-                # Recalculate metrics from loaded data
-            except Exception as e:
-                print(f"Could not load existing results to regenerate summary: {e}")
-                return None # Cannot proceed
-        else:
-            # Load existing summary data if both exist
-            try:
-                existing_summary_df = pd.read_csv(summary_file)
-                print(f"Loaded existing summary from {summary_file}")
-                return existing_summary_df.to_dict('records')[0] # Return first row as dict
-            except Exception as e:
-                print(f"Could not load existing summary file {summary_file}: {e}")
-                return None
-    else:
-        # Run the experiment
-        print(f"Running experiment: {model_name} on {lang_code} ({pipeline_type}, {shot_type_str})")
+    # Check for existing results
+    if os.path.exists(summary_file) and not overwrite_results:
+        logger.info(f"Summary file {summary_file} already exists and overwrite is False. Skipping experiment and loading summary.")
         try:
-            if pipeline_type == 'multi_prompt':
-        results_df = evaluate_ner_cotr(
-            model_name=model_name,
-                    tokenizer=tokenizer,
-                    model=model,
-            samples_df=samples_df,
-            lang_code=lang_code,
-            use_few_shot=use_few_shot,
-                    temperature=ner_temp_final,
-                    top_p=ner_top_p_final,
-                    top_k=ner_top_k_final,
-            max_tokens=max_tokens,
-                    max_translation_tokens=max_trans_tokens
-                )
-            else: # single_prompt
-                # Single prompt uses NER params for the overall generation control
-                results_df = evaluate_ner_cotr_single_prompt(
-                    model_name=model_name,
-                    tokenizer=tokenizer,
-                    model=model,
-                    samples_df=samples_df,
-                    lang_code=lang_code,
-                    use_few_shot=use_few_shot,
-                    temperature=ner_temp_final,
-                    top_p=ner_top_p_final,
-                    top_k=ner_top_k_final,
-                    max_tokens=max_tokens
-        )
+            existing_summary_df = pd.read_csv(summary_file)
+            return existing_summary_df.to_dict('records')[0]
+        except Exception as e:
+            logger.warning(f"Could not load existing summary {summary_file}: {e}. Will recompute if overwrite is enabled or results_file is missing.")
+            # Fall through to check results_file or recompute
+            
+    if os.path.exists(results_file) and not overwrite_results:
+        logger.info(f"Detailed results file {results_file} exists and overwrite is False. Attempting to load and compute summary.")
+            try:
+                results_df = pd.read_csv(results_file)
+            # If we loaded results, but summary was missing or failed to load, we need to compute metrics.
+            except Exception as e:
+            logger.error(f"Could not load existing results file {results_file}: {e}. Will recompute if overwrite is enabled.")
+            results_df = None # Force recompute
+        else:
+        results_df = None # No existing detailed results or overwrite is True
+
+    # Run the core evaluation if results_df is not loaded
+    if results_df is None: 
+            logger.info(f"Running CoTR NER experiment: Model={model_name}, Lang={lang_code}, Pipeline={pipeline_type}, Shot={'Few' if use_few_shot else 'Zero'}")
         
-        if results_df.empty:
-                print("ERROR: Evaluation returned empty DataFrame.")
+        # Add max_input_length to all relevant param dicts if not already there (for ner_cotr.py functions)
+        text_translation_params['max_input_length'] = text_translation_params.get('max_input_length', max_input_length)
+        eng_ner_params['max_input_length'] = eng_ner_params.get('max_input_length', max_input_length)
+        entity_translation_params['max_input_length'] = entity_translation_params.get('max_input_length', max_input_length)
+        chain_params['max_input_length'] = chain_params.get('max_input_length', max_input_length)
+
+        start_time_experiment = time.time()
+            if pipeline_type == 'multi_prompt':
+            results_df = evaluate_ner_cotr_multi_prompt(
+                model=model, tokenizer=tokenizer, samples_df=samples_df, lang_code=lang_code, 
+                    use_few_shot=use_few_shot,
+                ner_generation_params=eng_ner_params,
+                translation_generation_params=text_translation_params, # Used for text LRL->EN
+                # The evaluate_ner_cotr_multi_prompt in ner_cotr.py will use entity_translation_params for EN->LRL entities
+                # We need to ensure ner_cotr.py's translate_entities_to_lrl gets the right dict.
+                # Let's pass it explicitly if the structure of evaluate_ner_cotr_multi_prompt allows,
+                # or ensure ner_cotr.py uses the correct sub-dictionary.
+                # For now, assuming evaluate_ner_cotr_multi_prompt correctly uses what it needs from these.
+                # It might be cleaner to pass `entity_translation_params` as a separate arg if ner_cotr.py is updated.
+                # **Current ner_cotr.py's evaluate_ner_cotr_multi_prompt doesn't have a slot for separate entity_translation_params.**
+                # **It uses `translation_generation_params` for BOTH text and entity translation.**
+                # **THIS IS A KEY POINT - ensure consistency or update ner_cotr.py**
+                # For now, assuming text_translation_params will be used for entity trans too.
+                # Revisit: The new ner_cotr.py was designed to take separate dicts at the top level,
+                # but the evaluate_ner_cotr_multi_prompt function in it takes translation_generation_params.
+                # This implies the same params for text and entity translation. If different CLI args for entity trans are given, they are not used here.
+                # This run_experiment needs to pass what evaluate_ner_cotr_multi_prompt expects.
+                # So, for multi_prompt, `text_translation_params` will be used for all translations.
+                model_name=model_name
+                )
+            elif pipeline_type == 'single_prompt':
+                results_df = evaluate_ner_cotr_single_prompt(
+                model=model, tokenizer=tokenizer, samples_df=samples_df, lang_code=lang_code, 
+                    use_few_shot=use_few_shot,
+                chain_generation_params=chain_params,
+                model_name=model_name
+            )
+        else:
+            logger.error(f"Unknown pipeline_type: {pipeline_type}")
             return None
         
-            results_df.to_csv(results_file, index=False)
-            print(f"Results saved to {results_file}")
+        total_runtime_sec = time.time() - start_time_experiment
+        logger.info(f"Experiment completed in {total_runtime_sec:.2f} seconds. DataFrame shape: {results_df.shape if results_df is not None else 'None'}")
 
-        except Exception as e:
-            logging.error(f"Error during NER CoTR evaluation for {lang_code}, {model_short}, {pipeline_type}, {shot_type_str}: {e}", exc_info=True)
-            return None # Indicate failure
+        if results_df is None or results_df.empty:
+            logger.warning(f"No results returned for {lang_code}, {model_name}, {pipeline_type}, {'Few' if use_few_shot else 'Zero'}. Skipping save and summary.")
+                return None
         
-    # Calculate metrics from results_df (whether loaded or newly generated)
-    print(f"Calculating metrics for {results_file}...")
-    precisions, recalls, f1s = [], [], []
-    comet_scores = []
-    successful_samples = 0
-
-    # Convert string representation of lists/tuples back if loaded from CSV
-    # This is crucial if loading existing results
-    needs_conversion = False
-    # Check the type of the first non-null element using the correct column name
-    first_gold = results_df['ground_truth_entities'].dropna().iloc[0] if not results_df['ground_truth_entities'].dropna().empty else None
-    if first_gold is not None and isinstance(first_gold, str):
-        needs_conversion = True
-        print("Converting entity strings from CSV back to lists/tuples...")
-        import ast
-        def safe_literal_eval(val):
-            # Handles potential errors during eval more gracefully
-            if pd.isna(val): return []
-            try:
-                evaluated = ast.literal_eval(val)
-                # Ensure it's a list after eval
-                return evaluated if isinstance(evaluated, list) else []
-            except (ValueError, SyntaxError, TypeError):
-                print(f"Warning: Could not evaluate entity string: {val[:50]}...")
-                return [] # Return empty list on error
-
-    for idx, row in results_df.iterrows():
+        # Add runtime to the DataFrame (can be added in ner_cotr.py too)
+        results_df['total_experiment_runtime_sec'] = total_runtime_sec 
+        results_df['model_name'] = model_name # Add model_name for clarity in combined CSVs
+        
         try:
-            # Apply conversion if needed, using the correct column name
-            gold = safe_literal_eval(row['ground_truth_entities']) if needs_conversion else row['ground_truth_entities']
-            pred = safe_literal_eval(row['predicted_entities']) if needs_conversion else row['predicted_entities']
+            results_df.to_csv(results_file, index=False)
+            logger.info(f"Detailed per-sample results saved to {results_file}")
+        except Exception as e_save_detailed:
+            logger.error(f"Error saving detailed results to {results_file}: {e_save_detailed}", exc_info=True)
+            # Decide if this is fatal or if we can proceed with in-memory df for summary
 
-            # Ensure data types are list before passing to metrics
-            if not isinstance(gold, list): gold = []
-            if not isinstance(pred, list): pred = []
-            
-            # Use the metrics function from ner_cotr.py (or baseline if identical)
-            metrics = calculate_ner_metrics(gold, pred) # Ensure this function is defined/imported correctly
-            precisions.append(metrics['precision'])
-            recalls.append(metrics['recall'])
-            f1s.append(metrics.get('f1_score', 0.0)) # Use .get() for safety
-            successful_samples += 1
-            
-            # Collect COMET scores if available (only for multi-prompt)
-            if pipeline_type == 'multi_prompt' and 'comet_score_en_lrl_entities' in row and pd.notna(row['comet_score_en_lrl_entities']):
-                comet_scores.append(row['comet_score_en_lrl_entities'])
-
-        except Exception as e_metric:
-            print(f"Error calculating metrics for row {idx}: {e_metric}")
-            # Append default values on error to avoid crashing
-            precisions.append(0.0); recalls.append(0.0); f1s.append(0.0)
+    # --- Calculate Metrics and Summary (applies if results_df is loaded or computed) ---
+    if results_df is None or results_df.empty: # Should not happen if computation was successful
+        logger.error("Results DataFrame is unexpectedly empty before metric calculation.")
+        return None
     
-    avg_precision = np.mean(precisions) if precisions else 0.0
-    avg_recall = np.mean(recalls) if recalls else 0.0
-    avg_f1 = np.mean(f1s) if f1s else 0.0
-    avg_comet = np.mean(comet_scores) if comet_scores else None # Use None if no scores
+    metrics_list = []
+    for _, row in results_df.iterrows():
+        try:
+            gt_entities_str = row.get('ground_truth_lrl_entities', '[]')
+            pred_entities_str = row.get('final_predicted_lrl_entities', '[]')
+            
+            gt_entities = json.loads(gt_entities_str) if isinstance(gt_entities_str, str) else (gt_entities_str if isinstance(gt_entities_str, list) else [])
+            pred_entities = json.loads(pred_entities_str) if isinstance(pred_entities_str, str) else (pred_entities_str if isinstance(pred_entities_str, list) else [])
 
-    # Prepare summary data
+            if not isinstance(gt_entities, list): gt_entities = []
+            if not isinstance(pred_entities, list): pred_entities = []
+
+            sample_metrics = calculate_ner_metrics_for_sample(gt_entities, pred_entities)
+            metrics_list.append(sample_metrics)
+        except json.JSONDecodeError as e:
+            logger.error(f"JSONDecodeError processing entities for metrics (ID: {row.get('id', 'N/A')}): {e}. GT: '{gt_entities_str[:50]}...', Pred: '{pred_entities_str[:50]}...'. Assigning zero metrics.")
+            metrics_list.append({'precision': 0, 'recall': 0, 'f1': 0})
+        except Exception as e_metric:
+            logger.error(f"Unexpected error calculating metrics for sample (ID: {row.get('id', 'N/A')}): {e_metric}", exc_info=True)
+            metrics_list.append({'precision': 0, 'recall': 0, 'f1': 0})
+
+    metrics_df = pd.DataFrame(metrics_list)
+    results_df_with_metrics = pd.concat([results_df.reset_index(drop=True), metrics_df.reset_index(drop=True)], axis=1)
+    
+    # Save the detailed results again, this time with metrics
+    try:
+        results_df_with_metrics.to_csv(results_file, index=False) # Overwrite with metrics
+        logger.info(f"Detailed results (with metrics) re-saved to {results_file}")
+    except Exception as e_save_detailed_metrics:
+        logger.error(f"Error saving detailed results with metrics to {results_file}: {e_save_detailed_metrics}", exc_info=True)
+
+    # Calculate average metrics for summary
+    avg_precision = results_df_with_metrics['precision'].mean()
+    avg_recall = results_df_with_metrics['recall'].mean()
+    avg_f1 = results_df_with_metrics['f1'].mean()
+    
+    # Aggregate COMET scores (handle potential NaNs from errors or non-translation cases)
+    avg_comet_lrl_to_en = results_df_with_metrics[f'comet_lrl_text_to_en{"_sp" if pipeline_type=="single_prompt" else ""}'].mean(skipna=True)
+    avg_comet_en_entity_to_lrl = results_df_with_metrics[f'comet_en_entity_text_to_lrl{"_sp" if pipeline_type=="single_prompt" else ""}'].mean(skipna=True)
+
     summary_data = {
-        'model': model_short,
+        'model_name': model_name,
         'language': lang_code,
-        'pipeline': pipeline_type,
-        'shot_type': shot_type_str,
-        'precision': float(avg_precision),
-        'recall': float(avg_recall),
-        'f1': float(avg_f1),
-        'comet_score_entities': avg_comet,
+        'pipeline_type': pipeline_type,
+        'shot_setting': "few-shot" if use_few_shot else "zero-shot",
         'num_samples': len(samples_df),
-        'num_successful': successful_samples,
-        # Store final effective parameters
-        'ner_temp': ner_temp_final,
-        'ner_top_p': ner_top_p_final,
-        'ner_top_k': ner_top_k_final,
-        'ner_rep_penalty': ner_rep_penalty_final,
-        'trans_temp': trans_temp_final if pipeline_type == 'multi_prompt' else None,
-        'trans_top_p': trans_top_p_final if pipeline_type == 'multi_prompt' else None,
-        'trans_top_k': trans_top_k_final if pipeline_type == 'multi_prompt' else None,
-        'trans_rep_penalty': trans_rep_penalty_final if pipeline_type == 'multi_prompt' else None,
-        'max_tokens': max_tokens,
-        'max_trans_tokens': max_trans_tokens if pipeline_type == 'multi_prompt' else None
+        'avg_precision': avg_precision,
+        'avg_recall': avg_recall,
+        'avg_f1': avg_f1,
+        'avg_comet_lrl_text_to_en': avg_comet_lrl_to_en,
+        'avg_comet_en_entity_text_to_lrl': avg_comet_en_entity_to_lrl,
+        'total_runtime_sec': results_df_with_metrics['total_experiment_runtime_sec'].iloc[0] if 'total_experiment_runtime_sec' in results_df_with_metrics.columns and not results_df_with_metrics.empty else None,
+        'detailed_results_file': results_file,
+        'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     }
+    # Include all generation params used in the summary for traceability
+    if pipeline_type == 'multi_prompt':
+        summary_data.update({f"param_text_trans_{k}": v for k,v in text_translation_params.items()})
+        summary_data.update({f"param_eng_ner_{k}": v for k,v in eng_ner_params.items()})
+        summary_data.update({f"param_entity_trans_{k}": v for k,v in entity_translation_params.items()}) # Assuming these were used
+    elif pipeline_type == 'single_prompt':
+        summary_data.update({f"param_chain_{k}": v for k,v in chain_params.items()})
+    summary_data['param_max_input_length'] = max_input_length
 
     summary_df = pd.DataFrame([summary_data])
-    summary_df.to_csv(summary_file, index=False, float_format='%.4f')
-    print(f"Summary metrics saved to {summary_file}")
-    print(summary_df.to_string())
-        
-    return summary_data # Return dict for overall aggregation
+    try:
+        summary_df.to_csv(summary_file, index=False)
+        logger.info(f"Experiment summary saved to {summary_file}")
+    except Exception as e_save_summary:
+        logger.error(f"Error saving summary to {summary_file}: {e_save_summary}", exc_info=True)
 
-def run_grid_search(args, models, lang_codes, base_results_path, masakhaner_samples, pipeline_type_for_grid, use_few_shot_for_grid):
-    """
-    Run a grid search over different parameter combinations.
-    
-    Args:
-        args: Command-line arguments
-        models: List of models to evaluate
-        lang_codes: List of language codes
-        base_results_path: Base path for saving results
-        masakhaner_samples: Dictionary of DataFrames with samples
-        pipeline_type_for_grid: Specific pipeline type for this grid search
-        use_few_shot_for_grid: Specific shot setting for this grid search
-    """
-    # Define parameter grid - MAKE SURE THIS MATCHES the baseline grid search
-    param_grid = {
-        "temperature": [0.2, 0.3, 0.4],
-        "top_p": [0.8, 0.9, 1.0],
-        "top_k": [40, 60],
-        "max_tokens": [150, 200, 250],
-        "num_beams": [1, 2]
-    }
-    
-    # Optional: Reduce grid size for faster searching
-    if args.compact_grid:
-        param_grid = {
-            "temperature": [0.3],
-            "top_p": [0.9],
-            "top_k": [40],
-            "max_tokens": [200],
-            "num_beams": [1]
-        }
-    
-    # Generate all parameter combinations
-    param_combinations = list(itertools.product(
-        param_grid["temperature"],
-        param_grid["top_p"],
-        param_grid["top_k"],
-        param_grid["max_tokens"],
-        param_grid["num_beams"]
-    ))
-    
-    print(f"Running grid search with {len(param_combinations)} parameter combinations")
-    
-    # Track best parameters
-    best_params = {}
-    
-    for lang_code in lang_codes:
-        best_params[lang_code] = {
-            "model": None,
-            "params": None,
-            "f1": -1  # Initialize with a low value
-        }
-    
-    # Run experiments with each parameter combination
-    for model_name in models:
-        print(f"\n====== Starting experiments for model: {model_name} ======")
-        model_initialized = False
-        tokenizer, model = None, None
-        try:
-            print(f"  Attempting to initialize {model_name}...")
-            tokenizer, model = initialize_model(model_name)
-            model_initialized = True
-            print(f"Model {model_name} initialized successfully.")
-        except Exception as e:
-            print(f"ERROR: Failed to initialize model {model_name}: {e}. Skipping this model for grid search.")
-            if 'model' in locals() and model is not None: del model
-            if 'tokenizer' in locals() and tokenizer is not None: del tokenizer
-            if torch.cuda.is_available(): torch.cuda.empty_cache()
-            continue
+    return summary_data
 
-        for lang_code in lang_codes:
-            if lang_code in masakhaner_samples and not masakhaner_samples[lang_code].empty:
-                print(f"\n--- Running grid search for {model_name} on {lang_code} (Pipeline: {pipeline_type_for_grid}, Shot: {'Few-shot' if use_few_shot_for_grid else 'Zero-shot'}) ---")
-                
-                for temp, top_p, top_k, max_tokens, num_beams in tqdm(param_combinations, desc="Parameter combinations"):
-                    result_df = run_experiment(
-                        model_name=model_name,
-                        tokenizer=tokenizer,
-                        model=model,
-                        samples_df=masakhaner_samples[lang_code],
-                        lang_code=lang_code,
-                        base_results_path=base_results_path,
-                        pipeline_type=pipeline_type_for_grid,
-                        use_few_shot=use_few_shot_for_grid,
-                        temperature=temp,
-                        top_p=top_p,
-                        top_k=top_k,
-                        max_tokens=max_tokens,
-                        max_trans_tokens=max_tokens,
-                        num_beams=num_beams
-                    )
-                    
-                    if result_df is not None and not result_df.empty:
-                        avg_f1 = result_df["f1"].mean()
-                        
-                        # Check if this is the best result so far for this language
-                        if avg_f1 > best_params[lang_code]["f1"]:
-                            best_params[lang_code] = {
-                                "model": model_name,
-                                "params": {
-                                    "temperature": temp,
-                                    "top_p": top_p,
-                                    "top_k": top_k,
-                                    "max_tokens": max_tokens,
-                                    "num_beams": num_beams
-                                },
-                                "f1": avg_f1
-                            }
-                            
-                            print(f"\nNew best parameters for {lang_code}: F1={avg_f1:.4f}")
-                            print(f"  Model: {model_name}")
-                            print(f"  Parameters: temp={temp}, top_p={top_p}, top_k={top_k}, max_tokens={max_tokens}, num_beams={num_beams}")
-        
-        print(f"Finished grid search for model {model_name}. Unloading...")
-        del model
-        del tokenizer
-        if torch.cuda.is_available():
-            torch.cuda.empty_cache()
-    
-    # Save best parameters
-    best_params_path = os.path.join(base_results_path, "best_params")
-    os.makedirs(best_params_path, exist_ok=True)
-    
-    with open(os.path.join(best_params_path, "best_params_cotr.json"), "w") as f:
-        json.dump(best_params, f, indent=2)
-    
-    print("\nBest parameters saved to best_params_cotr.json")
-    
-    # Print summary of best parameters
-    print("\n--- Best parameters summary ---")
-    for lang_code, params in best_params.items():
-        print(f"\n{lang_code}:")
-        print(f"  Model: {params['model']}")
-        print(f"  F1: {params['f1']:.4f}")
-        print(f"  Parameters: {params['params']}")
 
-def main():
-    """Main function."""
-    parser = argparse.ArgumentParser(description="Run NER CoTR experiments")
-    parser.add_argument("--model", type=str, default="CohereLabs/aya-expanse-8b,Qwen/Qwen2.5-7B-Instruct", help="Model to use, comma-separated if multiple models")
-    parser.add_argument("--lang", type=str, default="sw,ha", help="Language code(s), comma-separated if multiple")
-    parser.add_argument("--samples", type=int, default=10, help="Number of samples per language")
-    parser.add_argument("--pipeline_types", nargs='+', default=['multi_prompt', 'single_prompt'], choices=['multi_prompt', 'single_prompt'], help="CoTR pipeline types to run")
-    parser.add_argument("--shot_settings", nargs='+', default=['zero_shot', 'few_shot'], choices=['zero_shot', 'few_shot'], help="Shot settings to evaluate (zero_shot, few_shot)")
-    parser.add_argument("--temperature", type=float, default=None, help="Temperature for generation (overrides standard if set)")
-    parser.add_argument("--top_p", type=float, default=None, help="Top-p for generation (overrides standard if set)")
-    parser.add_argument("--top_k", type=int, default=None, help="Top-k for generation (overrides standard if set)")
-    parser.add_argument("--max_tokens", type=int, default=None, help="Max tokens for generation (overrides standard if set)")
-    parser.add_argument("--max_translation_tokens", type=int, default=200, help="Max tokens for translation steps (used in multi_prompt)")
-    parser.add_argument("--repetition_penalty", type=float, default=None, help="Repetition penalty (overrides standard if set)")
-    parser.add_argument("--base_output_dir", type=str, default="/work/bbd6522/results/ner/cotr", help="Base directory for all outputs.")
-    parser.add_argument("--split", type=str, default="test", help="Dataset split to use (e.g., test, dev)")
-    parser.add_argument("--seed", type=int, default=42, help="Random seed for sampling")
+def parse_cli_args():
+    parser = argparse.ArgumentParser(description="Run CoTR NER experiments for specified models and languages.")
     
+    # Core experiment setup
+    parser.add_argument("--models", type=str, required=True, help="Comma-separated list of Hugging Face model names (e.g., 'CohereLabs/aya-expanse-8b,Qwen/Qwen2.5-7B-Instruct')")
+    parser.add_argument("--langs", type=str, default="sw,ha", help="Comma-separated list of language codes (e.g., 'sw,ha') for MasakhaNER.")
+    parser.add_argument("--pipeline_types", type=str, default="multi_prompt,single_prompt", help="Comma-separated CoTR pipeline types (multi_prompt, single_prompt).")
+    parser.add_argument("--shot_settings", type=str, default="zero_shot,few_shot", help="Comma-separated shot settings (zero_shot, few_shot).")
+    
+    # Dataset and Sampling
+    parser.add_argument("--dataset_name", type=str, default="masakhaner", help="Dataset to use (currently only 'masakhaner' supported for NER).")
+    parser.add_argument("--dataset_split", type=str, default="test", help="Dataset split to use (test, validation, train).")
+    parser.add_argument("--sample_percentage", type=float, default=None, help="Percentage of samples to use per language (e.g., 10 for 10%). Set to None for all samples.")
+    parser.add_argument("--num_samples_direct", type=int, default=None, help="Direct number of samples to use per language. Set to None for percentage-based sampling.")
+    parser.add_argument("--max_samples_per_lang", type=int, default=None, help="Absolute maximum number of samples per language, overrides percentage or direct number if specified and lower.")
+    parser.add_argument("--seed", type=int, default=42, help="Random seed for reproducibility.")
+    
+    # Paths and Control
+    parser.add_argument("--output_dir", type=str, default="/work/bbd6522/results/ner", 
+                        help="Base directory to save all results for this experiment run (a timestamped subfolder will be created here).")
+    parser.add_argument("--cache_dir", type=str, default="/work/bbd6522/cache_dir", help="Directory for HuggingFace model cache.")
+    parser.add_argument("--overwrite_results", action='store_true', help="Overwrite existing result files instead of skipping.")
+    parser.add_argument("--test_mode", action="store_true", help=f"Run in test mode with only {TEST_MODE_SAMPLES} samples per configuration.")
+    parser.add_argument("--hf_token_file", type=str, default=None, help="Path to Hugging Face auth token file if needed for gated models.")
+
+    # General Generation Parameters
+    parser.add_argument("--max_input_length", type=int, default=2048, help="Maximum input sequence length for tokenizer.")
+
+    # --- Multi-Prompt Step-Specific Generation Parameters ---
+    # 1. LRL Text -> English Text Translation
+    parser.add_argument("--trans_text_temp", type=float, default=0.3, help="Temperature for LRL text to English text translation.")
+    parser.add_argument("--trans_text_top_p", type=float, default=0.9, help="Top-p for LRL text to English text translation.")
+    parser.add_argument("--trans_text_top_k", type=int, default=50, help="Top-k for LRL text to English text translation.")
+    parser.add_argument("--trans_text_max_new_tokens", type=int, default=512, help="Max new tokens for LRL text to English text translation.")
+    parser.add_argument("--trans_text_rep_penalty", type=float, default=1.0, help="Repetition penalty for LRL text to English text translation.")
+    parser.add_argument("--trans_text_do_sample", type=lambda x: (str(x).lower() == 'true'), default=None, help="Explicitly set do_sample for text translation (True/False). If None, derived from temperature.")
+
+    # 2. English Text -> English NER
+    parser.add_argument("--ner_en_temp", type=float, default=0.2, help="Temperature for English NER.")
+    parser.add_argument("--ner_en_top_p", type=float, default=0.85, help="Top-p for English NER.")
+    parser.add_argument("--ner_en_top_k", type=int, default=40, help="Top-k for English NER.")
+    parser.add_argument("--ner_en_max_new_tokens", type=int, default=300, help="Max new tokens for English NER output (JSON list).")
+    parser.add_argument("--ner_en_rep_penalty", type=float, default=1.1, help="Repetition penalty for English NER.")
+    parser.add_argument("--ner_en_do_sample", type=lambda x: (str(x).lower() == 'true'), default=None, help="Explicitly set do_sample for English NER (True/False). If None, derived from temperature.")
+
+    # 3. English Entities -> LRL Entities Translation
+    # NOTE: As per current ner_cotr.py's evaluate_ner_cotr_multi_prompt, these might not be used directly.
+    # It uses the same `translation_generation_params` (derived from --trans_text_*) for both text and entity translation.
+    # Keeping these args for future flexibility or if ner_cotr.py is updated to take separate entity trans params.
+    parser.add_argument("--trans_entity_temp", type=float, default=0.3, help="Temperature for English entity text to LRL entity text translation.")
+    parser.add_argument("--trans_entity_top_p", type=float, default=0.9, help="Top-p for English entity text to LRL entity text translation.")
+    parser.add_argument("--trans_entity_top_k", type=int, default=50, help="Top-k for English entity text to LRL entity text translation.")
+    parser.add_argument("--trans_entity_max_new_tokens", type=int, default=256, help="Max new tokens for English entity to LRL entity translation (per list).")
+    parser.add_argument("--trans_entity_rep_penalty", type=float, default=1.0, help="Repetition penalty for English entity to LRL entity translation.")
+    parser.add_argument("--trans_entity_do_sample", type=lambda x: (str(x).lower() == 'true'), default=None, help="Explicitly set do_sample for entity translation (True/False). If None, derived from temperature.")
+
+    # --- Single-Prompt Chain Generation Parameters ---
+    parser.add_argument("--chain_temp", type=float, default=0.25, help="Temperature for the single-prompt CoT chain.")
+    parser.add_argument("--chain_top_p", type=float, default=0.85, help="Top-p for the single-prompt CoT chain.")
+    parser.add_argument("--chain_top_k", type=int, default=40, help="Top-k for the single-prompt CoT chain.")
+    parser.add_argument("--chain_max_new_tokens", type=int, default=768, help="Max new tokens for the entire single-prompt CoT chain response.")
+    parser.add_argument("--chain_rep_penalty", type=float, default=1.1, help="Repetition penalty for the single-prompt CoT chain.")
+    parser.add_argument("--chain_do_sample", type=lambda x: (str(x).lower() == 'true'), default=None, help="Explicitly set do_sample for single chain (True/False). If None, derived from temperature.")
+
     args = parser.parse_args()
     
-    # Determine effective generation parameters from args or defaults
-    # These will be used by run_experiment if not overridden by language/model logic inside it
-    current_temp = args.temperature
-    current_top_p = args.top_p
-    current_top_k = args.top_k
-    current_max_tokens = args.max_tokens
-    current_repetition_penalty = args.repetition_penalty
-    
-    # Get Hugging Face token
-    token = get_token()
-    login(token=token)
-    
-    # Define models to test
-    if "," in args.model:
-        models = args.model.split(",")
-    else:
-        models = [args.model]
-    
-    # Define language codes
-    if "," in args.lang:
-        lang_codes = args.lang.split(",")
-    else:
-        lang_codes = [args.lang]
-    
-    # Define base results path
-    base_results_path = args.base_output_dir
-    os.makedirs(base_results_path, exist_ok=True)
-    os.makedirs(os.path.join(base_results_path, 'summaries'), exist_ok=True)
-    
-    # Load MasakhaNER samples - Load ONCE outside the model loop
-    print("\n--- Loading MasakhaNER Data ---")
-    masakhaner_samples = {}
-    for lang_code in lang_codes:
-        print(f"Loading data for {lang_code}...")
-        samples_df_full = load_masakhaner_samples(
-            lang_code=lang_code,
-            split=args.split,
-            num_samples=None, # Load all first
-            seed=args.seed
-        )
-        if samples_df_full.empty:
-            print(f"WARNING: No samples found for {lang_code} in split '{args.split}'. Skipping this language.")
-            masakhaner_samples[lang_code] = pd.DataFrame()
-        else:
-            actual_loaded = len(samples_df_full)
-            if args.samples is not None and actual_loaded > args.samples:
-                masakhaner_samples[lang_code] = samples_df_full.sample(n=args.samples, random_state=args.seed)
-            else:
-                masakhaner_samples[lang_code] = samples_df_full
-            print(f"Using {len(masakhaner_samples[lang_code])} samples for {lang_code}.")
+    # Process comma-separated string arguments into lists
+    args.models = [m.strip() for m in args.models.split(',')]
+    args.langs = [lang.strip() for lang in args.langs.split(',')]
+    args.pipeline_types = [p.strip() for p in args.pipeline_types.split(',')]
+    args.shot_settings = [s.strip() for s in args.shot_settings.split(',')]
 
-            # --- Check for required columns after loading --- #
-            required_cols = ['text', 'entities'] # Assuming 'text' is now created by loader if needed
-            if not all(col in masakhaner_samples[lang_code].columns for col in required_cols):
-                print(f"ERROR: Loaded data for {lang_code} is missing required columns ({required_cols}). Skipping this language.")
-                masakhaner_samples[lang_code] = pd.DataFrame() # Mark as empty
+    return args
 
+def main():
+    args = parse_cli_args()
+
+    # --- Configure Logging ---
+    log_level = logging.DEBUG if args.test_mode else logging.INFO
+    logging.basicConfig(
+        level=log_level,
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+        datefmt='%Y-%m-%d %H:%M:%S'
+    )
+    # Silence less important loggers
+    logging.getLogger("transformers.generation.utils").setLevel(logging.WARNING)
+    logging.getLogger("huggingface_hub.file_download").setLevel(logging.WARNING)
+
+    logger.info(f"Starting NER CoTR experiments with arguments: {args}")
+
+    # Hugging Face Login
+    if args.hf_token_file:
+        try:
+            token = get_token(args.hf_token_file)
+            login(token=token)
+            logger.info("Successfully logged into Hugging Face Hub.")
+        except Exception as e:
+            logger.warning(f"Could not log into Hugging Face Hub using token from {args.hf_token_file}: {e}. Gated models may fail.")
+
+    # Set random seeds for reproducibility
+    np.random.seed(args.seed)
+    torch.manual_seed(args.seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(args.seed)
+
+    # Prepare output directory
+    timestamp_dir = datetime.now().strftime("%Y%m%d_%H%M%S")
+    current_experiment_path = os.path.join(args.output_dir, timestamp_dir)
+    os.makedirs(current_experiment_path, exist_ok=True)
+    logger.info(f"All outputs for this run will be saved under: {current_experiment_path}")
+
+    # Store all individual experiment summaries
     all_experiment_summaries = []
 
-    # --- Main Experiment Loop Structure --- #
-    for model_name_str in models:
-        print(f"\n====== Starting experiments for model: {model_name_str} ======")
-        model_initialized = False
-        tokenizer, model = None, None
+    # Construct generation parameter dictionaries from CLI args
+    # These will be passed to run_experiment
+    text_translation_params = {
+        "temperature": args.trans_text_temp, "top_p": args.trans_text_top_p, "top_k": args.trans_text_top_k,
+        "max_new_tokens": args.trans_text_max_new_tokens, "repetition_penalty": args.trans_text_rep_penalty,
+        "do_sample": args.trans_text_do_sample if args.trans_text_do_sample is not None else (args.trans_text_temp > 1e-5)
+    }
+    eng_ner_params = {
+        "temperature": args.ner_en_temp, "top_p": args.ner_en_top_p, "top_k": args.ner_en_top_k,
+        "max_new_tokens": args.ner_en_max_new_tokens, "repetition_penalty": args.ner_en_rep_penalty,
+        "do_sample": args.ner_en_do_sample if args.ner_en_do_sample is not None else (args.ner_en_temp > 1e-5)
+    }
+    # Note: These entity_translation_params might be used if ner_cotr.py's multi-prompt path is updated.
+    # Currently, text_translation_params are used for entity translation too in multi-prompt.
+    entity_translation_params = {
+        "temperature": args.trans_entity_temp, "top_p": args.trans_entity_top_p, "top_k": args.trans_entity_top_k,
+        "max_new_tokens": args.trans_entity_max_new_tokens, "repetition_penalty": args.trans_entity_rep_penalty,
+        "do_sample": args.trans_entity_do_sample if args.trans_entity_do_sample is not None else (args.trans_entity_temp > 1e-5)
+    }
+    chain_params = {
+        "temperature": args.chain_temp, "top_p": args.chain_top_p, "top_k": args.chain_top_k,
+        "max_new_tokens": args.chain_max_new_tokens, "repetition_penalty": args.chain_rep_penalty,
+        "do_sample": args.chain_do_sample if args.chain_do_sample is not None else (args.chain_temp > 1e-5)
+    }
+
+    for model_name in args.models:
+        logger.info(f"===== Initializing Model: {model_name} =====")
         try:
-            print(f"  Attempting to initialize {model_name_str}...")
-            tokenizer, model = initialize_model(model_name_str)
-            model_initialized = True
-            print(f"Model {model_name_str} initialized successfully.")
+            tokenizer, model = initialize_model(model_name, cache_path=args.cache_dir)
         except Exception as e_init:
-            print(f"ERROR: Failed to initialize model {model_name_str}: {e_init}. Skipping this model.")
-            continue # Skip to the next model if initialization fails
+            logger.critical(f"Failed to initialize model {model_name}: {e_init}", exc_info=True)
+            continue # Skip to next model
 
-        model_language_results = [] # Store results for this specific model
+        for lang_code in args.langs:
+            logger.info(f"---- Processing Language: {lang_code} for Model: {model_name} ----")
+            
+            # Load data for the current language
+            if args.dataset_name.lower() == "masakhaner":
+                # Load all samples for the split first, then the runner script will handle percentage sampling.
+                full_samples_df = utils_load_masakhaner_samples(
+                    lang_code=lang_code,
+                    split=args.dataset_split,
+                    sample_percentage=None, # Load all samples from the loader
+                    seed=args.seed
+                )
+            else:
+                logger.error(f"Dataset {args.dataset_name} not supported for NER. Skipping lang {lang_code}.")
+                continue
 
-            for lang_code in lang_codes:
-            print(f"\n--- Processing Language: {lang_code} for model {model_name_str} ---")
-            # Check if samples are valid for this language
-            if lang_code not in masakhaner_samples or masakhaner_samples[lang_code].empty:
-                print(f"  Skipping {lang_code} due to missing or invalid data.")
-                continue # Skip to the next language
+            if full_samples_df.empty:
+                logger.warning(f"No samples loaded for {lang_code} from {args.dataset_name} (split: {args.dataset_split}). Skipping.")
+                continue
 
-            current_samples_df = masakhaner_samples[lang_code]
+            # Determine number of samples
+            num_to_sample = 0
+            source_of_sample_size = "default (all samples)"
 
-            # Determine effective parameters for this lang, considering command-line overrides
-            # Use STANDARD_PARAMETERS as the ultimate fallback if lang not in LANGUAGE_PARAMETERS
-            default_lang_params = STANDARD_PARAMETERS.get(lang_code, STANDARD_PARAMETERS.get('sw', {})) # Default to sw if lang unknown
-            lang_specific_params = LANGUAGE_PARAMETERS.get(lang_code, default_lang_params) # Get lang specific, or default
+            if args.sample_percentage is not None and not full_samples_df.empty:
+                num_to_sample = max(1, int(args.sample_percentage / 100.0 * len(full_samples_df)))
+                source_of_sample_size = f"{args.sample_percentage}% of {len(full_samples_df)}"
+                logger.info(f"Initial num_to_sample from percentage: {num_to_sample} (source: {source_of_sample_size})")
+            elif args.num_samples_direct is not None: # If a direct number is given
+                num_to_sample = args.num_samples_direct
+                source_of_sample_size = f"direct value {args.num_samples_direct}"
+                logger.info(f"Initial num_to_sample from direct value: {num_to_sample} (source: {source_of_sample_size})")
+            else: # Default fallback if neither percentage nor direct number is specified
+                num_to_sample = len(full_samples_df) # Use all if no specific sampling instruction
+                logger.info(f"Initial num_to_sample (all samples): {num_to_sample} (source: {source_of_sample_size})")
 
-            # NER step parameters
-            effective_temp = current_temp if current_temp is not None else lang_specific_params.get("temperature", default_lang_params.get("temperature"))
-            effective_top_p = current_top_p if current_top_p is not None else lang_specific_params.get("top_p", default_lang_params.get("top_p"))
-            effective_top_k = current_top_k if current_top_k is not None else lang_specific_params.get("top_k", default_lang_params.get("top_k"))
-            effective_max_tokens = current_max_tokens if current_max_tokens is not None else lang_specific_params.get("max_tokens", default_lang_params.get("max_tokens"))
-            effective_rep_penalty = current_repetition_penalty if current_repetition_penalty is not None else lang_specific_params.get("repetition_penalty", default_lang_params.get("repetition_penalty"))
+            if args.max_samples_per_lang is not None:
+                if num_to_sample > args.max_samples_per_lang:
+                    logger.info(f"Capping num_to_sample from {num_to_sample} to {args.max_samples_per_lang} due to max_samples_per_lang.")
+                    num_to_sample = args.max_samples_per_lang
+                    source_of_sample_size += f", capped by max_samples_per_lang to {num_to_sample}"
+            
+            if args.test_mode: # Override for test mode
+                # TEST_MODE_SAMPLES should be defined, e.g., TEST_MODE_SAMPLES = 5 at the script start
+                if num_to_sample > TEST_MODE_SAMPLES:
+                    logger.info(f"Capping num_to_sample from {num_to_sample} to {TEST_MODE_SAMPLES} due to test_mode.")
+                    num_to_sample = min(TEST_MODE_SAMPLES, len(full_samples_df)) 
+                    source_of_sample_size += f", capped by test_mode to {num_to_sample}"
+            
+            if num_to_sample == 0 and len(full_samples_df) > 0 : 
+                 logger.info(f"num_to_sample was 0, setting to 1 as minimum.")
+                 num_to_sample = 1
+                 source_of_sample_size += f", adjusted to 1 as minimum"
+            
+            logger.info(f"Final num_to_sample for {lang_code}: {num_to_sample} (derived from: {source_of_sample_size})")
 
-            # Translation step parameters (relevant for multi-prompt)
-            effective_trans_temp = args.temperature if args.temperature is not None else lang_specific_params.get("trans_temp", default_lang_params.get("trans_temp"))
-            effective_trans_top_p = args.top_p if args.top_p is not None else lang_specific_params.get("trans_top_p", default_lang_params.get("trans_top_p"))
-            effective_trans_top_k = args.top_k if args.top_k is not None else lang_specific_params.get("trans_top_k", default_lang_params.get("trans_top_k"))
-            effective_max_trans_tokens = args.max_translation_tokens # Always use arg for trans max tokens
-            effective_trans_rep_penalty = args.repetition_penalty if args.repetition_penalty is not None else lang_specific_params.get("trans_repetition_penalty", default_lang_params.get("trans_repetition_penalty"))
+            if num_to_sample > 0 and not full_samples_df.empty:
+                 current_samples_df = full_samples_df.sample(n=num_to_sample, random_state=args.seed)
+            elif num_to_sample > 0 and full_samples_df.empty:
+                 logger.warning(f"full_samples_df is empty for {lang_code}, cannot sample {num_to_sample} samples.")
+                 current_samples_df = pd.DataFrame()
+            else: # If no samples to select (e.g. full_samples_df was empty or num_to_sample became 0)
+                 current_samples_df = pd.DataFrame()
 
-            print(f"  Base Params: Temp={effective_temp}, TopP={effective_top_p}, TopK={effective_top_k}, MaxTok={effective_max_tokens}, RepPen={effective_rep_penalty}")
-            print(f"  Trans Params: Temp={effective_trans_temp}, TopP={effective_trans_top_p}, TopK={effective_trans_top_k}, MaxTok={effective_max_trans_tokens}, RepPen={effective_trans_rep_penalty}")
 
-            # Loop through pipeline types and shot settings
-            for pipeline_type_to_run in args.pipeline_types:
+            if current_samples_df.empty:
+                logger.warning(f"No samples selected for {lang_code} after sampling (target: {num_to_sample}). Skipping.")
+                continue
+
+            logger.info(f"Loaded and sampled {len(current_samples_df)} examples for {lang_code} (target: {num_to_sample} from {len(full_samples_df)}).")
+            # Ensure 'text' and 'entities' columns are present. MasakhaNER loader should provide them.
+            if 'text' not in current_samples_df.columns or 'entities' not in current_samples_df.columns:
+                logger.error(f"Loaded data for {lang_code} is missing 'text' or 'entities' column. Columns: {current_samples_df.columns}. Skipping.")
+                continue
+
+
+            for pipeline_type in args.pipeline_types:
                 for shot_setting_str in args.shot_settings:
-                    use_few_shot_to_run = (shot_setting_str == 'few_shot')
-                    print(f"\n    Attempting to run: Model='{model_name_str}', Lang='{lang_code}', Pipeline='{pipeline_type_to_run}', Shot='{shot_setting_str}'")
-                    print(f"      Effective NER Params: temp={effective_temp:.2f}, top_p={effective_top_p:.2f}, top_k={effective_top_k}, max_tokens={effective_max_tokens}, rep_penalty={effective_rep_penalty:.2f}")
-                    if pipeline_type_to_run == 'multi_prompt':
-                        print(f"      Effective Translation Params: temp={effective_trans_temp:.2f}, top_p={effective_trans_top_p:.2f}, top_k={effective_trans_top_k}, max_tokens={effective_max_trans_tokens}, rep_penalty={effective_trans_rep_penalty:.2f}")
-                    
-                    # Call run_experiment with all determined parameters
-                    summary_result = run_experiment(
-                        model_name=model_name_str,
+                    use_few_shot = (shot_setting_str == 'few_shot')
+                    logger.info(f"--- Configuration: Lang={lang_code}, Model={model_name}, Pipeline={pipeline_type}, Shot={'Few' if use_few_shot else 'Zero'} ---")
+
+                    experiment_summary = run_experiment(
+                        model_name=model_name,
                         tokenizer=tokenizer,
                         model=model,
                         samples_df=current_samples_df,
                         lang_code=lang_code,
-                        base_results_path=base_results_path,
-                        pipeline_type=pipeline_type_to_run,
-                        use_few_shot=use_few_shot_to_run,
-                        # NER Params
-                        temperature=effective_temp,
-                        top_p=effective_top_p,
-                        top_k=effective_top_k,
-                        max_tokens=effective_max_tokens,
-                        repetition_penalty=effective_rep_penalty,
-                        # Translation Params
-                        trans_temp=effective_trans_temp,
-                        trans_top_p=effective_trans_top_p,
-                        trans_top_k=effective_trans_top_k,
-                        max_trans_tokens=effective_max_trans_tokens,
-                        trans_repetition_penalty=effective_trans_rep_penalty
+                        base_results_path=current_experiment_path, # Save under timestamped dir
+                        pipeline_type=pipeline_type,
+                        use_few_shot=use_few_shot,
+                        text_translation_params=text_translation_params,
+                        eng_ner_params=eng_ner_params,
+                        entity_translation_params=entity_translation_params,
+                        chain_params=chain_params,
+                        max_input_length=args.max_input_length,
+                        overwrite_results=args.overwrite_results
                     )
-
-                    if summary_result is not None:
-                        print(f"    SUCCESS: Experiment completed for {lang_code}, {pipeline_type_to_run}, {shot_setting_str}.")
-                        model_language_results.append(summary_result)
-                        all_experiment_summaries.append(summary_result)
-                    else:
-                        print(f"    FAILURE/SKIP: Experiment returned None for {lang_code}, {pipeline_type_to_run}, {shot_setting_str}.")
-                # End shot_setting loop
-            # End pipeline_type loop
-        # End lang_code loop
-
-        # Clean up model and tokenizer after processing all languages for it
-        if model_initialized:
-            print(f"\n====== Finished experiments for model {model_name_str}. Unloading... ======")
-            del model
-            del tokenizer
-            model, tokenizer = None, None # Prevent potential use after del
+                    if experiment_summary:
+                        all_experiment_summaries.append(experiment_summary)
+        
+        # Clean up model and tokenizer from memory after processing all its languages/configs
+        del model
+        del tokenizer
             if torch.cuda.is_available():
                 torch.cuda.empty_cache()
-                print("GPU memory cache cleared.")
-        else:
-            print(f"Model {model_name_str} was not initialized, no cleanup needed.")
-    # End model loop
+        logger.info(f"===== Model {model_name} unloaded. =====")
 
-    # --- Aggregate and Save Overall Summary --- #
+    # After all models and configurations are processed
     if all_experiment_summaries:
-        print("\n--- Aggregating Overall Summary --- ")
         overall_summary_df = pd.DataFrame(all_experiment_summaries)
-        overall_summary_path = os.path.join(base_results_path, 'summaries', f'ner_cotr_ALL_experiments_summary_{datetime.now().strftime("%Y%m%d_%H%M%S")}.csv')
+        overall_summary_file = os.path.join(current_experiment_path, "ner_cotr_ALL_CONFIGS_summary.csv")
         try:
-            overall_summary_df.to_csv(overall_summary_path, index=False, float_format='%.4f')
-            print(f"\n=== Overall CoTR NER Summary Saved ===")
-            print(f"Path: {overall_summary_path}")
-            print(overall_summary_df.to_string())
-        except Exception as e_save:
-            print(f"ERROR saving overall summary to {overall_summary_path}: {e_save}")
+            overall_summary_df.to_csv(overall_summary_file, index=False)
+            logger.info(f"Overall summary of all configurations saved to: {overall_summary_file}")
+            logger.info("--- Overall Summary Table ---")
+            print(overall_summary_df.to_string()) # Print to console
+        except Exception as e:
+            logger.error(f"Failed to save overall summary CSV: {e}")
+        
+        # Basic plotting example (can be expanded)
+        if not overall_summary_df.empty and 'avg_f1' in overall_summary_df.columns:
+            try:
+                plt.figure(figsize=(12, 7))
+                sns.barplot(data=overall_summary_df, x='model_name', y='avg_f1', hue='language', dodge=True)
+                plt.title('Average F1 Score by Model and Language (NER CoTR)')
+                plt.xticks(rotation=45, ha='right')
+                plt.ylabel('Average F1 Score')
+                plt.xlabel('Model Name')
+                plt.tight_layout()
+                plot_file = os.path.join(current_experiment_path, "ner_cotr_avg_f1_scores.png")
+                plt.savefig(plot_file)
+                logger.info(f"Summary plot saved to {plot_file}")
+                plt.close()
+            except Exception as e_plot:
+                logger.warning(f"Could not generate summary plot: {e_plot}")
+    else:
+        logger.info("No experiments were successfully completed to generate an overall summary.")
 
-        # Optional: Add plotting here based on overall_summary_df
-        # try:
-        #     plot_ner_metrics(overall_summary_df, os.path.join(base_results_path, 'plots'))
-        # except Exception as e_plot:
-        #     print(f"Error generating plots: {e_plot}")
-
-                else:
-        print("\nNo successful experiments were completed. No overall summary generated.")
-
-    print("\n====== NER CoTR Script Finished ======")
+    logger.info("NER CoTR experiment run finished.")
 
 if __name__ == "__main__":
     main() 

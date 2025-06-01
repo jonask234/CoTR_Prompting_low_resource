@@ -49,16 +49,20 @@ def preprocess_text(text: str, lang_code: str) -> str:
     return processed_text
 
 def generate_sentiment_prompt(text: str, lang_code: str = "en", model_name: str = "", use_few_shot: bool = True) -> str:
-    """Generate a prompt for sentiment classification, with EN instructions and optional few-shot examples."""
-    processed_text = preprocess_text(text, lang_code) # Preprocess based on actual text lang
-    
-    # Instructions are in English
-    base_instruction = "Analyze the sentiment of the text below.\nRespond with only one of these labels: positive, negative, or neutral."
-    
+    """
+    Generates a sentiment analysis prompt, ALWAYS with English instructions and English few-shot examples.
+    Model is always expected to output English sentiment labels: 'positive', 'negative', or 'neutral'.
+    The lang_code parameter here is mostly for preprocess_text, as instructions are fixed to English.
+    """
+    processed_text = preprocess_text(text, lang_code) # lang_code used for text preprocessing
+    en_labels_for_prompt = "positive, negative, or neutral"
+
+    base_instruction = f"Analyze the sentiment of the text provided. Your entire response MUST be ONLY one of the following words: {en_labels_for_prompt}. Do NOT add any other text, explanation, or punctuation."
     prompt_parts = [f"Text: '{processed_text}'\n", base_instruction]
 
     if use_few_shot:
-        examples_en = """
+        # Consistent English few-shot examples
+        english_few_shot_examples_text = """
 Examples:
 Text: 'This movie was fantastic, I loved it!'
 Sentiment: positive
@@ -69,18 +73,9 @@ Sentiment: negative
 Text: 'The meeting is scheduled for 3 PM.'
 Sentiment: neutral
 
-Text: 'I'm really happy with the service! 😊' 
-Sentiment: positive
-
-Text: 'I was very disappointed with this product.'
-Sentiment: negative
-
-Text: 'I'm going to the store tomorrow.'
-Sentiment: neutral
-
-Text: 'This experience has been terrible and I lost money. 😢'
-Sentiment: negative"""
-        prompt_parts.append("\n" + examples_en)
+Text: 'The product is okay, neither good nor bad.'
+Sentiment: neutral"""
+        prompt_parts.append("\n" + english_few_shot_examples_text)
             
     prompt_parts.append("\nSentiment:")
     return "\n".join(prompt_parts)
@@ -91,83 +86,147 @@ def generate_lrl_instruct_sentiment_prompt(text: str, lang_code: str, model_name
     en_labels_for_prompt = "positive, negative, or neutral" # Model should output these EN labels
 
     instruction = ""
-    examples = ""
+    examples_content = "" # Renamed from 'examples' to avoid conflict
+
+    # Define English few-shot examples (original, for reference or if LRL examples are not available)
+    # english_few_shot_examples_text = """
+    # Examples:
+    # Text: 'I am very happy with this product, it works perfectly! 😊'
+    # Sentiment: positive
+    # ... (rest of English examples)
+    # """
 
     if lang_code == 'sw':
-        instruction = f"Chunguza kwa makini hisia katika maandishi yaliyotolewa, ukizingatia pia emoji na ishara zingine.\nJibu kwa Kiingereza kwa kutumia MOJA TU kati ya maneno haya: {en_labels_for_prompt}.\nHakikisha majibu yako ni sahihi na sio tu kupendelea hisia chanya."
+        instruction = f"Chunguza kwa makini hisia katika maandishi yaliyotolewa. Jibu lako lote lazima liwe MOJA TU kati ya maneno haya ya Kiingereza: {en_labels_for_prompt}. USIANDIKE maneno mengine yoyote, maelezo, au alama za uandishi."
         if use_few_shot:
-            examples = """
+            # Swahili text examples, English labels
+            sw_few_shot_examples = """
 Mifano:
-Maandishi: 'Ninafurahia sana hali ya hewa leo! 😊'
+Maandishi: 'Huduma hii ni nzuri sana, nimefurahishwa kweli!'
 Hisia: positive
 
-Maandishi: 'Sikufurahishwa na huduma hii kabisa, ilikuwa mbaya sana. 😠'
+Maandishi: 'Nimechukizwa na bidhaa hii, haifanyi kazi vizuri.'
 Hisia: negative
 
-Maandishi: 'Labda nitaenda dukani kesho, sijaamua bado.'
+Maandishi: 'Mkutano utaanza saa tisa alasiri.'
 Hisia: neutral
-
-Maandishi: 'Nilipata hasara kubwa katika biashara hii. 😢'
-Hisia: negative"""
+"""
+            examples_content = sw_few_shot_examples
         prompt_format = f"Maandishi: '{processed_text}'\n\n{instruction}"
-        if use_few_shot:
-            prompt_format += f"\n\n{examples}"
+        if examples_content: # Check if examples_content is not empty
+            prompt_format += f"\n\n{examples_content}"
         prompt_format += "\n\nHisia:" # Model should output English label here
         return prompt_format
 
     elif lang_code == 'ha':
-        instruction = f"Bincika yanayin rubutu a sama. Ka amsa da ɗaya daga cikin kalmomi na turanci kawai: {en_labels_for_prompt}."
+        instruction = f"Bincika yanayin rubutu a sama. Duk amsarka DOLE ta zama DAYA KAWAI daga cikin waɗannan kalmomi na Turanci: {en_labels_for_prompt}. KADA KA ƙara wasu kalmomi, bayani, ko alamun rubutu."
         if use_few_shot:
-            examples = """
+            # Hausa text examples, English labels
+            ha_few_shot_examples = """
 Misalai:
-Rubutu: 'Na yi farin ciki da jin labarin nasara.'
+Rubutu: 'Wannan abinci yana da daɗi ƙwarai, na gamsu sosai!'
 Ra'ayi: positive
 
-Rubutu: 'Ba na son yadda aka yi wannan abu ba.'
+Rubutu: 'Na ji haushin wannan fim, bai yi kyau ba ko kaɗan.'
 Ra'ayi: negative
 
-Rubutu: 'Zan tafi gobe.'
+Rubutu: 'Yanayin yau ba sanyi, ba zafi.'
 Ra'ayi: neutral
-
-Rubutu: 'Ban ji dadi da labarin da na samu ba.'
-Ra'ayi: negative"""
+"""
+            examples_content = ha_few_shot_examples
         prompt_format = f"Rubutu: '{processed_text}'\n\n{instruction}"
-        if use_few_shot:
-            prompt_format += f"\n\n{examples}"
+        if examples_content: # Check if examples_content is not empty
+            prompt_format += f"\n\n{examples_content}"
         prompt_format += "\n\nRa'ayi:" # Model should output English label here
         return prompt_format
-        
-    else: # Fallback to English instructions if LRL not defined
-        print(f"WARN: LRL instructions not specifically defined for {lang_code}. Using English instruction prompt structure.")
-        return generate_sentiment_prompt(text, 'en', model_name, use_few_shot) # lang_code='en' to get EN examples
+    else: # Fallback for other LRLs or if prompt_in_lrl is False (though this func is for LRL-instruct)
+        logging.warning(f"LRL instructions for '{lang_code}' using generate_lrl_instruct_sentiment_prompt. Custom LRL examples not defined; falling back to English prompt structure via generate_sentiment_prompt.")
+        # Fallback to the standard English prompt function if specific LRL is not handled
+        return generate_sentiment_prompt(text, "en", model_name, use_few_shot)
 
 def extract_label(output_text: str, lang_code: str = "en", model_name: str = "") -> str:
-    """Extracts sentiment label from model output, prioritizing exact matches."""
-    text_lower = output_text.lower().strip()
-    
-    common_prefixes = ["sentiment:", "the sentiment is", "this text is", "i think the sentiment is", "hisia:", "ra'ayi:"]
-    for prefix in common_prefixes:
-        if text_lower.startswith(prefix):
-            text_lower = text_lower[len(prefix):].strip()
+    """
+    Extracts the sentiment label from the model's output text.
+    Prioritizes direct matches, then checks for keywords.
+    The function now aims to return one of "positive", "neutral", "negative", or "unknown".
+    """
+    processed_output = output_text.lower().strip()
 
-    # Check for exact labels first (case-insensitive)
-    for label in EXPECTED_LABELS:
-        if text_lower == label:
-            return label
+    # Define keywords for each sentiment in English (can be expanded for LRL keywords if needed)
+    # These are indicative and might need adjustment based on model behavior
+    positive_keywords = ["positive", "positive sentiment", "good", "happy", "joyful", "excellent"]
+    negative_keywords = ["negative", "negative sentiment", "bad", "sad", "angry", "terrible"]
+    neutral_keywords = ["neutral", "neutral sentiment", "objective", "no sentiment", "neither positive nor negative"]
+
+    # --- Stricter matching for direct labels first ---
+    # Check for exact label words, possibly surrounded by non-alphanumeric characters or at string ends
+    if re.search(r"\bpositive\b", processed_output):
+        return "positive"
+    if re.search(r"\bnegative\b", processed_output):
+        return "negative"
+    if re.search(r"\bneutral\b", processed_output):
+        return "neutral"
+
+    # --- If no direct match, check for keywords ---
+    # Count keyword occurrences for each sentiment
+    positive_score = sum(1 for kw in positive_keywords if kw in processed_output)
+    negative_score = sum(1 for kw in negative_keywords if kw in processed_output)
+    neutral_score = sum(1 for kw in neutral_keywords if kw in processed_output)
+
+    # Determine label based on scores
+    if positive_score > negative_score and positive_score > neutral_score:
+        return "positive"
+    elif negative_score > positive_score and negative_score > neutral_score:
+        return "negative"
+    elif neutral_score > positive_score and neutral_score > negative_score:
+        return "neutral"
     
-    # Check if the cleaned text starts with one of the expected labels
-    for label in EXPECTED_LABELS:
-        if text_lower.startswith(label):
-            return label
+    # --- Fallback and Ambiguity Handling ---
+    # If scores are tied, or no keywords strongly indicate a sentiment,
+    # or if the output is very short and non-indicative, consider it "unknown".
+    # Example: if output is "I don't know" or just "The text is about..."
+
+    # More specific checks for model-specific "cannot determine" phrases
+    # (These should be adapted based on observed model outputs)
+    unknown_phrases_common = [
+        "cannot determine", "unable to classify", "not enough information",
+        "no clear sentiment", "sentiment is unclear", "uncertain",
+        "i don't know", "it's unclear", "no sentiment expressed",
+        # LRL equivalents if known
+        "sijui", # Swahili for "I don't know"
+        "ban sani ba" # Hausa for "I don't know"
+    ]
+    
+    model_specific_unknown_phrases = []
+    if "aya" in model_name.lower():
+        model_specific_unknown_phrases.extend([
+            # "Aya specific unknown phrase 1",
+        ])
+    elif "qwen" in model_name.lower():
+        model_specific_unknown_phrases.extend([
+            # "Qwen specific unknown phrase 1",
+        ])
+
+    all_unknown_phrases = unknown_phrases_common + model_specific_unknown_phrases
+    for phrase in all_unknown_phrases:
+        if phrase in processed_output:
+            return "unknown"
+
+    # If after all checks, no clear label is found, return "unknown".
+    # This also handles cases where scores might be tied (e.g., 1 positive, 1 negative, 0 neutral)
+    # or if all scores are 0.
+    
+    # If only one class has a non-zero score, and others are zero, pick that class.
+    # This is a refinement after the initial scoring to catch less ambiguous cases.
+    if positive_score > 0 and negative_score == 0 and neutral_score == 0:
+        return "positive"
+    if negative_score > 0 and positive_score == 0 and neutral_score == 0:
+        return "negative"
+    if neutral_score > 0 and positive_score == 0 and negative_score == 0:
+        return "neutral"
         
-    # Fallback for very short responses containing the label
-    if len(text_lower.split()) < 5:
-        for label in EXPECTED_LABELS:
-            if label in text_lower:
-                return label
-                
-    print(f"WARN: Could not reliably extract label for lang '{lang_code}', model '{model_name}'. Output: '{output_text}'. Defaulting to neutral.")
-    return "neutral"
+    # Final fallback
+    return "unknown"
 
 def process_sentiment_baseline(
     model: Any, # Added type hint
@@ -179,42 +238,57 @@ def process_sentiment_baseline(
     use_few_shot: bool,
     prompt_in_lrl: bool = False,
     max_input_length: int = 2048 # Increased default
-) -> Tuple[str, float]:
-    """Process a text sample for sentiment classification."""
+) -> Tuple[str, float, str]: # Return type updated to include raw_output
+    """Process a single text for sentiment analysis using the baseline approach."""
     start_time = time.time()
-    predicted_label = "error" 
-    
+    raw_model_output_for_return = "[No output]"
+    predicted_label = "error" # Default in case of issues
+
     try:
-        if prompt_in_lrl and lang_code != 'en': # LRL instructions only for LRL text
-            prompt = generate_lrl_instruct_sentiment_prompt(text, lang_code, model_name, use_few_shot=use_few_shot)
-        else: # English instructions for English text, or if LRL instructions are off for LRL text
-            prompt = generate_sentiment_prompt(text, lang_code, model_name, use_few_shot=use_few_shot)
+        # Determine which prompt generation function to use
+        if prompt_in_lrl and lang_code != 'en':
+            prompt = generate_lrl_instruct_sentiment_prompt(
+                text, lang_code, model_name, use_few_shot
+            )
+            logging.debug(f"Using LRL-instruct prompt for {lang_code}")
+        else:
+            prompt = generate_sentiment_prompt(
+                text, lang_code, model_name, use_few_shot
+            )
+            logging.debug(f"Using EN-instruct prompt for {lang_code}")
+        
+        logging.debug(f"Generated prompt (first 300 chars): {prompt[:300]}...")
 
         inputs = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=max_input_length)
         input_ids = inputs.input_ids.to(model.device)
         attention_mask = inputs.attention_mask.to(model.device)
         
-        gen_temp = generation_params.get("temperature", 0.3) # Defaulted to lower for classification
-        gen_rep_penalty = generation_params.get("repetition_penalty", 1.1)
+        # Use generation parameters passed in, with a fallback for max_tokens if not present
+        gen_max_tokens = generation_params.get("max_tokens", 30) # Fallback to 30 if not in params
+        gen_temperature = generation_params.get("temperature", 0.3)
         gen_top_p = generation_params.get("top_p", 0.9)
-        gen_top_k = generation_params.get("top_k", 40) 
-        gen_max_new_tokens = generation_params.get("max_tokens", 10) 
+        gen_top_k = generation_params.get("top_k", 40)
+        gen_repetition_penalty = generation_params.get("repetition_penalty", 1.1)
+        # Determine do_sample based on temperature: if temp is very low (e.g. <=0.01), greedy is better.
+        # However, allow explicit override from generation_params if present.
+        gen_do_sample = generation_params.get("do_sample", gen_temperature > 0.01)
 
         with torch.no_grad():
             outputs = model.generate(
                 input_ids,
                 attention_mask=attention_mask,
-                max_new_tokens=gen_max_new_tokens,
-                temperature=gen_temp,
+                max_new_tokens=gen_max_tokens,
+                temperature=gen_temperature,
                 top_p=gen_top_p,
                 top_k=gen_top_k,
-                repetition_penalty=gen_rep_penalty,
-                do_sample=True if gen_temp > 0.01 else False, # Sample if temp is not effectively zero
+                repetition_penalty=gen_repetition_penalty,
+                do_sample=gen_do_sample,
                 pad_token_id=tokenizer.eos_token_id
             )
         
         response = tokenizer.decode(outputs[0][input_ids.shape[-1]:], skip_special_tokens=True)
         response = response.strip()
+        raw_model_output_for_return = response
         predicted_label = extract_label(response, lang_code, model_name) # Pass lang_code
     
     except Exception as e:
@@ -223,7 +297,7 @@ def process_sentiment_baseline(
         # predicted_label remains "error"
             
     runtime = time.time() - start_time
-    return predicted_label, runtime
+    return predicted_label, runtime, raw_model_output_for_return
 
 
 def evaluate_sentiment_baseline(
@@ -253,12 +327,12 @@ def evaluate_sentiment_baseline(
         text = row['text']
         ground_truth_label = row['label'] 
 
-            predicted_label, runtime = process_sentiment_baseline(
+        predicted_label, runtime, raw_model_output = process_sentiment_baseline(
             model, tokenizer, text, lang_code, model_name,
             generation_params=generation_params,
             use_few_shot=use_few_shot,
-                prompt_in_lrl=prompt_in_lrl
-            )
+            prompt_in_lrl=prompt_in_lrl
+        )
 
         results.append({
             'id': row.get('id', idx), 
@@ -268,7 +342,8 @@ def evaluate_sentiment_baseline(
             'language': lang_code,
             'runtime_seconds': runtime,
             'prompt_language': prompt_lang_description, # Use descriptive term
-            'shot_type': shot_description # Use descriptive term
+            'shot_type': shot_description, # Use descriptive term
+            'raw_model_output': raw_model_output
         })
 
     results_df = pd.DataFrame(results)

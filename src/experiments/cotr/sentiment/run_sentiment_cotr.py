@@ -12,6 +12,7 @@ import seaborn as sns
 from datetime import datetime
 import logging
 from typing import Dict, Any, Optional
+from sklearn.metrics import accuracy_score, f1_score
 
 # Add project root to Python path BEFORE other project imports
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', '..'))
@@ -25,21 +26,35 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 from src.experiments.cotr.sentiment.sentiment_cotr import (
     initialize_model,
     evaluate_sentiment_cotr_multi_prompt,
-    evaluate_sentiment_cotr_single_prompt
+    evaluate_sentiment_cotr_single_prompt,
+    SENTIMENT_LABELS_EN, # Import for consistency
+    LANG_NAMES as LANG_NAMES_SENTIMENT # Import lang_names used in sentiment_cotr # Renamed to avoid conflict
 )
 
-# Import data loader (assuming a generic loader for now, replace with actual if different)
-# For example, if using AfriSenti, it might be from src.utils.data_loaders.load_afrisenti
-from src.utils.data_loaders.load_afrisenti import load_afrisenti_samples # Corrected import
+# Import data loader
+from src.utils.data_loaders.load_afrisenti import load_afrisenti_samples # CHANGED: Use AfriSenti loader
+from src.utils.data_loaders.load_afrisenti import LANG_CODE_MAP # For getting dataset size # Keep if needed
+from datasets import load_dataset as hf_load_dataset, get_dataset_split_names # For getting dataset size
 
 # Import metrics calculation
 from evaluation.sentiment_metrics import calculate_sentiment_metrics
-from evaluation.cotr.qa_metrics_cotr import COMET_AVAILABLE # For checking if COMET can be used for text_en
-from src.evaluation.cotr.translation_metrics import calculate_comet_score # For translation quality
+from evaluation.cotr.translation_metrics import COMET_AVAILABLE, calculate_comet_score # For translation quality
 
 # Hugging Face Login
 from huggingface_hub import login
 from config import get_token
+
+# Define LRL sentiment labels for mapping (must match labels in your datasets)
+# This is crucial for consistent metric calculation.
+# Example: If your Swahili data has "Chanya", "Hasi", "Kati" for Positive, Negative, Neutral.
+SENTIMENT_LABELS_LRL = {
+    "sw": {"Positive": "Chanya", "Negative": "Hasi", "Neutral": "Kati"},
+    "ha": {"Positive": "Tabbatacce", "Negative": "Korau", "Neutral": "Tsaka-tsaki"}, # Verify actual Hausa labels
+    "yo": {"Positive": "Rere", "Negative": "Buburu", "Neutral": "Dede"}, # Verify actual Yoruba labels
+    "am": {"Positive": "አዎንታዊ", "Negative": "አሉታዊ", "Neutral": "ገለልተኛ"}, # Verify actual Amharic labels
+    "pcm": {"Positive": "Positive", "Negative": "Negative", "Neutral": "Neutral"}, # Pidgin might use English directly
+    # Add other languages and their specific sentiment labels as used in your datasets
+}
 
 # --- Standardized Parameters --- (To be consistent with baseline if applicable)
 # These are defaults if not overridden by CLI or language-specific settings.
@@ -135,166 +150,173 @@ def run_single_experiment_config(
     pipeline_type: str,
     use_few_shot: bool,
     base_output_dir: str,
-    args: argparse.Namespace # Pass all CLI args
+    generation_params: Dict,
+    overwrite_results: bool
 ) -> Optional[Dict[str, Any]]:
     
-    experiment_params_log = {}
-    
-    # Determine effective generation parameters for each step
-    text_trans_params = get_effective_params("text_translation", lang_code, model_name_str, args)
-    sentiment_class_params = get_effective_params("sentiment_classification", lang_code, model_name_str, args)
-    label_trans_params = get_effective_params("label_translation", lang_code, model_name_str, args)
-
-    try:
-        if pipeline_type == 'multi_prompt':
-            results_df = evaluate_sentiment_cotr_multi_prompt(
-                model=model,         # Correct: pass model object to 'model' param
-                tokenizer=tokenizer, # Correct: pass tokenizer object to 'tokenizer' param
-                samples_df=samples_df,
-                lang_code=lang_code,
-                use_few_shot=use_few_shot,
-                text_translation_params=text_trans_params,
-                sentiment_classification_params=sentiment_class_params,
-                label_translation_params=label_trans_params
-            )
-        elif pipeline_type == 'single_prompt':
-            single_prompt_params = get_effective_params("single_prompt_cotr", lang_code, model_name_str, args)
-            experiment_params_log.update({"single_prompt": single_prompt_params})
-            results_df = evaluate_sentiment_cotr_single_prompt(
-                model, tokenizer, samples_df, lang_code, use_few_shot,
-                generation_params=single_prompt_params
-            )
-        else:
-            logging.error(f"Unknown pipeline type: {pipeline_type}")
-            return None
-
-        if results_df is None or results_df.empty:
-            logging.warning(f"No results for {model_name_str}, {lang_code}, {pipeline_type}, {use_few_shot}.")
-            return None
-
-        # --- Calculate Metrics ---
-        # Decide which predicted label to use for metrics
-        # For multi-prompt, 'final_predicted_label' (which defaults to predicted_label_en) is a good choice.
-        # For single-prompt, 'final_predicted_label' (which is predicted_label_lrl) needs careful handling with GT.
-        # Let's assume calculate_sentiment_metrics handles ground_truth in LRL and predicted_label_lrl if that's the target.
-        # Or, map LRL predictions to English if GT is always English.
-        # For now, let's assume GT label is in English & use 'predicted_label_en' for multi and map LRL for single.
-
-        if pipeline_type == 'multi_prompt':
-            results_df['eval_prediction'] = results_df['predicted_label_en']
-            # --- Add COMET Scoring for Multi-Prompt ---
-            if COMET_AVAILABLE:
-                logging.info(f"Calculating COMET scores for {model_name_str}, {lang_code}, {pipeline_type}...")
-                comet_scores_text_lrl_en = []
-                comet_scores_label_en_lrl = []
-                for _, row in tqdm(results_df.iterrows(), total=len(results_df), desc="Calculating COMET"):
-                    # Text LRL -> EN COMET (if original_text and text_en are present and not None/NaN)
-                    if pd.notna(row.get('original_text')) and pd.notna(row.get('text_en')):
-                        score_text = calculate_comet_score(sources=[row['original_text']], predictions=[row['text_en']], references=[[row['original_text']]]) # Using original as reference for now
-                        comet_scores_text_lrl_en.append(score_text if isinstance(score_text, (float, int)) else 0.0)
-                    else:
-                        comet_scores_text_lrl_en.append(0.0) # Or np.nan
-
-                    # Label EN -> LRL COMET (if predicted_label_en and predicted_label_lrl are present and not None/NaN)
-                    # For label translation, we don't have a direct "source" in the LRL ground truth for the EN label.
-                    # We are evaluating the translation of the *predicted* English label to LRL.
-                    # A true reference for this step would be the LRL equivalent of the *predicted* English label.
-                    # If ground_truth_label is LRL, and predicted_label_en is the EN equivalent of that GT, then GT is a ref.
-                    # This is a bit circular for evaluation of translation quality itself.
-                    # For now, we'll score the translation of the *predicted* EN label to LRL against the LRL ground truth if the EN prediction was "correct"
-                    # This is an approximation.
-                    if pd.notna(row.get('predicted_label_en')) and pd.notna(row.get('predicted_label_lrl')) and pd.notna(row.get('ground_truth_label')):
-                        # We need to be careful here. The ground_truth_label is in LRL.
-                        # predicted_label_en is what the model thought the sentiment was in English.
-                        # predicted_label_lrl is the translation of predicted_label_en into LRL.
-                        # So, we are checking how well predicted_label_lrl matches ground_truth_label, given predicted_label_en was the source.
-                        score_label = calculate_comet_score(sources=[row['predicted_label_en']], predictions=[row['predicted_label_lrl']], references=[[row['ground_truth_label']]])
-                        comet_scores_label_en_lrl.append(score_label if isinstance(score_label, (float, int)) else 0.0)
-                    else:
-                        comet_scores_label_en_lrl.append(0.0) # Or np.nan
-                
-                results_df['comet_text_lrl_en'] = comet_scores_text_lrl_en
-                results_df['comet_label_en_lrl'] = comet_scores_label_en_lrl
-                logging.info(f"COMET - Avg LRL-EN Text: {np.mean(comet_scores_text_lrl_en):.4f}, Avg EN-LRL Label: {np.mean(comet_scores_label_en_lrl):.4f}")
-        else:
-                logging.warning("COMET not available, skipping COMET score calculation.")
-                results_df['comet_text_lrl_en'] = np.nan
-                results_df['comet_label_en_lrl'] = np.nan
-        else: # single_prompt - map LRL prediction to English if possible for metrics
-            # This mapping should be robust or metrics function should handle LRL predictions
-            # Simplified: if predicted_label_lrl is a known LRL sentiment word, map it.
-            # Otherwise, if predicted_label_en_intermediate is valid, use it.
-            # For now, we will assume that calculate_sentiment_metrics can handle the 'final_predicted_label' column
-            # and that it contains labels (potentially LRL) that can be compared to 'ground_truth_label' (likely EN).
-            # The `extract_lrl_sentiment_from_single_prompt` was updated to return English standard labels if it detects LRL keywords.
-            results_df['eval_prediction'] = results_df['final_predicted_label'] 
-
-        # Ensure ground_truth_label is also standardized if necessary (e.g. all lowercase)
-        results_df['ground_truth_label'] = results_df['ground_truth_label'].astype(str).str.lower()
-        results_df['eval_prediction'] = results_df['eval_prediction'].astype(str).str.lower()
-
-        metrics = calculate_sentiment_metrics(results_df.rename(columns={'eval_prediction': 'predicted_label'}))
-        logging.info(f"Metrics for {model_name_str}, {lang_code}, {pipeline_type}, {use_few_shot}: Accuracy: {metrics.get('accuracy', 0.0):.4f}, Macro F1: {metrics.get('macro_f1', 0.0):.4f}")
-
-        # --- File Saving --- 
-        shot_str = "fs" if use_few_shot else "zs"
-        model_file_name = model_name_str.replace("/", "_")
-        results_sub_dir = os.path.join(base_output_dir, "results", pipeline_type, shot_str, lang_code)
-        summaries_sub_dir = os.path.join(base_output_dir, "summaries", pipeline_type, shot_str, lang_code)
-        os.makedirs(results_sub_dir, exist_ok=True)
-        os.makedirs(summaries_sub_dir, exist_ok=True)
-
-        detailed_results_file = os.path.join(results_sub_dir, f"detailed_{model_file_name}.csv")
-        summary_file = os.path.join(summaries_sub_dir, f"summary_{model_file_name}.csv")
-
-        results_df.to_csv(detailed_results_file, index=False)
-        logging.info(f"Detailed results saved to {detailed_results_file}")
-
-        summary_data = {
-            'model': model_name_str,
-            'language': lang_code,
-            'pipeline': pipeline_type,
-            'shot_type': shot_str,
-            'accuracy': metrics.get('accuracy'),
-            'macro_f1': metrics.get('macro_f1'),
-            'positive_precision': metrics.get('positive_precision'),
-            'positive_recall': metrics.get('positive_recall'),
-            'negative_precision': metrics.get('negative_precision'),
-            'negative_recall': metrics.get('negative_recall'),
-            'neutral_precision': metrics.get('neutral_precision'),
-            'neutral_recall': metrics.get('neutral_recall'),
-            'comet_text_lrl_en': results_df['comet_text_lrl_en'].mean() if pd.notna(results_df['comet_text_lrl_en']).any() else np.nan,
-            'comet_label_en_lrl': results_df['comet_label_en_lrl'].mean() if pd.notna(results_df['comet_label_en_lrl']).any() else np.nan,
-            'samples_processed': len(results_df),
-            'params': json.dumps(experiment_params_log) # Store parameters used
-        }
-        summary_df = pd.DataFrame([summary_data])
-        summary_df.to_csv(summary_file, index=False, float_format='%.4f')
-        logging.info(f"Summary saved to {summary_file}")
-        
-        return summary_data
-    except Exception as e:
-        logging.error(f"Error in run_single_experiment_config: {e}")
+    if samples_df.empty:
+        print(f"No samples for {lang_code}, skipping {model_name_str} for {pipeline_type}/{'fs' if use_few_shot else 'zs'}.")
         return None
 
+    shot_type_str = "fs" if use_few_shot else "zs"
+    pipeline_short = "mp" if pipeline_type == "multi_prompt" else "sp"
+    model_short_name = model_name_str.split('/')[-1]
+
+    results_subdir = os.path.join(base_output_dir, "results", pipeline_type, shot_type_str, lang_code, model_short_name)
+    summaries_subdir = os.path.join(base_output_dir, "summaries", pipeline_type, shot_type_str, lang_code, model_short_name)
+    os.makedirs(results_subdir, exist_ok=True)
+    os.makedirs(summaries_subdir, exist_ok=True)
+
+    results_file = os.path.join(results_subdir, f"results_sentiment_cotr_{pipeline_short}_{shot_type_str}_{lang_code}_{model_short_name}.csv")
+    summary_file = os.path.join(summaries_subdir, f"summary_sentiment_cotr_{pipeline_short}_{shot_type_str}_{lang_code}_{model_short_name}.csv")
+
+    results_df_loaded_from_file = False
+    if not overwrite_results and os.path.exists(results_file):
+        print(f"Results file {results_file} exists. Attempting to load summary or results.")
+        if os.path.exists(summary_file):
+            try:
+                summary_df_existing = pd.read_csv(summary_file)
+                if not summary_df_existing.empty:
+                    print(f"Loaded existing summary: {summary_file}")
+                    summary_dict_reloaded = summary_df_existing.to_dict('records')[0]
+                    # Ensure all expected COMET columns are present, fill with None if missing
+                    for col in ['avg_comet_lrl_text_to_en', 'avg_comet_en_label_to_lrl']: # Corrected key
+                         if col not in summary_dict_reloaded: summary_dict_reloaded[col] = None
+                    return summary_dict_reloaded
+            except Exception as e:
+                print(f"Could not load/parse summary {summary_file}: {e}. Will try to use results file.")
+        
+        try: 
+            results_df = pd.read_csv(results_file)
+            results_df_loaded_from_file = True
+            print(f"Successfully loaded results from existing file: {results_file}")
+        except Exception as e:
+            print(f"Could not read results file {results_file} ({e}). Will run experiment.")
+            results_df_loaded_from_file = False # Explicitly set back
+    
+    if not results_df_loaded_from_file:
+        print(f"Running Sentiment CoTR: M={model_name_str}, L={lang_code}, Pipe={pipeline_type}, Shot={shot_type_str}")
+        print(f"  Effective Params: {generation_params}")
+
+        eval_params = {
+            "model_name": model_name_str, "model": model, "tokenizer": tokenizer,
+            "samples_df": samples_df, "lang_code": lang_code, "use_few_shot": use_few_shot,
+            **generation_params
+        }
+
+        if pipeline_type == 'multi_prompt':
+            results_df = evaluate_sentiment_cotr_multi_prompt(**eval_params)
+        elif pipeline_type == 'single_prompt':
+            results_df = evaluate_sentiment_cotr_single_prompt(**eval_params)
+        else:
+            raise ValueError(f"Unknown pipeline type: {pipeline_type}")
+
+        if results_df.empty:
+            print(f"No results returned from {pipeline_type} CoTR evaluation for {lang_code}, {shot_type_str}.")
+            return None
+            
+        results_df.to_csv(results_file, index=False)
+        print(f"Results saved to: {results_file}")
+
+    # AfriSenti provides labels directly in English and lowercase (e.g., "positive", "negative")
+    # The 'ground_truth_english_label' in the CoTR evaluation functions already expects this.
+    # If the loaded 'label' column is not already the English GT, it needs mapping.
+    # Here, we assume 'label' from load_afrisenti_samples is the English GT.
+    if 'label' in results_df.columns:
+        results_df['ground_truth_english_label'] = results_df['label'].astype(str).str.lower().str.strip()
+    else:
+        # This case should ideally not happen if data loading is correct.
+        # Fallback or error if 'label' column is missing from CoTR output DF.
+        # The CoTR functions save 'ground_truth_english_label' based on input 'label' from samples_df.
+        # So, this re-processing might be redundant if CoTR functions handle it,
+        # but good for verification if results_df is loaded from file.
+        if 'ground_truth_english_label' not in results_df.columns:
+            print(f"CRITICAL: 'label' column missing from initial CoTR output and 'ground_truth_english_label' not set. Metrics will be incorrect.")
+            results_df['ground_truth_english_label'] = "unknown" # Placeholder
+
+    if pipeline_type == 'multi_prompt':
+        predicted_label_col = 'predicted_en_label'
+    else: 
+        predicted_label_col = 'intermediate_en_label'
+
+    if predicted_label_col not in results_df.columns:
+        print(f"Warning: Predicted label column '{predicted_label_col}' not found in results. Metrics will be 0.")
+        avg_accuracy, avg_macro_f1, avg_weighted_f1 = 0.0, 0.0, 0.0
+    else:
+        y_true_clean = results_df['ground_truth_english_label'].fillna("Unknown").astype(str).tolist()
+        y_pred_clean = results_df[predicted_label_col].fillna("Unknown").astype(str).tolist()
+        
+        valid_labels_for_f1 = [l for l in SENTIMENT_LABELS_EN if l in y_true_clean or l in y_pred_clean]
+
+        try:
+            avg_accuracy = accuracy_score(y_true_clean, y_pred_clean)
+            avg_macro_f1 = f1_score(y_true_clean, y_pred_clean, labels=valid_labels_for_f1, average='macro', zero_division=0)
+            avg_weighted_f1 = f1_score(y_true_clean, y_pred_clean, labels=valid_labels_for_f1, average='weighted', zero_division=0)
+        except Exception as e_metrics:
+            print(f"Error calculating sklearn metrics: {e_metrics}. Setting metrics to 0.")
+            avg_accuracy, avg_macro_f1, avg_weighted_f1 = 0.0, 0.0, 0.0
+
+    avg_comet_lrl_text_to_en = results_df['comet_lrl_text_to_en'].dropna().mean() if 'comet_lrl_text_to_en' in results_df.columns and not results_df['comet_lrl_text_to_en'].dropna().empty else None
+    avg_comet_en_label_to_lrl = results_df['comet_en_label_to_lrl'].dropna().mean() if 'comet_en_label_to_lrl' in results_df.columns and not results_df['comet_en_label_to_lrl'].dropna().empty else None
+    
+    summary_data_dict = {
+        'model': model_short_name, 'language': lang_code, 'pipeline_type': pipeline_type,
+        'shot_type': shot_type_str, 'samples': len(results_df),
+        'accuracy': avg_accuracy, 'macro_f1': avg_macro_f1, 'weighted_f1': avg_weighted_f1,
+        'avg_comet_lrl_text_to_en': avg_comet_lrl_text_to_en,
+        'avg_comet_en_label_to_lrl': avg_comet_en_label_to_lrl,
+        **generation_params
+    }
+    
+    pd.DataFrame([summary_data_dict]).to_csv(summary_file, index=False)
+    print(f"Summary saved to {summary_file}")
+    print(f"  Metrics: Acc={avg_accuracy:.4f}, MacroF1={avg_macro_f1:.4f}, WeightedF1={avg_weighted_f1:.4f}")
+    if avg_comet_lrl_text_to_en is not None: print(f"  Avg COMET Text LRL->EN: {avg_comet_lrl_text_to_en:.4f}")
+    if avg_comet_en_label_to_lrl is not None: print(f"  Avg COMET Label EN->LRL: {avg_comet_en_label_to_lrl:.4f}")
+    
+    return summary_data_dict
+
+def plot_sentiment_metrics(summary_df: pd.DataFrame, plots_dir: str, metric_col: str, metric_name: str):
+    if summary_df.empty or metric_col not in summary_df.columns or summary_df[metric_col].dropna().empty:
+        print(f"Not enough data to plot {metric_name}. Skipping plot.")
+        return
+
+    plt.figure(figsize=(18, 10))
+    summary_df['config_id'] = summary_df['language'] + '_' + summary_df['model'] + '_' + \
+                              summary_df['pipeline_type'] + '_' + summary_df['shot_type']
+    
+    sns.barplot(data=summary_df.dropna(subset=[metric_col]), x='config_id', y=metric_col, hue='language', dodge=False)
+    plt.xticks(rotation=45, ha='right', fontsize=9)
+    plt.yticks(fontsize=10)
+    plt.title(f'Sentiment CoTR: Average {metric_name}', fontsize=16)
+    plt.ylabel(f'Average {metric_name}', fontsize=12)
+    plt.xlabel('Experiment Configuration (Lang_Model_Pipeline_Shot)', fontsize=12)
+    plt.legend(title='Language', bbox_to_anchor=(1.02, 1), loc='upper left')
+    plt.tight_layout(rect=[0, 0, 0.9, 1])
+    
+    plot_filename = os.path.join(plots_dir, f"sentiment_cotr_avg_{metric_col.replace('avg_', '')}.png")
+    plt.savefig(plot_filename)
+    plt.close()
+    print(f"{metric_name} plot saved to {plot_filename}")
+
 def main():
-    parser = argparse.ArgumentParser(description="Run Sentiment Analysis CoTR experiments.")
-    parser.add_argument("--models", type=str, default="CohereLabs/aya-expanse-8b,Qwen/Qwen2.5-7B-Instruct", help="Comma-separated model names")
+    parser = argparse.ArgumentParser(description="Run Sentiment CoTR experiments with Afrisenti.")
+    parser.add_argument("--models", type=str, default="CohereLabs/aya-expanse-8b",
+                        help="Comma-separated model names (e.g., 'CohereLabs/aya-expanse-8b,Qwen/Qwen2.5-7B-Instruct').")
     parser.add_argument("--langs", nargs='+', default=['sw', 'ha'], 
-                        help="Languages to evaluate (e.g., sw ha te)")
-    parser.add_argument("--samples", type=int, default=50, 
-                        help="Number of samples to process per language.")
-    parser.add_argument("--base_output_dir", type=str, default="/work/bbd6522/results/sentiment/cotr", help="Base directory to save results and summaries.")
+                        choices=['am', 'ar', 'en', 'ha', 'haus', 'ig', 'ibo', 'ma', 'mar', 'multi', 'pcm', 'pt', 'sw', 'swa', 'yo', 'yor', 'twi', 'dz', 'kr', 'ti'], # Expanded choices for flexibility
+                        help="Languages to evaluate from Afrisenti. Default: sw, ha.")
+    parser.add_argument("--data_split", type=str, default="test", choices=["train", "validation", "test"], help="Dataset split to use.")
+    parser.add_argument("--sample_percentage", type=float, default=10.0, help="Percentage of samples to use (0.0 to 1.0). Default is 10.0 (10%%).")
+    parser.add_argument("--max_samples_per_lang", type=int, default=None, help="Maximum number of samples per language to cap at, after percentage sampling. Default: None.")
     parser.add_argument("--pipeline_types", nargs='+', default=['multi_prompt', 'single_prompt'], choices=['multi_prompt', 'single_prompt'], help="CoTR pipeline types to run.")
     parser.add_argument("--shot_settings", nargs='+', default=['zero_shot', 'few_shot'], choices=['zero_shot', 'few_shot'], help="Shot settings to evaluate.")
     
-    # General Generation Parameters (can be overridden by step-specific logic or specific CLI args)
     parser.add_argument("--temperature", type=float, default=None, help="Global temperature for generation.")
     parser.add_argument("--top_p", type=float, default=None, help="Global top-p for generation.")
     parser.add_argument("--top_k", type=int, default=None, help="Global top-k for generation.")
     parser.add_argument("--repetition_penalty", type=float, default=None, help="Global repetition penalty.")
     
-    # Step-specific max_tokens
     parser.add_argument("--max_sentiment_tokens", type=int, default=None, help="Max tokens for sentiment classification step.")
     parser.add_argument("--max_text_trans_tokens", type=int, default=None, help="Max tokens for LRL text to English translation.")
     parser.add_argument("--max_label_trans_tokens", type=int, default=None, help="Max tokens for English label to LRL translation.")
@@ -302,12 +324,14 @@ def main():
 
     parser.add_argument("--hf_token", type=str, default=None, help="Hugging Face token for gated models.")
     parser.add_argument("--seed", type=int, default=42, help="Random seed for reproducibility.")
+    parser.add_argument("--test_mode", action='store_true', help="Run with a small subset of data (5 samples).")
+    parser.add_argument("--overwrite_results", action='store_true', help="Overwrite existing results and summary files.")
+    parser.add_argument("--base_output_dir", type=str, default="/work/bbd6522/results/sentiment/cotr_afrisenti", help="Base directory to save results and summaries.")
 
     args = parser.parse_args()
 
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-    # --- Setup ---
     if args.hf_token:
         login(token=args.hf_token)
     else:
@@ -322,29 +346,14 @@ def main():
     langs_list = [l.strip() for l in args.langs]
 
     all_summaries = []
-
+    
     for model_name_str in models_list:
         logging.info(f"\n===== Initializing Model: {model_name_str} =====")
         model_initialized = False
         try:
-            # Ensure correct unpacking order: tokenizer, model
             tokenizer, model = initialize_model(model_name_str)
             model_initialized = True
             logging.info(f"Model {model_name_str} initialized successfully.")
-            
-            # Explicitly link tokenizer and model if required by some models/tokenizers
-            # (May not be universally needed, but can prevent certain issues)
-            # if hasattr(tokenizer, 'model') and tokenizer.model is None:
-            # tokenizer.model = model 
-            # if hasattr(model, 'tokenizer') and model.tokenizer is None:
-            # model.tokenizer = tokenizer
-            # if hasattr(tokenizer, 'config') and hasattr(model, 'config'):
-            #     if tokenizer.config is None or tokenizer.config != model.config:
-            #         # This was the HACK, let's avoid if direct passing is correct
-            #         # logging.info("Attempting to align tokenizer.config with model.config")
-            #         # tokenizer.config = model.config 
-            #         pass # Avoid the hack for now, rely on correct passing order
-
         except Exception as e_init:
             logging.error(f"Failed to initialize model {model_name_str}: {e_init}. Skipping this model.")
             if model is not None: del model
@@ -353,35 +362,73 @@ def main():
             continue
 
         for lang_code in langs_list:
-            logging.info(f"--- Loading data for {lang_code} ---")
-            # Assuming load_afrisenti_samples takes lang_code and num_samples
-            # And returns a DataFrame with 'text' and 'label' columns
-            current_samples_df = load_afrisenti_samples(lang_code=lang_code, num_samples=args.samples, split="test")
-            if current_samples_df.empty:
-                logging.warning(f"No samples loaded for {lang_code}. Skipping.")
+            logging.info(f"\n--- Loading data for {lang_code} (Sentiment CoTR) ---")
+            
+            # Data split is already hardcoded to "test" in load_afrisenti_samples call below
+            full_samples_df = load_afrisenti_samples(lang_code=lang_code, split="test", num_samples=None) 
+
+            samples_df_for_lang = pd.DataFrame()
+            if not full_samples_df.empty:
+                num_total_samples = len(full_samples_df)
+                # Calculate num_to_sample based on percentage, then apply caps
+                num_to_sample_float = (args.sample_percentage / 100.0) * num_total_samples
+                num_to_sample = max(1, int(num_to_sample_float))
+                
+                logging.info(f"    Total available samples for {lang_code} ('{args.data_split}' split): {num_total_samples}")
+                logging.info(f"    Targeting {args.sample_percentage:.1f}%% ({num_to_sample} samples initially based on percentage).")
+
+                # Apply max_samples_per_lang cap if specified
+                if args.max_samples_per_lang is not None and num_to_sample > args.max_samples_per_lang:
+                    logging.info(f"    Capping samples to --max_samples_per_lang: {args.max_samples_per_lang}.")
+                    num_to_sample = args.max_samples_per_lang
+                
+                # Ensure num_to_sample does not exceed total available samples
+                if num_to_sample > num_total_samples:
+                    logging.warning(f"    Requested {num_to_sample} samples, but only {num_total_samples} available. Using all {num_total_samples} samples.")
+                    num_to_sample = num_total_samples
+                
+                # Test mode overrides to a very small number AFTER other calculations if active
+                if args.test_mode:
+                    logging.info(f"    TEST MODE: Overriding sample count to 5.")
+                    num_to_sample = min(5, num_total_samples) # Ensure test mode doesn't exceed available
+
+                logging.info(f"    Final number of samples to use for {lang_code}: {num_to_sample}.")
+                samples_df_for_lang = full_samples_df.sample(n=num_to_sample, random_state=args.seed)
+            else:
+                logging.warning(f"    No samples loaded for {lang_code} from split '{args.data_split}' via load_afrisenti_samples.")
+
+            if samples_df_for_lang.empty:
+                logging.warning(f"No samples for {lang_code} after attempting to load/sample for split 'test'. Skipping language for model {model_name_str}.")
                 continue
             
-            # Standardize label column to lowercase string if it's not already
-            if 'label' in current_samples_df.columns:
-                current_samples_df['label'] = current_samples_df['label'].astype(str).str.lower()
-        else:
-                logging.error(f"Dataset for {lang_code} is missing 'label' column. Skipping.")
-                continue
+            if 'label' in samples_df_for_lang.columns:
+                samples_df_for_lang['label'] = samples_df_for_lang['label'].astype(str).str.lower()
 
             for pipeline_type in args.pipeline_types:
                 for shot_setting in args.shot_settings:
                     use_few_shot = (shot_setting == 'few_shot')
                     logging.info(f"Running: Model={model_name_str}, Lang={lang_code}, Pipeline={pipeline_type}, Shot={shot_setting}")
                     
+                    if pipeline_type == "multi_prompt":
+                        text_trans_params = get_effective_params("text_translation", lang_code, model_name_str, args)
+                        sentiment_params = get_effective_params("sentiment_classification", lang_code, model_name_str, args)
+                        label_trans_params = get_effective_params("label_translation", lang_code, model_name_str, args)
+                        current_generation_params = {
+                            "text_translation_params": text_trans_params,
+                            "sentiment_classification_params": sentiment_params,
+                            "label_translation_params": label_trans_params
+                        }
+                    else: 
+                        current_generation_params = get_effective_params("single_prompt_cotr", lang_code, model_name_str, args)
+
                     summary = run_single_experiment_config(
-                        model_name_str, tokenizer, model, current_samples_df, 
+                        model_name_str, tokenizer, model, samples_df_for_lang, 
                         lang_code, pipeline_type, use_few_shot, 
-                        args.base_output_dir, args
+                        args.base_output_dir, current_generation_params, args.overwrite_results
                     )
                     if summary:
                         all_summaries.append(summary)
         
-        # Clear memory for the next model if multiple are run
         if model_initialized:
             logging.info(f"===== Finished all experiments for model {model_name_str}. Unloading... =====")
             del model
@@ -390,82 +437,33 @@ def main():
                 torch.cuda.empty_cache()
                 logging.info("GPU memory cache cleared.")
 
-    # --- Aggregate and Save Overall Summary --- 
+    # Prepare for overall summary and plotting
     if all_summaries:
         overall_summary_df = pd.DataFrame(all_summaries)
-        overall_summary_filename = os.path.join(args.base_output_dir, "summaries", f'sentiment_cotr_ALL_experiments_summary_{datetime.now().strftime("%Y%m%d_%H%M%S")}.csv')
-        try:
+        if not overall_summary_df.empty:
+            # Save overall summary
+            timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+            overall_summary_filename = os.path.join(args.base_output_dir, "summaries", f"sentiment_cotr_ALL_experiments_summary_{timestamp}.csv")
             overall_summary_df.to_csv(overall_summary_filename, index=False, float_format='%.4f')
-            logging.info(f"Overall summary saved to: {overall_summary_filename}")
-            print("\n=== Overall CoTR Sentiment Summary ===")
-            print(overall_summary_df.to_string())
-        except Exception as e_save:
-            logging.error(f"Error saving overall summary to {overall_summary_filename}: {e_save}")
+            logging.info(f"\nOverall summary of Sentiment CoTR experiments saved to: {overall_summary_filename}")
+            print(overall_summary_df.to_string(max_rows=None, max_cols=None)) # Print full summary
 
-        # Optional: Plotting (ensure matplotlib and seaborn are installed)
-        try:
-            plots_dir = os.path.join(args.base_output_dir, "plots")
-            os.makedirs(plots_dir, exist_ok=True)
-            if not overall_summary_df.empty and 'macro_f1' in overall_summary_df.columns:
-                plt.figure(figsize=(12, 7))
-                sns.barplot(data=overall_summary_df, x='language', y='macro_f1', hue='model', palette='viridis',
-                            ci=None) # Add other categories like pipeline_type, shot_type to hue or col/row for more detailed plots
-                plt.title('Macro F1 Score for CoTR Sentiment Analysis')
-                plt.ylabel('Macro F1 Score')
-                plt.xlabel('Language')
-                plt.xticks(rotation=45)
-                plt.tight_layout()
-                plt.savefig(os.path.join(plots_dir, f'cotr_sentiment_macro_f1_summary_{datetime.now().strftime("%Y%m%d_%H%M%S")}.png'))
-                plt.close()
-                logging.info(f"Summary plot saved to {plots_dir}")
-        except ImportError:
-            logging.warning("matplotlib or seaborn not installed. Skipping plot generation.")
-        except Exception as e_plot:
-            logging.error(f"Error during plot generation: {e_plot}")
+            # Generate and save plots
+            plots_output_dir = os.path.join(args.base_output_dir, "plots")
+            os.makedirs(plots_output_dir, exist_ok=True)
+            plot_sentiment_metrics(overall_summary_df, plots_output_dir, 'accuracy', 'Accuracy')
+            plot_sentiment_metrics(overall_summary_df, plots_output_dir, 'macro_f1', 'Macro F1-Score')
+            plot_sentiment_metrics(overall_summary_df, plots_output_dir, 'weighted_f1', 'Weighted F1-Score')
+            if 'avg_comet_lrl_text_to_en' in overall_summary_df.columns:
+                 plot_sentiment_metrics(overall_summary_df, plots_output_dir, 'avg_comet_lrl_text_to_en', 'COMET (LRL Text to EN)')
+            if 'avg_comet_en_label_to_lrl' in overall_summary_df.columns:
+                 plot_sentiment_metrics(overall_summary_df, plots_output_dir, 'avg_comet_en_label_to_lrl', 'COMET (EN Label to LRL)')
+        else:
+            logging.info("Overall summary DataFrame for Sentiment CoTR is empty. No plots generated.")
     else:
-        logging.info("No successful experiments were completed. No overall summary generated.")
+        logging.info("No summaries collected for Sentiment CoTR. Skipping overall summary and plot generation.")
 
-    logging.info("====== Sentiment CoTR Script Finished ======")
+    logging.info("\nAll Sentiment CoTR experiments completed!")
 
 if __name__ == "__main__":
-    # This is a placeholder for the data loader.
-    # You need to ensure `src.utils.data_loaders.load_afrisenti.load_afrisenti_samples` is correctly implemented.
-    # Example of what it might look like:
-    # def load_afrisenti_samples(lang_code: str, num_samples: int, split: str, balanced: bool = False, samples_per_class: Optional[int] = None):
-    #     # ... logic to load your specific sentiment dataset ...
-    #     # Should return a pd.DataFrame with 'text' and 'label' columns
-    #     # Example:
-    #     # data = [{"text": "example text 1", "label": "positive"}, ...]
-    #     # df = pd.DataFrame(data)
-    #     # if num_samples: df = df.sample(min(num_samples, len(df)), random_state=seed) # random_state not directly supported
-    #     # return df
-    #     print(f"Placeholder: load_afrisenti_samples called for {lang_code} with {num_samples} samples from {split} split.")
-    #     # Return a dummy DataFrame for testing if the real loader isn't ready
-    #     dummy_data = []
-    #     labels = ["positive", "negative", "neutral"]
-    #     for i in range(num_samples if num_samples else 5):
-    #         dummy_data.append({"text": f"This is {lang_code} sample text number {i+1}. It feels very {labels[i%3]}.", "label": labels[i%3]})
-    #     return pd.DataFrame(dummy_data)
-    # Make sure the real loader is in the path `src/utils/data_loaders/load_afrisenti.py`
-    # and named `load_afrisenti_samples`
-    
-    # Example usage for main()
-    # args = parse_args() # Assuming parse_args() is defined and provides necessary arguments
-    # model_name_to_test = "CohereLabs/aya-expanse-8b"
-    # lang_to_test = "sw"
-    # num_samples_to_test = 10
-    # data_split_to_test = "test"
-
-    # logging.info(f"Running CoTR sentiment analysis for {model_name_to_test} on {lang_to_test}")
-    
-    # samples = load_afrisenti_samples(
-    # lang_code=lang_to_test,
-    # num_samples=num_samples_to_test,
-    # split=data_split_to_test
-    # )
-    
-    # if not samples.empty:
-    # # ... rest of the example main logic ...
-    # else:
-    # logging.info(f"No samples loaded for {lang_to_test}. Skipping CoTR evaluation.")
     main() 

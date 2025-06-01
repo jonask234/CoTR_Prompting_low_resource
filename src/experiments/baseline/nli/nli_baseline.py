@@ -7,78 +7,113 @@ import time
 import re
 import os
 from typing import Tuple, Dict, List, Any, Optional
+import logging
+from sklearn.metrics import accuracy_score, f1_score, classification_report
 
-# Define label mapping for NLI
-NLI_LABELS = {
+# Define NLI labels (model is expected to output these English strings)
+EXPECTED_NLI_LABELS = ["entailment", "neutral", "contradiction", "unknown"]
+
+# Mapping from XNLI dataset numeric labels (if needed by data loader)
+# 0: entailment, 1: neutral, 2: contradiction
+NLI_LABEL_MAP_FROM_NUMERIC = {
     0: "entailment",
     1: "neutral",
     2: "contradiction"
 }
 
-def initialize_model(model_name: str) -> Tuple:
+def initialize_model(model_name: str) -> Tuple[Any, Any]:
     """
-    Initialize a model for NLI task.
-    
-    Args:
-        model_name: Name of the model to initialize
-    
-    Returns:
-        Tuple of (model, tokenizer)
+    Initialize a model and tokenizer, specifying cache directory and robust pad_token handling.
     """
-    print(f"Loading {model_name}...")
+    print(f"Initializing NLI baseline model: {model_name}...")
+    cache_path = "/work/bbd6522/cache_dir"
     
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    tokenizer = AutoTokenizer.from_pretrained(
+        model_name,
+        trust_remote_code=True,
+        cache_dir=cache_path
+    )
     model = AutoModelForCausalLM.from_pretrained(
-        model_name, 
+        model_name,
         torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
-        device_map="auto"
+        device_map="auto", 
+        trust_remote_code=True,
+        cache_dir=cache_path,
+        # Add low_cpu_mem_usage to potentially help with large models
+        low_cpu_mem_usage=True 
     )
     
-    return model, tokenizer
+    # Robustly set pad_token and model.config.pad_token_id
+    if tokenizer.pad_token is None:
+        if tokenizer.eos_token is not None:
+            tokenizer.pad_token = tokenizer.eos_token
+            logging.info(f"Set tokenizer.pad_token to tokenizer.eos_token ({tokenizer.eos_token}) for {model_name}")
+        else:
+            # If no eos_token, add a new pad token
+            logging.warning(f"No pad_token or eos_token found for {model_name}. Adding a new [PAD] token.")
+            tokenizer.add_special_tokens({'pad_token': '[PAD]'})
+            # Important: Resize model embeddings if a new token is added
+            model.resize_token_embeddings(len(tokenizer))
+            logging.info(f"Resized model token embeddings for the new [PAD] token in {model_name}.")
+
+    # Ensure model.config.pad_token_id is also aligned with the tokenizer
+    if model.config.pad_token_id is None or model.config.pad_token_id != tokenizer.pad_token_id:
+        model.config.pad_token_id = tokenizer.pad_token_id
+        logging.info(f"Aligned model.config.pad_token_id with tokenizer.pad_token_id ({tokenizer.pad_token_id}) for {model_name}")
+
+    logging.info(f"Successfully loaded {model_name}")
+    return tokenizer, model
 
 def generate_nli_prompt(
     premise: str,
     hypothesis: str,
-    lang_code: str = "en",
-    use_few_shot: bool = True,
-    prompt_in_lrl: bool = False
+    instruction_lang_code: str = "en", # Language for the prompt instructions & examples
+    use_few_shot: bool = True
 ) -> str:
     """
-    Generate a prompt for NLI task with improved structure.
-    
-    Args:
-        premise: The premise text
-        hypothesis: The hypothesis text
-        lang_code: Language code
-        use_few_shot: Whether to include few-shot examples
-        prompt_in_lrl: Whether to use instructions in the low-resource language
-        
-    Returns:
-        A formatted NLI prompt
+    Generate a prompt for NLI task based on the old script's structure.
+    The `instruction_lang_code` determines the language of instructions.
+    Few-shot examples are ALWAYS in English.
+    The model is always asked to output one of the English labels: 'ENTAILMENT', 'CONTRADICTION', 'NEUTRAL'.
     """
-    # Base instructions with clearer structure for all languages
-    if lang_code == "en":
-        instruction = """Text: '<PREMISE>'\nHypothesis: '<HYPOTHESIS>'\n\nDetermine if the hypothesis is ENTAILMENT, CONTRADICTION, or NEUTRAL with respect to the text. 
+    
+    # English few-shot examples (used regardless of instruction_lang_code)
+    english_few_shot_examples_list = [
+        {"premise": "The chef is cooking a meal in the kitchen.", "hypothesis": "The chef is preparing food.", "answer": "ENTAILMENT"},
+        {"premise": "The boy is playing soccer in the park.", "hypothesis": "The boy is swimming in a pool.", "answer": "CONTRADICTION"},
+        {"premise": "The woman is walking down the street.", "hypothesis": "She is going to the grocery store.", "answer": "NEUTRAL"}
+    ]
+    english_example_header = "Examples (English text, English answer):"
+    english_premise_key = "Text"
+    english_hypothesis_key = "Hypothesis"
+    english_answer_key = "Answer"
+    
+    # Select instruction block based on instruction_lang_code
+    if instruction_lang_code == "sw":  # Swahili
+        instruction_block = """Maandishi: '<PREMISE>'
+Hipothesia: '<HYPOTHESIS>'
 
-Definitions:
-- ENTAILMENT: The hypothesis must be true if the text is true.
-- CONTRADICTION: The hypothesis cannot be true if the text is true.
-- NEUTRAL: The hypothesis might be true or false; the text doesn't provide enough information.
-
-Provide your answer as EXACTLY one of these three English labels: 'ENTAILMENT', 'CONTRADICTION', or 'NEUTRAL'.
-Your entire response must be only one of these three words. No other text, explanation, or punctuation is allowed."""
-    elif lang_code == "sw":  # Swahili
-        instruction = """Maandishi: '<PREMISE>'\nHipothesia: '<HYPOTHESIS>'\n\nAmua kama hipothesia ni ENTAILMENT, CONTRADICTION, au NEUTRAL kuhusiana na maandishi.
+Amua kama hipothesia ni ENTAILMENT, CONTRADICTION, au NEUTRAL kuhusiana na maandishi.
 
 Ufafanuzi:
 - ENTAILMENT: Hipothesia lazima iwe kweli ikiwa maandishi ni kweli.
 - CONTRADICTION: Hipothesia haiwezi kuwa kweli ikiwa maandishi ni kweli.
-- NEUTRAL: Hipothesia inaweza kuwa kweli au si kweli kutokana na dhana
+- NEUTRAL: Hipothesia inaweza kuwa kweli au si kweli kutokana na dhana.
 
 Jibu kwa kutumia MOJA TU ya lebo hizi za Kiingereza: 'ENTAILMENT', 'CONTRADICTION', au 'NEUTRAL'.
 Jibu lako lote lazima liwe neno MOJA TU kati ya hayo matatu ya Kiingereza. Hakuna maandishi mengine, maelezo, au alama za uakifishaji zinazoruhusiwa."""
-    elif lang_code == "ur":  # Urdu
-        instruction = """متن: '<PREMISE>'\nمفروضہ: '<HYPOTHESIS>'\n\nیہ تعین کریں کہ مفروضہ متن کے حوالے سے ENTAILMENT، CONTRADICTION، یا NEUTRAL ہے۔
+        # Use English examples even for Swahili instructions
+        example_header_to_use = english_example_header
+        premise_key_for_examples = english_premise_key
+        hypothesis_key_for_examples = english_hypothesis_key
+        answer_key_for_examples = english_answer_key
+        few_shot_examples_to_use = english_few_shot_examples_list
+
+    elif instruction_lang_code == "ur":  # Urdu
+        instruction_block = """متن: '<PREMISE>'
+مفروضہ: '<HYPOTHESIS>'
+
+یہ تعین کریں کہ مفروضہ متن کے حوالے سے ENTAILMENT، CONTRADICTION، یا NEUTRAL ہے۔
 
 تعریفیں:
 - ENTAILMENT: اگر متن سچ ہے تو مفروضہ بھی ضرور سچ ہے۔
@@ -87,8 +122,18 @@ Jibu lako lote lazima liwe neno MOJA TU kati ya hayo matatu ya Kiingereza. Hakun
 
 اپنا جواب صرف ان تین انگریزی لیبلز میں سے ایک کے طور پر دیں: 'ENTAILMENT'، 'CONTRADICTION'، یا 'NEUTRAL'۔
 آپ کا پورا جواب صرف ان تین الفاظ میں سے ایک ہونا چاہیے۔ کسی دوسرے متن، وضاحت یا رموز اوقاف کی اجازت نہیں ہے۔"""
-    else:  # Default to English
-        instruction = """Text: '<PREMISE>'\nHypothesis: '<HYPOTHESIS>'\n\nDetermine if the hypothesis is ENTAILMENT, CONTRADICTION, or NEUTRAL with respect to the text. 
+        # Use English examples even for Urdu instructions
+        example_header_to_use = english_example_header
+        premise_key_for_examples = english_premise_key
+        hypothesis_key_for_examples = english_hypothesis_key
+        answer_key_for_examples = english_answer_key
+        few_shot_examples_to_use = english_few_shot_examples_list
+
+    else:  # Default to English instructions and English examples
+        instruction_block = """Text: '<PREMISE>'
+Hypothesis: '<HYPOTHESIS>'
+
+Determine if the hypothesis is ENTAILMENT, CONTRADICTION, or NEUTRAL with respect to the text. 
 
 Definitions:
 - ENTAILMENT: The hypothesis must be true if the text is true.
@@ -97,528 +142,267 @@ Definitions:
 
 Provide your answer as EXACTLY one of these three English labels: 'ENTAILMENT', 'CONTRADICTION', or 'NEUTRAL'.
 Your entire response must be only one of these three words. No other text, explanation, or punctuation is allowed."""
+        example_header_to_use = english_example_header
+        premise_key_for_examples = english_premise_key
+        hypothesis_key_for_examples = english_hypothesis_key
+        answer_key_for_examples = english_answer_key
+        few_shot_examples_to_use = english_few_shot_examples_list
 
-    # Few-shot examples (language-specific if available)
-    few_shot_examples = ""
-    
+    # Replace placeholders in the instruction block with actual premise/hypothesis
+    # Ensure premise and hypothesis are escaped for string formatting if they contain quotes
+    safe_premise = premise.replace("'", "\'")
+    safe_hypothesis = hypothesis.replace("'", "\'")
+    current_instruction = instruction_block.replace('<PREMISE>', safe_premise).replace('<HYPOTHESIS>', safe_hypothesis)
+
+    full_prompt = [current_instruction]
+
     if use_few_shot:
-        # English examples
-        if lang_code == "en":
-            few_shot_examples = """
-Example 1:
-Text: 'The chef is cooking a meal in the kitchen.'
-Hypothesis: 'The chef is preparing food.'
-Answer: ENTAILMENT
-
-Example 2:
-Text: 'The boy is playing soccer in the park.'
-Hypothesis: 'The boy is swimming in a pool.'
-Answer: CONTRADICTION
-
-Example 3:
-Text: 'The woman is walking down the street.'
-Hypothesis: 'She is going to the grocery store.'
-Answer: NEUTRAL
-
-"""
-        # Swahili examples
-        elif lang_code == "sw":
-            few_shot_examples = """
-Mfano 1:
-Maandishi: 'Mpishi anaandaa chakula jikoni.'
-Hipothesia: 'Mpishi anatayarisha chakula.'
-Jibu: ENTAILMENT
-
-Mfano 2:
-Maandishi: 'Mvulana anacheza mpira wa miguu katika bustani.'
-Hipothesia: 'Mvulana anaogelea katika bwawa.'
-Jibu: CONTRADICTION
-
-Mfano 3:
-Maandishi: 'Mwanamke anatembea barabarani.'
-Hipothesia: 'Anaelekea dukani.'
-Jibu: NEUTRAL
-
-"""
-        # Urdu examples
-        elif lang_code == "ur":
-            few_shot_examples = """
-مثال 1:
-متن: 'باورچی باورچی خانے میں کھانا پکا رہا ہے۔'
-مفروضہ: 'باورچی کھانا تیار کر رہا ہے۔'
-جواب: ENTAILMENT
-
-مثال 2:
-متن: 'لڑکا پارک میں فٹبال کھیل رہا ہے۔'
-مفروضہ: 'لڑکا سوئمنگ پول میں تیر رہا ہے۔'
-جواب: CONTRADICTION
-
-مثال 3:
-متن: 'ایک عورت گلی میں چل رہی ہے۔'
-مفروضہ: 'وہ گروسری سٹور جا رہی ہے۔'
-جواب: NEUTRAL
-
-"""
-        # Default to English examples if language-specific ones not available
-        else:
-            few_shot_examples = """
-Example 1:
-Text: 'The chef is cooking a meal in the kitchen.'
-Hypothesis: 'The chef is preparing food.'
-Answer: ENTAILMENT
-
-Example 2:
-Text: 'The boy is playing soccer in the park.'
-Hypothesis: 'The boy is swimming in a pool.'
-Answer: CONTRADICTION
-
-Example 3:
-Text: 'The woman is walking down the street.'
-Hypothesis: 'She is going to the grocery store.'
-Answer: NEUTRAL
-
-"""
+        full_prompt.append(f"\n{example_header_to_use}")
+        for ex in few_shot_examples_to_use:
+            # Ensure example premise/hypothesis are also escaped
+            safe_ex_premise = ex['premise'].replace("'", "\'")
+            safe_ex_hypothesis = ex['hypothesis'].replace("'", "\'")
+            full_prompt.append(f"{premise_key_for_examples}: '{safe_ex_premise}'\n{hypothesis_key_for_examples}: '{safe_ex_hypothesis}'\n{answer_key_for_examples}: {ex['answer']}\n")
     
-    # Replace instruction's placeholder with actual premise/hypothesis
-    instruction = instruction.replace('<PREMISE>', premise).replace('<HYPOTHESIS>', hypothesis)
-    
-    # Combine into the final prompt
-    if use_few_shot:
-        final_prompt = f"{instruction}\n\n{few_shot_examples}\nAnswer:"
-    else:
-        final_prompt = f"{instruction}\n\nAnswer:"
-    
-    return final_prompt
+    # The final query part (Text to classify and Answer prompt) should match the language of the main instruction block.
+    # For NLI, the prompt structure usually ends with "Label:" or similar, which should be in the instruction_lang_code.
+    if instruction_lang_code == "sw":
+        final_answer_prompt_key = "Jibu"
+    elif instruction_lang_code == "ur":
+        final_answer_prompt_key = "جواب" # Ensure this is the correct Urdu for "Answer/Label"
+    else: # English
+        final_answer_prompt_key = "Answer"
 
-def generate_lrl_instruct_nli_prompt(premise: str, hypothesis: str, lang_code: str = "sw", model_name: str = "", use_few_shot: bool = True) -> str:
+    full_prompt.append(f"\n{final_answer_prompt_key}:") # Final prompt for the model to complete
+    
+    return "\n".join(full_prompt)
+
+def extract_nli_label(output_text: str) -> str:
     """
-    Generate a prompt for NLI with instructions in the low-resource language.
-    
-    Args:
-        premise: The premise text in LRL
-        hypothesis: The hypothesis text in LRL
-        lang_code: Language code (e.g., "sw" for Swahili)
-        model_name: Name of the model for model-specific adjustments
-        use_few_shot: Whether to include few-shot examples in the prompt
-        
-    Returns:
-        A formatted prompt with instructions in the low-resource language
+    Extract NLI label from model output text, adapted from the old script.
+    Prioritizes exact matches to 'ENTAILMENT', 'CONTRADICTION', 'NEUTRAL' (case-insensitive for matching).
     """
-    # Base instructions in different languages
-    if lang_code == "sw":  # Swahili
-        instruction = """Amua ikiwa dhana inathihirisha wazo, inapingana nalo, au si vyovyote (katikati).
-Jibu kwa kutumia MOJA TU ya lebo hizi za Kiingereza: 'entailment', 'contradiction', au 'neutral'.
-- 'entailment' inamaanisha kuwa wazo ni kweli kabisa kutokana na dhana
-- 'contradiction' inamaanisha kuwa wazo si kweli kabisa kutokana na dhana
-- 'neutral' inamaanisha kuwa wazo linaweza kuwa kweli au si kweli kutokana na dhana
-Jibu lako lazima liwe neno MOJA TU kati ya hayo matatu ya Kiingereza. Hakuna maandishi mengine, maelezo, au alama za uakifishaji zinazoruhusiwa."""
-    elif lang_code == "ha":  # Hausa
-        instruction = """Ƙyale ko magana tana tabbatar da ra'ayi, ko tana sabawa da shi, ko ba kowa (neutral).
-Amsa da DAYA KAWAI daga cikin waɗannan lakabin Turanci: 'entailment', 'contradiction', ko 'neutral'.
-- 'entailment' na nufin ra'ayi tabbas gaskiya ne bisa ga magana
-- 'contradiction' na nufin ra'ayi tabbas ƙarya ne bisa ga magana
-- 'neutral' na nufin ra'ayi zai iya zama gaskiya ko ƙarya bisa ga magana
-Amsarka dole ta zama DAYA KAWAI daga cikin waɗannan kalmomi uku na Turanci. Ba a yarda da wani rubutu, bayani, ko alamar rubutu ba."""
-    elif lang_code == "te":  # Telugu
-        instruction = """ప్రతిపాదన పరికల్పనను అంగీకరిస్తోందో, వ్యతిరేకిస్తోందో లేదా ఏదీ కాదు (neutral) అని నిర్ణయించండి.
-ఈ మూడు ఇంగ్లీష్ లేబుల్‌లలో ఖచ్చితంగా ఒకదానితో మాత్రమే సమాధానం ఇవ్వండి: 'entailment', 'contradiction', లేదా 'neutral'.
-- 'entailment' అంటే ప్రతిపాదన ప్రకారం పరికల్పన ఖచ్చితంగా సత్యం
-- 'contradiction' అంటే ప్రతిపాదన ప్రకారం పరికల్పన ఖచ్చితంగా అసత్యం
-- 'neutral' అంటే ప్రతిపాదన ప్రకారం పరికల్పన సత్యం కావచ్చు లేదా కాకపోవచ్చు
-మీ సమాధానం ఈ మూడు ఆంగ్ల పదాలలో ఖచ్చితంగా ఒకటి మాత్రమే అయి ఉండాలి. ఇతర వచనం, వివరణ లేదా విరామచిహ్నాలకు అనుమతి లేదు."""
-    else:  # Default to English
-        instruction = """Determine whether the premise entails the hypothesis, contradicts it, or neither (neutral).
-Answer with EXACTLY one of the following English labels: 'entailment', 'contradiction', or 'neutral'.
-- 'entailment' means the hypothesis is definitely true given the premise
-- 'contradiction' means the hypothesis is definitely false given the premise
-- 'neutral' means the hypothesis may or may not be true given the premise
-Your entire response must be only one of these three English words. No other text, explanation, or punctuation is allowed."""
+    text_cleaned = output_text.strip()
+    text_lower = text_cleaned.lower()
 
-    # Examples in the appropriate language - only included in few-shot mode
-    examples_text = ""
-    
-    if use_few_shot:
-        # Indent this entire block defining examples
-    if lang_code == "sw":  # Swahili
-            examples_text = """Mifano:
-Dhana: 'Mwanamke alivaa koti jekundu amesimama katika kituo cha basi.'
-Wazo: 'Mwanamke alivaa koti jekundu.'
-Jibu: entailment
+    # Priority 1: Check for exact full-string matches of the expected English labels (case-insensitive)
+    for label in EXPECTED_NLI_LABELS:
+        if text_lower == label:
+            logging.debug(f"Extracted NLI label (exact match): '{label}' from '{text_cleaned}'")
+            return label
 
-Dhana: 'Msichana anacheza na mbwa wake kwenye uwanja wa majani.'
-Wazo: 'Msichana yuko pwani akiogelea baharini.'
-Jibu: contradiction
-
-Dhana: 'Wanafunzi wanasoma vitabu vyao darasani.'
-Wazo: 'Wanafunzi wanapenda kusoma.'
-Jibu: neutral
-
-Dhana: 'Mkulima anawanywesha maji mazao yake.'
-Wazo: 'Mazao yanapata maji kutoka kwa mkulima.'
-Jibu: entailment
-"""
-    elif lang_code == "ha":  # Hausa
-            examples_text = """Misalai:
-Magana: 'Wata mata mai sa jar riga tana tsaye a tsutsar bas.'
-Ra'ayi: 'Wata mata ta sa jar riga.'
-Amsa: entailment
-
-Magana: 'Yarinya tana wasa da kare a filin ciyawa.'
-Ra'ayi: 'Yarinya tana iyo a bakin teku.'
-Amsa: contradiction
-
-Magana: 'Ɗalibai suna karatu a aji.'
-Ra'ayi: 'Ɗalibai suna jin daɗin karatu.'
-Amsa: neutral
-
-Magana: 'Wani manomi yana shayar da gonakinsa ruwa.'
-Ra'ayi: 'Gonaki suna samun ruwa daga manomi.'
-Amsa: entailment
-"""
-    elif lang_code == "te":  # Telugu
-            examples_text = """ఉదాహరణలు:
-ప్రతిపాదన: 'ఒక మహిళ ఎరుపు కోటు వేసుకుని బస్ స్టాండులో నిలబడి ఉంది.'
-పరికల్పన: 'ఒక మహిళ ఎరుపు కోటు వేసుకుంది.'
-సమాధానం: entailment
-
-ప్రతిపాదన: 'ఒక అమ్మాయి పచ్చిక బయలులో తన కుక్కతో ఆడుతోంది.'
-పరికల్పన: 'ఒక అమ్మాయి సముద్రంలో ఈదుతోంది.'
-సమాధానం: contradiction
-
-ప్రతిపాదన: 'విద్యార్థులు తరగతిలో తమ పుస్తకాలు చదువుతున్నారు.'
-పరికల్పన: 'విద్యార్థులకు చదవడం అంటే ఇష్టం.'
-సమాధానం: neutral
-
-ప్రతిపాదన: 'ఒక రైతు తన పంటలకు నీరు పోస్తున్నాడు.'
-పరికల్పన: 'పంటలు రైతు నుండి నీరు పొందుతున్నాయి.'
-సమాధానం: entailment
-"""
-    else:  # Default English examples
-            examples_text = """Examples:
-Premise: 'A woman wearing a red coat is standing at a bus stop.'
-Hypothesis: 'A woman is wearing a red coat.'
-Answer: entailment
-
-Premise: 'A girl is playing with her dog in a grassy field.'
-Hypothesis: 'A girl is at the beach swimming in the ocean.'
-Answer: contradiction
-
-Premise: 'Students are reading their books in class.'
-Hypothesis: 'The students enjoy reading.'
-Answer: neutral
-
-Premise: 'A farmer is watering his crops in the field.'
-Hypothesis: 'The crops are receiving water from the farmer.'
-Answer: entailment
-"""
-
-    # Final prompt in the appropriate language format
-    if lang_code == "sw":  # Swahili format
-        prompt = f"Dhana: '{premise}'\nWazo: '{hypothesis}'\n\n{instruction}\n\n{examples_text}\nJibu:"
-    elif lang_code == "ha":  # Hausa format
-        prompt = f"Magana: '{premise}'\nRa'ayi: '{hypothesis}'\n\n{instruction}\n\n{examples_text}\nAmsa:"
-    elif lang_code == "te":  # Telugu format
-        prompt = f"ప్రతిపాదన: '{premise}'\nపరికల్పన: '{hypothesis}'\n\n{instruction}\n\n{examples_text}\nసమాధానం:"
-    else:  # Default English format
-        prompt = f"Premise: '{premise}'\nHypothesis: '{hypothesis}'\n\n{instruction}\n\n{examples_text}\nAnswer:"
-    
-    return prompt
-
-def extract_nli_label(output_text, normalize=True):
-    """
-    Extract NLI label from model output text with improved accuracy.
-    
-    Args:
-        output_text: Raw text generated by the model
-        normalize: Whether to normalize the label
-        
-    Returns:
-        Extracted label: one of "entailment", "contradiction", "neutral"
-    """
-    # Convert to lowercase for matching and strip whitespace
-    text = output_text.lower().strip()
-    
-    # First, look for capitalized labels that might be direct responses
-    # from the structured prompt with exactly matched labels
-    if "ENTAILMENT" in output_text:
+    # Priority 2: Check if the raw output *contains* the capitalized versions (as requested by prompt)
+    # This can catch cases where the model might add minimal extra tokens like a period.
+    if "ENTAILMENT" in text_cleaned:
+        logging.debug(f"Extracted NLI label (contains capitalized): 'entailment' from '{text_cleaned}'")
         return "entailment"
-    elif "CONTRADICTION" in output_text:
+    elif "CONTRADICTION" in text_cleaned:
+        logging.debug(f"Extracted NLI label (contains capitalized): 'contradiction' from '{text_cleaned}'")
         return "contradiction"
-    elif "NEUTRAL" in output_text:
+    elif "NEUTRAL" in text_cleaned:
+        logging.debug(f"Extracted NLI label (contains capitalized): 'neutral' from '{text_cleaned}'")
         return "neutral"
     
-    # If no exact capitalized match, look for patterns in the output
-    # Try to find the label closest to the start of the response (highest priority)
-    label_positions = {
-        'entailment': text.find('entailment'),
-        'contradiction': text.find('contradiction'),
-        'neutral': text.find('neutral')
-    }
-    
-    # Filter out labels that aren't present (-1)
-    label_positions = {k: v for k, v in label_positions.items() if v != -1}
+    # Priority 3: Find the label closest to the start of the lowercase response if multiple are present
+    label_positions = {}
+    for label in EXPECTED_NLI_LABELS:
+        pos = text_lower.find(label)
+        if pos != -1:
+            label_positions[label] = pos
     
     if label_positions:
         # Return the label that appears first in the text
-        return min(label_positions.items(), key=lambda x: x[1])[0]
+        best_match_by_pos = min(label_positions.items(), key=lambda x: x[1])[0]
+        logging.debug(f"Extracted NLI label (first occurrence): '{best_match_by_pos}' from '{text_cleaned}'")
+        return best_match_by_pos
     
-    # Look for abbreviated or partial matches
-    if 'enta' in text or 'entail' in text:
+    # Fallback: Old script had language-specific keywords. Retaining some simple ones for English as a last resort.
+    # These are less reliable as the prompt strictly asks for the three main labels.
+    if any(term in text_lower for term in ['yes', 'follows', 'must be true', 'is true', 'has to be true']):
+        logging.debug(f"Extracted NLI label (synonym): 'entailment' from '{text_cleaned}'")
         return 'entailment'
-    elif 'contra' in text or 'contrad' in text:
+    elif any(term in text_lower for term in ['no', 'not true', 'cannot be true', 'opposite', 'disagree']):
+        logging.debug(f"Extracted NLI label (synonym): 'contradiction' from '{text_cleaned}'")
         return 'contradiction'
-    elif 'neut' in text:
-        return 'neutral'
     
-    # Look for common synonyms or alternative expressions
-    if any(term in text for term in ['yes', 'follows', 'must be true', 'is true', 'has to be true']):
-        return 'entailment'
-    elif any(term in text for term in ['no', 'not true', 'cannot be true', 'opposite', 'disagree']):
-        return 'contradiction'
-    elif any(term in text for term in ['maybe', 'unknown', 'not enough', 'insufficient', 'could be']):
-        return 'neutral'
-    
-    # Additional language-specific matches
-    # Swahili
-    if 'lazima' in text or 'ni kweli' in text:  # Must be true, is true
-        return 'entailment'
-    elif 'haiwezi' in text or 'si kweli' in text:  # Cannot be, is not true
-        return 'contradiction'
-    elif 'inaweza' in text or 'huenda' in text:  # Might be, perhaps
-        return 'neutral'
-    
-    # Hausa
-    if 'dole' in text or 'gaskiya' in text:  # Must, truth
-        return 'entailment'
-    elif 'ba zai' in text or 'ƙarya' in text:  # Cannot, false
-        return 'contradiction'
-    elif 'iya zama' in text or 'wata' in text:  # Can be, some
-        return 'neutral'
-    
-    # Default to most common label or neutral if nothing found
-    return 'contradiction'
+    logging.warning(f"Could not reliably extract NLI label from '{text_cleaned[:100]}...'. Defaulting to 'unknown'.")
+    return "unknown" # Default to unknown if no clear label is found
 
 def process_nli_baseline(
-    model,
-    tokenizer, 
-    premise, 
-    hypothesis, 
-    lang_code="en",
-    temperature=0.7,
-    max_new_tokens=30,
-    do_sample=True,
-    use_few_shot=True,
-    prompt_in_lrl=False,
-    top_p: float = 0.92,
-    top_k: int = 40,
-    repetition_penalty: float = 1.0
-):
-    """Process a single NLI example using the improved baseline approach."""
-    import time
-    import torch
-    
-    # Generate the prompt
+    model: Any,
+    tokenizer: Any, 
+    premise: str, 
+    hypothesis: str, 
+    instruction_lang_code: str, # Language for the prompt structure
+    use_few_shot: bool,
+    generation_params: Dict[str, Any],
+    model_name_for_logging: str # For more informative logs
+) -> Dict[str, Any]:
+    """Process a single NLI example."""
     start_time = time.time()
     
     prompt = generate_nli_prompt(
         premise, 
         hypothesis, 
-        lang_code=lang_code, 
-        use_few_shot=use_few_shot,
-        prompt_in_lrl=prompt_in_lrl
+        instruction_lang_code=instruction_lang_code, 
+        use_few_shot=use_few_shot
     )
     
-    # Debug: Print the prompt being used (truncated for readability)
-    print(f"\nPrompt for NLI ({lang_code}):")
-    print(f"{prompt[:200]}... (truncated)")
+    # Log the first 300 characters of the prompt for inspection
+    logging.debug(f"NLI Prompt ({instruction_lang_code}, Few-shot: {use_few_shot}) for {model_name_for_logging}:\n{prompt[:300]}...")
         
-    # Generate response
-    inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
-    
-    # Adjust parameters by language for better results
-    current_repetition_penalty = repetition_penalty # Use passed-in value
-    current_temperature = temperature
-    current_top_p = top_p
-    current_top_k = top_k
+    # Ensure prompt is a single string
+    if not isinstance(prompt, str):
+        logging.error(f"CRITICAL: Prompt is not a string! Type: {type(prompt)}. Value: {prompt}")
+        # Handle error appropriately, e.g., by returning an error state
+        return {"predicted_label": "error_prompt_type", "raw_model_output": "Prompt was not a string", "runtime": 0.0}
 
-    if lang_code != "en":
-        # START Indented block for the 'if'
-        current_temperature = max(0.08, temperature * 0.8)
-        current_top_p = min(0.95, top_p * 1.05)  # Slightly higher top_p for more diversity
-        current_repetition_penalty = repetition_penalty * 1.1  # Slightly higher to prevent repetition
-        # END Indented block for the 'if'
+    inputs = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=2048)
     
-    # This 'with' block should be at the same indentation level as the 'if' statement above.
+    # Move all tensors in inputs to the model's device
+    # And ensure they are indeed tensors of the correct type
+    if 'input_ids' not in inputs or not hasattr(inputs['input_ids'], 'to'):
+        logging.error(f"CRITICAL: 'input_ids' not found in tokenizer output or not a tensor. Output: {inputs}")
+        return {"predicted_label": "error_tokenization", "raw_model_output": "Tokenization failed to produce input_ids tensor", "runtime": 0.0}
+
+    input_ids = inputs['input_ids'].to(model.device)
+    attention_mask = inputs['attention_mask'].to(model.device)
+
+    # --- DEBUG PRINTS ---
+    print(f"DEBUG NLI BASELINE (process_nli_baseline): type(prompt): {type(prompt)}")
+    print(f"DEBUG NLI BASELINE (process_nli_baseline): input_ids type: {type(input_ids)}, shape: {input_ids.shape}, dtype: {input_ids.dtype}, device: {input_ids.device}")
+    print(f"DEBUG NLI BASELINE (process_nli_baseline): attention_mask type: {type(attention_mask)}, shape: {attention_mask.shape}, dtype: {attention_mask.dtype}, device: {attention_mask.device}")
+    # print(f"DEBUG NLI BASELINE: input_ids content (first 50 tokens): {input_ids[:, :50]}") # Can be very verbose
+    # --- END DEBUG PRINTS ---
+
+    # Use generation parameters
+    actual_do_sample = generation_params.get("do_sample", True) # Default to True if not specified
+    if generation_params.get("temperature", 0.1) <= 0.01 and "do_sample" not in generation_params : # if temp is very low and do_sample not explicitly set
+         actual_do_sample = False # Override to False for greedy decoding if temp is effectively 0
+
+    raw_model_response = "[Generation Error]"
+    predicted_label = "error" # Default in case of issues
+
+    try:
         with torch.no_grad():
-        outputs = model.generate(
-                **inputs,
-                max_new_tokens=max_new_tokens,
-            temperature=current_temperature,
-            do_sample=do_sample,
-            top_p=current_top_p,
-            top_k=current_top_k,
-            repetition_penalty=current_repetition_penalty,
-            pad_token_id=tokenizer.eos_token_id,
-            num_return_sequences=1
+            outputs = model.generate(
+                input_ids, # Pass the tensor directly
+                attention_mask=attention_mask, # Pass the tensor directly
+                max_new_tokens=generation_params.get("max_tokens", 10), # Default if not provided
+                temperature=generation_params.get("temperature", 0.1),
+                do_sample=actual_do_sample,
+                top_p=generation_params.get("top_p", 0.9), # Added top_p
+                top_k=generation_params.get("top_k", 40),   # Added top_k
+                repetition_penalty=generation_params.get("repetition_penalty", 1.0), # Added repetition_penalty
+                pad_token_id=tokenizer.pad_token_id if tokenizer.pad_token_id is not None else tokenizer.eos_token_id,
+                num_return_sequences=1
             )
         
-    # Get the generated text
-    response = tokenizer.decode(outputs[0][inputs.input_ids.shape[1]:], skip_special_tokens=True)
-    response = response.strip()
-    
-    # Debug: Print raw model response
-    print(f"\nRaw model response: '{response}'")
-    
-    # Extract the predicted label
-    predicted_label = extract_nli_label(response)
-    
-    # Debug: Print extracted label
-    print(f"Extracted label: '{predicted_label}'")
-    
-    # Calculate runtime
+        raw_model_response = tokenizer.decode(outputs[0][input_ids.shape[1]:], skip_special_tokens=True).strip()
+        logging.debug(f"Raw NLI model response from {model_name_for_logging}: '{raw_model_response}'")
+        predicted_label = extract_nli_label(raw_model_response)
+        logging.debug(f"Extracted NLI label for {model_name_for_logging}: '{predicted_label}'")
+
+    except Exception as e:
+        logging.error(f"Error during NLI processing for {model_name_for_logging}, premise '{premise[:50]}...': {e}", exc_info=True)
+        # predicted_label remains "error", raw_model_response might hold error string or last value
+        if isinstance(e, torch.cuda.OutOfMemoryError):
+            raw_model_response = "[CUDA OOM Error]"
+            torch.cuda.empty_cache() # Attempt to clear cache
+        else:
+            raw_model_response = f"[Exception: {str(e)}]"
+        
     runtime = time.time() - start_time
     
     return {
         "predicted_label": predicted_label,
-        "raw_response": response,
+        "raw_model_output": raw_model_response, # Changed key for consistency
         "runtime_seconds": runtime
     }
 
 def evaluate_nli_baseline(
-    model_name,
-    samples_df,
-    lang_code,
-    prompt_in_lrl=False,
-    temperature=0.3,
-    max_new_tokens=20,
-    do_sample=False,
-    use_few_shot=True,
-    top_p: float = 0.9,
-    top_k: int = 40,
-    repetition_penalty: float = 1.0
-):
+    model_name: str,
+    tokenizer: Any,
+    model: Any,
+    samples_df: pd.DataFrame,
+    data_lang_code: str, # The actual language of the premise/hypothesis in samples_df
+    prompt_in_lrl: bool,
+    use_few_shot: bool,  
+    generation_params: Dict[str, Any]
+) -> pd.DataFrame:
     """
     Evaluate NLI performance using the baseline approach.
-    
-    Args:
-        model_name: Name of the model to use
-        samples_df: DataFrame containing NLI samples
-        lang_code: Language code
-        prompt_in_lrl: Whether to use low-resource language for prompt instructions
-        temperature: Temperature for generation
-        max_new_tokens: Maximum new tokens to generate
-        do_sample: Whether to use sampling instead of greedy decoding
-        use_few_shot: Whether to use few-shot examples
-        top_p: Top-p parameter for generation
-        top_k: Top-k parameter for generation
-        repetition_penalty: Repetition penalty for generation
-        
-    Returns:
-        DataFrame with results
+    `data_lang_code` is the language of the text samples.
+    `prompt_in_lrl` determines if instructions are in `data_lang_code` or English.
     """
-    import torch
-    import time
-    from tqdm import tqdm
-    from transformers import AutoModelForCausalLM, AutoTokenizer
-    
-    print(f"\nInitializing {model_name}...")
-    
-    # Initialize model
-    model, tokenizer = initialize_model(model_name)
-    model.eval()  # Set to evaluation mode
-    
-    # Process all samples
     results = []
-    start_time = time.time()
     
-    # Print sample counts
-    print(f"Processing {len(samples_df)} samples for {lang_code}...")
+    # Determine the language for prompt instructions
+    # If prompt_in_lrl is True, instructions are in data_lang_code.
+    # Otherwise, instructions are in English.
+    instruction_lang_for_prompt = data_lang_code if prompt_in_lrl and data_lang_code != "en" else "en"
     
-    # Check if we have original_lang information in the dataset
-    has_original_lang = 'original_lang' in samples_df.columns
-    if has_original_lang:
-        print(f"Found 'original_lang' column in dataset - will use actual language for text if different from {lang_code}")
-        # Check if there are any fallbacks
-        fallback_count = samples_df['is_fallback'].sum() if 'is_fallback' in samples_df.columns else 0
-        if fallback_count > 0:
-            print(f"WARNING: {fallback_count} samples are using fallback language rather than {lang_code}!")
+    shot_description = "few-shot" if use_few_shot else "zero-shot"
+    prompt_lang_description = "LRL-instruct" if prompt_in_lrl and data_lang_code != 'en' else "EN-instruct"
+
+    logging.info(f"Evaluating NLI for Model: {model_name}, Data Lang: {data_lang_code}, Prompt Instruct Lang: {instruction_lang_for_prompt}, Shot: {shot_description}")
     
-    for idx, row in tqdm(samples_df.iterrows(), total=len(samples_df), desc=f"Processing {lang_code} samples"):
-        premise = row['premise']
-        hypothesis = row['hypothesis']
-        ground_truth = row['label']  # Use consistent column name
+    for idx, row in tqdm(samples_df.iterrows(), total=len(samples_df), desc=f"Processing NLI {data_lang_code} ({prompt_lang_description}, {shot_description})"):
+        premise = str(row['premise'])
+        hypothesis = str(row['hypothesis'])
         
-        # Use original_lang for processing if available, otherwise use lang_code
-        # This ensures we're using the appropriate language instructions for the actual text
-        text_lang = row['original_lang'] if has_original_lang else lang_code
-        
-        # Process the NLI example
-        result = process_nli_baseline(
-            model,
-                tokenizer, 
-                premise, 
-                hypothesis, 
-            lang_code=text_lang,  # Use the actual language of the text
-            temperature=temperature,
-            max_new_tokens=max_new_tokens,
-            do_sample=do_sample,
-            use_few_shot=use_few_shot,
-            prompt_in_lrl=prompt_in_lrl,
-            top_p=top_p,
-            top_k=top_k,
-            repetition_penalty=repetition_penalty
-            )
+        # Ensure ground_truth_label is string (e.g., "entailment")
+        # Input df might have numeric labels (0,1,2) or string labels.
+        if 'label' in row:
+            gt_val = row['label']
+            if isinstance(gt_val, (int, np.integer)): # if it's numeric (0,1,2)
+                ground_truth_label = NLI_LABEL_MAP_FROM_NUMERIC.get(gt_val, "unknown")
+            else: # assume it's already a string label
+                ground_truth_label = str(gt_val).lower().strip()
+        else:
+            ground_truth_label = "unknown" # Fallback if no label column
+
+        if not premise or not hypothesis:
+            logging.warning(f"Skipping sample {idx} due to missing premise or hypothesis.")
+            results.append({
+                'id': row.get('id', idx),
+                'premise': premise,
+                'hypothesis': hypothesis,
+                'ground_truth_label': ground_truth_label,
+                'predicted_label': "error_empty_input",
+                'raw_model_output': "Input premise or hypothesis was empty.",
+                'runtime_seconds': 0,
+                'data_language': data_lang_code,
+                'prompt_instruction_language': instruction_lang_for_prompt,
+                'shot_type': shot_description
+            })
+            continue
             
-        # Add sample and result information
-        result.update({
-                "premise": premise,
-                "hypothesis": hypothesis,
-            "gold_label": ground_truth,  # Use consistent column name for metrics calculation
-            "language": lang_code,      # The requested language
-            "text_language": text_lang, # The actual language of the text
-            "prompt_language": "LRL" if prompt_in_lrl else "EN",
-            "is_fallback": row.get('is_fallback', False) if has_original_lang else False
+        result_dict = process_nli_baseline(
+            model,
+            tokenizer, 
+            premise, 
+            hypothesis, 
+            instruction_lang_code=instruction_lang_for_prompt,
+            use_few_shot=use_few_shot,
+            generation_params=generation_params,
+            model_name_for_logging=model_name # Pass the string model name
+        )
+            
+        results.append({
+            'id': row.get('id', idx), # Assuming an 'id' column might exist
+            'premise': premise,
+            'hypothesis': hypothesis,
+            'ground_truth_label': ground_truth_label,
+            'predicted_label': result_dict["predicted_label"],
+            'raw_model_output': result_dict["raw_model_output"],
+            'runtime_seconds': result_dict["runtime_seconds"],
+            'data_language': data_lang_code, # Actual language of the text
+            'prompt_instruction_language': instruction_lang_for_prompt, # Language of the prompt's instructions
+            'shot_type': shot_description
         })
-        
-            results.append(result)
     
-    # Create results DataFrame
-    total_runtime = time.time() - start_time
-    results_df = pd.DataFrame(results)
-    
-    # Debug: Check the columns in the DataFrame
-    print("\nColumns in results DataFrame:")
-    for col in results_df.columns:
-        print(f"  - {col}")
-    
-    # Debug: Check a sample of predictions
-    print("\nSample of predictions:")
-    if not results_df.empty:
-        sample_size = min(5, len(results_df))
-        for i in range(sample_size):
-            row = results_df.iloc[i]
-            print(f"\nExample {i+1}:")
-            print(f"  Premise: {row['premise'][:50]}...")
-            print(f"  Hypothesis: {row['hypothesis'][:50]}...")
-            print(f"  Gold label: {row['gold_label']}")
-            print(f"  Predicted label: {row['predicted_label']}")
-            if has_original_lang:
-                print(f"  Text language: {row['text_language']} (requested: {row['language']})")
-            print(f"  Raw response: {row['raw_response']}")
-    
-    # Add experiment information
-    results_df['model'] = model_name
-    results_df['temperature'] = temperature
-    results_df['max_new_tokens'] = max_new_tokens
-    results_df['do_sample'] = do_sample
-    results_df['top_p'] = top_p
-    results_df['top_k'] = top_k
-    results_df['repetition_penalty'] = repetition_penalty
-    results_df['runtime_seconds'] = total_runtime
-    results_df['runtime_per_sample'] = total_runtime / len(samples_df) if len(samples_df) > 0 else 0
-    results_df['few_shot'] = use_few_shot
-    
-    return results_df
+    return pd.DataFrame(results)
 
 def calculate_nli_metrics(results_df):
     """
@@ -696,7 +480,7 @@ def calculate_nli_metrics(results_df):
                 'precision': class_report[label]['precision'],
                 'recall': class_report[label]['recall'],
                 'f1': class_report[label]['f1-score']
-        }
+            }
     
     # Print classification report for debugging
     print("\nDetailed Classification Report:")

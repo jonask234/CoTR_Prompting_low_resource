@@ -3,29 +3,38 @@ import os
 import argparse
 import pandas as pd
 import numpy as np
-from sklearn.metrics import accuracy_score, f1_score, classification_report, confusion_matrix
+from sklearn.metrics import accuracy_score, f1_score, classification_report, confusion_matrix, precision_score, recall_score
 import matplotlib.pyplot as plt
 import seaborn as sns
 import random
 from collections import Counter
 import time
+from typing import List, Dict, Any
 
 # Add project root to Python path
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..'))
 sys.path.insert(0, project_root)
 
 # Import utility functions
-from src.utils.data_loaders.load_afrinli import load_afrinli_samples
+from src.utils.data_loaders.load_xnli import load_xnli_samples
+
+NLI_LABELS = ['entailment', 'neutral', 'contradiction']
+# Mapping from numeric XNLI labels if they appear (0: entailment, 1: neutral, 2: contradiction)
+XNLI_NUMERIC_TO_STR_LABEL_MAP = {0: 'entailment', 1: 'neutral', 2: 'contradiction'}
 
 def parse_args():
     """Parse command line arguments."""
-    parser = argparse.ArgumentParser(description="Run NLI simple baselines")
+    parser = argparse.ArgumentParser(description="Run NLI Fixed Prediction Baselines.")
     parser.add_argument("--langs", nargs='+', default=['en', 'sw', 'ur'], 
-                        help="Languages to test (default: en, sw, ur)")
-    parser.add_argument("--samples", type=int, default=None,
-                        help="Number of samples to use per language (default: all)")
+                        help="Languages to test (default: en, sw, ur for XNLI).")
+    parser.add_argument("--split", type=str, default="test", 
+                        help="Dataset split to use (default: test). XNLI typically uses 'validation' or 'test'.")
+    parser.add_argument("--sample_percentage", type=float, default=10.0,
+                        help="Percentage of samples to use from the specified split (default: 10.0 for 10%%).")
+    parser.add_argument("--output_dir", type=str, default="/work/bbd6522/results/nli/simple_baselines_fixed",
+                        help="Base output directory for results and summaries.")
     parser.add_argument("--seed", type=int, default=42,
-                        help="Random seed for reproducibility")
+                        help="Random seed for reproducibility in sampling.")
     return parser.parse_args()
 
 def majority_baseline(samples_df):
@@ -537,7 +546,7 @@ def main():
     np.random.seed(args.seed)
     
     # Create output directories
-    output_dir = "/work/bbd6522/results/nli/simple_baselines"
+    output_dir = args.output_dir
     summaries_dir = os.path.join(output_dir, 'summaries')
     os.makedirs(summaries_dir, exist_ok=True)
     
@@ -546,66 +555,113 @@ def main():
     
     # Process each language
     for lang_code in args.langs:
-        print(f"\n=== Processing {lang_code} ===")
+        print(f"\n=== Processing NLI Fixed Prediction Baselines for Language: {lang_code} ===")
         
-        # Load samples
-        full_samples_df = load_afrinli_samples(lang_code, num_samples=None, split='test')
-        
-        if full_samples_df.empty:
-            print(f"WARNING: No samples loaded for {lang_code}. Skipping.")
+        try:
+            print(f"Loading {args.sample_percentage}%% of '{args.split}' XNLI samples for {lang_code} with seed {args.seed}...")
+            # load_xnli_samples handles sample_percentage and uses seed for its internal sampling if applicable.
+            samples_df = load_xnli_samples(
+                lang_code=lang_code, 
+                split=args.split, 
+                sample_percentage=args.sample_percentage, # Pass sample_percentage
+                # load_xnli_samples uses .sample(random_state=...) so seed is passed implicitly via its structure
+                # if it needs to sample. The seed set globally also helps.
+            )
+            
+            if samples_df.empty:
+                print(f"No XNLI samples loaded for {lang_code} on split '{args.split}' with {args.sample_percentage}%% sampling. Skipping.")
+                continue
+
+            # The manual sampling block below is no longer needed as the loader handles it.
+            # num_to_sample = int(len(all_samples_df) * (args.sample_percentage / 100.0))
+            # if num_to_sample == 0 and len(all_samples_df) > 0:
+            #     num_to_sample = 1
+            # 
+            # if num_to_sample == 0:
+            #      print(f"Calculated 0 samples to select for {lang_code} with {args.sample_percentage}%%. Skipping.")
+            #      continue
+            #
+            # print(f"Total XNLI samples for {lang_code} ({args.split}): {len(all_samples_df)}. Sampling {num_to_sample} ({args.sample_percentage}%%).")
+            # samples_df = all_samples_df.sample(n=num_to_sample, random_state=args.seed)
+            
+            if 'label' not in samples_df.columns:
+                print(f"No 'label' column found after loading XNLI samples for {lang_code}. Skipping.")
+                continue
+            print(f"Successfully loaded {len(samples_df)} XNLI samples for {lang_code}.")
+
+        except Exception as e:
+            print(f"Error loading or sampling XNLI data for {lang_code}: {e}")
             continue
         
-        total_loaded = len(full_samples_df)
-        print(f"Loaded {total_loaded} samples for {lang_code}.")
+        # Normalize ground truth labels (XNLI can be numeric)
+        # Ensure labels are strings: 'entailment', 'neutral', 'contradiction'
+        if pd.api.types.is_numeric_dtype(samples_df['label']):
+            samples_df['label'] = samples_df['label'].map(XNLI_NUMERIC_TO_STR_LABEL_MAP)
         
-        # Sample if requested
-        if args.samples is not None:
-            num_to_sample = min(total_loaded, args.samples)
-            print(f"Sampling {num_to_sample} samples...")
-            samples_df = full_samples_df.sample(n=num_to_sample, random_state=args.seed)
-        else:
-            samples_df = full_samples_df
+        # Convert to list and ensure all are valid strings from NLI_LABELS
+        ground_truth_labels = samples_df['label'].astype(str).str.lower().str.strip().tolist()
+        valid_gt_labels = [lbl for lbl in ground_truth_labels if lbl in NLI_LABELS]
+        if len(valid_gt_labels) != len(ground_truth_labels):
+            print(f"Warning: Some ground truth labels for {lang_code} were not standard NLI labels and were filtered.")
+        ground_truth_labels = valid_gt_labels
         
-        # Run all simple baselines
-        _, summary_df = run_simple_baselines(samples_df, lang_code, output_dir, args.seed)
-        all_summaries.append(summary_df)
+        if not ground_truth_labels:
+            print(f"No valid ground truth labels found for {lang_code} after processing. Skipping.")
+            continue
+
+        # Iterate through each possible NLI label and predict it for all samples
+        for fixed_label_to_predict in NLI_LABELS:
+            print(f"  Evaluating fixed prediction of: '{fixed_label_to_predict}' for {lang_code}")
+            
+            predicted_labels = [fixed_label_to_predict] * len(ground_truth_labels)
+            
+            accuracy = accuracy_score(ground_truth_labels, predicted_labels)
+            macro_f1 = f1_score(ground_truth_labels, predicted_labels, labels=NLI_LABELS, average='macro', zero_division=0)
+            macro_precision = precision_score(ground_truth_labels, predicted_labels, labels=NLI_LABELS, average='macro', zero_division=0)
+            macro_recall = recall_score(ground_truth_labels, predicted_labels, labels=NLI_LABELS, average='macro', zero_division=0)
+            
+            weighted_f1 = f1_score(ground_truth_labels, predicted_labels, labels=NLI_LABELS, average='weighted', zero_division=0)
+            weighted_precision = precision_score(ground_truth_labels, predicted_labels, labels=NLI_LABELS, average='weighted', zero_division=0)
+            weighted_recall = recall_score(ground_truth_labels, predicted_labels, labels=NLI_LABELS, average='weighted', zero_division=0)
+
+            print(f"    Lang: {lang_code}, Fixed Prediction: '{fixed_label_to_predict}'")
+            print(f"    Accuracy: {accuracy:.4f}")
+            print(f"    Macro F1: {macro_f1:.4f}, Precision: {macro_precision:.4f}, Recall: {macro_recall:.4f}")
+            print(f"    Weighted F1: {weighted_f1:.4f}, Precision: {weighted_precision:.4f}, Recall: {weighted_recall:.4f}")
+
+            report_dict = classification_report(ground_truth_labels, predicted_labels, labels=NLI_LABELS, output_dict=True, zero_division=0)
+
+            summary_entry = {
+                "language": lang_code,
+                "baseline_strategy": f"fixed_predict_{fixed_label_to_predict}",
+                "num_samples": len(samples_df), # Number of samples used for this lang after sampling
+                "accuracy": accuracy,
+                "macro_f1": macro_f1,
+                "macro_precision": macro_precision,
+                "macro_recall": macro_recall,
+                "weighted_f1": weighted_f1,
+                "weighted_precision": weighted_precision,
+                "weighted_recall": weighted_recall,
+            }
+            
+            for label_name in NLI_LABELS:
+                metrics = report_dict.get(label_name, {'precision': 0, 'recall': 0, 'f1-score': 0})
+                summary_entry[f"{label_name}_precision"] = metrics['precision']
+                summary_entry[f"{label_name}_recall"] = metrics['recall']
+                summary_entry[f"{label_name}_f1-score"] = metrics['f1-score']
+            
+            all_summaries.append(summary_entry)
     
     # Combine all summaries for cross-language comparison
     if all_summaries:
-        combined_summary = pd.concat(all_summaries, ignore_index=True)
-        combined_summary.to_csv(os.path.join(summaries_dir, 'nli_simple_baselines_all_languages.csv'), index=False)
-        
-        # Create cross-language comparison plot
-        plt.figure(figsize=(15, 8))
-        
-        # Prepare data for grouped bar chart
-        approaches = combined_summary['approach'].unique()
-        languages = combined_summary['language'].unique()
-        
-        x = np.arange(len(approaches))
-        width = 0.8 / len(languages)
-        
-        for i, lang in enumerate(languages):
-            lang_data = combined_summary[combined_summary['language'] == lang]
-            lang_acc = [lang_data[lang_data['approach'] == app]['accuracy'].values[0] for app in approaches]
-            
-            plt.bar(x + (i - len(languages)/2 + 0.5) * width, lang_acc, width, label=lang)
-        
-        plt.xlabel('Approach')
-        plt.ylabel('Accuracy')
-        plt.title('NLI Simple Baselines Performance Across Languages')
-        plt.xticks(x, approaches)
-        plt.ylim(0, 1.0)
-        plt.legend()
-        plt.grid(axis='y', linestyle='--', alpha=0.7)
-        plt.tight_layout()
-        plt.savefig(os.path.join(output_dir, 'plots', 'nli_baselines_cross_language_comparison.png'))
-        plt.close()
-        
-        print("\nCross-language comparison summary:")
-        print(combined_summary.pivot_table(
-            index='approach', columns='language', values=['accuracy', 'macro_f1']
-        ))
+        summary_df = pd.DataFrame(all_summaries)
+        summary_file_path = os.path.join(summaries_dir, "nli_fixed_prediction_summary.csv")
+        summary_df.to_csv(summary_file_path, index=False, float_format='%.4f')
+        print(f"\nOverall summary for NLI fixed prediction baselines saved to {summary_file_path}")
+        print("\nSummary Table:")
+        print(summary_df.to_string())
+    else:
+        print("\nNo NLI summary data generated.")
 
 if __name__ == "__main__":
     main() 

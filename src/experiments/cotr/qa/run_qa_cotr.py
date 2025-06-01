@@ -1,6 +1,12 @@
 import sys
 import os
 import logging
+import re
+import json # Added for COMET score list storage
+
+# For plotting
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 # Disable tokenizer parallelism to avoid warnings
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
@@ -19,12 +25,15 @@ from src.experiments.cotr.qa.qa_cotr import (
     evaluate_qa_cotr_single_prompt,
     initialize_model
 )
-from evaluation.cotr.qa_metrics_cotr import calculate_qa_f1, calculate_translation_quality, COMET_AVAILABLE
+from evaluation.cotr.translation_metrics import COMET_AVAILABLE, calculate_comet_score as calculate_translation_quality
+from src.experiments.baseline.qa.qa_baseline import calculate_qa_f1
 from huggingface_hub import login
 from config import get_token
 import argparse
 import torch
-from typing import Any
+from typing import Any, Dict, Optional, List
+from tqdm import tqdm
+import time
 
 # Define standard parameters for both baseline and CoTR - EXACTLY matching baseline parameters
 STANDARD_PARAMETERS = {
@@ -50,6 +59,95 @@ LANGUAGE_PARAMETERS = {
     }
 }
 
+# --- Standardized Base Generation Parameters --- #
+# These are the most general defaults.
+BASE_GEN_PARAMS = {
+    "temperature": 0.3,
+    "top_p": 0.9,
+    "top_k": 40,
+    "repetition_penalty": 1.0, # Default repetition penalty
+    # do_sample will be derived from temperature (temp > 0)
+}
+
+# --- Task-Specific Defaults (overriding or adding to BASE_GEN_PARAMS) --- #
+# For the English QA step in multi-prompt, or the whole chain in single-prompt
+DEFAULT_QA_PARAMS = {
+    **BASE_GEN_PARAMS, # Inherit base
+    "max_tokens": 50, # Max tokens for the answer itself
+    "temperature": 0.2, # Often lower for more factual QA
+    "repetition_penalty": 1.1 
+}
+
+# For all translation steps (LRL->EN Q, LRL->EN C, EN->LRL A)
+DEFAULT_TRANSLATION_PARAMS = {
+    **BASE_GEN_PARAMS, # Inherit base
+    "max_tokens": 200, # Max tokens for translated text segments
+    "temperature": 0.35, # Can be slightly higher for translation fluidity
+    "repetition_penalty": 1.05
+}
+
+# --- Language-Specific Overrides --- #
+# These override task-specific defaults for certain languages.
+LANG_QA_PARAM_OVERRIDES = {
+    "sw": { "temperature": 0.18, "top_p": 0.85},
+    "te": { "temperature": 0.15, "top_p": 0.75}
+}
+LANG_TRANSLATION_PARAM_OVERRIDES = {
+    "sw": { "temperature": 0.3, "max_tokens": 220},
+    "te": { "temperature": 0.3, "max_tokens": 220}
+}
+
+# --- Model-Specific Adjustments (applied AFTER lang/CLI overrides) --- #
+# This function can adjust parameters based on the model_name.
+def apply_model_specific_adjustments(params: Dict, model_name: str, step_type: str) -> Dict:
+    adj_params = params.copy()
+    if "aya" in model_name.lower():
+        if step_type == "qa":
+            adj_params["temperature"] = max(0.1, adj_params.get("temperature", 0.2) * 0.9)
+            # adj_params["repetition_penalty"] = adj_params.get("repetition_penalty", 1.1) * 1.05
+        elif step_type == "translation":
+            adj_params["temperature"] = max(0.1, adj_params.get("temperature", 0.35) * 0.9)
+    elif "qwen" in model_name.lower():
+        if step_type == "qa":
+            adj_params["top_p"] = max(0.7, adj_params.get("top_p", 0.85) * 0.9)
+            adj_params["top_k"] = min(adj_params.get("top_k",40), 35) # Example: Qwen prefers lower top_k for QA
+        # Qwen translation might also benefit from specific settings
+    # Add more model-specific rules here
+    return adj_params
+
+def calculate_exact_match_score(ground_truth_data: Any, predicted_answer: str) -> float:
+    """Calculate Exact Match score. Ground_truth_data can be str, list of str, or dict with 'text'."""
+    references = []
+    if isinstance(ground_truth_data, str):
+        references = [ground_truth_data.strip()]
+    elif isinstance(ground_truth_data, list):
+            references = [str(ref).strip() for ref in ground_truth_data]
+    elif isinstance(ground_truth_data, dict) and 'text' in ground_truth_data and isinstance(ground_truth_data['text'], list):
+        references = [str(ref).strip() for ref in ground_truth_data['text']]
+    elif isinstance(ground_truth_data, dict) and 'text' in ground_truth_data and isinstance(ground_truth_data['text'], str):
+        references = [ground_truth_data['text'].strip()]
+    else:
+        logging.warning(f"Unexpected ground_truth_data format for EM: {type(ground_truth_data)}, value: {str(ground_truth_data)[:100]}")
+        # Attempt to convert to string and use as a single reference
+        try:
+            references = [str(ground_truth_data).strip()]
+        except: # If str conversion fails, no valid reference
+            return 0.0 
+
+    prediction = str(predicted_answer).strip()
+
+    def normalize_text(s):
+        s = s.lower()
+        s = re.sub(r'[^\w\s]', '', s)
+        s = re.sub(r'\s+', ' ', s).strip()
+        return s
+
+    normalized_prediction = normalize_text(prediction)
+    for ref in references:
+        if normalize_text(ref) == normalized_prediction:
+            return 1.0
+    return 0.0
+
 def run_experiment(
     model_name: str, 
     tokenizer: Any,
@@ -57,372 +155,445 @@ def run_experiment(
     samples_df: pd.DataFrame, 
     lang_code: str, 
     base_results_path: str,
-    pipeline_type: str = 'multi_prompt',
-    use_few_shot: bool = True,
-    temperature: float = STANDARD_PARAMETERS["temperature"],
-    top_p: float = STANDARD_PARAMETERS["top_p"],
-    top_k: float = STANDARD_PARAMETERS["top_k"],
-    max_tokens: int = STANDARD_PARAMETERS["max_tokens"],
-    max_translation_tokens: int = 200
+    pipeline_type: str,
+    use_few_shot: bool,
+    # NEW: Pass parameter dictionaries directly
+    qa_params_dict: Dict[str, Any],
+    trans_params_dict: Dict[str, Any],
+    chain_params_dict: Dict[str, Any],
+    overwrite_results: bool = False,
+    max_input_length: int = 4096
 ):
-    """
-    Run the Chain of Translation Prompting (CoTR) experiment for QA.
-    
-    Args:
-        model_name: Name of the model to use
-        tokenizer: Initialized tokenizer
-        model: Initialized model
-        samples_df: DataFrame containing the samples
-        lang_code: Language code
-        base_results_path: Base path for saving results
-        pipeline_type: Type of CoTR pipeline ('multi_prompt' or 'single_prompt')
-        use_few_shot: Whether to use few-shot prompting
-        temperature: Temperature for generation (this value is now expected to be final)
-        top_p: Top-p for generation (this value is now expected to be final)
-        top_k: Top-k for generation (this value is now expected to be final)
-        max_tokens: Maximum tokens for generation (this value is now expected to be final)
-        max_translation_tokens: Maximum tokens for translation
-    """
-    # The parameters temperature, top_p, top_k, max_tokens received by this function
-    # are now considered final and pre-calculated by the main() function to include
-    # CLI overrides, language-specific values, and model-specific adjustments.
-    # Thus, this function will directly use these passed-in values for those specific args.
-    # Other parameters like max_translation_tokens are handled as before.
-    
-    # Check if samples_df is empty
+    logger = logging.getLogger(__name__) # Define logger for this function
     if samples_df.empty:
-        print(f"Empty samples dataframe for {lang_code}, skipping...")
-        return
+        logging.warning(f"Empty samples dataframe for {lang_code}, {model_name}. Skipping experiment.")
+        return None # Return None to indicate failure or skip
     
-    # Create directories for results
     results_dir = os.path.join(base_results_path, "results")
     summaries_dir = os.path.join(base_results_path, "summaries")
-    plots_dir = os.path.join(base_results_path, "plots")
-    
+    # plots_dir = os.path.join(base_results_path, "plots") # Plots generated from overall summary
     os.makedirs(results_dir, exist_ok=True)
     os.makedirs(summaries_dir, exist_ok=True)
-    os.makedirs(plots_dir, exist_ok=True)
+    # os.makedirs(plots_dir, exist_ok=True)
     
-    # Create a short model name for file naming
     model_short = model_name.split('/')[-1]
-    shot_type = "fs" if use_few_shot else "zs"  # few-shot or zero-shot
-    pipeline_short = "mp" if pipeline_type == "multi_prompt" else "sp"  # multi-prompt or single-prompt
+    shot_type = "fs" if use_few_shot else "zs"
+    pipeline_short = "mp" if pipeline_type == "multi_prompt" else "sp"
     
-    # File paths
     results_file = os.path.join(results_dir, f"results_cotr_{pipeline_short}_{shot_type}_qa_tydiqa_{lang_code}_{model_short}.csv")
     summary_file = os.path.join(summaries_dir, f"summary_cotr_{pipeline_short}_{shot_type}_qa_tydiqa_{lang_code}_{model_short}.csv")
     
-    # Check if results already exist to avoid duplicate computation
-    if os.path.exists(results_file):
-        print(f"Results file {results_file} already exists. Skipping...")
-        return
+    results_df_for_metrics = pd.DataFrame() # Initialize
+
+    if os.path.exists(results_file) and not overwrite_results:
+        logging.info(f"Results file {results_file} already exists and overwrite_results is False. Loading existing results to compute summary.")
+        try:
+            results_df_for_metrics = pd.read_csv(results_file)
+            if results_df_for_metrics.empty:
+                logging.warning(f"Loaded results file {results_file} is empty. Will re-run experiment.")
+            else:
+                logging.info(f"Successfully loaded {len(results_df_for_metrics)} results from {results_file}.")
+        except pd.errors.EmptyDataError:
+            logging.warning(f"Results file {results_file} is empty. Will re-run experiment.")
+        except Exception as e_load:
+            logging.error(f"Error loading results file {results_file}: {e_load}. Will re-run experiment.")
     
-    # Print experiment settings
-    print(f"Running CoTR QA experiment:")
-    print(f"  Model: {model_name}")
-    print(f"  Language: {lang_code}")
-    print(f"  Pipeline: {pipeline_type}")
-    print(f"  Shot type: {'few-shot' if use_few_shot else 'zero-shot'}")
-    print(f"  Parameters: temp={temperature}, top_p={top_p}, top_k={top_k}, max_tokens={max_tokens}")
-    print(f"  Samples: {len(samples_df)}")
-    
-    # Run the appropriate evaluation based on pipeline type
-    try:
+    # If results_df_for_metrics is still empty (file didn't exist, was empty, overwrite=True, or load failed)
+    if results_df_for_metrics.empty:
+        logging.info(f"Running CoTR QA experiment: Model={model_name}, Lang={lang_code}, Pipeline={pipeline_type}, Shot={'Few' if use_few_shot else 'Zero'}")
         if pipeline_type == 'multi_prompt':
-            # Multi-prompt approach (translate -> process -> translate)
-            results_df = evaluate_qa_cotr(
-                model_name=model_name, 
-                tokenizer=tokenizer,
-                model=model,
-                samples_df=samples_df, 
-                lang_code=lang_code,
-                use_few_shot=use_few_shot,
-                temperature=temperature,
-                top_p=top_p,
-                top_k=top_k,
-                max_tokens=max_tokens,
-                max_translation_tokens=max_translation_tokens  # Only needed for multi-prompt
-            )
-        else:
-            # Single-prompt approach
-            results_df = evaluate_qa_cotr_single_prompt(
+            # Parameters for multi-prompt, derived from qa_temp, trans_temp etc. and model/lang overrides
+            # These dictionaries (qa_params_dict, trans_params_dict) should be defined before this block based on args and defaults.
+            logging.info(f"  Multi-Prompt QA Params (from dict): {qa_params_dict}")
+            logging.info(f"  Multi-Prompt Translation Params (from dict): {trans_params_dict}")
+            
+            # Ensure qa_params_dict has 'max_new_tokens' instead of 'max_tokens' for the QA step
+            if 'max_tokens' in qa_params_dict and 'max_new_tokens' not in qa_params_dict:
+                qa_params_dict['max_new_tokens'] = qa_params_dict.pop('max_tokens')
+            elif 'max_tokens' in qa_params_dict and 'max_new_tokens' in qa_params_dict:
+                pass # Assume max_new_tokens is correctly set if both exist
+
+            # Ensure trans_params_dict has 'max_new_tokens' instead of 'max_tokens' for translation steps
+            if 'max_tokens' in trans_params_dict and 'max_new_tokens' not in trans_params_dict:
+                trans_params_dict['max_new_tokens'] = trans_params_dict.pop('max_tokens')
+            elif 'max_tokens' in trans_params_dict and 'max_new_tokens' in trans_params_dict:
+                pass # Assume max_new_tokens is correctly set if both exist
+
+            results_df_for_metrics = evaluate_qa_cotr(
                 model_name=model_name,
                 tokenizer=tokenizer,
                 model=model,
                 samples_df=samples_df,
                 lang_code=lang_code,
                 use_few_shot=use_few_shot,
-                temperature=temperature,
-                top_p=top_p,
-                top_k=top_k,
-                max_tokens=max_tokens
+                qa_params=qa_params_dict, # Pass the correctly populated qa_params_dict
+                translation_params=trans_params_dict, # Pass the correctly populated trans_params_dict
+                max_input_length=max_input_length
             )
-        
-        if results_df.empty:
-            print(f"No results were returned for {lang_code} with {model_name}.")
-            return
+        elif pipeline_type == 'single_prompt':
+            # Parameters for single-prompt, derived from qa_temp etc. and model/lang overrides
+            # This dictionary (chain_params_dict) should be defined before this block.
+            # For single prompt, all generation happens in one go, so use "chain" parameters
+            # This dict comes from get_effective_qa_params which uses 'max_tokens' from defaults/CLI.
+            # The evaluate_qa_cotr_single_prompt function expects 'max_new_tokens'.
             
-        # Save the results dataframe
-        results_df.to_csv(results_file, index=False)
-        print(f"Results saved to {results_file}")
-        
-        print(f"DEBUG: Attempting to calculate metrics for {lang_code}, {model_name}, {pipeline_type}, {shot_type}") # DEBUG
-        f1_scores = []
-        comet_scores_en_to_lrl_list = []
+            # Ensure chain_params_dict has 'max_new_tokens' instead of 'max_tokens'
+            if 'max_tokens' in chain_params_dict and 'max_new_tokens' not in chain_params_dict:
+                chain_params_dict['max_new_tokens'] = chain_params_dict.pop('max_tokens')
+            elif 'max_tokens' in chain_params_dict and 'max_new_tokens' in chain_params_dict:
+                # If both exist, 'max_new_tokens' is preferred by the evaluation function.
+                # The get_effective_qa_params function populates 'max_tokens' from CLI if specified.
+                # To ensure CLI override for 'max_tokens' is respected and used as 'max_new_tokens':
+                chain_params_dict['max_new_tokens'] = chain_params_dict.pop('max_tokens')
 
-        for _, row in results_df.iterrows():
-            try: # DEBUG: Add try-except for individual F1 calculation
-                f1_score_val = calculate_qa_f1({'ground_truth': row['ground_truth'], 'predicted_answer': row['predicted_answer']})
-                f1_scores.append(f1_score_val)
-            except Exception as e_f1:
-                print(f"DEBUG: Error calculating F1 for a row: {e_f1}")
-                f1_scores.append(0.0) # Append a default value or handle as appropriate
+            logger.info(f"  CoTR Chain Params (for single_prompt after potential rename): {chain_params_dict}")
+            results_df_for_metrics = evaluate_qa_cotr_single_prompt(
+                model_name=model_name,
+                tokenizer=tokenizer,
+                model=model,
+                samples_df=samples_df,
+                lang_code=lang_code,
+                use_few_shot=use_few_shot,
+                temperature=chain_params_dict['temperature'],
+                do_sample=chain_params_dict['do_sample'],
+                top_p=chain_params_dict['top_p'],
+                top_k=chain_params_dict['top_k'],
+                repetition_penalty=chain_params_dict['repetition_penalty'],
+                max_new_tokens=chain_params_dict['max_new_tokens'], # Ensure this key exists in chain_params_dict
+                max_input_length=max_input_length
+            )
+        else:
+            logging.error(f"Unknown pipeline_type: {pipeline_type}")
+            return None
+        
+        if results_df_for_metrics.empty:
+            logging.warning(f"No results returned by evaluation function for {lang_code}, {model_name}, {pipeline_type}, {shot_type}.")
+            return None # Critical failure if evaluation returns empty
+        
+        results_df_for_metrics.to_csv(results_file, index=False)
+        logging.info(f"Results saved to {results_file}")
+        
+    # --- Calculate Metrics from results_df_for_metrics --- 
+    if results_df_for_metrics.empty:
+        logging.warning(f"results_df_for_metrics is empty for {results_file} even after trying to run/load. Skipping summary.")
+        return None
 
-            if 'comet_score_en_to_lrl' in row and pd.notna(row['comet_score_en_to_lrl']):
-                comet_scores_en_to_lrl_list.append(row['comet_score_en_to_lrl'])
+    f1_scores, em_scores = [], []
+    comet_q_lrl_en_list, comet_c_lrl_en_list, comet_a_en_lrl_list = [], [], []
+    num_samples_with_results = len(results_df_for_metrics)
+
+    for _, row in results_df_for_metrics.iterrows():
+        # The qa_cotr.py script now stores lrl_ground_truth_answers_list as a direct list of strings.
+        gt_text_list = row.get('lrl_ground_truth_answers_list', []) # Default to empty list if missing
+        if not isinstance(gt_text_list, list): # Ensure it's a list, fallback if not
+            logging.warning(f"Expected 'lrl_ground_truth_answers_list' to be a list, got {type(gt_text_list)}. Using empty list for metrics.")
+            gt_text_list = []
         
-        avg_f1 = np.mean(f1_scores) if f1_scores else 0.0
-        avg_comet_en_to_lrl = np.mean(comet_scores_en_to_lrl_list) if comet_scores_en_to_lrl_list else None
-        print(f"DEBUG: Avg F1 calculated: {avg_f1}, Avg COMET: {avg_comet_en_to_lrl}") # DEBUG
+        # Ensure all items in gt_text_list are strings, or handle/log if not
+        processed_gt_text_list = []
+        for item in gt_text_list:
+            if isinstance(item, str):
+                processed_gt_text_list.append(item)
+            else:
+                logging.warning(f"Non-string item '{item}' found in ground truth list for row {row.get('id', 'N/A')}. Skipping this item for metrics.")
+        gt_text_list = processed_gt_text_list
+
+        if not gt_text_list: # If list is empty after processing
+            logging.warning(f"Empty or invalid 'lrl_ground_truth_answers_list' for row {row.get('id', 'N/A')}. Metrics for this sample may be 0.")
+            # gt_text_list will be empty, calculate_qa_f1 and calculate_exact_match_score should handle this (e.g. return 0)
+
+        predicted_answer = str(row.get('lrl_answer_model_final', "")) # Ensure it's a string
         
-        # Create a summary dataframe
-        summary_data = {
-            'model': [model_short],
-            'language': [lang_code],
-            'pipeline': [pipeline_type],
-            'shot_type': ['few-shot' if use_few_shot else 'zero-shot'],
-            'samples': [len(results_df)],
-            'f1_score': [avg_f1],
-            'temperature': [temperature],
-            'top_p': [top_p],
-            'top_k': [top_k],
-            'max_tokens': [max_tokens]
-        }
-        # NEW: Add COMET score to summary if available
-        if avg_comet_en_to_lrl is not None:
-            summary_data['avg_comet_en_to_lrl'] = [avg_comet_en_to_lrl]
+        # F1 score expects a dict like {'text': [list_of_answers]} for reference from TyDiQA official script style.
+        # calculate_exact_match_score expects the list of reference strings directly.
+        f1_scores.append(calculate_qa_f1({'text': gt_text_list if gt_text_list else [""]}, predicted_answer)) # Pass empty string in list if gt_text_list is empty
+        em_scores.append(calculate_exact_match_score(gt_text_list, predicted_answer))
         
-        summary_df = pd.DataFrame(summary_data)
-        print(f"DEBUG: Individual summary_data for {summary_file}:\\n{summary_data}") # DEBUG
-        print(f"DEBUG: Individual summary_df for {summary_file}:\\n{summary_df.head()}") # DEBUG
-        
-        summary_df.to_csv(summary_file, index=False)
-        print(f"Summary saved to {summary_file}")
-        
-        # Print the F1 score
-        print(f"\nAverage F1 score for {lang_code} with {model_name} ({pipeline_type}, {'few-shot' if use_few_shot else 'zero-shot'}): {avg_f1:.4f}")
-        # NEW: Print COMET score if available
-        if avg_comet_en_to_lrl is not None:
-            print(f"Average COMET score (EN->LRL Answer Back-Translation) for {lang_code} with {model_name} ({pipeline_type}, {'few-shot' if use_few_shot else 'zero-shot'}): {avg_comet_en_to_lrl:.4f}")
-        
-        return summary_data # MODIFIED: Return the summary data dictionary
-        
-    except Exception as e:
-        print(f"Error in experiment for {lang_code} with {model_name}: {e}")
-        import traceback
-        traceback.print_exc()
+        # COMET scores processing remains the same if column names for COMET scores are correct in results_df_for_metrics
+        if 'comet_lrl_q_to_en' in row and pd.notna(row['comet_lrl_q_to_en']): # Changed key from comet_score_q_lrl_en
+            comet_q_lrl_en_list.append(row['comet_lrl_q_to_en'])
+        if 'comet_lrl_c_to_en' in row and pd.notna(row['comet_lrl_c_to_en']): # Changed key from comet_score_c_lrl_en
+            comet_c_lrl_en_list.append(row['comet_lrl_c_to_en'])
+        if 'comet_en_a_to_lrl' in row and pd.notna(row['comet_en_a_to_lrl']): # Changed key from comet_score_a_en_lrl
+            comet_a_en_lrl_list.append(row['comet_en_a_to_lrl'])
+    
+    avg_f1 = np.mean(f1_scores) if f1_scores else 0.0
+    avg_comet_q = np.mean(comet_q_lrl_en_list) if comet_q_lrl_en_list else None
+    avg_comet_c = np.mean(comet_c_lrl_en_list) if comet_c_lrl_en_list else None
+    avg_comet_a = np.mean(comet_a_en_lrl_list) if comet_a_en_lrl_list else None
+    
+    summary_data = {
+        'model': model_short, 'language': lang_code, 'pipeline': pipeline_type, 'shot_type': shot_type,
+        'samples': num_samples_with_results, 'f1_score': avg_f1,
+        # Log the dictionaries
+        'qa_params': qa_params_dict,
+        'trans_params': trans_params_dict,
+        'chain_params': chain_params_dict, # Relevant for single_prompt
+        'avg_comet_q_lrl_en': avg_comet_q, 'avg_comet_c_lrl_en': avg_comet_c, 'avg_comet_a_en_lrl': avg_comet_a
+    }
+    
+    summary_df = pd.DataFrame([summary_data])
+    summary_df.to_csv(summary_file, index=False, float_format='%.4f') # Use float_format
+    logging.info(f"Summary saved to {summary_file}")
+    logging.info(f"Summary for {model_name}, {lang_code}, {pipeline_type}, {shot_type}:\n{summary_df.to_string()}")
+    return summary_data
+
+def parse_args():
+    parser = argparse.ArgumentParser(description='Run QA Chain of Translation Prompting (CoTR) experiments')
+    parser.add_argument('--models', type=str, default="CohereLabs/aya-expanse-8b,Qwen/Qwen2.5-7B-Instruct", help='Comma-separated list of models')
+    parser.add_argument('--langs', nargs='+', default=['en', 'sw', 'te'], help='Languages to evaluate')
+    parser.add_argument('--sample_percentage', type=float, default=10.0, help='Percentage of TyDiQA GoldP validation samples (0-100)')
+    parser.add_argument('--pipeline_types', nargs='+', default=['multi_prompt', 'single_prompt'], choices=['multi_prompt', 'single_prompt'])
+    parser.add_argument('--shot_settings', nargs='+', default=['zero_shot', 'few_shot'], choices=['zero_shot', 'few_shot'])
+    parser.add_argument('--test_mode', action='store_true', help='Run with first 5 samples only')
+    parser.add_argument('--hf_token', type=str, help='HuggingFace API token')
+    parser.add_argument('--base_output_dir', type=str, default="/work/bbd6522/results/qa/cotr_v2", help="Base directory for all outputs.")
+    parser.add_argument("--overwrite_results", action="store_true", help="Overwrite existing results files.")
+    parser.add_argument("--seed", type=int, default=42, help="Random seed for sampling and reproducibility.")
+    parser.add_argument("--log_level", type=str, default="INFO", choices=["DEBUG", "INFO", "WARNING", "ERROR"], help="Set the logging level.")
+
+    # QA Step specific CLI overrides (for multi-prompt English QA or single-prompt chain)
+    parser.add_argument("--qa_temp", type=float, default=None, help="Temperature for QA step/chain.")
+    parser.add_argument("--qa_top_p", type=float, default=None, help="Top-p for QA step/chain.")
+    parser.add_argument("--qa_top_k", type=int, default=None, help="Top-k for QA step/chain.")
+    parser.add_argument("--qa_max_tokens", type=int, default=None, help="Max new tokens for QA step/chain output.")
+    parser.add_argument("--qa_rep_penalty", type=float, default=None, help="Repetition penalty for QA step/chain.")
+
+    # Translation Step specific CLI overrides (for multi-prompt translation steps)
+    parser.add_argument("--trans_temp", type=float, default=None, help="Temperature for translation steps.")
+    parser.add_argument("--trans_top_p", type=float, default=None, help="Top-p for translation steps.")
+    parser.add_argument("--trans_top_k", type=int, default=None, help="Top-k for translation steps.")
+    parser.add_argument("--trans_max_tokens", type=int, default=None, help="Max new tokens for translation steps.")
+    parser.add_argument("--trans_rep_penalty", type=float, default=None, help="Repetition penalty for translation steps.")
+    
+    parser.add_argument("--dataset_version", type=str, default="goldp", help="Dataset version to use (e.g., goldp, minimal for TyDiQA).")
+    parser.add_argument("--data_split", type=str, default="validation",
+                        choices=["train", "validation", "test"], # TyDiQA GoldP has 'train' and 'validation'
+                        help="Dataset split to use. Default: validation.")
+    parser.add_argument("--max_samples_per_lang", type=int, default=None,
+                        help="Maximum number of samples per language to process after percentage sampling. Default: None (no cap).")
+    parser.add_argument("--max_input_length", type=int, default=4096, help="Maximum input token length for the tokenizer globally.")
+
+    return parser.parse_args()
 
 def main():
-    """Main function to run the QA-CoTR experiments."""
-    parser = argparse.ArgumentParser(description='Run QA Chain of Translation Prompting (CoTR) experiments')
-    parser.add_argument('--models', type=str, default="CohereLabs/aya-expanse-8b,Qwen/Qwen2.5-7B-Instruct", help='Comma-separated list of models to use')
-    parser.add_argument('--langs', nargs='+', default=['en', 'sw', 'ha'], help='Languages to evaluate')
-    parser.add_argument('--samples', type=int, default=10, help='Number of samples to use (default: 10)')
-    parser.add_argument('--pipeline_types', nargs='+', default=['multi_prompt', 'single_prompt'], choices=['multi_prompt', 'single_prompt'], help='Pipeline types to run')
-    parser.add_argument('--shot_settings', nargs='+', default=['zero_shot', 'few_shot'], choices=['zero_shot', 'few_shot'], help='Shot settings to evaluate')
-    parser.add_argument('--test-mode', action='store_true', help='Run in test mode (first 5 samples only)')
-    parser.add_argument('--hf-token', type=str, help='HuggingFace API token (if needed)')
-    parser.add_argument('--base_output_dir', type=str, default="/work/bbd6522/results/qa/cotr", help="Base directory for all outputs.")
+    args = parse_args()
+    logging.basicConfig(level=args.log_level.upper(), format='%(asctime)s - %(levelname)s - %(name)s - %(filename)s:%(lineno)d - %(message)s')
+    logger = logging.getLogger(__name__) # Initialize logger
 
-    # ADDED: Arguments for generation parameters (to override defaults if needed for non-grid search runs)
-    parser.add_argument("--temperature", type=float, default=None, help="Temperature for generation (overrides standard if set)")
-    parser.add_argument("--top_p", type=float, default=None, help="Top-p for generation (overrides standard if set)")
-    parser.add_argument("--top_k", type=int, default=None, help="Top-k for generation (overrides standard if set)")
-    parser.add_argument("--max_tokens", type=int, default=None, help="Max tokens for generation (overrides standard if set)")
-    parser.add_argument("--max_translation_tokens", type=int, default=200, help="Max new tokens for translation steps (used in multi_prompt)")
-    
-    args = parser.parse_args()
-    
-    # Disable tokenizers parallelism warnings
-    os.environ["TOKENIZERS_PARALLELISM"] = "false"
-    
-    # Set up HuggingFace token
-    token = get_token()
-    login(token=token)
-    
-    # Define models to test
-    if args.models:
-        models_list = [m.strip() for m in args.models.split(',')]
-    else:
-        models_list = []
-    
-    # Create a results directory if it doesn't exist
-    # base_results_path = f"results/cotr/qa/{'-'.join(args.langs)}" # This was a bit too specific and might not align with base_output_dir intent
-    # os.makedirs(base_results_path, exist_ok=True) # This would create a subdir named after langs
-    
-    # Ensure the overall base output directory and its subdirectories for summaries and plots exist
+    # HF Login (from new script, more robust)
+
+    models_list = [m.strip() for m in args.models.split(',') if m.strip()]
     summaries_output_dir = os.path.join(args.base_output_dir, "summaries")
     plots_output_dir = os.path.join(args.base_output_dir, "plots")
     os.makedirs(summaries_output_dir, exist_ok=True)
     os.makedirs(plots_output_dir, exist_ok=True) 
-    print(f"All CoTR QA experiment outputs will be saved under: {args.base_output_dir}")
+    logging.info(f"All CoTR QA experiment outputs will be saved under: {args.base_output_dir}")
 
-    all_experiment_summaries = [] # MODIFIED: To collect all summaries
+    all_experiment_summaries = []
 
     for model_name_str in models_list:
-        print(f"\n{'='*20} Initializing Model: {model_name_str} {'='*20}")
-        tokenizer, model = None, None
+        logging.info(f"\n{'='*20} Initializing Model: {model_name_str} {'='*20}")
+        model, tokenizer = None, None
         try:
-            model, tokenizer = initialize_model(model_name_str)
-        except Exception as e:
-            logging.error(f"Failed to initialize model {model_name_str}: {e}. Skipping this model.")
+            tokenizer, model = initialize_model(model_name_str) 
+            logging.info(f"Model {model_name_str} initialized successfully.")
+        except Exception as e_init:
+            logging.error(f"Failed to initialize model {model_name_str}: {e_init}. Skipping.", exc_info=True)
             if model is not None: del model
             if tokenizer is not None: del tokenizer
             if torch.cuda.is_available(): torch.cuda.empty_cache()
-            continue # Next model
+            continue
 
-    for lang_code in args.langs:
-        print(f"\n--- Processing Language: {lang_code} for model {model_name_str} ---")
-        samples_df = load_tydiqa_samples(lang_code, num_samples=args.samples)
-        
-        if samples_df.empty:
-                print(f"No samples found for {lang_code}, skipping for this model.")
-                continue # Correctly indented inside lang_code loop
+        for lang_code in args.langs:
+            logging.info(f"QA CoTR Main: Loading TyDiQA samples for language: {lang_code}, version: {args.dataset_version}")
             
-        if args.test_mode:
-                print("Running in TEST MODE with first 5 samples only for this language-model pair.")
-            samples_df = samples_df.head(5)
+            # Use the data_split argument directly
+            split_to_use = args.data_split
             
-        # Determine effective generation parameters for this language and potential CLI overrides
-        # These are the FINAL parameters that will be passed down.
-        effective_temp = args.temperature
-        effective_top_p = args.top_p
-        effective_top_k = args.top_k
-        effective_max_tokens = args.max_tokens
-
-         # Fallback to language-specific, then to general standard if CLI override is not present
-        if effective_temp is None:
-            effective_temp = LANGUAGE_PARAMETERS.get(lang_code, {}).get("temperature", STANDARD_PARAMETERS["temperature"])
-        if effective_top_p is None:
-            effective_top_p = LANGUAGE_PARAMETERS.get(lang_code, {}).get("top_p", STANDARD_PARAMETERS["top_p"])
-        if effective_top_k is None:
-            effective_top_k = LANGUAGE_PARAMETERS.get(lang_code, {}).get("top_k", STANDARD_PARAMETERS["top_k"])
-        if effective_max_tokens is None:
-            effective_max_tokens = LANGUAGE_PARAMETERS.get(lang_code, {}).get("max_tokens", STANDARD_PARAMETERS["max_tokens"])
-        
-            # Apply model-specific adjustments AFTER resolving language/CLI overrides
-        if "aya" in model_name_str.lower():
-            effective_temp = max(0.1, effective_temp - 0.05) # Example: Aya specific adjustment
-            print(f"Applied Aya-specific adjustment to temperature: {effective_temp}")
-        elif "qwen" in model_name_str.lower():
-            effective_top_p = max(0.7, effective_top_p - 0.05) # Example: Qwen specific
-            if effective_top_k == STANDARD_PARAMETERS["top_k"]: # Only override top_k if it wasn't set by CLI or lang
-                effective_top_k = 35 
-            print(f"Applied Qwen-specific adjustments: top_p={effective_top_p}, top_k={effective_top_k}")
-
-        for pipeline_type_to_run in args.pipeline_types:
-            for shot_setting_str in args.shot_settings:
-                use_few_shot_to_run = (shot_setting_str == 'few_shot')
-                    
-                print(f"\nEvaluating {model_name_str} on {lang_code} using {pipeline_type_to_run} ({shot_setting_str})...")
-                    # Pass the FINALIZED effective parameters to run_experiment
-                print(f"Final Effective params for run_experiment: temp={effective_temp}, top_p={effective_top_p}, top_k={effective_top_k}, max_tokens={effective_max_tokens}, max_translation_tokens={args.max_translation_tokens}")
-
-                summary_result = run_experiment(
-                    model_name=model_name_str,
-                    tokenizer=tokenizer_main, # Pass initialized tokenizer
-                    model=model_main,         # Pass initialized model
-                samples_df=samples_df,
-                lang_code=lang_code,
-                    base_results_path=args.base_output_dir,
-                    pipeline_type=pipeline_type_to_run,
-                    use_few_shot=use_few_shot_to_run,
-                    temperature=effective_temp,         # Pass final temp
-                    top_p=effective_top_p,             # Pass final top_p
-                    top_k=effective_top_k,             # Pass final top_k
-                    max_tokens=effective_max_tokens,     # Pass final max_tokens
-                    max_translation_tokens=args.max_translation_tokens
-                )
-                if summary_result:
-                    all_experiment_summaries.append(summary_result)
-
-        print(f"\nFinished all experiments for model {model_name_str}. Unloading...")
-        del model_main # Clean up
-        del tokenizer_main # Clean up
-        if torch.cuda.is_available():
-            torch.cuda.empty_cache()
-            logging.info("GPU memory cache cleared.")
+            logging.info(f"QA CoTR Main: Using split '{split_to_use}' for dataset version '{args.dataset_version}'")
+            all_samples_df = load_tydiqa_samples(lang_code=lang_code, split=split_to_use, sample_percentage=args.sample_percentage)
             
+            if all_samples_df.empty:
+                logging.warning(f"QA CoTR Main: No samples loaded for {lang_code} (split: {split_to_use}, sample_percentage: {args.sample_percentage}%). Skipping this language for {model_name_str}.")
+                continue
+
+            # ---- ADD DEBUG LOGGING HERE ----
+            logging.info(f"QA CoTR Main: After load_tydiqa_samples for {lang_code} ({len(all_samples_df)} samples loaded initially):")
+            if 'question' in all_samples_df.columns:
+                logging.info(f"  Sample of 'question' types: {all_samples_df['question'].apply(type).value_counts().to_string(index=True)}")
+                logging.info(f"  Head of 'question': \n{all_samples_df['question'].head().to_string(index=True)}")
+                q_is_empty_str_loaded = (all_samples_df['question'].fillna('').astype(str).str.strip() == "")
+                logging.info(f"  Count of empty/whitespace in loaded 'question': {q_is_empty_str_loaded.sum()}")
+                q_is_none_or_nan_loaded = all_samples_df['question'].isnull()
+                logging.info(f"  Count of None/NaN in loaded 'question': {q_is_none_or_nan_loaded.sum()}")
+            else:
+                logging.warning("  'question' column NOT FOUND in loaded samples.")
+
+            if 'context' in all_samples_df.columns:
+                logging.info(f"  Sample of 'context' types: {all_samples_df['context'].apply(type).value_counts().to_string(index=True)}")
+                logging.info(f"  Head of 'context': \n{all_samples_df['context'].head().to_string(index=True)}")
+                c_is_empty_str_loaded = (all_samples_df['context'].fillna('').astype(str).str.strip() == "")
+                logging.info(f"  Count of empty/whitespace in loaded 'context': {c_is_empty_str_loaded.sum()}")
+                c_is_none_or_nan_loaded = all_samples_df['context'].isnull()
+                logging.info(f"  Count of None/NaN in loaded 'context': {c_is_none_or_nan_loaded.sum()}")
+            else:
+                logging.warning("  'context' column NOT FOUND in loaded samples.")
+            # ---- END DEBUG LOGGING ----
+
+            # Check for essential columns immediately after loading
+            required_columns = ['question', 'context', 'answers'] # 'id' is also good but not strictly used by core logic downstream
+
+            # Filter out rows where question or context might be NaN or empty strings BEFORE test_mode slicing
+            # Convert to string and strip to catch whitespace-only entries, then check for emptiness
+            all_samples_df = all_samples_df[
+                all_samples_df['question'].astype(str).str.strip().ne('') &
+                all_samples_df['context'].astype(str).str.strip().ne('')
+            ]
+            if all_samples_df.empty:
+                logging.warning(f"QA CoTR Main: All samples for {lang_code} had empty questions or contexts after filtering. Skipping.")
+                continue
+            logging.info(f"QA CoTR Main: {len(all_samples_df)} samples remaining for {lang_code} after filtering empty Q/C.")
+
+            if args.test_mode:
+                all_samples_df = all_samples_df.head(5)
+                logging.info(f"Test mode: Using first {len(all_samples_df)} samples for {lang_code}.")
+            
+            # Check for ground truth column and log count (as in new script)
+            if 'answers' not in all_samples_df.columns: # TyDiQA loader typically provides 'answers'
+                logger.error(f"Ground truth column 'answers' not found in data for {lang_code}. Check data loader. Skipping.")
+                continue
+            else:
+                # Ensure 'answers' column is mapped to 'lrl_ground_truth_answers_list' as expected by qa_cotr.py functions
+                # The TyDiQA loader returns 'answers' as a dict: {'text': ['ans1', ...], 'answer_start': [...]} 
+                try:
+                    all_samples_df['lrl_ground_truth_answers_list'] = all_samples_df['answers'].apply(
+                        lambda x: x['text'] if isinstance(x, dict) and 'text' in x and isinstance(x['text'], list) else ([str(x['text'])] if isinstance(x, dict) and 'text' in x and isinstance(x['text'], str) else ([str(x)] if pd.notna(x) else []))
+                    )
+                    # Ensure all items in the list are strings
+                    all_samples_df['lrl_ground_truth_answers_list'] = all_samples_df['lrl_ground_truth_answers_list'].apply(
+                        lambda L: [str(item) for item in L] if isinstance(L, list) else []
+                    )
+                except Exception as e_gt_map:
+                    logger.error(f"Error mapping ground truth 'answers' to 'lrl_ground_truth_answers_list' for {lang_code}: {e_gt_map}", exc_info=True)
+                    continue # Skip if GT cannot be processed
+
+                logger.info(f"Loaded {len(all_samples_df)} samples for {lang_code} with ground truth processing.")
+
+            # --- Determine Effective Parameters for this run --- #
+            # QA Parameters
+            eff_qa_params = DEFAULT_QA_PARAMS.copy()
+            eff_qa_params.update(LANG_QA_PARAM_OVERRIDES.get(lang_code, {}))
+            if args.qa_temp is not None: eff_qa_params["temperature"] = args.qa_temp
+            if args.qa_top_p is not None: eff_qa_params["top_p"] = args.qa_top_p
+            if args.qa_top_k is not None: eff_qa_params["top_k"] = args.qa_top_k
+            if args.qa_max_tokens is not None: eff_qa_params["max_new_tokens"] = args.qa_max_tokens
+            if args.qa_rep_penalty is not None: eff_qa_params["repetition_penalty"] = args.qa_rep_penalty
+            eff_qa_params = apply_model_specific_adjustments(eff_qa_params, model_name_str, "qa")
+            eff_qa_params["do_sample"] = eff_qa_params.get("do_sample", eff_qa_params.get("temperature", 0) > 1e-5)
+
+            # Translation Parameters
+            eff_trans_params = DEFAULT_TRANSLATION_PARAMS.copy()
+            eff_trans_params.update(LANG_TRANSLATION_PARAM_OVERRIDES.get(lang_code, {}))
+            if args.trans_temp is not None: eff_trans_params["temperature"] = args.trans_temp
+            if args.trans_top_p is not None: eff_trans_params["top_p"] = args.trans_top_p
+            if args.trans_top_k is not None: eff_trans_params["top_k"] = args.trans_top_k
+            if args.trans_max_tokens is not None: eff_trans_params["max_new_tokens"] = args.trans_max_tokens
+            if args.trans_rep_penalty is not None: eff_trans_params["repetition_penalty"] = args.trans_rep_penalty
+            eff_trans_params = apply_model_specific_adjustments(eff_trans_params, model_name_str, "translation")
+            eff_trans_params["do_sample"] = eff_trans_params.get("do_sample", eff_trans_params.get("temperature", 0) > 1e-5)
+
+            # Single-Prompt Chain Parameters (often similar to QA params but can be distinct)
+            # For QA, the CLI args --qa_... are used for single_prompt chain as well.
+            eff_chain_params = DEFAULT_QA_PARAMS.copy() # Start with QA defaults for the chain
+            eff_chain_params.update(LANG_QA_PARAM_OVERRIDES.get(lang_code, {})) # Apply lang overrides for QA/chain
+            if args.qa_temp is not None: eff_chain_params["temperature"] = args.qa_temp
+            if args.qa_top_p is not None: eff_chain_params["top_p"] = args.qa_top_p
+            if args.qa_top_k is not None: eff_chain_params["top_k"] = args.qa_top_k
+            if args.qa_max_tokens is not None: eff_chain_params["max_new_tokens"] = args.qa_max_tokens
+            if args.qa_rep_penalty is not None: eff_chain_params["repetition_penalty"] = args.qa_rep_penalty
+            eff_chain_params = apply_model_specific_adjustments(eff_chain_params, model_name_str, "chain") # Use a "chain" type for model adjustments if specific needed
+            eff_chain_params["do_sample"] = eff_chain_params.get("do_sample", eff_chain_params.get("temperature", 0) > 1e-5)
+
+            for pipeline_type in args.pipeline_types:
+                for shot_setting in args.shot_settings:
+                    use_few_shot = (shot_setting == 'few_shot')
+                    logging.info(f"\nEvaluating {model_name_str} on {lang_code} ({pipeline_type}, {shot_setting})...")
+
+                    summary_result = run_experiment(
+                        model_name=model_name_str, tokenizer=tokenizer, model=model,
+                        samples_df=all_samples_df, lang_code=lang_code, base_results_path=args.base_output_dir,
+                        pipeline_type=pipeline_type, use_few_shot=use_few_shot,
+                        qa_params_dict=eff_qa_params,
+                        trans_params_dict=eff_trans_params,
+                        chain_params_dict=eff_chain_params if pipeline_type == 'single_prompt' else {},
+                        overwrite_results=args.overwrite_results, max_input_length=4096
+                    )
+                    if summary_result:
+                        all_experiment_summaries.append(summary_result)
+
+        if model is not None: del model
+        if tokenizer is not None: del tokenizer
+        if torch.cuda.is_available(): torch.cuda.empty_cache()
+        logging.info(f"Model {model_name_str} and its tokenizer unloaded. GPU cache cleared.")
+
     if all_experiment_summaries:
-        print(f"DEBUG: Collected {len(all_experiment_summaries)} individual summaries.")
-        print(f"DEBUG: First collected summary (if any): {all_experiment_summaries[0] if all_experiment_summaries else 'None'}")
         overall_summary_df = pd.DataFrame(all_experiment_summaries)
-        overall_summary_filename = os.path.join(summaries_output_dir, "cotr_qa_ALL_experiments_summary.csv")
-        print(f"DEBUG: Overall summary_df to be saved to {overall_summary_filename}:\\n{overall_summary_df.head()}")
-        overall_summary_df.to_csv(overall_summary_filename, index=False)
-        print(f"\nOverall summary of all experiments saved to: {overall_summary_filename}")
-        print(overall_summary_df)
-
+        overall_summary_filename = os.path.join(summaries_output_dir, f"cotr_qa_ALL_experiments_summary_{time.strftime('%Y%m%d-%H%M%S')}.csv")
+        overall_summary_df.to_csv(overall_summary_filename, index=False, float_format='%.4f')
+        logging.info(f"\nOverall summary saved to: {overall_summary_filename}")
+        print(overall_summary_df.to_string())
         try:
-            import matplotlib.pyplot as plt
-            import seaborn as sns
-            print("Attempting to generate plots...")
-            plot_qa_f1_scores(overall_summary_df, plots_output_dir)
-            if 'avg_comet_en_to_lrl' in overall_summary_df.columns:
-                 plot_qa_comet_scores(overall_summary_df, plots_output_dir)
-            print(f"Plots saved to: {plots_output_dir}")
+            plot_qa_metrics(overall_summary_df, plots_output_dir)
         except ImportError:
-            print("matplotlib or seaborn not installed. Skipping plot generation.")
-        except Exception as e:
-            print(f"Error during plot generation: {e}")
+            logging.warning("matplotlib or seaborn not installed. Skipping plot generation.")
+        except Exception as e_plot:
+            logging.error(f"Error during plot generation: {e_plot}", exc_info=True)
     else:
-        print("No summaries collected, skipping overall summary and plot generation.")
+        logging.info("No summaries collected. Skipping overall summary and plots.")
+    logging.info("\nAll CoTR QA experiments completed!")
             
-    print("\nAll CoTR QA experiments completed!")
-
-# Placeholder for plotting functions - to be defined properly
-def plot_qa_f1_scores(summary_df, plots_dir):
+def plot_qa_metrics(summary_df, plots_dir):
     if summary_df.empty:
-        print("Summary DataFrame is empty, skipping F1 plot.")
+        logging.warning("Summary DataFrame is empty, skipping plots.")
         return
-    plt.figure(figsize=(15, 8))
-    try:
-        # Create a combined categorical column for better plotting if many categories
-        summary_df['experiment_config'] = summary_df['language'] + '-' + summary_df['model'] + '-' + summary_df['pipeline'] + '-' + summary_df['shot_type']
-        sns.barplot(data=summary_df, x='experiment_config', y='f1_score')
-        plt.xticks(rotation=45, ha='right')
-        plt.title('Average F1 Scores for CoTR QA Experiments')
-        plt.ylabel('Average F1 Score')
-        plt.xlabel('Experiment Configuration')
-        plt.tight_layout()
-        plot_filename = os.path.join(plots_dir, "cotr_qa_f1_scores.png")
-        plt.savefig(plot_filename)
-        plt.close()
-        print(f"F1 score plot saved to {plot_filename}")
-    except Exception as e:
-        print(f"Error generating F1 plot: {e}")
 
-def plot_qa_comet_scores(summary_df, plots_dir):
-    if summary_df.empty or 'avg_comet_en_to_lrl' not in summary_df.columns:
-        print("Summary DataFrame is empty or missing COMET scores, skipping COMET plot.")
-        return
-    plt.figure(figsize=(15, 8))
-    try:
-        # Ensure a unique identifier if not already created
-        if 'experiment_config' not in summary_df.columns:
-             summary_df['experiment_config'] = summary_df['language'] + '-' + summary_df['model'] + '-' + summary_df['pipeline'] + '-' + summary_df['shot_type']
-        sns.barplot(data=summary_df.dropna(subset=['avg_comet_en_to_lrl']), x='experiment_config', y='avg_comet_en_to_lrl') # Drop NA for plotting COMET
-        plt.xticks(rotation=45, ha='right')
-        plt.title('Average COMET Scores (EN->LRL Answer Back-Translation)')
-        plt.ylabel('Average COMET Score')
-        plt.xlabel('Experiment Configuration')
-        plt.tight_layout()
-        plot_filename = os.path.join(plots_dir, "cotr_qa_comet_scores.png")
-        plt.savefig(plot_filename)
-        plt.close()
-        print(f"COMET score plot saved to {plot_filename}")
-    except Exception as e:
-        print(f"Error generating COMET plot: {e}")
+    metrics_to_plot = ['f1_score', 'avg_comet_q_lrl_en', 'avg_comet_c_lrl_en', 'avg_comet_a_en_lrl']
+    for metric in metrics_to_plot:
+        if metric not in summary_df.columns or summary_df[metric].isnull().all():
+            logging.info(f"Metric '{metric}' not found or all NaN in summary. Skipping this plot.")
+            continue
+        plt.figure(figsize=(18, 10))
+        try:
+            # Create a unique identifier for each experiment configuration for x-axis labels
+            # Ensure all components are strings and handle potential missing dict keys gracefully
+            summary_df['experiment_config'] = summary_df['model'] + '-' + \
+                                          summary_df['language'] + '-' + \
+                                          summary_df['pipeline'] + '-' + \
+                                          summary_df['shot_type'] + '-Q' + \
+                                          summary_df['qa_params'].apply(lambda x: str(round(x.get('temperature', 0), 2)) if isinstance(x, dict) else 'N/A') + '-T' + \
+                                          summary_df['trans_params'].apply(lambda x: str(round(x.get('temperature', 0), 2)) if isinstance(x, dict) else 'N/A')
+            
+            plot_data = summary_df.dropna(subset=[metric]) # Drop rows where the current metric is NaN
+            if plot_data.empty:
+                logging.info(f"No valid data to plot for '{metric}' after dropping NaNs.")
+                continue
+
+            sns.barplot(data=plot_data, x='experiment_config', y=metric, hue='language', dodge=False)
+            plt.xticks(rotation=75, ha='right', fontsize=8)
+            plt.title(f'Average {metric.replace("_", " ").title()} for CoTR QA Experiments', fontsize=14)
+            plt.ylabel(f'Average {metric.replace("_", " ").title()}', fontsize=12)
+            plt.xlabel('Experiment Configuration (Model-Lang-Pipeline-Shot-QATemp-TransTemp)', fontsize=10)
+            plt.legend(title='Language', bbox_to_anchor=(1.02, 1), loc='upper left')
+            plt.tight_layout(rect=[0,0,0.88,1]) # Adjust layout to make space for legend
+            plot_filename = os.path.join(plots_dir, f"cotr_qa_{metric}_scores.png")
+            plt.savefig(plot_filename)
+            plt.close()
+            logging.info(f"{metric.replace('_', ' ').title()} plot saved to {plot_filename}")
+        except Exception as e:
+            logging.error(f"Error generating {metric} plot: {e}", exc_info=True)
+            if plt.get_fignums(): # Check if a figure is open
+                plt.close() # Ensure figure is closed on error
 
 if __name__ == "__main__":
     main()

@@ -5,6 +5,7 @@ import os
 import logging
 import argparse
 import torch
+from typing import Any, Optional, Dict
 
 # Disable tokenizer parallelism to avoid warnings
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
@@ -19,17 +20,22 @@ import pandas as pd
 import numpy as np
 from src.utils.data_loaders.load_tydiqa import load_tydiqa_samples
 from src.experiments.baseline.qa.qa_baseline import evaluate_qa_baseline, initialize_model
-from evaluation.baseline.qa_metrics_baseline import calculate_qa_f1
 from huggingface_hub import login
 from config import get_token
+
+# ADDED: Import for plotting
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 def parse_args():
     """Parse command-line arguments."""
     parser = argparse.ArgumentParser(description="Run QA baseline experiments with optimized parameters.")
     parser.add_argument("--models", nargs='+', default=["CohereLabs/aya-expanse-8b", "Qwen/Qwen2.5-7B-Instruct"], 
                         help="List of model names or paths for QA.")
-    parser.add_argument("--samples", type=int, default=10, 
-                        help="Number of samples per language for TyDiQA.")
+    parser.add_argument("--langs", type=str, default="en,sw,te",
+                        help="Comma-separated language codes (e.g., en,sw,te). Default is en,sw,te.")
+    parser.add_argument("--sample_percentage", type=float, default=10.0,
+                        help="Percentage of samples per language for TyDiQA (e.g., 10 for 10%). Default: 10.")
     parser.add_argument("--few_shot", action="store_true", 
                         help="Enable few-shot prompting if not comparing shots.")
     parser.add_argument("--compare_shots", action="store_true", 
@@ -37,24 +43,48 @@ def parse_args():
     # Add any other arguments that might be needed based on script usage
     parser.add_argument("--output", type=str, default="/work/bbd6522/results/qa/baseline",
                         help="Base output directory for results and summaries.")
+    # Add missing generation parameters to parser
+    parser.add_argument("--temperature", type=float, default=None, help="Generation temperature.")
+    parser.add_argument("--top_p", type=float, default=None, help="Nucleus sampling top_p.")
+    parser.add_argument("--top_k", type=int, default=None, help="Top-k filtering.")
+    parser.add_argument("--max_tokens", type=int, default=None, help="Maximum new tokens to generate.")
     return parser.parse_args()
+
+# Define LANGUAGE_PARAMETERS globally or pass it appropriately
+LANGUAGE_PARAMETERS = {
+    "en": {"temperature": 0.3, "top_p": 0.9, "top_k": 40, "max_tokens": 50},
+    "sw": {"temperature": 0.25, "top_p": 0.85, "top_k": 35, "max_tokens": 55}, # Example for Swahili
+    "te": {"temperature": 0.28, "top_p": 0.88, "top_k": 38, "max_tokens": 52}  # Example for Telugu
+}
 
 def run_experiment(
     model_name: str, 
+    tokenizer: Any,
+    model: Any,
     samples_df: pd.DataFrame, 
     lang_code: str, 
     base_results_path: str,
-    use_few_shot: bool # Add few-shot flag
-):
+    use_few_shot: bool, # Add few-shot flag
+    temperature: float,
+    top_p: float,
+    top_k: int,
+    max_tokens: int
+) -> Optional[Dict[str, Any]]:
     """
-    Run the baseline experiment for a specific model and language.
+    Runs a single QA baseline experiment configuration.
     
     Args:
         model_name: Name of the model to use
+        tokenizer: Tokenizer for the model
+        model: Model to use
         samples_df: DataFrame containing the samples
         lang_code: Language code
         base_results_path: Base path for saving results
         use_few_shot: Whether to use few-shot prompting
+        temperature: Generation temperature
+        top_p: Nucleus sampling top_p
+        top_k: Top-k filtering
+        max_tokens: Maximum new tokens to generate
     """
     # Check if samples_df is empty
     if samples_df.empty:
@@ -67,7 +97,19 @@ def run_experiment(
         
         # --- Call the evaluation function --- 
         # Pass the use_few_shot flag
-        results_df = evaluate_qa_baseline(model_name, samples_df, lang_code, use_few_shot=use_few_shot)
+        results_df = evaluate_qa_baseline(
+            model_name=model_name,
+            tokenizer=tokenizer,
+            model=model,
+            samples_df=samples_df,
+            lang_code=lang_code,
+            use_few_shot=use_few_shot,
+            temperature=temperature,
+            top_p=top_p,
+            top_k=top_k,
+            max_tokens=max_tokens
+            # repetition_penalty and do_sample will use defaults in evaluate_qa_baseline
+        )
         
         # --- Check if results were generated ---
         if results_df.empty:
@@ -100,11 +142,6 @@ def run_experiment(
         if 'few_shot' not in results_df.columns:
             results_df['few_shot'] = use_few_shot
 
-        # Calculate F1 scores using the DataFrame
-        print(f"\nCalculating F1 scores (Predicted LRL/EN vs Ground Truth LRL/EN) - {shot_desc}...")
-        results_df["f1_score"] = results_df.apply(calculate_qa_f1, axis=1)
-        
-        # Calculate average F1 score
         avg_f1 = results_df["f1_score"].mean()
         print(f"\nAverage F1 Score for {lang_code} ({model_name}, Baseline, {shot_desc}): {avg_f1:.4f}")
         
@@ -146,6 +183,8 @@ def run_experiment(
         summary_df.to_csv(os.path.join(summary_path, summary_filename), index=False, float_format='%.4f')
         print(f"Summary metrics saved to {summary_path}/{summary_filename}")
 
+        return summary
+
     except Exception as e:
         print(f"Error during run_experiment for {model_name} for {lang_code}: {str(e)}")
         # Keep the specific error handling for restricted models
@@ -172,30 +211,27 @@ def main():
     # Get arguments
     args = parse_args()
     
+    # Process models argument to handle comma-separated strings
+    processed_models_list = []
+    for model_arg in args.models:
+        if ',' in model_arg:
+            processed_models_list.extend([m.strip() for m in model_arg.split(',')])
+        else:
+            processed_models_list.append(model_arg.strip())
+    args.models = processed_models_list
+    
     # Configure logging
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-    
-    # Add the absolute path to the root directory to the sys.path
-    # PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../..")) # No longer strictly needed for output path
-    # sys.path.insert(0, PROJECT_ROOT) # sys.path modification for imports is still at the top of the file
     
     # Define the results directory using the --output argument
     base_results_dir = args.output
     os.makedirs(base_results_dir, exist_ok=True)
-    # os.makedirs(os.path.join(base_results_dir, "summaries"), exist_ok=True) # Not creating subdirectories anymore
-    # os.makedirs(os.path.join(base_results_dir, "results"), exist_ok=True)   # Not creating subdirectories anymore
-    
-    # Load custom functions for calculating metrics
-    # from src.utils.evaluation import calculate_qa_f1, calculate_exact_match_score # Commented out due to ModuleNotFoundError
-    from src.experiments.baseline.qa.qa_baseline import calculate_qa_f1 # Import F1 from qa_baseline
-    # calculate_exact_match_score needs to be defined or imported from its correct location
     
     # Define the languages to test
     languages = {
         "english": "en",
         "swahili": "sw",
-        "hausa": "ha",
-        "telugu": "te"  # Added Telugu
+        "telugu": "te"  # Keep Telugu, remove Hausa
     }
     
     # Load the samples for each language
@@ -203,8 +239,8 @@ def main():
     for name, code in languages.items():
         logging.info(f"Loading samples for {name} ({code})...")
         
-        # Load appropriate number of samples
-        samples = load_tydiqa_samples(code, args.samples)
+        # Load appropriate number of samples based on percentage
+        samples = load_tydiqa_samples(code, sample_percentage=args.sample_percentage)
         
         if not samples.empty:
             logging.info(f"  Loaded {len(samples)} samples for {name}")
@@ -213,52 +249,52 @@ def main():
             logging.warning(f"  No samples loaded for {name}")
     
     # Run the experiments
+    all_experiment_summaries = [] # ADDED: To collect all summaries
+
     for model_name_str in args.models:
         logging.info(f"\n{'='*20} Initializing Model: {model_name_str} {'='*20}")
-        tokenizer, model = None, None
+        tokenizer, model = None, None # Initialize here for the current model scope
         try:
             # Initialize model once per model string
             tokenizer, model = initialize_model(model_name_str) 
         except Exception as e:
             logging.error(f"Failed to initialize model {model_name_str}: {e}. Skipping this model.")
+            # Ensure cleanup if partial initialization occurred before error
             if model is not None: del model
             if tokenizer is not None: del tokenizer
             if torch.cuda.is_available(): torch.cuda.empty_cache()
-            continue # Next model
+            continue # Next model in args.models
 
-    for lang_code, samples_df in tydiqa_samples.items():
-        if samples_df.empty:
-            continue
-        
+        # THIS LOOP IS NOW NESTED CORRECTLY
+        for lang_code, samples_df in tydiqa_samples.items():
+            if samples_df.empty:
+                continue
+            
             logging.info(f"Processing {lang_code} samples with {model_name_str}...")
         
-        # Apply optimized parameters
-        params = {
-            "temperature": STANDARD_PARAMETERS["temperature"],
-            "top_p": STANDARD_PARAMETERS["top_p"], 
-            "top_k": STANDARD_PARAMETERS["top_k"],
-            "max_tokens": STANDARD_PARAMETERS["max_tokens"]
-        }
-        
-        # Language-specific optimizations
-        if lang_code == "sw":  # Swahili
-            params["temperature"] = 0.2
-            params["top_p"] = 0.8
-            elif lang_code == "ha":  # Hausa
-                params["temperature"] = 0.15 # Example: Adjust if needed for Hausa
-                params["top_p"] = 0.75   # Example: Adjust if needed for Hausa
-        elif lang_code == "te":  # Telugu
-                params["temperature"] = 0.15 # Example: Placeholder for Telugu
-                params["top_p"] = 0.75   # Example: Placeholder for Telugu
-        
-        # Model-specific optimizations
+            # Determine effective generation parameters
+            # Start with language-specific or standard parameters
+            current_params = LANGUAGE_PARAMETERS.get(lang_code, STANDARD_PARAMETERS).copy()
+
+            # Apply model-specific adjustments (ensure this block is correctly indented)
             if "aya" in model_name_str.lower():
-            # Aya-specific parameters
-            params["temperature"] = max(0.1, params["temperature"] - 0.05)
+                current_params["temperature"] = max(0.01, current_params.get("temperature", 0.3) * 0.85) 
+                current_params["top_p"] = max(0.7, current_params.get("top_p", 0.9) * 0.95)
+                current_params["max_tokens"] = current_params.get("max_tokens", 50) + 10 # Allow a bit more for Aya
             elif "qwen" in model_name_str.lower():
-            # Qwen-specific parameters
-            params["top_p"] = max(0.7, params["top_p"] - 0.05)
-            params["top_k"] = 35
+                current_params["temperature"] = max(0.01, current_params.get("temperature", 0.3) * 0.9)
+                current_params["top_k"] = current_params.get("top_k", 40) - 5 # Qwen might be better with slightly lower top_k
+                current_params["max_tokens"] = current_params.get("max_tokens", 50) + 5
+            # Add more model-specific adjustments as needed
+            # else: (No specific adjustments for other models, uses lang/standard)
+
+            # Override with CLI arguments if provided
+            effective_params = {
+                "temperature": args.temperature if args.temperature is not None else current_params.get("temperature"),
+                "top_p": args.top_p if args.top_p is not None else current_params.get("top_p"),
+                "top_k": args.top_k if args.top_k is not None else current_params.get("top_k"),
+                "max_tokens": args.max_tokens if args.max_tokens is not None else current_params.get("max_tokens")
+            }
         
             # MODIFIED: Determine shot_settings based on command-line arguments
             if args.compare_shots:
@@ -271,92 +307,79 @@ def main():
                 shot_settings = [False] # Zero-shot only (default)
                 logging.info("Running only zero-shot evaluation (default). Use --compare_shots or --few_shot for other modes.")
         
-        for use_few_shot in shot_settings:
-            shot_type = "few-shot" if use_few_shot else "zero-shot"
-            logging.info(f"Running {shot_type} evaluation with parameters: {params}")
-            
-            # Run the evaluation with optimized parameters
-            results_df = evaluate_qa_baseline(
-                        model_name_str,  # Pass model name string for logging
-                        tokenizer,       # Pass initialized tokenizer
-                        model,           # Pass initialized model
-                samples_df, 
-                lang_code, 
-                use_few_shot=use_few_shot,
-                temperature=params["temperature"],
-                top_p=params["top_p"],
-                top_k=params["top_k"],
-                max_tokens=params["max_tokens"]
-            )
-            
-            if results_df.empty:
-                    logging.warning(f"No results returned for {lang_code} with {model_name_str} ({shot_type})")
-                    continue # Correctly indented to continue to the next shot_setting
-            
-            # Calculate metrics
-            f1_scores = []
-                # exact_match_scores = [] # Commented out
-            
-                for _, row_data in results_df.iterrows(): # Renamed row to row_data to avoid conflict
-                    ground_truth = row_data["ground_truth"]
-                    predicted = row_data["predicted_answer"]
+            for use_few_shot in shot_settings:
+                shot_type = "few-shot" if use_few_shot else "zero-shot"
+                logging.info(f"Running {shot_type} evaluation with parameters: {effective_params}")
                 
-                # Calculate F1 and Exact Match
-                f1 = calculate_qa_f1({"text": [ground_truth]}, predicted)
-                    # em = calculate_exact_match_score({"text": [ground_truth]}, predicted) # Commented out
+                # MODIFIED: Call run_experiment which now returns a summary dict
+                experiment_summary = run_experiment(
+                    model_name_str,
+                    tokenizer,
+                    model,
+                    samples_df,
+                    lang_code,
+                    base_results_dir, # Pass base_results_dir
+                    use_few_shot,
+                    effective_params["temperature"],
+                    effective_params["top_p"],
+                    effective_params["top_k"],
+                    effective_params["max_tokens"]
+                )
+
+                if experiment_summary:
+                    all_experiment_summaries.append(experiment_summary)
                 
-                f1_scores.append(f1)
-                    # exact_match_scores.append(em) # Commented out
-            
-            # Add metrics to results
-            results_df["f1_score"] = f1_scores
-                # results_df["exact_match"] = exact_match_scores # Commented out
-            
-            # Calculate average metrics
-            avg_f1 = results_df["f1_score"].mean()
-                # avg_em = results_df["exact_match"].mean() # Commented out
-            
-                logging.info(f"Results for {lang_code} with {model_name_str} ({shot_type}):")
-            logging.info(f"  Average F1: {avg_f1:.4f}")
-                # logging.info(f"  Average Exact Match: {avg_em:.4f}") # Commented out
-            
-            # Save the results
-                model_name_short = model_name_str.split("/")[-1]
-            shot_suffix = "fs" if use_few_shot else "zs"
-            
-            # Save detailed results
-            results_filename = f"qa_baseline_{shot_suffix}_{lang_code}_{model_name_short}.csv"
-                results_path = os.path.join(base_results_dir, results_filename) # Save directly into base_results_dir
-            results_df.to_csv(results_path, index=False)
-            logging.info(f"Detailed results saved to {results_path}")
-            
-            # Save summary
-            summary = {
-                "language": lang_code,
-                    "model": model_name_str,
-                "shot_type": shot_type,
-                "f1_score": avg_f1,
-                    # "exact_match": avg_em, # Commented out
-                "temperature": params["temperature"],
-                "top_p": params["top_p"],
-                "top_k": params["top_k"],
-                "max_tokens": params["max_tokens"],
-                "samples_processed": len(results_df)
-            }
-            
-            summary_df = pd.DataFrame([summary])
-            summary_filename = f"summary_baseline_{shot_suffix}_qa_tydiqa_{lang_code}_{model_name_short}.csv"
-                summary_path = os.path.join(base_results_dir, summary_filename) # Save directly into base_results_dir
-                summary_df.to_csv(summary_path, index=False, float_format='%.4f')
-            logging.info(f"Summary saved to {summary_path}")
+                # This block for detailed results and individual summary saving is now part of run_experiment
+                # So, it's removed from here to avoid duplication.
 
         # Clean up model and tokenizer after all languages and shot settings for it are done
         logging.info(f"Finished all experiments for model {model_name_str}. Unloading...")
-        del model
-        del tokenizer
+        if model is not None: del model
+        if tokenizer is not None: del tokenizer
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
             logging.info("GPU memory cache cleared.")
+
+    # ADDED: Generate overall summary and plots
+    if all_experiment_summaries:
+        overall_summary_df = pd.DataFrame(all_experiment_summaries)
+        overall_summary_filename = os.path.join(base_results_dir, "summaries", "baseline_qa_ALL_experiments_summary.csv")
+        overall_summary_df.to_csv(overall_summary_filename, index=False, float_format='%.4f')
+        logging.info(f"Overall summary of all baseline QA experiments saved to: {overall_summary_filename}")
+        print("\nOverall Summary:")
+        print(overall_summary_df)
+
+        # Generate plots
+        plots_dir = os.path.join(base_results_dir, "plots")
+        os.makedirs(plots_dir, exist_ok=True)
+        plot_qa_f1_scores(overall_summary_df, plots_dir)
+    else:
+        logging.info("No experiment summaries collected. Skipping overall summary and plot generation.")
+
+# ADDED: Plotting function for F1 scores
+def plot_qa_f1_scores(summary_df: pd.DataFrame, plots_dir: str):
+    """Generate and save a bar plot of F1 scores."""
+    if summary_df.empty:
+        logging.warning("Summary DataFrame is empty. Skipping F1 score plot generation.")
+        return
+
+    plt.figure(figsize=(12, 7))
+    try:
+        # Create a unique identifier for each experiment run for plotting
+        summary_df['experiment_id'] = summary_df['model'] + "-" + summary_df['language'] + "-" + summary_df['shot_type']
+        
+        sns.barplot(data=summary_df, x='experiment_id', y='f1_score', hue='language')
+        plt.xticks(rotation=45, ha='right')
+        plt.title('Average F1 Scores for QA Baseline Experiments')
+        plt.ylabel('Average F1 Score')
+        plt.xlabel('Experiment Configuration (Model-Language-ShotType)')
+        plt.tight_layout()
+        plot_filename = os.path.join(plots_dir, "baseline_qa_f1_scores.png")
+        plt.savefig(plot_filename)
+        plt.close()
+        logging.info(f"F1 score plot saved to {plot_filename}")
+    except Exception as e:
+        logging.error(f"Error generating F1 plot: {e}", exc_info=True)
 
 if __name__ == "__main__":
     main()

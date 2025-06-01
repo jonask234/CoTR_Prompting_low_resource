@@ -6,12 +6,14 @@ import pandas as pd
 import numpy as np
 import torch
 import json # Added for parameter logging if needed
+import csv # Add csv import
 from tqdm import tqdm
 import matplotlib.pyplot as plt
 import seaborn as sns
 from datetime import datetime
 import logging
-from typing import Dict, Any, Optional, List # Added List
+from typing import Dict, Any, Optional, List, Tuple
+from sklearn.metrics import accuracy_score, f1_score, classification_report
 
 # Add project root to Python path BEFORE other project imports
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', '..'))
@@ -24,7 +26,8 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 # Import baseline classification functions
 from src.experiments.baseline.classification.classification_baseline import (
     initialize_model,
-    evaluate_classification_baseline
+    evaluate_classification_baseline,
+    POSSIBLE_LABELS_EN # For metrics and prompt generation
 )
 
 # Import data loader (e.g., for a news classification dataset like MasakhaNEWS)
@@ -38,32 +41,36 @@ from evaluation.classification_metrics import calculate_classification_metrics
 from huggingface_hub import login
 from config import get_token
 
-# --- Define Default Parameters (consistent with CoTR runner where applicable) ---
-DEFAULT_GENERATION_PARAMS = {
-    "temperature": 0.05,
+# Define the language codes available in MasakhaNEWS
+MASAKHANEWS_LANG_CODES_WITH_ALL = ["en", "sw", "ha", "yo", "pcm", "ibo", "amh", "fra", "lin", "lug", "orm", "run", "sna", "som", "tir", "xho"]
+
+# --- Unified Generation Parameters ---
+# Core parameters shared between baseline and CoTR
+UNIFIED_GENERATION_PARAMETERS_CORE = {
+    "temperature": 0.1,
     "top_p": 0.9,
     "top_k": 40,
-    "max_tokens": 20,
-    "repetition_penalty": 1.1
+    "repetition_penalty": 1.1,
+    "do_sample": True
 }
 
-# Language-specific overrides for baseline (if different from CoTR defaults)
-LANGUAGE_SPECIFIC_BASELINE_PARAMS = {
-    "sw": {"temperature": 0.05, "repetition_penalty": 1.15},
-    "ha": {"temperature": 0.05, "repetition_penalty": 1.15},
-    "te": {"temperature": 0.05, "repetition_penalty": 1.2}
-}
+# Task-specific max_tokens for Baseline Classification
+MAX_TOKENS_BASELINE_CLASSIFICATION_LABEL = 20
 
-# Model-specific adjustments for baseline
-MODEL_SPECIFIC_BASELINE_ADJUSTMENTS = {
-    "CohereLabs/aya-expanse-8b": {"temperature_factor": 1.0},
-    "Qwen/Qwen2.5-7B-Instruct": {"top_p": 0.85, "top_k": 35, "temperature": 0.05}
+# Model-specific overrides for Baseline
+# These will override the UNIFIED_GENERATION_PARAMETERS_CORE or task-specific max_tokens
+MODEL_SPECIFIC_OVERRIDES_BASELINE = {
+    "CohereLabs/aya-expanse-8b": {
+        "temperature": 0.05, # Stricter for Aya
+        "repetition_penalty": 1.15,
+        "max_tokens": 22, # Slight adjust for Aya labels (overrides MAX_TOKENS_BASELINE_CLASSIFICATION_LABEL)
+    },
+    "Qwen/Qwen2.5-7B-Instruct": {
+        "temperature": 0.15,
+        "top_p": 0.85,
+        "max_tokens": 25, # Qwen might need more for labels
+    }
 }
-
-# Define expected labels - these should match what the model is trained/prompted to output
-# For MasakhaNEWS, these are the actual categories:
-POSSIBLE_LABELS_EN = ['health', 'religion', 'politics', 'sports', 'local', 'business', 'entertainment']
-# OLD: POSSIBLE_LABELS_EN = ["topic_a", "topic_b", "topic_c", "other"]
 
 # Define language names dictionary
 LANG_NAMES = {
@@ -73,22 +80,33 @@ LANG_NAMES = {
     "te": "Telugu"
 }
 
-def get_effective_baseline_params(lang_code: str, model_name: str) -> Dict:
-    """Merge default, language-specific, and model-specific parameters for baseline."""
-    effective_params = DEFAULT_GENERATION_PARAMS.copy()
-    if lang_code in LANGUAGE_SPECIFIC_BASELINE_PARAMS:
-        effective_params.update(LANGUAGE_SPECIFIC_BASELINE_PARAMS[lang_code])
+def get_effective_baseline_params(lang_code: str, model_name: str, cli_overrides: Dict = None) -> Dict:
+    """Gets effective parameters for baseline classification.
+    Starts with unified core, adds baseline-specific max_tokens, then model-specific, then CLI.
+    """
+    params = UNIFIED_GENERATION_PARAMETERS_CORE.copy()
+    params["max_tokens"] = MAX_TOKENS_BASELINE_CLASSIFICATION_LABEL
+
+    # Apply model-specific overrides from MODEL_SPECIFIC_OVERRIDES_BASELINE
+    if model_name in MODEL_SPECIFIC_OVERRIDES_BASELINE:
+        model_overrides = MODEL_SPECIFIC_OVERRIDES_BASELINE[model_name]
+        for key, value in model_overrides.items():
+            params[key] = value # This can override core params or max_tokens
+
+    # Override with any CLI parameters
+    if cli_overrides:
+        for k, v in cli_overrides.items():
+            if v is not None and k in params:
+                params[k] = v
+            elif v is not None: # If it's a new param from CLI not in defaults
+                logging.warning(f"CLI param '{k}' is not a standard generation param for baseline. It will be added.")
+                params[k] = v
     
-    model_adjustments = MODEL_SPECIFIC_BASELINE_ADJUSTMENTS.get(model_name, {})
-    for key, value in model_adjustments.items():
-        if key.endswith("_factor") and key[:-len("_factor")] in effective_params:
-            param_to_adjust = key[:-len("_factor")]
-            effective_params[param_to_adjust] *= value
-            if param_to_adjust == "temperature":
-                effective_params[param_to_adjust] = max(0.01, effective_params[param_to_adjust])
-        else:
-            effective_params[key] = value # Direct override
-    return effective_params
+    # Ensure 'do_sample' is explicitly present, respecting overrides.
+    params["do_sample"] = params.get("do_sample", True)
+
+    logging.debug(f"Effective baseline params for {model_name} ({lang_code}): {params}")
+    return params
 
 def run_baseline_classification_experiment(
     model_name: str,
@@ -97,7 +115,6 @@ def run_baseline_classification_experiment(
     samples_df: pd.DataFrame,
     lang_code: str,
     possible_labels_en: List[str],
-    prompt_in_lrl: bool, 
     use_few_shot: bool, 
     base_results_path: str,
     generation_params: Dict
@@ -109,7 +126,8 @@ def run_baseline_classification_experiment(
 
     model_short_name = model_name.split('/')[-1]
     shot_type_str = "fs" if use_few_shot else "zs"
-    prompt_lang_str = "lrl" if prompt_in_lrl and lang_code != 'en' else "en"
+    # Determine prompt language string based directly on lang_code
+    prompt_lang_str = "lrl" if lang_code != 'en' else "en"
 
     results_dir = os.path.join(base_results_path, prompt_lang_str, shot_type_str, lang_code, model_short_name)
     summaries_dir = os.path.join(base_results_path, "summaries", prompt_lang_str, shot_type_str)
@@ -150,14 +168,25 @@ def run_baseline_classification_experiment(
         start_time = time.time()
         try:
             results_df_computed = evaluate_classification_baseline(
-                model_name, tokenizer, model, samples_df, lang_code, 
-                possible_labels_en, prompt_in_lrl, use_few_shot, generation_params
+                model_name=model_name,
+                tokenizer=tokenizer,
+                model=model,
+                samples_df=samples_df,
+                lang_code=lang_code,
+                possible_labels=possible_labels_en,
+                use_few_shot=use_few_shot,
+                temperature=generation_params["temperature"],
+                top_p=generation_params["top_p"],
+                top_k=generation_params["top_k"],
+                max_tokens=generation_params["max_tokens"],
+                repetition_penalty=generation_params["repetition_penalty"],
+                do_sample=generation_params["do_sample"]
             )
             runtime = time.time() - start_time
             if not results_df_computed.empty:
                 results_df_computed['runtime_seconds_total'] = runtime
                 results_df_computed['runtime_per_sample'] = runtime / len(results_df_computed)
-                results_df_computed.to_csv(results_file, index=False)
+                results_df_computed.to_csv(results_file, index=False, quoting=csv.QUOTE_NONNUMERIC)
                 print(f"Results saved to {results_file}")
             else:
                 print("Baseline evaluation returned empty DataFrame.")
@@ -191,29 +220,49 @@ def run_baseline_classification_experiment(
         summary_data[f'{label}_recall'] = metrics.get(f'{label}_recall', 0.0)
         
     summary_df = pd.DataFrame([summary_data])
-    summary_df.to_csv(summary_file, index=False, float_format='.4f')
+    # Ensure correct float formatting and NaN representation for individual summary CSVs
+    summary_df.to_csv(summary_file, index=False, float_format='%.4f', na_rep='NaN') 
     print(f"Summary saved to {summary_file}")
     print(summary_df.to_string())
     return summary_data
 
+def parse_args():
+    parser = argparse.ArgumentParser(description="Run Classification Baseline experiments with MasakhaNEWS.")
+    parser.add_argument("--models", type=str, default="CohereLabs/aya-expanse-8b", 
+                        help="Comma-separated model names (e.g., 'CohereLabs/aya-expanse-8b,Qwen/Qwen2.5-7B-Instruct').")
+    parser.add_argument("--langs", nargs='+', default=['en', 'sw', 'ha'], 
+                        choices=MASAKHANEWS_LANG_CODES_WITH_ALL, # Defined at top of file
+                        help="Languages to evaluate from MasakhaNEWS. Default: en, sw, ha.")
+    parser.add_argument("--prompt_instructions", nargs='+', default=['en', 'lrl'], choices=['en', 'lrl'], 
+                        help="Instruction language for prompts: 'en' for English, 'lrl' for LRL-specific (if available).")
+    parser.add_argument("--shot_settings", nargs='+', default=['zero_shot', 'few_shot'], 
+                        choices=['zero_shot', 'few_shot'], 
+                        help="Shot settings to evaluate.")
+    parser.add_argument("--base_output_dir", type=str, default="/work/bbd6522/results/classification/baseline_masakhanews", 
+                        help="Base directory to save results and summaries.")
+    parser.add_argument("--data_split", type=str, default="test", 
+                        choices=["train", "validation", "test"], 
+                        help="Dataset split to use. Default: test.")
+    
+    # Sampling options
+    parser.add_argument("--sample_percentage", type=float, default=0.1, 
+                        help="Percentage of samples to use *per language* (0.0 to 1.0) from the chosen split and num_samples. Default: 0.1 (10%%).")
+    parser.add_argument("--num_samples", type=int, default=None, 
+                        help="Maximum number of samples to load per language and split *before* applying sample_percentage. If None, all available are considered.")
+    parser.add_argument("--max_samples_per_lang", type=int, default=None, help="Maximum number of samples to load per language before percentage sampling. If None, loads all available.")
+    parser.add_argument("--seed", type=int, default=42, 
+                        help="Random seed for sampling and reproducibility.")
+    
+    return parser.parse_args()
+
 def main():
-    parser = argparse.ArgumentParser(description="Run Classification Baseline experiments.")
-    parser.add_argument("--models", type=str, default="CohereLabs/aya-expanse-8b,Qwen/Qwen2.5-7B-Instruct", help="Comma-separated models")
-    parser.add_argument("--langs", type=str, default="en,sw,ha", help="Comma-separated language codes")
-    parser.add_argument("--samples", type=int, default=20, help="Number of samples per language")
-    parser.add_argument("--prompt_instructions", nargs='+', default=['en', 'lrl'], choices=['en', 'lrl'], help="Instruction language for prompts (en or lrl)")
-    parser.add_argument("--shot_settings", nargs='+', default=['zero_shot', 'few_shot'], choices=['zero_shot', 'few_shot'], help="Shot settings")
-    parser.add_argument("--dataset_name", type=str, default="masakhanews", 
-                        help="Name of the classification dataset (e.g., masakhanews)")
-    parser.add_argument("--base_output_dir", type=str, default="/work/bbd6522/results/classification/baseline", help="Base output directory")
-    parser.add_argument("--seed", type=int, default=42, help="Random seed")
-    args = parser.parse_args()
+    args = parse_args()
 
     token = get_token()
     login(token=token)
     
     model_list = [m.strip() for m in args.models.split(',')]
-    lang_list = [l.strip() for l in args.langs.split(',')]
+    lang_list = [l.strip() for l in args.langs]
 
     os.makedirs(args.base_output_dir, exist_ok=True)
     os.makedirs(os.path.join(args.base_output_dir, "summaries"), exist_ok=True)
@@ -222,6 +271,9 @@ def main():
     print(f"Using English labels for classification: {possible_labels_en}")
 
     all_experiment_summaries = []
+    # Use a fixed seed for the 10% sampling for reproducibility across runs if args.seed is not defined
+    # args.seed is already defined with a default of 42 by the parser
+    sampling_seed = args.seed 
 
     for model_name in model_list:
         print(f"\n{'='*20} Initializing Model: {model_name} {'='*20}")
@@ -237,58 +289,76 @@ def main():
 
         for lang_code in lang_list:
             print(f"\n--- Processing Language: {lang_code} for model {model_name} (Baseline) ---")
-            samples_df = load_masakhanews_samples(lang_code=lang_code, num_samples=args.samples)
-            if samples_df.empty or 'text' not in samples_df.columns or 'label' not in samples_df.columns:
-                print(f"Skipping {lang_code} for {model_name} due to missing data/columns ('text', 'label').")
-                continue
-            samples_df['label'] = samples_df['label'].astype(str).str.lower().str.strip()
+            # Step 1: Load samples, potentially capped by max_samples_per_lang
+            # Pass args.num_samples (which is the renamed max_samples_per_lang in this context based on previous edits)
+            # or more directly args.max_samples_per_lang if that argument name is settled.
+            # Assuming args.max_samples_per_lang is the correct argument name now.
+            loaded_df = load_masakhanews_samples(
+                lang_code=lang_code,
+                split=args.data_split,
+                num_samples=args.max_samples_per_lang # Load up to this many, or all if None
+            )
 
-            for prompt_instr_lang in args.prompt_instructions:
-                prompt_in_lrl = (prompt_instr_lang == 'lrl')
-                if lang_code == 'en' and prompt_in_lrl:
-                    print(f"Skipping LRL instructions for English language text. Using EN instructions.")
-                    current_prompt_in_lrl = False
+            samples_df_for_lang = pd.DataFrame() # Initialize as empty
+            if not loaded_df.empty:
+                # Step 2: Apply percentage sampling to the loaded_df
+                num_total_loaded = len(loaded_df)
+                if args.sample_percentage < 1.0:
+                    num_to_sample_percent = max(1, int(args.sample_percentage * num_total_loaded))
+                    print(f"    Loaded {num_total_loaded} samples. Applying {args.sample_percentage*100:.1f}% sampling: {num_to_sample_percent} samples.")
+                    samples_df_for_lang = loaded_df.sample(n=num_to_sample_percent, random_state=sampling_seed)
                 else:
-                    current_prompt_in_lrl = prompt_in_lrl
+                    print(f"    Loaded {num_total_loaded} samples. Using all (sample_percentage is 1.0 or greater).")
+                    samples_df_for_lang = loaded_df # Use all loaded samples
+            
+            if samples_df_for_lang.empty:
+                print(f"Skipping {lang_code} for {model_name} due to missing data/columns ('text', 'label') after loading/sampling.")
+                continue
+            samples_df_for_lang['label'] = samples_df_for_lang['label'].astype(str).str.lower().str.strip()
 
-                for shot_setting in args.shot_settings:
-                    use_few_shot = (shot_setting == 'few_shot')
-                    effective_gen_params = get_effective_baseline_params(lang_code, model_name)
-                    print(f"\n  Running config: Lang={lang_code}, PromptInstr={'LRL' if current_prompt_in_lrl else 'EN'}, Shot={shot_setting}")
-                    print(f"    Effective Gen Params: {json.dumps(effective_gen_params, indent=2)}")
+            # Determine prompt_lang_str for logging/path purposes, reflecting the automatic choice
+            actual_prompt_lang_description = 'LRL' if lang_code != 'en' else 'EN'
 
-                    summary_data = run_baseline_classification_experiment(
-                        model_name, tokenizer, model, samples_df, lang_code, 
-                        possible_labels_en, current_prompt_in_lrl, use_few_shot,
-                        args.base_output_dir, effective_gen_params
-                    )
-                    if summary_data:
-                        # Ensure numeric types for all expected float columns before appending
-                        float_cols = ['accuracy', 'macro_f1', 'runtime_total_s', 'temperature', 'top_p', 'repetition_penalty']
-                        # Add per-class precision and recall columns
-                        for label_name in POSSIBLE_LABELS_EN: # Use the globally defined POSSIBLE_LABELS_EN
-                            float_cols.append(f'{label_name}_precision')
-                            float_cols.append(f'{label_name}_recall')
-                        
-                        for col in float_cols:
-                            if col in summary_data:
-                                try:
-                                    summary_data[col] = float(summary_data[col])
-                                except (ValueError, TypeError):
-                                    print(f"Warning: Could not convert {col} to float. Value: {summary_data[col]}. Setting to NaN.")
-                                    summary_data[col] = np.nan # Use NaN for unconvertible values
-                        
-                        # Ensure integer types for relevant columns
-                        int_cols = ['samples_processed', 'top_k', 'max_tokens']
-                        for col in int_cols:
-                            if col in summary_data:
-                                try:
-                                    summary_data[col] = int(summary_data[col])
-                                except (ValueError, TypeError):
-                                     print(f"Warning: Could not convert {col} to int. Value: {summary_data[col]}. Setting to 0 or NaN.")
-                                     summary_data[col] = 0 # Or np.nan, depending on desired handling
+            for shot_setting in args.shot_settings:
+                use_few_shot = (shot_setting == 'few_shot')
+                effective_gen_params = get_effective_baseline_params(lang_code, model_name)
+            
+                print(f"\n  Running config: Lang={lang_code}, PromptInstr={actual_prompt_lang_description}, Shot={shot_setting}")
+                print(f"    Effective Gen Params: {json.dumps(effective_gen_params, indent=2)}")
 
-                        all_experiment_summaries.append(summary_data)
+                summary_data = run_baseline_classification_experiment(
+                    model_name, tokenizer, model, samples_df_for_lang, lang_code, 
+                    possible_labels_en,
+                    use_few_shot,
+                    args.base_output_dir, effective_gen_params
+                )
+                if summary_data:
+                    # Ensure numeric types for all expected float columns before appending
+                    float_cols = ['accuracy', 'macro_f1', 'runtime_total_s', 'temperature', 'top_p', 'repetition_penalty']
+                    # Add per-class precision and recall columns
+                    for label_name in POSSIBLE_LABELS_EN: # Use the globally defined POSSIBLE_LABELS_EN
+                        float_cols.append(f'{label_name}_precision')
+                        float_cols.append(f'{label_name}_recall')
+                    
+                    for col in float_cols:
+                        if col in summary_data:
+                            try:
+                                summary_data[col] = float(summary_data[col])
+                            except (ValueError, TypeError):
+                                print(f"Warning: Could not convert {col} to float. Value: {summary_data[col]}. Setting to NaN.")
+                                summary_data[col] = np.nan # Use NaN for unconvertible values
+                    
+                    # Ensure integer types for relevant columns
+                    int_cols = ['samples_processed', 'top_k', 'max_tokens']
+                    for col in int_cols:
+                        if col in summary_data:
+                            try:
+                                summary_data[col] = int(summary_data[col])
+                            except (ValueError, TypeError):
+                                 print(f"Warning: Could not convert {col} to int. Value: {summary_data[col]}. Setting to 0 or NaN.")
+                                 summary_data[col] = 0 # Or np.nan, depending on desired handling
+
+                    all_experiment_summaries.append(summary_data)
         
         print(f"Finished all baseline experiments for model {model_name}. Unloading...")
         del model
@@ -299,45 +369,52 @@ def main():
     if all_experiment_summaries:
         overall_summary_df = pd.DataFrame(all_experiment_summaries)
         
-        # --- Debugging DataFrame before saving ---
-        print("\n--- Debugging overall_summary_df before saving ---")
-        print("DataFrame Info:")
-        overall_summary_df.info()
-        print("\nDataFrame Head:")
-        print(overall_summary_df.head().to_string())
+        # Define summaries_dir before using it
+        summaries_dir = os.path.join(args.base_output_dir, "summaries")
+        os.makedirs(summaries_dir, exist_ok=True)
+
+        # Explicitly replace problematic strings like '.4f' with np.nan
+        # This helps ensure that subsequent to_numeric conversions work as expected.
+        for col in overall_summary_df.columns:
+            if overall_summary_df[col].dtype == 'object':
+                # Replace the exact string '.4f' if it exists.
+                overall_summary_df[col] = overall_summary_df[col].replace('.4f', np.nan)
         
-        float_check_cols = ['accuracy', 'macro_f1', 'temperature', 'health_precision'] # Check a subset
-        for col_to_check in float_check_cols:
-            if col_to_check in overall_summary_df.columns and not overall_summary_df.empty:
-                first_val = overall_summary_df[col_to_check].iloc[0]
-                print(f"Sample value for {col_to_check} (1st row): {first_val}, type: {type(first_val)}")
-        print("---------------------------------------------------\n")
-        # --- End Debugging ---
+        # Ensure correct dtypes, especially for numeric columns that might be object
+        numeric_cols = ['accuracy', 'macro_f1', 'runtime_total_s', 'temperature', 'top_p', 'top_k', 'max_tokens', 'repetition_penalty', 'samples_processed'] # ensure samples_processed is numeric
+        
+        # Dynamically add per-class metric columns to numeric_cols if they exist
+        if not overall_summary_df.empty:
+            # Use the keys from the first dictionary in all_experiment_summaries as a proxy for all possible columns
+            # This is safer if overall_summary_df might have columns not in the first dict due to varying outputs
+            potential_metric_keys = set()
+            for summary_dict in all_experiment_summaries:
+                potential_metric_keys.update(summary_dict.keys())
 
-        overall_summary_filename = os.path.join(args.base_output_dir, "summaries", f"classification_baseline_ALL_experiments_summary_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv")
-        try:
-            # Define the order of columns for the CSV
-            ordered_columns = [
-                'model', 'language', 'prompt_language', 'shot_type', 'accuracy', 'macro_f1', 
-                'samples_processed', 'runtime_total_s', 'temperature', 'top_p', 'top_k', 'max_tokens', 'repetition_penalty'
-            ]
-            # Add per-class metrics to the ordered list
-            for label_name in POSSIBLE_LABELS_EN: # Use the globally defined POSSIBLE_LABELS_EN
-                ordered_columns.append(f'{label_name}_precision')
-                ordered_columns.append(f'{label_name}_recall')
-            
-            # Ensure all columns in ordered_columns exist in the DataFrame, add if missing (with NaN)
-            for col in ordered_columns:
-                if col not in overall_summary_df.columns:
-                    overall_summary_df[col] = np.nan
-            
-            overall_summary_df = overall_summary_df[ordered_columns] # Reorder and select columns
+            for key in potential_metric_keys:
+                if (key.endswith("_precision") or key.endswith("_recall") or key.endswith("_f1-score")) and key not in numeric_cols:
+                    numeric_cols.append(key)
+        
+        for col in numeric_cols:
+            if col in overall_summary_df.columns:
+                # Convert to numeric, coercing errors. Strings like ".4f" (now np.nan) or other non-numeric strings will become NaN.
+                overall_summary_df[col] = pd.to_numeric(overall_summary_df[col], errors='coerce')
+        
+        # Convert 'do_sample' to boolean if it's not already
+        if 'do_sample' in overall_summary_df.columns:
+            # Handle potential string "True"/"False" from dict conversion or np.nan
+            overall_summary_df['do_sample'] = overall_summary_df['do_sample'].apply(
+                lambda x: str(x).lower() == 'true' if pd.notna(x) else None
+            ).astype('boolean') # Use pandas nullable boolean type
 
-            overall_summary_df.to_csv(overall_summary_filename, index=False, float_format='%.4f', na_rep='NaN')
-            print(f"Overall summary saved to: {overall_summary_filename}")
-            print(overall_summary_df.to_string(float_format='%.4f', na_rep='NaN'))
-        except Exception as e_save:
-            print(f"ERROR saving overall classification baseline summary to {overall_summary_filename}: {e_save}")
+        overall_summary_filename = os.path.join(summaries_dir, "baseline_classification_ALL_experiments_summary.csv")
+        
+        # Save the cleaned DataFrame to CSV
+        # Using float_format for actual floats, and na_rep for NaN values (which includes coerced '.4f' strings)
+        overall_summary_df.to_csv(overall_summary_filename, index=False, float_format='%.4f', na_rep='NaN')
+        
+        logging.info(f"Overall summary saved to {overall_summary_filename}")
+        logging.info("\n" + overall_summary_df.to_string())
     else:
         print("No classification baseline experiments were successfully summarized.")
 
@@ -348,4 +425,6 @@ if __name__ == "__main__":
     # This should be the source of truth for MasakhaNEWS categories.
     POSSIBLE_LABELS_EN = ['health', 'religion', 'politics', 'sports', 'local', 'business', 'entertainment']
     print(f"Using English labels for classification: {POSSIBLE_LABELS_EN}")
+    # Setup basic logging
+    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
     main() 
