@@ -8,9 +8,10 @@ import time
 import traceback
 from typing import Tuple, Dict, List, Any, Optional
 import logging
+import sys
 
 # Define English labels as the canonical ones
-POSSIBLE_LABELS_EN = ['health', 'religion', 'politics', 'sports', 'local', 'business', 'entertainment']
+POSSIBLE_LABELS_EN = ['business', 'entertainment', 'health', 'politics', 'religion', 'sports', 'technology']
 
 # Define LRL translations for MasakhaNEWS labels (needed for LRL few-shot examples)
 CLASS_LABELS_LRL = {
@@ -19,21 +20,38 @@ CLASS_LABELS_LRL = {
         "religion": "dini",
         "politics": "siasa",
         "sports": "michezo",
-        "local": "ndani", 
         "business": "biashara",
-        "entertainment": "burudani"
+        "entertainment": "burudani",
+        "technology": "teknolojia"
     },
     "ha": { # Hausa
         "health": "lafiya",
         "religion": "addini",
         "politics": "siyasa",
         "sports": "wasanni",
-        "local": "na gida", 
         "business": "kasuwanci",
-        "entertainment": "nishadi"
+        "entertainment": "nishadi",
+        "technology": "fasaha"
+    },
+    "fr": { # Adding French for completeness, assuming MasakhaNEWS has French
+        "health": "santé",
+        "religion": "religion",
+        "politics": "politique",
+        "sports": "sport",
+        "business": "affaires",
+        "entertainment": "divertissement",
+        "technology": "technologie"
     }
     # Add other languages if their LRL few-shot examples are defined here
 }
+
+# Initialize logging
+logger = logging.getLogger(__name__)
+
+# Add project root to Python path if not already (helps with module resolution)
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../..'))
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
 
 def initialize_model(model_name: str) -> Tuple[Any, Any]:
     """Initialize a model and tokenizer, specifying cache directory."""
@@ -85,8 +103,8 @@ Category: {possible_labels[2] if len(possible_labels) > 2 and 'politics' in poss
 Text: 'The home team secured a stunning victory in the final minutes of the match.'
 Category: {possible_labels[3] if len(possible_labels) > 3 and 'sports' in possible_labels else (possible_labels[3] if len(possible_labels) > 3 else 'sports')}
 
-Text: 'A new community center opened downtown, offering various activities for residents.'
-Category: {possible_labels[4] if len(possible_labels) > 4 and 'local' in possible_labels else (possible_labels[4] if len(possible_labels) > 4 else 'local')}
+Text: 'Scientists developed a new artificial intelligence system that can process natural language.'
+Category: {possible_labels[6] if len(possible_labels) > 6 and 'technology' in possible_labels else (possible_labels[6] if len(possible_labels) > 6 else 'technology')}
 
 Text: 'The company announced record profits for the third quarter, driven by strong sales in its new product line.'
 Category: {possible_labels[5] if len(possible_labels) > 5 and 'business' in possible_labels else (possible_labels[5] if len(possible_labels) > 5 else 'business')}
@@ -134,19 +152,19 @@ def generate_lrl_instruct_classification_prompt(
         # Add more diverse English examples if desired
     ]
 
-    # Swahili Few-shot Examples
-    few_shot_examples_sw = [
-        {"text": "Nakala hii inazungumzia matukio ya hivi karibuni ya kisiasa barani Afrika.", "kategoria": CLASS_LABELS_LRL.get("sw", {}).get("politics", "siasa")},
-        {"text": "Timu ya michezo ya eneo hilo ilishinda mechi yao jana jioni.", "kategoria": CLASS_LABELS_LRL.get("sw", {}).get("sports", "michezo")},
-        {"text": "Tamasha la muziki la kila mwaka huvutia maelfu ya watu.", "kategoria": CLASS_LABELS_LRL.get("sw", {}).get("entertainment", "burudani")}
-    ]
+    # Swahili Few-shot Examples -- NO LONGER USED, REPLACED BY ENGLISH EXAMPLES
+    # few_shot_examples_sw = [
+    #     {"text": "Nakala hii inazungumzia matukio ya hivi karibuni ya kisiasa barani Afrika.", "kategoria": CLASS_LABELS_LRL.get("sw", {}).get("politics", "siasa")},
+    #     {"text": "Timu ya michezo ya eneo hilo ilishinda mechi yao jana jioni.", "kategoria": CLASS_LABELS_LRL.get("sw", {}).get("sports", "michezo")},
+    #     {"text": "Tamasha la muziki la kila mwaka huvutia maelfu ya watu.", "kategoria": CLASS_LABELS_LRL.get("sw", {}).get("entertainment", "burudani")}
+    # ]
 
-    # Hausa Few-shot Examples
-    few_shot_examples_ha = [
-        {"text": "Wannan labarin yana magana ne akan al'amuran siyasa na baya-bayan nan a Afirka.", "kategoria": CLASS_LABELS_LRL.get("ha", {}).get("politics", "siyasa")},
-        {"text": "Kungiyar wasanni ta gida ta yi nasara a wasansu jiya da yamma.", "kategoria": CLASS_LABELS_LRL.get("ha", {}).get("sports", "wasanni")},
-        {"text": "Bikin kade-kade na shekara-shekara yana jan hankalin dubban mutane.", "kategoria": CLASS_LABELS_LRL.get("ha", {}).get("entertainment", "burudani")}
-    ]
+    # Hausa Few-shot Examples -- NO LONGER USED, REPLACED BY ENGLISH EXAMPLES
+    # few_shot_examples_ha = [
+    #     {"text": "Wannan labarin yana magana ne akan al'amuran siyasa na baya-bayan nan a Afirka.", "kategoria": CLASS_LABELS_LRL.get("ha", {}).get("politics", "siyasa")},
+    #     {"text": "Kungiyar wasanni ta gida ta yi nasara a wasansu jiya da yamma.", "kategoria": CLASS_LABELS_LRL.get("ha", {}).get("sports", "wasanni")},
+    #     {"text": "Bikin kade-kade na shekara-shekara yana jan hankalin dubban mutane.", "kategoria": CLASS_LABELS_LRL.get("ha", {}).get("entertainment", "burudani")}
+    # ]
 
     instruction_block_current_sample = "" # Will be populated by lang-specific block
     full_prompt_parts = [] # Initialize here
@@ -164,12 +182,16 @@ Kategoria:"""
         full_prompt_parts.append(instruction_block_current_sample)
 
         if use_few_shot:
-            full_prompt_parts.append("\nMifano:")
-            for ex in few_shot_examples_sw:
-                # IMPORTANT: The model is asked to output ENGLISH labels, so few-shot "kategoria" should reflect that for clarity if possible,
-                # or clearly state that the LRL kategoria maps to an English one.
-                # For now, using the LRL example labels.
-                full_prompt_parts.append(f"Nakala: '{ex['text']}'\nKategoria: {ex['kategoria']}\n")
+            full_prompt_parts.append("\nMifano (Nakala za Kiingereza, Majibu ya Kiingereza):") # Clarify examples are English text and English labels
+            for ex_en in english_example_texts_and_labels:
+                # Find the English label from possible_labels_en that corresponds to ex_en['label_key']
+                # This assumes possible_labels_en contains the actual label string, e.g., 'health', 'politics'
+                target_en_label = ex_en['label_key'] # Default to key if not found, though ideally it should match
+                for pl_en in possible_labels_en:
+                    if pl_en.lower() == ex_en['label_key'].lower():
+                        target_en_label = pl_en
+                        break
+                full_prompt_parts.append(f"Nakala (Kiingereza): '{ex_en['text']}'\nKategoria (Kiingereza): {target_en_label}\n")
         
         full_prompt_parts.append("\nKategoria:") # Final prompt for the model to complete
         return "\n".join(full_prompt_parts)
@@ -180,17 +202,46 @@ Kategoria:"""
 Rukunonin da za su yiwu (da Turanci): <POSSIBLE_LABELS>
 Umarni: Gano rukunin wannan rubutu. Amsarka dole ta kasance DAYA KAWAI daga cikin rukunonin Turanci da aka ambata.
 Rukuni:"""
-        instruction_block_current_sample = instruction_block.replace("<TEXT>", text.replace("'", "\'")).replace("<POSSIBLE_LABELS>", ", ".join([f"'{l}'" for l in possible_labels_en]))
+        instruction_block_current_sample = instruction_block.replace("<TEXT>", text.replace("'", "\\'")).replace("<POSSIBLE_LABELS>", ", ".join([f"'{l}'" for l in possible_labels_en]))
 
         full_prompt_parts.append(instruction_block_current_sample)
 
         if use_few_shot:
-            full_prompt_parts.append("\nMisalai:")
-            for ex in few_shot_examples_ha:
-                full_prompt_parts.append(f"Rubutu: '{ex['text']}'\nRukuni: {ex['kategoria']}\n")
+            full_prompt_parts.append("\nMisalai (Rubutun Turanci, Amsoshin Turanci):") # Clarify examples are English text and English labels
+            for ex_en in english_example_texts_and_labels:
+                target_en_label = ex_en['label_key'] 
+                for pl_en in possible_labels_en:
+                    if pl_en.lower() == ex_en['label_key'].lower():
+                        target_en_label = pl_en
+                        break
+                full_prompt_parts.append(f"Rubutu (Turanci): '{ex_en['text']}'\nRukuni (Turanci): {target_en_label}\n")
         
         full_prompt_parts.append("\nRukuni:") # Final prompt for the model to complete
         return "\n".join(full_prompt_parts)
+
+    elif lang_code == "fr": # Added French
+        logging.info(f"Generating French-specific classification prompt for text: '{text[:50]}...'")
+        instruction_block = """Texte: '<TEXT>'
+Catégories possibles (en anglais): <POSSIBLE_LABELS>
+Instructions: Identifiez la catégorie de ce texte. Votre réponse doit être UNIQUEMENT l'une des catégories anglaises mentionnées.
+Catégorie:"""
+        instruction_block_current_sample = instruction_block.replace("<TEXT>", text.replace("'", "\\'")).replace("<POSSIBLE_LABELS>", ", ".join([f"'{l}'" for l in possible_labels_en]))
+
+        full_prompt_parts.append(instruction_block_current_sample)
+
+        if use_few_shot:
+            full_prompt_parts.append("\nExemples (Textes en anglais, Réponses en anglais):")
+            for ex_en in english_example_texts_and_labels:
+                target_en_label = ex_en['label_key'] 
+                for pl_en in possible_labels_en:
+                    if pl_en.lower() == ex_en['label_key'].lower():
+                        target_en_label = pl_en
+                        break
+                full_prompt_parts.append(f"Texte (Anglais): '{ex_en['text']}'\nCatégorie (Anglais): {target_en_label}\n")
+        
+        full_prompt_parts.append("\nCatégorie:")
+        return "\n".join(full_prompt_parts)
+
     else: # Fallback for other LRLs not explicitly defined
         logging.warning(f"LRL instructions for '{lang_code}' not specifically defined in generate_lrl_instruct_classification_prompt. Falling back to English instructions via generate_classification_prompt.")
         # This fallback correctly uses English instructions by calling the main English-based prompter

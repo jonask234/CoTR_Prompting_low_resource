@@ -25,12 +25,12 @@ XNLI_NUMERIC_TO_STR_LABEL_MAP = {0: 'entailment', 1: 'neutral', 2: 'contradictio
 def parse_args():
     """Parse command line arguments."""
     parser = argparse.ArgumentParser(description="Run NLI Fixed Prediction Baselines.")
-    parser.add_argument("--langs", nargs='+', default=['en', 'sw', 'ur'], 
-                        help="Languages to test (default: en, sw, ur for XNLI).")
+    parser.add_argument("--langs", nargs='+', default=['en', 'ur', 'sw', 'fr'], 
+                        help="Languages to test (default: en, ur, sw, fr for XNLI).")
     parser.add_argument("--split", type=str, default="test", 
                         help="Dataset split to use (default: test). XNLI typically uses 'validation' or 'test'.")
-    parser.add_argument("--sample_percentage", type=float, default=10.0,
-                        help="Percentage of samples to use from the specified split (default: 10.0 for 10%%).")
+    parser.add_argument("--num_samples", type=int, default=80,
+                        help="Number of samples to use from the specified split (default: 80).")
     parser.add_argument("--output_dir", type=str, default="/work/bbd6522/results/nli/simple_baselines_fixed",
                         help="Base output directory for results and summaries.")
     parser.add_argument("--seed", type=int, default=42,
@@ -558,31 +558,17 @@ def main():
         print(f"\n=== Processing NLI Fixed Prediction Baselines for Language: {lang_code} ===")
         
         try:
-            print(f"Loading {args.sample_percentage}%% of '{args.split}' XNLI samples for {lang_code} with seed {args.seed}...")
-            # load_xnli_samples handles sample_percentage and uses seed for its internal sampling if applicable.
+            print(f"Loading up to {args.num_samples} samples for {lang_code} ({args.split} split) with seed {args.seed}...")
             samples_df = load_xnli_samples(
-                lang_code=lang_code, 
-                split=args.split, 
-                sample_percentage=args.sample_percentage, # Pass sample_percentage
-                # load_xnli_samples uses .sample(random_state=...) so seed is passed implicitly via its structure
-                # if it needs to sample. The seed set globally also helps.
+                lang_code=lang_code,
+                split=args.split,
+                num_samples=args.num_samples,
+                seed=args.seed
             )
             
             if samples_df.empty:
-                print(f"No XNLI samples loaded for {lang_code} on split '{args.split}' with {args.sample_percentage}%% sampling. Skipping.")
+                print(f"No XNLI samples loaded for {lang_code} on split '{args.split}'. Skipping.")
                 continue
-
-            # The manual sampling block below is no longer needed as the loader handles it.
-            # num_to_sample = int(len(all_samples_df) * (args.sample_percentage / 100.0))
-            # if num_to_sample == 0 and len(all_samples_df) > 0:
-            #     num_to_sample = 1
-            # 
-            # if num_to_sample == 0:
-            #      print(f"Calculated 0 samples to select for {lang_code} with {args.sample_percentage}%%. Skipping.")
-            #      continue
-            #
-            # print(f"Total XNLI samples for {lang_code} ({args.split}): {len(all_samples_df)}. Sampling {num_to_sample} ({args.sample_percentage}%%).")
-            # samples_df = all_samples_df.sample(n=num_to_sample, random_state=args.seed)
             
             if 'label' not in samples_df.columns:
                 print(f"No 'label' column found after loading XNLI samples for {lang_code}. Skipping.")

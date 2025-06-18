@@ -144,8 +144,8 @@ def run_baseline_classification_experiment(
             results_df_computed = pd.read_csv(results_file)
             if 'ground_truth_label' in results_df_computed.columns:
                 label_map = {
-                    0: 'health', 1: 'religion', 2: 'politics', 3: 'sports',
-                    4: 'local', 5: 'business', 6: 'entertainment'
+                    0: 'business', 1: 'entertainment', 2: 'health', 3: 'politics',
+                    4: 'religion', 5: 'sports', 6: 'technology'
                 }
                 results_df_computed['ground_truth_label'] = pd.to_numeric(results_df_computed['ground_truth_label'], errors='coerce')
                 results_df_computed.dropna(subset=['ground_truth_label'], inplace=True)
@@ -227,42 +227,53 @@ def run_baseline_classification_experiment(
     return summary_data
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="Run Classification Baseline experiments with MasakhaNEWS.")
-    parser.add_argument("--models", type=str, default="CohereLabs/aya-expanse-8b", 
-                        help="Comma-separated model names (e.g., 'CohereLabs/aya-expanse-8b,Qwen/Qwen2.5-7B-Instruct').")
-    parser.add_argument("--langs", nargs='+', default=['en', 'sw', 'ha'], 
-                        choices=MASAKHANEWS_LANG_CODES_WITH_ALL, # Defined at top of file
-                        help="Languages to evaluate from MasakhaNEWS. Default: en, sw, ha.")
-    parser.add_argument("--prompt_instructions", nargs='+', default=['en', 'lrl'], choices=['en', 'lrl'], 
-                        help="Instruction language for prompts: 'en' for English, 'lrl' for LRL-specific (if available).")
-    parser.add_argument("--shot_settings", nargs='+', default=['zero_shot', 'few_shot'], 
-                        choices=['zero_shot', 'few_shot'], 
-                        help="Shot settings to evaluate.")
+    parser = argparse.ArgumentParser(description="Run Baseline Classification Experiments with MasakhaNEWS.")
+    parser.add_argument("--models", type=str, default="CohereLabs/aya-23-8B,Qwen/Qwen2.5-7B-Instruct", help="Comma-separated model names.")
+    parser.add_argument("--langs", type=str, default="en,ha,sw", help="Comma-separated MasakhaNEWS language codes.")
+    parser.add_argument("--num_samples", type=int, default=10, help="Number of samples per language.")
+    parser.add_argument("--data_split", type=str, default="test", choices=["train", "validation", "test"], help="Dataset split.")
+    parser.add_argument("--prompt_in_lrl", action='store_true', help="If set, prompt instructions and examples will be in LRL, not English.")
+    
+    # Control flow and experiment settings
+    parser.add_argument("--shot_settings", nargs='+', default=['zero_shot', 'few_shot'], choices=['zero_shot', 'few_shot'], help="Prompting strategies to evaluate: zero-shot or few-shot.")
     parser.add_argument("--base_output_dir", type=str, default="/work/bbd6522/results/classification/baseline_masakhanews", 
                         help="Base directory to save results and summaries.")
-    parser.add_argument("--data_split", type=str, default="test", 
-                        choices=["train", "validation", "test"], 
-                        help="Dataset split to use. Default: test.")
-    
-    # Sampling options
-    parser.add_argument("--sample_percentage", type=float, default=0.1, 
-                        help="Percentage of samples to use *per language* (0.0 to 1.0) from the chosen split and num_samples. Default: 0.1 (10%%).")
-    parser.add_argument("--num_samples", type=int, default=None, 
-                        help="Maximum number of samples to load per language and split *before* applying sample_percentage. If None, all available are considered.")
-    parser.add_argument("--max_samples_per_lang", type=int, default=None, help="Maximum number of samples to load per language before percentage sampling. If None, loads all available.")
-    parser.add_argument("--seed", type=int, default=42, 
-                        help="Random seed for sampling and reproducibility.")
-    
+    parser.add_argument("--overwrite_results", action='store_true', help="Overwrite existing detailed results and summary files if they exist.")
+    parser.add_argument("--test_mode", action='store_true', help="Run in test mode (uses a very small subset of data and fewer iterations).")
+    parser.add_argument("--log_level", type=str, default="INFO", choices=["DEBUG", "INFO", "WARNING", "ERROR"], help="Set the logging level.")
+    parser.add_argument("--hf_token", type=str, default=None, help="HuggingFace API token for gated models.")
+    parser.add_argument("--seed", type=int, default=42, help="Random seed for sampling and reproducibility.")
+
+    # Sampling parameters
+    parser.add_argument("--sample_percentage", type=float, default=1.0, 
+                        help="Percentage of initially loaded samples (e.g., from num_samples or all if num_samples is None) to actually use. E.g., 0.1 for 10%%. Default: 1.0 (all loaded).")
+    parser.add_argument("--max_samples_per_lang", type=int, default=None, 
+                        help="Absolute maximum number of samples per language to process. Acts as a cap *after* initial loading and percentage sampling. Default: No cap.")
+
+    # Generation parameters (with defaults that can be overridden by get_effective_baseline_params)
+    parser.add_argument("--temperature", type=float, default=None, help="Override temperature for generation.")
+    parser.add_argument("--top_p", type=float, default=None, help="Override top-p for generation.")
+    parser.add_argument("--top_k", type=int, default=None, help="Override top-k for generation.")
+    parser.add_argument("--max_tokens", type=int, default=None, help="Override max_tokens for classification label generation (e.g., 10-20).")
+    parser.add_argument("--repetition_penalty", type=float, default=None, help="Override repetition penalty.")
+    parser.add_argument("--do_sample", type=lambda x: (str(x).lower() == 'true'), default=None, 
+                        help="Override do_sample (True/False). Default determined by temperature > 0.")
+
     return parser.parse_args()
 
 def main():
     args = parse_args()
 
+    # Configure logging
+    log_format = '%(asctime)s - %(name)s - %(levelname)s - %(message)s' # Added name for clarity
+    logging.basicConfig(level=args.log_level.upper(), format=log_format, datefmt='%Y-%m-%d %H:%M:%S')
+    logger = logging.getLogger(__name__) # Initialize logger for this main script
+
     token = get_token()
     login(token=token)
     
     model_list = [m.strip() for m in args.models.split(',')]
-    lang_list = [l.strip() for l in args.langs]
+    lang_list = [l.strip() for l in args.langs.split(',')]
 
     os.makedirs(args.base_output_dir, exist_ok=True)
     os.makedirs(os.path.join(args.base_output_dir, "summaries"), exist_ok=True)
@@ -303,13 +314,22 @@ def main():
             if not loaded_df.empty:
                 # Step 2: Apply percentage sampling to the loaded_df
                 num_total_loaded = len(loaded_df)
-                if args.sample_percentage < 1.0:
+                if args.sample_percentage < 1.0 and args.sample_percentage > 0.0: # Ensure percentage is valid
                     num_to_sample_percent = max(1, int(args.sample_percentage * num_total_loaded))
-                    print(f"    Loaded {num_total_loaded} samples. Applying {args.sample_percentage*100:.1f}% sampling: {num_to_sample_percent} samples.")
+                    logger.info(f"    Loaded {num_total_loaded} samples. Applying {args.sample_percentage*100:.1f}% sampling: {num_to_sample_percent} samples.")
                     samples_df_for_lang = loaded_df.sample(n=num_to_sample_percent, random_state=sampling_seed)
                 else:
-                    print(f"    Loaded {num_total_loaded} samples. Using all (sample_percentage is 1.0 or greater).")
+                    logger.info(f"    Loaded {num_total_loaded} samples. Using all (sample_percentage is {args.sample_percentage}).")
                     samples_df_for_lang = loaded_df # Use all loaded samples
+            
+            # Step 3: Apply the --num_samples limit as the final cap
+            if not samples_df_for_lang.empty:
+                if args.num_samples is not None and args.num_samples > 0 and len(samples_df_for_lang) > args.num_samples:
+                    logger.info(f"    Currently have {len(samples_df_for_lang)} samples. Capping to --num_samples: {args.num_samples}.")
+                    # Ensure consistent sampling if reducing, even if already sampled by percentage
+                    samples_df_for_lang = samples_df_for_lang.sample(n=args.num_samples, random_state=sampling_seed).reset_index(drop=True)
+                elif args.num_samples is not None and args.num_samples > 0:
+                    logger.info(f"    Currently have {len(samples_df_for_lang)} samples. --num_samples is {args.num_samples}, no capping needed or already met.")
             
             if samples_df_for_lang.empty:
                 print(f"Skipping {lang_code} for {model_name} due to missing data/columns ('text', 'label') after loading/sampling.")
@@ -423,7 +443,7 @@ def main():
 if __name__ == "__main__":
     # Define POSSIBLE_LABELS_EN globally for access in main and other functions if needed
     # This should be the source of truth for MasakhaNEWS categories.
-    POSSIBLE_LABELS_EN = ['health', 'religion', 'politics', 'sports', 'local', 'business', 'entertainment']
+    POSSIBLE_LABELS_EN = ['business', 'entertainment', 'health', 'politics', 'religion', 'sports', 'technology']
     print(f"Using English labels for classification: {POSSIBLE_LABELS_EN}")
     # Setup basic logging
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')

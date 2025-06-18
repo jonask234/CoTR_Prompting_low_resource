@@ -29,7 +29,8 @@ LANG_NAMES = {
     "yo": "Yoruba",
     "ma": "Marathi",
     "multi": "Multilingual",
-    "te": "Telugu" # From QA, might be needed if unifying
+    "te": "Telugu", # From QA, might be needed if unifying
+    "pt": "Portuguese" # Added Portuguese
     # Add other languages from datasets as needed
 }
 
@@ -45,6 +46,7 @@ SENTIMENT_LABELS_LRL = {
     "am": {"positive": "አዎንታዊ", "negative": "አሉታዊ", "neutral": "ገለልተኛ"},
     "yo": {"positive": "rere", "negative": "búburú", "neutral": "dídọ̀ọ̀dọ́"}, # Added accents for Yoruba
     "pcm": {"positive": "good", "negative": "bad", "neutral": "neutral"}, # Pidgin might use English-like terms
+    "pt": {"positive": "positivo", "negative": "negativo", "neutral": "neutro"}, # Added Portuguese
     # For Telugu, if sentiment task is extended:
     # "te": {"positive": "సానుకూల", "negative": "ప్రతికూల", "neutral": "తటస్థ"}
 }
@@ -52,6 +54,17 @@ SENTIMENT_LABELS_LRL = {
 # Define SENTIMENT_LABELS_EN and SENTIMENT_LABELS_EN_STR for import by runner script
 SENTIMENT_LABELS_EN = ["positive", "negative", "neutral"]
 SENTIMENT_LABELS_EN_STR = ", ".join(SENTIMENT_LABELS_EN)
+
+# --- Added Utility Function ---
+def _sanitize_for_prompt(text: str) -> str:
+    """Basic sanitization for text included in prompts."""
+    if not isinstance(text, str):
+        text = str(text)
+    # Escape backticks and triple quotes to prevent markdown/f-string issues
+    text = text.replace('`', '\\`')
+    text = text.replace("'''", "'\\''") # Escape existing triple quotes
+    text = text.replace('"""', '\"\"\"')
+    return text
 
 def get_language_name(lang_code: str) -> str:
     """Helper to get full language name."""
@@ -122,65 +135,85 @@ def initialize_model(model_name: str) -> tuple:
     return tokenizer, model
 
 def generate_translation_prompt(text: str, source_lang: str, target_lang: str, is_label: bool = False) -> str:
-    """Generate a prompt for translation (text or label) with structured format. All instructions in English."""
+    """Generates an English-instructed prompt for translation."""
     source_name = get_language_name(source_lang)
     target_name = get_language_name(target_lang)
-
-    # Escape the text to be included in the f-string
-    # Basic escaping for single quotes; f-strings with triple quotes are safer.
-    text_escaped = text.replace("'", "\\'") # Escape single quotes
+    safe_text = _sanitize_for_prompt(text) # Ensure _sanitize_for_prompt is defined
 
     if is_label:
-        # Specific prompt for translating a sentiment label. Target output is a single LRL word.
-        return f"""Translate the following English sentiment label to {target_name}: '{text_escaped}'
-Provide ONLY the single translated word for the sentiment label in {target_name}.
-{target_name} Translation:"""
+        # Prompt for translating a single sentiment label (e.g., "positive")
+        # Instruction must be in ENGLISH
+        return f"""Translate the following English sentiment label into {target_name}:
+English Sentiment Label: "{safe_text}"
+Provide ONLY the {target_name} translation of this label. Do not add explanations or any other text.
+{target_name} Sentiment Label:"""
     else:
-        # General text translation prompt, ensuring clarity for the model.
-        return f"""Translate the following {source_name} text to {target_name}.
-Preserve the original meaning and sentiment accurately.
-Provide only the direct translation without any explanations, conversational phrases, or markdown.
+        # Prompt for translating a block of text
+        # Instruction must be in ENGLISH
+        # Adding English few-shot examples for LRL to English text translation
+        example_lrl_sw = "Nimefurahishwa sana na bidhaa hii."
+        example_en_sw = "I am very pleased with this product."
+        example_lrl_ha = "Wannan fim din ya kasance mai ban sha'awa."
+        example_en_ha = "This film was very interesting."
+        example_lrl_pt = "O serviço ao cliente foi péssimo."
+        example_en_pt = "The customer service was terrible."
 
-Original Text ({source_name}):
-'''{text}'''
+        few_shot_text_trans = ""
+        if source_lang == 'sw' and target_lang == 'en':
+            few_shot_text_trans = f"Example {source_name} Text: '{example_lrl_sw}'\\nExample English Translation: '{example_en_sw}'"
+        elif source_lang == 'ha' and target_lang == 'en':
+            few_shot_text_trans = f"Example {source_name} Text: '{example_lrl_ha}'\\nExample English Translation: '{example_en_ha}'"
+        elif source_lang == 'pt' and target_lang == 'en':
+            few_shot_text_trans = f"Example {source_name} Text: '{example_lrl_pt}'\\nExample English Translation: '{example_en_pt}'"
+        # Add more elif for other LRL->EN pairs if needed
 
-{target_name} Translation:""" # The model should continue from here
+        return f"""Original Text ({source_name}):
+'{safe_text}'
+
+Instructions:
+Translate the {source_name} text above to fluent and accurate English.
+Provide ONLY the English translation. Do not add any introductory text, labels, or explanations.
+
+{few_shot_text_trans}
+
+English Translation:"""
 
 def generate_sentiment_prompt_english(text_en: str, use_few_shot: bool = True) -> str:
-    """Generate a prompt for English sentiment classification. All instructions in English."""
-    # Escape the English text
-    text_en_escaped = text_en.replace("'", "\\'")
+    """Generates an English-instructed prompt for English sentiment analysis.
+       Instructs the model to output ONE of the predefined English labels.
+       Uses English few-shot examples.
+    """
+    safe_text_en = _sanitize_for_prompt(text_en)
 
-    # Clear instructions and output format specification
-    base_instruction = f"""Analyze the sentiment of the following English text.
-Respond with ONLY one of these English labels: positive, negative, or neutral.
-Do NOT add any explanations or other text.
+    # Instruction must be in ENGLISH
+    instruction = f"""Analyze the sentiment of the following English text.
+Respond with ONLY ONE of these English labels: {SENTIMENT_LABELS_EN_STR}.
+Do not add explanations or any other text.
 
-Text:
-'''{text_en_escaped}'''
+English Text: "{safe_text_en}"
+
+English Sentiment Label:"""
+
+    few_shot_examples_text = f"""Here are some examples:
+
+Example 1:
+English Text: "This is a fantastic product, highly recommended!"
+English Sentiment Label: positive
+
+Example 2:
+English Text: "I am extremely disappointed with the quality and service."
+English Sentiment Label: negative
+
+Example 3:
+English Text: "The movie was okay, nothing special."
+English Sentiment Label: neutral
+
+---
 """
-    
-    examples_en = """
-Examples:
-Text:
-'''This movie was fantastic, I loved it!'''
-Sentiment: positive
-
-Text:
-'''I am not happy with the service provided.'''
-Sentiment: negative
-
-Text:
-'''The meeting is scheduled for 3 PM.'''
-Sentiment: neutral
-""" # End of examples
-    
     if use_few_shot:
-        prompt = f"{base_instruction}\n{examples_en}\nSentiment:"
+        return f"{few_shot_examples_text}\n{instruction}"
     else:
-        prompt = f"{base_instruction}\nSentiment:"
-        
-    return prompt
+        return instruction
 
 def clean_translation_response(raw_response: str, target_lang: str, is_label: bool = False) -> str:
     """Cleans the raw translation response from the model."""
@@ -226,75 +259,72 @@ def clean_translation_response(raw_response: str, target_lang: str, is_label: bo
 
 def extract_sentiment_label_cotr(output_text: str, for_lrl_label: bool = False, lang_code: Optional[str] = None) -> str:
     """
-    Extracts sentiment label (English or LRL) from model output.
-    If for_lrl_label is True, it uses LRL keywords for the specified lang_code.
-    Otherwise, it extracts standard English labels.
+    Extracts a sentiment label from model output.
+    If for_lrl_label=True, it tries to match known LRL labels first for the given lang_code.
+    Otherwise (or as fallback), it tries to match known English labels.
+    Adapted from sentiment_cotr_old.py for more robust extraction.
     """
-    text_lower = output_text.lower().strip()
-    
-    # Remove common prefixes models might add, including LRL ones
-    common_prefixes = [
-        "sentiment:", "the sentiment is", "this text is", "i think the sentiment is", 
-        "hisia:", "ra'ayi:", "jibu:", "answer:", "label:", "sentimento:",
-        "translation:", "tafsiri:", "fassara:", "traducción:" 
+    if not output_text or not isinstance(output_text, str):
+        logger.warning(f"extract_sentiment_label_cotr received invalid output_text: {output_text}")
+        return "unknown"
+
+    text_to_process = output_text.lower().strip()
+    text_to_process = text_to_process.split('\\n')[0].strip() # Take only first line
+    text_to_process = text_to_process.rstrip('.!') # Remove trailing punctuation
+
+    # Prefixes to remove (from various model outputs)
+    prefixes_to_remove = [
+        "english sentiment label:", "lrl sentiment label:", "sentiment label:",
+        "the sentiment is", "sentiment:", "label:"
     ]
-    if lang_code and lang_code in LANG_NAMES: # Add language-specific prefixes
-        lang_name_cap = LANG_NAMES[lang_code]
-        common_prefixes.extend([f"{lang_name_cap.lower()} translation:", f"{lang_name_cap.lower()} sentiment:"])
+    if lang_code:
+        lrl_name = get_language_name(lang_code)
+        prefixes_to_remove.extend([
+            f"{lrl_name.lower()} sentiment label:",
+            f"the {lrl_name.lower()} sentiment is"
+        ])
 
-    for prefix in common_prefixes:
-        if text_lower.startswith(prefix):
-            text_lower = text_lower[len(prefix):].strip()
+    for prefix in prefixes_to_remove:
+        if text_to_process.startswith(prefix):
+            text_to_process = text_to_process[len(prefix):].strip()
+            break # Remove only the first matching prefix
 
-    # Remove surrounding quotes or brackets that models often add
-    text_lower = text_lower.strip('\'"()[]{}<>')
-
+    # 1. If for_lrl_label, try to match LRL labels first
     if for_lrl_label and lang_code:
-        # LRL Label Extraction (using defined LRL labels for mapping)
-        lrl_labels_for_lang = SENTIMENT_LABELS_LRL.get(lang_code, {})
-        # Check for exact LRL label match (e.g., "chanya", "tabbatacce")
-        for eng_label, lrl_val in lrl_labels_for_lang.items():
-            if text_lower == lrl_val.lower():
-                return lrl_val # Return the original LRL form
-        # Check if text_lower starts with an LRL label
-        for eng_label, lrl_val in lrl_labels_for_lang.items():
-            if text_lower.startswith(lrl_val.lower()):
-                return lrl_val
-        # If no exact LRL match, this function might not be the right place to map back to English.
-        # The caller should handle mapping if needed. For now, return "unknown" or the cleaned text.
-        logger.debug(f"Could not extract known LRL sentiment label for '{lang_code}' from '{text_lower}'. It might be an unknown variant or English.")
-        # Attempt to extract English label as a fallback if LRL is not clearly identified.
-        # This helps if the model fails to translate the label to LRL and outputs English.
-        for label in ENGLISH_SENTIMENT_LABELS:
-            if text_lower == label: return label # Return English label if found
-            if text_lower.startswith(label): return label
-        return text_lower # Return the cleaned text as is if no known LRL/EN label found
+        if lang_code in SENTIMENT_LABELS_LRL:
+            lrl_map = SENTIMENT_LABELS_LRL[lang_code]
+            for eng_label, lrl_label_val in lrl_map.items():
+                if text_to_process == lrl_label_val.lower():
+                    logger.debug(f"Extracted LRL label '{lrl_label_val}' for {lang_code}, mapped to English '{eng_label}' from '{output_text}'")
+                    return eng_label # Return the English equivalent
     else:
-        # English Label Extraction
+            logger.warning(f"No LRL sentiment labels defined for lang_code: {lang_code} in SENTIMENT_LABELS_LRL")
+
+    # 2. Try to match English labels directly
+    # This is the primary target for English sentiment analysis step
+    # or fallback if LRL extraction (above) didn't yield a result or wasn't requested.
         for label in ENGLISH_SENTIMENT_LABELS:
-            if text_lower == label:
+        if text_to_process == label: # Exact match after cleaning
+            logger.debug(f"Extracted English label '{label}' directly from '{output_text}'")
                 return label
-        for label in ENGLISH_SENTIMENT_LABELS: # Check startswith after exact matches
-            if text_lower.startswith(label): # e.g., "positive." or "positive sentiment"
-                # Ensure it's not "positive " followed by "negative" etc.
-                # A simple way is to check if the found label is the only word or followed by non-alpha
-                parts = text_lower.split(None, 1) # Split into first word and rest
-                if parts[0] == label:
-                    if len(parts) == 1 or not parts[1][0].isalpha(): # It is the label or followed by punctuation
-                        return label
+        # Check for common variations if needed, e.g., "the sentiment is positive"
+        # The prefix removal should handle many of these.
+
+    # 3. Fallback: check for English labels as substrings (less precise)
+    # This was in the old script, can be noisy but might catch some cases.
+    # Consider if this is too aggressive or should be stricter.
+    # For now, retaining similar logic to old script's keyword search.
+    if "positive" in text_to_process or "good" in text_to_process :
+        logger.debug(f"Extracted English label 'positive' via keyword from '{output_text}'")
+            return "positive"
+    if "negative" in text_to_process or "bad" in text_to_process :
+        logger.debug(f"Extracted English label 'negative' via keyword from '{output_text}'")
+            return "negative"
+    if "neutral" in text_to_process : # "neutral" is less likely to have synonyms like good/bad
+        logger.debug(f"Extracted English label 'neutral' via keyword from '{output_text}'")
+            return "neutral"
         
-        # Fallback keyword check for English (less reliable, use with caution)
-        # This is simplified; a more advanced keyword approach might be needed if models are inconsistent.
-        if "positive" in text_lower or "good" in text_lower or "happy" in text_lower :
-        return "positive"
-        if "negative" in text_lower or "bad" in text_lower or "sad" in text_lower :
-        return "negative"
-        # Neutral is harder with keywords, often default.
-        # If the text is very short and none of the above, it might be neutral or unknown.
-        if len(text_lower.split()) <= 2 and "neutral" in text_lower: # Check for "neutral" in short responses
-        return "neutral"
-        
-    logger.debug(f"Could not extract standard English sentiment from '{output_text}'. Cleaned: '{text_lower}'. Defaulting to 'unknown'.")
+    logger.warning(f"Could not extract standard sentiment from '{output_text}'. Cleaned: '{text_to_process}'. Defaulting to 'unknown'.")
     return "unknown" # Default if no clear label found
 
 def translate_text(
@@ -322,7 +352,7 @@ def translate_text(
     
     original_tokenizer_config = None # For the hack
     if hasattr(model, 'config'):
-    original_tokenizer_config = getattr(tokenizer, 'config', None)
+        original_tokenizer_config = getattr(tokenizer, 'config', None)
         tokenizer.config = model.config
 
     try:
@@ -377,10 +407,10 @@ def translate_text(
         # final_translation remains "[Translation Error]"
     finally:
         if hasattr(model, 'config'): # Only if the hack was applied
-        if original_tokenizer_config is not None:
-            tokenizer.config = original_tokenizer_config
+            if original_tokenizer_config is not None:
+                tokenizer.config = original_tokenizer_config
             elif hasattr(tokenizer, 'config'): # if it was added and wasn't there before
-            del tokenizer.config
+                del tokenizer.config
 
     runtime = time.time() - start_time
     return final_translation, raw_model_output_str, runtime
@@ -408,7 +438,7 @@ def process_sentiment_english(
     
     original_tokenizer_config = None # For the hack
     if hasattr(model, 'config'):
-    original_tokenizer_config = getattr(tokenizer, 'config', None)
+        original_tokenizer_config = getattr(tokenizer, 'config', None)
         tokenizer.config = model.config
 
     try:
@@ -435,10 +465,10 @@ def process_sentiment_english(
         # predicted_english_label remains "unknown"
     finally:
         if hasattr(model, 'config'): # Only if the hack was applied
-        if original_tokenizer_config is not None:
-            tokenizer.config = original_tokenizer_config
+            if original_tokenizer_config is not None:
+                tokenizer.config = original_tokenizer_config
             elif hasattr(tokenizer, 'config'):
-            del tokenizer.config
+                del tokenizer.config
         
     runtime = time.time() - start_time
     return predicted_english_label, raw_model_output_str, runtime
@@ -546,136 +576,196 @@ def evaluate_sentiment_cotr_multi_prompt(
         })
     return pd.DataFrame(results_list)
 
+# --- Revised Single Prompt Generation ---
 def generate_single_prompt_sentiment_cotr(lrl_text: str, lang_code: str, use_few_shot: bool = True) -> str:
-    """Generate a single prompt for the entire CoTR Sentiment pipeline. Instructions in English."""
+    """
+    Generates a single comprehensive prompt for the Sentiment CoTR pipeline.
+    All instructions are in ENGLISH.
+    The model is instructed to:
+    1. Translate LRL text to English.
+    2. Classify sentiment of the English translation (outputting an English label).
+    3. Translate the English sentiment label back to the LRL.
+    Few-shot examples (if used) are in English and demonstrate this 3-step process.
+    """
     lrl_name = get_language_name(lang_code)
-    
-    lrl_labels_str_for_prompt = ", ".join([f"{k} ({v})" for k, v in SENTIMENT_LABELS_LRL.get(lang_code, {}).items()])
-    
-    # Escape the text to be included in the f-string, robustly handling various quote types.
-    lrl_text_escaped = str(lrl_text).replace("'", "\\'").replace("\\\"\\\"\\\"", "\\\\\\\"\\\"\\\"").replace("'''", "\\'\\'\\'")
+    original_lrl_text_sanitized = _sanitize_for_prompt(lrl_text)
 
-    instructions_core = (
-        f"You are an advanced AI assistant performing sentiment analysis via Chain-of-Thought.\\n"
-        f"Given a text in {lrl_name}, follow these steps precisely:\\n\\n"
-        f"1.  **Translate to English**: Accurately translate the original {lrl_name} text into English.\\n"
-        f"    Output this as:\\n"
-        f"    English Text: [Your English Translation]\\n\\n"
-        f"2.  **Classify English Sentiment**: Analyze the English text (from Step 1) and determine its sentiment.\\n"
-        f"    The ONLY allowed English sentiment labels are: {EXPECTED_LABELS_STR}.\\n"
-        f"    Output this as:\\n"
-        f"    English Sentiment Label: [One of: {EXPECTED_LABELS_STR}]\\n\\n"
-        f"3.  **Translate Sentiment to {lrl_name}**: Translate the English sentiment label (from Step 2) into {lrl_name}.\\n"
-        f"    Use the most natural and common single-word translation for the sentiment in {lrl_name}.\\n"
-        f"    (Known {lrl_name} labels are: {lrl_labels_str_for_prompt}, but translate naturally even if the English label isn't one that has a direct known mapping shown here, using the closest equivalent sentiment concept in {lrl_name}).\\n"
-        f"    Output this as:\\n"
-        f"    Final Sentiment Label ({lrl_name}): [The {lrl_name} sentiment label]\\n\\n"
-        f"Ensure your response clearly includes each of these labeled steps.\\n"
-        f"The \\\"Final Sentiment Label ({lrl_name})\\\" is the ultimate result.\\n\\n"
-        f"Original {lrl_name} Text:\\n"
-        f"'''{lrl_text_escaped}'''"
-    )
+    # Core instructions - ALL IN ENGLISH
+    prompt_instructions_template = f"""You are an expert multilingual AI assistant. Your task is to perform sentiment analysis on a given {lrl_name} text by following these three steps precisely:
 
-    few_shot_examples_str = ""
+1.  **Translate to English**: Translate the original '{lrl_name} Text' accurately into English.
+    Begin your output for this step with the exact label "English Translation:" followed immediately by the translation.
+
+2.  **Perform English Sentiment Analysis**: Analyze the 'English Translation' from Step 1. Determine if its sentiment is positive, negative, or neutral.
+    Begin your output for this step with the exact label "English Sentiment Label:" followed immediately by ONLY ONE of these English labels: {SENTIMENT_LABELS_EN_STR}. Do not add explanations.
+
+3.  **Translate Sentiment Label to {lrl_name}**: Translate the 'English Sentiment Label' from Step 2 accurately into {lrl_name}.
+    Begin your output for this step with the exact label "{lrl_name} Sentiment Label:" followed immediately by the {lrl_name} translation of the sentiment label.
+
+Your entire response must follow this three-step structure, with each step clearly delineated by its label."""
+
+    few_shot_section = ""
     if use_few_shot:
-        # Few-shot examples must demonstrate the full CoT process.
-        # Example 1: Swahili Positive
-        ex1_lrl_text_sw = "Kitabu hiki ni kizuri sana na kinanifurahisha!"
-        ex1_en_translation_sw = "This book is very good and makes me happy!"
-        ex1_en_sentiment_sw = "positive"
-        ex1_lrl_sentiment_sw = SENTIMENT_LABELS_LRL.get("sw", {}).get("positive", "chanya") # "chanya"
+        # Few-shot examples are in English text, demonstrating the process.
+        # LRL-specific parts are the input LRL text and the final LRL label.
+        # The intermediate English translation and English label are shown.
 
-        # Example 2: Hausa Negative
-        ex2_lrl_text_ha = "Wannan labarin ya bata min rai matuka."
-        ex2_en_translation_ha = "This news has greatly upset me."
-        ex2_en_sentiment_ha = "negative"
-        ex2_lrl_sentiment_ha = SENTIMENT_LABELS_LRL.get("ha", {}).get("negative", "korau") # "korau"
-        
-        current_ex_lrl_text = ex1_lrl_text_sw
-        current_ex_en_translation = ex1_en_translation_sw
-        current_ex_en_sentiment = ex1_en_sentiment_sw
-        current_ex_lrl_sentiment_final = ex1_lrl_sentiment_sw
-        example_lrl_name = get_language_name("sw")
+        # Define example variables based on lang_code - ALL EXAMPLES ARE ENGLISH-DRIVEN
+        # These examples show the *process* using English as the CoT language.
+        # The LRL text and LRL label are specific to the lang_code for the example.
+        example_lrl_text_fs = ""
+        example_eng_translation_fs = ""
+        example_eng_label_fs = "" # This will always be one of "positive", "negative", "neutral"
+        example_lrl_label_fs = "" # This will be the LRL translation of example_eng_label_fs
+        lrl_name_fs_display = lrl_name # Used in the example header, e.g., "Swahili Text"
 
-        if lang_code == "ha":
-            current_ex_lrl_text = ex2_lrl_text_ha
-            current_ex_en_translation = ex2_en_translation_ha
-            current_ex_en_sentiment = ex2_en_sentiment_ha
-            current_ex_lrl_sentiment_final = ex2_lrl_sentiment_ha
-            example_lrl_name = get_language_name("ha")
-        elif lang_code != "sw": 
-            example_lrl_name = lrl_name 
-            current_ex_lrl_text = f"Some example text in {example_lrl_name} that is positive."
-            current_ex_en_translation = "Some example English text that is positive."
-            current_ex_en_sentiment = "positive"
-            current_ex_lrl_sentiment_final = SENTIMENT_LABELS_LRL.get(lang_code, {}).get("positive", f"positive_in_{lang_code}")
+        if lang_code == 'sw':
+            example_lrl_text_fs = "Huduma hii ni nzuri sana."
+            example_eng_translation_fs = "This service is very good."
+            example_eng_label_fs = "positive"
+            example_lrl_label_fs = SENTIMENT_LABELS_LRL.get('sw', {}).get('positive', 'chanya')
+        elif lang_code == 'ha':
+            example_lrl_text_fs = "Wannan fim din ya kasance mai ban sha'awa kwarai da gaske."
+            example_eng_translation_fs = "This film was very interesting indeed."
+            example_eng_label_fs = "positive"
+            example_lrl_label_fs = SENTIMENT_LABELS_LRL.get('ha', {}).get('positive', 'tabbatacce')
+        elif lang_code == 'pt':
+            example_lrl_text_fs = "Estou muito insatisfeito com a compra."
+            example_eng_translation_fs = "I am very dissatisfied with the purchase."
+            example_eng_label_fs = "negative"
+            example_lrl_label_fs = SENTIMENT_LABELS_LRL.get('pt', {}).get('negative', 'negativo')
+        else: # Fallback generic English example if lang_code not specified for examples
+            example_lrl_text_fs = f"A sample text in {lrl_name} that expresses a clear sentiment."
+            example_eng_translation_fs = "A sample text in English that expresses a clear sentiment (this is the translation)."
+            example_eng_label_fs = "positive" # Default example label
+            # Try to get LRL equivalent, or use a placeholder
+            example_lrl_label_fs = SENTIMENT_LABELS_LRL.get(lang_code, {}).get(example_eng_label_fs, f"{example_eng_label_fs}_in_{lrl_name}")
 
-        # Safely escape content for the example string
-        escaped_current_ex_lrl_text = str(current_ex_lrl_text).replace("'", "\\'")
-        escaped_current_ex_en_translation = str(current_ex_en_translation).replace("'", "\\'")
+        few_shot_section = f"""
 
-        few_shot_examples_str = (
-            f"\\nExamples:\\n\\n"
-            f"Original {example_lrl_name} Text:\\n"
-            f"'''{escaped_current_ex_lrl_text}'''\\n"
-            f"English Text: {escaped_current_ex_en_translation}\\n"
-            f"English Sentiment Label: {current_ex_en_sentiment}\\n"
-            f"Final Sentiment Label ({example_lrl_name}): {current_ex_lrl_sentiment_final}"
-        )
+Here is an example of how to perform this task:
 
-    # Combine instructions and examples
-    # The model is expected to start its response with "English Text:"
-    prompt = f"{instructions_core}\\n{few_shot_examples_str}\\n\\nEnglish Text:" # Cue for the model to start step 1
-    return prompt
+--- Example Input ({lrl_name_fs_display} Text) ---
+{_sanitize_for_prompt(example_lrl_text_fs)}
 
+--- Example Output ---
+English Translation:
+{_sanitize_for_prompt(example_eng_translation_fs)}
+
+English Sentiment Label:
+{example_eng_label_fs}
+
+{lrl_name_fs_display} Sentiment Label:
+{_sanitize_for_prompt(example_lrl_label_fs)}
+--- End Example ---
+"""
+
+    task_section = f"""
+
+Now, complete the task for the following input:
+
+--- Your Task ---
+{lrl_name} Text:
+```
+{original_lrl_text_sanitized}
+```
+
+Your Response (following the 3 steps precisely):
+"""
+
+    final_prompt = prompt_instructions_template
+    if use_few_shot:
+        final_prompt += few_shot_section
+    final_prompt += task_section
+    
+    # Log only a portion of the prompt for brevity
+    logger.debug(f"Generated Single Sentiment CoTR Prompt for {lang_code} (use_few_shot={use_few_shot}):\n{final_prompt[:1000]}...")
+    return final_prompt
+
+# --- Revised Extraction for Single Prompt ---
 def extract_sentiment_intermediates_from_single_prompt_response(response_text: str, lrl_name_for_extraction: str) -> Tuple[Optional[str], Optional[str], Optional[str]]:
     """
-    Extracts English translation, English sentiment, and LRL sentiment
-    from a structured single-prompt response. More robust parsing.
-    Args:
-        response_text: The full raw response from the model.
-        lrl_name_for_extraction: The name of the Low-Resource Language (e.g., "Swahili") used in prompt labels.
-    Returns: (intermediate_en_text, intermediate_en_label, predicted_lrl_label)
+    Extracts translated English text, English sentiment label, and LRL sentiment label
+    from the structured output of a single CoT prompt.
+    Returns: (eng_translation, eng_label, lrl_label)
     """
-    intermediate_en_text, intermediate_en_label, predicted_lrl_label = None, None, None
+    eng_translation_out: Optional[str] = None
+    eng_label_out: Optional[str] = None
+    lrl_label_out: Optional[str] = None
 
-    # Regex patterns for each step, allowing for variations in model output
-    # Pattern for English Text:
-    # Looks for "English Text:" and captures content until "English Sentiment Label:" or other subsequent headers.
-    en_text_match = re.search(
-        r"English Text:\s*(.*?)(?=\n\s*(?:English Sentiment Label:|Final Sentiment Label \({lrl_name_for_extraction}\):|$))",
-        response_text, re.DOTALL | re.IGNORECASE
+    # Regex patterns (case-insensitive, dotall for multiline content)
+    # Ensure labels are specific and the capture group is non-greedy (.*?)
+    # Lookaheads ensure we capture up to the next expected label or end of string.
+    eng_translation_pattern = re.compile(
+        r"English Translation:\s*(.*?)(?=English Sentiment Label:|{lrl_name_for_extraction} Sentiment Label:|$)", 
+        re.IGNORECASE | re.DOTALL
     )
-    if en_text_match:
-        intermediate_en_text = en_text_match.group(1).strip()
+    eng_label_pattern = re.compile(
+        r"English Sentiment Label:\s*(.*?)(?={lrl_name_for_extraction} Sentiment Label:|$)", 
+        re.IGNORECASE | re.DOTALL
+    )
+    lrl_label_pattern = re.compile(
+        r"{lrl_name_for_extraction} Sentiment Label:\s*(.*?)(?=$)", 
+        re.IGNORECASE | re.DOTALL
+    )
 
-    # Pattern for English Sentiment Label:
-    en_label_match = re.search(
-        r"English Sentiment Label:\s*(.*?)(?=\n\s*(?:Final Sentiment Label \({lrl_name_for_extraction}\):|$))",
-        response_text, re.DOTALL | re.IGNORECASE
-    )
-    if en_label_match:
-        # Use the existing robust English label extractor
-        intermediate_en_label = extract_sentiment_label_cotr(en_label_match.group(1).strip(), for_lrl_label=False)
+    match_eng_text = eng_translation_pattern.search(response_text)
+    if match_eng_text:
+        eng_translation_out = match_eng_text.group(1).strip()
+        # Further clean potential model conversational prefixes if any remain
+        common_prefixes = ["Sure, here is the translation:", "Here's the translation:"]
+        for prefix in common_prefixes:
+            if eng_translation_out.lower().startswith(prefix.lower()):
+                eng_translation_out = eng_translation_out[len(prefix):].strip()
+        eng_translation_out = eng_translation_out.strip('`') # Remove backticks if model wraps translation in them
+
+    match_eng_label = eng_label_pattern.search(response_text)
+    if match_eng_label:
+        extracted_eng_label_raw = match_eng_label.group(1).strip()
+        # The extract_sentiment_label_cotr function can robustly find the label
+        eng_label_out = extract_sentiment_label_cotr(extracted_eng_label_raw, for_lrl_label=False)
+        if eng_label_out == "unknown" and extracted_eng_label_raw: # Log if specific extraction failed but there was text
+            logger.debug(f"extract_sentiment_label_cotr returned 'unknown' for eng_label part: '{extracted_eng_label_raw}'")
+
+
+    match_lrl_label = lrl_label_pattern.search(response_text)
+    if match_lrl_label:
+        extracted_lrl_label_raw = match_lrl_label.group(1).strip()
+        # Use extract_sentiment_label_cotr, but indicate it's for an LRL label if lang_code available
+        # For single prompt, we don't have lang_code here, so we rely on it being one of the known LRL forms
+        # or it being an English label if back-translation failed.
+        # The goal here is to get the *English equivalent* of the LRL label the model produced.
+        # We need lang_code for robust LRL label extraction.
+        # For now, assume extract_sentiment_label_cotr will try its best.
+        # This part might need refinement if LRL labels are diverse.
+        # A temporary approach: first try direct LRL match if possible, then English.
+        temp_lrl_name_lower = lrl_name_for_extraction.lower()
+        found_lrl_direct = False
+        if temp_lrl_name_lower in SENTIMENT_LABELS_LRL: # e.g. 'swahili' -> 'sw'
+            lang_code_for_lrl_extraction = [lc for lc, name in LANG_NAMES.items() if name.lower() == temp_lrl_name_lower]
+            if lang_code_for_lrl_extraction:
+                lrl_label_out = extract_sentiment_label_cotr(extracted_lrl_label_raw, for_lrl_label=True, lang_code=lang_code_for_lrl_extraction[0])
+                if lrl_label_out != "unknown":
+                    found_lrl_direct = True
+        
+        if not found_lrl_direct: # Fallback to treating it as an English label or general extraction
+            lrl_label_out = extract_sentiment_label_cotr(extracted_lrl_label_raw, for_lrl_label=False)
+
+        if lrl_label_out == "unknown" and extracted_lrl_label_raw :
+             logger.debug(f"extract_sentiment_label_cotr returned 'unknown' for lrl_label part: '{extracted_lrl_label_raw}'")
+
+
+    if not eng_translation_out and not eng_label_out and not lrl_label_out:
+        logger.warning(f"Could not extract any parts from single prompt sentiment output for {lrl_name_for_extraction}. Raw output: {response_text[:300]}...")
+        # Add a simple fallback for the English label if others failed
+        if not eng_label_out:
+            eng_label_candidate = extract_sentiment_label_cotr(response_text, for_lrl_label=False)
+            if eng_label_candidate != "unknown":
+                eng_label_out = eng_label_candidate
+                logger.info(f"Fallback: Extracted English label '{eng_label_out}' from full response.")
     
-    # Pattern for Final LRL Sentiment Label:
-    # This regex also considers slight variations like "Final Sentiment (LRL Name):"
-    lrl_label_match = re.search(
-        rf"Final Sentiment Label \({re.escape(lrl_name_for_extraction)}\):\s*(.*?)(?=\n\s*\n|$)|Final Sentiment \({re.escape(lrl_name_for_extraction)}\):\s*(.*?)(?=\n\s*\n|$)",
-        response_text, re.DOTALL | re.IGNORECASE
-    )
-    if lrl_label_match:
-        # The actual captured group might be group(1) or group(2) depending on which part of the OR matched.
-        predicted_lrl_label = (lrl_label_match.group(1) or lrl_label_match.group(2) or "").strip()
-        # Further clean the LRL label if necessary (e.g. if model adds quotes)
-        predicted_lrl_label = extract_sentiment_label_cotr(predicted_lrl_label, for_lrl_label=True, lang_code=lrl_name_for_extraction.lower()) # Assuming lrl_name is like "Swahili"
-
-    # Log if parts are missing, which can indicate prompt adherence issues
-    if intermediate_en_text is None: logger.debug(f"Single-prompt: Could not extract 'English Text' for {lrl_name_for_extraction}.")
-    if intermediate_en_label is None: logger.debug(f"Single-prompt: Could not extract 'English Sentiment Label' for {lrl_name_for_extraction}.")
-    if predicted_lrl_label is None: logger.debug(f"Single-prompt: Could not extract 'Final Sentiment Label ({lrl_name_for_extraction})'.")
-
-    return intermediate_en_text, intermediate_en_label, predicted_lrl_label
+    logger.debug(f"SP Sentiment Extraction for {lrl_name_for_extraction}: EN Text='{str(eng_translation_out)[:50]}...', EN Label='{eng_label_out}', LRL Label='{lrl_label_out}' (parsed as EN equivalent)")
+    return eng_translation_out, eng_label_out, lrl_label_out
 
 
 def evaluate_sentiment_cotr_single_prompt(
@@ -722,20 +812,20 @@ def evaluate_sentiment_cotr_single_prompt(
                 inputs = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=max_input_length)
                 inputs_on_device = {k: v.to(model.device) for k, v in inputs.items()}
                 
-            with torch.no_grad():
-                outputs = model.generate(
-                        **inputs_on_device,
-                        max_new_tokens=max_new_tokens, # Max tokens for the entire multi-step CoT output
-                        temperature=temperature if do_sample else None,
-                        top_p=top_p if do_sample else None,
-                        top_k=top_k if do_sample else None,
-                        repetition_penalty=repetition_penalty,
-                    do_sample=do_sample,
-                        pad_token_id=tokenizer.pad_token_id if tokenizer.pad_token_id is not None else tokenizer.eos_token_id
-                    )
-                raw_model_response_str = tokenizer.decode(outputs[0][inputs["input_ids"].shape[-1]:], skip_special_tokens=True)
+                with torch.no_grad():
+                    outputs = model.generate(
+                            **inputs_on_device,
+                            max_new_tokens=max_new_tokens, # Max tokens for the entire multi-step CoT output
+                            temperature=temperature if do_sample else None,
+                            top_p=top_p if do_sample else None,
+                            top_k=top_k if do_sample else None,
+                            repetition_penalty=repetition_penalty,
+                        do_sample=do_sample,
+                            pad_token_id=tokenizer.pad_token_id if tokenizer.pad_token_id is not None else tokenizer.eos_token_id
+                        )
+                    raw_model_response_str = tokenizer.decode(outputs[0][inputs["input_ids"].shape[-1]:], skip_special_tokens=True)
             finally: # Ensure tokenizer config is restored
-                 if hasattr(model, 'config'):
+                if hasattr(model, 'config'):
                     if original_tokenizer_config is not None: tokenizer.config = original_tokenizer_config
                     elif hasattr(tokenizer, 'config'): del tokenizer.config
 

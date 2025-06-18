@@ -10,6 +10,9 @@ from tqdm import tqdm
 import logging
 from typing import Dict, Any, Optional, List, Tuple
 from sklearn.metrics import accuracy_score, f1_score, classification_report
+import seaborn as sns
+from datetime import datetime
+import matplotlib.pyplot as plt
 
 # Disable tokenizer parallelism to avoid warnings
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
@@ -199,21 +202,15 @@ def calculate_nli_metrics(results_df: pd.DataFrame) -> Dict[str, Any]:
     }
 
 def main():
-    parser = argparse.ArgumentParser(description="Run NLI Baseline experiments with XNLI.")
-    parser.add_argument("--models", type=str, default="CohereLabs/aya-expanse-8b", 
-                        help="Comma-separated model names (e.g., 'CohereLabs/aya-expanse-8b,Qwen/Qwen2.5-7B-Instruct').")
-    parser.add_argument("--langs", nargs='+', default=['en', 'sw', 'ur'], 
-                        choices=['en', 'sw', 'ur', 'ar', 'bg', 'de', 'el', 'es', 'fr', 'hi', 'ru', 'th', 'tr', 'vi', 'zh'], # XNLI languages
-                        help="Languages to evaluate. Default: en, sw, ur.")
-    parser.add_argument("--prompt_instructions", nargs='+', default=['en', 'lrl'], choices=['en', 'lrl'], 
-                        help="Instruction language for prompts: 'en' for English, 'lrl' for LRL-specific (if available).")
-    parser.add_argument("--shot_settings", nargs='+', default=['zero_shot', 'few_shot'], choices=['zero_shot', 'few_shot'], 
-                        help="Shot settings to evaluate.")
+    parser = argparse.ArgumentParser(description="Run NLI Baseline Experiments (e.g., with XNLI)")
+    parser.add_argument("--models", type=str, default="CohereLabs/aya-23-8B,Qwen/Qwen2.5-7B-Instruct", help="Comma-separated list of model names from HuggingFace.")
+    parser.add_argument("--langs", type=str, default="en,ur,sw,fr", help="Comma-separated XNLI language codes (e.g., en,sw,ha,fr for English, Swahili, Hausa, French from XNLI).")
+    parser.add_argument("--num_samples", type=int, default=80, help="Number of samples per language. Default: 80. Max for XNLI 'test' is 5000, 'validation' is 2500.")
+    parser.add_argument("--data_split", type=str, default="test", choices=["train", "validation", "test"], help="Dataset split.")
+    parser.add_argument("--prompt_in_lrl", action=argparse.BooleanOptionalAction, default=True, help="Use LRL instructions for prompts (few-shot examples remain English). Default is LRL instructions.")
+    parser.add_argument("--shot_settings", nargs='+', default=['zero_shot', 'few_shot'], choices=['zero_shot', 'few_shot'], help="Prompting strategies.")
     parser.add_argument("--base_output_dir", type=str, default="/work/bbd6522/results/nli/baseline_xnli", 
                         help="Base directory to save results and summaries.")
-    parser.add_argument("--data_split", type=str, default="validation", help="Dataset split to use (e.g., validation, test). Ensure your loader uses this.")
-    parser.add_argument("--sample_percentage", type=float, default=1.0, help="Percentage of samples to use (0.0 to 1.0). E.g., 0.1 for 10%%. Default 1.0 for 100%% of available after num_samples.")
-    parser.add_argument("--max_samples_per_lang", type=int, default=None, help="Maximum number of samples to load per language before percentage sampling. If None, loads all available.")
     parser.add_argument("--seed", type=int, default=42, help="Random seed for sampling and reproducibility.")
     
     # Generation parameters (CLI overrides)
@@ -243,8 +240,14 @@ def main():
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(args.seed)
 
-    models_list = [m.strip() for m in args.models.split(',')]
-    all_experiment_summaries = []
+    model_names = [m.strip() for m in args.models.split(',')]
+    lang_codes = [lang.strip() for lang in args.langs.split(',')]
+
+    # Use fixed number of samples directly, seed from args
+    num_samples_to_load = args.num_samples
+    current_seed = args.seed
+
+    all_summaries = []
 
     # Create base output directories if they don't exist
     summaries_dir = os.path.join(args.base_output_dir, "summaries")
@@ -252,7 +255,7 @@ def main():
     os.makedirs(summaries_dir, exist_ok=True)
     os.makedirs(results_dir, exist_ok=True)
 
-    for model_name_str in models_list:
+    for model_name_str in model_names:
         logging.info(f"\n===== Initializing Model for NLI: {model_name_str} =====")
         tokenizer, model = None, None # Ensure they are reset
         try:
@@ -265,22 +268,21 @@ def main():
             if torch.cuda.is_available(): torch.cuda.empty_cache()
             continue
 
-        for lang_code in args.langs:
+        for lang_code in lang_codes:
             logging.info(f"\n--- Loading NLI data for Language: {lang_code}, Model: {model_name_str} ---")
-            # Use the updated load_xnli_samples function
-            # It defaults to 10% of the 'test' split.
-            samples_df_for_lang = load_xnli_samples(
-                lang_code=lang_code,
-                split='test', # Use 'test' split for evaluation
-                sample_percentage=10.0 # Use 10% of the data
+            # Load data (using the fixed num_samples and seed)
+            logging.info(f"Loading data for language: {lang_code}, split: {args.data_split}, num_samples: {num_samples_to_load}, seed: {current_seed}")
+            samples_df = load_xnli_samples(
+                lang_code=lang_code, 
+                split=args.data_split, 
+                num_samples=num_samples_to_load, 
+                seed=current_seed
             )
-            # samples_df_for_lang = load_nli_samples(lang_code, split='validation', num_samples=250, seed=args.seed)
 
-
-            if samples_df_for_lang.empty:
+            if samples_df.empty:
                 logging.warning(f"No XNLI samples loaded for {lang_code} ('test' split, 10% sample). Skipping this language for model {model_name_str}.")
                 continue
-            logging.info(f"Loaded {len(samples_df_for_lang)} NLI samples for {lang_code} using 10% of 'test' split.")
+            logging.info(f"Loaded {len(samples_df)} NLI samples for {lang_code} using 10% of 'test' split.")
 
             for shot_setting in args.shot_settings:
                 use_few_shot_current = (shot_setting == 'few_shot')
@@ -317,7 +319,7 @@ def main():
                         model_name=model_name_str,
                         tokenizer=tokenizer,
                         model=model,
-                        samples_df=samples_df_for_lang,
+                        samples_df=samples_df,
                         data_lang_code=lang_code, 
                         prompt_in_lrl=current_prompt_in_lrl, 
                         use_few_shot=use_few_shot_current,
@@ -344,7 +346,7 @@ def main():
                         **effective_gen_params, # Store the actual generation params used
                         'samples_processed': len(exp_results_df)
                     }
-                    all_experiment_summaries.append(summary_data)
+                    all_summaries.append(summary_data)
                     logging.info(f"Summary for {exp_key}: Acc={metrics['accuracy']:.4f}, MacroF1={metrics['macro_f1']:.4f}")
                 else:
                     logging.warning(f"Skipping metrics calculation for {exp_key} as no results were generated or loaded.")
@@ -357,8 +359,8 @@ def main():
             torch.cuda.empty_cache()
             logging.info("GPU memory cache cleared after model unload.")
 
-    if all_experiment_summaries:
-        overall_summary_df = pd.DataFrame(all_experiment_summaries)
+    if all_summaries:
+        overall_summary_df = pd.DataFrame(all_summaries)
         # Ensure all columns that should be numeric are, coercing errors for robustness.
         numeric_cols = ['accuracy', 'macro_f1', 'temperature', 'top_p', 'top_k', 'max_tokens', 'repetition_penalty', 'samples_processed']
         # Add class specific metrics if they exist

@@ -12,6 +12,7 @@ logger = logging.getLogger(__name__)
 
 # Define the specific languages to be used from MasakhaNER
 ALLOWED_LANGS = ['ha', 'sw'] # Hausa and Swahili
+MASAKHANER_LANGUAGES = ["swa", "amh", "hau", "ibo", "kin", "lug", "luo", "pcm", "wol", "yor"]
 
 def convert_ner_tags_to_entities(tokens: List[str], ner_tags: List[int], tag_names: List[str]) -> List[Dict[str, str]]:
     """
@@ -47,136 +48,117 @@ def convert_ner_tags_to_entities(tokens: List[str], ner_tags: List[int], tag_nam
 
 def load_masakhaner_samples(
     lang_code: str, 
-    sample_percentage: float = 10.0, 
+    num_samples: Optional[int] = None, # Changed from sample_percentage, added seed
     split: str = 'test', 
     seed: int = 42
 ) -> pd.DataFrame:
     """
-    Load MasakhaNER samples for a specific language from Hugging Face Hub.
-    Includes a mapping for common language codes to HF dataset config names.
-    Only uses the 'test' split and samples 10% of the data by default.
+    Load NER samples for a given language from the MasakhaNER dataset.
 
     Args:
-        lang_code: Language code, must be 'ha' or 'sw'.
-        sample_percentage: Percentage of samples to load (default is 10.0 for 10%).
-        split: Dataset split to use (fixed to 'test').
-        seed: Random seed for sampling.
+        lang_code (str): The MasakhaNER language code (e.g., 'swa', 'hau').
+        num_samples (Optional[int]): The number of samples to return. If None, all samples from the split are returned.
+        split (str): The dataset split to load ('train', 'validation', 'test'). Default is 'test'.
+        seed (int): Random seed for shuffling if num_samples is specified.
 
     Returns:
-        DataFrame containing loaded samples with 'id', 'tokens', 'ner_tags', and 'entities' columns,
-        or empty DataFrame if loading/processing fails or lang_code is not supported.
+        pd.DataFrame: A DataFrame containing the samples, with columns 'id', 'tokens', 'ner_tags' (original integer tags),
+                      'tag_names' (list of tag names like ['O', 'B-PER', ...]), and 'entities' (list of dicts).
+                      Returns an empty DataFrame if the language is not supported or data loading fails.
     """
-    dataset_name = "masakhane/masakhaner"
+    dataset_name = "masakhaner"
     
-    # Map common lang codes to HF dataset config names
-    # Add to this map as needed
-    lang_config_map = {
-        'ha': 'hau', # Hausa
-        'sw': 'swa', # Swahili
-        'en': 'eng', # English (MasakhaNER doesn't have English, but for consistency if used elsewhere)
-        'yo': 'yor', # Yoruba
-        'pcm': 'pcm', # Nigerian Pidgin
-        'amh': 'amh', # Amharic
-        # The following are direct matches, but good to list them
-        'ibo': 'ibo',
-        'kin': 'kin',
-        'lug': 'lug',
-        'luo': 'luo',
-        'wol': 'wol'
-    }
-
-    hf_config_name = lang_config_map.get(lang_code.lower(), lang_code.lower())
-    # If lang_code was, e.g., 'HAU', it becomes 'hau'. If it was 'ha', it becomes 'hau'.
-    # If it was 'amh', it becomes 'amh'.
-
-    logger.info(f"Attempting to load '{lang_code}' (resolved to HF config: '{hf_config_name}') samples from {dataset_name}, split '{split}'...")
-
-    if lang_code not in ALLOWED_LANGS:
-        logger.error(f"Unsupported language code '{lang_code}'. Only 'ha' and 'sw' are allowed for MasakhaNER.")
+    if lang_code not in MASAKHANER_LANGUAGES:
+        logger.error(f"Language code '{lang_code}' is not a valid MasakhaNER language. Supported: {MASAKHANER_LANGUAGES}")
         return pd.DataFrame()
 
-    if split != 'test':
-        logger.warning(f"MasakhaNER loader is fixed to 'test' split. Requested split '{split}' ignored.")
-        split = 'test' # Force test split
-
-    all_samples_list = []
+    logger.info(f"Attempting to load MasakhaNER for language: {lang_code}, split: {split}")
+    
     try:
-        dataset = load_dataset(dataset_name, name=hf_config_name, split=split, trust_remote_code=True)
-        logger.info(f"Successfully loaded dataset for {lang_code} (HF config: {hf_config_name}), split {split}.")
-        
-        # Get the tag names (feature information)
-        # For MasakhaNER, 'ner_tags' is a Sequence feature with associated ClassLabel
-        tag_feature = dataset.features['ner_tags']
-        if hasattr(tag_feature, 'feature') and hasattr(tag_feature.feature, 'names'):
-            tag_names = tag_feature.feature.names
-        else:
-            logger.error(f"Could not retrieve NER tag names for {lang_code}. Aborting.")
-            return pd.DataFrame()
+        # MasakhaNER uses the language code as the configuration name.
+        dataset = load_dataset(dataset_name, name=lang_code, split=split, trust_remote_code=True)
+        logger.info(f"Successfully loaded MasakhaNER for {lang_code}, split {split}. Full size: {len(dataset)}")
 
+        all_samples_list = []
+        if not hasattr(dataset, 'features') or 'ner_tags' not in dataset.features:
+            logger.error(f"Dataset for MasakhaNER {lang_code} does not have 'ner_tags' features. Cannot process.")
+            return pd.DataFrame()
+            
+        tag_names = dataset.features['ner_tags'].feature.names
+        
         for i, example in enumerate(dataset):
             tokens = example.get('tokens', [])
-            ner_tags_indices = example.get('ner_tags', []) # These are indices
+            ner_tags_int = example.get('ner_tags', [])
+            sample_id = example.get('id', str(i))
 
-            if not tokens or not isinstance(ner_tags_indices, list): # check if ner_tags_indices is a list
-                logger.warning(f"Skipping sample {i} for {lang_code} due to missing tokens or invalid ner_tags format.")
+            if not tokens or not ner_tags_int:
+                logger.warning(f"Skipping sample {sample_id} due to missing tokens or ner_tags.")
                 continue
-
-            # Convert tag indices to entity list
-            entities = convert_ner_tags_to_entities(tokens, ner_tags_indices, tag_names)
+            
+            entities = convert_ner_tags_to_entities(tokens, ner_tags_int, tag_names)
             
             all_samples_list.append({
-                'id': f"{lang_code}_{split}_{i}",
+                'id': sample_id,
                 'tokens': tokens,
-                'text': " ".join(tokens), # Add full text field
-                'ner_tags_indices': ner_tags_indices, # Keep original indices if needed
-                'tag_names': tag_names, # Store tag names for reference
-                'entities': entities, # Store the processed list of entity dicts
-                'language': lang_code
+                'ner_tags': ner_tags_int, # Store original integer tags
+                'tag_names': tag_names,    # Store the list of tag names for context
+                'entities': entities       # Store the processed entity list
             })
-
-        if not all_samples_list:
-            logger.warning(f"No samples processed for language '{lang_code}', split '{split}'.")
-            return pd.DataFrame()
-                
-        samples_df = pd.DataFrame(all_samples_list)
-    
-    except ValueError as ve:
-        # Check if the error is about the config name
-        if "BuilderConfig" in str(ve) and "not found" in str(ve):
-            logger.error(f"Failed to load MasakhaNER for language {lang_code} (HF config: '{hf_config_name}'), split '{split}'. Configuration not found.")
-            logger.error(f"Original ValueError: {ve}")
-            logger.warning(f"Please ensure '{lang_code}' (mapped to '{hf_config_name}') is a valid configuration for {dataset_name}. Available configs usually listed in the error or on the HF dataset page.")
-        else:
-            logger.error(f"ValueError while loading/processing MasakhaNER for {lang_code} (HF config: '{hf_config_name}'), split '{split}': {ve}", exc_info=True)
-        return pd.DataFrame() # Return empty DataFrame on error
-    except Exception as e:
-        logger.error(f"An unexpected error occurred while loading/processing MasakhaNER for {lang_code} (HF config: '{hf_config_name}'), split '{split}': {e}", exc_info=True)
-        return pd.DataFrame()
-
-    # Sampling
-    if sample_percentage is not None and 0 < sample_percentage <= 100:
-        num_total_samples = len(samples_df)
-        num_to_sample = max(1, int(num_total_samples * (sample_percentage / 100.0)))
         
-        if num_to_sample < num_total_samples:
-            logger.info(f"Sampling {sample_percentage}% ({num_to_sample} examples) from {num_total_samples} total for {lang_code} (split: {split}, seed: {seed}).")
-            samples_df = samples_df.sample(n=num_to_sample, random_state=seed).reset_index(drop=True)
-        else:
-            logger.info(f"Sample percentage ({sample_percentage}%) results in selecting all {num_total_samples} samples for {lang_code}. Using all samples.")
-    elif sample_percentage is not None: # Handles cases where sample_percentage is not None but not in (0, 100]
-        logger.warning(f"Invalid sample_percentage value ({sample_percentage}). Using all {len(samples_df)} samples for {lang_code}.")
+        if not all_samples_list:
+            logger.warning(f"No valid samples processed for MasakhaNER {lang_code}, split '{split}'.")
+            return pd.DataFrame()
 
-    logger.info(f"Loaded and processed {len(samples_df)} samples for {lang_code}, split '{split}'.")
-    return samples_df
+        all_samples_df = pd.DataFrame(all_samples_list)
+
+        # Create 'text' column from 'tokens'
+        if 'tokens' in all_samples_df.columns:
+            all_samples_df['text'] = all_samples_df['tokens'].apply(lambda t: " ".join(t) if isinstance(t, list) else "")
+            # Check for empty text strings after creation
+            empty_texts_count = all_samples_df[all_samples_df['text'] == ''].shape[0]
+            if empty_texts_count > 0:
+                logger.warning(f"{empty_texts_count}/{len(all_samples_df)} samples have empty 'text' after token joining for {lang_code} ({split}).")
+        else:
+            logger.error(f"'tokens' column not found for MasakhaNER {lang_code} ({split}). Cannot create 'text' column. This will likely cause issues downstream.")
+            all_samples_df['text'] = "" # Add empty text column to prevent KeyErrors, though processing might fail
+
+        # Shuffle samples and take the specified number if num_samples is provided
+        if num_samples is not None:
+            if num_samples > 0:
+                all_samples_df = all_samples_df.sample(frac=1, random_state=seed).reset_index(drop=True)
+                if num_samples >= len(all_samples_df):
+                    logger.info(f"Requested {num_samples} samples for MasakhaNER {lang_code} ({split}), but only {len(all_samples_df)} are available. Using all available samples.")
+                    final_samples_df = all_samples_df
+                else:
+                    final_samples_df = all_samples_df.head(num_samples)
+                    logger.info(f"Selected {len(final_samples_df)} samples for MasakhaNER {lang_code} ({split}) after requesting {num_samples} with seed {seed}.")
+            else: # num_samples is 0 or negative
+                logger.warning(f"Requested {num_samples} samples for MasakhaNER {lang_code} ({split}). Returning empty DataFrame.")
+                return pd.DataFrame()
+        else: # num_samples is None, return all loaded and processed samples
+            final_samples_df = all_samples_df
+            logging.info(f"Returning all {len(final_samples_df)} loaded samples for MasakhaNER {lang_code} ({split}) as num_samples was None.")
+
+        # Log columns and head of the final DataFrame before returning
+        logger.debug(f"Columns in final DataFrame for {lang_code} ({split}): {final_samples_df.columns.tolist()}")
+        logger.debug(f"Data types of final DataFrame for {lang_code} ({split}):\n{final_samples_df.dtypes}")
+        logger.debug(f"First 3 rows of final DataFrame for {lang_code} ({split}):\n{final_samples_df.head(3).to_string()}")
+
+        logging.info(f"Successfully loaded and processed {len(final_samples_df)} MasakhaNER samples for language '{lang_code}' (HF config: {split}), split '{split}'.")
+        return final_samples_df
+
+    except Exception as e:
+        logger.error(f"An unexpected error occurred while loading/processing MasakhaNER for {lang_code}, split '{split}': {e}", exc_info=True)
+        return pd.DataFrame()
 
 # Example usage (for testing this script directly)
 if __name__ == '__main__':
     logger.info("--- Testing MasakhaNER Loader ---")
 
     # Test Hausa
-    ha_samples = load_masakhaner_samples('ha', sample_percentage=10.0)
+    ha_samples = load_masakhaner_samples('ha', num_samples=10)
     if not ha_samples.empty:
-        logger.info(f"Hausa test samples (10%): {len(ha_samples)}")
+        logger.info(f"Hausa test samples: {len(ha_samples)}")
         logger.info(ha_samples.head())
         if 'entities' in ha_samples.columns and len(ha_samples.iloc[0]['entities']) > 0:
             logger.info(f"Entities of first HA sample: {ha_samples.iloc[0]['entities']}")
@@ -186,9 +168,9 @@ if __name__ == '__main__':
         logger.info("Failed to load Hausa samples or no samples returned.")
 
     # Test Swahili
-    sw_samples = load_masakhaner_samples('sw', sample_percentage=5.0) # Test with a different percentage
+    sw_samples = load_masakhaner_samples('sw', num_samples=5) # Test with a different number
     if not sw_samples.empty:
-        logger.info(f"Swahili test samples (5%): {len(sw_samples)}")
+        logger.info(f"Swahili test samples: {len(sw_samples)}")
         logger.info(sw_samples.head())
         if 'entities' in sw_samples.columns and not sw_samples.iloc[0]['entities'].empty:
              logger.info(f"Entities of first SW sample: {sw_samples.iloc[0]['entities']}")

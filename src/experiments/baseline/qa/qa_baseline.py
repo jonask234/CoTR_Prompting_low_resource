@@ -8,8 +8,74 @@ from tqdm import tqdm
 import os
 import re
 import time
+import logging
 from collections import Counter
 from typing import Any
+
+# Configure logging
+logger = logging.getLogger(__name__)
+
+# Define global English few-shot examples for direct QA
+ENGLISH_FEW_SHOT_EXAMPLES_DIRECT_QA = [
+    {
+        "question": "What is the capital of France?",
+        "answer": "Paris"
+    },
+    {
+        "question": "Who painted the Mona Lisa?",
+        "answer": "Leonardo da Vinci"
+    }
+]
+
+# Define global English few-shot examples for contextual QA
+ENGLISH_FEW_SHOT_EXAMPLES_CONTEXTUAL_QA = [
+    {
+        "context": "The Eiffel Tower is a wrought-iron lattice tower on the Champ de Mars in Paris, France. It is named after the engineer Gustave Eiffel, whose company designed and built the tower.",
+        "question": "Where is the Eiffel Tower located?",
+        "answer": "Champ de Mars in Paris, France"
+    },
+    {
+        "context": "Marie Curie was a Polish and naturalized-French physicist and chemist who conducted pioneering research on radioactivity. She was the first woman to win a Nobel Prize.",
+        "question": "What was Marie Curie's field of research?",
+        "answer": "Radioactivity"
+    }
+]
+
+# LRL Instructions for QA
+LRL_QA_INSTRUCTIONS = {
+    "sw": {
+        "direct_instruction": "Tafadhali jibu swali lifuatalo.",
+        "contextual_instruction": "Tafadhali jibu swali lifuatalo kulingana na muktadha uliotolewa.",
+        "examples_header": "Hapa kuna mifano (mifano hii ni kwa Kiingereza):",
+        "analyze_header": "Sasa, jibu swali hili:",
+        "question_label": "Swali",
+        "context_label": "Muktadha",
+        "answer_label": "Jibu"
+    },
+    "fi": {
+        "direct_instruction": "Vastaa seuraavaan kysymykseen.",
+        "contextual_instruction": "Vastaa seuraavaan kysymykseen annetun kontekstin perusteella.",
+        "examples_header": "Tässä esimerkkejä (nämä esimerkit ovat englanniksi):",
+        "analyze_header": "Nyt vastaa tähän kysymykseen:",
+        "question_label": "Kysymys",
+        "context_label": "Konteksti",
+        "answer_label": "Vastaus"
+    },
+    "te": {
+        "direct_instruction": "దయచేసి కింది ప్రశ్నకు సమాధానం ఇవ్వండి.",
+        "contextual_instruction": "దయచేసి ఇచ్చిన సందర్భం ఆధారంగా కింది ప్రశ్నకు సమాధానం ఇవ్వండి.",
+        "examples_header": "ఇక్కడ కొన్ని ఉదాహరణలు (ఈ ఉదాహరణలు ఆంగ్లంలో ఉన్నాయి):",
+        "analyze_header": "ఇప్పుడు, ఈ ప్రశ్నకు సమాధానం ఇవ్వండి:",
+        "question_label": "ప్రశ్న",
+        "context_label": "సందర్భం",
+        "answer_label": "సమాధానం"
+    }
+}
+
+
+# General instructions (English)
+GENERAL_INSTRUCTION_DIRECT_QA = "Please answer the following question."
+GENERAL_INSTRUCTION_CONTEXTUAL_QA = "Please answer the following question based on the provided context."
 
 def initialize_model(model_name):
     """
@@ -37,91 +103,49 @@ def initialize_model(model_name):
         model = model.to("cuda")
     return tokenizer, model
 
-def generate_qa_prompt(question: str, context: str = None, lang_code: str = "en", model_name: str = "", use_few_shot: bool = True) -> str:
+def generate_qa_prompt(question: str, context: str = None, lang_code: str = "en", model_name: str = "", use_few_shot: bool = True, prompt_in_lrl: bool = False) -> str:
     """
-    Generate a prompt for question answering.
-    Instructions are language-specific, but few-shot examples are ALWAYS IN ENGLISH.
-    
-    Args:
-        question: The question to answer
-        context: Context to use (if any)
-        lang_code: Language code for language-specific prompting
-        model_name: Model name for potential model-specific prompt adjustments
-        use_few_shot: Whether to include few-shot examples in the prompt
-    
-    Returns:
-        Formatted prompt with instructions and examples
+    Generate a QA prompt.
+    If prompt_in_lrl is True and lang_code is supported, uses LRL for main instructions.
+    Few-shot examples are ALWAYS in English if use_few_shot is True.
     """
-    # Define UNIVERSAL English few-shot examples
-    english_few_shot_examples_text = [
-        {"question": "What is the capital of France?", "answer": "Paris"},
-        {"question": "When was the United Nations founded?", "answer": "1945"},
-        {"question": "Who wrote 'To Kill a Mockingbird'?", "answer": "Harper Lee"},
-        {"question": "Is the sky blue?", "answer": "Yes"},
-        {"question": "What is the speed of dark?", "answer": "I don't know"}
-    ]
-    # Language-specific instruction components
-    if lang_code == "sw":
-        instructions = (
-            "Jibu swali kwa usahihi na kwa ufupi sana ukitumia maarifa yako ya ndani (na muktadha uliotolewa ikiwa upo).\\n"
-            "Fuata sheria hizi kwa makini:\\n"
-            "- Kwa maswali ya ndiyo/hapana: jibu KWA NENO MOJA TU 'Ndio' au 'Hapana'.\\n"
-            "- Kwa maswali ya ukweli: toa UKWELI TU, jina, tarehe, au nambari husika.\\n"
-            "- USIONGEZE maelezo yoyote, vikanusho, au maneno ya mazungumzo kama \\\"Jibu ni...\\\" au \\\"Kulingana na ninavyojua...\\\".\\n"
-            "- Jibu lako lote linapaswa kuwa na maneno 1-5 tu.\\n"
-            "- Ikiwa hujui jibu, jibu KWA MANENO HAYA TU: 'Sijui'."
-        )
-        examples_header = "Mifano (kwa Kiingereza):" # Clarify examples are in English
-        question_prefix = "Swali:"
-        answer_prefix = "Jibu:"
-        context_prefix = "Muktadha:"
-    elif lang_code == "te":
-        instructions = (
-            "మీ అంతర్గత జ్ఞానాన్ని (మరియు అందించినట్లయితే సందర్భాన్ని) ఉపయోగించి ఖచ్చితంగా మరియు చాలా క్లుప్తంగా ప్రశ్నకు సమాధానం ఇవ్వండి.\\n"
-            "ఈ నియమాలను ఖచ్చితంగా పాటించండి:\\n"
-            "- అవును/కాదు ప్రశ్నలకు: 'అవును' లేదా 'కాదు' అని మాత్రమే ప్రతిస్పందించండి.\\n"
-            "- వాస్తవ ప్రశ్నలకు: నిర్దిష్ట వాస్తవం, పేరు, తేదీ లేదా సంఖ్యను మాత్రమే అందించండి.\\n"
-            "- \\\"సమాధానం...\\\" లేదా \\\"నాకు తెలిసినంతవరకు...\\\" వంటి వివరణలు, నిరాకరణలు లేదా సంభాషణ పదబంధాలను జోడించవద్దు.\\n"
-            "- మీ మొత్తం ప్రతిస్పందన ఆదర్శంగా 1-5 పదాలు ఉండాలి.\\n"
-            "- మీకు సమాధానం తెలియకపోతే, 'నాకు తెలియదు' అనే ఖచ్చితమైన పదబంధంతో మాత్రమే ప్రతిస్పందించండి."
-        )
-        examples_header = "ఉదాహరణలు (ఆంగ్లంలో):" # Clarify examples are in English
-        question_prefix = "ప్రశ్న:"
-        answer_prefix = "సమాధానం:"
-        context_prefix = "సందర్భం:"
-    else: # Default to English
-        instructions = (
-            "Answer the question accurately and very concisely using your internal knowledge (and the provided context if available).\\n"
-            "Follow these rules strictly:\\n"
-            "- For yes/no questions: respond with ONLY 'Yes' or 'No'.\\n"
-            "- For factual questions: provide ONLY the specific fact, name, date, or number.\\n"
-            "- Do NOT add any explanations, disclaimers, or conversational phrases like \\\"The answer is...\\\" or \\\"According to my knowledge...\\\".\\n"
-            "- Your entire response should ideally be 1-5 words.\\n"
-            "- If you do not know the answer, respond with ONLY the exact phrase 'I don\\'t know'."
-        )
-        examples_header = "Examples:"
-        question_prefix = "Question:"
-        answer_prefix = "Answer:"
-        context_prefix = "Context:"
+    processed_question = question.strip()
+    processed_context = context.strip() if context else None
     
-    # Start building the prompt
-    prompt = instructions + "\\n\\n"
-    
-    # Add context if provided
-    if context and context.strip(): # Ensure context is not empty or just whitespace
-        prompt += f"{context_prefix} {context}\\n\\n"
+    # Determine instruction set
+    main_instruction = ""
+    q_label, c_label, a_label = "Question", "Context", "Answer" # Default to English
+    examples_header_text = "Here are some examples (these examples are in English):"
+    analyze_header_text = "Now, answer this question:"
+
+    if prompt_in_lrl and lang_code in LRL_QA_INSTRUCTIONS:
+        lrl_instr = LRL_QA_INSTRUCTIONS[lang_code]
+        main_instruction = lrl_instr["contextual_instruction"] if processed_context else lrl_instr["direct_instruction"]
+        q_label = lrl_instr["question_label"]
+        c_label = lrl_instr["context_label"]
+        a_label = lrl_instr["answer_label"]
+        examples_header_text = lrl_instr["examples_header"]
+        analyze_header_text = lrl_instr["analyze_header"]
+    else: # Default to English instructions
+        main_instruction = GENERAL_INSTRUCTION_CONTEXTUAL_QA if processed_context else GENERAL_INSTRUCTION_DIRECT_QA
+
+    prompt = main_instruction
         
     if use_few_shot:
-        prompt += examples_header + "\\n\\n"
-        # Few-shot examples are ALWAYS English, but use language-specific Q/A prefixes for the *current* question
-        for ex in english_few_shot_examples_text:
-            # For the examples themselves, use English "Question:" and "Answer:"
-            prompt += f"Question: {ex['question']}\\n" 
-            prompt += f"Answer: {ex['answer']}\\n\\n"
-    
-    # Add the actual question to be answered, using language-specific prefix
-    prompt += f"{question_prefix} {question}\\n"
-    prompt += f"{answer_prefix} "
+        prompt += f"\\n\\n{examples_header_text}\\n"
+        # Few-shot examples are always English
+        examples_to_use = ENGLISH_FEW_SHOT_EXAMPLES_CONTEXTUAL_QA if processed_context else ENGLISH_FEW_SHOT_EXAMPLES_DIRECT_QA
+        for ex in examples_to_use:
+            prompt += f"\\n{q_label}: {ex['question']}\\n"
+            if processed_context and 'context' in ex: # Check if 'context' key exists for contextual examples
+                prompt += f"{c_label}: {ex['context']}\\n"
+            prompt += f"{a_label}: {ex['answer']}\\n"
+
+    prompt += f"\\n\\n{analyze_header_text}\\n"
+    prompt += f"{q_label}: {processed_question}\\n"
+    if processed_context:
+        prompt += f"{c_label}: {processed_context}\\n"
+    prompt += f"{a_label}:"
     
     return prompt
 
@@ -365,15 +389,16 @@ def process_qa_baseline(tokenizer, model, question, context=None,
                           max_new_tokens=50,
                           max_input_length=4096,
                           temperature=0.3,
-                          top_p=0.85, # Base top_p
-                          top_k=40,   # Base top_k, added to params
-                          repetition_penalty=1.2, # Base repetition_penalty, added to params
-                          do_sample=True, # Base do_sample, added to params
+                          top_p=0.85, 
+                          top_k=40,   
+                          repetition_penalty=1.2, 
+                          do_sample=True, 
                           lang_code="en",
                           model_name="",
-                          use_few_shot: bool = True):
+                          use_few_shot: bool = True,
+                          prompt_in_lrl: bool = False):
     """
-    Process a QA pair with the given model directly (baseline).
+    Process a single QA sample using the baseline approach.
     Now with language-specific parameter adjustments and dynamic adjustments based on question type.
     
     Args:
@@ -391,14 +416,24 @@ def process_qa_baseline(tokenizer, model, question, context=None,
         lang_code: Language code for language-specific handling
         model_name: Name of the model for model-specific parameters
         use_few_shot: Whether to include few-shot examples in the prompt
+        prompt_in_lrl: Whether to use LRL instructions for main instructions
     
     Returns:
         The model's answer
     """
-    # Generate prompt with language-specific examples
-    prompt = generate_qa_prompt(question, context, lang_code, model_name, use_few_shot=use_few_shot)
+    start_time = time.time()
+
+    # Generate the prompt using the updated generate_qa_prompt function
+    prompt = generate_qa_prompt(
+        question=question,
+        context=context,
+        lang_code=lang_code,
+        model_name=model_name,
+        use_few_shot=use_few_shot,
+        prompt_in_lrl=prompt_in_lrl
+    )
     
-    # Tokenize with truncation
+    # Tokenize the prompt
     inputs = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=max_input_length)
     
     if torch.cuda.is_available():
@@ -539,7 +574,9 @@ def process_qa_baseline(tokenizer, model, question, context=None,
         if numeric_match:
             answer = numeric_match.group(1)
     
-    return answer
+    runtime = time.time() - start_time
+    
+    return answer, runtime, output_text
 
 def calculate_qa_f1(ground_truth, predicted_answer):
     """
@@ -634,11 +671,11 @@ def evaluate_qa_baseline(
     samples_df: pd.DataFrame,
     lang_code: str,
     use_few_shot: bool = True,
-    temperature: float = 0.3, # Base temperature
-    top_p: float = 0.9,       # Base top_p
-    top_k: float = 40,        # Base top_k
-    max_tokens: int = 50,     # Base max_tokens
-    # Added repetition_penalty and do_sample to be passed to process_qa_baseline
+    prompt_in_lrl: bool = False,
+    temperature: float = 0.3, 
+    top_p: float = 0.9,       
+    top_k: float = 40,        
+    max_tokens: int = 50,     
     repetition_penalty: float = 1.2, 
     do_sample: bool = True
 ) -> pd.DataFrame:
@@ -659,78 +696,55 @@ def evaluate_qa_baseline(
         max_tokens: Base maximum number of new tokens to generate
         repetition_penalty: Base repetition_penalty
         do_sample: Base do_sample flag
+        prompt_in_lrl: Whether to use LRL instructions for main instructions
         
     Returns:
         DataFrame with predictions and evaluation metrics
     """
-    # Process each sample
     results = []
-    shot_type = "few-shot" if use_few_shot else "zero-shot"
     
-    print(f"\nProcessing {len(samples_df)} samples with {shot_type} prompting...")
-    # Add a counter for Telugu debug prints
-    telugu_debug_count = 0
-    max_telugu_debug_prints = 5
+    logger.info(f"Starting QA baseline evaluation for {model_name} on {lang_code} "
+                f"({'Few-shot' if use_few_shot else 'Zero-shot'}, "
+                f"Prompt Instruct LRL: {prompt_in_lrl}).")
 
-    for idx, row in tqdm(samples_df.iterrows(), total=len(samples_df)):
-        question = row["question"]
-        ground_truth = row["ground_truth"] # Ensure this column name is used
-        context = row.get("context", "") # Get context, default to empty string if not present
-        
-        # Dynamic parameter adjustment logic is now inside process_qa_baseline
-        
-        try:
-            start_time = time.time()
-            predicted_answer = process_qa_baseline(
-                tokenizer, model, question, context=context, 
+    for idx, row in tqdm(samples_df.iterrows(), total=len(samples_df), desc=f"Processing QA baseline ({lang_code})"):
+        question = str(row['question'])
+        context = str(row.get('context', '')) # Context might be optional or empty
+        # Ground truth answers might be a list or a single string.
+        # For TyDiQA, it's usually a single string answer in 'answers' after preprocessing.
+        ground_truth_answer = str(row.get('answers', '')) 
+
+        predicted_answer, runtime_sample, raw_output = process_qa_baseline(
+            tokenizer=tokenizer,
+            model=model,
+            question=question,
+            context=context,
+            lang_code=lang_code,
+            model_name=model_name,
+            use_few_shot=use_few_shot,
+            prompt_in_lrl=prompt_in_lrl,
                 temperature=temperature, 
                 top_p=top_p,          
-                top_k=top_k,                # Pass base top_k
+            top_k=top_k,
                 max_new_tokens=max_tokens, 
-                repetition_penalty=repetition_penalty, # Pass base repetition_penalty
-                do_sample=do_sample,            # Pass base do_sample
-                lang_code=lang_code,
-                model_name=model_name,
-                use_few_shot=use_few_shot
+            repetition_penalty=repetition_penalty,
+            do_sample=do_sample
             )
-            runtime = time.time() - start_time
             
-            f1_score_val = calculate_qa_f1(ground_truth, predicted_answer)
-            
-            result = {
-                "question": question,
-                "ground_truth": ground_truth,
-                "predicted_answer": predicted_answer,
-                "f1_score": f1_score_val,
-                "language": lang_code,
-                "shot_type": shot_type,
-                "runtime_seconds": runtime,
-                "model": model_name
-            }
-            results.append(result)
+        f1_score_val = calculate_qa_f1(ground_truth_answer, predicted_answer)
 
-            # Debug print for Telugu
-            if lang_code == "te" and telugu_debug_count < max_telugu_debug_prints:
-                print(f"\nDEBUG TELUGU (Sample {idx}, Model: {model_name}, Shot: {shot_type}):")
-                print(f"  Question: {question}")
-                print(f"  Ground Truth: {ground_truth}")
-                print(f"  Predicted Answer: {predicted_answer}")
-                print(f"  F1 Score: {f1_score_val:.4f}")
-                telugu_debug_count += 1
-            
-        except Exception as e:
-            print(f"Error processing sample: {str(e)}")
-            results.append({
-                "question": question,
-                "ground_truth": ground_truth,
-                "predicted_answer": "[ERROR]",
-                "f1_score": 0.0,
-                "language": lang_code,
-                "shot_type": shot_type,
-                "runtime_seconds": 0.0,
-                "model": model_name,
-                "error": str(e)
-            })
+        result = {
+            "question": question,
+            "ground_truth": ground_truth_answer,
+            "predicted_answer": predicted_answer,
+            "f1_score": f1_score_val,
+            "language": lang_code,
+            "shot_type": "few-shot" if use_few_shot else "zero-shot",
+            "runtime_seconds": runtime_sample,
+            "model": model_name,
+            "raw_output": raw_output
+        }
+        results.append(result)
     
     results_df = pd.DataFrame(results)
     
@@ -738,7 +752,7 @@ def evaluate_qa_baseline(
         avg_f1 = results_df["f1_score"].mean()
         avg_runtime = results_df["runtime_seconds"].mean()
         
-        print(f"\nResults for {lang_code} with {model_name} ({shot_type}):")
+        print(f"\nResults for {lang_code} with {model_name} ({'few-shot' if use_few_shot else 'zero-shot'}, Prompt Instruct LRL: {prompt_in_lrl}):")
         print(f"  Average F1 score: {avg_f1:.4f}")
         print(f"  Average runtime: {avg_runtime:.2f} seconds")
     else:

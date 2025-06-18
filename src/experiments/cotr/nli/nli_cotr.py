@@ -27,11 +27,12 @@ lang_names = {
     "en": "English",
     "ha": "Hausa",   # From old script
     "ur": "Urdu",
+    "fr": "French", # Added French
     # Add any other languages used in NLI tasks if they were in old script's map and are relevant
     "yo": "Yoruba", "ig": "Igbo", "hi": "Hindi", # Examples from old script's get_language_name
     "ar": "Arabic", "bn": "Bengali", "fi": "Finnish", "id": "Indonesian", "ko": "Korean",
     "ru": "Russian", "th": "Thai", "zh": "Chinese", "de": "German", "es": "Spanish",
-    "fr": "French", "ja": "Japanese", "pt": "Portuguese", "vi": "Vietnamese"
+    "ja": "Japanese", "pt": "Portuguese", "vi": "Vietnamese"
 }
 
 # Define label mapping for NLI (consistent with old and new)
@@ -52,6 +53,11 @@ NLI_TRANSLATIONS = {
         "entailment": "lazmi nateeja",
         "neutral": "ghair janibdar",
         "contradiction": "tazad"
+    },
+    "fr": { # Added French translations
+        "entailment": "inférence", 
+        "neutral": "neutre",
+        "contradiction": "contradiction"
     },
     # From old script - these were identical to English, but good to note
     "ha": {
@@ -78,6 +84,23 @@ from evaluation.cotr.translation_metrics import COMET_AVAILABLE, calculate_comet
 
 # Logger setup
 logger = logging.getLogger(__name__)
+
+def _sanitize_for_prompt(text: str) -> str:
+    """Basic sanitization for text included in prompts to avoid breaking f-string or markdown."""
+    if not isinstance(text, str):
+        text = str(text)
+    # Escape backticks and triple quotes (common in f-strings or markdown examples)
+    text = text.replace("`", "\\\\`")
+    text = text.replace("'''", "\\'\\'\\'")
+    text = text.replace('"""', '\\"\\"\\"')
+    # Escape curly braces that are not part of f-string placeholders
+    # This requires careful handling if the text itself is meant to contain f-string-like placeholders.
+    # For now, let's assume direct text shouldn't break the outer f-string.
+    # A simple approach for literal braces if they are causing issues:
+    # text = text.replace("{", "{{").replace("}", "}}") 
+    # However, this might double-escape if the input text is already an f-string part.
+    # Let's be conservative and only escape backticks and triple quotes for now.
+    return text
 
 def initialize_model(model_name: str, cache_path: Optional[str] = "/work/bbd6522/cache_dir") -> Tuple[AutoTokenizer, AutoModelForCausalLM]: # Type hints added
     """
@@ -201,89 +224,97 @@ Relationship:"""
 
 def generate_single_prompt_nli_cotr(lrl_premise: str, lrl_hypothesis: str, lang_code: str, use_few_shot: bool = True) -> str:
     """
-    Generate a single Chain-of-Thought (CoT) prompt for NLI, inspired by nli_cotr_old.py's structure
-    but using English for the CoT steps and examples as per constraints.
+    Generates a single Chain-of-Thought (CoT) prompt for NLI.
+    The entire prompt, including instructions and few-shot examples, is in English.
+    The model performs:
+    1. LRL Premise -> English Premise
+    2. LRL Hypothesis -> English Hypothesis
+    3. English NLI (Premise + Hypothesis -> Label)
+    4. English Label -> LRL Label (if lang_code is not 'en') - This step might be implicit or part of step 3's output.
+    Output format is a single string containing all these steps.
     """
     lrl_name = get_language_name(lang_code)
-    safe_lrl_premise = str(lrl_premise).replace("'''", "\'\'\'").replace('"""', '\"\"\"')
-    safe_lrl_hypothesis = str(lrl_hypothesis).replace("'''", "\'\'\'").replace('"""', '\"\"\"')
+    safe_lrl_premise = _sanitize_for_prompt(lrl_premise)
+    safe_lrl_hypothesis = _sanitize_for_prompt(lrl_hypothesis)
 
-    # Instructions based on old script's single prompt but adapted for English CoT
-    instructions_core = f"""Perform the following tasks in order for the provided {lrl_name} text and hypothesis:
-1. Translate the {lrl_name} Premise to English.
-2. Translate the {lrl_name} Hypothesis to English.
-3. Based ONLY on your English translations, determine if the English Hypothesis is ENTAILMENT, CONTRADICTION, or NEUTRAL with respect to the English Premise.
+    # Core instructions are in English, detailing the CoT process.
+    # Revised instructions to be more direct.
+    prompt_instructions = f"""You are an expert multilingual AI assistant. Your task is to perform Natural Language Inference (NLI) on a given {lrl_name} premise and hypothesis by following these steps precisely:
 
-Definitions:
-- ENTAILMENT: The hypothesis must be true if the text is true.
-- CONTRADICTION: The hypothesis cannot be true if the text is true.
-- NEUTRAL: The hypothesis might be true or false; the text doesn't provide enough information.
+1.  **Translate Premise to English**: Accurately translate the original '{lrl_name} Premise' into English.
+    Begin your output for this step with the exact label "Translated English Premise:" followed immediately by the English translation of the premise.
 
-Provide your answer in this exact format:
-English Premise: [Your English Translation of the Premise]
-English Hypothesis: [Your English Translation of the Hypothesis]
-Relationship: [ENTAILMENT/CONTRADICTION/NEUTRAL]"""
+2.  **Translate Hypothesis to English**: Accurately translate the original '{lrl_name} Hypothesis' into English.
+    Begin your output for this step with the exact label "Translated English Hypothesis:" followed immediately by the English translation of the hypothesis.
 
-    few_shot_examples_str = ""
-    if use_few_shot:
-        # Few-shot examples with LRL input part, but English CoT (as per constraint)
-        # Using Swahili as an example LRL, adapt if other LRL examples from old script are preferred
-        if lang_code == "sw":
-            ex1_lrl_prem = "Mwanamke anapika chakula jikoni."
-            ex1_lrl_hyp = "Mwanamke anatayarisha chakula."
-            ex1_en_prem = "A woman is cooking food in the kitchen."
-            ex1_en_hyp = "A woman is preparing food."
-            ex1_nli = "ENTAILMENT"
-        elif lang_code == "ur": # Urdu example from old script
-            ex1_lrl_prem = "ایک عورت باورچی خانے میں کھانا پکا رہی ہے۔"
-            ex1_lrl_hyp = "عورت کھانا تیار کر رہی ہے۔"
-            ex1_en_prem = "A woman is cooking food in the kitchen."
-            ex1_en_hyp = "A woman is preparing food."
-            ex1_nli = "ENTAILMENT"
-        else: # Generic English example to show structure if LRL not sw/ur
-            ex1_lrl_prem = f"[Example Premise in {lrl_name}]"
-            ex1_lrl_hyp = f"[Example Hypothesis in {lrl_name}]"
-            ex1_en_prem = "A representative English premise."
-            ex1_en_hyp = "A representative English hypothesis."
-            ex1_nli = "NEUTRAL" # Adjust NLI label as appropriate for a generic example
-
-        # Generic structure for a second example
-        ex2_lrl_prem_generic = f"[Another Premise in {lrl_name} for contradiction]"
-        ex2_lrl_hyp_generic = f"[Another Hypothesis in {lrl_name} for contradiction]"
-        ex2_en_prem_generic = "The cat is sleeping."
-        ex2_en_hyp_generic = "The cat is awake."
-        ex2_nli_generic = "CONTRADICTION"
-
-        few_shot_examples_str = f"""
---- Examples ---
-
-Example 1:
-Original {lrl_name} Premise: '{ex1_lrl_prem}'
-Original {lrl_name} Hypothesis: '{ex1_lrl_hyp}'
-
-English Premise: {ex1_en_prem}
-English Hypothesis: {ex1_en_hyp}
-Relationship: {ex1_nli}
-
-Example 2:
-Original {lrl_name} Premise: '{ex2_lrl_prem_generic}'
-Original {lrl_name} Hypothesis: '{ex2_lrl_hyp_generic}'
-
-English Premise: {ex2_en_prem_generic}
-English Hypothesis: {ex2_en_hyp_generic}
-Relationship: {ex2_nli_generic}
+3.  **Perform English NLI**: Analyze the 'Translated English Premise' and 'Translated English Hypothesis' from Steps 1 and 2. Determine if the relationship is entailment, neutral, or contradiction.
+    Begin your output for this step with the exact label "English NLI Label:" followed immediately by the NLI label (entailment, neutral, or contradiction).
 """
 
-    task_prompt_str = f"""
---- Your Task ---
+    # Step 4 for LRL label translation will be implicitly handled by the model if it's added to the overall instruction.
+    # Or, if issues persist, the runner script would call a separate translate_text for the label.
+    # For now, the single prompt aims for the English label. The LRL label translation is managed by process_nli_cotr_single_prompt.
+
+    prompt_instructions += f"""
+
+Ensure your output for each step is clearly labeled and appears one after the other.
+If the original language is English, the translation steps should simply output the original English text under the respective labels.
+The final output required from you is the English NLI Label after the translation steps.
+"""
+
+    few_shot_section = ""
+    if use_few_shot:
+        # Few-shot examples demonstrate the CoT process.
+        # LRL text in examples is English for clarity of the chain.
+        ex1_orig_prem_en = "The new system is operational."
+        ex1_orig_hyp_en = "The system is working."
+        ex1_eng_prem = ex1_orig_prem_en
+        ex1_eng_hyp = ex1_orig_hyp_en
+        ex1_eng_label = "entailment"
+
+        ex2_orig_prem_en = "The cat sat on the mat."
+        ex2_orig_hyp_en = "The dog was sleeping."
+        ex2_eng_prem = ex2_orig_prem_en
+        ex2_eng_hyp = ex2_orig_hyp_en
+        ex2_eng_label = "neutral"
+        
+        # Example LRL name for placeholder consistency
+        example_lrl_name_placeholder = get_language_name(lang_code if lang_code != 'en' else 'sw') # Use actual LRL or fallback for 'en'
+
+        few_shot_section = f"""--- Examples (Demonstrating the process) ---
+
+Example 1 (Input in English, treated as '{example_lrl_name_placeholder}'):
+Original {example_lrl_name_placeholder} Premise: '{_sanitize_for_prompt(ex1_orig_prem_en)}'
+Original {example_lrl_name_placeholder} Hypothesis: '{_sanitize_for_prompt(ex1_orig_hyp_en)}'
+
+Translated English Premise: {_sanitize_for_prompt(ex1_eng_prem)}
+Translated English Hypothesis: {_sanitize_for_prompt(ex1_eng_hyp)}
+English NLI Label: {ex1_eng_label}
+
+Example 2 (Input in English, treated as '{example_lrl_name_placeholder}'):
+Original {example_lrl_name_placeholder} Premise: '{_sanitize_for_prompt(ex2_orig_prem_en)}'
+Original {example_lrl_name_placeholder} Hypothesis: '{_sanitize_for_prompt(ex2_orig_hyp_en)}'
+
+Translated English Premise: {_sanitize_for_prompt(ex2_eng_prem)}
+Translated English Hypothesis: {_sanitize_for_prompt(ex2_eng_hyp)}
+English NLI Label: {ex2_eng_label}
+"""
+
+    task_section = f"""--- Your Task ---
 
 Original {lrl_name} Premise: '{safe_lrl_premise}'
 Original {lrl_name} Hypothesis: '{safe_lrl_hypothesis}'
 
-Follow the three steps precisely and provide your full response:"""
+Follow all steps precisely and provide your full response as per the format defined in the instructions.
+Your response should contain the translated texts and the English NLI label.
+"""
 
-    final_prompt = instructions_core + "\n" + few_shot_examples_str + "\n" + task_prompt_str
-    logger.debug(f"Generated Single NLI CoTR Prompt for {lang_code}:\n{final_prompt[:500]}...")
+    final_prompt = prompt_instructions
+    if use_few_shot:
+        final_prompt += few_shot_section
+    final_prompt += task_section
+
+    logger.debug(f"Generated Single NLI CoTR Prompt for {lang_code} (use_few_shot={use_few_shot}):\\n{final_prompt[:1000]}...") # Log more of the prompt
     return final_prompt
 
 def translate_text( # Retaining current more robust version, ensure params match runner
@@ -391,62 +422,30 @@ def extract_nli_label(output_text: str) -> str:
     Combines robustness of current script's version with direct checks from old script.
     Ensures a valid label ("entailment", "neutral", "contradiction") or a default.
     """
-    original_output_text = output_text.strip()
-    text_lower = original_output_text.lower()
-    valid_labels = ["entailment", "neutral", "contradiction"]
+    output_text = output_text.lower().strip()
 
-    # 1. Check for structured "Relationship: LABEL" (from current and old)
-    # Made more robust: optional step numbers, colons, "is"
-    relationship_match = re.search(r'(?:relationship|step\s*\d+\s*:\s*relationship|label)\s*(?:is)?\s*:\s*\b(entailment|neutral|contradiction)\b', text_lower, re.IGNORECASE)
-    if relationship_match:
-        return relationship_match.group(1).lower()
+    # Remove common prefixes or instructions model might add
+    prefixes_to_remove = [
+        "the relationship is:", "label:", "prediction:", "answer:", 
+        "nli label:", "relationship:", "this is clearly an", "this is an"
+    ]
+    for prefix in prefixes_to_remove:
+        if output_text.startswith(prefix):
+            output_text = output_text[len(prefix):].strip()
 
-    # 2. Check for capitalized labels directly (from current and old)
-    if "ENTAILMENT" in original_output_text: return "entailment"
-    if "CONTRADICTION" in original_output_text: return "contradiction"
-    if "NEUTRAL" in original_output_text: return "neutral"
-
-    # 3. Check for lowercase labels as standalone words or dominant terms (from current)
-    # This is more heuristic. Search for the labels as whole words.
-    for label in valid_labels:
-        if re.search(rf"\b{label}\b", text_lower): # Check for whole word
-            # To avoid ambiguity if multiple labels are mentioned (e.g., in definitions),
-            # prioritize if it's the only label, or appears in a concluding line.
-            lines = [line.strip() for line in text_lower.split('\\n') if line.strip()]
-            if lines:
-                last_line_lower = lines[-1].lower()
-                if re.search(rf"\b{label}\b", last_line_lower): # If in last line
-                    # Check if ONLY this label is in the last line to be more certain
-                    other_labels_in_last_line = [other for other in valid_labels if other != label and re.search(rf"\b{other}\b", last_line_lower)]
-                    if not other_labels_in_last_line:
-                        return label # Indented
-            # Fallback if not clearly in last line but present
-            # Count occurrences to see if one is dominant if multiple are present
-            counts = {l: len(re.findall(rf"\b{l}\b", text_lower)) for l in valid_labels}
-            if counts[label] > 0 and all(counts[label] >= counts[other] for other in valid_labels if other != label):
-                 # If this label is present and no other label has a higher count
-                if sum(c > 0 for c in counts.values()) == 1: # Only this label is present
-                    return label
-                # If multiple labels, but this one is at least as frequent and appears last or in a specific context
-                # This part can get complex, for now, if it's found and no other is clearly dominant, it's a candidate.
+    # Remove trailing punctuation or explanations
+    output_text = output_text.split('.')[0].split(',')[0].split('(')[0].strip()
     
-    # 4. Check last line explicitly (from old and current)
-    lines = [line.strip() for line in original_output_text.split('\\n') if line.strip()]
-    if lines:
-        last_line_cleaned = lines[-1].lower().strip(".,;:!?").split()[-1] # Get last word of last line
-        if last_line_cleaned in valid_labels:
-            return last_line_cleaned
-        # Check if the entire last line IS one of the labels
-        if lines[-1].lower() in valid_labels:
-            return lines[-1].lower()
-
-    # 5. Fallback search for keywords (from old script)
-    if any(x in text_lower for x in ["entail", "follows", "must be true"]): return "entailment"
-    if any(x in text_lower for x in ["contradict", "cannot be true", "inconsistent"]): return "contradiction"
-    # Neutral is often the hardest, "might be true", "not enough information"
-
-    logger.warning(f"NLI CoTR: Could not confidently extract NLI label from: '{original_output_text[:100]}...' Returning 'unknown' as default.")
-    return "unknown" # Default to unknown
+    # Direct checks for keywords
+    if "entailment" in output_text or "entails" in output_text:
+        return "entailment"
+    elif "contradiction" in output_text or "contradicts" in output_text:
+        return "contradiction"
+    elif "neutral" in output_text: # Model might still explicitly say "neutral"
+        return "neutral"
+        
+    # Fallback if no clear keyword is found
+    return "unknown"
 
 def extract_english_translations(output_text: str) -> Tuple[str, str]:
     """
@@ -456,17 +455,18 @@ def extract_english_translations(output_text: str) -> Tuple[str, str]:
     premise_en = "[PREMISE_EN_EXTRACTION_FAILED]"
     hypothesis_en = "[HYPOTHESIS_EN_EXTRACTION_FAILED]"
     
-    # Pattern for "English Premise: [translation]"
-    # Looks for "English Premise:" (case insensitive) followed by the translation.
-    # Stops at "English Hypothesis:" or "Relationship:" or end of text.
-    premise_match = re.search(r"(?:English\s+Premise\s*:\s*)(.*?)(?=(?:English\s+Hypothesis\s*:|Relationship\s*:)|$)", output_text, re.IGNORECASE | re.DOTALL)
+    # Pattern for "Translated English Premise: [translation]"
+    # Looks for "Translated English Premise:" (case insensitive) followed by the translation.
+    # Stops at "Translated English Hypothesis:" or "English NLI Label:" or end of text.
+    premise_match = re.search(r"(?:Translated\s+English\s+Premise\s*:\s*)(.*?)(?=(?:Translated\s+English\s+Hypothesis\s*:|English\s+NLI\s+Label\s*:)|$)", output_text, re.IGNORECASE | re.DOTALL)
     if premise_match:
-        premise_en = premise_match.group(1).strip().split('\\n')[0].strip() # Get first line of match
+        premise_en = premise_match.group(1).strip().split('\n')[0].strip() # Get first line of match
     
-    # Pattern for "English Hypothesis: [translation]"
-    hypothesis_match = re.search(r"(?:English\s+Hypothesis\s*:\s*)(.*?)(?=(?:Relationship\s*:)|$)", output_text, re.IGNORECASE | re.DOTALL)
+    # Pattern for "Translated English Hypothesis: [translation]"
+    # Stops at "English NLI Label:" or end of text.
+    hypothesis_match = re.search(r"(?:Translated\s+English\s+Hypothesis\s*:\s*)(.*?)(?=(?:English\s+NLI\s+Label\s*:)|$)", output_text, re.IGNORECASE | re.DOTALL)
     if hypothesis_match:
-        hypothesis_en = hypothesis_match.group(1).strip().split('\\n')[0].strip()
+        hypothesis_en = hypothesis_match.group(1).strip().split('\n')[0].strip()
 
     if premise_en == "[PREMISE_EN_EXTRACTION_FAILED]":
         logger.warning(f"NLI CoTR: Failed to extract English Premise from: {output_text[:200]}...")
@@ -619,7 +619,17 @@ def process_nli_cotr_single_prompt( # For single-prompt pipeline
         response_text = tokenizer.decode(outputs[0][inputs["input_ids"].shape[-1]:], skip_special_tokens=True).strip()
         # Extract parts from response after successful generation
         premise_en, hypothesis_en = extract_english_translations(response_text)
-        predicted_english_label = extract_nli_label(response_text)
+        
+        # More targeted extraction for the English NLI label
+        nli_label_segment = ""
+        label_match = re.search(r"(?:English\s+NLI\s+Label\s*:\s*)(.*?)(?:$)", response_text, re.IGNORECASE | re.DOTALL)
+        if label_match:
+            nli_label_segment = label_match.group(1).strip()
+            predicted_english_label = extract_nli_label(nli_label_segment) # Pass only the relevant segment
+        else:
+            logger.warning(f"NLI CoTR single_prompt: Could not find 'English NLI Label:' section in response: {response_text[:300]}...")
+            predicted_english_label = extract_nli_label(response_text) # Fallback to old behavior if specific section not found
+
     except Exception as e_generate_sp:
         logger.error(f"NLI CoTR single_prompt: Error during model.generate: {e_generate_sp}", exc_info=True)
         # Values will remain as defaults initialized before try block

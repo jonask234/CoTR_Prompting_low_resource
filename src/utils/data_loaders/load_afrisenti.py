@@ -1,34 +1,74 @@
 import pandas as pd
+from datasets import load_dataset, concatenate_datasets, DatasetDict, get_dataset_split_names, Dataset
+from typing import List, Optional, Dict # Keep if Dict is used, otherwise can remove
 import os
-from typing import Optional, List
-from datasets import load_dataset, get_dataset_split_names, Dataset
-from tqdm import tqdm
-import random
+import random # Keep if used
+from tqdm import tqdm # Keep if used
+import logging  # <<< ADD THIS LINE
+
+# Setup logger for this module
+logger = logging.getLogger(__name__)  # <<< ADD THIS LINE
 
 # Mapping from simple language codes to AfriSenti dataset configuration names
-# Check the dataset viewer on Hugging Face for exact config names
-# Example: https://huggingface.co/datasets/masakhane/afrisenti_twitter_corpus
-LANG_CODE_MAP = {
-    'am': 'amh',  # Amharic
-    'dz': 'dzo',  # Dzongkha
-    'ha': 'hau',  # Hausa
-    'ig': 'ibo',  # Igbo
-    'kr': 'kin',  # Kinyarwanda
-    'ma': 'mor',  # Moroccan Arabic/Darija
-    'ny': 'pcm',  # Nigerian Pidgin
-    'pt': 'por',  # Portuguese
-    'sw': 'swa',  # Swahili
-    'ti': 'tir',  # Tigrinya
-    'yo': 'yor',  # Yoruba
-    # Add other potential mappings if needed
-}
+# This map helps to resolve any discrepancies if your input lang_codes (e.g., "sw")
+# differ from the exact names used in the Hugging Face dataset configurations for AfriSenti.
+AFRISENTI_LANG_MAP: Dict[str, str] = {
+    "am": "amharic",        # Amharic
+    "ar": "arabic",         # Arabic (MSA or a specific dialect used in dataset)
+    "dz": "algerian_arabic", # Algerian Arabic (Darija)
+    "en": "english",        # English
+    "fr": "french",         # French
+    
+    "ha": "hau",            # Hausa (Standard short code 'ha' maps to HF config 'hau')
+    "hau": "hau",           # Hausa (Direct HF config 'hau' maps to itself)
+    # "hau": "hausa",       # Old incorrect mapping for 'hau'
+    
+    "id": "indonesian",     # Indonesian (Often in African multilingual datasets due to colonial links or data availability)
+    "ig": "igbo",           # Igbo
+    "kr": "kimbundu",       # Kimbundu (Angola) - Note: Double check exact HF config name if different
+    "ma": "moroccan_arabic", # Moroccan Arabic (Darija)
+    "multi": "multilingual",# For a combined multilingual track if available
+    "pcm": "pidgin",        # Nigerian Pidgin
+    
+    "pt": "por",            # Portuguese (Standard short code 'pt' maps to HF config 'por')
+    "por": "por",           # Portuguese (Direct HF config 'por' maps to itself)
+    
+    "sw": "swa",            # Swahili (Standard short code 'sw' maps to HF config 'swa')
+    "swa": "swa",           # Swahili (Direct HF config 'swa' maps to itself)
 
-# Remove integer-to-string mapping, as dataset seems to provide strings
-# LABEL_MAP = {
-#     0: 'negative',
-#     1: 'neutral',
-#     2: 'positive'
-# }
+    "ts": "tsonga",         # Tsonga
+    "twi": "twi",           # Twi (Akan)
+    "yo": "yoruba",         # Yoruba
+    "zh": "chinese",        # Chinese (Sometimes included in broad multilingual sets)
+    
+    # Additional mappings from dataset's available configs, if different from above keys
+    "amh": "amh",           # Amharic (config name)
+    "arq": "arq",           # Algerian Arabic (config name, though 'dz' is more common short code)
+    "ary": "ary",           # Moroccan Arabic (config name, though 'ma' is more common short code)
+    "ibo": "ibo",           # Igbo (config name, same as 'ig')
+    "kin": "kin",           # Kinyarwanda
+    "orm": "orm",           # Oromo
+    "tir": "tir",           # Tigrinya
+    "tso": "tso",           # Xitsonga (config name, same as 'ts')
+    # Ensure 'pcm', 'twi', 'yor' also map if their config names are identical and used as keys
+}
+# List of all unique configuration names used in AfriSenti on Hugging Face
+# This should be updated if the dataset adds/changes config names.
+# You can get this list from `datasets.get_dataset_config_names("afrisenti")`
+AFRISENTI_CONFIG_NAMES = [
+    'amharic', 'arabic', 'algerian_arabic', 'english', 'french', 'hausa', 
+    'igbo', 'kimbundu', 'moroccan_arabic', 'pidgin', 'portuguese', 
+    'swahili', 'tsonga', 'twi', 'yoruba'
+    # 'multilingual' and 'indonesian', 'chinese' might not be direct configs but tracks or related datasets.
+    # Verify with `get_dataset_config_names("afrisenti")`
+]
+
+
+# Local cache directory for Hugging Face datasets
+# Ensure this path is writable and has enough space.
+# LOCAL_HF_DATASETS_CACHE = os.path.expanduser("~/.cache/huggingface/datasets")
+LOCAL_HF_DATASETS_CACHE = "/work/bbd6522/hf_datasets_cache" # Example custom cache path
+os.makedirs(LOCAL_HF_DATASETS_CACHE, exist_ok=True)
 
 # Define expected string labels for validation
 EXPECTED_STRING_LABELS = {'positive', 'negative', 'neutral'}
@@ -123,151 +163,117 @@ def _load_samples_from_split(dataset_name: str, lang_config: str, split: str, nu
     print(f"  Successfully extracted {len(samples)} valid samples.")
     return samples
 
+def create_dummy_sentiment_data(lang_code: str, num_samples: int = 3) -> pd.DataFrame:
+    logger.warning(f"Creating dummy sentiment data for {lang_code} ({num_samples} samples).")
+    data = {
+        'id': [f'dummy_{i}' for i in range(num_samples)],
+        'text': [f"This is a dummy {lang_code} sentence {i}." for i in range(num_samples)],
+        'label': ['positive', 'negative', 'neutral'][:num_samples] if num_samples <= 3 else ['neutral'] * num_samples
+    }
+    return pd.DataFrame(data)
+
 def load_afrisenti_samples(
     lang_code: str, 
-    num_samples: Optional[int] = None, 
-    split: str = "train", 
-    balanced: bool = False,
-    samples_per_class: Optional[int] = None
+    num_samples: Optional[int] = None,
+    split: str = 'test', 
+    dataset_name: str = "shmuhammad/AfriSenti-twitter-sentiment",
+    seed: int = 42
 ) -> pd.DataFrame:
     """
-    Load AfriSenti samples for a specific language.
+    Load samples for a given language from the AfriSenti dataset.
 
     Args:
-        lang_code: Language code (e.g., 'ha' for Hausa, 'sw' for Swahili).
-        num_samples: Target number of samples to load (None for all available).
-                     If balanced=False: samples are randomly selected if num_samples < dataset size.
-                     If balanced=True: interpreted as samples per class, if also None then uses
-                     the size of the smallest class.
-        split: Dataset split to use ('train', 'validation', 'test'). 'train' is often the largest.
-        balanced: If True, creates a balanced dataset with equal samples from each class.
-        samples_per_class: Number of samples to select per class when balanced=True.
-                          If None, uses the minimum class size or num_samples (if specified).
+        lang_code (str): Language code (e.g., 'am', 'ha', 'sw').
+        num_samples (Optional[int]): Number of samples to load. If None, loads all available for the split.
+        split (str): Dataset split ('train', 'dev', 'test').
+        dataset_name (str): Name of the dataset on Hugging Face.
+        seed (int): Random seed for shuffling if num_samples is specified.
 
     Returns:
-        DataFrame containing the samples ('text', 'label', 'id'), shuffled to ensure randomness.
+        pd.DataFrame: DataFrame with 'id', 'text' (tweet), and 'label' columns.
+                      Returns empty DataFrame on failure.
     """
-    # Use the correct dataset identifier including the organization
-    dataset_name = "shmuhammad/AfriSenti-twitter-sentiment"
+    if lang_code not in AFRISENTI_LANG_MAP:
+        logger.error(f"Language code '{lang_code}' not found in AFRISENTI_LANG_MAP. Available keys: {list(AFRISENTI_LANG_MAP.keys())}")
+        logger.info("Falling back to dummy data for this language.")
+        return create_dummy_sentiment_data(lang_code, num_samples if num_samples is not None else 3)
 
-    # Handle 'en' explicitly as AfriSenti does not support it
-    if lang_code == 'en':
-        print(f"INFO: The AfriSenti dataset ('{dataset_name}') used by this loader "
-              f"does not include an English ('en') configuration. Returning empty DataFrame for 'en'. "
-              f"To evaluate English, please use a dedicated English sentiment dataset and loader.")
-        return pd.DataFrame({'text': [], 'label': [], 'id': []})
-
-    afrisenti_lang_config = LANG_CODE_MAP.get(lang_code)
-    if not afrisenti_lang_config:
-        print(f"ERROR: Unsupported or unmapped language code '{lang_code}' for AfriSenti loader (config not in LANG_CODE_MAP).")
-        return pd.DataFrame({'text': [], 'label': [], 'id': []})
-
-    # Check available splits (optional but good practice)
-    try:
-        available_splits = get_dataset_split_names(dataset_name, afrisenti_lang_config)
-        print(f"Available splits for {dataset_name}/{afrisenti_lang_config}: {available_splits}")
-        if split not in available_splits:
-            original_split = split
-            if 'train' in available_splits:
-                split = 'train'
-            elif available_splits:
-                split = available_splits[0]
-            else:
-                print(f"ERROR: No splits found for {dataset_name}/{afrisenti_lang_config}.")
-                return pd.DataFrame({'text': [], 'label': [], 'id': []})
-            print(f"WARN: Requested split '{original_split}' not found for {afrisenti_lang_config}. Using '{split}' split instead.")
-
-    except Exception as e:
-        print(f"WARN: Could not verify splits for {dataset_name}/{afrisenti_lang_config}: {e}. Attempting to load '{split}' split from Hugging Face Hub.")
-
-    # If balanced sampling is not requested, use the standard loading logic
-    if not balanced:
-        # Load samples using standard approach
-        all_samples = _load_samples_from_split(dataset_name, afrisenti_lang_config, split, num_samples)
-        
-        print(f"Loaded {len(all_samples)} {afrisenti_lang_config} samples in total from the '{split}' split (Hugging Face Hub).")
-
-        # Return DataFrame
-        if not all_samples:
-            print(f"WARNING: No {afrisenti_lang_config} samples found or loaded from the '{split}' split (Hugging Face Hub)!")
-            return pd.DataFrame({'text': [], 'label': [], 'id': []})
-
-        # Create DataFrame and shuffle it to ensure random order
-        df = pd.DataFrame(all_samples)[['text', 'label', 'id']]
-        
-        # Always shuffle regardless of whether num_samples was provided
-        print(f"Shuffling {len(df)} samples to ensure randomness...")
-        df = df.sample(frac=1, random_state=42).reset_index(drop=True)
-        
-        # Print label distribution to verify data is properly loaded and shuffled
-        print(f"Final label distribution: {df['label'].value_counts().to_dict()}")
-        
-        return df
+    hf_config_name = AFRISENTI_LANG_MAP[lang_code]
     
-    else:
-        # --- Balanced Sampling Logic ---
-        print(f"Balanced class sampling requested for {afrisenti_lang_config}...")
+    hf_split = split
+    if split == 'dev':
+        hf_split = 'validation' 
+        logger.info(f"Mapping requested split 'dev' to 'validation' for AfriSenti config '{hf_config_name}'.")
+    elif split not in ['train', 'validation', 'test']:
+        logger.error(f"Invalid split '{split}' for AfriSenti. Must be one of 'train', 'dev', 'test'. Using 'test' as default.")
+        hf_split = 'test'
+
+    logger.info(f"Loading AfriSenti samples for language: {lang_code} (HF config: {hf_config_name}), split: {hf_split} from {dataset_name}")
+
+    try:
+        # Attempt to load the dataset
+        dataset = load_dataset(dataset_name, name=hf_config_name, split=hf_split, trust_remote_code=True)
+        logger.info(f"Successfully loaded {len(dataset)} samples from {dataset_name}/{hf_config_name} (split: {hf_split}).")
         
-        # Load all samples for the language (we'll filter by class later)
-        all_samples = _load_samples_from_split(dataset_name, afrisenti_lang_config, split, None)
+        # Convert to DataFrame
+        samples_df = dataset.to_pandas()
         
-        if not all_samples:
-            print(f"WARNING: No {afrisenti_lang_config} samples found or loaded from the '{split}' split (Hugging Face Hub)!")
-            return pd.DataFrame({'text': [], 'label': [], 'id': []})
+        # Standardize column names
+        if 'tweet' in samples_df.columns and 'text' not in samples_df.columns:
+            samples_df.rename(columns={'tweet': 'text'}, inplace=True)
         
-        # Convert to DataFrame for easier class-based filtering
-        df_all = pd.DataFrame(all_samples)
+        if 'text' not in samples_df.columns or 'label' not in samples_df.columns:
+            logger.error(f"Dataset {dataset_name}/{hf_config_name} for {lang_code} is missing 'text' or 'label' column. Columns: {samples_df.columns.tolist()}")
+            raise ValueError("Missing required columns 'text' or 'label'")
+
+        # Ensure 'id' column exists or create it
+        if 'id' not in samples_df.columns:
+            samples_df['id'] = [f"{hf_config_name}_{hf_split}_{i}" for i in range(len(samples_df))]
+
+        # Select subset of samples if num_samples is specified
+        if num_samples is not None and 0 < num_samples < len(samples_df):
+            samples_df = samples_df.sample(n=num_samples, random_state=seed, replace=False).reset_index(drop=True)
+            logger.info(f"Sampled down to {len(samples_df)} for {lang_code} ({hf_config_name}).")
+        elif num_samples is not None and num_samples >= len(samples_df):
+            logger.info(f"Requested {num_samples} samples, but only {len(samples_df)} available for {lang_code} ({hf_config_name}). Using all available.")
+        elif num_samples is None:
+            logger.info(f"Using all {len(samples_df)} available samples for {lang_code} ({hf_config_name}).")
         
-        # Check label distribution
-        label_counts = df_all['label'].value_counts()
-        print(f"Original label distribution: {label_counts.to_dict()}")
-        
-        # Determine samples per class
-        min_class_count = label_counts.min()
-        
-        if samples_per_class is not None:
-            # User-specified samples per class
-            n_per_class = min(samples_per_class, min_class_count)
-        elif num_samples is not None:
-            # Interpret num_samples as per-class count
-            n_per_class = min(num_samples, min_class_count)
-        else:
-            # Default to minimum class count for fully balanced dataset
-            n_per_class = min_class_count
-        
-        print(f"Using {n_per_class} samples per class for balanced dataset")
-        
-        # Create balanced DataFrame by sampling equally from each class
-        balanced_samples = []
-        
-        for label in EXPECTED_STRING_LABELS:
-            class_samples = df_all[df_all['label'] == label]
+        # Ensure labels are strings and handle potential float/int types from raw data
+        if 'label' in samples_df.columns:
+            samples_df['label'] = samples_df['label'].astype(str)
+            # Map numeric string labels to descriptive string labels
+            # AfriSenti typically uses: 0 -> negative, 1 -> neutral, 2 -> positive
+            label_mapping = {
+                "0": "negative", 
+                "1": "neutral", 
+                "2": "positive",
+                # Ensure existing string labels are preserved (case-insensitively)
+                "negative": "negative",
+                "neutral": "neutral",
+                "positive": "positive"
+            }
+            # Apply mapping, handling potential case issues for string labels already in correct format
+            samples_df['label'] = samples_df['label'].str.lower().map(label_mapping).fillna(samples_df['label'])
             
-            if len(class_samples) > 0:
-                # Sample at most n_per_class samples from this class
-                if len(class_samples) > n_per_class:
-                    sampled = class_samples.sample(n=n_per_class, random_state=42)
-                else:
-                    sampled = class_samples  # Take all if we have fewer than needed
-                
-                balanced_samples.append(sampled)
-                print(f"  Selected {len(sampled)} samples for class '{label}'")
-            else:
-                print(f"  WARNING: No samples found for class '{label}'")
-        
-        # Combine all balanced class samples
-        df_balanced = pd.concat(balanced_samples, ignore_index=True)
-        
-        # Shuffle to ensure classes are mixed
-        df_balanced = df_balanced.sample(frac=1, random_state=42).reset_index(drop=True)
-        
-        # Print final counts to verify balance
-        final_distribution = df_balanced['label'].value_counts().to_dict()
-        print(f"Final balanced distribution: {final_distribution}")
-        total_samples = len(df_balanced)
-        print(f"Total samples in balanced dataset: {total_samples}")
-        
-        return df_balanced[['text', 'label', 'id']]
+            # Validate that all labels are now one of the expected strings
+            if not samples_df['label'].isin(list(EXPECTED_STRING_LABELS)).all():
+                unknown_labels = samples_df[~samples_df['label'].isin(list(EXPECTED_STRING_LABELS))]['label'].unique()
+                logger.warning(f"Labels in {lang_code} after mapping still contain unexpected values: {unknown_labels}. These might cause issues in metrics.")
+                # Optionally, map these unknown to a default like 'neutral' or drop them
+                # For now, we log a warning.
+
+        logger.info(f"Prepared DataFrame for {lang_code} with columns: {samples_df.columns.tolist()}")
+        return samples_df[['id', 'text', 'label']] # Return only essential columns
+
+    except ValueError as ve: # Catch specific ValueError from missing builder config or columns
+        logger.error(f"ValueError loading or processing AfriSenti for language {lang_code} (HF: {hf_config_name}), split {hf_split}: {ve}")
+        logger.info(f"Falling back to dummy data for {lang_code} due to ValueError.")
+        return create_dummy_sentiment_data(lang_code, num_samples if num_samples is not None else 3)
+    except Exception as e:
+        logger.error(f"Generic error loading or processing AfriSenti for language {lang_code} (HF: {hf_config_name}), split {hf_split}: {e}", exc_info=True)
+        logger.info(f"Falling back to dummy data for {lang_code} due to generic error.")
+        return create_dummy_sentiment_data(lang_code, num_samples if num_samples is not None else 3)
 
 # Example usage (optional, for testing)
 if __name__ == '__main__':

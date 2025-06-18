@@ -15,7 +15,7 @@ if project_root not in sys.path:
 from src.utils.data_loaders.load_masakhanews import load_masakhanews_samples
 
 # Define the known labels for MasakhaNEWS - this should be the single source of truth
-MASAKHANEWS_LABELS = ['health', 'religion', 'politics', 'sports', 'local', 'business', 'entertainment']
+MASAKHANEWS_LABELS = ['business', 'entertainment', 'health', 'politics', 'religion', 'sports', 'technology']
 
 def main():
     parser = argparse.ArgumentParser(description="Run Simple Text Classification Baselines (Fixed Prediction for each class).")
@@ -23,8 +23,8 @@ def main():
                         help="Languages to evaluate (default: en, sw, ha, te).")
     parser.add_argument("--split", type=str, default="test", 
                         help="Dataset split to use (default: test). Ensure consistency with main experiments.")
-    parser.add_argument("--sample_percentage", type=float, default=10.0,
-                        help="Percentage of samples to use from the specified split (default: 10.0 for 10%%).")
+    parser.add_argument("--num_samples", type=int, default=80,
+                        help="Number of samples to use from the specified split (default: 80).")
     parser.add_argument("--output_dir", type=str, default="/work/bbd6522/results/classification/simple_baselines_fixed", 
                         help="Directory for results.")
     parser.add_argument("--seed", type=int, default=42, help="Random seed for sampling.")
@@ -37,38 +37,16 @@ def main():
         print(f"--- Processing Classification Fixed Prediction Baselines for Language: {lang_code} ---")
 
         try:
-            # Load all samples for the given language and split to determine total size for percentage sampling
-            print(f"Determining total number of '{args.split}' MasakhaNEWS samples for {lang_code}...")
-            temp_all_samples_df = load_masakhanews_samples(lang_code=lang_code, split=args.split, num_samples=None) # Load all
-            
-            if temp_all_samples_df.empty:
-                print(f"No MasakhaNEWS samples found for {lang_code}, split '{args.split}' when checking total size. Skipping.")
-                continue
-            total_available_samples = len(temp_all_samples_df)
-            del temp_all_samples_df # free memory
-
-            num_to_sample = int(total_available_samples * (args.sample_percentage / 100.0))
-            if num_to_sample == 0 and total_available_samples > 0 : # Ensure at least 1 sample if percentage is too low for small datasets
-                num_to_sample = 1 
-            
-            if num_to_sample == 0:
-                 print(f"Calculated 0 samples to select for {lang_code} with {args.sample_percentage}%% from {total_available_samples}. Skipping.")
-                 continue
-
-            print(f"Loading {num_to_sample} ({args.sample_percentage}%% of {total_available_samples}) '{args.split}' MasakhaNEWS samples for {lang_code}...")
-            # Now load the exact number of samples required.
-            # load_masakhanews_samples should handle the seed for reproducible sampling if num_samples is given.
+            print(f"Loading up to {args.num_samples} samples for {lang_code} ({args.split} split) with seed {args.seed}...")
             samples_df = load_masakhanews_samples(
-                lang_code=lang_code, 
-                split=args.split, 
-                num_samples=num_to_sample
+                lang_code=lang_code,
+                split=args.split,
+                num_samples=args.num_samples,
+                seed=args.seed
             )
-            
-            # The manual sampling `all_samples_df.sample(n=num_to_sample, random_state=args.seed)` is replaced
-            # by passing num_samples directly to the loader.
 
             if samples_df.empty:
-                print(f"No MasakhaNEWS samples loaded for {lang_code} on split '{args.split}' after requesting {num_to_sample} samples. Skipping.")
+                print(f"No MasakhaNEWS samples loaded for {lang_code} on split '{args.split}'. Skipping.")
                 continue
             
             if 'label' not in samples_df.columns:

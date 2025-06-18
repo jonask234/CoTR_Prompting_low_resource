@@ -6,11 +6,115 @@ from tqdm import tqdm
 import os
 import re
 import json
-from typing import Dict, List, Any, Tuple
+from typing import Dict, List, Any, Tuple, Optional
 import time
 import logging
+from datasets import load_dataset
+import gc
+from collections import Counter
 
 ENTITY_TYPES = ["PER", "ORG", "LOC", "DATE"]
+
+logger = logging.getLogger(__name__)
+
+# Define global English few-shot examples for NER
+ENGLISH_FEW_SHOT_EXAMPLES_NER_TYPE_TEXT_FORMAT = [
+    {"text": "Angela Merkel visited Paris on September 1st, 2021 with a delegation from the European Union.", 
+     "entities_str": "[PER: Angela Merkel] [LOC: Paris] [DATE: September 1st, 2021] [ORG: European Union]"},
+    {"text": "The quick brown fox jumps over the lazy dog in New York.", 
+     "entities_str": "[LOC: New York]"},
+    {"text": "There are no entities here.",
+     "entities_str": "[NO_ENTITIES_FOUND]"}
+]
+
+# Define LRL-specific instructions for NER
+# LRL_INSTRUCTIONS_NER = {
+#     "swa": {
+#         "instruction": "Tafadhali toa huluki zilizotajwa (Mtu, Shirika, Mahali, Tarehe) kutoka kwa maandishi yafuatayo. Pato linapaswa kuwa orodha ya kamusi, ambapo kila kamusi inawakilisha huluki na ina funguo za 'entity' na 'type'.",
+#         "examples_header": "Hapa kuna mifano (mifano hii ni kwa Kiingereza):",
+#         "analyze_header": "Chambua maandishi yafuatayo na utoe huluki:",
+#         "text_label": "Maandishi",
+#         "entities_label": "Huluki"
+#     },
+#     "yor": {
+#         "instruction": "Jọwọ yọ awọn nkan ti a darukọ (Eniyan, Ajo, Ipo, Ọjọ) jade lati inu ọrọ atẹle. Ijade yẹ ki o jẹ atokọ ti awọn iwe-itumọ, nibiti iwe-itumọ kọọkan duro fun nkan kan ti o ni awọn bọtini 'entity' ati 'type'.",
+#         "examples_header": "Eyi ni diẹ ninu awọn apẹẹrẹ (awọn apẹẹrẹ wọnyi wa ni Gẹẹsi):",
+#         "analyze_header": "Ṣe itupalẹ ọrọ atẹle ki o yọ awọn nkan jade:",
+#         "text_label": "Ọrọ",
+#         "entities_label": "Awọn nkan"
+#     }
+# }
+
+# Define LRL-specific few-shot examples using the [TYPE: Entity Text] format
+LRL_FEW_SHOT_EXAMPLES_NER_TYPE_TEXT_FORMAT = {
+    "sw": [
+        {
+            "text": "Rais Samia Suluhu Hassan alitembelea Nairobi mwezi Januari.",
+            "entities_str": "[PER: Samia Suluhu Hassan] [LOC: Nairobi] [DATE: mwezi Januari]"
+        },
+        {
+            "text": "Kampuni ya Yetu Microfinance Bank PLC iliorodheshwa katika Soko la Hisa la Dar es Salaam (DSE) mwaka 2015.",
+            "entities_str": "[ORG: Yetu Microfinance Bank PLC] [LOC: Soko la Hisa la Dar es Salaam] [ORG: DSE] [DATE: 2015]"
+        },
+        {
+            "text": "Hakuna huluki hapa.",
+            "entities_str": "[NO_ENTITIES_FOUND]"
+        }
+    ],
+    "ha": [
+    {
+            "text": "Shugaba Bola Tinubu zai je Kano ranar Litinin.",
+            "entities_str": "[PER: Bola Tinubu] [LOC: Kano] [DATE: ranar Litinin]"
+        },
+        {
+            "text": "Kamfanin Dangote Cement ya sanar da ribar Naira biliyan 300 a shekarar 2022.",
+            "entities_str": "[ORG: Dangote Cement] [MONEY: Naira biliyan 300] [DATE: 2022]" # Note: MONEY type might need to be added to ENTITY_TYPES if consistently used
+        },
+        {
+            "text": "Babu wasu abubuwa anan.", # Roughly "No entities here"
+            "entities_str": "[NO_ENTITIES_FOUND]"
+        }
+    ]
+    # Add other languages here if LRL examples are available
+}
+
+# Fallback English few-shot examples if LRL examples are not defined for a language
+# but LRL instructions are requested. This uses the same structure as LRL_FEW_SHOT_EXAMPLES_NER_TYPE_TEXT_FORMAT.
+FALLBACK_ENGLISH_FEW_SHOT_EXAMPLES_NER_TYPE_TEXT_FORMAT = ENGLISH_FEW_SHOT_EXAMPLES_NER_TYPE_TEXT_FORMAT
+
+# LRL Instructions (defined globally)
+LRL_INSTRUCTIONS = {
+    "sw": {
+        "task": "Jukumu lako ni kutambua huluki zilizo na majina katika maandishi yafuatayo ya Kiswahili. Huluki zinazojulikana ni: PER (Person), ORG (Organization), LOC (Location), DATE (Date).",
+        "format": "Wasilisha matokeo yako YOTE kama orodha ya huluki, kila moja katika muundo wa [AINA: Maandishi ya Huluki], zikitenganishwa na nafasi au mistari mipya.",
+        "example_format": "Mfano wa muundo: [PER: Juma Kaseja] [LOC: Dar es Salaam] [DATE: Julai 2024].",
+        "no_entities": "Kama hakuna huluki zilizopatikana, andika maneno haya hasa: [NO_ENTITIES_FOUND].",
+        "examples_header": "\\n\\nMifano (hakikisha matokeo yako yanafuata muundo huu kikamilifu):\\n",
+        "analyze_header": "\\n\\nSasa, changanua maandishi yafuatayo ya Kiswahili na utoe huluki katika muundo uliobainishwa ([AINA: Maandishi ya Huluki] au [NO_ENTITIES_FOUND]):",
+        "text_label": "Maandishi (Kiswahili)",
+        "entities_label": "Huluki"
+    },
+    "swa": {
+        "task": "Jukumu lako ni kutambua huluki zilizo na majina katika maandishi yafuatayo ya Kiswahili. Huluki zinazojulikana ni: PER (Person), ORG (Organization), LOC (Location), DATE (Date).",
+        "format": "Wasilisha matokeo yako YOTE kama orodha ya huluki, kila moja katika muundo wa [AINA: Maandishi ya Huluki], zikitenganishwa na nafasi au mistari mipya.",
+        "example_format": "Mfano wa muundo: [PER: Juma Kaseja] [LOC: Dar es Salaam] [DATE: Julai 2024].",
+        "no_entities": "Kama hakuna huluki zilizopatikana, andika maneno haya hasa: [NO_ENTITIES_FOUND].",
+        "examples_header": "\\n\\nMifano (hakikisha matokeo yako yanafuata muundo huu kikamilifu):\\n",
+        "analyze_header": "\\n\\nSasa, changanua maandishi yafuatayo ya Kiswahili na utoe huluki katika muundo uliobainishwa ([AINA: Maandishi ya Huluki] au [NO_ENTITIES_FOUND]):",
+        "text_label": "Maandishi (Kiswahili)",
+        "entities_label": "Huluki"
+    },
+    "ha": {
+        "task": "Aikin ku shine gano sunayen da aka ambata a cikin rubutun Hausa da ke ƙasa. Ire-iren sunayen da aka sani sune: PER (Person), ORG (Organization), LOC (Location), DATE (Date).",
+        "format": "Gabatar da DUKKAN sakamakon ku a matsayin jerin sunaye, kowanne a cikin tsarin [NAU'I: Rubutun Suna], waɗanda aka raba da sarari ko sabbin layuka.",
+        "example_format": "Misalin tsari: [PER: Musa Aliyu] [LOC: Kano] [DATE: Yuli 2024].",
+        "no_entities": "Idan ba a sami wasu sunaye ba, rubuta wannan jimlar daidai: [NO_ENTITIES_FOUND].",
+        "examples_header": "\\n\\nMisalai (tabbatar cewa sakamakon ku ya bi wannan tsarin sosai):\\n",
+        "analyze_header": "\\n\\nYanzu, yi nazarin rubutun Hausa da ke tafe kuma samar da sunayen a cikin tsarin da aka ƙayyade ([NAU'I: Rubutun Suna] ko [NO_ENTITIES_FOUND]):",
+        "text_label": "Rubutu (Hausa)",
+        "entities_label": "Sunaye"
+    }
+}
 
 def initialize_model(model_name: str) -> Tuple[Any, Any]:
     """
@@ -22,35 +126,100 @@ def initialize_model(model_name: str) -> Tuple[Any, Any]:
     Returns:
         tokenizer, model
     """
-    print(f"Initializing {model_name}...")
-    cache_path = "/work/bbd6522/cache_dir" # Define cache path
+    logger.info(f"Initializing {model_name}...")
+    cache_path = "/work/bbd6522/cache_dir"
+    
     tokenizer = AutoTokenizer.from_pretrained(
-        model_name, 
+        model_name,
         trust_remote_code=True,
         cache_dir=cache_path
     )
-    model = AutoModelForCausalLM.from_pretrained(
-        model_name, 
-        trust_remote_code=True,
-        cache_dir=cache_path
-    )
-    if torch.cuda.is_available():
-        model = model.to("cuda")
+    
+    model = None
+    try:
+        logger.info(f"Attempting to load {model_name} with device_map='auto', torch_dtype=torch.float16, and low_cpu_mem_usage=True.")
+        model = AutoModelForCausalLM.from_pretrained(
+            model_name,
+            torch_dtype=torch.float16, 
+            device_map="auto",
+            trust_remote_code=True,
+            cache_dir=cache_path,
+            low_cpu_mem_usage=True
+        )
+        logger.info(f"Successfully loaded {model_name} using device_map='auto' and torch_dtype=torch.float16.")
+
+    except Exception as e_load:
+        logger.error(f"CRITICAL: Failed to load model {model_name} with device_map='auto' and float16. Error: {e_load}", exc_info=True)
+        if model is not None:
+            del model
+            model = None
+        gc.collect()
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+            logger.info("Cleared CUDA cache after failed model load attempt.")
+        raise RuntimeError(f"Could not load model {model_name} due to: {e_load}") from e_load
+
+    # Pad token handling (only if model loaded successfully)
+    if tokenizer.pad_token is None:
+        if tokenizer.eos_token is not None:
+            tokenizer.pad_token = tokenizer.eos_token
+            logger.info(f"Set tokenizer.pad_token to eos_token ('{tokenizer.eos_token}') for {model_name}")
+        else:
+            new_pad_token = '[PAD]'
+            tokenizer.add_special_tokens({'pad_token': new_pad_token})
+            # Resize embeddings only if model is not None
+            if model:
+                try:
+                    model.resize_token_embeddings(len(tokenizer))
+                    logger.info(f"Added new pad_token: '{new_pad_token}' and resized embeddings for {model_name}.")
+                except Exception as e_resize:
+                    logger.error(f"Failed to resize token embeddings for {model_name} after adding new pad_token: {e_resize}")
+            else: # Should not happen if loading failed and raised error
+                 logger.warning(f"Model for {model_name} is None after loading attempt, cannot resize embeddings for new pad_token.")
+
+
+    if model.config.pad_token_id is None:
+        if tokenizer.pad_token_id is not None:
+            model.config.pad_token_id = tokenizer.pad_token_id
+            logger.info(f"Set model.config.pad_token_id to tokenizer.pad_token_id ({tokenizer.pad_token_id}) for {model_name}")
+        elif tokenizer.eos_token_id is not None:
+            model.config.pad_token_id = tokenizer.eos_token_id
+            logger.info(f"Set model.config.pad_token_id to tokenizer.eos_token_id ({tokenizer.eos_token_id}) for {model_name}")
+        else:
+            # This case should be rare for well-configured models/tokenizers
+            logger.warning(f"Could not set model.config.pad_token_id for {model_name} as tokenizer has no pad_token_id or eos_token_id.")
+            # Potentially set a default like 0, but this can be risky.
+            # model.config.pad_token_id = 0 
+            # logger.warning(f"Defaulted model.config.pad_token_id to 0 for {model_name}. VERIFY THIS IS CORRECT.")
+
+
+    # Final check for pad_token_id's type, crucial for `generate`
+    if model.config.pad_token_id is not None and not isinstance(model.config.pad_token_id, int):
+        logger.error(f"CRITICAL: model.config.pad_token_id for {model_name} is {model.config.pad_token_id} (type: {type(model.config.pad_token_id)}), which is not an int. This will likely cause errors in model.generate().")
+        # Attempt to fix if possible, e.g. if eos_token_id is an int
+        if tokenizer.eos_token_id is not None and isinstance(tokenizer.eos_token_id, int):
+            model.config.pad_token_id = tokenizer.eos_token_id
+            logger.warning(f"Attempted fix: Set model.config.pad_token_id to tokenizer.eos_token_id ({tokenizer.eos_token_id}) for {model_name}.")
+        else:
+            logger.error(f"Further CRITICAL: Cannot automatically fix model.config.pad_token_id for {model_name} to an integer value.")
+
+
+    logger.info(f"Model {model_name} initialization finished. Tokenizer pad_token: {tokenizer.pad_token} (ID: {tokenizer.pad_token_id}). Model config pad_token_id: {model.config.pad_token_id}")
     return tokenizer, model
 
 def generate_ner_prompt(text: str, lang_code: str = "en", model_name: str = "", use_few_shot: bool = True) -> str:
     """
     Generate an NER prompt with English instructions.
     Focuses on the [TYPE: Entity Text] format for output.
+    This is used when prompt_in_lrl is False.
     """
     processed_text = text.strip()
     entity_types_desc = "PER (Person), ORG (Organization), LOC (Location), DATE (Date)"
     no_entities_marker = "[NO_ENTITIES_FOUND]"
 
     instruction = (
-        f"Your task is to identify named entities in the text below for the language '{lang_code}'. "
+        f"Your task is to identify named entities in the text below. The text language is '{lang_code}'. " # Clarify text language
         f"Extract all entities corresponding to {entity_types_desc}. "
-        f"For each entity, provide its type and text. "
         f"Present your ENTIRE output as a list of entities, each in the format [TYPE: Entity Text], separated by spaces or newlines. "
         f"Example of format: [PER: John Doe] [LOC: Paris] [DATE: July 2024]. "
         f"If no entities are found, output the exact phrase: {no_entities_marker}."
@@ -59,22 +228,14 @@ def generate_ner_prompt(text: str, lang_code: str = "en", model_name: str = "", 
     prompt = instruction
     
     if use_few_shot:
-        prompt += "\n\nExamples (ensure your output strictly follows this format for the actual task):\n"
-        # English examples using the new format
-        examples_en = [
-            {"text": "Angela Merkel visited Paris on September 1st, 2021 with a delegation from the European Union.", 
-             "entities_str": "[PER: Angela Merkel] [LOC: Paris] [DATE: September 1st, 2021] [ORG: European Union]"},
-            {"text": "The quick brown fox jumps over the lazy dog in New York.", 
-             "entities_str": "[LOC: New York]"},
-            {"text": "There are no entities here.",
-             "entities_str": no_entities_marker}
-        ]
-        for ex in examples_en:
-            prompt += f"\nText ({lang_code}): '{ex['text']}'\nEntities: {ex['entities_str']}"
+        prompt += "\\n\\nExamples (ensure your output strictly follows this format for the actual task):\\n"
+        # English examples using the [TYPE: Entity Text] format
+        for ex in ENGLISH_FEW_SHOT_EXAMPLES_NER_TYPE_TEXT_FORMAT: # Updated to use the new example list name
+            prompt += f"\\nText (English): '{ex['text']}'\\nEntities: {ex['entities_str']}" # lang_code is 'en' for these examples
     else: # Zero-shot
-        prompt += f"\n\nNow, analyze the following text and provide the entities in the specified format ([TYPE: Entity Text] or {no_entities_marker}):"
+        prompt += f"\\n\\nNow, analyze the following text and provide the entities in the specified format ([TYPE: Entity Text] or {no_entities_marker}):"
 
-    prompt += f"\n\nText ({lang_code}): '{processed_text}'\n\nEntities:" # Ensure 'Entities:' is the final cue
+    prompt += f"\\n\\nText ({lang_code}): '{processed_text}'\\n\\nEntities:" # Ensure 'Entities:' is the final cue
     return prompt
 
 # This function needs to be defined or imported if used by generate_ner_prompt
@@ -84,88 +245,43 @@ def generate_ner_prompt(text: str, lang_code: str = "en", model_name: str = "", 
 
 def generate_lrl_instruct_ner_prompt(text: str, lang_code: str = "sw", model_name: str = "", use_few_shot: bool = True) -> str:
     """
-    Generate an NER prompt with LRL instructions (Swahili, Hausa).
-    Focuses on the [TYPE: Entity Text] format for output.
-    CRITICAL CHANGE: Few-shot examples will now ALWAYS be in English, even if instructions are in LRL.
+    Generates an NER prompt with instructions AND few-shot examples in the specified 
+    Low-Resource Language (LRL) if available.
+    Outputs entities in the format [TYPE: Entity Text].
+    This is used when prompt_in_lrl is True.
     """
     processed_text = text.strip()
-    
-    instruction = ""
-    examples_content = ""
-    no_entities_marker_lrl = ""
-    no_entities_marker_en = "[NO_ENTITIES_FOUND]" # English marker for examples
-    final_cue = ""
-    example_header_lrl = ""
 
-    entity_types_lrl_desc_map = { 
-        "sw": "PER (Mtu), ORG (Shirika), LOC (Mahali), DATE (Tarehe)",
-        "ha": "PER (Mutum), ORG (Kungiya), LOC (Wuri), DATE (Kwanan wata)",
-        "en": "PER (Person), ORG (Organization), LOC (Location), DATE (Date)" # Fallback
-    }
-    entity_types_lrl = entity_types_lrl_desc_map.get(lang_code, entity_types_lrl_desc_map["en"])
-
-    # Define UNIVERSAL English few-shot examples here for LRL prompts as well
-    # These examples use the English 'no_entities_marker_en'
-    english_few_shot_examples_for_lrl_prompt = [
-        {"text": "Angela Merkel visited Paris on September 1st, 2021 with a delegation from the European Union.", 
-         "entities_str": "[PER: Angela Merkel] [LOC: Paris] [DATE: September 1st, 2021] [ORG: European Union]"},
-        {"text": "The quick brown fox jumps over the lazy dog in New York.", 
-         "entities_str": "[LOC: New York]"},
-        {"text": "There are no entities here.",
-         "entities_str": no_entities_marker_en}
-    ]
-
-    if lang_code == 'sw':
-        no_entities_marker_lrl = "[HAKUNA_VITU_VILIVYOPATIKANA]"
-        final_cue = "Vitu:"
-        example_header_lrl = "Mifano (kwa Kiingereza - hakikisha matokeo yako kwa kazi halisi yanafuata muundo huu):"
-        instruction = (
-            f"Kazi yako ni kutambua vitu vilivyotajwa (named entities) katika maandishi yaliyo hapa chini kwa lugha ya Kiswahili. "
-            f"Vitu hivyo ni vya aina hizi: {entity_types_lrl}. "
-            f"Kwa kila kitu, toa aina yake na maandishi yake. "
-            f"Toa matokeo yako YOTE kama orodha ya vitu, kila kimoja kikiwa katika muundo huu: [AINA: Maandishi ya Kitu], vikitenganishwa na nafasi au mistari mipya. "
-            f"Mfano wa muundo (kwa Kiswahili): [PER: Juma] [LOC: Nairobi] [DATE: Julai 2024]. " # LRL format example
-            f"Ikiwa hakuna vitu vilivyopatikana, andika maneno haya hasa: {no_entities_marker_lrl}."
-        )
-        if use_few_shot:
-            examples_content = example_header_lrl + "\n"
-            for ex in english_few_shot_examples_for_lrl_prompt:
-                # Note: The example text prompt is still framed as if it's LRL, but the content is English.
-                examples_content += f"\nMaandishi (mfano wa Kiingereza): '{ex['text']}'\n"
-                examples_content += f"Vitu (kwa Kiingereza): {ex['entities_str']}\n"
-
-    elif lang_code == 'ha':
-        no_entities_marker_lrl = "[BABU_SUNAYEN_DA_AKA_SAMU]"
-        final_cue = "Sunaye:"
-        example_header_lrl = "Misalai (da Turanci - tabbatar amsarka ta ainihin aiki ta bi wannan tsarin sosai):"
-        instruction = (
-            f"Aikin ka shine ka gano sunayen da aka ambata (named entities) a cikin rubutun da ke ƙasa da harshen Hausa. "
-            f"Sunayen suna cikin waɗannan nau'ikan: {entity_types_lrl}. "
-            f"Ga kowane suna, ka bayar da nau'in sa da rubutun sa. "
-            f"Gabatar da DUKKAN amsarka a matsayin jerin sunaye, kowanne a cikin wannan tsarin: [NAU'I: Rubutun Suna], an raba su da sarari ko sabbin layuka. "
-            f"Misali na tsari (da Hausa): [PER: Musa] [LOC: Kano] [DATE: Yuli 2024]. " # LRL format example
-            f"Idan ba a sami sunaye ba, rubuta wannan jimlar daidai: {no_entities_marker_lrl}."
-        )
-        if use_few_shot:
-            examples_content = example_header_lrl + "\n"
-            for ex in english_few_shot_examples_for_lrl_prompt:
-                examples_content += f"\nRubutu (misali na Turanci): '{ex['text']}'\n"
-                examples_content += f"Sunaye (da Turanci): {ex['entities_str']}\n"
-    else: 
-        logging.warning(f"LRL instructions for '{lang_code}' in generate_lrl_instruct_ner_prompt are not defined. Falling back to English-instructed prompt via generate_ner_prompt.")
+    # Use the globally defined LRL_INSTRUCTIONS dictionary
+    current_instructions = LRL_INSTRUCTIONS.get(lang_code)
+    if not current_instructions:
+        # Fallback to English instructions if LRL instructions are not defined for the lang_code
+        logger.warning(f"LRL instructions not defined for lang_code '{lang_code}'. Falling back to English-instructed prompt structure via generate_ner_prompt but with LRL text still indicated.")
+        # Call the English prompt generator, but it will still process LRL text.
+        # It will use English few-shot examples by default.
         return generate_ner_prompt(text, lang_code, model_name, use_few_shot)
 
-    prompt = instruction
-    if use_few_shot and examples_content:
-        prompt += "\n\n" + examples_content
-    else: 
-        zero_shot_guide_lrl = {
-            "sw": f"\n\nChanganua maandishi yafuatayo na utoe vitu kwa muundo uliobainishwa ([AINA: Maandishi ya Kitu] au {no_entities_marker_lrl}):",
-            "ha": f"\n\nBincika rubutun da ke tafe kuma ka bayar da sunayen ta hanyar da aka kayyade ([NAU'I: Rubutun Suna] ko {no_entities_marker_lrl}):"
-        }.get(lang_code, f"\n\nNow, analyze the following text and provide the entities in the specified format ([TYPE: Entity Text] or {no_entities_marker_en}):") 
-        prompt += zero_shot_guide_lrl
+    instruction = (
+        f"{current_instructions['task']} "
+        f"{current_instructions['format']} "
+        f"{current_instructions['example_format']} "
+        f"{current_instructions['no_entities']}"
+    )
     
-    prompt += f"\n\nRubutu ({lang_code}): '{processed_text}'\n\n{final_cue}"
+    prompt = instruction
+
+    if use_few_shot:
+        prompt += current_instructions['examples_header']
+        # Per user requirement, ALWAYS use English few-shot examples for the baseline
+        # to create a cross-lingual baseline, even when instructions are in LRL.
+        for ex in ENGLISH_FEW_SHOT_EXAMPLES_NER_TYPE_TEXT_FORMAT:
+            # The prompt text label should still indicate the example is in English
+            prompt += f"\\nText (English): '{ex['text']}'\\n{current_instructions['entities_label']}: {ex['entities_str']}"
+
+    else: # Zero-shot
+        prompt += current_instructions['analyze_header']
+
+    prompt += f"\\n\\n{current_instructions['text_label']}: '{processed_text}'\\n\\n{current_instructions['entities_label']}:"
     return prompt
 
 def extract_entities(text: str, lang_code: str = "en", verbose: bool = False):
@@ -285,95 +401,83 @@ def process_ner_baseline(
     prompt_in_lrl: bool = False,
     use_few_shot: bool = True,
     verbose: bool = False
-) -> List[Dict[str, str]]:
-    """
-    Process a text for NER using the baseline approach (direct prompting).
-    Now uses unified generation parameters passed from the evaluation function.
-    Internal language/model-specific logic for these parameters is removed.
-    """
-    # --- Add Type Check ---
-    print(f"DEBUG process_ner_baseline: Type of tokenizer arg: {type(tokenizer)}")
-    print(f"DEBUG process_ner_baseline: Type of model arg: {type(model)}")
-    # --- End Type Check ---
+) -> Tuple[List[Dict[str, str]], float, str]: # Return type updated
+    start_time = time.time()
+    
+    logger.debug(f"DEBUG process_ner_baseline: Type of tokenizer arg: {type(tokenizer)}")
+    logger.debug(f"DEBUG process_ner_baseline: Type of model arg: {type(model)}")
+
+    if prompt_in_lrl:
+        prompt = generate_lrl_instruct_ner_prompt(text, lang_code=lang_code, model_name=model_name, use_few_shot=use_few_shot)
+    else:
+        prompt = generate_ner_prompt(text, lang_code=lang_code, model_name=model_name, use_few_shot=use_few_shot)
+        
+    inputs = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=max_input_length)
+    
+    # Determine target device for inputs
+    target_device = model.device # Default
+    if hasattr(model, 'hf_device_map'):
+        try:
+            # For models loaded with device_map, the embedding layer's device is a good target
+            target_device = model.get_input_embeddings().weight.device
+            logger.debug(f"Model has hf_device_map. Using embedding layer device: {target_device}")
+        except AttributeError:
+            logger.debug(f"Model has hf_device_map but get_input_embeddings().weight.device failed. Using model.device: {model.device}")
+            pass # Fall back to model.device if get_input_embeddings fails
+
+    inputs_on_device_dict = {k: v.to(target_device) for k, v in inputs.items()}
+    
+    logger.debug(f"process_ner_baseline: target_device for inputs: {target_device}")
+    logger.debug(f"process_ner_baseline: input_ids.device after move: {inputs_on_device_dict['input_ids'].device}")
+    logger.debug(f"process_ner_baseline: model.device: {model.device}")
+
+
+    # Prepare generation kwargs
+    # Ensure do_sample is consistent with temperature (common HuggingFace practice)
+    effective_do_sample = do_sample if temperature > 1e-5 else False
+    
+    generation_kwargs = {
+        "max_new_tokens": max_new_tokens,
+        "repetition_penalty": repetition_penalty,
+        "pad_token_id": tokenizer.eos_token_id if tokenizer.eos_token_id is not None else tokenizer.pad_token_id,
+        "do_sample": effective_do_sample
+    }
+    if effective_do_sample:
+        generation_kwargs["temperature"] = temperature
+        generation_kwargs["top_p"] = top_p
+        generation_kwargs["top_k"] = top_k
+    
+    raw_output = "[GEN_ERROR: NER_Baseline_Generation_Failed]"
     try:
-        # Generate prompt based on language and instruction preference
-        if prompt_in_lrl:
-            prompt = generate_lrl_instruct_ner_prompt(text, lang_code, model_name, use_few_shot)
-        else:
-            prompt = generate_ner_prompt(text, "en", model_name, use_few_shot)  # English instructions
-        
-        # Tokenize with truncation
-        inputs = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=max_input_length)
-        
-        if torch.cuda.is_available():
-            inputs = {k: v.to("cuda") for k, v in inputs.items()}
-        
-        # --- Use unified parameters directly --- 
-        # The language/model-specific adjustments are assumed to have been done 
-        # by the caller (evaluate_ner_baseline or the runner script) 
-        # before passing the final values here.
-        gen_temperature = temperature
-        gen_top_p = top_p
-        gen_top_k = top_k
-        gen_max_tokens = max_new_tokens # Use the specific max_tokens for NER output
-        gen_repetition_penalty = repetition_penalty
-        # Decide on sampling based on final temperature
-        gen_do_sample = do_sample if temperature > 0 else False 
-
-        if verbose:
-            print("--- NER Baseline Generation Params ---")
-            print(f"  Temperature: {gen_temperature}")
-            print(f"  Top P: {gen_top_p}")
-            print(f"  Top K: {gen_top_k}")
-            print(f"  Max New Tokens: {gen_max_tokens}")
-            print(f"  Repetition Penalty: {gen_repetition_penalty}")
-            print(f"  Do Sample: {gen_do_sample}")
-            print("------------------------------------")
-
-        # Generate answer using the final parameters
         with torch.no_grad():
             output_ids = model.generate(
-                **inputs,
-                max_new_tokens=gen_max_tokens,
-                do_sample=gen_do_sample,
-                temperature=gen_temperature,
-                top_p=gen_top_p,
-                top_k=gen_top_k,
-                repetition_penalty=gen_repetition_penalty,
-                pad_token_id=tokenizer.eos_token_id
+                input_ids=inputs_on_device_dict['input_ids'],
+                attention_mask=inputs_on_device_dict.get('attention_mask'), # Ensure attention_mask is also on target_device
+                **generation_kwargs
             )
         
         # Decode only the newly generated tokens
-        output_text = tokenizer.decode(output_ids[0][inputs["input_ids"].shape[-1]:], skip_special_tokens=True)
+        input_len = inputs_on_device_dict["input_ids"].shape[1]
+        raw_output = tokenizer.decode(output_ids[0][input_len:], skip_special_tokens=True).strip()
         
-        # TEMPORARY DEBUG: Print raw model output for specific cases
-        # Adjust the condition to target the failing case, e.g., Swahili zero-shot with Aya
-        if lang_code == 'sw' and not use_few_shot and "aya" in model_name.lower():
-            print(f"\nDEBUG SWahili ZERO-SHOT (Aya) RAW OUTPUT for text: {text[:100]}...")
-            print(f"RAW MODEL OUTPUT: >>>{output_text}<<<")
-            
-        # DEBUG: Print model output for inspection (only for first few samples)
-        static_sample_counter = getattr(process_ner_baseline, "sample_counter", 0)
-        if verbose and static_sample_counter < 3:  # Print only first 3 samples to avoid flooding logs
-            print(f"\n=== DEBUG: MODEL OUTPUT (Sample {static_sample_counter + 1}) ===")
-            print(f"Text: {text[:50]}...")
-            print(f"Raw model output: {output_text[:500]}...")
-            print("=======================================")
-            process_ner_baseline.sample_counter = static_sample_counter + 1
-        
-        # Extract entities
-        entities = extract_entities(output_text, lang_code, verbose=verbose)
-        
-        # DEBUG: Print extracted entities
-        if verbose and static_sample_counter <= 3:
-            print(f"Extracted entities: {entities}")
-        
-        return entities
+    except RuntimeError as e:
+        logger.error(f"RuntimeError in process_ner_baseline for {model_name} ({lang_code}): {e}", exc_info=True)
+        raw_output = f"[GEN_ERROR: RuntimeError: {e}]"
+        # If the error is the device mismatch, this log helps confirm it.
+        # For Qwen, the error "Expected all tensors to be on the same device..." indicates inputs might not be on the same device as some model parts.
+        # Log devices again right before error if possible, or here.
+        logger.error(f"  Device info at error: input_ids_device={inputs_on_device_dict['input_ids'].device}, model_main_device={model.device}, target_device_used={target_device}")
+        if hasattr(model, 'hf_device_map'): logger.error(f"  Model hf_device_map: {model.hf_device_map}")
+
     except Exception as e:
-        import traceback
-        print(f"Error in process_ner_baseline: {str(e)}")
-        traceback.print_exc()
-        return []
+        logger.error(f"Error in process_ner_baseline for {model_name} ({lang_code}): {e}", exc_info=True)
+        raw_output = f"[GEN_ERROR: Exception: {e}]"
+
+    extracted_entities = extract_entities(raw_output, lang_code=lang_code, verbose=verbose)
+    duration = time.time() - start_time
+    
+    logger.debug(f"process_ner_baseline ({lang_code}, {model_name}): Raw='{raw_output[:100]}...', Extracted={len(extracted_entities)} ents, Time={duration:.2f}s")
+    return extracted_entities, duration, raw_output
 
 # Add a static counter to the function
 process_ner_baseline.sample_counter = 0
@@ -434,7 +538,7 @@ def evaluate_ner_baseline(
             continue
 
         start_time_sample = time.time()
-        predicted_entities_list = process_ner_baseline(
+        predicted_entities_list, runtime_sample, raw_output = process_ner_baseline(
             tokenizer=tokenizer,
             model=model,
             text=text_to_process,
@@ -469,7 +573,8 @@ def evaluate_ner_baseline(
             'top_k_used': top_k,
             'max_tokens_used': max_tokens,
             'repetition_penalty_used': repetition_penalty,
-            'do_sample_used': do_sample
+            'do_sample_used': do_sample,
+            'raw_output': raw_output
         })
 
     results_df = pd.DataFrame(results)
@@ -477,16 +582,27 @@ def evaluate_ner_baseline(
 
 def calculate_ner_metrics(gold_entities: List[Dict[str, str]], predicted_entities: List[Dict[str, str]]) -> Dict[str, float]:
     """
-    Calculate precision, recall, and F1 score for NER predictions.
-    
-    Args:
-        gold_entities: List of ground truth entities
-        predicted_entities: List of predicted entities
-        
-    Returns:
-        Dictionary with precision, recall, and F1 score
+    Calculate NER metrics (Precision, Recall, F1) at the entity level.
+    Assumes entities are dictionaries with 'text' and 'type'.
+    This is a strict matching based on exact text and type.
     """
-    # Convert to sets of (entity, type) tuples for comparison
+    # Initialize overall counters
+    true_positives = 0
+    false_positives = 0
+    false_negatives = 0
+
+    # For type-specific metrics (optional, can be expanded later if needed)
+    true_positives_by_type = Counter()
+    false_positives_by_type = Counter()
+    false_negatives_by_type = Counter()
+
+    # Create sets of (text, type) tuples for efficient lookup and to handle duplicates from model
+    # Gold entities should ideally be unique, but predictions might have duplicates.
+    # Using a list for gold to preserve original count for false negatives if multiple identical gold entities exist
+    # and model predicts only one.
+    # However, for TP/FP, a matched gold entity should probably only count once.
+    # Let's use sets for matching to avoid overcounting TP/FP due to duplicate predictions matching the same gold entity.
+    
     gt_set = set()
     for e in gold_entities:
         if "entity" in e:
@@ -499,7 +615,7 @@ def calculate_ner_metrics(gold_entities: List[Dict[str, str]], predicted_entitie
         entity_type = e.get("type", e.get("entity_type", ""))
         if entity_type:  # Only add if entity_type is not empty
             gt_set.add((entity_text, entity_type))
-    
+
     pred_set = set()
     for e in predicted_entities:
         if "entity" in e:
@@ -513,100 +629,190 @@ def calculate_ner_metrics(gold_entities: List[Dict[str, str]], predicted_entitie
         if entity_type:  # Only add if entity_type is not empty
             pred_set.add((entity_text, entity_type))
         
-        # Calculate true positives, false positives, false negatives
-        true_positives = len(gt_set.intersection(pred_set))
-        false_positives = len(pred_set) - true_positives
-        false_negatives = len(gt_set) - true_positives
-        
-        # Calculate precision, recall, F1
+    # Calculate true positives, false positives, false negatives
+    # This block should be de-indented to be at the function's top level of indentation,
+    # after populating gt_set and pred_set.
+    true_positives = len(gt_set.intersection(pred_set))
+    false_positives = len(pred_set) - true_positives
+    false_negatives = len(gt_set) - true_positives
+    
+    # Calculate precision, recall, F1
     precision = true_positives / (true_positives + false_positives) if (true_positives + false_positives) > 0 else 0.0
     recall = true_positives / (true_positives + false_negatives) if (true_positives + false_negatives) > 0 else 0.0
     f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0
-        
-    return {
-        "precision": precision,
-        "recall": recall,
-        "f1_score": f1
+
+    metrics = {
+        'precision': precision,
+        'recall': recall,
+        'f1_score': f1,
+        'true_positives': true_positives,
+        'false_positives': false_positives,
+        'false_negatives': false_negatives
     }
 
-def load_masakhaner_samples(lang_code: str, split: str = "test", num_samples: int = None, seed: int = 42) -> pd.DataFrame:
-    """
-    Load samples from MasakhaNER dataset.
-    
-    Args:
-        lang_code: Language code (e.g., 'sw', 'ha', 'en')
-        split: Dataset split ('train', 'dev', 'test')
-        num_samples: Number of samples to load (None for all)
-        seed: Random seed for sampling
-        
-    Returns:
-        DataFrame with text and entities
-    """
-    # Import the HuggingFace loader
-    from src.utils.data_loaders.load_masakhaner import load_masakhaner_samples as load_from_hf
+    # Per-type metrics (optional to return, but calculated)
+    # for entity_type in unique_entity_types:
+    #     tp = true_positives_by_type[entity_type]
+    #     fp = false_positives_by_type[entity_type]
+    #     fn = false_negatives_by_type[entity_type]
+    #     p_type = tp / (tp + fp) if (tp + fp) > 0 else 0.0
+    #     r_type = tp / (tp + fn) if (tp + fn) > 0 else 0.0
+    #     f1_type = (2 * p_type * r_type) / (p_type + r_type) if (p_type + r_type) > 0 else 0.0
+    #     metrics[f'{entity_type}_precision'] = p_type
+    #     metrics[f'{entity_type}_recall'] = r_type
+    #     metrics[f'{entity_type}_f1'] = f1_type
 
-    try:
-        # Load data from HuggingFace
-        samples_df = load_from_hf(lang_code, num_samples=num_samples, split=split, seed=seed)
-        
-        if samples_df.empty:
-            print(f"No samples found for {lang_code} in MasakhaNER split '{split}'. Falling back to dummy data...")
-            return create_dummy_ner_data(lang_code, num_samples or 5)
-        
-        # --- Create 'text' column OUTSIDE the if block --- 
-        if 'tokens' in samples_df.columns:
-            samples_df['text'] = samples_df['tokens'].apply(lambda tokens: ' '.join(tokens))
-        else:
-            print("ERROR: 'tokens' column missing. Cannot create 'text' column.")
-            return pd.DataFrame() # Return empty if tokens are missing
-            
-        # --- Convert entities OUTSIDE the if block ---
-        if 'entities' in samples_df.columns:
-            # --- Define convert_entities helper function --- 
-            def convert_entities(row):
-                formatted_entities = []
-                # Ensure entities column contains lists (handle potential loading issues)
-                entities_list = row['entities']
-                if not isinstance(entities_list, list):
-                    print(f"Warning: 'entities' data is not a list for a row: {type(entities_list)}. Skipping entity conversion for this row.")
-                    return [] 
-                    
-                for entity_info in entities_list:
-                    # Add checks for expected keys in entity_info dict
-                    if not all(k in entity_info for k in ('start', 'end', 'entity_type')):
-                        print(f"Warning: Skipping malformed entity_info: {entity_info}")
-                        continue
-                    try:
-                        start_idx = entity_info['start']
-                        end_idx = entity_info['end']
-                        entity_type = entity_info['entity_type']
-                        # Ensure indices are within bounds
-                        if start_idx >= 0 and end_idx <= len(row['tokens']):
-                            entity_text = ' '.join(row['tokens'][start_idx:end_idx])
-                            formatted_entities.append({
-                                "entity": entity_text,
-                                "type": entity_type
-                            })
-                        else:
-                            print(f"Warning: Entity indices [{start_idx}:{end_idx}] out of bounds for tokens length {len(row['tokens'])}")
-                    except Exception as e_conv:
-                        print(f"Warning: Error converting entity: {entity_info}. Error: {e_conv}")
-                return formatted_entities
-            
-            # Apply the conversion function
-            samples_df['entities'] = samples_df.apply(convert_entities, axis=1)
-        else:
-            print("ERROR: 'entities' column missing. Cannot process entities.")
-            return pd.DataFrame() # Return empty if entities are missing
-        
-        print(f"DEBUG: Columns in samples_df *before returning* from load_masakhaner_samples: {samples_df.columns.tolist()}") # ADD DEBUG PRINT
-        print(f"  Loaded and prepared {len(samples_df)} samples for {lang_code}.") # Updated print message
-        return samples_df
+    return metrics
+
+def load_masakhaner_samples(lang_code: str, split: str = "test", num_samples: Optional[int] = None, seed: int = 42) -> pd.DataFrame:
+    """
+    Load MasakhaNER samples for a specific language from Hugging Face Hub.
+    Includes a mapping for common language codes to HF dataset config names.
+    Args:
+        lang_code: Language code (e.g., 'ha', 'sw').
+        split: Dataset split to use ('train', 'validation', 'test').
+        num_samples (Optional[int]): The number of samples to return. If None, all samples from the split are returned.
+        seed (int): Random seed for shuffling if num_samples is specified.
+    Returns:
+        DataFrame containing loaded samples with 'id', 'tokens', 'text', 'ner_tags_indices', 'tag_names', and 'entities' columns,
+        or empty DataFrame if loading/processing fails or lang_code is not supported.
+    """
+    dataset_name = "masakhane/masakhaner"
     
-    except Exception as e:
-        print(f"Error loading MasakhaNER data from HuggingFace: {e}")
-        print("Falling back to dummy data...")
-        return create_dummy_ner_data(lang_code, num_samples or 5)
+    MASAKHANER_LANG_CONFIGS = ["amh", "hau", "ibo", "kin", "lug", "luo", "pcm", "swa", "wol", "yor"]
+    lang_config_map = {
+        'ha': 'hau',
+        'sw': 'swa',
+    }
+    hf_config_name = lang_config_map.get(lang_code.lower(), lang_code.lower())
+
+    if hf_config_name not in MASAKHANER_LANG_CONFIGS:
+        logging.error(f"Unsupported MasakhaNER language config '{hf_config_name}' (from input '{lang_code}'). Supported: {MASAKHANER_LANG_CONFIGS}")
+        return pd.DataFrame()
+
+    logging.info(f"Attempting to load '{hf_config_name}' samples from {dataset_name}, split '{split}'...")
+
+    def _convert_raw_tags_to_entities_baseline(tokens: List[str], ner_tags_indices: List[int], tag_names_list: List[str]) -> List[Dict[str, str]]:
+        """
+        Converts IOB-style NER tags to a list of entity dictionaries.
+        Outputs format: [{'entity': 'Entity Text', 'type': 'TYPE'}, ...]
+        """
+        entities_found = []
+        current_entity_tokens_list = []
+        current_entity_tag_id_val = -1
+        
+        for i, token_item in enumerate(tokens):
+            tag_id_val = ner_tags_indices[i]
+            tag_name_val = tag_names_list[tag_id_val]
+
+            if tag_name_val.startswith("B-"):
+                if current_entity_tokens_list: # Finalize previous entity
+                    entity_type_str = tag_names_list[current_entity_tag_id_val].split('-')[1]
+                    entities_found.append({"entity": " ".join(current_entity_tokens_list), "type": entity_type_str})
+                current_entity_tokens_list = [token_item]
+                current_entity_tag_id_val = tag_id_val
+            elif tag_name_val.startswith("I-"):
+                # Continue current entity IF the I- tag matches the B- tag's type
+                # (e.g., B-PER followed by I-PER)
+                if current_entity_tokens_list and tag_names_list[current_entity_tag_id_val].split('-')[1] == tag_name_val.split('-')[1]:
+                    current_entity_tokens_list.append(token_item)
+                else: # Unexpected I- tag (no B- or type mismatch)
+                    if current_entity_tokens_list: # Finalize previous if any
+                        entity_type_str = tag_names_list[current_entity_tag_id_val].split('-')[1]
+                        entities_found.append({"entity": " ".join(current_entity_tokens_list), "type": entity_type_str})
+                    # Start new entity with this I- tag, treating its type as if it were B-
+                    current_entity_tokens_list = [token_item]
+                    current_entity_tag_id_val = tag_id_val 
+            else: # O tag or unexpected tag
+                if current_entity_tokens_list: # Finalize previous entity
+                    entity_type_str = tag_names_list[current_entity_tag_id_val].split('-')[1]
+                    entities_found.append({"entity": " ".join(current_entity_tokens_list), "type": entity_type_str})
+                    current_entity_tokens_list = []
+                    current_entity_tag_id_val = -1
+        
+        if current_entity_tokens_list: # After loop, check for any remaining entity
+            entity_type_str = tag_names_list[current_entity_tag_id_val].split('-')[1]
+            entities_found.append({"entity": " ".join(current_entity_tokens_list), "type": entity_type_str})
+        return entities_found
+
+    all_samples_list = []
+    try:
+        dataset = load_dataset(dataset_name, name=hf_config_name, split=split, trust_remote_code=True)
+        logging.info(f"Successfully loaded dataset for {hf_config_name}, split {split}. Full size: {len(dataset)}")
+        
+        tag_feature = dataset.features['ner_tags']
+        if hasattr(tag_feature, 'feature') and hasattr(tag_feature.feature, 'names'):
+            tag_names = tag_feature.feature.names
+        else:
+            logging.error(f"Could not retrieve NER tag names for {hf_config_name}. Aborting.")
+            return pd.DataFrame()
+
+        for i, example in enumerate(dataset):
+            tokens = example.get('tokens', [])
+            ner_tags_indices = example.get('ner_tags', []) 
+            sample_id = example.get('id', f"{hf_config_name}_{split}_{i}")
+
+            if not tokens or not isinstance(ner_tags_indices, list) or len(tokens) != len(ner_tags_indices):
+                logging.warning(f"Skipping sample {sample_id} for {hf_config_name} due to missing/mismatched tokens or ner_tags format.")
+                continue
+            
+            # Use the local helper to convert tags to entities
+            entities = _convert_raw_tags_to_entities_baseline(tokens, ner_tags_indices, tag_names)
+            
+            all_samples_list.append({
+                'id': sample_id,
+                'tokens': tokens,
+                'text': " ".join(tokens),
+                'ner_tags_indices': ner_tags_indices, 
+                'tag_names': tag_names, 
+                'entities': entities, # This is the crucial part for baseline evaluation
+                'language': lang_code 
+            })
+        
+        if not all_samples_list:
+            logging.warning(f"No samples processed for language '{hf_config_name}', split '{split}'.")
+            return pd.DataFrame()
+                
+        all_samples_df = pd.DataFrame(all_samples_list)
+
+        # Convert tokens to text for the 'text' column
+        if 'tokens' in all_samples_df.columns:
+            all_samples_df['text'] = all_samples_df['tokens'].apply(lambda t: " ".join(t) if isinstance(t, list) else "")
+            logger.info(f"First 5 'text' entries after creation in load_masakhaner_samples for {lang_code}:\n{all_samples_df[['tokens', 'text']].head().to_string()}")
+            # Check for empty text strings
+            empty_texts = all_samples_df[all_samples_df['text'] == ''].shape[0]
+            if empty_texts > 0:
+                logger.warning(f"{empty_texts}/{len(all_samples_df)} samples have empty 'text' after conversion from 'tokens' in load_masakhaner_samples for {lang_code}.")
+                if empty_texts == len(all_samples_df):
+                    logger.error(f"CRITICAL: All {len(all_samples_df)} samples have empty 'text' for {lang_code}. This will lead to all samples being skipped.")
+        else:
+            logger.error(f"'tokens' column not found in data for {lang_code}. Cannot create 'text' column.")
+            # Create an empty 'text' column to prevent KeyErrors downstream, though processing will likely fail
+            all_samples_df['text'] = ""
+
+        if num_samples is not None:
+            if num_samples > 0:
+                all_samples_df = all_samples_df.sample(frac=1, random_state=seed).reset_index(drop=True)
+                if num_samples >= len(all_samples_df):
+                    logging.info(f"Requested {num_samples} samples for {hf_config_name} ({split}), but only {len(all_samples_df)} are available. Using all.")
+                    final_samples_df = all_samples_df
+                else:
+                    final_samples_df = all_samples_df.head(num_samples)
+                    logging.info(f"Selected {len(final_samples_df)} samples for {hf_config_name} ({split}) after requesting {num_samples} with seed {seed}.")
+            else: 
+                logging.warning(f"Requested {num_samples} samples for {hf_config_name} ({split}). Returning empty DataFrame.")
+                return pd.DataFrame()
+        else:
+            final_samples_df = all_samples_df
+            logging.info(f"Returning all {len(final_samples_df)} MasakhaNER samples for {hf_config_name} ({split}) as num_samples was None.")
+        
+        logging.info(f"Loaded and processed {len(final_samples_df)} samples for {hf_config_name}, split '{split}'.")
+        return final_samples_df
+    
+    except Exception as e: # Broader exception catch
+        logging.error(f"Error loading MasakhaNER data for {hf_config_name}, split {split}: {e}", exc_info=True)
+        logging.warning("Falling back to dummy data due to error...")
+        return create_dummy_ner_data(lang_code, num_samples if num_samples is not None and num_samples > 0 else 5)
 
 def create_dummy_ner_data(lang_code: str, num_samples: int = 5) -> pd.DataFrame:
     """
@@ -650,7 +856,7 @@ def create_dummy_ner_data(lang_code: str, num_samples: int = 5) -> pd.DataFrame:
             ],
             [
                 {"entity": "United Nations", "type": "ORG"},
-                {"entity": "October 24, 1945", "type": "DATE"},
+                {"entity": "October 2024", "type": "DATE"},
                 {"entity": "San Francisco", "type": "LOC"},
                 {"entity": "California", "type": "LOC"}
             ],

@@ -6,11 +6,53 @@ import os
 import re
 import time
 import traceback
-from typing import Tuple, Dict, List, Any # Added List, Any
+from typing import Tuple, Dict, List, Any, Optional # Added List, Any, Optional
 import logging
+import json
+
+# Initialize logger at the module level
+logger = logging.getLogger(__name__) # Added logger initialization
 
 # Define expected labels (adjust if dataset uses different ones)
 EXPECTED_LABELS = ["positive", "negative", "neutral"]
+
+# Define Fallback English Few-Shot Examples for Sentiment Analysis
+# This list is used by LRL prompts to ensure consistent English examples.
+FALLBACK_ENGLISH_FEW_SHOT_EXAMPLES_SENTIMENT = [
+    {'text': 'This movie was fantastic, I loved it!', 'label': 'positive'},
+    {'text': 'I am not happy with the service provided.', 'label': 'negative'},
+    {'text': 'The meeting is scheduled for 3 PM.', 'label': 'neutral'},
+    {'text': 'The product is okay, neither good nor bad.', 'label': 'neutral'}
+]
+
+# --- Added Global Constants and Helper ---
+LANG_NAMES = {
+    "en": "English", "sw": "Swahili", "ha": "Hausa", "am": "Amharic", "dz": "Dzongkha",
+    "pcm": "Nigerian Pidgin", "yo": "Yoruba", "ma": "Marathi", "multi": "Multilingual",
+    "te": "Telugu", "pt": "Portuguese"
+}
+
+ENGLISH_SENTIMENT_LABELS = ["positive", "negative", "neutral"]
+SENTIMENT_LABELS_EN_STR = ", ".join(ENGLISH_SENTIMENT_LABELS)
+
+# Define LRL translations - crucial for mapping if model outputs LRL label by mistake
+SENTIMENT_LABELS_LRL = {
+    "sw": {"positive": "chanya", "negative": "hasi", "neutral": "kati", "unknown": "haijulikani"},
+    "ha": {"positive": "tabbatacce", "negative": "korau", "neutral": "tsaka-tsaki", "unknown": "ba'a sani ba"},
+    "yo": {"positive": "rere", "negative": "búburú", "neutral": "dídọ̀ọ̀dọ́", "unknown": "aimọ"},
+    "am": {"positive": "አዎንታዊ", "negative": "አሉታዊ", "neutral": "ገለልተኛ", "unknown": "ያልታወቀ"},
+    "pcm": {"positive": "good", "negative": "bad", "neutral": "neutral", "unknown": "unknown"},
+    "pt": {"positive": "positivo", "negative": "negativo", "neutral": "neutro", "unknown": "desconhecido"},
+}
+
+def get_language_name(lang_code: str) -> str:
+    """Helper to get full language name."""
+    return LANG_NAMES.get(lang_code, lang_code.capitalize())
+# --- End of Added Global Constants ---
+
+# Ensure SENTIMENT_LABELS_EN is defined or imported if used elsewhere in this file
+# For consistency with sentiment_cotr.py, let's define it.
+SENTIMENT_LABELS_EN = ["positive", "negative", "neutral"]
 
 def initialize_model(model_name: str) -> Tuple[Any, Any]: # Added type hints
     """
@@ -81,151 +123,196 @@ Sentiment: neutral"""
     return "\n".join(prompt_parts)
 
 def generate_lrl_instruct_sentiment_prompt(text: str, lang_code: str, model_name: str = "", use_few_shot: bool = True) -> str:
-    """Generate a prompt for sentiment classification with LRL instructions and optional few-shot examples."""
-    processed_text = preprocess_text(text, lang_code)
-    en_labels_for_prompt = "positive, negative, or neutral" # Model should output these EN labels
+    """
+    Generates a sentiment classification prompt IN THE LOW-RESOURCE LANGUAGE (LRL),
+    instructing the model to output an English sentiment label.
+    Few-shot examples use LRL text and English sentiment labels.
+    """
+    lrl_name = get_language_name(lang_code)
+    text_escaped = text.replace("'", "\\'") # Keep existing escaping
 
-    instruction = ""
-    examples_content = "" # Renamed from 'examples' to avoid conflict
+    # --- LRL Few-Shot Examples (LRL text, English label) ---
+    # These remain as LRL text examples with English sentiment labels
+    lrl_example_positive_text = "Filamu hii ni nzuri sana, nimeipenda!" # Swahili
+    lrl_example_negative_text = "Sikufurahishwa na huduma hii hata kidogo." # Swahili
+    lrl_example_neutral_text = "Mkutano utaanza saa tisa alasiri." # Swahili
 
-    # Define English few-shot examples (original, for reference or if LRL examples are not available)
-    # english_few_shot_examples_text = """
-    # Examples:
-    # Text: 'I am very happy with this product, it works perfectly! 😊'
-    # Sentiment: positive
-    # ... (rest of English examples)
-    # """
+    if lang_code == "ha":
+        lrl_example_positive_text = "Wannan fim yana da daɗi ƙwarai, na ji daɗinsa!"
+        lrl_example_negative_text = "Ban gamsu da wannan sabis ɗin ba ko kaɗan."
+        lrl_example_neutral_text = "Taron zai fara da ƙarfe uku na rana."
+    elif lang_code == "pt":
+        lrl_example_positive_text = "Este filme é muito bom, adorei!"
+        lrl_example_negative_text = "Não fiquei nada satisfeito com este serviço."
+        lrl_example_neutral_text = "A reunião começará às 15h."
+    # Add other languages here if needed for example texts
 
-    if lang_code == 'sw':
-        instruction = f"Chunguza kwa makini hisia katika maandishi yaliyotolewa. Jibu lako lote lazima liwe MOJA TU kati ya maneno haya ya Kiingereza: {en_labels_for_prompt}. USIANDIKE maneno mengine yoyote, maelezo, au alama za uandishi."
-        if use_few_shot:
-            # Swahili text examples, English labels
-            sw_few_shot_examples = """
-Mifano:
-Maandishi: 'Huduma hii ni nzuri sana, nimefurahishwa kweli!'
-Hisia: positive
+    # --- LRL Instruction Segment ---
+    # IMPORTANT: This section needs to be translated into each respective LRL.
+    # For now, using placeholders or a direct English instruction with a note.
+    # The core instruction is to classify the LRL text and respond with an ENGLISH label.
 
-Maandishi: 'Nimechukizwa na bidhaa hii, haifanyi kazi vizuri.'
-Hisia: negative
+    instruction_segment_lrl = ""
+    if lang_code == "sw":
+        instruction_segment_lrl = f"Wewe ni mtaalamu wa uchanganuzi wa hisia. Kazi yako ni kuainisha hisia za maandishi yafuatayo ya {lrl_name}. Jibu kwa MOJA tu ya lebo hizi za Kiingereza: {SENTIMENT_LABELS_EN_STR}. Usiongeze maelezo."
+    elif lang_code == "ha":
+        instruction_segment_lrl = f"Kai ƙwararren masanin nazarin ra'ayi ne. Ayyukanka shine ka rarraba ra'ayin rubutun {lrl_name} mai zuwa. Ka amsa da DAYA kawai daga cikin waɗannan alamun Turanci: {SENTIMENT_LABELS_EN_STR}. Kada ka ƙara bayani."
+    elif lang_code == "pt":
+        instruction_segment_lrl = f"Você é um especialista em análise de sentimentos. Sua tarefa é classificar o sentimento do seguinte texto em {lrl_name}. Responda com APENAS UM dos seguintes rótulos em inglês: {SENTIMENT_LABELS_EN_STR}. Não adicione explicações."
+    else:
+        # Fallback to English instruction if LRL not defined, with a clear logger warning
+        logger.warning(f"LRL instruction segment not defined for lang_code '{lang_code}'. Using English instructions as a fallback for the main prompt body.")
+        instruction_segment_lrl = f"You are a sentiment analysis expert. Your task is to classify the sentiment of the following {lrl_name} text. Respond with ONLY one of the English labels: {SENTIMENT_LABELS_EN_STR}. Do not add explanations."
 
-Maandishi: 'Mkutano utaanza saa tisa alasiri.'
-Hisia: neutral
-"""
-            examples_content = sw_few_shot_examples
-        prompt_format = f"Maandishi: '{processed_text}'\n\n{instruction}"
-        if examples_content: # Check if examples_content is not empty
-            prompt_format += f"\n\n{examples_content}"
-        prompt_format += "\n\nHisia:" # Model should output English label here
-        return prompt_format
+    prompt = f"{instruction_segment_lrl}\n\n"
 
-    elif lang_code == 'ha':
-        instruction = f"Bincika yanayin rubutu a sama. Duk amsarka DOLE ta zama DAYA KAWAI daga cikin waɗannan kalmomi na Turanci: {en_labels_for_prompt}. KADA KA ƙara wasu kalmomi, bayani, ko alamun rubutu."
-        if use_few_shot:
-            # Hausa text examples, English labels
-            ha_few_shot_examples = """
-Misalai:
-Rubutu: 'Wannan abinci yana da daɗi ƙwarai, na gamsu sosai!'
-Ra'ayi: positive
+    if use_few_shot:
+        # The few-shot examples section header should also be in LRL.
+        few_shot_header_lrl = f"Hapa kuna mifano kadhaa katika {lrl_name} na lebo zao za hisia za Kiingereza:" # Swahili
+        if lang_code == "ha":
+            few_shot_header_lrl = f"Ga wasu misalai a cikin {lrl_name} tare da alamun ra'ayinsu na Turanci:"
+        elif lang_code == "pt":
+            few_shot_header_lrl = f"Aqui estão alguns exemplos em {lrl_name} com seus rótulos de sentimento em inglês:"
+        else: # Fallback for header
+            few_shot_header_lrl = f"Here are some examples in {lrl_name} with their English sentiment labels:"
+            
+        prompt += f"{few_shot_header_lrl}\n"
+        prompt += f"Mfano 1:\n{lrl_name} Nakala: '{lrl_example_positive_text}'\nLebo ya Hisia ya Kiingereza: positive\n\n" # Swahili example structure
+        if lang_code == "ha":
+            prompt += f"Misali 1:\n{lrl_name} Rubutu: '{lrl_example_positive_text}'\nAlamar Ra'ayi ta Turanci: positive\n\n"
+        elif lang_code == "pt":
+             prompt += f"Exemplo 1:\n{lrl_name} Texto: '{lrl_example_positive_text}'\nRótulo de Sentimento em Inglês: positive\n\n"
+        else: # Fallback structure
+            prompt += f"Example 1:\n{lrl_name} Text: '{lrl_example_positive_text}'\nEnglish Sentiment Label: positive\n\n"
 
-Rubutu: 'Na ji haushin wannan fim, bai yi kyau ba ko kaɗan.'
-Ra'ayi: negative
 
-Rubutu: 'Yanayin yau ba sanyi, ba zafi.'
-Ra'ayi: neutral
-"""
-            examples_content = ha_few_shot_examples
-        prompt_format = f"Rubutu: '{processed_text}'\n\n{instruction}"
-        if examples_content: # Check if examples_content is not empty
-            prompt_format += f"\n\n{examples_content}"
-        prompt_format += "\n\nRa'ayi:" # Model should output English label here
-        return prompt_format
-    else: # Fallback for other LRLs or if prompt_in_lrl is False (though this func is for LRL-instruct)
-        logging.warning(f"LRL instructions for '{lang_code}' using generate_lrl_instruct_sentiment_prompt. Custom LRL examples not defined; falling back to English prompt structure via generate_sentiment_prompt.")
-        # Fallback to the standard English prompt function if specific LRL is not handled
-        return generate_sentiment_prompt(text, "en", model_name, use_few_shot)
+        prompt += f"Mfano 2:\n{lrl_name} Nakala: '{lrl_example_negative_text}'\nLebo ya Hisia ya Kiingereza: negative\n\n" # Swahili
+        if lang_code == "ha":
+            prompt += f"Misali 2:\n{lrl_name} Rubutu: '{lrl_example_negative_text}'\nAlamar Ra'ayi ta Turanci: negative\n\n"
+        elif lang_code == "pt":
+            prompt += f"Exemplo 2:\n{lrl_name} Texto: '{lrl_example_negative_text}'\nRótulo de Sentimento em Inglês: negative\n\n"
+        else: # Fallback
+            prompt += f"Example 2:\n{lrl_name} Text: '{lrl_example_negative_text}'\nEnglish Sentiment Label: negative\n\n"
+
+
+        prompt += f"Mfano 3:\n{lrl_name} Nakala: '{lrl_example_neutral_text}'\nLebo ya Hisia ya Kiingereza: neutral\n\n" # Swahili
+        if lang_code == "ha":
+            prompt += f"Misali 3:\n{lrl_name} Rubutu: '{lrl_example_neutral_text}'\nAlamar Ra'ayi ta Turanci: neutral\n\n"
+        elif lang_code == "pt":
+            prompt += f"Exemplo 3:\n{lrl_name} Texto: '{lrl_example_neutral_text}'\nRótulo de Sentimento em Inglês: neutral\n\n"
+        else: # Fallback
+            prompt += f"Example 3:\n{lrl_name} Text: '{lrl_example_neutral_text}'\nEnglish Sentiment Label: neutral\n\n"
+
+
+    # The final part asking to classify the current text should also be in LRL.
+    classify_text_header_lrl = f"Sasa, ainisha maandishi yafuatayo ya {lrl_name}:" # Swahili
+    text_label_lrl = f"{lrl_name} Nakala:" # Swahili
+    output_label_lrl = "Lebo ya Hisia ya Kiingereza:" # Swahili (instructing for English output label)
+
+    if lang_code == "ha":
+        classify_text_header_lrl = f"Yanzu, rarraba rubutun {lrl_name} mai zuwa:"
+        text_label_lrl = f"{lrl_name} Rubutu:"
+        output_label_lrl = "Alamar Ra'ayi ta Turanci:"
+    elif lang_code == "pt":
+        classify_text_header_lrl = f"Agora, classifique o seguinte texto em {lrl_name}:"
+        text_label_lrl = f"{lrl_name} Texto:"
+        output_label_lrl = "Rótulo de Sentimento em Inglês:"
+    # Fallback for other languages not explicitly defined
+    elif lang_code != 'sw': # to avoid repeating swahili default
+        classify_text_header_lrl = f"Now, classify the following {lrl_name} text:"
+        text_label_lrl = f"{lrl_name} Text:"
+        output_label_lrl = "English Sentiment Label:"
+
+
+    prompt += f"{classify_text_header_lrl}\n"
+    prompt += f"{text_label_lrl}\n'{text_escaped}'\n"
+    prompt += f"{output_label_lrl}"
+    return prompt
 
 def extract_label(output_text: str, lang_code: str = "en", model_name: str = "") -> str:
     """
-    Extracts the sentiment label from the model's output text.
-    Prioritizes direct matches, then checks for keywords.
-    The function now aims to return one of "positive", "neutral", "negative", or "unknown".
+    Extracts a sentiment label from the model output.
+    Prioritizes English labels. If LRL label is found, maps it to English.
     """
-    processed_output = output_text.lower().strip()
+    if not output_text or not isinstance(output_text, str):
+        # Ensure output_text is a string for logging, or provide a placeholder
+        log_output_text = str(output_text) if output_text else "[empty_output]"
+        logger.warning(f"extract_label received invalid output_text: {log_output_text}")
+        return "unknown"
 
-    # Define keywords for each sentiment in English (can be expanded for LRL keywords if needed)
-    # These are indicative and might need adjustment based on model behavior
-    positive_keywords = ["positive", "positive sentiment", "good", "happy", "joyful", "excellent"]
-    negative_keywords = ["negative", "negative sentiment", "bad", "sad", "angry", "terrible"]
-    neutral_keywords = ["neutral", "neutral sentiment", "objective", "no sentiment", "neither positive nor negative"]
+    text_to_process = output_text.lower().strip()
 
-    # --- Stricter matching for direct labels first ---
-    # Check for exact label words, possibly surrounded by non-alphanumeric characters or at string ends
-    if re.search(r"\bpositive\b", processed_output):
-        return "positive"
-    if re.search(r"\bnegative\b", processed_output):
-        return "negative"
-    if re.search(r"\bneutral\b", processed_output):
-        return "neutral"
-
-    # --- If no direct match, check for keywords ---
-    # Count keyword occurrences for each sentiment
-    positive_score = sum(1 for kw in positive_keywords if kw in processed_output)
-    negative_score = sum(1 for kw in negative_keywords if kw in processed_output)
-    neutral_score = sum(1 for kw in neutral_keywords if kw in processed_output)
-
-    # Determine label based on scores
-    if positive_score > negative_score and positive_score > neutral_score:
-        return "positive"
-    elif negative_score > positive_score and negative_score > neutral_score:
-        return "negative"
-    elif neutral_score > positive_score and neutral_score > negative_score:
-        return "neutral"
-    
-    # --- Fallback and Ambiguity Handling ---
-    # If scores are tied, or no keywords strongly indicate a sentiment,
-    # or if the output is very short and non-indicative, consider it "unknown".
-    # Example: if output is "I don't know" or just "The text is about..."
-
-    # More specific checks for model-specific "cannot determine" phrases
-    # (These should be adapted based on observed model outputs)
-    unknown_phrases_common = [
-        "cannot determine", "unable to classify", "not enough information",
-        "no clear sentiment", "sentiment is unclear", "uncertain",
-        "i don't know", "it's unclear", "no sentiment expressed",
-        # LRL equivalents if known
-        "sijui", # Swahili for "I don't know"
-        "ban sani ba" # Hausa for "I don't know"
+    # Define initial prefixes
+    prefixes_to_remove = [
+        "english sentiment label:", "sentiment label:", "sentiment:", "label:",
+        "the sentiment is", "this text is", "output:", "answer:",
+        "based on the text, the sentiment is", "i would classify this as",
+        "hisia:", "ra'ayi:", "sentimento:", "lebo ya kiingereza:", # LRL examples
     ]
-    
-    model_specific_unknown_phrases = []
-    if "aya" in model_name.lower():
-        model_specific_unknown_phrases.extend([
-            # "Aya specific unknown phrase 1",
-        ])
-    elif "qwen" in model_name.lower():
-        model_specific_unknown_phrases.extend([
-            # "Qwen specific unknown phrase 1",
+    # Dynamically add language-specific prefixes
+    if lang_code and lang_code in LANG_NAMES:
+        lang_name_lower = get_language_name(lang_code).lower()
+        prefixes_to_remove.extend([
+            f"{lang_name_lower} sentiment label:",
+            f"the english label for the {lang_name_lower} text is:",
         ])
 
-    all_unknown_phrases = unknown_phrases_common + model_specific_unknown_phrases
-    for phrase in all_unknown_phrases:
-        if phrase in processed_output:
-            return "unknown"
-
-    # If after all checks, no clear label is found, return "unknown".
-    # This also handles cases where scores might be tied (e.g., 1 positive, 1 negative, 0 neutral)
-    # or if all scores are 0.
+    for prefix in prefixes_to_remove:
+        if text_to_process.startswith(prefix):
+            text_to_process = text_to_process[len(prefix):].strip()
     
-    # If only one class has a non-zero score, and others are zero, pick that class.
-    # This is a refinement after the initial scoring to catch less ambiguous cases.
-    if positive_score > 0 and negative_score == 0 and neutral_score == 0:
-        return "positive"
-    if negative_score > 0 and positive_score == 0 and neutral_score == 0:
-        return "negative"
-    if neutral_score > 0 and positive_score == 0 and negative_score == 0:
-        return "neutral"
+    # Strip various quote and bracket characters
+    # Using a raw string for the strip characters just in case, though not strictly necessary here.
+    text_to_process = text_to_process.strip(r'''\'\"`[](){}<>* ''') 
+    
+    # Remove trailing punctuation that might be attached to the label
+    if text_to_process.endswith(('.', '!', '?')):
+        if len(text_to_process) > 1: # Avoid stripping if it's only a punctuation mark
+            text_to_process = text_to_process[:-1].strip()
+
+    # 1. Check for direct English label match (whole string)
+    if text_to_process in ENGLISH_SENTIMENT_LABELS:
+        return text_to_process
+
+    # 2. Check if the processed text *starts with* an English label
+    for label in ENGLISH_SENTIMENT_LABELS:
+        if text_to_process.startswith(label):
+            # Ensure it's the full word or followed by a non-alphabetic character
+            if len(text_to_process) == len(label) or not text_to_process[len(label)].isalpha():
+                    return label
+    
+    # 3. If lang_code is not 'en', check for LRL labels and map them to English
+    if lang_code != "en" and lang_code in SENTIMENT_LABELS_LRL:
+        current_lrl_map = SENTIMENT_LABELS_LRL.get(lang_code, {})
+        # Create a reverse map from LRL translation (lowercase) to English label
+        lrl_to_en_map = {}
+        for en_label, lrl_translation in current_lrl_map.items():
+            if en_label != "unknown": # Don't map LRL "unknown" to English "unknown" via this path
+                lrl_to_en_map[lrl_translation.lower()] = en_label
         
-    # Final fallback
+        # Check for direct LRL label match (whole string)
+        if text_to_process in lrl_to_en_map:
+            return lrl_to_en_map[text_to_process] # Map to English
+
+        # Check if the processed text *starts with* an LRL label
+        for lrl_label_text_lower, en_equivalent in lrl_to_en_map.items():
+            if text_to_process.startswith(lrl_label_text_lower):
+                if len(text_to_process) == len(lrl_label_text_lower) or not text_to_process[len(lrl_label_text_lower)].isalpha():
+                    return en_equivalent # Map to English
+    
+    # 4. Fallback: if any English label is a substring (less precise, check parts)
+    parts = re.split(r'\\s+|\\.|,|;|!', text_to_process) # Split by common delimiters
+    for part in parts:
+        cleaned_part = part.strip(r'''\'\"`[](){}<>* ''') # Strip again after splitting
+        if cleaned_part in ENGLISH_SENTIMENT_LABELS:
+            return cleaned_part
+            
+    # Use more robust f-string formatting for logging complex strings
+    log_original_output = repr(output_text) 
+    log_processed_text = repr(text_to_process)
+    logger.debug(
+        f"Could not extract a recognized sentiment label. Original: {log_original_output}, Processed: {log_processed_text}, Model: {model_name}, Lang: {lang_code}. Defaulting to 'unknown'."
+    )
     return "unknown"
 
 def process_sentiment_baseline(

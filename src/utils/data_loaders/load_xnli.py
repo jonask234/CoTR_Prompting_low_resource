@@ -5,6 +5,8 @@ from datasets import load_dataset, get_dataset_split_names
 from typing import Optional, List, Dict
 import logging
 
+logger = logging.getLogger(__name__)
+
 # Standard XNLI label mapping
 XNLI_LABEL_MAP: Dict[int, str] = {
     0: 'entailment',
@@ -16,93 +18,136 @@ XNLI_LABEL_MAP: Dict[int, str] = {
 # From documentation: ar, bg, de, el, en, es, fr, hi, ru, sw, th, tr, ur, vi, zh
 XNLI_SUPPORTED_LANGUAGES = ["ar", "bg", "de", "el", "en", "es", "fr", "hi", "ru", "sw", "th", "tr", "ur", "vi", "zh"]
 
+# --- Available languages in XNLI and their specific Hugging Face dataset identifiers ---
+# (usually it's 'xnli', 'language_code')
+XNLI_LANG_CONFIG_MAP = {
+    "en": ("xnli", "en"),
+    "fr": ("xnli", "fr"),
+    "es": ("xnli", "es"),
+    "de": ("xnli", "de"),
+    "el": ("xnli", "el"), # Greek
+    "bg": ("xnli", "bg"), # Bulgarian
+    "ru": ("xnli", "ru"),
+    "tr": ("xnli", "tr"),
+    "ar": ("xnli", "ar"),
+    "vi": ("xnli", "vi"),
+    "th": ("xnli", "th"),
+    "zh": ("xnli", "zh"), # Chinese
+    "hi": ("xnli", "hi"),
+    "sw": ("xnli", "sw"), # Swahili
+    "ur": ("xnli", "ur"),
+    # Removed "yo" and "ha" as they are not direct valid configs for "xnli"
+    # To support them, one would need to use "all_languages" and filter,
+    # or find a different NLI dataset that has them as direct configs.
+}
+
 def load_xnli_samples(
     lang_code: str,
-    sample_percentage: float = 10.0, # Default to 10%
-    split: str = 'test' # Default to 'test' split for evaluation
+    num_samples: Optional[int] = None, # Changed from sample_percentage
+    split: str = 'test', # Default to 'test' split for evaluation
+    seed: int = 42 # Added seed parameter
 ) -> pd.DataFrame:
     """
-    Load XNLI samples for a specific language from 'facebook/xnli'.
+    Load NLI samples for a given language from the XNLI dataset.
 
     Args:
-        lang_code: Language code (e.g., 'en', 'sw', 'ur').
-        sample_percentage: Percentage of samples to load from the split.
-        split: Dataset split to use ('train', 'validation', 'test').
+        lang_code (str): The language code (e.g., 'en', 'sw').
+        num_samples (Optional[int]): The number of samples to return. If None, all samples from the split are returned.
+        split (str): The dataset split to load ('train', 'validation', 'test'). Default is 'test'.
+        seed (int): Random seed for shuffling if num_samples is specified.
 
     Returns:
-        DataFrame containing 'premise', 'hypothesis', 'label' (string), 'language',
-        and 'original_label_int'. Returns empty DataFrame on failure.
+        pd.DataFrame: A DataFrame containing the samples, with columns 'premise', 'hypothesis', 'label' (string), and 'original_label_int'.
+                      Returns an empty DataFrame if the language is not supported or data loading fails.
     """
-    dataset_name = "facebook/xnli"
+    logger.info(f"Requesting XNLI samples for language: {lang_code}, split: {split}, num_samples: {num_samples}")
 
-    if lang_code not in XNLI_SUPPORTED_LANGUAGES:
-        logging.error(f"Language code '{lang_code}' is not supported by the facebook/xnli dataset. Supported: {XNLI_SUPPORTED_LANGUAGES}")
-        return pd.DataFrame()
+    if lang_code not in XNLI_LANG_CONFIG_MAP:
+        logger.warning(
+            f"Language code '{lang_code}' is not supported by the current XNLI_LANG_CONFIG_MAP "
+            f"or does not have a direct configuration in the 'xnli' dataset. "
+            f"Supported direct configs mapped: {list(XNLI_LANG_CONFIG_MAP.keys())}. "
+            f"Please check Hugging Face for available 'xnli' dataset configurations. "
+            f"Skipping loading for '{lang_code}'."
+        )
+        return pd.DataFrame() # Return empty DataFrame if lang_code is not supported
 
-    available_splits = []
+    dataset_name, config_name = XNLI_LANG_CONFIG_MAP[lang_code]
+    
     try:
-        # For XNLI, each language is a configuration.
-        # We check splits for a common language like 'en' as an example.
-        available_splits = get_dataset_split_names(dataset_name, config_name='en')
-        logging.info(f"Available splits for {dataset_name} (e.g., 'en' config): {available_splits}")
-        if split not in available_splits:
-            logging.warning(f"Requested split '{split}' not in typical XNLI splits {available_splits}. Attempting to load anyway.")
-    except Exception as e:
-        logging.warning(f"Could not dynamically verify splits for {dataset_name}: {e}. Proceeding with requested split '{split}'.")
-
-    logging.info(f"Attempting to load '{lang_code}' samples from {dataset_name}, config '{lang_code}', split '{split}'...")
-
-    try:
-        # For facebook/xnli, the language code is the configuration name.
-        dataset = load_dataset(dataset_name, name=lang_code, split=split, trust_remote_code=True)
-        logging.info(f"Successfully loaded dataset for {lang_code}, split {split}. Full size: {len(dataset)}")
-
-        num_total_samples = len(dataset)
-        if num_total_samples == 0:
-            logging.warning(f"No samples found in {dataset_name} for lang '{lang_code}', split '{split}'.")
+        logging.info(f"Loading XNLI dataset: '{dataset_name}', config: '{config_name}', split: '{split}' for language: {lang_code}")
+        # Load the specified split
+        dataset = load_dataset(dataset_name, config_name, split=split, trust_remote_code=True)
+        
+        # Convert to pandas DataFrame for easier manipulation
+        all_samples_df = pd.DataFrame(dataset)
+        
+        if all_samples_df.empty:
+            logging.warning(f"No samples found for XNLI lang '{lang_code}', split '{split}'.")
             return pd.DataFrame()
 
-        num_to_sample = max(1, int(num_total_samples * (sample_percentage / 100.0)))
-        if num_to_sample > num_total_samples : # Should not happen if percentage is <=100
-             num_to_sample = num_total_samples
-        
-        logging.info(f"Sampling {sample_percentage}% ({num_to_sample} examples) from {num_total_samples} total for {lang_code}, split '{split}'.")
-        
-        # Shuffle before selecting to ensure randomness if num_to_sample < num_total_samples
-        if num_to_sample < num_total_samples:
-            dataset = dataset.shuffle(seed=42).select(range(num_to_sample))
-        elif num_to_sample == num_total_samples: # If 100% or more requested, use all but still shuffle
-            dataset = dataset.shuffle(seed=42)
-        
-        all_samples_list = []
-        for example in dataset:
-            premise = example.get('premise', '')
-            hypothesis = example.get('hypothesis', '')
-            label_int = example.get('label', -1) # Labels are integer encoded
+        # Rename columns for consistency if necessary (assuming standard XNLI structure)
+        # XNLI typically has 'premise', 'hypothesis', 'label'
+        # We need to ensure these columns exist.
+        required_cols = {'premise', 'hypothesis', 'label'}
+        if not required_cols.issubset(all_samples_df.columns):
+            # Attempt common renames if columns are different (e.g. from multilingual versions)
+            # This part might need adjustment based on actual column names in the dataset if they vary.
+            logging.warning(f"Standard columns {required_cols} not all found in XNLI data for {lang_code}. Columns found: {all_samples_df.columns}. Attempting to map if possible or proceed if direct.")
+            # For now, assume columns are correctly named. If issues arise, specific mapping may be needed here.
 
-            if not premise or not hypothesis or label_int == -1:
-                logging.warning(f"Skipping sample due to missing premise, hypothesis, or label: {example}")
-                continue
-
-            all_samples_list.append({
-                'premise': premise,
-                'hypothesis': hypothesis,
-                'original_label_int': label_int, # Keep original integer label
-                'label': XNLI_LABEL_MAP.get(label_int, 'unknown'), # Mapped string label
-                'language': lang_code
-            })
+        # Map integer labels to string labels
+        if 'label' in all_samples_df.columns and pd.api.types.is_numeric_dtype(all_samples_df['label']):
+            all_samples_df['original_label_int'] = all_samples_df['label']
+            all_samples_df['label'] = all_samples_df['label'].map(XNLI_LABEL_MAP)
+        else:
+            # If 'label' is already string or missing, handle appropriately
+            logging.warning(f"Label column in XNLI for {lang_code} is not numeric or missing. Cannot map to string labels using XNLI_LABEL_MAP. Current labels: {all_samples_df['label'].head() if 'label' in all_samples_df.columns else 'N/A'}")
+            # Add 'original_label_int' as -1 if label wasn't numeric
+            all_samples_df['original_label_int'] = -1 
         
-        if not all_samples_list:
-            logging.warning(f"No valid samples processed for {lang_code}, split '{split}' after filtering.")
-            return pd.DataFrame()
+        # Select relevant columns (premise, hypothesis, label, original_label_int)
+        # Ensure all expected columns are present, fill with default if not
+        final_columns = ['premise', 'hypothesis', 'label', 'original_label_int']
+        for col in final_columns:
+            if col not in all_samples_df.columns:
+                if col == 'label': # If actual label string column is missing
+                    all_samples_df[col] = "unknown" # Default value
+                elif col == 'original_label_int':
+                    all_samples_df[col] = -1
+                else: # premise or hypothesis
+                    all_samples_df[col] = "" # Default empty string
+                logging.warning(f"Column '{col}' was missing from XNLI data for {lang_code}. Added with default values.")
+        
+        # Filter to only existing columns to avoid KeyErrors if some are truly missing despite checks
+        existing_final_columns = [col for col in final_columns if col in all_samples_df.columns]
+        all_samples_df = all_samples_df[existing_final_columns]
 
-        samples_df = pd.DataFrame(all_samples_list)
-        logging.info(f"Successfully loaded and processed {len(samples_df)} samples for {lang_code}, split '{split}'.")
-        logging.info(f"Label distribution for {lang_code}, {split}: \n{samples_df['label'].value_counts(normalize=True)}")
-        return samples_df
 
-    except Exception as e:
-        logging.error(f"ERROR loading XNLI for lang '{lang_code}', split '{split}': {e}", exc_info=True)
+        # Shuffle samples and take the specified number if num_samples is provided
+        if num_samples is not None:
+            if num_samples > 0:
+                # Shuffle all loaded samples first
+                all_samples_df = all_samples_df.sample(frac=1, random_state=seed).reset_index(drop=True)
+                
+                if num_samples >= len(all_samples_df):
+                    logging.info(f"Requested {num_samples} samples for {lang_code} ({split}), but only {len(all_samples_df)} are available. Using all available samples.")
+                    final_samples_df = all_samples_df
+                else:
+                    final_samples_df = all_samples_df.head(num_samples)
+                    logging.info(f"Selected {len(final_samples_df)} samples for {lang_code} ({split}) after requesting {num_samples} with seed {seed}.")
+            else: # num_samples is 0 or negative
+                logging.warning(f"Requested {num_samples} samples for XNLI {lang_code} ({split}). Returning empty DataFrame.")
+                return pd.DataFrame()
+        else: # num_samples is None, return all loaded and processed samples
+            final_samples_df = all_samples_df
+            logging.info(f"Returning all {len(final_samples_df)} loaded samples for XNLI {lang_code} ({split}) as num_samples was None.")
+
+        logging.info(f"Successfully loaded and processed {len(final_samples_df)} XNLI samples for language '{lang_code}', split '{split}'.")
+        return final_samples_df
+
+    except FileNotFoundError:
+        logging.error(f"ERROR loading XNLI for lang '{lang_code}', split '{split}': FileNotFoundError", exc_info=True)
         return pd.DataFrame()
 
 def get_xnli_stats():
@@ -129,27 +174,27 @@ if __name__ == '__main__':
     print("--- Testing XNLI Loader (facebook/xnli) ---")
 
     # Test English
-    en_samples = load_xnli_samples('en', sample_percentage=1.0, split='test') # 1% of test
+    en_samples = load_xnli_samples('en', num_samples=100, split='test') # 100 samples of test
     if not en_samples.empty:
-        print(f"\nEnglish XNLI 'test' samples (1% - {len(en_samples)}):")
+        print(f"\nEnglish XNLI 'test' samples (100 - {len(en_samples)}):")
         print(en_samples.head())
         print(en_samples['label'].value_counts())
     else:
         print("\nFailed to load English XNLI samples.")
 
     # Test Swahili
-    sw_samples = load_xnli_samples('sw', sample_percentage=10.0, split='train') # 10% of train
+    sw_samples = load_xnli_samples('sw', num_samples=100, split='train') # 100 samples of train
     if not sw_samples.empty:
-        print(f"\nSwahili XNLI 'train' samples (10% - {len(sw_samples)}):")
+        print(f"\nSwahili XNLI 'train' samples (100 - {len(sw_samples)}):")
         print(sw_samples.head())
         print(sw_samples['label'].value_counts())
     else:
         print("\nFailed to load Swahili XNLI samples.")
 
     # Test Urdu
-    ur_samples = load_xnli_samples('ur', sample_percentage=5.0, split='validation') # 5% of validation
+    ur_samples = load_xnli_samples('ur', num_samples=50, split='validation') # 50 samples of validation
     if not ur_samples.empty:
-        print(f"\nUrdu XNLI 'validation' samples (5% - {len(ur_samples)}):")
+        print(f"\nUrdu XNLI 'validation' samples (50 - {len(ur_samples)}):")
         print(ur_samples.head())
         print(ur_samples['label'].value_counts())
     else:

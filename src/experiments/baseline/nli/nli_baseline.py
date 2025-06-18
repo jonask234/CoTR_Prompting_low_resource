@@ -129,6 +129,27 @@ Jibu lako lote lazima liwe neno MOJA TU kati ya hayo matatu ya Kiingereza. Hakun
         answer_key_for_examples = english_answer_key
         few_shot_examples_to_use = english_few_shot_examples_list
 
+    elif instruction_lang_code == "fr":  # French
+        instruction_block = """Prémisse: '<PREMISE>'
+Hypothèse: '<HYPOTHESIS>'
+
+Étant donné une prémisse et une hypothèse, déterminez si l'hypothèse est ENTAILMENT, CONTRADICTION, ou NEUTRAL par rapport à la prémisse.
+
+Définitions (les étiquettes de sortie doivent être en anglais) :
+- ENTAILMENT : L'hypothèse découle définitivement de la prémisse.
+- CONTRADICTION : L'hypothèse contredit définitivement la prémisse.
+- NEUTRAL : L'hypothèse peut être vraie ou fausse ; il n'y a pas assez d'informations pour le dire.
+
+Fournissez votre réponse en utilisant EXACTEMENT l'un de ces trois mots anglais : 'ENTAILMENT', 'CONTRADICTION' ou 'NEUTRAL'.
+Votre réponse entière doit être uniquement l'un de ces trois mots anglais. Aucun autre texte, explication ou ponctuation n'est autorisé."""
+        
+        example_header_to_use = "Exemples (texte en anglais, réponse en anglais) :"
+        premise_key_for_examples = "Prémisse (anglais)"
+        hypothesis_key_for_examples = "Hypothèse (anglais)"
+        answer_key_for_examples = "Relation (anglais)"
+        few_shot_examples_to_use = english_few_shot_examples_list
+        final_answer_prompt_key = "Relation" # French for "Relationship" or "Answer" in this context
+
     else:  # Default to English instructions and English examples
         instruction_block = """Text: '<PREMISE>'
 Hypothesis: '<HYPOTHESIS>'
@@ -170,6 +191,8 @@ Your entire response must be only one of these three words. No other text, expla
         final_answer_prompt_key = "Jibu"
     elif instruction_lang_code == "ur":
         final_answer_prompt_key = "جواب" # Ensure this is the correct Urdu for "Answer/Label"
+    elif instruction_lang_code == "fr": # Added for French
+        final_answer_prompt_key = "Relation"
     else: # English
         final_answer_prompt_key = "Answer"
 
@@ -182,51 +205,30 @@ def extract_nli_label(output_text: str) -> str:
     Extract NLI label from model output text, adapted from the old script.
     Prioritizes exact matches to 'ENTAILMENT', 'CONTRADICTION', 'NEUTRAL' (case-insensitive for matching).
     """
-    text_cleaned = output_text.strip()
-    text_lower = text_cleaned.lower()
+    output_text = output_text.lower().strip()
 
-    # Priority 1: Check for exact full-string matches of the expected English labels (case-insensitive)
-    for label in EXPECTED_NLI_LABELS:
-        if text_lower == label:
-            logging.debug(f"Extracted NLI label (exact match): '{label}' from '{text_cleaned}'")
-            return label
+    # Remove common prefixes or instructions model might add
+    prefixes_to_remove = [
+        "the relationship is:", "label:", "prediction:", "answer:", 
+        "nli label:", "relationship:", "this is clearly an", "this is an"
+    ]
+    for prefix in prefixes_to_remove:
+        if output_text.startswith(prefix):
+            output_text = output_text[len(prefix):].strip()
 
-    # Priority 2: Check if the raw output *contains* the capitalized versions (as requested by prompt)
-    # This can catch cases where the model might add minimal extra tokens like a period.
-    if "ENTAILMENT" in text_cleaned:
-        logging.debug(f"Extracted NLI label (contains capitalized): 'entailment' from '{text_cleaned}'")
+    # Remove trailing punctuation or explanations
+    output_text = output_text.split('.')[0].split(',')[0].split('(')[0].strip()
+    
+    # Direct checks for keywords
+    if "entailment" in output_text or "entails" in output_text:
         return "entailment"
-    elif "CONTRADICTION" in text_cleaned:
-        logging.debug(f"Extracted NLI label (contains capitalized): 'contradiction' from '{text_cleaned}'")
+    elif "contradiction" in output_text or "contradicts" in output_text:
         return "contradiction"
-    elif "NEUTRAL" in text_cleaned:
-        logging.debug(f"Extracted NLI label (contains capitalized): 'neutral' from '{text_cleaned}'")
+    elif "neutral" in output_text: # Model might still explicitly say "neutral"
         return "neutral"
     
-    # Priority 3: Find the label closest to the start of the lowercase response if multiple are present
-    label_positions = {}
-    for label in EXPECTED_NLI_LABELS:
-        pos = text_lower.find(label)
-        if pos != -1:
-            label_positions[label] = pos
-    
-    if label_positions:
-        # Return the label that appears first in the text
-        best_match_by_pos = min(label_positions.items(), key=lambda x: x[1])[0]
-        logging.debug(f"Extracted NLI label (first occurrence): '{best_match_by_pos}' from '{text_cleaned}'")
-        return best_match_by_pos
-    
-    # Fallback: Old script had language-specific keywords. Retaining some simple ones for English as a last resort.
-    # These are less reliable as the prompt strictly asks for the three main labels.
-    if any(term in text_lower for term in ['yes', 'follows', 'must be true', 'is true', 'has to be true']):
-        logging.debug(f"Extracted NLI label (synonym): 'entailment' from '{text_cleaned}'")
-        return 'entailment'
-    elif any(term in text_lower for term in ['no', 'not true', 'cannot be true', 'opposite', 'disagree']):
-        logging.debug(f"Extracted NLI label (synonym): 'contradiction' from '{text_cleaned}'")
-        return 'contradiction'
-    
-    logging.warning(f"Could not reliably extract NLI label from '{text_cleaned[:100]}...'. Defaulting to 'unknown'.")
-    return "unknown" # Default to unknown if no clear label is found
+    # Fallback if no clear keyword is found
+    return "unknown"
 
 def process_nli_baseline(
     model: Any,
@@ -491,3 +493,71 @@ def calculate_nli_metrics(results_df):
         'macro_f1': macro_f1,
         'class_metrics': class_metrics
     } 
+
+EXAMPLE_TRANSLATIONS = {
+    "en": {},
+    "sw": {
+        "Given a premise and hypothesis, determine if the hypothesis is an ENTAILMENT, CONTRADICTION, or NEUTRAL with respect to the premise.":
+            "Kwa kuzingatia pendekezo na dhana, tambua kama dhana ni UAMBATANI, UPINZANI, au KATI KATI kwa heshima na pendekezo.",
+        "Provide your answer as a single word: either ENTAILMENT, NEUTRAL, or CONTRADICTION. Do not add any other text or explanation.":
+            "Toa jibu lako kama neno moja: ama UAMBATANI, KATI KATI, au UPINZANI. Usiongeze maandishi mengine yoyote au maelezo.",
+        "Definitions:": "Ufafanuzi:",
+        "- ENTAILMENT: The hypothesis definitely follows from the premise.": "- UAMBATANI: Dhana hakika inafuata kutokana na pendekezo.",
+        "- CONTRADICTION: The hypothesis definitely contradicts the premise.": "- UPINZANI: Dhana hakika inapingana na pendekezo.",
+        "- NEUTRAL: The hypothesis might be true or false; there's not enough information to tell.": "- KATI KATI: Dhana inaweza kuwa kweli au si kweli; hakuna taarifa za kutosha kujua.",
+        "Examples:": "Mifano:",
+        "Premise:": "Pendekezo:",
+        "Hypothesis:": "Dhana:",
+        "Relationship:": "Uhusiano:",
+        "Now, determine the relationship for the following:": "Sasa, tambua uhusiano kwa yafuatayo:",
+        "The chef is cooking a meal in the kitchen.": "Mpishi anapika chakula jikoni.",
+        "The chef is preparing food.": "Mpishi anatayarisha chakula.",
+        "The boy is playing soccer in the park.": "Mvulana anacheza soka bustanini.",
+        "The boy is swimming in a pool.": "Mvulana anaogelea bwawani.",
+        "The woman is walking down the street.": "Mwanamke anatembea barabarani.",
+        "She is going to the grocery store.": "Anakwenda dukani kununua mboga."
+    },
+    "ur": {
+        "Given a premise and hypothesis, determine if the hypothesis is an ENTAILMENT, CONTRADICTION, or NEUTRAL with respect to the premise.":
+            "Aik mafrooza aur farziya ko dekhte hue, yeh taayun karen ke farziya mafrooza ke hawale se LAZMI NATEEJA, TAZAD, ya GHAIR JANIBDAR hai.",
+        "Provide your answer as a single word: either ENTAILMENT, NEUTRAL, or CONTRADICTION. Do not add any other text or explanation.":
+            "Apna jawab sirf aik lafz mein den: LAZMI NATEEJA, GHAIR JANIBDAR, ya TAZAD. Koi aur متن ya wazahat shamil na karen.",
+        "Definitions:": "Taareefein:",
+        "- ENTAILMENT: The hypothesis definitely follows from the premise.": "- LAZMI NATEEJA: Farziya yaqeeni taur par mafrooza se nikalta hai.",
+        "- CONTRADICTION: The hypothesis definitely contradicts the premise.": "- TAZAD: Farziya yaqeeni taur par mafrooza se mutazaad hai.",
+        "- NEUTRAL: The hypothesis might be true or false; there's not enough information to tell.": "- GHAIR JANIBDAR: Farziya sahih ya ghalat ho sakta hai; batane ke liye kafi maloomat nahi hain.",
+        "Examples:": "Misalein:",
+        "Premise:": "Mafrooza:",
+        "Hypothesis:": "Farziya:",
+        "Relationship:": "Taalluq:",
+        "Now, determine the relationship for the following:": "Ab, darj zail ke liye taalluq ka taayun karen:",
+        "The chef is cooking a meal in the kitchen.": "Bawarchi bawarchi khane mein khana paka raha hai.",
+        "The chef is preparing food.": "Bawarchi khana tayyar kar raha hai.",
+        "The boy is playing soccer in the park.": "Larka park mein football khel raha hai.",
+        "The boy is swimming in a pool.": "Larka pool mein tairaki kar raha hai.",
+        "The woman is walking down the street.": "Khatoon सड़क par chal rahi hai.",
+        "She is going to the grocery store.": "Woh grocery store ja rahi hai."
+    },
+    "fr": { # Added French translations for instructions and UI elements
+        "Given a premise and hypothesis, determine if the hypothesis is an ENTAILMENT, CONTRADICTION, or NEUTRAL with respect to the premise.":
+            "Étant donné une prémisse et une hypothèse, déterminez si l'hypothèse est une INFÉRENCE, une CONTRADICTION ou NEUTRE par rapport à la prémisse.",
+        "Provide your answer as a single word: either ENTAILMENT, NEUTRAL, or CONTRADICTION. Do not add any other text or explanation.":
+            "Fournissez votre réponse en un seul mot : INFÉRENCE, NEUTRE ou CONTRADICTION. N'ajoutez aucun autre texte ou explication.",
+        "Definitions:": "Définitions :",
+        "- ENTAILMENT: The hypothesis definitely follows from the premise.": "- INFÉRENCE : L'hypothèse découle définitivement de la prémisse.",
+        "- CONTRADICTION: The hypothesis definitely contradicts the premise.": "- CONTRADICTION : L'hypothèse contredit définitivement la prémisse.",
+        "- NEUTRAL: The hypothesis might be true or false; there's not enough information to tell.": "- NEUTRE : L'hypothèse peut être vraie ou fausse ; il n'y a pas assez d'informations pour le dire.",
+        "Examples:": "Exemples :",
+        "Premise:": "Prémisse :",
+        "Hypothesis:": "Hypothèse :",
+        "Relationship:": "Relation :",
+        "Now, determine the relationship for the following:": "Maintenant, déterminez la relation pour ce qui suit :",
+        # English examples are kept as per requirement for few-shot content
+        "The chef is cooking a meal in the kitchen.": "The chef is cooking a meal in the kitchen.",
+        "The chef is preparing food.": "The chef is preparing food.",
+        "The boy is playing soccer in the park.": "The boy is playing soccer in the park.",
+        "The boy is swimming in a pool.": "The boy is swimming in a pool.",
+        "The woman is walking down the street.": "The woman is walking down the street.",
+        "She is going to the grocery store.": "She is going to the grocery store."
+    }
+} 

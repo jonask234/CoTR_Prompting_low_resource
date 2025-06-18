@@ -26,29 +26,35 @@ LANG_NAMES = {
     "en": "English",
     "sw": "Swahili",
     "ha": "Hausa",
-    "te": "Telugu"
+    "te": "Telugu",
+    "fr": "French"
     # Add other potential languages if needed
 }
 
-# Define English labels for MasakhaNEWS, including "unknown"
-CLASS_LABELS_ENGLISH = ['health', 'religion', 'politics', 'sports', 'local', 'business', 'entertainment', 'unknown']
+# Define English labels for MasakhaNEWS
+CLASS_LABELS_ENGLISH = ['business', 'entertainment', 'health', 'politics', 'religion', 'sports', 'technology']
 
 # LRL translations of these English MasakhaNEWS labels
 CLASS_LABELS_LRL = {
     "sw": {
         "health": "afya", "religion": "dini", "politics": "siasa",
-        "sports": "michezo", "local": "ndani", "business": "biashara",
-        "entertainment": "burudani", "unknown": "haijulikani"
+        "sports": "michezo", "business": "biashara",
+        "entertainment": "burudani", "technology": "teknolojia"
     },
     "ha": {
         "health": "lafiya", "religion": "addini", "politics": "siyasa",
-        "sports": "wasanni", "local": "na gida", "business": "kasuwanci",
-        "entertainment": "nishadi", "unknown": "ba a sani ba"
+        "sports": "wasanni", "business": "kasuwanci",
+        "entertainment": "nishadi", "technology": "fasaha"
     },
     "te": {
         "health": "ఆరోగ్యం", "religion": "మతం", "politics": "రాజకీయాలు",
-        "sports": "క్రీడలు", "local": "స్థానిక", "business": "వ్యాపారం",
-        "entertainment": "వినోదం", "unknown": "తెలియదు"
+        "sports": "క్రీడలు", "business": "వ్యాపారం",
+        "entertainment": "వినోదం", "technology": "సాంకేతికత"
+    },
+    "fr": {
+        "health": "santé", "religion": "religion", "politics": "politique",
+        "sports": "sport", "business": "affaires",
+        "entertainment": "divertissement", "technology": "technologie"
     }
 }
 
@@ -71,14 +77,11 @@ def _escape_fstring_val(value: str) -> str:
 
 def generate_classification_prompt_english(text_en: str, possible_labels: List[str], use_few_shot: bool = True) -> str:
     """Generate a prompt for English classification, asking for an English label."""
-    labels_for_prompt = [l for l in possible_labels if l != 'unknown']
     # Escape labels before using them in f-strings
-    escaped_labels_for_prompt = [_escape_fstring_val(l) for l in labels_for_prompt]
+    escaped_labels_for_prompt = [_escape_fstring_val(l) for l in possible_labels]
     labels_str = ", ".join([f"'{l}'" for l in escaped_labels_for_prompt])
     
-    unknown_instruction = " If the text does not clearly fit any category, respond with 'unknown'." if 'unknown' in possible_labels else ""
-    
-    instruction_segment = f"Classify the following English text into one of these categories: {labels_str}.{unknown_instruction}\\nRespond with only the English category label."
+    instruction_segment = f"Classify the following English text into one of these categories: {labels_str}.\\nRespond with only the English category label."
     
     escaped_text_en = _escape_fstring_val(text_en)
     
@@ -90,17 +93,15 @@ def generate_classification_prompt_english(text_en: str, possible_labels: List[s
     examples_segment = ""
     if use_few_shot:
         example_lines = ["\\n\\nExamples:"]
-        # Example 1:
-        if escaped_labels_for_prompt and len(escaped_labels_for_prompt) > 0:
-            # Assuming example texts are fixed and don't need escaping here
-            example_lines.append(f"\\nText: 'This article discusses recent political events in Africa.'\\nCategory: {escaped_labels_for_prompt[0]}")
-        # Example 2:
-        if escaped_labels_for_prompt and len(escaped_labels_for_prompt) > 1:
-            example_lines.append(f"\\nText: 'The local sports team won their match yesterday evening.'\\nCategory: {escaped_labels_for_prompt[1]}")
-        # Example for 'unknown' if it's an option
-        if 'unknown' in possible_labels:
-             # 'unknown' is a fixed string, no need to escape from variable
-             example_lines.append(f"\\nText: 'A very vague story about nothing in particular.'\\nCategory: unknown")
+        # Example 1: Business
+        if 'business' in possible_labels:
+            example_lines.append(f"\\nText: 'The company announced record profits for the third quarter.'\\nCategory: business")
+        # Example 2: Sports
+        if 'sports' in possible_labels:
+            example_lines.append(f"\\nText: 'The local sports team won their match yesterday evening.'\\nCategory: sports")
+        # Example 3: Technology
+        if 'technology' in possible_labels:
+            example_lines.append(f"\\nText: 'Scientists developed a new artificial intelligence system.'\\nCategory: technology")
         
         if len(example_lines) > 1: 
             examples_segment = "".join(example_lines)
@@ -111,7 +112,7 @@ def generate_classification_prompt_english(text_en: str, possible_labels: List[s
 
 def extract_classification_label_cotr(output_text: str, expected_labels_en: List[str]) -> str:
     """Extracts English classification label from model output."""
-    default_fallback_label = "unknown" if "unknown" in expected_labels_en else (expected_labels_en[0] if expected_labels_en else "ERROR_NO_LABELS_DEFINED")
+    default_fallback_label = "[Unknown Label]"  # Use a fallback that's not part of the dataset
     if not output_text or not isinstance(output_text, str):
         return default_fallback_label
 
@@ -123,21 +124,15 @@ def extract_classification_label_cotr(output_text: str, expected_labels_en: List
             text_lower = text_lower[len(prefix):].strip()
     text_lower = text_lower.strip('\'".().[]{}!?;' )
 
+    # Exact match first
     for label in expected_labels_en:
         if label.lower() == text_lower:
             return label
-    
-    if "unknown" in expected_labels_en:
-        unknown_markers = ["unknown", "cannot determine", "unable to classify", "not specified", "uncertain", "i don't know"]
-        for marker in unknown_markers:
-            if marker in text_lower: # Check if the marker is present
-                return "unknown"
 
     # More careful substring check: only if it's a clear standalone word
     for label in expected_labels_en:
-        if label != "unknown": # Don't match partial "unknown"
-            if re.search(r'\b' + re.escape(label.lower()) + r'\b', text_lower):
-                return label
+        if re.search(r'\b' + re.escape(label.lower()) + r'\b', text_lower):
+            return label
     
     return default_fallback_label
 
@@ -230,7 +225,7 @@ def process_classification_english(
         response_str = tokenizer.decode(outputs[0][inputs["input_ids"].shape[-1]:], skip_special_tokens=True)
     except Exception as e:
         logger.error(f"Error during model.generate in process_classification_english: {e}", exc_info=True)
-        return "unknown" if "unknown" in possible_labels_en else (possible_labels_en[0] if possible_labels_en else "[ERROR]")
+        return "[Classification Error]"
 
     return extract_classification_label_cotr(response_str, possible_labels_en)
 
@@ -244,11 +239,10 @@ def evaluate_classification_cotr_multi_prompt(
 ) -> pd.DataFrame:
     results = []
     active_possible_labels_en = possible_labels_en if possible_labels_en else CLASS_LABELS_ENGLISH
-    if "unknown" not in active_possible_labels_en: active_possible_labels_en.append("unknown")
 
     for idx, row in tqdm(samples_df.iterrows(), total=len(samples_df), desc=f"Multi-Prompt CoTR {lang_code} ({model_name})"):
         original_text = str(row['text'])
-        ground_truth_label = str(row['label']).lower().strip() if 'label' in row and pd.notna(row['label']) else "unknown"
+        ground_truth_label = str(row['label']).lower().strip() if 'label' in row and pd.notna(row['label']) else "[Missing Ground Truth]"
 
         text_en, raw_text_translation, time_text_trans = "[Translation Error]", None, 0.0
         if lang_code.lower() == "en":
@@ -272,7 +266,7 @@ def evaluate_classification_cotr_multi_prompt(
 
         predicted_label_lrl, raw_label_translation, time_label_trans = predicted_label_en, None, 0.0
         comet_score_label_en_lrl = None
-        if lang_code.lower() != "en" and predicted_label_en in active_possible_labels_en and predicted_label_en != "unknown" and "[Classification Error]" not in predicted_label_en:
+        if lang_code.lower() != "en" and predicted_label_en in active_possible_labels_en and "[Classification Error]" not in predicted_label_en:
             predicted_label_lrl, raw_label_translation, time_label_trans = translate_text(
                 model, tokenizer, predicted_label_en, "en", lang_code, True, label_translation_params
             )
@@ -304,9 +298,7 @@ def evaluate_classification_cotr_multi_prompt(
 def generate_single_prompt_classification_cotr(lrl_text: str, lang_code: str, possible_labels_en: List[str], use_few_shot: bool = True) -> str:
     """Generates a single CoTR prompt for classification, instructing all steps in English."""
     original_lrl_name = get_language_name(lang_code)
-    en_labels_for_prompt = [l for l in possible_labels_en if l != 'unknown']
-    english_labels_str = ", ".join(f"'{label}'" for label in en_labels_for_prompt)
-    unknown_option_desc = " If none of these fit, use 'unknown'." if 'unknown' in possible_labels_en else ""
+    english_labels_str = ", ".join(f"'{label}'" for label in possible_labels_en)
 
     prompt = f"""You are an advanced AI assistant. You will be given a text in {original_lrl_name}.
 Your task is to perform text classification by following these steps precisely and outputting each step as specified:
@@ -315,15 +307,14 @@ Your task is to perform text classification by following these steps precisely a
     Output this as:
     Translated English Text: [Your English Translation of the text]
 
-2.  **Classify English Text**: From the translated English text (from Step 1), classify it into ONE of the following English categories: {english_labels_str}.{unknown_option_desc}
-    Your response for this step should be ONLY the English category name from the list (or 'unknown' if applicable).
+2.  **Classify English Text**: From the translated English text (from Step 1), classify it into ONE of the following English categories: {english_labels_str}.
+    Your response for this step should be ONLY the English category name from the list.
     Output this as:
-    English Category: [Chosen English Category or 'unknown']
+    English Category: [Chosen English Category]
 
 3.  **Translate Category to {original_lrl_name}**: Take the English category chosen in Step 2 and translate it accurately into {original_lrl_name}.
-    If Step 2 resulted in 'unknown', then for this step, output the {original_lrl_name} equivalent of 'unknown' (e.g., '{CLASS_LABELS_LRL.get(lang_code, {}).get("unknown", "unknown")}').
     Output this as:
-    {original_lrl_name} Category: [Translated {original_lrl_name} Category or {original_lrl_name} equivalent of 'unknown']
+    {original_lrl_name} Category: [Translated {original_lrl_name} Category]
 
 Ensure each step's output is clearly labeled EXACTLY as shown above.
 The final "{original_lrl_name} Category" is the ultimate result for classification.
@@ -332,15 +323,15 @@ Original {original_lrl_name} Text:
 '{lrl_text}'
 """
     if use_few_shot:
-        example_lrl_text_1 = "This is a clear example about sports and athletics."
+        example_lrl_text_1 = "The company announced record profits for the third quarter."
         example_translation_1 = example_lrl_text_1
-        ex_cat1_en = en_labels_for_prompt[0] if en_labels_for_prompt else 'sports'
+        ex_cat1_en = 'business'
         ex_cat1_lrl = CLASS_LABELS_LRL.get(lang_code, {}).get(ex_cat1_en.lower(), ex_cat1_en)
 
-        example_lrl_text_2 = "A very vague text that does not belong to any specific domain clearly."
+        example_lrl_text_2 = "Scientists developed a new artificial intelligence system."
         example_translation_2 = example_lrl_text_2
-        ex_cat2_en = "unknown"
-        ex_cat2_lrl = CLASS_LABELS_LRL.get(lang_code, {}).get("unknown", "unknown")
+        ex_cat2_en = "technology"
+        ex_cat2_lrl = CLASS_LABELS_LRL.get(lang_code, {}).get(ex_cat2_en.lower(), ex_cat2_en)
         
         prompt += f"""\nExamples:
 
@@ -362,7 +353,7 @@ English Category: {ex_cat2_en}
 def extract_lrl_classification_from_single_prompt(response_text: str, lang_code: str, possible_labels_en: List[str]) -> str:
     """Extracts the final LRL classification label, then maps to EN for metrics."""
     lrl_name = get_language_name(lang_code)
-    fallback_label = "unknown" if "unknown" in possible_labels_en else (possible_labels_en[0] if possible_labels_en else "ERROR_NO_LABELS")
+    fallback_label = "[Unknown Label]"  # Use a fallback that's not part of the dataset
 
     match_lrl = re.search(rf"{re.escape(lrl_name)}\s*Category\s*:\s*(.+?)(?:\n\s*(?:\S|$)|$)", response_text, re.IGNORECASE | re.DOTALL)
     if match_lrl:
@@ -401,7 +392,6 @@ def evaluate_classification_cotr_single_prompt(
 ) -> pd.DataFrame:
     results = []
     active_possible_labels_en = possible_labels_en if possible_labels_en else CLASS_LABELS_ENGLISH
-    if "unknown" not in active_possible_labels_en: active_possible_labels_en.append("unknown")
 
     default_gen_params = {
         "temperature": 0.2, "top_p": 0.9, "top_k": 30,
@@ -421,7 +411,7 @@ def evaluate_classification_cotr_single_prompt(
 
     for idx, row in tqdm(samples_df.iterrows(), total=len(samples_df), desc=f"Single-Prompt CoTR {lang_code} ({model_name})"):
         original_text = str(row['text'])
-        ground_truth_label = str(row['label']).lower().strip() if 'label' in row and pd.notna(row['label']) else "unknown"
+        ground_truth_label = str(row['label']).lower().strip() if 'label' in row and pd.notna(row['label']) else "[Missing Ground Truth]"
 
         prompt = generate_single_prompt_classification_cotr(original_text, lang_code, active_possible_labels_en, use_few_shot)
         inputs = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=max_input_tok_len)

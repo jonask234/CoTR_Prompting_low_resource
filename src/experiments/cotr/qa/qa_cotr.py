@@ -24,9 +24,10 @@ LANG_NAMES = {
     "en": "English",
     "sw": "Swahili",
     "te": "Telugu",
+    "fi": "Finnish",
     # Add other languages if they become relevant from TyDiQA or other datasets
     "hi": "Hindi", "vi": "Vietnamese", "bn": "Bengali", "id": "Indonesian",
-    "fi": "Finnish", "ko": "Korean", "ru": "Russian", "ar": "Arabic", "th": "Thai"
+    "ko": "Korean", "ru": "Russian", "ar": "Arabic", "th": "Thai"
 }
 
 def get_language_name(lang_code: str) -> str:
@@ -182,6 +183,17 @@ Provide ONLY the English translation.
 
 English Translation:"""
             return prompt_text
+        elif source_lang == 'fi': # Added Finnish to English translation prompt
+            prompt_text = f"""Original Text (Finnish):
+'{_escape_fstring_val(text)}'
+
+Instructions:
+Translate this Finnish text to English with maximum accuracy and fluency.
+Preserve the full meaning, all named entities, numbers, dates, and any specific details critical for answering questions based on this text.
+Provide ONLY the English translation.
+
+English Translation:"""
+            return prompt_text
     elif source_lang == 'en': # English to LRL (for answer back-translation)
         if target_lang == 'sw':
             prompt_text = f"""Original Text (English):
@@ -206,6 +218,18 @@ For yes/no answers, use the standard Telugu equivalent (e.g., 'అవును' 
 Provide ONLY the Telugu translation.
 
 Telugu Translation:"""
+            return prompt_text
+        elif target_lang == 'fi': # Added English to Finnish translation prompt (for answer)
+            prompt_text = f"""Original Text (English):
+'{_escape_fstring_val(text)}'
+
+Instructions:
+Translate this English text to natural, fluent, and grammatically correct Finnish.
+Preserve all factual content, names, and numerical information exactly.
+For yes/no answers, use the standard Finnish equivalent (e.g., 'Kyllä' or 'Ei').
+Provide ONLY the Finnish translation.
+
+Finnish Translation:"""
             return prompt_text
             
     # Fallback to a more general prompt if specific LRL pair isn't covered above
@@ -259,6 +283,18 @@ def generate_single_prompt_qa_cotr(lrl_question: str, lrl_context: str, lang_cod
     # Core instructions using triple-double-quotes for the f-string.
     # Python's f-string triple quotes handle newlines well.
     # Ensure internal 'I don\\'t know' is properly escaped for a Python string literal.
+    
+    # Adjust prompt format for English to avoid redundant steps
+    if lang_code == 'en':
+        format_instruction = """English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]"""
+    else:
+        format_instruction = f"""English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+{lrl_name} Answer: [Your {lrl_name} Translation of the English Answer]"""
+
     instructions_core = f"""Perform the following tasks in order for the provided {lrl_name} question and context:
 1.  Translate the {lrl_name} Question to English.
 2.  Translate the {lrl_name} Context to English.
@@ -266,34 +302,43 @@ def generate_single_prompt_qa_cotr(lrl_question: str, lrl_context: str, lang_cod
 4.  Translate your English Answer from step 3 back to {lrl_name}.
 
 Provide your answer in this exact format:
-English Question: [Your English Translation of the Question]
-English Context: [Your English Translation of the Context]
-English Answer: [Your English Answer based on the English Context and Question]
-{lrl_name} Answer: [Your {lrl_name} Translation of the English Answer]"""
+{format_instruction}"""
 
     few_shot_examples_str = "" # Initialize as empty
     if use_few_shot:
         lrl_name_for_prompt = get_language_name(lang_code)
         # Define few-shot examples (CoT in English, LRL parts vary)
         # Example 1: Question about a known fact, answer directly in context
-        ex1_lrl_q = f"Nani alikuwa rais wa kwanza wa Marekani?" if lang_code == "sw" else (f"అమెరికా మొదటి అధ్యక్షుడు ఎవరు?" if lang_code == "te" else f"[Question about first US president in {lrl_name_for_prompt}]")
-        ex1_lrl_c = f"George Washington alikuwa rais wa kwanza wa Marekani. Alihudumu kuanzia 1789 hadi 1797." if lang_code == "sw" else (f"జార్జ్ వాషింగ్టన్ అమెరికా మొదటి అధ్యక్షుడు. అతను 1789 నుండి 1797 వరకు పనిచేశారు." if lang_code == "te" else f"[Context about George Washington in {lrl_name_for_prompt}]")
+        ex1_lrl_q = f"Nani alikuwa rais wa kwanza wa Marekani?" if lang_code == "sw" else (f"అమెరికా మొదటి అధ్యక్షుడు ఎవరు?" if lang_code == "te" else (f"Kuka oli Yhdysvaltain ensimmäinen presidentti?" if lang_code == "fi" else f"[Question about first US president in {lrl_name_for_prompt}]"))
+        ex1_lrl_c = f"George Washington alikuwa rais wa kwanza wa Marekani. Alihudumu kuanzia 1789 hadi 1797." if lang_code == "sw" else (f"జార్జ్ వాషింగ్టన్ అమెరికా మొదటి అధ్యక్షుడు. అతను 1789 నుండి 1797 వరకు పనిచేశారు." if lang_code == "te" else (f"George Washington oli Yhdysvaltain ensimmäinen presidentti. Hän palveli vuosina 1789-1797." if lang_code == "fi" else f"[Context about George Washington in {lrl_name_for_prompt}]"))
         ex1_en_q = "Who was the first president of the United States?"
         ex1_en_c = "George Washington was the first president of the United States. He served from 1789 to 1797."
         ex1_en_a = "George Washington"
-        ex1_lrl_a_map = {"sw": "George Washington", "te": "జార్జ్ వాషింగ్టన్"}
+        ex1_lrl_a_map = {"sw": "George Washington", "te": "జార్జ్ వాషింగ్టన్", "fi": "George Washington"}
         ex1_lrl_a = ex1_lrl_a_map.get(lang_code, f"[George Washington in {lrl_name_for_prompt}]")
 
-        ex2_lrl_q = f"Rangi ya anga kwenye Mirihi ni ipi?" if lang_code == "sw" else (f"అంగారకుడిపై ఆకాశం రంగు ఏమిటి?" if lang_code == "te" else f"[Question about Mars sky in {lrl_name_for_prompt}]")
-        ex2_lrl_c = f"Mirihi ni sayari ya nne kutoka Jua." if lang_code == "sw" else (f"అంగారకుడు సూర్యుని నుండి నాల్గవ గ్రహం." if lang_code == "te" else f"[Context about Mars in {lrl_name_for_prompt}]")
+        ex2_lrl_q = f"Rangi ya anga kwenye Mirihi ni ipi?" if lang_code == "sw" else (f"అంగారకుడిపై ఆకాశం రంగు ఏమిటి?" if lang_code == "te" else (f"Mikä on Marsin taivaan väri?" if lang_code == "fi" else f"[Question about Mars sky in {lrl_name_for_prompt}]"))
+        ex2_lrl_c = f"Mirihi ni sayari ya nne kutoka Jua." if lang_code == "sw" else (f"అంగారకుడు సూర్యుని నుండి నాల్గవ గ్రహం." if lang_code == "te" else (f"Mars on neljäs planeetta Auringosta." if lang_code == "fi" else f"[Context about Mars in {lrl_name_for_prompt}]"))
         ex2_en_q = "What is the color of the sky on Mars?"
         ex2_en_c = "Mars is the fourth planet from the Sun."
         ex2_en_a = "I don't know"
-        ex2_lrl_a_map = {"sw": "Sijui", "te": "నాకు తెలియదు"}
+        ex2_lrl_a_map = {"sw": "Sijui", "te": "నాకు తెలియదు", "fi": "En tiedä"}
         ex2_lrl_a = ex2_lrl_a_map.get(lang_code, f"[Equivalent of I don't know in {lrl_name_for_prompt}]")
 
-        ex1_lrl_q_esc, ex1_lrl_c_esc, ex1_en_q_esc, ex1_en_c_esc, ex1_en_a_esc, ex1_lrl_a_esc = map(_escape_fstring_val, [ex1_lrl_q, ex1_lrl_c, ex1_en_q, ex1_en_c, ex1_en_a, ex1_lrl_a])
-        ex2_lrl_q_esc, ex2_lrl_c_esc, ex2_en_q_esc, ex2_en_c_esc, ex2_en_a_esc, ex2_lrl_a_esc = map(_escape_fstring_val, [ex2_lrl_q, ex2_lrl_c, ex2_en_q, ex2_en_c, ex2_en_a, ex2_lrl_a])
+        # Handle final answer label for examples based on language
+        if lang_code == 'en':
+            final_answer_label_ex1 = "English Answer"
+            final_answer_val_ex1 = ex1_en_a
+            final_answer_label_ex2 = "English Answer"
+            final_answer_val_ex2 = ex2_en_a
+        else:
+            final_answer_label_ex1 = f"{lrl_name} Answer"
+            final_answer_val_ex1 = ex1_lrl_a
+            final_answer_label_ex2 = f"{lrl_name} Answer"
+            final_answer_val_ex2 = ex2_lrl_a
+
+        ex1_lrl_q_esc, ex1_lrl_c_esc, ex1_en_q_esc, ex1_en_c_esc, ex1_en_a_esc, ex1_lrl_a_esc = map(_escape_fstring_val, [ex1_lrl_q, ex1_lrl_c, ex1_en_q, ex1_en_c, ex1_en_a, final_answer_val_ex1])
+        ex2_lrl_q_esc, ex2_lrl_c_esc, ex2_en_q_esc, ex2_en_c_esc, ex2_en_a_esc, ex2_lrl_a_esc = map(_escape_fstring_val, [ex2_lrl_q, ex2_lrl_c, ex2_en_q, ex2_en_c, ex2_en_a, final_answer_val_ex2])
         
         # Constructing the few_shot_examples_str using triple-double-quotes f-string.
         # Variables are already escaped by _escape_fstring_val.
@@ -307,7 +352,7 @@ Original {lrl_name} Context: '{ex1_lrl_c_esc}'
 English Question: {ex1_en_q_esc}
 English Context: {ex1_en_c_esc}
 English Answer: {ex1_en_a_esc}
-{lrl_name} Answer: {ex1_lrl_a_esc}
+{final_answer_label_ex1}: {ex1_lrl_a_esc}
 
 Example 2:
 Original {lrl_name} Question: '{ex2_lrl_q_esc}'
@@ -316,7 +361,7 @@ Original {lrl_name} Context: '{ex2_lrl_c_esc}'
 English Question: {ex2_en_q_esc}
 English Context: {ex2_en_c_esc}
 English Answer: {ex2_en_a_esc}
-{lrl_name} Answer: {ex2_lrl_a_esc}
+{final_answer_label_ex2}: {ex2_lrl_a_esc}
 """
 
     # Task prompt also uses triple-double-quotes f-string
@@ -752,17 +797,34 @@ def extract_parts_from_single_prompt_qa_response(response_text: str, lang_code: 
     match_c_en = re.search(r"English\s+Context\s*:\s*(.*?)(?=\nEnglish\s+Answer\s*:|\n" + re.escape(lrl_name) + r"\s+Answer\s*:|$)", response_text, re.IGNORECASE | re.DOTALL)
     if match_c_en: parts["en_context_model"] = match_c_en.group(1).strip()
 
-    match_a_en = re.search(r"English\s+Answer\s*:\s*(.*?)(?=\n" + re.escape(lrl_name) + r"\s+Answer\s*:|$)", response_text, re.IGNORECASE | re.DOTALL)
-    if match_a_en: parts["en_answer_model_intermediate"] = match_a_en.group(1).strip()
-
-    match_a_lrl = re.search(rf"{re.escape(lrl_name)}\s+Answer\s*:\s*(.+?)(?=\n---|\nExample|\nOriginal|\nEnglish\s+Question\s*:|$)", response_text, re.IGNORECASE | re.DOTALL)
-    if match_a_lrl:
-        parts["lrl_answer_model_final"] = match_a_lrl.group(1).strip()
-    elif lang_code == 'en' and parts["en_answer_model_intermediate"] != "[SP_Extract_Error_EN_A]":
-        parts["lrl_answer_model_final"] = parts["en_answer_model_intermediate"]
-        logger.debug(f"QA CoTR SP Extract: LRL Answer line not found for {lrl_name}, lang is 'en', using EN answer.")
+    # Handling for English Answer is different for EN vs LRLs
+    if lang_code == 'en':
+        # For English, the English Answer is the final part. The response might end there.
+        match_a_en = re.search(r"English\s+Answer\s*:\s*(.*)", response_text, re.IGNORECASE | re.DOTALL)
     else:
-        logger.warning(f"QA CoTR SP Extract: Final LRL Answer line not found for {lrl_name} in response: '{response_text[:150]}...'")
+        # For LRLs, we expect a final LRL answer to follow, so the match should be non-greedy.
+        match_a_en = re.search(r"English\s+Answer\s*:\s*(.*?)(?=\n" + re.escape(lrl_name) + r"\s+Answer\s*:|$)", response_text, re.IGNORECASE | re.DOTALL)
+
+    if match_a_en:
+        # Clean up potential trailing junk for the greedy english match
+        answer_part = match_a_en.group(1).strip()
+        answer_part = re.split(r"\\n\\s*(?:---|Example|Original {lrl_name} Question:|English Question:)", answer_part, 1)[0].strip()
+        parts["en_answer_model_intermediate"] = answer_part
+
+    # Handling for final LRL Answer
+    if lang_code == 'en':
+        # For English, the final answer is just the intermediate English answer.
+        if parts["en_answer_model_intermediate"] != "[SP_Extract_Error_EN_A]":
+             parts["lrl_answer_model_final"] = parts["en_answer_model_intermediate"]
+        else:
+            logger.warning(f"QA CoTR SP Extract: Could not extract English answer for English sample. Response: '{response_text[:150]}...'")
+    else:
+        # For LRLs, we must find the LRL answer section.
+        match_a_lrl = re.search(rf"{re.escape(lrl_name)}\s+Answer\s*:\s*(.+?)(?=\n---|\nExample|\nOriginal|\nEnglish\s+Question\s*:|$)", response_text, re.IGNORECASE | re.DOTALL)
+        if match_a_lrl:
+            parts["lrl_answer_model_final"] = match_a_lrl.group(1).strip()
+        else:
+            logger.warning(f"QA CoTR SP Extract: Final LRL Answer line not found for {lrl_name} in response: '{response_text[:150]}...'")
 
     if parts["en_answer_model_intermediate"] != "[SP_Extract_Error_EN_A]":
         is_yn_q_intermediate = is_yes_no_question(parts["en_question_model"] if parts["en_question_model"] else "")

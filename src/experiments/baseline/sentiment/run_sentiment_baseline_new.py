@@ -56,27 +56,23 @@ MODEL_SPECIFIC_OVERRIDES = {
     }
 }
 
+AFRISENTI_LANG_CODES = ['am', 'dz', 'ha', 'ig', 'ma', 'pcm', 'pt', 'sw', 'yo', 'multi'] # Added pt to AfriSenti langs
+
 def parse_args():
-    parser = argparse.ArgumentParser(description="Run Sentiment Baseline experiments with AfriSenti.")
-    parser.add_argument("--models", type=str, default="CohereLabs/aya-expanse-8b", 
-                        help="Comma-separated model names (e.g., 'CohereLabs/aya-expanse-8b,Qwen/Qwen2.5-7B-Instruct').")
-    parser.add_argument("--langs", nargs='+', default=['sw', 'ha'], 
-                        choices=['am', 'dz', 'ha', 'ig', 'ma', 'pcm', 'pt', 'sw', 'yo', 'twi', 'kr', 'ti', 'en', 'ar', 'multi', 'haus', 'ibo', 'swa', 'yor', 'mar'], # Expanded choices for flexibility
-                        help="Languages to evaluate. Default: sw, ha.")
-    parser.add_argument("--prompt_instructions", nargs='+', default=['en', 'lrl'], choices=['en', 'lrl'], 
-                        help="Instruction language for prompts: 'en' for English, 'lrl' for LRL-specific.")
+    parser = argparse.ArgumentParser(description="Run Baseline Sentiment Analysis Experiments")
+    parser.add_argument("--models", type=str, default="CohereLabs/aya-expanse-8b,Qwen/Qwen2.5-7B-Instruct", help="Comma-separated model names.")
+    parser.add_argument("--datasets", type=str, default="afrisenti", help="Comma-separated dataset names (e.g., afrisenti, naijasenti). Currently, only afrisenti is fully integrated.")
+    parser.add_argument("--langs", type=str, default="sw,ha,pt", help="Comma-separated language codes (e.g., am,ar,en,es,fr,ha,id,ig,multi,pcm,pt,sw,yo,zh for afrisenti).")
+    parser.add_argument("--num_samples", type=int, default=80, help="Number of samples per language. Default: 80")
+    parser.add_argument("--data_split", type=str, default="test", choices=["train", "validation", "test"], help="Dataset split to use.")
     parser.add_argument("--shot_settings", nargs='+', default=['zero_shot', 'few_shot'], choices=['zero_shot', 'few_shot'], 
                         help="Shot settings to evaluate.")
     parser.add_argument("--base_output_dir", type=str, default="/work/bbd6522/results/sentiment/baseline", 
                         help="Base directory to save results and summaries.")
-    parser.add_argument("--data_split", type=str, default="test", choices=["train", "validation", "test"], 
-                        help="Dataset split to use. Default: test.")
     
     # Sampling options
     parser.add_argument("--sample_percentage", type=float, default=10.0, 
                         help="Percentage of samples to use *per language* (0.0 to 1.0) from the chosen split and num_samples. Default: 10.0 (10%%).")
-    parser.add_argument("--num_samples", type=int, default=None, 
-                        help="Maximum number of samples to load per language and split *before* applying sample_percentage. If None, all available are considered.")
     parser.add_argument("--balanced_sampling", action='store_true', 
                         help="Enable balanced sampling (equal numbers per class). `samples_per_class` will be used if set.")
     parser.add_argument("--samples_per_class", type=int, default=None, 
@@ -166,7 +162,7 @@ def main():
             if torch.cuda.is_available(): torch.cuda.empty_cache()
             continue
 
-        for lang_code in args.langs:
+        for lang_code in args.langs.split(','):
             logging.info(f"\n--- Processing Language: {lang_code} for model {model_name_str} ---")
             
             # Load all samples for the split first to determine dataset size
@@ -186,11 +182,18 @@ def main():
                     num_to_sample = min(5, num_total_samples) # Max 5 samples in test mode
                     logging.info(f"    TEST MODE: Sampling {num_to_sample} samples.")
                 else:
-                    sample_prop = args.sample_percentage / 100.0
-                    num_to_sample = max(1, int(num_total_samples * sample_prop)) if num_total_samples > 0 else 0
-                    logging.info(f"    Total available samples for {lang_code} ('{args.data_split}' split): {num_total_samples}")
-                    logging.info(f"    Sampling {args.sample_percentage:.1f}%%: {num_to_sample} samples using seed {args.seed}.")
+                    # Use args.num_samples as the target, ensuring it doesn't exceed available
+                    num_to_sample = min(args.num_samples, num_total_samples)
+                    if args.num_samples > num_total_samples:
+                        logging.info(f"    Requested {args.num_samples} samples, but only {num_total_samples} available. Using all {num_total_samples} samples.")
+                    else:
+                        logging.info(f"    Targeting {num_to_sample} samples based on --num_samples default/setting (seed {args.seed}).")
                 
+                # The balanced_sampling and samples_per_class logic might need review if args.num_samples is the primary driver.
+                # For now, sampling 'num_to_sample' from the full set.
+                # If balanced sampling is truly needed, it should operate on the 'full_samples_df' before this step,
+                # or this 'num_to_sample' should be distributed among classes.
+                # Current logic will take a random sample of 'num_to_sample'.
                 if num_to_sample > 0 :
                     samples_df_for_lang = full_samples_df.sample(n=num_to_sample, random_state=args.seed)
                 else:
@@ -206,7 +209,6 @@ def main():
                 use_few_shot = (shot_setting_str == 'few_shot')
                 
                 # Determine prompt_in_lrl (True if lang_code is not 'en')
-                # This simplifies the logic as sentiment_baseline_new.py's evaluate function takes prompt_in_lrl
                 prompt_in_lrl_bool = (lang_code != 'en')
                 prompt_lang_description = "LRL-instruct" if prompt_in_lrl_bool else "EN-instruct"
                 
@@ -222,8 +224,8 @@ def main():
                 os.makedirs(results_path_prefix, exist_ok=True)
                 os.makedirs(summaries_path_prefix, exist_ok=True)
                 
-                detailed_results_filename = os.path.join(results_path_prefix, f"results_sentiment_baseline_new_{lang_code}.csv")
-                current_summary_filename = os.path.join(summaries_path_prefix, f"summary_sentiment_baseline_new_{lang_code}.csv")
+                detailed_results_filename = os.path.join(results_path_prefix, f"results_sentiment_baseline_new_{lang_code}_{prompt_lang_description}_{shot_setting_str}.csv")
+                current_summary_filename = os.path.join(summaries_path_prefix, f"summary_sentiment_baseline_new_{lang_code}_{prompt_lang_description}_{shot_setting_str}.csv")
 
                 if not args.overwrite_results and os.path.exists(detailed_results_filename) and os.path.exists(current_summary_filename):
                     logging.info(f"Results and summary for this configuration already exist and overwrite_results is False. Loading existing summary: {current_summary_filename}")
@@ -307,7 +309,7 @@ def main():
         # Define overall summary directory (one level up from model-specific summaries)
         overall_summary_dir = os.path.join(args.base_output_dir, "overall_summaries")
         os.makedirs(overall_summary_dir, exist_ok=True)
-        overall_summary_file_path = os.path.join(overall_summary_dir, "sentiment_baseline_new_ALL_experiments_summary.csv")
+        overall_summary_file_path = os.path.join(overall_summary_dir, f"sentiment_baseline_new_ALL_experiments_summary_{time.strftime('%Y%m%d-%H%M%S')}.csv")
         
         # Ensure numeric columns are correctly formatted
         float_cols = ['accuracy', 'macro_f1', 'macro_precision', 'macro_recall', 

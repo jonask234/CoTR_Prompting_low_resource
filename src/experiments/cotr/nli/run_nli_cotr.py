@@ -57,51 +57,51 @@ logger = logging.getLogger(__name__)
 #    ... (entire function removed) ...
 
 def parse_args():
-    """Parse command line arguments (style from run_nli_cotr_old.py)."""
-    parser = argparse.ArgumentParser(description="Run NLI CoTR (Chain of Thought Translation Reasoning) experiments using XNLI dataset.")
-    # Arguments from run_nli_cotr_old.py
-    parser.add_argument("--langs", nargs='+', default=['en', 'sw', 'ur'], 
-                        choices=['en', 'sw', 'ur', 'ar', 'bg', 'de', 'el', 'es', 'fr', 'hi', 'ru', 'th', 'tr', 'vi', 'zh'], # XNLI languages
-                        help="Languages to test from XNLI (default: en, sw, ur)")
-    parser.add_argument("--models_to_run", type=str, choices=['aya', 'qwen', 'both'], default='both', # Renamed from --model to avoid conflict
-                        help="Model to use (CohereLabs/aya-expanse-8b or Qwen/Qwen2.5-7B-Instruct or both) (default: both)")
-    parser.add_argument("--shot_types_to_run", type=str, choices=['zero_shot', 'few_shot', 'both'], default='both', # Renamed
-                        help="Shot type to use (default: both)")
-    parser.add_argument("--pipelines_to_run", type=str, choices=['multi_prompt', 'single_prompt', 'both'], default='both', # Renamed
-                        help="Pipeline type to use (default: both)")
-    # sample_percentage from new script is preferred for 10% logic.
-    # args.samples from old script will map to this concept if load_xnli_samples is called appropriately.
-    parser.add_argument("--sample_percentage", type=float, default=1.0, help="Percentage of samples to use per language (0.0 to 100.0). Default is 1.0 (1%%).")
-    parser.add_argument("--max_samples_per_lang", type=int, default=None, help="Maximum number of samples per language to cap at, after percentage sampling (default: None)")
-
-
-    # Generation parameters from run_nli_cotr_old.py
-    parser.add_argument("--temperature", type=float, default=0.3,
-                        help="Temperature for generation (default: 0.3)")
-    # max-tokens in old script was for final classification label.
-    # New script has max_tok_nli, max_tok_trans, max_tok_sp_chain.
-    # Let's use the more specific ones from new script but ensure they are used.
-    parser.add_argument("--max_tokens_nli_label", type=int, default=20,
-                        help="Maximum tokens to generate for final NLI classification label (multi-prompt) (default: 20)")
-    parser.add_argument("--max_tokens_translation", type=int, default=128, # Old script had 512, new had 128/150 for aya/qwen. Let's use a new default.
-                        help="Maximum tokens to generate for translations (LRL->EN, EN->LRL) (default: 128)")
-    parser.add_argument("--max_tokens_single_prompt_chain", type=int, default=256, # Old script had no direct equivalent, new had 256/300
-                        help="Maximum tokens for the entire single-prompt CoTR chain (default: 256)")
-
-    parser.add_argument("--do_sample", action="store_true", default=False, # Default to False if not present, to match old script's behavior if temp=0
-                        help="Use sampling instead of greedy decoding. If False and temperature is 0, it's greedy.")
-    parser.add_argument("--top_p", type=float, default=0.9, help="Top-p for generation if sampling (default: 0.9)")
-    parser.add_argument("--top_k", type=int, default=40, help="Top-k for generation if sampling (default: 40)")
-    parser.add_argument("--repetition_penalty", type=float, default=1.0, help="Repetition penalty (default: 1.0)")
-
-
-    # Other arguments from new script
+    """Parse command-line arguments."""
+    parser = argparse.ArgumentParser(description="Run NLI CoTR experiments")
+    parser.add_argument("--models", type=str, default="CohereLabs/aya-23-8B,Qwen/Qwen2.5-7B-Instruct", help="Model to use, comma-separated if multiple models")
+    parser.add_argument("--languages", type=str, default="en,ur", help="Language code(s), comma-separated if multiple")
+    parser.add_argument("--num_samples", type=int, default=10, help="Number of samples per language")
+    parser.add_argument("--data_split", type=str, default="test", choices=["train", "validation", "test"], 
+                        help="Dataset split to use. Default: test")
+    parser.add_argument("--pipeline_types", nargs='+', default=['single_prompt', 'multi_prompt'], 
+                        choices=['single_prompt', 'multi_prompt'], help="CoTR pipeline types to run.")
+    parser.add_argument("--shot_settings", nargs='+', default=['zero_shot', 'few_shot'], 
+                        choices=['zero_shot', 'few_shot'], help="Prompting strategies (zero-shot or few-shot).")
     parser.add_argument("--test_mode", action='store_true', help="Run with first 5 samples only for quick testing.")
     parser.add_argument("--hf_token", type=str, help="HuggingFace API token for model access.")
     parser.add_argument("--base_output_dir", type=str, default="/work/bbd6522/results/nli/cotr_xnli", 
-                        help="Base directory to save results and summaries.")
-    parser.add_argument("--overwrite_results", action='store_true', help="Overwrite existing result files instead of skipping.")
-    parser.add_argument("--seed", type=int, default=42, help="Random seed for reproducibility in sampling.")
+                        help="Base directory to save results, summaries, and plots.")
+    parser.add_argument("--overwrite_results", action="store_true", 
+                        help="If set, overwrite existing detailed result and summary files.")
+    parser.add_argument("--seed", type=int, default=42, help="Random seed for sampling.")
+    parser.add_argument("--max_input_length", type=int, default=2048, 
+                        help="Maximum input length for the tokenizer. Default 2048.") # From old script, seems sensible
+    parser.add_argument("--log_level", type=str, default="INFO", choices=["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"], help="Set the logging level.")
+
+    # Generation Parameters - Common (used by multi-prompt steps and potentially overridden for single-prompt if not specified there)
+    parser.add_argument("--temperature", type=float, default=0.3, help="Temperature for text generation. Default: 0.3. Used for multi-prompt steps unless overridden by single-prompt specific flags.")
+    parser.add_argument("--top_p", type=float, default=0.9, help="Top-p (nucleus) sampling. Default: 0.9. Used for multi-prompt steps unless overridden by single-prompt specific flags.")
+    parser.add_argument("--top_k", type=int, default=40, help="Top-k sampling. Default: 40. Used for multi-prompt steps unless overridden by single-prompt specific flags.")
+    parser.add_argument("--repetition_penalty", type=float, default=1.1, help="Repetition penalty. Default: 1.1. Used for multi-prompt steps unless overridden by single-prompt specific flags.")
+    parser.add_argument("--do_sample", type=lambda x: (str(x).lower() == 'true'), default=True, help="Whether to use sampling. Default: True. Used for multi-prompt steps unless overridden by single-prompt specific flags.")
+
+    # Generation Parameters - Max New Tokens for Multi-Prompt Steps
+    parser.add_argument("--max_tokens_text_translation", type=int, default=256, help="Max new tokens for LRL->EN text translation (premise/hypothesis). Default: 256") # Adjusted from 512 to 256
+    parser.add_argument("--max_tokens_nli_processing", type=int, default=30, help="Max new tokens for English NLI processing (label generation). Default: 30") # Adjusted from 50 to 30
+    parser.add_argument("--max_tokens_label_translation", type=int, default=30, help="Max new tokens for EN->LRL label translation. Default: 30") # Adjusted from 50 to 30
+
+    # Generation Parameters - For Single-Prompt CoT Chain (can override common params if desired for the whole chain)
+    # These allow distinct settings for the single prompt if needed, otherwise it might fall back to common ones or have its own defaults in nli_cotr.py
+    parser.add_argument("--temperature_single_prompt", type=float, default=None, help="Override temperature for the single-prompt CoT chain. Default: Uses common --temperature.")
+    parser.add_argument("--top_p_single_prompt", type=float, default=None, help="Override top-p for the single-prompt CoT chain. Default: Uses common --top_p.")
+    parser.add_argument("--top_k_single_prompt", type=int, default=None, help="Override top-k for the single-prompt CoT chain. Default: Uses common --top_k.")
+    parser.add_argument("--repetition_penalty_single_prompt", type=float, default=None, help="Override repetition penalty for the single-prompt CoT chain. Default: Uses common --repetition_penalty.")
+    parser.add_argument("--do_sample_single_prompt", type=lambda x: (str(x).lower() == 'true'), default=None, help="Override do_sample for the single-prompt CoT chain. Default: Uses common --do_sample.")
+    parser.add_argument("--max_tokens_single_prompt_chain", type=int, default=350, help="Max new tokens for the entire single-prompt CoT chain output. Default: 350") # Adjusted from 768 to 350
+
+    # Deprecated/Old args from run_nli_cotr_old.py (commented out for now, can be re-added if logic is ported)
+    # parser.add_argument("--multi_prompt_temp_translation", type=float, default=0.3)
     return parser.parse_args()
 
 def run_nli_cotr_experiment( # Signature adapted from run_nli_cotr_old.py
@@ -165,7 +165,7 @@ def run_nli_cotr_experiment( # Signature adapted from run_nli_cotr_old.py
                     logging.info(f"Loaded existing summary: {summary_file} (overwrite_results=False)")
                     summary_dict_reloaded = existing_summary_df.to_dict('records')[0]
                     for comet_col in ['avg_comet_lrl_prem_to_en', 'avg_comet_lrl_hyp_to_en', 'avg_comet_en_label_to_lrl']:
-                        if comet_col not in summary_dict_reloaded: 
+                        if comet_col not in summary_dict_reloaded:
                             summary_dict_reloaded[comet_col] = None
                     return summary_dict_reloaded
             except Exception as e:
@@ -202,7 +202,7 @@ def run_nli_cotr_experiment( # Signature adapted from run_nli_cotr_old.py
             generation_params_for_summary = {
                 "temperature": cli_args.temperature, "top_p": cli_args.top_p, "top_k": cli_args.top_k,
                 "repetition_penalty": cli_args.repetition_penalty, "do_sample": cli_args.do_sample,
-                "max_tokens_nli_label": cli_args.max_tokens_nli_label,
+                "max_tokens_nli_label": cli_args.max_tokens_nli_processing,
                 "max_tokens_translation": cli_args.max_tokens_translation,
                 "max_tokens_single_prompt_chain": cli_args.max_tokens_single_prompt_chain,
             }
@@ -232,20 +232,25 @@ def run_nli_cotr_experiment( # Signature adapted from run_nli_cotr_old.py
     
     if pipeline_type_to_run == 'multi_prompt':
         # Parameters for multi-prompt, derived from cli_args
+        # Text Translation (LRL -> EN Premise/Hypothesis) Parameters
+        text_translation_step_params = {
+            "temperature": cli_args.temperature, "top_p": cli_args.top_p, "top_k": cli_args.top_k,
+            "repetition_penalty": cli_args.repetition_penalty, "do_sample": cli_args.do_sample,
+            "max_new_tokens": cli_args.max_tokens_text_translation
+        }
+        # NLI Processing (EN Premise/Hypothesis -> EN Label) Parameters
         nli_eval_step_params = {
             "temperature": cli_args.temperature, "top_p": cli_args.top_p, "top_k": cli_args.top_k,
             "repetition_penalty": cli_args.repetition_penalty, "do_sample": cli_args.do_sample,
-            "max_new_tokens": cli_args.max_tokens_nli_label # Max tokens for the NLI label itself
+            "max_new_tokens": cli_args.max_tokens_nli_processing # Max tokens for the NLI label itself
         }
-        text_translation_step_params = { # For premise and hypothesis LRL->EN
+        # Label Translation (EN -> LRL Label) Parameters (only if lang_code != 'en')
+        label_translation_step_params = {}
+        if lang_code != 'en':
+            label_translation_step_params = {
             "temperature": cli_args.temperature, "top_p": cli_args.top_p, "top_k": cli_args.top_k,
             "repetition_penalty": cli_args.repetition_penalty, "do_sample": cli_args.do_sample,
-            "max_new_tokens": cli_args.max_tokens_translation
-        }
-        label_translation_step_params = { # For EN Label -> LRL Label
-            "temperature": cli_args.temperature, "top_p": cli_args.top_p, "top_k": cli_args.top_k,
-            "repetition_penalty": cli_args.repetition_penalty, "do_sample": cli_args.do_sample,
-            "max_new_tokens": cli_args.max_tokens_translation # Often similar to text translation length
+                "max_new_tokens": cli_args.max_tokens_label_translation # Often similar to text translation length
         }
         logging.info(f"  Multi-Prompt Params: NLI={nli_eval_step_params}, TextTrans={text_translation_step_params}, LabelTrans={label_translation_step_params}")
         results_df_computed = evaluate_nli_cotr( # This is the multi-prompt eval func from nli_cotr.py
@@ -444,10 +449,29 @@ def run_nli_cotr_experiment( # Signature adapted from run_nli_cotr_old.py
                 summary_data[f'{label_val}_recall'] = metrics['class_metrics'][label_val].get('recall', 0.0)
                 summary_data[f'{label_val}_f1'] = metrics['class_metrics'][label_val].get('f1-score', 0.0) # Note: key is 'f1-score' in sklearn report
 
-    summary_df_new = pd.DataFrame([summary_data])
-    summary_df_new.to_csv(summary_file, index=False, float_format='%.4f')
-    logging.info(f"Summary saved to {summary_file}")
-    print(summary_df_new.to_string()) # Print summary to console
+    # Save individual summary
+    summary_df = pd.DataFrame([summary_data])
+    model_short_name = model_name_str.split('/')[-1]
+
+    # Define the directory path for this specific run's summary
+    summary_dir = os.path.join(
+        base_results_path,
+        "summaries",
+        pipeline_type_to_run, # e.g., 'multi_prompt' or 'single_prompt'
+        shot_setting_to_run,  # e.g., 'zero_shot' or 'few_shot'
+        lang_code,
+        model_short_name
+    )
+    os.makedirs(summary_dir, exist_ok=True)
+
+    summary_file = os.path.join(summary_dir, f"summary_{pipeline_type_to_run}_{shot_setting_to_run}_{lang_code}_{model_short_name}.csv")
+    try:
+        summary_df.to_csv(summary_file, index=False, float_format='%.4f')
+        logging.info(f"Summary saved to {summary_file}") # This line should be aligned with the line above
+    except Exception as e_save:
+        logger.error(f"Error saving summary file {summary_file}: {e_save}")
+        return None # Indicate failure if summary can't be saved
+
     return summary_data
 
 
@@ -491,67 +515,41 @@ def plot_nli_metrics(summary_df, plots_dir, metric_col, metric_name, task_name="
 
 def main():
     args = parse_args()
-    logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(filename)s:%(lineno)d - %(message)s')
+    logging.basicConfig(level=getattr(logging, args.log_level.upper(), logging.INFO))
 
-    # HF Login (from new script, more robust)
+    # HF Login
     if args.hf_token:
         token = args.hf_token
-        logging.info("Using Hugging Face token from command line argument.")
     else:
-        token = get_token()
-        logging.info("Using Hugging Face token from config file or environment.")
+        token = get_token() # Call without arguments
+
     if token:
-        try: login(token=token); logging.info("Successfully logged into Hugging Face Hub.")
-        except Exception as e_login:
-            logging.error(f"Failed to login to Hugging Face Hub: {e_login}")
-            if "UserPassesHuggingFaceTokenAssertionError" in str(e_login) or "401 Client Error" in str(e_login):
-                logging.warning("Proceeding without Hugging Face login. Gated models may be inaccessible.")
-            # else: sys.exit(1) # Optionally exit for other critical login errors
-    else: logging.warning("No Hugging Face token. Gated models may be inaccessible.")
-
-    random.seed(args.seed)
-    np.random.seed(args.seed)
-    torch.manual_seed(args.seed)
-    if torch.cuda.is_available(): torch.cuda.manual_seed_all(args.seed)
-
-    # Model selection from old script
-    if args.models_to_run == 'aya':
-        models_to_evaluate = ["CohereLabs/aya-expanse-8b"]
-    elif args.models_to_run == 'qwen':
-        models_to_evaluate = ["Qwen/Qwen2.5-7B-Instruct"]
-    else:  # both
-        models_to_evaluate = ["CohereLabs/aya-expanse-8b", "Qwen/Qwen2.5-7B-Instruct"]
-
-    # Shot type selection from old script
-    if args.shot_types_to_run == 'both':
-        shot_settings_to_evaluate = ['zero_shot', 'few_shot']
+            login(token=token)
     else:
-        shot_settings_to_evaluate = [args.shot_types_to_run]
+        logger.warning("Hugging Face token not provided. Downloads may be restricted for some models.")
 
-    # Pipeline type selection from old script
-    if args.pipelines_to_run == 'both':
-        pipeline_types_to_evaluate = ['multi_prompt', 'single_prompt']
-    else:
-        pipeline_types_to_evaluate = [args.pipelines_to_run]
+    models_list = [m.strip() for m in args.models.split(',')]
+    lang_list = [l.strip() for l in args.languages.split(',')]
+    all_experiment_summaries = [] # From old script, for collecting all summaries
 
-    all_experiment_summaries = []
+    # Define overall summary and plots directories (from old script structure)
+    overall_summary_base_dir = os.path.join(args.base_output_dir, "summaries_overall") # General summary location
+    os.makedirs(overall_summary_base_dir, exist_ok=True)
+    overall_plots_dir = os.path.join(args.base_output_dir, "plots_overall") # General plots location
+    os.makedirs(overall_plots_dir, exist_ok=True)
 
-    # Path setup (base_output_dir from args, subdirs for "overall_summaries" and "plots")
-    # Old script saved overall summary directly in base_output_dir/summaries
-    # New script uses base_output_dir/overall_summaries
-    # Let's use the new script's "overall_summaries" for the final aggregated CSV.
-    overall_summaries_dir = os.path.join(args.base_output_dir, "overall_summaries")
-    plots_output_dir = os.path.join(args.base_output_dir, "plots") # Consistent with new script
-    os.makedirs(overall_summaries_dir, exist_ok=True)
-    os.makedirs(plots_output_dir, exist_ok=True)
-    logging.info(f"All NLI CoTR experiment outputs will be saved under: {args.base_output_dir}")
-    logging.info(f"Individual summaries in subdirectories under: {args.base_output_dir}/summaries/")
-    logging.info(f"Overall summary in: {overall_summaries_dir}")
-    logging.info(f"Plots in: {plots_output_dir}")
+    logger.info(f"All NLI CoTR experiment outputs will be saved under: {args.base_output_dir}")
+    logger.info(f"Individual run summaries in: {args.base_output_dir}/summaries/[pipeline]/[shot]") # Per-run summaries
+    logger.info(f"Overall summary in: {overall_summary_base_dir}")
+    logger.info(f"Overall plots in: {overall_plots_dir}")
 
+    # Use args.seed for sampling reproducibility (from old script)
+    sampling_seed = args.seed
+    # Use args.num_samples for fixed number of samples per language (from old script)
+    num_samples_to_load = args.num_samples
 
-    for model_name_str in models_to_evaluate:
-        logging.info(f"\n===== Initializing Model for NLI CoTR: {model_name_str} =====")
+    for model_name_str in models_list:
+        logger.info(f"\n========== Initializing Model: {model_name_str} ==========")
         tokenizer, model = None, None # Initialize to allow cleanup
         try:
             tokenizer, model = initialize_model(model_name_str) # from nli_cotr.py
@@ -561,27 +559,24 @@ def main():
             if model is not None: del model
             if tokenizer is not None: del tokenizer
             if torch.cuda.is_available(): torch.cuda.empty_cache()
-            continue
+            continue # Skip to the next model
 
-        for lang_code in args.langs:
-            logging.info(f"\n--- Loading NLI data for CoTR: Lang={lang_code}, Model={model_name_str} ---")
-            # Use sample_percentage from args.
+        for lang_code in lang_list: # Iterate using lang_list from args (old script style)
+            logger.info(f"\n--- Processing Language: {lang_code} for model {model_name_str} ---")
+
+            # Load XNLI samples using the utility, now with num_samples and seed
+            logger.info(f"Loading XNLI samples for {lang_code} ({args.data_split} split), num_samples={num_samples_to_load}, seed={sampling_seed}")
             samples_df_for_lang = load_xnli_samples(
                 lang_code=lang_code, 
-                split='test', # Old script used 'test' split for XNLI
-                sample_percentage=args.sample_percentage
+                num_samples=num_samples_to_load, 
+                split=args.data_split, 
+                seed=sampling_seed
             )
 
             if samples_df_for_lang.empty:
-                logging.warning(f"No XNLI samples loaded for {lang_code} ('test' split, {args.sample_percentage}%). Skipping.")
+                logging.warning(f"No XNLI samples loaded for {lang_code} ('{args.data_split}' split, {args.num_samples} samples). Skipping.")
                 continue
             
-            if args.max_samples_per_lang and len(samples_df_for_lang) > args.max_samples_per_lang:
-                samples_df_for_lang = samples_df_for_lang.sample(n=args.max_samples_per_lang, random_state=args.seed)
-                logging.info(f"Capped samples to {args.max_samples_per_lang} for {lang_code}.")
-
-            logging.info(f"Loaded {len(samples_df_for_lang)} XNLI samples for {lang_code} for CoTR.")
-
             if args.test_mode:
                 logging.info(f"Test mode: Using first 5 samples for {lang_code}.")
                 samples_df_for_lang = samples_df_for_lang.head(5)
@@ -595,9 +590,8 @@ def main():
                 logging.error(f"CRITICAL: 'label' or 'original_label_int' column missing from loaded XNLI samples for {lang_code}.")
                 continue
 
-
-            for pipeline_to_run in pipeline_types_to_evaluate:
-                for shot_setting_to_run in shot_settings_to_evaluate:
+            for pipeline_to_run in ['multi_prompt', 'single_prompt']:
+                for shot_setting_to_run in ['zero_shot', 'few_shot']:
                     summary_data = run_nli_cotr_experiment(
                         model_name_str, tokenizer, model, samples_df_for_lang, lang_code,
                         args.base_output_dir, # This is the main output dir for individual results/summaries
@@ -615,26 +609,39 @@ def main():
     if all_experiment_summaries:
         overall_summary_df = pd.DataFrame(all_experiment_summaries)
         if not overall_summary_df.empty:
-            # Save overall summary (consistent with new script's naming and location for overall summary)
-            summary_filename_overall = f"cotr_nli_ALL_XNLI_experiments_summary_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
-            overall_summary_path = os.path.join(overall_summaries_dir, summary_filename_overall)
+            # Ensure all columns that should be numeric are, coercing errors for robustness.
+            for col in ['accuracy', 'macro_f1', 'weighted_f1', 'comet_premise_lrl_en', 
+                        'comet_hypothesis_lrl_en', 'comet_label_en_lrl', 'runtime_total_s', 'runtime_per_sample_s']:
+                if col in overall_summary_df.columns:
+                    overall_summary_df[col] = pd.to_numeric(overall_summary_df[col], errors='coerce')
+
+            summary_filename_overall = f"cotr_nli_ALL_experiments_summary_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
+            overall_summary_path = os.path.join(overall_summary_base_dir, summary_filename_overall)
             overall_summary_df.to_csv(overall_summary_path, index=False, float_format='%.4f')
-            logging.info(f"\nOverall summary of NLI CoTR experiments saved to: {overall_summary_path}")
-            print(overall_summary_df.to_string())
+            logger.info(f"\nOverall summary of NLI CoTR experiments saved to: {overall_summary_path}")
+            logger.info(f"Overall Summary:\n{overall_summary_df.to_string()}")
 
-            # Plotting (using function adapted from new script, called with overall_summary_df)
-            plot_nli_metrics(overall_summary_df, plots_output_dir, 'accuracy', 'Accuracy')
-            plot_nli_metrics(overall_summary_df, plots_output_dir, 'macro_f1', 'Macro F1-Score')
-            plot_nli_metrics(overall_summary_df, plots_output_dir, 'avg_comet_lrl_prem_to_en', 'COMET Prem LRL->EN')
-            plot_nli_metrics(overall_summary_df, plots_output_dir, 'avg_comet_lrl_hyp_to_en', 'COMET Hyp LRL->EN')
-            plot_nli_metrics(overall_summary_df, plots_output_dir, 'avg_comet_en_label_to_lrl', 'COMET Label EN->LRL')
-            logging.info(f"Overall plots saved to: {plots_output_dir}")
+            # Plotting (from old script)
+            plot_nli_metrics(overall_summary_df, overall_plots_dir, 'accuracy', 'Accuracy')
+            plot_nli_metrics(overall_summary_df, overall_plots_dir, 'macro_f1', 'Macro F1-Score')
+            plot_nli_metrics(overall_summary_df, overall_plots_dir, 'weighted_f1', 'Weighted F1-Score')
+            # Add COMET plots if columns exist and are numeric
+            if 'comet_premise_lrl_en' in overall_summary_df.columns: # Name from old script
+                plot_nli_metrics(overall_summary_df, overall_plots_dir, 'comet_premise_lrl_en', 'COMET Premise LRL->EN')
+            if 'comet_hypothesis_lrl_en' in overall_summary_df.columns: # Name from old script
+                plot_nli_metrics(overall_summary_df, overall_plots_dir, 'comet_hypothesis_lrl_en', 'COMET Hypothesis LRL->EN')
+            if 'comet_label_en_lrl' in overall_summary_df.columns: # Name from old script
+                plot_nli_metrics(overall_summary_df, overall_plots_dir, 'comet_label_en_lrl', 'COMET Label EN->LRL')
+            logger.info(f"Overall plots saved to: {overall_plots_dir}")
         else:
-            logging.info("Overall summary DataFrame is empty. No plots generated.")
+            logger.info("Overall summary DataFrame is empty. No plots generated.")
     else:
-        logging.info("No summaries collected. Skipping overall summary and plot generation for NLI CoTR.")
+        logger.info("No summaries collected. Skipping overall summary and plot generation for NLI CoTR.")
 
-    logging.info("\nAll NLI CoTR experiments completed!")
+    logger.info("\nAll NLI CoTR experiments completed!")
 
 if __name__ == "__main__":
+    # Setup logging (basicConfig should be called early, before any logging commands)
+    # The level will be set by args later, but good to have a basic config.
+    # logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     main() 

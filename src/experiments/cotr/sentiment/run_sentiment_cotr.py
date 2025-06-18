@@ -33,7 +33,6 @@ from src.experiments.cotr.sentiment.sentiment_cotr import (
 
 # Import data loader
 from src.utils.data_loaders.load_afrisenti import load_afrisenti_samples # CHANGED: Use AfriSenti loader
-from src.utils.data_loaders.load_afrisenti import LANG_CODE_MAP # For getting dataset size # Keep if needed
 from datasets import load_dataset as hf_load_dataset, get_dataset_split_names # For getting dataset size
 
 # Import metrics calculation
@@ -95,6 +94,8 @@ MODEL_ADJUSTMENTS = {
         "single_prompt_cotr": {"top_p_factor": 0.95, "top_k_set": 35}
     }
 }
+
+AFRISENTI_LANGS = ['am', 'dz', 'ha', 'ig', 'ma', 'pcm', 'pt', 'sw', 'yo', 'multi'] # Added pt to AfriSenti langs
 
 def get_effective_params(step_name: str, lang_code: str, model_name_str: str, cli_args: argparse.Namespace) -> Dict:
     """Determines effective generation parameters for a given step."""
@@ -300,16 +301,14 @@ def plot_sentiment_metrics(summary_df: pd.DataFrame, plots_dir: str, metric_col:
     print(f"{metric_name} plot saved to {plot_filename}")
 
 def main():
-    parser = argparse.ArgumentParser(description="Run Sentiment CoTR experiments with Afrisenti.")
-    parser.add_argument("--models", type=str, default="CohereLabs/aya-expanse-8b",
-                        help="Comma-separated model names (e.g., 'CohereLabs/aya-expanse-8b,Qwen/Qwen2.5-7B-Instruct').")
-    parser.add_argument("--langs", nargs='+', default=['sw', 'ha'], 
-                        choices=['am', 'ar', 'en', 'ha', 'haus', 'ig', 'ibo', 'ma', 'mar', 'multi', 'pcm', 'pt', 'sw', 'swa', 'yo', 'yor', 'twi', 'dz', 'kr', 'ti'], # Expanded choices for flexibility
-                        help="Languages to evaluate from Afrisenti. Default: sw, ha.")
-    parser.add_argument("--data_split", type=str, default="test", choices=["train", "validation", "test"], help="Dataset split to use.")
-    parser.add_argument("--sample_percentage", type=float, default=10.0, help="Percentage of samples to use (0.0 to 1.0). Default is 10.0 (10%%).")
-    parser.add_argument("--max_samples_per_lang", type=int, default=None, help="Maximum number of samples per language to cap at, after percentage sampling. Default: None.")
-    parser.add_argument("--pipeline_types", nargs='+', default=['multi_prompt', 'single_prompt'], choices=['multi_prompt', 'single_prompt'], help="CoTR pipeline types to run.")
+    parser = argparse.ArgumentParser(description="Run Sentiment Analysis CoTR experiments with detailed parameter control.")
+    
+    # Core settings
+    parser.add_argument("--models", type=str, default="CohereLabs/aya-23-8B,Qwen/Qwen2.5-7B-Instruct", help="Comma-separated model names from Hugging Face.")
+    parser.add_argument("--languages", type=str, default="ha,sw", help="Comma-separated language codes for AfriSenti (e.g., ha, sw).")
+    parser.add_argument("--num_samples", type=int, default=10, help="Number of samples per language. Use a small number for testing.")
+    parser.add_argument("--data_split", type=str, default="test", choices=["train", "validation", "test"], help="Dataset split.")
+    parser.add_argument("--pipeline_types", nargs='+', default=['multi_prompt', 'single_prompt'], choices=['multi_prompt', 'single_prompt'])
     parser.add_argument("--shot_settings", nargs='+', default=['zero_shot', 'few_shot'], choices=['zero_shot', 'few_shot'], help="Shot settings to evaluate.")
     
     parser.add_argument("--temperature", type=float, default=None, help="Global temperature for generation.")
@@ -343,7 +342,7 @@ def main():
         torch.cuda.manual_seed_all(args.seed)
 
     models_list = [m.strip() for m in args.models.split(',')]
-    langs_list = [l.strip() for l in args.langs]
+    langs_list = [l.strip() for l in args.languages.split(',')]
 
     all_summaries = []
     
@@ -364,41 +363,21 @@ def main():
         for lang_code in langs_list:
             logging.info(f"\n--- Loading data for {lang_code} (Sentiment CoTR) ---")
             
-            # Data split is already hardcoded to "test" in load_afrisenti_samples call below
-            full_samples_df = load_afrisenti_samples(lang_code=lang_code, split="test", num_samples=None) 
-
-            samples_df_for_lang = pd.DataFrame()
-            if not full_samples_df.empty:
-                num_total_samples = len(full_samples_df)
-                # Calculate num_to_sample based on percentage, then apply caps
-                num_to_sample_float = (args.sample_percentage / 100.0) * num_total_samples
-                num_to_sample = max(1, int(num_to_sample_float))
-                
-                logging.info(f"    Total available samples for {lang_code} ('{args.data_split}' split): {num_total_samples}")
-                logging.info(f"    Targeting {args.sample_percentage:.1f}%% ({num_to_sample} samples initially based on percentage).")
-
-                # Apply max_samples_per_lang cap if specified
-                if args.max_samples_per_lang is not None and num_to_sample > args.max_samples_per_lang:
-                    logging.info(f"    Capping samples to --max_samples_per_lang: {args.max_samples_per_lang}.")
-                    num_to_sample = args.max_samples_per_lang
-                
-                # Ensure num_to_sample does not exceed total available samples
-                if num_to_sample > num_total_samples:
-                    logging.warning(f"    Requested {num_to_sample} samples, but only {num_total_samples} available. Using all {num_total_samples} samples.")
-                    num_to_sample = num_total_samples
-                
-                # Test mode overrides to a very small number AFTER other calculations if active
-                if args.test_mode:
-                    logging.info(f"    TEST MODE: Overriding sample count to 5.")
-                    num_to_sample = min(5, num_total_samples) # Ensure test mode doesn't exceed available
-
-                logging.info(f"    Final number of samples to use for {lang_code}: {num_to_sample}.")
-                samples_df_for_lang = full_samples_df.sample(n=num_to_sample, random_state=args.seed)
-            else:
-                logging.warning(f"    No samples loaded for {lang_code} from split '{args.data_split}' via load_afrisenti_samples.")
+            target_num_samples = args.num_samples
+            if args.test_mode: # Was previously over-indented
+                logging.info(f"    TEST MODE: Overriding sample count to 5 for {lang_code}.") # Was previously over-indented
+                target_num_samples = 5 # Was previously over-indented
+            
+            # Data split is passed to load_afrisenti_samples
+            samples_df_for_lang = load_afrisenti_samples(
+                lang_code=lang_code, 
+                split=args.data_split, 
+                num_samples=target_num_samples, 
+                seed=args.seed
+            ) 
 
             if samples_df_for_lang.empty:
-                logging.warning(f"No samples for {lang_code} after attempting to load/sample for split 'test'. Skipping language for model {model_name_str}.")
+                logging.warning(f"No samples for {lang_code} after attempting to load/sample for split '{args.data_split}'. Skipping language for model {model_name_str}.")
                 continue
             
             if 'label' in samples_df_for_lang.columns:
@@ -444,6 +423,8 @@ def main():
             # Save overall summary
             timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
             overall_summary_filename = os.path.join(args.base_output_dir, "summaries", f"sentiment_cotr_ALL_experiments_summary_{timestamp}.csv")
+            # Make sure the directory exists
+            os.makedirs(os.path.join(args.base_output_dir, "summaries"), exist_ok=True)
             overall_summary_df.to_csv(overall_summary_filename, index=False, float_format='%.4f')
             logging.info(f"\nOverall summary of Sentiment CoTR experiments saved to: {overall_summary_filename}")
             print(overall_summary_df.to_string(max_rows=None, max_cols=None)) # Print full summary

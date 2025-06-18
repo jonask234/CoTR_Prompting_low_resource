@@ -4,18 +4,13 @@ from typing import Optional, List
 import os
 import logging
 
+# Configure logging
+logger = logging.getLogger(__name__)
+
 # Language map for khalidalt/tydiqa-goldp dataset configurations
 # This maps your 2-letter codes to the HF dataset's expected config names.
 # Verify these on the HF dataset page if issues arise.
 TYDIQA_LANG_CONFIG_MAP = {
-    "goldp": {
-        "dataset_name": "khalidalt/tydiqa-goldp",
-        "split_map": {"train": "train", "validation": "validation", "dev": "validation", "test": "validation"}, # GoldP has train and validation
-        "default_split": "validation" # Changed from "train" to "validation"
-    },
-    "primary": { # Minimal task (TyDiQA Primary)
-        "dataset_name": "tydiqa", # Main HF dataset
-    },
     'en': 'english',
     'sw': 'swahili',
     'te': 'telugu',
@@ -23,10 +18,10 @@ TYDIQA_LANG_CONFIG_MAP = {
     'bn': 'bengali',
     'fi': 'finnish',
     'id': 'indonesian',
-    'ja': 'japanese', # Added japanese as it's in TyDiQA GoldP
+    'ja': 'japanese',
     'ko': 'korean',
     'ru': 'russian',
-    # 'th': 'thai' # Thai might not be in khalidalt/tydiqa-goldp, verify
+    'th': 'thai',
 }
 
 # Function to create fallback samples (can be kept for robustness or testing)
@@ -50,112 +45,103 @@ def create_fallback_samples(lang_code: str) -> list:
 
 def load_tydiqa_samples(
     lang_code: str,
-    sample_percentage: Optional[float] = None,
-    split: str = 'validation'  # Default split for TyDiQA GoldP is often validation/dev
+    num_samples: Optional[int] = None,
+    split: str = 'validation',
+    seed: int = 42
 ) -> pd.DataFrame:
     """
-    Load TyDiQA samples for a specific language from Hugging Face Hub (khalidalt/tydiqa-goldp).
-    
-    Args:
-        lang_code: Language code (e.g., 'sw' for Swahili, 'en' for English, 'te' for Telugu).
-        sample_percentage: Percentage of samples to load (e.g., 10 for 10%), or None for all.
-        split: Dataset split to use. Maps 'dev' to 'validation'.
-               TyDiQA-GoldP typically has 'train', 'validation' (sometimes as 'dev').
-        
-    Returns:
-        DataFrame containing loaded samples, or empty DataFrame if loading fails.
+    Loads samples from the TyDiQA-GoldP dataset on Hugging Face.
+    This version directly loads the language-specific configuration.
     """
-    dataset_name = "khalidalt/tydiqa-goldp"
+    hf_dataset_name = "khalidalt/tydiqa-goldp"
     hf_lang_config = TYDIQA_LANG_CONFIG_MAP.get(lang_code)
 
     if not hf_lang_config:
-        print(f"ERROR: Language code '{lang_code}' not mapped for {dataset_name}. Cannot load.")
+        logger.error(f"Language code '{lang_code}' not found in TYDIQA_LANG_CONFIG_MAP. Aborting.")
         return pd.DataFrame()
-    
-    # Map 'dev' split to 'validation' as khalidalt/tydiqa-goldp uses 'validation'
-    hf_split = 'validation' if split == 'dev' else split
-    # Ensure split is one of the typical HF dataset splits
-    if hf_split not in ['train', 'validation', 'test']:
-        print(f"Warning: Invalid split '{hf_split}' specified. Defaulting to 'validation'.")
-        hf_split = 'validation'
 
-    print(f"Attempting to load '{lang_code}' (config: '{hf_lang_config}') samples from {dataset_name}, split '{hf_split}'...")
+    # For TyDiQA GoldP, the 'validation' split is standard for testing.
+    # The dataset might not have a 'test' split for language-specific configs.
+    if split == 'test':
+        split = 'validation'
+        logger.info(f"Defaulting to 'validation' split for TyDiQA GoldP language '{lang_code}'.")
 
-    all_samples_list = []
+    logger.info(f"Loading TyDiQA GoldP for language: {lang_code} (HF config: {hf_lang_config}), split: {split}")
+
     try:
-        # Load the dataset with the specific language configuration
-        # trust_remote_code=True might be needed for some datasets
-        dataset = load_dataset(dataset_name, name=hf_lang_config, split=hf_split, trust_remote_code=True)
-        print(f"Successfully loaded dataset for {lang_code} ({hf_lang_config}), split {hf_split} from Hugging Face Hub.")
-
-        # Process dataset into a list of dicts
-        for example in dataset:
-            # The structure of khalidalt/tydiqa-goldp provides:
-            # 'id', 'title', 'context', 'question', 'answers' (dict with 'text' list and 'answer_start' list)
-            sample_id = example.get('id', f"{lang_code}_{hf_split}_{len(all_samples_list)}")
-            context = example.get('passage_text', '')
-            question = example.get('question_text', '')
-            answers_dict = example.get('answers', {'text': [], 'answer_start': []})
-            
-            # Ensure answers_dict['text'] is a list, even if empty or None
-            answer_texts = answers_dict.get('text', [])
-            if not isinstance(answer_texts, list):
-                answer_texts = [] # Default to empty list if not a list
-
-            # Ensure answer_starts_list matches length of answer_texts if possible, or provide sensible defaults
-            answer_starts_list = answers_dict.get('answer_start', [])
-            if not isinstance(answer_starts_list, list) or len(answer_starts_list) != len(answer_texts):
-                 answer_starts_list = [-1] * len(answer_texts) # Default answer_start if problematic
-
-
-            all_samples_list.append({
-                'id': sample_id,
-                'context': context,
-                'question': question,
-                'answers': {'text': answer_texts, 'answer_start': answer_starts_list},
-                'language': lang_code # Store the original 2-letter lang_code
-            })
+        # Load the dataset using the language-specific configuration name.
+        dataset = load_dataset(hf_dataset_name, name=hf_lang_config, split=split, trust_remote_code=True)
+        logger.info(f"Successfully loaded TyDiQA GoldP dataset for '{hf_lang_config}' (split {split}). Full size: {len(dataset)}.")
 
     except Exception as e:
-        logging.error(f"Failed to load TyDiQA GoldP for language {lang_code}, split '{split}': {e}", exc_info=True)
-        # Fallback to returning an empty DataFrame in case of any error during loading or processing
-        return pd.DataFrame()
+        logger.error(f"Failed to load TyDiQA for {lang_code} (config: {hf_lang_config}). Error: {e}. Using fallback.", exc_info=True)
+        return pd.DataFrame(create_fallback_samples(lang_code))
 
-    if not all_samples_list:
-        print(f"No samples found for language '{lang_code}' (config: {hf_lang_config}), split '{hf_split}'.")
-        return pd.DataFrame()
-                
-    samples_df = pd.DataFrame(all_samples_list)
-    
-    # Sample if requested
-    if sample_percentage is not None and 0 < sample_percentage <= 100:
-        num_total_samples = len(samples_df)
-        num_to_sample = max(1, int(num_total_samples * (sample_percentage / 100.0)))
-        if num_to_sample < num_total_samples:
-            print(f"Sampling {sample_percentage}% ({num_to_sample} examples) from {num_total_samples} total for {lang_code}.")
-            samples_df = samples_df.sample(n=num_to_sample, random_state=42).reset_index(drop=True)
-    elif sample_percentage is not None: # Handles cases where sample_percentage is not None but not in (0, 100]
-        print(f"Invalid sample_percentage value ({sample_percentage}). Using all {len(samples_df)} samples for {lang_code}.")
-        # No change to samples_df, all samples are used if sample_percentage is invalid but not None.
-    
-    # Extract the first answer text as ground_truth
-    # Ensure 'answers' column exists and its 'text' entry is a list
-    samples_df['ground_truth'] = samples_df['answers'].apply(
-        lambda ans: ans['text'][0] if isinstance(ans, dict) and 'text' in ans and isinstance(ans['text'], list) and ans['text'] else None
-    )
-    
-    # Drop rows where ground_truth could not be extracted (e.g. no answers)
-    samples_df.dropna(subset=['ground_truth'], inplace=True)
+    all_samples = []
+    for i, example in enumerate(dataset):
+        # Be more robust to key naming variations ('question' vs 'question_text', etc.)
+        question = example.get('question_text') or example.get('question', '')
+        context = example.get('passage_text') or example.get('context', '')
+        
+        # Handle different answer/annotation structures by checking multiple possibilities
+        annotations_list = example.get('annotations', [])
+        answers_list = example.get('answers', []) # For original TyDiQA structure
+        
+        answer_texts = []
+        
+        # 1. Prioritize 'annotations' structure (list of dicts with 'answer_text')
+        if isinstance(annotations_list, list) and annotations_list:
+            for annotation in annotations_list:
+                if isinstance(annotation, dict):
+                    answer_text = annotation.get('answer_text')
+                    if answer_text and isinstance(answer_text, str):
+                        answer_texts.append(answer_text)
 
-    print(f"Loaded and processed {len(samples_df)} samples for {lang_code} ({hf_lang_config}), split '{hf_split}'.")
-    return samples_df
+        # 2. Fallback to 'answers' structure (dict with a 'text' list)
+        elif isinstance(answers_list, dict) and 'text' in answers_list:
+            if isinstance(answers_list['text'], list):
+                 answer_texts.extend([str(t) for t in answers_list['text'] if t])
+
+        # We need at least one valid answer for a sample to be useful
+        if not question or not context or not answer_texts:
+            logger.warning(f"Skipping sample {i} for {lang_code} due to missing question, context, or answer text.")
+            continue
+        
+        # Take the first valid answer as the ground truth for simplicity in baseline/CoT F1.
+        ground_truth = answer_texts[0]
+
+        all_samples.append({
+            'id': example.get('example_id', f'{lang_code}-{split}-{i}'),
+            'question': question,
+            'context': context,
+            'answers': ground_truth, # Storing the single ground truth string
+            'all_answers': answer_texts, # Storing all possible answers
+            'language': lang_code
+        })
+
+    if not all_samples:
+        logger.warning(f"No valid samples could be processed for {lang_code}, split {split}. Using fallback.")
+        return pd.DataFrame(create_fallback_samples(lang_code))
+
+    all_samples_df = pd.DataFrame(all_samples)
+
+    # Shuffle samples and take the specified number if num_samples is provided
+    if num_samples is not None and num_samples > 0:
+        if num_samples < len(all_samples_df):
+            all_samples_df = all_samples_df.sample(n=num_samples, random_state=seed).reset_index(drop=True)
+            logger.info(f"Selected {len(all_samples_df)} samples for {lang_code} after requesting {num_samples}.")
+        else:
+            logger.info(f"Requested {num_samples} samples, but only {len(all_samples_df)} are available. Using all.")
     
+    logger.info(f"Successfully processed {len(all_samples_df)} samples for TyDiQA language '{lang_code}', split '{split}'.")
+    return all_samples_df
+
 # Example usage (for testing this script directly)
 if __name__ == '__main__':
     print("--- Testing TyDiQA GoldP Loader ---")
 
     # Test English
-    en_samples = load_tydiqa_samples('en', sample_percentage=1, split='validation')
+    en_samples = load_tydiqa_samples('en', num_samples=1, split='validation')
     if not en_samples.empty:
         print(f"\\nEnglish validation samples (1%): {len(en_samples)}")
         print(en_samples.head())
@@ -166,7 +152,7 @@ if __name__ == '__main__':
         print("\\nFailed to load English samples.")
 
     # Test Swahili
-    sw_samples = load_tydiqa_samples('sw', sample_percentage=5, split='train') # Try train split for sw
+    sw_samples = load_tydiqa_samples('sw', num_samples=5, split='train') # Try train split for sw
     if not sw_samples.empty:
         print(f"\\nSwahili train samples (5%): {len(sw_samples)}")
         print(sw_samples.head())
@@ -174,7 +160,7 @@ if __name__ == '__main__':
         print("\\nFailed to load Swahili samples.")
 
     # Test Telugu
-    te_samples = load_tydiqa_samples('te', sample_percentage=2, split='validation')
+    te_samples = load_tydiqa_samples('te', num_samples=2, split='validation')
     if not te_samples.empty:
         print(f"\\nTelugu validation samples (2%): {len(te_samples)}")
         print(te_samples.head())

@@ -6,6 +6,14 @@ import logging
 import argparse
 import torch
 from typing import Any, Optional, Dict
+import random
+import numpy as np
+import pandas as pd
+from huggingface_hub import login
+import matplotlib.pyplot as plt
+import seaborn as sns
+from datetime import datetime
+import gc
 
 # Disable tokenizer parallelism to avoid warnings
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
@@ -16,39 +24,57 @@ project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
-import pandas as pd
-import numpy as np
-from src.utils.data_loaders.load_tydiqa import load_tydiqa_samples
+from src.utils.data_loaders.load_tydiqa import load_tydiqa_samples, TYDIQA_LANG_CONFIG_MAP
 from src.experiments.baseline.qa.qa_baseline import evaluate_qa_baseline, initialize_model
-from huggingface_hub import login
 from config import get_token
 
-# ADDED: Import for plotting
-import matplotlib.pyplot as plt
-import seaborn as sns
+SUPPORTED_LANGS = list(TYDIQA_LANG_CONFIG_MAP.keys()) # From tydiqa_loader
 
-def parse_args():
-    """Parse command-line arguments."""
-    parser = argparse.ArgumentParser(description="Run QA baseline experiments with optimized parameters.")
-    parser.add_argument("--models", nargs='+', default=["CohereLabs/aya-expanse-8b", "Qwen/Qwen2.5-7B-Instruct"], 
-                        help="List of model names or paths for QA.")
-    parser.add_argument("--langs", type=str, default="en,sw,te",
-                        help="Comma-separated language codes (e.g., en,sw,te). Default is en,sw,te.")
-    parser.add_argument("--sample_percentage", type=float, default=10.0,
-                        help="Percentage of samples per language for TyDiQA (e.g., 10 for 10%). Default: 10.")
-    parser.add_argument("--few_shot", action="store_true", 
-                        help="Enable few-shot prompting if not comparing shots.")
-    parser.add_argument("--compare_shots", action="store_true", 
-                        help="Run both few-shot and zero-shot evaluations.")
-    # Add any other arguments that might be needed based on script usage
-    parser.add_argument("--output", type=str, default="/work/bbd6522/results/qa/baseline",
-                        help="Base output directory for results and summaries.")
-    # Add missing generation parameters to parser
+logger = logging.getLogger(__name__)
+
+def parse_cli_args():
+    parser = argparse.ArgumentParser(description="Run Baseline QA Experiments with TyDiQA.")
+    parser.add_argument("--models", type=str, default="CohereLabs/aya-expanse-8b,Qwen/Qwen2.5-7B-Instruct", help="Comma-separated model names.")
+    parser.add_argument("--langs", type=str, default="en,sw,te,fi", help="Comma-separated TyDiQA language codes (e.g., en,sw,te,fi).")
+    parser.add_argument("--num_samples", type=int, default=80, help="Number of samples per language. Default: 80")
+    parser.add_argument("--data_split", type=str, default="validation", choices=["train", "validation"], help="Dataset split (TyDiQA 'validation' corresponds to dev set).")
+    parser.add_argument("--base_output_dir", type=str, default="/work/bbd6522/results/qa/baseline_tydiqa", help="Base directory to save results and summaries.")
+    parser.add_argument("--seed", type=int, default=42, help="Random seed for sampling and reproducibility.")
+    parser.add_argument(
+        "--prompt_in_lrl",
+        action="store_true",
+        default=True,
+        help="Use LRL for main prompt instructions, with English few-shot examples. Default: True (LRL instructions, English few-shot)."
+    )
+    parser.add_argument(
+        "--no-prompt_in_lrl",
+        action="store_false",
+        dest="prompt_in_lrl",
+        help="Use English for main prompt instructions and English few-shot examples."
+    )
+    parser.add_argument("--shot_settings", nargs='+', default=['zero_shot', 'few_shot'], choices=['zero_shot', 'few_shot'], help="Prompting strategies.")
     parser.add_argument("--temperature", type=float, default=None, help="Generation temperature.")
     parser.add_argument("--top_p", type=float, default=None, help="Nucleus sampling top_p.")
     parser.add_argument("--top_k", type=int, default=None, help="Top-k filtering.")
-    parser.add_argument("--max_tokens", type=int, default=None, help="Maximum new tokens to generate.")
-    return parser.parse_args()
+    parser.add_argument("--max_tokens", type=int, default=None, help="Global override for max_new_tokens for generation.")
+    parser.add_argument(
+        "--overwrite_results",
+        action="store_true",
+        help="If set, overwrite existing result files instead of skipping experiments."
+    )
+    parser.add_argument(
+        "--hf_token", 
+        type=str, 
+        default=None, 
+        help="HuggingFace API token (optional, reads from config if not provided)."
+    )
+    parser.add_argument("--log_level", type=str, default="INFO", choices=["DEBUG", "INFO", "WARNING", "ERROR"], help="Set the logging level.")
+    
+    args = parser.parse_args()
+    # Convert comma-separated strings to lists
+    args.models = [m.strip() for m in args.models.split(',')]
+    args.langs = [l.strip() for l in args.langs.split(',')]
+    return args
 
 # Define LANGUAGE_PARAMETERS globally or pass it appropriately
 LANGUAGE_PARAMETERS = {
@@ -65,6 +91,7 @@ def run_experiment(
     lang_code: str, 
     base_results_path: str,
     use_few_shot: bool, # Add few-shot flag
+    prompt_in_lrl: bool, # Add prompt_in_lrl flag
     temperature: float,
     top_p: float,
     top_k: int,
@@ -81,6 +108,7 @@ def run_experiment(
         lang_code: Language code
         base_results_path: Base path for saving results
         use_few_shot: Whether to use few-shot prompting
+        prompt_in_lrl: Whether to use LRL for main prompt instructions
         temperature: Generation temperature
         top_p: Nucleus sampling top_p
         top_k: Top-k filtering
@@ -96,14 +124,15 @@ def run_experiment(
         print(f"\nProcessing {lang_code} samples with {model_name} (Baseline, {shot_desc})...")
         
         # --- Call the evaluation function --- 
-        # Pass the use_few_shot flag
+        # Pass the use_few_shot flag and prompt_in_lrl flag
         results_df = evaluate_qa_baseline(
             model_name=model_name,
             tokenizer=tokenizer,
             model=model,
-            samples_df=samples_df,
+            samples_df=samples_df.copy(), # Pass a copy
             lang_code=lang_code,
             use_few_shot=use_few_shot,
+            prompt_in_lrl=prompt_in_lrl, # Pass the flag
             temperature=temperature,
             top_p=top_p,
             top_k=top_k,
@@ -173,6 +202,7 @@ def run_experiment(
             'language': lang_code,
             'pipeline': 'baseline',
             'few_shot': use_few_shot,
+            'prompt_in_lrl': prompt_in_lrl,
             'f1_score': avg_f1
         }
         summary_df = pd.DataFrame([summary])
@@ -209,29 +239,26 @@ def main():
     }
     
     # Get arguments
-    args = parse_args()
-    
-    # Process models argument to handle comma-separated strings
-    processed_models_list = []
-    for model_arg in args.models:
-        if ',' in model_arg:
-            processed_models_list.extend([m.strip() for m in model_arg.split(',')])
-        else:
-            processed_models_list.append(model_arg.strip())
-    args.models = processed_models_list
+    args = parse_cli_args()
     
     # Configure logging
-    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+    logging.basicConfig(level=getattr(logging, args.log_level.upper(), logging.INFO),
+                        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     
-    # Define the results directory using the --output argument
-    base_results_dir = args.output
+    # Setup seeds
+    random.seed(args.seed)
+    np.random.seed(args.seed)
+    
+    # Define the results directory using the --base_output_dir argument
+    base_results_dir = args.base_output_dir
     os.makedirs(base_results_dir, exist_ok=True)
     
     # Define the languages to test
     languages = {
         "english": "en",
         "swahili": "sw",
-        "telugu": "te"  # Keep Telugu, remove Hausa
+        "telugu": "te",  # Keep Telugu, remove Hausa
+        "finnish": "fi"  # Added Finnish
     }
     
     # Load the samples for each language
@@ -240,25 +267,37 @@ def main():
         logging.info(f"Loading samples for {name} ({code})...")
         
         # Load appropriate number of samples based on percentage
-        samples = load_tydiqa_samples(code, sample_percentage=args.sample_percentage)
+        num_samples_to_load = args.num_samples
+        current_seed = args.seed
+        logger.info(f"Loading TyDiQA samples for {code}, split: {args.data_split}, num_samples: {num_samples_to_load}, seed: {current_seed}")
+        # Ensure load_tydiqa_samples from the utils is used
+        samples_df_for_lang = load_tydiqa_samples(
+            lang_code=code, 
+            num_samples=num_samples_to_load,
+            split=args.data_split,
+            seed=current_seed
+        )
         
-        if not samples.empty:
-            logging.info(f"  Loaded {len(samples)} samples for {name}")
-            tydiqa_samples[code] = samples
+        if not samples_df_for_lang.empty:
+            logging.info(f"  Loaded {len(samples_df_for_lang)} samples for {name}")
+            tydiqa_samples[code] = samples_df_for_lang
         else:
             logging.warning(f"  No samples loaded for {name}")
     
     # Run the experiments
     all_experiment_summaries = [] # ADDED: To collect all summaries
 
-    for model_name_str in args.models:
-        logging.info(f"\n{'='*20} Initializing Model: {model_name_str} {'='*20}")
+    model_names_list = args.models
+    lang_codes_list = args.langs
+
+    for model_name_str in model_names_list:
+        logger.info(f"\n===== Initializing Model: {model_name_str} =====")
         tokenizer, model = None, None # Initialize here for the current model scope
         try:
             # Initialize model once per model string
             tokenizer, model = initialize_model(model_name_str) 
         except Exception as e:
-            logging.error(f"Failed to initialize model {model_name_str}: {e}. Skipping this model.")
+            logger.error(f"Failed to initialize model {model_name_str}: {e}. Skipping this model.")
             # Ensure cleanup if partial initialization occurred before error
             if model is not None: del model
             if tokenizer is not None: del tokenizer
@@ -270,7 +309,7 @@ def main():
             if samples_df.empty:
                 continue
             
-            logging.info(f"Processing {lang_code} samples with {model_name_str}...")
+            logger.info(f"Processing {lang_code} samples with {model_name_str}...")
         
             # Determine effective generation parameters
             # Start with language-specific or standard parameters
@@ -297,19 +336,16 @@ def main():
             }
         
             # MODIFIED: Determine shot_settings based on command-line arguments
-            if args.compare_shots:
-                shot_settings = [True, False] # Few-shot and Zero-shot
-                logging.info("Running both few-shot and zero-shot evaluations as per --compare_shots flag.")
-            elif args.few_shot:
-                shot_settings = [True] # Few-shot only
-                logging.info("Running only few-shot evaluation as per --few_shot flag.")
+            if args.shot_settings:
+                shot_settings = args.shot_settings
+                logger.info(f"Running specified shot settings: {shot_settings}")
             else:
-                shot_settings = [False] # Zero-shot only (default)
-                logging.info("Running only zero-shot evaluation (default). Use --compare_shots or --few_shot for other modes.")
+                shot_settings = ['zero_shot', 'few_shot'] # Default: zero-shot and few-shot
+                logger.info("Running both zero-shot and few-shot evaluations (default). Use --shot_settings for other modes.")
         
             for use_few_shot in shot_settings:
-                shot_type = "few-shot" if use_few_shot else "zero-shot"
-                logging.info(f"Running {shot_type} evaluation with parameters: {effective_params}")
+                shot_type = "few-shot" if use_few_shot == 'few_shot' else "zero-shot"
+                logger.info(f"Running {shot_type} evaluation with parameters: {effective_params}")
                 
                 # MODIFIED: Call run_experiment which now returns a summary dict
                 experiment_summary = run_experiment(
@@ -319,7 +355,8 @@ def main():
                     samples_df,
                     lang_code,
                     base_results_dir, # Pass base_results_dir
-                    use_few_shot,
+                    use_few_shot == 'few_shot',
+                    args.prompt_in_lrl, # Pass the prompt_in_lrl flag
                     effective_params["temperature"],
                     effective_params["top_p"],
                     effective_params["top_k"],
@@ -333,19 +370,19 @@ def main():
                 # So, it's removed from here to avoid duplication.
 
         # Clean up model and tokenizer after all languages and shot settings for it are done
-        logging.info(f"Finished all experiments for model {model_name_str}. Unloading...")
+        logger.info(f"Finished all experiments for model {model_name_str}. Unloading...")
         if model is not None: del model
         if tokenizer is not None: del tokenizer
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
-            logging.info("GPU memory cache cleared.")
+            logger.info("GPU memory cache cleared.")
 
     # ADDED: Generate overall summary and plots
     if all_experiment_summaries:
         overall_summary_df = pd.DataFrame(all_experiment_summaries)
         overall_summary_filename = os.path.join(base_results_dir, "summaries", "baseline_qa_ALL_experiments_summary.csv")
         overall_summary_df.to_csv(overall_summary_filename, index=False, float_format='%.4f')
-        logging.info(f"Overall summary of all baseline QA experiments saved to: {overall_summary_filename}")
+        logger.info(f"Overall summary of all baseline QA experiments saved to: {overall_summary_filename}")
         print("\nOverall Summary:")
         print(overall_summary_df)
 
@@ -354,32 +391,52 @@ def main():
         os.makedirs(plots_dir, exist_ok=True)
         plot_qa_f1_scores(overall_summary_df, plots_dir)
     else:
-        logging.info("No experiment summaries collected. Skipping overall summary and plot generation.")
+        logger.info("No experiment summaries collected. Skipping overall summary and plot generation.")
 
 # ADDED: Plotting function for F1 scores
 def plot_qa_f1_scores(summary_df: pd.DataFrame, plots_dir: str):
-    """Generate and save a bar plot of F1 scores."""
+    """Generate and save plots for QA F1 scores."""
     if summary_df.empty:
-        logging.warning("Summary DataFrame is empty. Skipping F1 score plot generation.")
+        logger.info("Summary DataFrame is empty. Skipping plotting.")
         return
 
-    plt.figure(figsize=(12, 7))
+    required_cols = ['model', 'language', 'few_shot', 'prompt_in_lrl', 'f1_score']
+    if not all(col in summary_df.columns for col in required_cols if col in summary_df.columns): # check only for existing required cols
+        logger.warning(f"One or more required columns for plotting not found in summary_df. Skipping plotting.")
+        logger.debug(f"Available columns: {summary_df.columns.tolist()}")
+        return
+
+    # Ensure f1_score is numeric
+    summary_df['f1_score'] = pd.to_numeric(summary_df['f1_score'], errors='coerce')
+
+    # Create an experiment configuration string for unique x-axis labels
+    if 'prompt_in_lrl' in summary_df.columns and summary_df['prompt_in_lrl'].nunique() > 1:
+        summary_df['experiment_config'] = summary_df['model'] + "_" + \
+                                          summary_df['language'] + "_" + \
+                                          summary_df['few_shot'].astype(str) + "_" + \
+                                          summary_df['prompt_in_lrl'].astype(str)
+    else:
+        summary_df['experiment_config'] = summary_df['model'] + "_" + \
+                                      summary_df['language'] + "_" + \
+                                      summary_df['few_shot'].astype(str)
+    
+    plt.figure(figsize=(15, 8))
+    sns.barplot(data=summary_df, x='experiment_config', y='f1_score', hue='language', dodge=True)
+    plt.xticks(rotation=45, ha='right')
+    plt.title('QA Baseline F1 Scores by Experiment Configuration')
+    plt.ylabel('F1 Score')
+    plt.xlabel('Experiment Configuration (Model_Language_ShotSetting[_PromptLRL])')
+    plt.tight_layout()
+    
+    plot_filename = "qa_baseline_f1_scores_summary.png"
+    plot_path = os.path.join(plots_dir, plot_filename)
     try:
-        # Create a unique identifier for each experiment run for plotting
-        summary_df['experiment_id'] = summary_df['model'] + "-" + summary_df['language'] + "-" + summary_df['shot_type']
-        
-        sns.barplot(data=summary_df, x='experiment_id', y='f1_score', hue='language')
-        plt.xticks(rotation=45, ha='right')
-        plt.title('Average F1 Scores for QA Baseline Experiments')
-        plt.ylabel('Average F1 Score')
-        plt.xlabel('Experiment Configuration (Model-Language-ShotType)')
-        plt.tight_layout()
-        plot_filename = os.path.join(plots_dir, "baseline_qa_f1_scores.png")
-        plt.savefig(plot_filename)
+        plt.savefig(plot_path)
+        logger.info(f"F1 score plot saved to {plot_path}")
+    except Exception as e_plot:
+        logger.error(f"Failed to save F1 plot: {e_plot}")
+    finally:
         plt.close()
-        logging.info(f"F1 score plot saved to {plot_filename}")
-    except Exception as e:
-        logging.error(f"Error generating F1 plot: {e}", exc_info=True)
 
 if __name__ == "__main__":
     main()
