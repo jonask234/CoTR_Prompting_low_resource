@@ -13,7 +13,6 @@ logger = logging.getLogger(__name__)
 TYDIQA_LANG_CONFIG_MAP = {
     'en': 'english',
     'sw': 'swahili',
-    'te': 'telugu',
     'ar': 'arabic',
     'bn': 'bengali',
     'fi': 'finnish',
@@ -37,9 +36,9 @@ def create_fallback_samples(lang_code: str) -> list:
         return [
             {'id': 'fallback_sw_1', 'context': 'Jua ni la manjano.', 'question': 'Jua lina rangi gani?', 'answers': {'text': ['manjano'], 'answer_start': [10]}, 'language': 'sw', 'ground_truth': 'manjano'}
         ]
-    elif lang_code == 'te':
+    elif lang_code == 'fi':
         return [
-            {'id': 'fallback_te_1', 'context': 'ఆకాశం నీలం రంగులో ఉంది.', 'question': 'ఆకాశం ఏ రంగులో ఉంది?', 'answers': {'text': ['నీలం'], 'answer_start': [8]}, 'language': 'te', 'ground_truth': 'నీలం'}
+            {'id': 'fallback_fi_1', 'context': 'Taivas on sininen.', 'question': 'Minkä värinen taivas on?', 'answers': {'text': ['sininen'], 'answer_start': [9]}, 'language': 'fi', 'ground_truth': 'sininen'}
         ]
     return []
 
@@ -159,13 +158,13 @@ if __name__ == '__main__':
     else:
         print("\\nFailed to load Swahili samples.")
 
-    # Test Telugu
-    te_samples = load_tydiqa_samples('te', num_samples=2, split='validation')
-    if not te_samples.empty:
-        print(f"\\nTelugu validation samples (2%): {len(te_samples)}")
-        print(te_samples.head())
+    # Test Finnish
+    fi_samples = load_tydiqa_samples('fi', num_samples=2, split='validation')
+    if not fi_samples.empty:
+        print(f"\\nFinnish validation samples (2%): {len(fi_samples)}")
+        print(fi_samples.head())
     else:
-        print("\\nFailed to load Telugu samples.")
+        print("\\nFailed to load Finnish samples.")
     
     # Test a language not in our TYDIQA_LANG_CONFIG_MAP to see fallback/error
     # xx_samples = load_tydiqa_samples('xx', sample_percentage=1)

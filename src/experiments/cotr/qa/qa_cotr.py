@@ -23,7 +23,6 @@ logger = logging.getLogger(__name__)
 LANG_NAMES = {
     "en": "English",
     "sw": "Swahili",
-    "te": "Telugu",
     "fi": "Finnish",
     # Add other languages if they become relevant from TyDiQA or other datasets
     "hi": "Hindi", "vi": "Vietnamese", "bn": "Bengali", "id": "Indonesian",
@@ -171,18 +170,6 @@ Provide ONLY the English translation.
 
 English Translation:"""
             return prompt_text
-        elif source_lang == 'te':
-            prompt_text = f"""Original Text (Telugu):
-'{_escape_fstring_val(text)}'
-
-Instructions:
-Translate this Telugu text to English with high precision and natural phrasing.
-Keep all facts, named entities, numbers, dates, and technical information intact and accurately translated.
-Maintain the original meaning without adding any interpretations or losing nuances crucial for later question answering.
-Provide ONLY the English translation.
-
-English Translation:"""
-            return prompt_text
         elif source_lang == 'fi': # Added Finnish to English translation prompt
             prompt_text = f"""Original Text (Finnish):
 '{_escape_fstring_val(text)}'
@@ -206,18 +193,6 @@ For yes/no answers, use the standard Swahili equivalent (e.g., 'Ndiyo' or 'Hapan
 Provide ONLY the Swahili translation.
 
 Swahili Translation:"""
-            return prompt_text
-        elif target_lang == 'te':
-            prompt_text = f"""Original Text (English):
-'{_escape_fstring_val(text)}'
-
-Instructions:
-Translate this English text to accurate and natural-sounding Telugu using standard script.
-Maintain all factual information, especially names and numbers, with precision.
-For yes/no answers, use the standard Telugu equivalent (e.g., 'అవును' or 'లేదు').
-Provide ONLY the Telugu translation.
-
-Telugu Translation:"""
             return prompt_text
         elif target_lang == 'fi': # Added English to Finnish translation prompt (for answer)
             prompt_text = f"""Original Text (English):
@@ -322,7 +297,7 @@ Provide your answer in this exact format:
         ex2_en_q = "What is the color of the sky on Mars?"
         ex2_en_c = "Mars is the fourth planet from the Sun."
         ex2_en_a = "I don't know"
-        ex2_lrl_a_map = {"sw": "Sijui", "te": "నాకు తెలియదు", "fi": "En tiedä"}
+        ex2_lrl_a_map = {"sw": "Sijui", "fi": "En tiedä"}
         ex2_lrl_a = ex2_lrl_a_map.get(lang_code, f"[Equivalent of I don't know in {lrl_name_for_prompt}]")
 
         # Handle final answer label for examples based on language
@@ -454,9 +429,9 @@ def extract_answer(response: str, is_yes_no: bool = False, lang_code_for_lrl_ans
         if lang_code_for_lrl_answer == "sw":
             if "ndiyo" in response_lower: return "Ndiyo" # Or map to "Yes" if metrics are English-based
             if "hapana" in response_lower: return "Hapana" # Or map to "No"
-        elif lang_code_for_lrl_answer == "te":
-            if "అవును" in response_lower: return "అవును" # (avunu)
-            if "లేదు" in response_lower: return "లేదు"   # (ledu)
+        elif lang_code_for_lrl_answer == "fi":
+            if "kyllä" in response_lower: return "Kyllä" # (yes)
+            if "ei" in response_lower: return "Ei"   # (no)
 
 
     prefixes_to_strip = [

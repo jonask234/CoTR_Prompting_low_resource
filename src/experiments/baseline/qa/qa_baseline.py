@@ -60,15 +60,6 @@ LRL_QA_INSTRUCTIONS = {
         "question_label": "Kysymys",
         "context_label": "Konteksti",
         "answer_label": "Vastaus"
-    },
-    "te": {
-        "direct_instruction": "దయచేసి కింది ప్రశ్నకు సమాధానం ఇవ్వండి.",
-        "contextual_instruction": "దయచేసి ఇచ్చిన సందర్భం ఆధారంగా కింది ప్రశ్నకు సమాధానం ఇవ్వండి.",
-        "examples_header": "ఇక్కడ కొన్ని ఉదాహరణలు (ఈ ఉదాహరణలు ఆంగ్లంలో ఉన్నాయి):",
-        "analyze_header": "ఇప్పుడు, ఈ ప్రశ్నకు సమాధానం ఇవ్వండి:",
-        "question_label": "ప్రశ్న",
-        "context_label": "సందర్భం",
-        "answer_label": "సమాధానం"
     }
 }
 
@@ -167,7 +158,7 @@ def extract_answer(text: str, question: str, lang_code: str = "en") -> str:
         no_answer_map = {
             "en": "[no answer generated]",
             "sw": "Sijui", # Changed from "Hakuna jibu" to match prompt
-            "te": "నాకు తెలియదు" # Changed from "సమాధానం లేదు" to match prompt
+            "fi": "En tiedä" # Finnish "I don't know"
         }
         return no_answer_map.get(lang_code, "[no answer generated]")
     
@@ -183,13 +174,13 @@ def extract_answer(text: str, question: str, lang_code: str = "en") -> str:
         r"^i don\\'t have that information\\.?$", r"^i am not sure\\.?$", r"^unknown\\.?$",
         # Swahili (approximations)
         r"^sijui\\.?$", r"^sina uhakika\\.?$", r"^siwezi kujibu\\.?$",
-        # Telugu (approximations)
-        r"^నాకు తెలియదు\\.?$", r"^నాకు ఖచ్చితంగా తెలియదు\\.?$", r"^చెప్పలేను\\.?$"
+        # Finnish (approximations)
+        r"^en tiedä\\.?$", r"^en ole varma\\.?$", r"^en osaa sanoa\\.?$"
     ]
     standard_i_dont_know = {
         "en": "I don't know",
         "sw": "Sijui",
-        "te": "నాకు తెలియదు"
+        "fi": "En tiedä"
     }
 
     for pattern in i_dont_know_patterns:
@@ -202,7 +193,7 @@ def extract_answer(text: str, question: str, lang_code: str = "en") -> str:
     prefixes = {
         "en": ["answer:", "the answer is:", "answer is:"],
         "sw": ["jibu:", "jibu ni:", "jibu lake ni:"],
-        "te": ["సమాధానం:", "జవాబు:", "సమాధానం ఏమిటంటే:"]
+        "fi": ["vastaus:", "vastaus on:", "vastaus on seuraava:"]
     }
     
     # Get language-specific prefixes or default to English
@@ -230,13 +221,13 @@ def extract_answer(text: str, question: str, lang_code: str = "en") -> str:
     yes_patterns = {
         "en": ["yes", "yes,", "yes.", "yeah", "correct", "true", "right"],
         "sw": ["ndio", "ndiyo", "naam", "ndivyo", "kweli", "ndiyo", "ndio kweli"],
-        "te": ["అవును", "avunu", "ఔను", "ఓను", "సరి", "నిజమే"]
+        "fi": ["kyllä", "joo", "oikein", "totta", "kyllä vain"]
     }
     
     no_patterns = {
         "en": ["no", "no,", "no.", "nope", "not", "false", "incorrect", "wrong"],
         "sw": ["hapana", "la", "sivyo", "si", "siyo", "si kweli", "sikweli"],
-        "te": ["కాదు", "లేదు", "కాదండి", "వద్దు", "తప్పు"]
+        "fi": ["ei", "ei,", "ei.", "väärin", "epätosi"]
     }
     
     # Get patterns for the language
@@ -249,8 +240,8 @@ def extract_answer(text: str, question: str, lang_code: str = "en") -> str:
         if text_lower == yes_term or text_lower.startswith(yes_term + " "):
             if lang_code == "sw":
                 return "Ndio"
-            elif lang_code == "te":
-                return "అవును"
+            elif lang_code == "fi":
+                return "Kyllä"
             else:
                 return "Yes"
     
@@ -258,8 +249,8 @@ def extract_answer(text: str, question: str, lang_code: str = "en") -> str:
         if text_lower == no_term or text_lower.startswith(no_term + " "):
             if lang_code == "sw":
                 return "Hapana"
-            elif lang_code == "te":
-                return "కాదు"
+            elif lang_code == "fi":
+                return "Ei"
             else:
                 return "No"
     
@@ -269,9 +260,11 @@ def extract_answer(text: str, question: str, lang_code: str = "en") -> str:
             text = text.lower().split("majibu ni ", 1)[1].strip()
         elif "jibu ni " in text.lower():
             text = text.lower().split("jibu ni ", 1)[1].strip()
-    elif lang_code == "te":
-        if "సమాధానం " in text.lower():
-            text = text.lower().split("సమాధానం ", 1)[1].strip()
+    elif lang_code == "fi":
+        if "vastaus on " in text.lower():
+            text = text.lower().split("vastaus on ", 1)[1].strip()
+        elif "vastaus " in text.lower():
+            text = text.lower().split("vastaus ", 1)[1].strip()
     else:
         if "the answer is " in text.lower():
             text = text.lower().split("the answer is ", 1)[1].strip()
@@ -548,11 +541,11 @@ def process_qa_baseline(tokenizer, model, question, context=None,
                 answer = "Ndio" 
             elif any(term in answer.lower() for term in ["hapana", "la", "sivyo"]):
                 answer = "Hapana"
-        elif lang_code == "te":
-            if any(term in answer.lower() for term in ["అవును", "avunu", "ఔను"]):
-                answer = "అవును" 
-            elif any(term in answer.lower() for term in ["కాదు", "లేదు", "ledu"]):
-                answer = "కాదు"
+        elif lang_code == "fi":
+            if any(term in answer.lower() for term in ["kyllä", "joo"]):
+                answer = "Kyllä" 
+            elif any(term in answer.lower() for term in ["ei", "ei."]):
+                answer = "Ei"
         else: # English
             # Check if the answer starts with yes/no or is just yes/no
             if answer.lower().startswith("yes") or answer.lower() == "yes":
@@ -568,7 +561,7 @@ def process_qa_baseline(tokenizer, model, question, context=None,
 
     
     # Final formatting for numeric answers - try to extract just the number if appropriate
-    if is_numeric_question(question) and not answer.lower() in ["yes", "no", "ndio", "hapana", "అవును", "కాదు", "[no answer generated]", "i don\'t know", "sijui", "నాకు తెలియదు"]:
+    if is_numeric_question(question) and not answer.lower() in ["yes", "no", "ndio", "hapana", "kyllä", "ei", "[no answer generated]", "i don\'t know", "sijui", "en tiedä"]:
         # Enhanced regex that handles different number formats
         numeric_match = re.search(r'\b(\d[\d,.]*\d|\d)\b', answer)
         if numeric_match:
@@ -635,7 +628,7 @@ def calculate_qa_f1(ground_truth, predicted_answer):
         if not reference: # Handles cases where a reference might be None or empty
             # If prediction is also empty/None, consider it a perfect match for this empty ref (F1=1)
             # If prediction has content, it's a mismatch (F1=0)
-            if not prediction or prediction == "[no answer generated]" or prediction == "I don't know" or prediction == "Sijui" or prediction == "నాకు తెలియదు":
+            if not prediction or prediction == "[no answer generated]" or prediction == "I don't know" or prediction == "Sijui" or prediction == "En tiedä":
                  f1_scores.append(1.0) # Both are effectively 'no answer'
             else:
                  f1_scores.append(0.0) # Ground truth is no answer, but model provided one
@@ -659,7 +652,7 @@ def calculate_qa_f1(ground_truth, predicted_answer):
     else: # This case should ideally not be hit if ground_truth always has at least one string.
           # If ground_truth was an empty list, and prediction is also empty, it's F1=1.
           # If ground_truth was empty list, and prediction has content, it's F1=0.
-        if not prediction or prediction == "[no answer generated]" or prediction == "I don't know" or prediction == "Sijui" or prediction == "నాకు తెలియదు":
+        if not prediction or prediction == "[no answer generated]" or prediction == "I don't know" or prediction == "Sijui" or prediction == "En tiedä":
             return 1.0 
         else:
             return 0.0

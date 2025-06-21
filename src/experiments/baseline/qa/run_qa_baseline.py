@@ -35,7 +35,7 @@ logger = logging.getLogger(__name__)
 def parse_cli_args():
     parser = argparse.ArgumentParser(description="Run Baseline QA Experiments with TyDiQA.")
     parser.add_argument("--models", type=str, default="CohereLabs/aya-expanse-8b,Qwen/Qwen2.5-7B-Instruct", help="Comma-separated model names.")
-    parser.add_argument("--langs", type=str, default="en,sw,te,fi", help="Comma-separated TyDiQA language codes (e.g., en,sw,te,fi).")
+    parser.add_argument("--langs", type=str, default="en,sw,fi", help="Comma-separated TyDiQA language codes (e.g., en,sw,fi).")
     parser.add_argument("--num_samples", type=int, default=80, help="Number of samples per language. Default: 80")
     parser.add_argument("--data_split", type=str, default="validation", choices=["train", "validation"], help="Dataset split (TyDiQA 'validation' corresponds to dev set).")
     parser.add_argument("--base_output_dir", type=str, default="/work/bbd6522/results/qa/baseline_tydiqa", help="Base directory to save results and summaries.")
@@ -80,7 +80,7 @@ def parse_cli_args():
 LANGUAGE_PARAMETERS = {
     "en": {"temperature": 0.3, "top_p": 0.9, "top_k": 40, "max_tokens": 50},
     "sw": {"temperature": 0.25, "top_p": 0.85, "top_k": 35, "max_tokens": 55}, # Example for Swahili
-    "te": {"temperature": 0.28, "top_p": 0.88, "top_k": 38, "max_tokens": 52}  # Example for Telugu
+    "fi": {"temperature": 0.28, "top_p": 0.88, "top_k": 38, "max_tokens": 52}  # Example for Finnish
 }
 
 def run_experiment(
@@ -257,7 +257,6 @@ def main():
     languages = {
         "english": "en",
         "swahili": "sw",
-        "telugu": "te",  # Keep Telugu, remove Hausa
         "finnish": "fi"  # Added Finnish
     }
     

@@ -51,7 +51,7 @@ LANGUAGE_PARAMETERS = {
         "top_k": STANDARD_PARAMETERS["top_k"],
         "max_tokens": STANDARD_PARAMETERS["max_tokens"]
     },
-    "te": {  # Telugu
+    "fi": {  # Finnish
         "temperature": 0.15,
         "top_p": 0.75,
         "top_k": STANDARD_PARAMETERS["top_k"],
@@ -90,11 +90,11 @@ DEFAULT_TRANSLATION_PARAMS = {
 # These override task-specific defaults for certain languages.
 LANG_QA_PARAM_OVERRIDES = {
     "sw": { "temperature": 0.18, "top_p": 0.85},
-    "te": { "temperature": 0.15, "top_p": 0.75}
+    "fi": { "temperature": 0.15, "top_p": 0.75}
 }
 LANG_TRANSLATION_PARAM_OVERRIDES = {
     "sw": { "temperature": 0.3, "max_tokens": 220},
-    "te": { "temperature": 0.3, "max_tokens": 220}
+    "fi": { "temperature": 0.3, "max_tokens": 220}
 }
 
 # --- Model-Specific Adjustments (applied AFTER lang/CLI overrides) --- #
@@ -403,7 +403,7 @@ def parse_cli_args():
     
     # Core settings
     parser.add_argument("--models", type=str, default="CohereLabs/aya-23-8B,Qwen/Qwen2.5-7B-Instruct", help="Comma-separated model names from Hugging Face.")
-    parser.add_argument("--languages", type=str, default="sw,te,en", help="Comma-separated language codes for TyDiQA-GoldP (e.g., sw, te, en).")
+    parser.add_argument("--languages", type=str, default="sw,fi,en", help="Comma-separated language codes for TyDiQA-GoldP (e.g., sw, fi, en).")
     parser.add_argument("--num_samples", type=int, default=10, help="Number of samples per language. Use a small number for testing.")
     parser.add_argument("--data_split", type=str, default="validation", choices=["train", "validation"], help="Dataset split (TyDiQA-GoldP usually 'validation' for dev).")
     parser.add_argument("--pipeline_types", nargs='+', default=['multi_prompt', 'single_prompt'], choices=['multi_prompt', 'single_prompt'])
