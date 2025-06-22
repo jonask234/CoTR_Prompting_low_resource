@@ -126,26 +126,16 @@ def generate_lrl_instruct_sentiment_prompt(text: str, lang_code: str, model_name
     """
     Generates a sentiment classification prompt IN THE LOW-RESOURCE LANGUAGE (LRL),
     instructing the model to output an English sentiment label.
-    Few-shot examples use LRL text and English sentiment labels.
+    Few-shot examples use English text and English sentiment labels for consistency with other tasks.
     """
     lrl_name = get_language_name(lang_code)
     text_escaped = text.replace("'", "\\'") # Keep existing escaping
 
-    # --- LRL Few-Shot Examples (LRL text, English label) ---
-    # These remain as LRL text examples with English sentiment labels
-    lrl_example_positive_text = "Filamu hii ni nzuri sana, nimeipenda!" # Swahili
-    lrl_example_negative_text = "Sikufurahishwa na huduma hii hata kidogo." # Swahili
-    lrl_example_neutral_text = "Mkutano utaanza saa tisa alasiri." # Swahili
-
-    if lang_code == "ha":
-        lrl_example_positive_text = "Wannan fim yana da daɗi ƙwarai, na ji daɗinsa!"
-        lrl_example_negative_text = "Ban gamsu da wannan sabis ɗin ba ko kaɗan."
-        lrl_example_neutral_text = "Taron zai fara da ƙarfe uku na rana."
-    elif lang_code == "pt":
-        lrl_example_positive_text = "Este filme é muito bom, adorei!"
-        lrl_example_negative_text = "Não fiquei nada satisfeito com este serviço."
-        lrl_example_neutral_text = "A reunião começará às 15h."
-    # Add other languages here if needed for example texts
+    # --- English Few-Shot Examples (English text, English label) ---
+    # Changed to use English examples for consistency with other tasks
+    english_example_positive_text = "This movie was fantastic, I loved it!"
+    english_example_negative_text = "I am not happy with the service provided."
+    english_example_neutral_text = "The meeting is scheduled for 3 PM."
 
     # --- LRL Instruction Segment ---
     # IMPORTANT: This section needs to be translated into each respective LRL.
@@ -177,31 +167,31 @@ def generate_lrl_instruct_sentiment_prompt(text: str, lang_code: str, model_name
             few_shot_header_lrl = f"Here are some examples in {lrl_name} with their English sentiment labels:"
             
         prompt += f"{few_shot_header_lrl}\n"
-        prompt += f"Mfano 1:\n{lrl_name} Nakala: '{lrl_example_positive_text}'\nLebo ya Hisia ya Kiingereza: positive\n\n" # Swahili example structure
+        prompt += f"Mfano 1:\nKiingereza Nakala: '{english_example_positive_text}'\nLebo ya Hisia ya Kiingereza: positive\n\n" # Swahili example structure
         if lang_code == "ha":
-            prompt += f"Misali 1:\n{lrl_name} Rubutu: '{lrl_example_positive_text}'\nAlamar Ra'ayi ta Turanci: positive\n\n"
+            prompt += f"Misali 1:\nTuranci Rubutu: '{english_example_positive_text}'\nAlamar Ra'ayi ta Turanci: positive\n\n"
         elif lang_code == "pt":
-             prompt += f"Exemplo 1:\n{lrl_name} Texto: '{lrl_example_positive_text}'\nRótulo de Sentimento em Inglês: positive\n\n"
+             prompt += f"Exemplo 1:\nTexto em Inglês: '{english_example_positive_text}'\nRótulo de Sentimento em Inglês: positive\n\n"
         else: # Fallback structure
-            prompt += f"Example 1:\n{lrl_name} Text: '{lrl_example_positive_text}'\nEnglish Sentiment Label: positive\n\n"
+            prompt += f"Example 1:\nEnglish Text: '{english_example_positive_text}'\nEnglish Sentiment Label: positive\n\n"
 
 
-        prompt += f"Mfano 2:\n{lrl_name} Nakala: '{lrl_example_negative_text}'\nLebo ya Hisia ya Kiingereza: negative\n\n" # Swahili
+        prompt += f"Mfano 2:\nKiingereza Nakala: '{english_example_negative_text}'\nLebo ya Hisia ya Kiingereza: negative\n\n" # Swahili
         if lang_code == "ha":
-            prompt += f"Misali 2:\n{lrl_name} Rubutu: '{lrl_example_negative_text}'\nAlamar Ra'ayi ta Turanci: negative\n\n"
+            prompt += f"Misali 2:\nTuranci Rubutu: '{english_example_negative_text}'\nAlamar Ra'ayi ta Turanci: negative\n\n"
         elif lang_code == "pt":
-            prompt += f"Exemplo 2:\n{lrl_name} Texto: '{lrl_example_negative_text}'\nRótulo de Sentimento em Inglês: negative\n\n"
+            prompt += f"Exemplo 2:\nTexto em Inglês: '{english_example_negative_text}'\nRótulo de Sentimento em Inglês: negative\n\n"
         else: # Fallback
-            prompt += f"Example 2:\n{lrl_name} Text: '{lrl_example_negative_text}'\nEnglish Sentiment Label: negative\n\n"
+            prompt += f"Example 2:\nEnglish Text: '{english_example_negative_text}'\nEnglish Sentiment Label: negative\n\n"
 
 
-        prompt += f"Mfano 3:\n{lrl_name} Nakala: '{lrl_example_neutral_text}'\nLebo ya Hisia ya Kiingereza: neutral\n\n" # Swahili
+        prompt += f"Mfano 3:\nKiingereza Nakala: '{english_example_neutral_text}'\nLebo ya Hisia ya Kiingereza: neutral\n\n" # Swahili
         if lang_code == "ha":
-            prompt += f"Misali 3:\n{lrl_name} Rubutu: '{lrl_example_neutral_text}'\nAlamar Ra'ayi ta Turanci: neutral\n\n"
+            prompt += f"Misali 3:\nTuranci Rubutu: '{english_example_neutral_text}'\nAlamar Ra'ayi ta Turanci: neutral\n\n"
         elif lang_code == "pt":
-            prompt += f"Exemplo 3:\n{lrl_name} Texto: '{lrl_example_neutral_text}'\nRótulo de Sentimento em Inglês: neutral\n\n"
+            prompt += f"Exemplo 3:\nTexto em Inglês: '{english_example_neutral_text}'\nRótulo de Sentimento em Inglês: neutral\n\n"
         else: # Fallback
-            prompt += f"Example 3:\n{lrl_name} Text: '{lrl_example_neutral_text}'\nEnglish Sentiment Label: neutral\n\n"
+            prompt += f"Example 3:\nEnglish Text: '{english_example_neutral_text}'\nEnglish Sentiment Label: neutral\n\n"
 
 
     # The final part asking to classify the current text should also be in LRL.
