@@ -1,0 +1,173 @@
+{
+  "analysis_type": "Simplified Statistical Analysis",
+  "total_matched_pairs": 120,
+  "tasks_analyzed": [
+    "classification",
+    "ner",
+    "nli",
+    "qa",
+    "sentiment"
+  ],
+  "languages_analyzed": [
+    "en",
+    "fi",
+    "fr",
+    "ha",
+    "pt",
+    "sw",
+    "ur"
+  ],
+  "models_analyzed": [
+    "Qwen2.5-7B-Instruct",
+    "aya-23-8B"
+  ],
+  "significance_level": 0.05,
+  "hypotheses": {
+    "H1": {
+      "hypothesis": "H1_CoTR_vs_Baseline",
+      "overall_accuracy": {
+        "n_pairs": 80,
+        "mean_baseline": 0.3903125,
+        "mean_cotr": 0.46593750000000006,
+        "mean_improvement": 0.07562500000000001,
+        "relative_improvement_pct": 19.37550040032026,
+        "t_statistic": 2.9757451791354974,
+        "p_value": 0.003877044324232055,
+        "significant": "True",
+        "effect_direction": "positive"
+      },
+      "overall_f1": {
+        "n_pairs": 120,
+        "mean_baseline": 0.30987357741685123,
+        "mean_cotr": 0.36702546553256,
+        "mean_improvement": 0.05715188811570879,
+        "relative_improvement_pct": 18.443614519229033,
+        "t_statistic": 2.946106180468572,
+        "p_value": 0.0038724289494367786,
+        "significant": "True",
+        "effect_direction": "positive"
+      }
+    },
+    "H2": {
+      "hypothesis": "H2_Translation_Quality",
+      "status": "requires_bleu_scores",
+      "note": "Translation quality metrics (BLEU) need to be computed separately"
+    },
+    "H3": {
+      "hypothesis": "H3_Task_Effectiveness",
+      "task_specific": {
+        "qa": {
+          "f1": {
+            "n_pairs": 24,
+            "mean_improvement": -0.0712701351813761,
+            "relative_improvement_pct": -53.4064548725691,
+            "t_statistic": -2.6345889894660304,
+            "p_value": 0.014814227993268488,
+            "significant": "True"
+          }
+        },
+        "ner": {
+          "f1": {
+            "n_pairs": 16,
+            "mean_improvement": -0.049660446387017845,
+            "relative_improvement_pct": -13.736797200319026,
+            "t_statistic": -1.8568197840328606,
+            "p_value": 0.08308397594005491,
+            "significant": "False"
+          }
+        },
+        "nli": {
+          "accuracy": {
+            "n_pairs": 32,
+            "mean_improvement": 0.15898437499999998,
+            "relative_improvement_pct": 35.89065255731922,
+            "t_statistic": 10.404171282493635,
+            "p_value": 1.2336253801224103e-11,
+            "significant": "True"
+          },
+          "f1": {
+            "n_pairs": 32,
+            "mean_improvement": 0.2024900062534235,
+            "relative_improvement_pct": 54.74162585351722,
+            "t_statistic": 10.34680302452306,
+            "p_value": 1.4108366565173353e-11,
+            "significant": "True"
+          }
+        },
+        "sentiment": {
+          "accuracy": {
+            "n_pairs": 24,
+            "mean_improvement": 0.11354166666666667,
+            "relative_improvement_pct": 46.58119658119658,
+            "t_statistic": 3.4042992155491425,
+            "p_value": 0.0024330398260504543,
+            "significant": "True"
+          },
+          "f1": {
+            "n_pairs": 24,
+            "mean_improvement": 0.1586896491971819,
+            "relative_improvement_pct": 73.67087677877836,
+            "t_statistic": 5.549984037462371,
+            "p_value": 1.2048708548379292e-05,
+            "significant": "True"
+          }
+        },
+        "classification": {
+          "accuracy": {
+            "n_pairs": 24,
+            "mean_improvement": -0.07343749999999999,
+            "relative_improvement_pct": -15.736607142857142,
+            "t_statistic": -1.1032046289697983,
+            "p_value": 0.28134785524521716,
+            "significant": "False"
+          },
+          "f1": {
+            "n_pairs": 24,
+            "mean_improvement": -0.038539784183814596,
+            "relative_improvement_pct": -8.264935481299945,
+            "t_statistic": -0.6042447444713608,
+            "p_value": 0.5515953484039517,
+            "significant": "False"
+          }
+        }
+      }
+    }
+  },
+  "additional_analyses": {
+    "pipeline_effects": {
+      "analysis": "Pipeline_Effects",
+      "single_prompt": {
+        "accuracy": {
+          "n_pairs": 40,
+          "mean_improvement": 0.019687499999999997,
+          "relative_improvement_pct": 5.044035228182545,
+          "p_value": 0.6433572264321448,
+          "significant": "False"
+        },
+        "f1": {
+          "n_pairs": 60,
+          "mean_improvement": 0.023180029871129337,
+          "relative_improvement_pct": 7.480479640878469,
+          "p_value": 0.4467999977194035,
+          "significant": "False"
+        }
+      },
+      "multi_prompt": {
+        "accuracy": {
+          "n_pairs": 40,
+          "mean_improvement": 0.13156250000000003,
+          "relative_improvement_pct": 33.706965572457975,
+          "p_value": 1.0368579143901875e-05,
+          "significant": "True"
+        },
+        "f1": {
+          "n_pairs": 60,
+          "mean_improvement": 0.09112374636028824,
+          "relative_improvement_pct": 29.406749397579603,
+          "p_value": 0.00030213744507618273,
+          "significant": "True"
+        }
+      }
+    }
+  }
+}

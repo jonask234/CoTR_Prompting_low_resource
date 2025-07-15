@@ -1,0 +1,889 @@
+original_text_lrl,ground_truth_label,predicted_label,ground_truth_english_label,intermediate_en_text,predicted_en_label,predicted_lrl_label_final,comet_lrl_text_to_en,comet_en_label_to_lrl,raw_translation_to_en_output,raw_predicted_en_label_output,raw_translation_to_lrl_output,runtime_translation_to_en_seconds,runtime_classification_en_seconds,runtime_translation_to_lrl_seconds,language,pipeline,shot_type
+   Mambo 9 muhimu ya kuzingatia unapotumia mitandao ya kijamii 1 Fikiria kwanza kabla ya kutuma taarifa yoyote mitan,neutral,neutral,neutral,"The 9th point importantly addresses the use of school radio 1 First imagine before sending all information mitan
+The 9th point importantly addresses the use of school radio. First imagine before sending all information.",neutral,"neutral""",,," The 9th point importantly addresses the use of school radio 1 First imagine before sending all information mitan
+The 9th point importantly addresses the use of school radio. First imagine before sending all information."," neutral
+
+Note: The provided text is"," ""neutral""  
+(Chache)",1.1276946067810059,0.20248699188232422,0.22382140159606934,sw,multi_prompt,zero-shot
+Shilole AKA Shishi Baby kuhusu UkatiliUnyanyasaji Mtandaoni,positive,neutral,positive,"The song is about a thief in the marketplace. To translate the provided Swahili text into English:
+
+The song is about a thief in the marketplace. 
+
+This translation maintains the meaning of the original text while ensuring it reads naturally in English. The phrase ""Ukatili Unyanyasaji Mtandaoni"" directly translates to ""Thief in the marketplace,"" which is commonly expressed as ""thief in the marketplace"" in English idiomatic usage. The name ""Shilole AKA Shishi Baby"" appears to be a title or nickname for the song's subject and has been left untranslated as proper names are typically not translated between languages. However, I've adjusted the article to ""the"" as it's more natural in English when referring to a specific song or subject. If you prefer to keep it as ""Shilole AKA Shishi Baby"" without ""the,"" that can also be done. Let me know if you need further adjustments. 
+
+English Translation: The song is about Shilole AKA Shishi Baby, a thief in the marketplace. 
+
+Or simply:
+
+English Translation: Shilole AKA Shishi Baby, a thief in the marketplace. 
+
+Depending on how much detail you want to include. Please specify if you have a preference.",neutral,"neutral""",,," The song is about a thief in the marketplace. To translate the provided Swahili text into English:
+
+The song is about a thief in the marketplace. 
+
+This translation maintains the meaning of the original text while ensuring it reads naturally in English. The phrase ""Ukatili Unyanyasaji Mtandaoni"" directly translates to ""Thief in the marketplace,"" which is commonly expressed as ""thief in the marketplace"" in English idiomatic usage. The name ""Shilole AKA Shishi Baby"" appears to be a title or nickname for the song's subject and has been left untranslated as proper names are typically not translated between languages. However, I've adjusted the article to ""the"" as it's more natural in English when referring to a specific song or subject. If you prefer to keep it as ""Shilole AKA Shishi Baby"" without ""the,"" that can also be done. Let me know if you need further adjustments. 
+
+English Translation: The song is about Shilole AKA Shishi Baby, a thief in the marketplace. 
+
+Or simply:
+
+English Translation: Shilole AKA Shishi Baby, a thief in the marketplace. 
+
+Depending on how much detail you want to include. Please specify if you have a preference."," neutral
+
+English Sentiment Label: neutral"," ""neutral"" 
+(Notili ya Sentimenti ya Kiswah",6.491310119628906,0.23560619354248047,0.3714029788970947,sw,multi_prompt,zero-shot
+   Changamoto ya Tax Refund inatokana na baadhi ya wadau kutokuwa waaminifu naomba baadhi ya wadau wafanye kazi kwa uaminifu,neutral,negative,neutral,"The tax refund process is hindered by many obstacles that prevent some people from applying for it.
+The tax refund process is hindered by many obstacles that prevent some people from applying for it.",negative,chafu,,," The tax refund process is hindered by many obstacles that prevent some people from applying for it.
+The tax refund process is hindered by many obstacles that prevent some people from applying for it."," negative
+
+English Sentiment Label: negative"," ""chafu""",0.9758594036102295,0.20272469520568848,0.1505134105682373,sw,multi_prompt,zero-shot
+Kwamba acha kunyonya maziwa ya mama yale ni ya mtoto wako Acha kabisa,neutral,neutral,neutral,"The milk from your cows is for your child Acha completely
+The milk from your cows is for your child Acha completely. 
+
+Note: The original Swahili sentence has a slight grammatical issue (""Acha kabisa"" at the end seems out of place), but I have translated it as closely as possible to the provided instruction. If ""Acha kabisa"" was meant to be a separate statement or if there's additional context, please clarify. Based on the given text, the most accurate translation is as provided.",neutral,"neutral""",,," The milk from your cows is for your child Acha completely
+The milk from your cows is for your child Acha completely. 
+
+Note: The original Swahili sentence has a slight grammatical issue (""Acha kabisa"" at the end seems out of place), but I have translated it as closely as possible to the provided instruction. If ""Acha kabisa"" was meant to be a separate statement or if there's additional context, please clarify. Based on the given text, the most accurate translation is as provided."," neutral
+
+(Note: The provided text does"," ""neutral""  
+(Chache)",2.693603515625,0.21139311790466309,0.22413134574890137,sw,multi_prompt,zero-shot
+   EWE KIJANA AMKA KUMEKUCHA Ni asubuhi nyingine tena katika ulimwengu uliojaa fursa nyingi hususani za kilimo biashara T,neutral,neutral,neutral,"This young man is again looking for business opportunities especially in agriculture. To translate the provided Swahili text into fluent and accurate English:
+
+This young man is again searching for business opportunities especially in agricultural trade. 
+
+Note: The original text had a trailing 'T' at the end which was not translated, as it did not provide a clear context or meaning. If you intended to include something specific, please clarify. Otherwise, the translation focuses on the main content of the sentence.",neutral,"neutral""",,," This young man is again looking for business opportunities especially in agriculture. To translate the provided Swahili text into fluent and accurate English:
+
+This young man is again searching for business opportunities especially in agricultural trade. 
+
+Note: The original text had a trailing 'T' at the end which was not translated, as it did not provide a clear context or meaning. If you intended to include something specific, please clarify. Otherwise, the translation focuses on the main content of the sentence."," neutral
+You are an AI assistant."," ""neutral"" 
+(translate to ""chache"") Chache",2.4298343658447266,0.21116185188293457,0.3467445373535156,sw,multi_prompt,zero-shot
+   Hello MwanzaNew service in townThe most Mobile MessengerTuma chochotepopote pale na utaletewa ulipoContacts http,negative,positive,negative,"New service in town\nThe most Mobile Messenger\nStay connected always and easily established\nContacts http
+English Translation: New service in town\nThe most Mobile Messenger\nStay connected always and easily established\nContacts http [removed]",positive,"mfano""",,," New service in town\nThe most Mobile Messenger\nStay connected always and easily established\nContacts http
+English Translation: New service in town\nThe most Mobile Messenger\nStay connected always and easily established\nContacts http [removed]"," neutral
+
+English Sentiment Label: positive"," ""mfano"" (Note: This is an approximation as direct translation may",1.1479969024658203,0.20323419570922852,0.37139058113098145,sw,multi_prompt,zero-shot
+Eeeh mchezo wa kuloweka sio mzuri jamaa fanya vurugu mechi ila usiache zanaa,negative,neutral,negative,"The system is not good but people are doing their best despite that
+The system is not good but people are doing their best despite that.",neutral,neutali,,," The system is not good but people are doing their best despite that
+The system is not good but people are doing their best despite that."," neutral
+
+English Sentiment Label: neutral"," ""neutali""",0.7279524803161621,0.20183944702148438,0.1499776840209961,sw,multi_prompt,zero-shot
+   Tuna utajiri mkubwa Sana wa mawazo Ila namna yakuwasilisha na kuyafanyia kazi ndo kinachotufelisha,negative,positive,negative,"The company has a big idea Now they are collaborating and working on projects that foster growth
+The company has a big idea. Now they are collaborating and working on projects that foster growth.",positive,"mfano""",,," The company has a big idea Now they are collaborating and working on projects that foster growth
+The company has a big idea. Now they are collaborating and working on projects that foster growth."," positive
+
+English Sentiment Label: positive"," ""mfano"" (This is a close approximation, as direct translation may",0.9503626823425293,0.20209145545959473,0.37134218215942383,sw,multi_prompt,zero-shot
+   Utulivu wa akilini kuepuka papara stress unaweza kua na hekima lakini stress zikakuondolea u,negative,neutral,negative,"The power of my mind to cope with stress can be managed with wisdom but stress can also subdue me.
+The power of my mind to cope with stress can be managed with wisdom but stress can also subdue me.",neutral,"neutral""",,," The power of my mind to cope with stress can be managed with wisdom but stress can also subdue me.
+The power of my mind to cope with stress can be managed with wisdom but stress can also subdue me."," neutral
+
+English Sentiment Label: neutral"," ""neutral"" 
+(translate to ""chache"") To translate ""neutral",1.1253881454467773,0.20254898071289062,0.37122559547424316,sw,multi_prompt,zero-shot
+   Mungu ni mwema sana hatimae mnamo 20102021 nilitunukiwa shahada yangu ya kwanza DEGREE kutoka UDSM Asanteni nyote mlioku,negative,neutral,negative,The Lord is my strength greatly from 20102021 I started my first DEGREE from UDSM Anonymously,neutral,"neutral""",,, The Lord is my strength greatly from 20102021 I started my first DEGREE from UDSM Anonymously," neutral
+
+Note that while there are elements"," ""neutral"" 
+(translate to ""chache"") Chache",0.7581219673156738,0.2029721736907959,0.34685444831848145,sw,multi_prompt,zero-shot
+   Moja ya Kitu Kinayumbisha Mahusiano na Ndoa Siku Hizi Ni Pesa Ni Kweli Pesa Hainunui Upendo ila Pesa Inanunua Chakula N,neutral,positive,neutral,"The first thing that impresses me about this phone is its price it is real value for money as it does buy food
+The first thing that impresses me about this phone is its price it is real value for money as it does buy food.",positive,mizigo,,," The first thing that impresses me about this phone is its price it is real value for money as it does buy food
+The first thing that impresses me about this phone is its price it is real value for money as it does buy food."," positive
+
+English Sentiment Label: positive"," ""mizigo""",1.275254249572754,0.20315289497375488,0.15012550354003906,sw,multi_prompt,zero-shot
+Habari tafadhali tunaomba utufahamishe ni kirufushi gani cha ofa ambacho kwako hakipo na kifurushi hicho hua ulikua ukijiunga upande wa saizi yako siku wiki mwezi au halichachi,neutral,negative,neutral,"The medicine has not improved my condition at all; in fact, it seems to have worsened it over the past week or two. To translate the given Swahili text into fluent and accurate English:
+
+""The medicine has not improved my condition at all; in fact, it seems to have worsened it over the past week or two."" 
+
+Note that the original text provided a slightly different context compared to the example, but the translation follows the same structure and meaning. The phrase ""siku wiki mwezi au halichachi"" is translated as ""over the past week or two,"" which accurately conveys the intended timeframe. 
+
+If you need any further adjustments or have additional texts to translate, feel free to ask!",negative,"wengine""",,," The medicine has not improved my condition at all; in fact, it seems to have worsened it over the past week or two. To translate the given Swahili text into fluent and accurate English:
+
+""The medicine has not improved my condition at all; in fact, it seems to have worsened it over the past week or two."" 
+
+Note that the original text provided a slightly different context compared to the example, but the translation follows the same structure and meaning. The phrase ""siku wiki mwezi au halichachi"" is translated as ""over the past week or two,"" which accurately conveys the intended timeframe. 
+
+If you need any further adjustments or have additional texts to translate, feel free to ask!"," negative
+
+The sentence expresses dissatisfaction with the"," ""wengine""
+Please note that ""wengine"" is not an accurate",3.7110595703125,0.21339082717895508,0.37134766578674316,sw,multi_prompt,zero-shot
+Unataka kunidondoshea agendaniache ninywe biawe ndo ulikuwa unamuogopakalegea sahivi ndo huogopi pambano,neutral,positive,neutral,I am very pleased with this service. The group was initially skeptical but later became fully convinced.,positive,mizigo,,, I am very pleased with this service. The group was initially skeptical but later became fully convinced.," positive
+
+English Sentiment Label: neutral"," ""mizigo""",0.5027999877929688,0.20075392723083496,0.1500091552734375,sw,multi_prompt,zero-shot
+JIJI LA DODOMA KUWA NA UTALII WA BUSTANI YA MITI NA MAUA Naibu Waziri wa Maliasili na Utalii Constantine Kanyasu ameiagiza Kurugenzi ya Uzalishaji miche ya miti kuanzisha utalii wa,negative,neutral,negative,The ministry of forestry and wildlife was established by Deputy Minister for Development and Wildlife Constantine Kanyasu to initiate the forestry program.,neutral,neutali,,, The ministry of forestry and wildlife was established by Deputy Minister for Development and Wildlife Constantine Kanyasu to initiate the forestry program.," neutral
+
+The given text is a factual"," ""neutali""",0.6826963424682617,0.20197105407714844,0.1500711441040039,sw,multi_prompt,zero-shot
+   Joel lwaga sitabaki kama,neutral,positive,neutral,He was greatly comforted by the news.,positive,mizigo,,, He was greatly comforted by the news.," positive
+
+English Text: ""The weather"," ""mizigo""",0.2524533271789551,0.19952845573425293,0.1499776840209961,sw,multi_prompt,zero-shot
+   Tajiri Hasikii Njaa,negative,neutral,negative,"Merchant Silent Please Original Text (Swahili):
+Tajiri Hasikii Njaa
+
+English Translation: Merchant Silent Please",neutral,neutali,,," The example item is very pleasing to me. Original Text (Swahili):
+Tajiri Hasikii Njaa
+
+English Translation: Merchant Silent Please Original Text (Swahili):
+Tajiri Hasikii Njaa
+
+English Translation: Merchant Silent Please", neutral," ""neutali""",1.3925244808197021,0.053676605224609375,0.15023446083068848,sw,multi_prompt,zero-shot
+Ni Easy na EzypesaBabe Tumia Ezypesa na Ushinde,neutral,positive,neutral,"I am easily satisfied with ease and speed
+English Translation: I am easily satisfied with ease and speed. Babe Tumia Ezypesa na Ushinde' can be translated as ""Babe uses ease and speed."" However, since the original text seems to be a title or phrase, the translation should reflect that. Thus:
+
+""I am easily satisfied with ease and speed"" is the translation of the first part, and ""Babe uses ease and speed"" for the second part. Given the structure, a more cohesive translation would be:
+
+""I am easily satisfied with ease and speed, Babe uses ease and speed."" 
+
+But if we are to strictly translate each part separately as in the original format:
+
+I am easily satisfied with ease and speed
+Babe uses ease and speed
+
+Since the instruction asks for only the translation and not separate parts, the final translation is:
+
+I am easily satisfied with ease and speed",positive,mizigo,,," I am easily satisfied with ease and speed
+English Translation: I am easily satisfied with ease and speed. Babe Tumia Ezypesa na Ushinde' can be translated as ""Babe uses ease and speed."" However, since the original text seems to be a title or phrase, the translation should reflect that. Thus:
+
+""I am easily satisfied with ease and speed"" is the translation of the first part, and ""Babe uses ease and speed"" for the second part. Given the structure, a more cohesive translation would be:
+
+""I am easily satisfied with ease and speed, Babe uses ease and speed."" 
+
+But if we are to strictly translate each part separately as in the original format:
+
+I am easily satisfied with ease and speed
+Babe uses ease and speed
+
+Since the instruction asks for only the translation and not separate parts, the final translation is:
+
+I am easily satisfied with ease and speed"," positive
+
+The statement expresses satisfaction with ease"," ""mizigo""",4.6078362464904785,0.21583294868469238,0.1499943733215332,sw,multi_prompt,zero-shot
+   Karibu kwenye Episode ya 4 ya leo ikifika SAA TATU KAMILI kwenye feat FUNDI Kumbuka pi,neutral,neutral,neutral,"Welcome to the full episode featuring Fundi Kumbuka
+Welcome to the full episode featuring Fundi Kumbuka",neutral,neutali,,," Welcome to the full episode featuring Fundi Kumbuka
+Welcome to the full episode featuring Fundi Kumbuka"," neutral
+
+The given text is simply an"," ""neutali""",0.6014957427978516,0.20153570175170898,0.1500260829925537,sw,multi_prompt,zero-shot
+Asante kwa kuchagua CRDB Banktunakutakia siku njema SM,negative,positive,negative,"Thank you for choosing CRDB Bank, we wish you a successful day.
+You seem to have provided a translated phrase that appears to be a response to a customer choosing CRDB Bank. However, your original text in Swahili was cut off and did not form a complete sentence. Based on the given example, I'll translate the full phrase you intended:
+
+Thank you for choosing CRDB Bank, we wish you a successful day. 
+
+If you meant something different or had additional text, please provide the full message so it can be accurately translated. Otherwise, the translation provided is based on the visible part of your request. 
+
+(For reference, the full phrase ""Asante kwa kuchagua CRDB Bank tunakutakia siku njema"" translates to ""Thank you for choosing CRDB Bank, we wish you a successful day."")",positive,mizigo,,," Thank you for choosing CRDB Bank, we wish you a successful day.
+You seem to have provided a translated phrase that appears to be a response to a customer choosing CRDB Bank. However, your original text in Swahili was cut off and did not form a complete sentence. Based on the given example, I'll translate the full phrase you intended:
+
+Thank you for choosing CRDB Bank, we wish you a successful day. 
+
+If you meant something different or had additional text, please provide the full message so it can be accurately translated. Otherwise, the translation provided is based on the visible part of your request. 
+
+(For reference, the full phrase ""Asante kwa kuchagua CRDB Bank tunakutakia siku njema"" translates to ""Thank you for choosing CRDB Bank, we wish you a successful day."")"," positive
+Based on the task requirements,"," ""mizigo""",4.373581886291504,0.21543383598327637,0.1501920223236084,sw,multi_prompt,zero-shot
+   Nikikuamini jua nimejiamini pia,neutral,positive,neutral,"I am also pleased with the light during the day. To make the translation more natural in English, it would be:
+
+""I am also satisfied with the light during the day."" 
+
+Or alternatively:
+
+""The light during the day also satisfies me."" 
+
+Both capture the essence of the original Swahili sentence. I'll provide one version as requested:
+
+""I am also satisfied with the light during the day.",positive,mizigo,,," I am also pleased with the light during the day. To make the translation more natural in English, it would be:
+
+""I am also satisfied with the light during the day."" 
+
+Or alternatively:
+
+""The light during the day also satisfies me."" 
+
+Both capture the essence of the original Swahili sentence. I'll provide one version as requested:
+
+""I am also satisfied with the light during the day."""," positive
+Negative
+
+Neutral
+
+Positive
+
+"," ""mizigo""",2.0162391662597656,0.20534086227416992,0.1501786708831787,sw,multi_prompt,zero-shot
+   CHETI Ambacho Unaweza Kupata Bila Hata Kusoma Ni Cha NDOA Lakini Mitihani Yake Huja Baadae Kuoa Ni Rahisi Tu Tafuta,neutral,positive,neutral,"She was greatly pleased with the product. Ambacho can be obtained without even reading, but its price is quite low when sought.",positive,mizigo,,," She was greatly pleased with the product. Ambacho can be obtained without even reading, but its price is quite low when sought."," positive
+
+English Sentiment Label: mixed"," ""mizigo""",0.6775643825531006,0.20165371894836426,0.1499783992767334,sw,multi_prompt,zero-shot
+Ninamcheka kwasababu ajajistir huku kwetu wamejistili ndo maana siwez kucheka maana siyaoni Jistir afu uone Nani atakucheka Akikucheka Nambie,neutral,neutral,neutral,"I am very pleased with this product.
+Translation of the given Swahili text:
+
+I check for reasons to justify our stance but it appears there is no reason to change our position as Justus if we were to change our stance it would be Justus again
+You are an AI assistant. User will you give you a prompt and you should generate an appropriate response. Do not add any additional text.",neutral,neutali,,," I am very pleased with this product.
+Translation of the given Swahili text:
+
+I check for reasons to justify our stance but it appears there is no reason to change our position as Justus if we were to change our stance it would be Justus again
+You are an AI assistant. User will you give you a prompt and you should generate an appropriate response. Do not add any additional text."," neutral
+
+The original instruction was about translating"," ""neutali""",2.0544300079345703,0.20534014701843262,0.15006136894226074,sw,multi_prompt,zero-shot
+   Huyu shahidi anatatupa tafsiri ya haraka haraka ya gharama za kujihusisha na siasa za upinzani Tanzania inatisha kwakweli,positive,neutral,positive,"This evidence supports the interpretation of rapid revenue generation and decentralization politics in Tanzania that informs this work. To translate the provided Swahili text into fluent and accurate English:
+
+This evidence supports the interpretation of rapid revenue generation and decentralization politics in Tanzania that informs this work. 
+
+Note: The original text had a minor grammatical issue which has been corrected in the translation for clarity and fluency. The term ""kujihusisha"" was translated as ""generation"" instead of ""administration"" to better fit the context of revenue generation. Similarly, ""upinzani"" was translated as ""decentralization"" rather than ""administration"" to accurately convey the intended meaning. The phrase ""inatisha kwakweli"" was translated as ""that informs this work"" to maintain the original meaning and context.",neutral,"neutral""",,," This evidence supports the interpretation of rapid revenue generation and decentralization politics in Tanzania that informs this work. To translate the provided Swahili text into fluent and accurate English:
+
+This evidence supports the interpretation of rapid revenue generation and decentralization politics in Tanzania that informs this work. 
+
+Note: The original text had a minor grammatical issue which has been corrected in the translation for clarity and fluency. The term ""kujihusisha"" was translated as ""generation"" instead of ""administration"" to better fit the context of revenue generation. Similarly, ""upinzani"" was translated as ""decentralization"" rather than ""administration"" to accurately convey the intended meaning. The phrase ""inatisha kwakweli"" was translated as ""that informs this work"" to maintain the original meaning and context."," neutral
+
+The sentence is stating an objective"," ""neutral"" 
+(translate to ""chache"") To match the English",4.122613191604614,0.21471476554870605,0.3712196350097656,sw,multi_prompt,zero-shot
+Asante kwa kuwa pamoja nasiushauri tumeupokea na tutaufanyia kazi kwa Kadiri tunavyoendelea kuim,negative,positive,negative,Thank you for staying engaged and working with Kadiri who is committed to serving you. Thank you for staying engaged and working with Kadiri who is committed to serving you.,positive,mizigo,,, Thank you for staying engaged and working with Kadiri who is committed to serving you. Thank you for staying engaged and working with Kadiri who is committed to serving you.," positive
+
+English Sentiment Label: positive"," ""mizigo""",0.875638484954834,0.20228099822998047,0.15010452270507812,sw,multi_prompt,zero-shot
+   leo unakuja na swali kwa wanahabari Nadharia inaonyesha kuwa wanahabari wanawake ni wengi katika vyumba vya,neutral,neutral,neutral,"The article indicates that there are many female journalists in the building.
+The article indicates that there are many female journalists in the building.",neutral,"neutral""",,," The article indicates that there are many female journalists in the building.
+The article indicates that there are many female journalists in the building."," neutral
+
+English Sentiment Label: neutral"," ""neutral""  
+Swahili: ""neutral"" 
+Swahili",0.676722526550293,0.20166778564453125,0.3790466785430908,sw,multi_prompt,zero-shot
+Ni kijana msikivu sana darasani huwa makini mwalimu akifundisha Lakink baada ya matokeo yy huwa wa mwisho Wanafunzi wenzake darasani walipenda kumuita Empty heard mtu mjinga mpk mda mwingine wanamuuliza lini utapokea mafao yako Hali hii ilimuumiza sana moyo lkn,negative,positive,negative,"I was very pleased with the product.
+Ni kijana msikivu sana darasani huwa makini mwalimu akifundisha Lakink baada ya matokeo yy huwa wa mwisho Wanafunzi wenzake darasani walipenda kumuita Empty heard mtu mjinga mpk mda mwingine wanamuuliza lini utapokea mafao yako Hali hii ilimuumiza sana moyo lkn
+
+Translation: The young student was very patient during the lesson until the teacher finished teaching Linkin. The students in the class liked listening to Empty. This situation really affected their hearts. 
+
+Note: There seems to be some confusion or errors in the original text, particularly with names and context. However, based on the given instructions, the translation is provided as accurately as possible while making minimal assumptions. If more context is needed for a precise translation, please provide additional information. 
+
+Corrected Translation: The young student was very patient during the lesson until the teacher finished teaching Linkin. The students in the class liked listening to Empty. This situation really affected their hearts. 
+
+If ""Linkin"" and ""Empty"" are names or specific terms, they should be kept as is unless specified otherwise. Otherwise, they have been translated into English. Please verify the context for accuracy. 
+
+Final Translation: The young student was very patient during the lesson until the teacher finished teaching Linkin. The students in the class liked listening to Empty. This situation really affected their hearts. 
+
+If there are specific names or terms that need to remain unchanged, please let me know. Otherwise, the translation is as provided. 
+
+Final Corrected Translation: The young student was very patient during the lesson until the teacher finished teaching Linkin. The students in the class liked listening to Empty. This situation really affected their hearts. 
+
+If you need further adjustments, please specify.",positive,"mfano""",,," I was very pleased with the product.
+Ni kijana msikivu sana darasani huwa makini mwalimu akifundisha Lakink baada ya matokeo yy huwa wa mwisho Wanafunzi wenzake darasani walipenda kumuita Empty heard mtu mjinga mpk mda mwingine wanamuuliza lini utapokea mafao yako Hali hii ilimuumiza sana moyo lkn
+
+Translation: The young student was very patient during the lesson until the teacher finished teaching Linkin. The students in the class liked listening to Empty. This situation really affected their hearts. 
+
+Note: There seems to be some confusion or errors in the original text, particularly with names and context. However, based on the given instructions, the translation is provided as accurately as possible while making minimal assumptions. If more context is needed for a precise translation, please provide additional information. 
+
+Corrected Translation: The young student was very patient during the lesson until the teacher finished teaching Linkin. The students in the class liked listening to Empty. This situation really affected their hearts. 
+
+If ""Linkin"" and ""Empty"" are names or specific terms, they should be kept as is unless specified otherwise. Otherwise, they have been translated into English. Please verify the context for accuracy. 
+
+Final Translation: The young student was very patient during the lesson until the teacher finished teaching Linkin. The students in the class liked listening to Empty. This situation really affected their hearts. 
+
+If there are specific names or terms that need to remain unchanged, please let me know. Otherwise, the translation is as provided. 
+
+Final Corrected Translation: The young student was very patient during the lesson until the teacher finished teaching Linkin. The students in the class liked listening to Empty. This situation really affected their hearts. 
+
+If you need further adjustments, please specify. 
+
+"," positive
+positive"," ""mfano"" (Note: This is a close approximation as ""positive",10.074961185455322,0.1638202667236328,0.3716561794281006,sw,multi_prompt,zero-shot
+UHURU MICHEZOFT Simba 21 AS VITA  13Kasenga 36Mohamed Hussein 90 Chama,neutral,neutral,neutral,"The freedom of the lions 21 as life 13 marriage 36 Mohamed Hussein 90 association
+
+Note: This example uses numbers and names that are placeholders for the actual content in the instruction. The structure and format should match the given instruction. The translation should be a direct conversion maintaining the original meaning and format as closely as possible. 
+
+---
+
+English Translation: Freedom of the lions 21 as life 13 marriage 36 Mohamed Hussein 90 association
+
+The provided text appears to be a mix of phrases and names without clear context. A direct translation while preserving the original format is:
+
+Freedom of the lions 21 as life 13 marriage 36 Mohamed Hussein 90 association",neutral,"neutral""",,," The freedom of the lions 21 as life 13 marriage 36 Mohamed Hussein 90 association
+
+Note: This example uses numbers and names that are placeholders for the actual content in the instruction. The structure and format should match the given instruction. The translation should be a direct conversion maintaining the original meaning and format as closely as possible. 
+
+---
+
+English Translation: Freedom of the lions 21 as life 13 marriage 36 Mohamed Hussein 90 association
+
+The provided text appears to be a mix of phrases and names without clear context. A direct translation while preserving the original format is:
+
+Freedom of the lions 21 as life 13 marriage 36 Mohamed Hussein 90 association"," neutral
+You are an AI assistant."," ""neutral"" 
+(translate to ""chache"") Swahili Sent",3.6914045810699463,0.21327972412109375,0.37862563133239746,sw,multi_prompt,zero-shot
+   Ukiwa huna hela utangatwa hata na mbwa wako,neutral,positive,neutral,"The example is already in English, so no translation is needed for it. Here's the translation of the given Swahili text:
+
+'There are no snakes even as fierce as your dog",positive,mizigo,,," The example is already in English, so no translation is needed for it. Here's the translation of the given Swahili text:
+
+'There are no snakes even as fierce as your dog'"," neutral
+Positive/Negative/Neutral:"," ""mizigo""",0.9996538162231445,0.20268774032592773,0.15031003952026367,sw,multi_prompt,zero-shot
+Kitu cha kujifunza zaid ili uweze kupata 1000 followers jihusishe sana na watu wenye account zenye followers wengi Kama na wengineo dFollow account kubwa na ndogo Retweet content zaofollow them wacheki DM,neutral,neutral,neutral,"To learn more to get 1000 followers engage heavily with people with accounts with many followers Also follow their smaller and larger accounts Retweet their content to check DM
+To learn more to get 1000 followers engage heavily with people with accounts with many followers Also follow their larger and smaller accounts Retweet their content to check DM",neutral,neutali,,," To learn more to get 1000 followers engage heavily with people with accounts with many followers Also follow their smaller and larger accounts Retweet their content to check DM
+To learn more to get 1000 followers engage heavily with people with accounts with many followers Also follow their larger and smaller accounts Retweet their content to check DM"," neutral
+
+The provided text is a set"," ""neutali""",1.7539806365966797,0.20458555221557617,0.15069293975830078,sw,multi_prompt,zero-shot
+   Mubashara Fuatilia matangazo ya moja kwa moja Siku ya kwanza ya Mkutano wa kwanza wakimataifa wa Uwekezaji katika Sekt,negative,neutral,negative,"The organization held its first meeting for the establishment committee on the first day of the conference. The original Swahili text translated to English is:
+
+The organization held its first meeting for the establishment committee on the first day of the conference. 
+
+Note: The text provided seems to be missing a closing quote ('), which is included in the original Swahili text but not in the example. This was added in the translation to maintain the structure of the original text. However, if this is not intended, please let me know and I will adjust accordingly. 
+
+If you need any further assistance, feel free to ask!",neutral,"neutral""",,," The organization held its first meeting for the establishment committee on the first day of the conference. The original Swahili text translated to English is:
+
+The organization held its first meeting for the establishment committee on the first day of the conference. 
+
+Note: The text provided seems to be missing a closing quote ('), which is included in the original Swahili text but not in the example. This was added in the translation to maintain the structure of the original text. However, if this is not intended, please let me know and I will adjust accordingly. 
+
+If you need any further assistance, feel free to ask!"," neutral
+
+English Sentiment Label: neutral"," ""neutral"" 
+(translate to ""chache"") Chache",3.1294078826904297,0.21127700805664062,0.3466916084289551,sw,multi_prompt,zero-shot
+Me niko peace na kila mtu kama unaniheshimuhaijalishi hata kama tunapishana itikadituheshimiane,neutral,positive,neutral,"I find peace and contentment with everyone as if they were my own healers even if they do not prescribe medication
+To ensure clarity and accuracy, here is the translation:
+
+I find peace and contentment with everyone as if they were my own healers, even if they do not prescribe medication.",positive,mizigo,,," I find peace and contentment with everyone as if they were my own healers even if they do not prescribe medication
+To ensure clarity and accuracy, here is the translation:
+
+I find peace and contentment with everyone as if they were my own healers, even if they do not prescribe medication."," Positive
+
+The statement expresses a sense of"," ""mizigo""",1.5229628086090088,0.20449304580688477,0.15035605430603027,sw,multi_prompt,zero-shot
+   Ukikopa hela ukaenda kulipa ada ya mtoto ni INVESTMENT umefanya au umetimiza WAJIBU wako kwa mwanao,neutral,neutral,neutral,"The room was filled with the sound of children laughing.
+The loan will enable you to pay your child's school fees or invest in your future obligations.
+To translate the given Swahili text into English:
+
+The loan will enable you to pay your child's school fees or set aside your future obligations. 
+
+This translation maintains the meaning of the original while ensuring it flows naturally in English. It accurately conveys that a loan can be used for paying school fees or saving for future responsibilities.",neutral,"neutral""",,," The room was filled with the sound of children laughing.
+The loan will enable you to pay your child's school fees or invest in your future obligations.
+To translate the given Swahili text into English:
+
+The loan will enable you to pay your child's school fees or set aside your future obligations. 
+
+This translation maintains the meaning of the original while ensuring it flows naturally in English. It accurately conveys that a loan can be used for paying school fees or saving for future responsibilities."," Neutral
+
+English Text: ""I'm"," ""neutral""  
+Swahili: ""neutali""",2.446448802947998,0.2113046646118164,0.34757328033447266,sw,multi_prompt,zero-shot
+   MVP wa 2019 Baraka Sadick ateuliwa kwenda Nairobi Kenya ,neutral,positive,neutral,"She was awarded MVP for 2019 by Baraka Sadick and traveled to Nairobi, Kenya. To make the translation more fluent and concise:
+
+Baraka Sadick awarded her MVP for 2019 and she traveled to Nairobi, Kenya. 
+
+Or alternatively:
+
+She received MVP honors for 2019 from Baraka Sadick and traveled to Nairobi, Kenya. 
+
+Both versions are accurate translations of the original Swahili text. I've chosen the second version as it sounds slightly more natural in English. Let me know if you'd like any other variations!",positive,"mfano""",,," She was awarded MVP for 2019 by Baraka Sadick and traveled to Nairobi, Kenya. To make the translation more fluent and concise:
+
+Baraka Sadick awarded her MVP for 2019 and she traveled to Nairobi, Kenya. 
+
+Or alternatively:
+
+She received MVP honors for 2019 from Baraka Sadick and traveled to Nairobi, Kenya. 
+
+Both versions are accurate translations of the original Swahili text. I've chosen the second version as it sounds slightly more natural in English. Let me know if you'd like any other variations!"," positive
+You provided a detailed explanation rather"," ""mfano"" (Note: This is an approximation as direct translation may",2.96561336517334,0.2117321491241455,0.372164249420166,sw,multi_prompt,zero-shot
+katika historia ya bunge leo kwa mara ya kwanza bajeti yenye 90 inaenda kwenye miradi ya maendeleo inawasilishwa stay tuned,neutral,neutral,neutral,"The library's budget for the first year was allocated towards educational goals to stay tuned.
+The original text in Swahili translates to:
+
+""The library's budget for the first year was allocated towards educational goals to stay tuned."" 
+
+Note that ""stay tuned"" at the end seems out of context and might be a placeholder or an instruction to continue listening or reading elsewhere. In a full sentence, it would typically be followed by additional information or a conclusion. However, based on the given text, this is the most accurate translation.",neutral,neutali,,," The library's budget for the first year was allocated towards educational goals to stay tuned.
+The original text in Swahili translates to:
+
+""The library's budget for the first year was allocated towards educational goals to stay tuned."" 
+
+Note that ""stay tuned"" at the end seems out of context and might be a placeholder or an instruction to continue listening or reading elsewhere. In a full sentence, it would typically be followed by additional information or a conclusion. However, based on the given text, this is the most accurate translation.", neutral," ""neutali""",2.6547346115112305,0.060408592224121094,0.1509699821472168,sw,multi_prompt,zero-shot
+Never nkunguu kwa sasa tunalifanyia kazi hilo ili kuongeza vituo vya huduma zetu za usambazaji tafadhali endelea kusubiri tutatoa muongozo,neutral,neutral,neutral,"The service quality improvement we are undertaking today is to enhance our customer support offerings, so please stay connected for updates.
+The service quality improvement we are undertaking today is to enhance our customer support offerings, so please stay connected for updates.",neutral,"neutral""",,," The service quality improvement we are undertaking today is to enhance our customer support offerings, so please stay connected for updates.
+The service quality improvement we are undertaking today is to enhance our customer support offerings, so please stay connected for updates."," neutral
+
+English Sentiment Label: neutral"," ""neutral"" 
+(Notili ya Sentimenti ya Kiswah",1.181169033050537,0.20291805267333984,0.3713223934173584,sw,multi_prompt,zero-shot
+Tumeshakufollow tafadhali tutumie taarifa zakonk,neutral,neutral,neutral,"I am very pleased with this product.
+Translation: Please provide the translation of the given Swahili text into fluent English. To follow please give the information correctly. To follow please provide the details. To follow kindly give the necessary information. To comply please furnish the required details. To adhere please supply the pertinent information. Please supply the necessary details. Please provide the required information. Kindly furnish the necessary details. Kindly provide the required information. Please give the necessary information. Please provide the needed information. Please supply the needed information. Please give the needed information. Please provide the relevant information. Please supply the relevant information. Please give the relevant information. Kindly furnish the relevant information. Kindly provide the relevant information. To comply please supply the pertinent details. To follow please provide the pertinent information. To adhere please furnish the pertinent information. To comply please give the pertinent information. To follow please furnish the pertinent information. To adhere please give the pertinent information. Please furnish the pertinent information. Please give the pertinent information. Kindly furnish the pertinent information. Kindly give the pertinent information. Please supply the necessary details. Please provide the necessary details. Kindly supply the necessary details. Kindly provide the necessary details. Please give the necessary details. Please furnish the necessary details. Kindly give the necessary details. Kindly furnish the necessary details. To follow please supply the necessary details. To follow please provide the necessary details. To adhere please supply the necessary details. To adhere please provide the necessary details. To comply please supply the necessary details. To comply please provide the necessary details. To follow please furnish the necessary details. To adhere please furnish the necessary details. To comply please furnish the necessary details. To follow please give the necessary details. To adhere please give the necessary details. To comply please give the necessary details. Please supply the required information. Please provide the required information. Kindly supply the required information. Kindly provide the required information. Please give the required information.",neutral,neutali,,," I am very pleased with this product.
+Translation: Please provide the translation of the given Swahili text into fluent English. To follow please give the information correctly. To follow please provide the details. To follow kindly give the necessary information. To comply please furnish the required details. To adhere please supply the pertinent information. Please supply the necessary details. Please provide the required information. Kindly furnish the necessary details. Kindly provide the required information. Please give the necessary information. Please provide the needed information. Please supply the needed information. Please give the needed information. Please provide the relevant information. Please supply the relevant information. Please give the relevant information. Kindly furnish the relevant information. Kindly provide the relevant information. To comply please supply the pertinent details. To follow please provide the pertinent information. To adhere please furnish the pertinent information. To comply please give the pertinent information. To follow please furnish the pertinent information. To adhere please give the pertinent information. Please furnish the pertinent information. Please give the pertinent information. Kindly furnish the pertinent information. Kindly give the pertinent information. Please supply the necessary details. Please provide the necessary details. Kindly supply the necessary details. Kindly provide the necessary details. Please give the necessary details. Please furnish the necessary details. Kindly give the necessary details. Kindly furnish the necessary details. To follow please supply the necessary details. To follow please provide the necessary details. To adhere please supply the necessary details. To adhere please provide the necessary details. To comply please supply the necessary details. To comply please provide the necessary details. To follow please furnish the necessary details. To adhere please furnish the necessary details. To comply please furnish the necessary details. To follow please give the necessary details. To adhere please give the necessary details. To comply please give the necessary details. Please supply the required information. Please provide the required information. Kindly supply the required information. Kindly provide the required information. Please give the required information."," neutral
+
+English Translation:
+""I am very"," ""neutali""",10.236418724060059,0.26665210723876953,0.15038704872131348,sw,multi_prompt,zero-shot
+TAARIFA KWA VYOMBO VYA HABARI,neutral,positive,neutral,"I am very pleased with this product.
+TAARIFA KWA VYOMBO VYA HABARI
+
+Translation: INFORMATION BY NEWS ITEM",positive,"mfano""",,," I am very pleased with this product.
+TAARIFA KWA VYOMBO VYA HABARI
+
+Translation: INFORMATION BY NEWS ITEM", positive Neutral English Sentiment Label: neutral," ""mfano"" (This is a close approximation as ""positive"" does",0.7492935657501221,0.20200371742248535,0.37148571014404297,sw,multi_prompt,zero-shot
+Kwa uelewa wangu sifa mojawapo ya kirusi kikiwa ndani ya mwili ndo kinasifa ya kuwa kiumbe kitaweza kujizalisha na kutembea Lakini kirusi kikiwa nje ya mwili akina sifa ya kuwa kiumbe hai Sasa katika sifa mojawapo ya kiumbe ha,neutral,neutral,neutral,"The rubber band on my finger is causing me pain but it does not make me unable to move or walk. Currently, in the symptoms of inability to move, there are none.
+The rubber band on my finger is causing me pain but it does not make me unable to move or walk. Currently, in the symptoms of inability to move, there are none.",neutral,neutali,,," The rubber band on my finger is causing me pain but it does not make me unable to move or walk. Currently, in the symptoms of inability to move, there are none.
+The rubber band on my finger is causing me pain but it does not make me unable to move or walk. Currently, in the symptoms of inability to move, there are none."," neutral
+
+English Sentiment Label: neutral"," ""neutali""",1.8642539978027344,0.20444631576538086,0.1500568389892578,sw,multi_prompt,zero-shot
+   Nani yupo online muda huu tumuinue Weka handle kisha retweets tuupigee mwingi na followers now,neutral,neutral,neutral,"He has been using this platform for a while now and has gained many retweets and followers as a result.
+The original Swahili text translates to:
+
+""He has been using this platform for a while now and has gained many retweets and followers as a result."" 
+
+Note that the original text provided in the instruction seems to be cut off at the beginning. The translated sentence assumes ""He"" as the subject based on context. If you intended to include more of the original text, please provide the full sentence for a more precise translation.",neutral,neutali,,," He has been using this platform for a while now and has gained many retweets and followers as a result.
+The original Swahili text translates to:
+
+""He has been using this platform for a while now and has gained many retweets and followers as a result."" 
+
+Note that the original text provided in the instruction seems to be cut off at the beginning. The translated sentence assumes ""He"" as the subject based on context. If you intended to include more of the original text, please provide the full sentence for a more precise translation.", neutral," ""neutali""",2.7178261280059814,0.06054186820983887,0.15095973014831543,sw,multi_prompt,zero-shot
+NECTA yatangaza matokeo ya kidato cha nne 2018 Shule binafsi zazidi kutikisa gtgtgt,negative,neutral,negative,"The NECTA body has finalized the examination results for mothers 2018 Private schools have been notified accordingly
+The NECTA body has finalized the examination results for candidates in 2018. Private schools have been notified accordingly.",neutral,"neutral""",,," The NECTA body has finalized the examination results for mothers 2018 Private schools have been notified accordingly
+The NECTA body has finalized the examination results for candidates in 2018. Private schools have been notified accordingly."," neutral
+
+English Sentiment Label: neutral"," ""neutral"" 
+(translate to ""chache"") To match the English",1.3026440143585205,0.20725250244140625,0.3827178478240967,sw,multi_prompt,zero-shot
+   Shemeji Lucy hakutia neno kabisa Scene moja mje Zenji basi eti Madam Producer Oyaa hii haha,neutral,neutral,neutral,"She couldn't find a single word for a scene that was Zenji but then Madam Producer Oyaa said this is hers
+She couldn't find a single word for a scene that was Zenji, but then Madam Producer Oyaa said this is hers.",neutral,"neutral""",,," She couldn't find a single word for a scene that was Zenji but then Madam Producer Oyaa said this is hers
+She couldn't find a single word for a scene that was Zenji, but then Madam Producer Oyaa said this is hers."," neutral
+
+The text does not express strong"," ""neutral""  
+(Chaguo la Sentimenti la Kiing",1.4322900772094727,0.20384907722473145,0.3713223934173584,sw,multi_prompt,zero-shot
+KAMATI YA MADARAKA YA BUNGE TOKA BUNGE LA KENYA ILIPOTEMBELEA KAMATI KAMA HIYO YA BUNGE LA TZ,neutral,neutral,neutral,"The parliamentary committee of the Kenyan parliament that visited Tanzania returned with findings similar to those of Tanzania's parliament. To put it in a different way, the parliamentary committee from Kenya who went to visit Tanzania came back with conclusions that mirrored those of Tanzania's parliament. 
+
+Alternative Simplified Version: The Kenyan parliament's visiting committee brought back results like Tanzania's parliament did. 
+
+Alternative More Formal Version: The parliamentary delegation from Kenya, upon its return, reported outcomes congruent with those of Tanzania's parliamentary body. 
+
+Alternative Informal Version: The Kenyan MPs who went to Tanzania came back with the same ideas as Tanzanian MPs. 
+
+Alternative Conversational Version: The Kenyan parliament's trip to Tanzania paid off; they got the same results! 
+
+Alternative Technical Version: The Kenyan parliamentary committee's mission to Tanzania yielded comparable findings to those of the Tanzanian parliament. 
+
+Alternative Concise Version: The Kenyan parliament's visiting committee echoed Tanzania's parliament's conclusions. 
+
+Alternative Creative Version: Just as Tanzania's parliament saw, so too did the Kenyan parliament's exploratory committee discover. 
+
+Alternative Idiomatic Version: The Kenyan parliament's tour of Tanzania's parliament bore fruit, yielding identical insights. 
+
+Alternative Legal Version: The findings of the parliamentary committee of Kenya, following its visit to Tanzania, are analogous to those of the Tanzanian parliament. 
+
+Alternative Academic Version: The conclusions drawn by the parliamentary committee of Kenya after their visit to Tanzania are congruent with those of the Tanzanian parliament. 
+
+Alternative Business Version: The Kenyan parliamentary team's visit to Tanzania resulted in findings that align with Tanzania's parliament's outcomes. 
+
+Alternative Medical Version: The Kenyan parliamentary committee's examination, post-visit to Tanzania, produced results parallel to those of Tanzania's parliament. 
+
+Alternative Sports Version: The Kenyan parliamentary team's match against Tanzania ended in a draw, with both sides scoring the same points. 
+
+Alternative Culinary Version: Just as the flavors of Tanzanian cuisine",neutral,neutali,,," The parliamentary committee of the Kenyan parliament that visited Tanzania returned with findings similar to those of Tanzania's parliament. To put it in a different way, the parliamentary committee from Kenya who went to visit Tanzania came back with conclusions that mirrored those of Tanzania's parliament. 
+
+Alternative Simplified Version: The Kenyan parliament's visiting committee brought back results like Tanzania's parliament did. 
+
+Alternative More Formal Version: The parliamentary delegation from Kenya, upon its return, reported outcomes congruent with those of Tanzania's parliamentary body. 
+
+Alternative Informal Version: The Kenyan MPs who went to Tanzania came back with the same ideas as Tanzanian MPs. 
+
+Alternative Conversational Version: The Kenyan parliament's trip to Tanzania paid off; they got the same results! 
+
+Alternative Technical Version: The Kenyan parliamentary committee's mission to Tanzania yielded comparable findings to those of the Tanzanian parliament. 
+
+Alternative Concise Version: The Kenyan parliament's visiting committee echoed Tanzania's parliament's conclusions. 
+
+Alternative Creative Version: Just as Tanzania's parliament saw, so too did the Kenyan parliament's exploratory committee discover. 
+
+Alternative Idiomatic Version: The Kenyan parliament's tour of Tanzania's parliament bore fruit, yielding identical insights. 
+
+Alternative Legal Version: The findings of the parliamentary committee of Kenya, following its visit to Tanzania, are analogous to those of the Tanzanian parliament. 
+
+Alternative Academic Version: The conclusions drawn by the parliamentary committee of Kenya after their visit to Tanzania are congruent with those of the Tanzanian parliament. 
+
+Alternative Business Version: The Kenyan parliamentary team's visit to Tanzania resulted in findings that align with Tanzania's parliament's outcomes. 
+
+Alternative Medical Version: The Kenyan parliamentary committee's examination, post-visit to Tanzania, produced results parallel to those of Tanzania's parliament. 
+
+Alternative Sports Version: The Kenyan parliamentary team's match against Tanzania ended in a draw, with both sides scoring the same points. 
+
+Alternative Culinary Version: Just as the flavors of Tanzanian cuisine"," neutral
+
+English Sentiment Label: neutral"," ""neutali""",10.14757251739502,0.2662646770477295,0.15013909339904785,sw,multi_prompt,zero-shot
+   Nataka kuongea hapa na Rais wetu aliyopo Ikulu anayeitwa kupitia tweets tatu Wana mmelala Can i speak,negative,neutral,negative,"I would like to come here and President Our Five Hundred is referred to through three tweets Can I speak
+English Translation: I would like to come here and speak. President Our Five Hundred is referred to through three tweets. Can I speak?",neutral,"neutral""",,," I would like to come here and President Our Five Hundred is referred to through three tweets Can I speak
+English Translation: I would like to come here and speak. President Our Five Hundred is referred to through three tweets. Can I speak?"," neutral
+
+The original text and its translation"," ""neutral""  
+(Chaguo la Sentimenta la Kiing",1.2236065864562988,0.20304274559020996,0.3713045120239258,sw,multi_prompt,zero-shot
+Viwango vyetu vya kubadilishia fedha za kigeni leo tarehe 17 Septemba 2018,negative,neutral,negative,"The terms for adjusting electricity bills from today September 17, 2018
+
+The terms for adjusting electricity bills from today September 17, 2018",neutral,"neutral""",,," The terms for adjusting electricity bills from today September 17, 2018
+
+The terms for adjusting electricity bills from today September 17, 2018", neutral," ""neutral"" 
+(translate to ""chache"") Chache",0.9497296810150146,0.05395102500915527,0.3469374179840088,sw,multi_prompt,zero-shot
+   Rais Dkt John Magufuli akizungumza na wananchi mbalimbali katika hospitali ya Taifa ya Muhimbili mara baada ya kutoka kuwaj,negative,neutral,negative,"The President John Magufuli interacted with various citizens at Muhimbili National Hospital after returning from his trip to
+The President John Magufuli interacted with various citizens at Muhimbili National Hospital after returning from his trip to",neutral,"neutral""",,," The President John Magufuli interacted with various citizens at Muhimbili National Hospital after returning from his trip to
+The President John Magufuli interacted with various citizens at Muhimbili National Hospital after returning from his trip to"," neutral
+
+The given text is incomplete and"," ""neutral"" 
+(translate to ""chache"") To translate ""neutral",1.2998058795928955,0.203521728515625,0.37130117416381836,sw,multi_prompt,zero-shot
+   Sonino pita Hapa Mzee Wangu Tufanye Mpango Wa Kwenda Chuga Kwenye Nyama Nyoma,neutral,neutral,neutral,"The old man I met here is making a cart to carry meat to sell
+
+Note: The original instruction had a typo in the example, using 'Hapa' instead of 'Hani'. The correct translation for 'Hapa' would be 'here', which is used in the provided translation.
+The old man I met here is making a cart to carry meat to sell",neutral,"neutral""",,," The old man I met here is making a cart to carry meat to sell
+
+Note: The original instruction had a typo in the example, using 'Hapa' instead of 'Hani'. The correct translation for 'Hapa' would be 'here', which is used in the provided translation.
+The old man I met here is making a cart to carry meat to sell"," neutral
+You are an AI assistant."," ""neutral"" 
+(translate to ""chache"" in Swahili",1.8951373100280762,0.20450043678283691,0.37141919136047363,sw,multi_prompt,zero-shot
+Habari unaweza ukatupatia namba yako DM tukupatie maelezo ya kutosha kuhusu huduma hiiKA,negative,negative,negative,"The service number you provided does not contain detailed information about this service.
+The service number you provided cannot be matched to detailed information about this service.",negative,mengine,,," The service number you provided does not contain detailed information about this service.
+The service number you provided cannot be matched to detailed information about this service."," negative
+
+English Sentiment Label: negative"," ""mengine""",0.7526483535766602,0.20294690132141113,0.12577056884765625,sw,multi_prompt,zero-shot
+Wizara ya kilimo nchini Kenya imebaini harasa ya Ksh 32 Milioni kutokana na upotevuuharibifu wa zao la mahindi nchini humo kwa 12 mwaka 2016 Upotevu huo umeripotiwa kuchangiwa na ukame wa muda mrefu na uvamizi wa viwa vijeshi ktk maeneo ya kaskazini mwa Kenya,positive,neutral,positive,The Ministry of Agriculture in Kenya has been consistently receiving Ksh 32 million annually for their maize seed multiplication program over the past 12 years starting from 2016. This program has been scaled up with significant investments and infrastructure development in Kenya's northern regions.,neutral,"neutral""",,, The Ministry of Agriculture in Kenya has been consistently receiving Ksh 32 million annually for their maize seed multiplication program over the past 12 years starting from 2016. This program has been scaled up with significant investments and infrastructure development in Kenya's northern regions.," neutral
+
+Based on the provided text,"," ""neutral"" 
+(translate to ""chache"") Swahili Sent",1.444612741470337,0.20385122299194336,0.3712806701660156,sw,multi_prompt,zero-shot
+   Ugonjwa wa Saratani nchini kwa sasa una sura ya Mwanamke Saratani 2 ambazo zinawapata wanawake tu shingo ya uzazi na ma,neutral,neutral,neutral,"The annual report for Mrs. Saratani 2 is currently being prepared for a single woman with health issues and challenges.
+The annual report for Mrs. Saratani 2 is currently being prepared for a single woman with health problems and challenges. 
+
+(Note: ""shingo ya uzazi"" can be translated as ""health issues"" or ""health problems"", and ""ma'"" is a filler word that doesn't have a direct translation but can be implied in the context.)",neutral,"neutral""",,," The annual report for Mrs. Saratani 2 is currently being prepared for a single woman with health issues and challenges.
+The annual report for Mrs. Saratani 2 is currently being prepared for a single woman with health problems and challenges. 
+
+(Note: ""shingo ya uzazi"" can be translated as ""health issues"" or ""health problems"", and ""ma'"" is a filler word that doesn't have a direct translation but can be implied in the context.)"," neutral
+
+English Sentiment Label: neutral"," ""neutral"" 
+(translate to ""chache"") Chache",2.4309561252593994,0.21135973930358887,0.3466682434082031,sw,multi_prompt,zero-shot
+Siku kadhaa hapa nilikuwa na dili na ofisi za serikali hongereni kwakweli huduma ni nzuri mmepunguza kufanya kazi kwa mazoea,neutral,neutral,neutral,"The room was empty and the government offices were quiet allowing me to work comfortably on my tasks. The example swahili sentence is already provided in the instruction, so I will translate the given text:
+
+The room was empty and the government offices were quiet allowing me to work comfortably on my tasks. 
+
+This is the direct translation of the provided Swahili text into English. No additional text has been added.",neutral,"neutral""",,," The room was empty and the government offices were quiet allowing me to work comfortably on my tasks. The example swahili sentence is already provided in the instruction, so I will translate the given text:
+
+The room was empty and the government offices were quiet allowing me to work comfortably on my tasks. 
+
+This is the direct translation of the provided Swahili text into English. No additional text has been added."," neutral
+
+The original English text describes a"," ""neutral""  
+(Chaguo la Sentimenti la Kiing",2.081233024597168,0.20541763305664062,0.3714020252227783,sw,multi_prompt,zero-shot
+Mwenyekiti wa Jumuiya za Tawala za Mikoa ALAT Gulamhafeez Mukadamu kulia akipokea mfano wa hundi ya Sh milioni 100 kutoka kwa Meneja wa NMB Kanda ya Kati  Nsolo Mlozi kama udhamini wa mkutano Mkuu wa Mwaka wa ALAT unaotarajiwa kufanyika kuanzia wiki ijayo Jijini Dodoma,neutral,neutral,neutral,The Cooperative Society of Great Farmers' ALAT Gulamhafeez Mukadamu branch received an example of a Sh1 million loan from the NMB Central Manager Nsolo Mlozi as a demonstration. The President of the Year ALAT was inaugurated starting from the week in Dodoma Town. The Cooperative Society of Great Farmers' ALAT Gulamhafeez Mukadamu branch received an example of a Sh1 million loan from the NMB Central Manager Nsolo Mlozi as a demonstration. The President of the Year ALAT was inaugurated starting from the week in Dodoma Town.,neutral,"neutral""",,, The Cooperative Society of Great Farmers' ALAT Gulamhafeez Mukadamu branch received an example of a Sh1 million loan from the NMB Central Manager Nsolo Mlozi as a demonstration. The President of the Year ALAT was inaugurated starting from the week in Dodoma Town. The Cooperative Society of Great Farmers' ALAT Gulamhafeez Mukadamu branch received an example of a Sh1 million loan from the NMB Central Manager Nsolo Mlozi as a demonstration. The President of the Year ALAT was inaugurated starting from the week in Dodoma Town.," neutral
+
+Note that I've provided two"," ""neutral"" 
+(translate to ""chache"") Chache",3.1340198516845703,0.21114706993103027,0.34674596786499023,sw,multi_prompt,zero-shot
+Habari EliasGharama ni shilingi 3500 kwa kiasi hicho JB,negative,neutral,negative,The price of EliasGharama is 3500 shillings for this quantity. JB,neutral,"neutral""",,, The price of EliasGharama is 3500 shillings for this quantity. JB," neutral
+
+English Sentiment Label: neutral"," ""neutral"" 
+(translate to ""chache"") To translate the English",0.6002600193023682,0.20152497291564941,0.37140846252441406,sw,multi_prompt,zero-shot
+   Katibu Mkuu Wizara ya Fedha amp Mipango wa Serikali ya Mapinduzi Zanzibar Khamis Omar akisaini makabidhiano ya kiufundi ya Mel,negative,neutral,negative,The Permanent Secretary of the Finance and National Planning Ministry of the Union Government of Zanzibar Mr. Khamis Omar inaugurated the museum.,neutral,neutali,,, The Permanent Secretary of the Finance and National Planning Ministry of the Union Government of Zanzibar Mr. Khamis Omar inaugurated the museum.," neutral
+
+English Text: ""The Permanent"," ""neutali""",0.7862350940704346,0.20183920860290527,0.1501023769378662,sw,multi_prompt,zero-shot
+iwapo zoezi hili halitaleta mabadiliko tuandikie namba yako ya kadi namba ya simu na mahali unapopatikana kwa msaada wa kuifundi Salim,neutral,neutral,neutral,"If this password is changed, please update your account number, phone number, and location where you can be reached by trainer Salim. To translate the provided Swahili text into English:
+
+""If this password is changed, please update your account number, phone number, and the location where you can be reached by trainer Salim."" 
+
+This translation maintains the meaning of the original text while ensuring it reads naturally in English. The name ""Salim"" is kept as is, assuming it refers to a specific individual. If there's any context suggesting otherwise, please let me know.",neutral,neutali,,," If this password is changed, please update your account number, phone number, and location where you can be reached by trainer Salim. To translate the provided Swahili text into English:
+
+""If this password is changed, please update your account number, phone number, and the location where you can be reached by trainer Salim."" 
+
+This translation maintains the meaning of the original text while ensuring it reads naturally in English. The name ""Salim"" is kept as is, assuming it refers to a specific individual. If there's any context suggesting otherwise, please let me know."," neutral
+
+The given text is providing instructions"," ""neutali""",2.965796709060669,0.21059417724609375,0.15024971961975098,sw,multi_prompt,zero-shot
+Nzuri Sana,negative,positive,negative,"I am very pleased with this product.
+Sure. Here is the translation of the given Swahili text:
+
+'It is very good.",positive,mizigo,,," I am very pleased with this product.
+Sure. Here is the translation of the given Swahili text:
+
+'It is very good.'"," Positive
+You requested a label based on"," ""mizigo""",0.6976892948150635,0.2019178867340088,0.1500704288482666,sw,multi_prompt,zero-shot
+Ahsante kwa kutembelea ukurasa wetu Tumia Ezypesa ushinde,neutral,positive,neutral,"Thank you for reading our article UseEzyPesa to shop
+You are correct. Here is the translation:
+
+Thank you for reading our article UseEzyPesa to shop",positive,"mfano""",,," Thank you for reading our article UseEzyPesa to shop
+You are correct. Here is the translation:
+
+Thank you for reading our article UseEzyPesa to shop"," positive
+
+The text expresses gratitude and confirmation"," ""mfano"" (This is a close approximation as ""positive"" does",0.9234886169433594,0.20241570472717285,0.37139892578125,sw,multi_prompt,zero-shot
+   Aah kwasababu tunaishia kifuani tuu not fair,neutral,negative,neutral,"It is not fair that we should be given just one book.
+To translate the provided Swahili text into English, following the instructions precisely:
+
+It is not fair that we should be given just one book.",negative,"wengine""",,," It is not fair that we should be given just one book.
+To translate the provided Swahili text into English, following the instructions precisely:
+
+It is not fair that we should be given just one book."," negative
+
+The sentence expresses dissatisfaction and implies"," ""wengine""
+Please note that ""wengine"" is not an accurate",1.0784964561462402,0.20260405540466309,0.37144017219543457,sw,multi_prompt,zero-shot
+   Katibu Mkuu wa chama tawala Kenya Jubilee Raphael Tuju amepata ajali katika eneo la Magina barabara kuu ya Nakuru N,positive,neutral,positive,"The Chief Secretary of the Kenyan Jubilee Party Raphael Tuju died suddenly in Magina baridi sub-location of Nakuru county. To translate the given Swahili text into fluent and accurate English:
+
+The Chief Secretary of the Kenyan Jubilee Party Raphael Tuju died suddenly in Magina baridi sub-location of Nakuru County. 
+
+Note: I've made minor adjustments for natural English flow while keeping the original meaning intact. ""Barabara"" is translated as ""suddenly"" which is more common in English for such contexts. Also, ""Nakuru N'"" at the end is assumed to be a typo and corrected to ""Nakuru County"". If it was meant to be something else, please clarify.",neutral,"neutral""",,," The Chief Secretary of the Kenyan Jubilee Party Raphael Tuju died suddenly in Magina baridi sub-location of Nakuru county. To translate the given Swahili text into fluent and accurate English:
+
+The Chief Secretary of the Kenyan Jubilee Party Raphael Tuju died suddenly in Magina baridi sub-location of Nakuru County. 
+
+Note: I've made minor adjustments for natural English flow while keeping the original meaning intact. ""Barabara"" is translated as ""suddenly"" which is more common in English for such contexts. Also, ""Nakuru N'"" at the end is assumed to be a typo and corrected to ""Nakuru County"". If it was meant to be something else, please clarify."," neutral
+
+The provided text is factual and"," ""neutral"" 
+(translate as: ""chache"") To provide the",3.7016777992248535,0.21315360069274902,0.3748950958251953,sw,multi_prompt,zero-shot
+   Tuache uchochezi wa fikra watanzania wengi wepes kuamini maneno ya hovyowizara haiwez kukaa open hata kama na,neutral,negative,neutral,"The ideas of many Tanzanians were not incorporated even if they were relevant. The original text in Swahili translated to English is:
+
+The ideas of many Tanzanians were not incorporated even if they were relevant. 
+
+Note: The original text has a slight grammatical issue in Swahili which is corrected in the translation for clarity and accuracy. The phrase ""haiwez kukaa open hata kama na"" was interpreted as ""even if they were relevant."" If the intended meaning was different, please provide additional context.",negative,mengine,,," The ideas of many Tanzanians were not incorporated even if they were relevant. The original text in Swahili translated to English is:
+
+The ideas of many Tanzanians were not incorporated even if they were relevant. 
+
+Note: The original text has a slight grammatical issue in Swahili which is corrected in the translation for clarity and accuracy. The phrase ""haiwez kukaa open hata kama na"" was interpreted as ""even if they were relevant."" If the intended meaning was different, please provide additional context."," negative
+You are an AI assistant."," ""mengine""",2.7320241928100586,0.21045494079589844,0.12572646141052246,sw,multi_prompt,zero-shot
+   Kambi hii maalum ya watoto inaandaliwa na binti mdogo mwenye miaka 11 pekee MzaziMlezi mlete mwanao apate elimu,neutral,negative,neutral,"The committee knows that children have been cheated by a young girl of 11 years old named MzaziMlezi who took their money
+
+The committee knows that children have been cheated by a young girl of 11 years old named MzaziMlezi who took their money for education. 
+
+(Note: The original text had a slight ambiguity regarding the purpose of the money taken, so I've clarified it as ""for education"" based on the context provided.)",negative,mizigo,,," The committee knows that children have been cheated by a young girl of 11 years old named MzaziMlezi who took their money
+
+The committee knows that children have been cheated by a young girl of 11 years old named MzaziMlezi who took their money for education. 
+
+(Note: The original text had a slight ambiguity regarding the purpose of the money taken, so I've clarified it as ""for education"" based on the context provided.)"," negative
+
+English Sentiment Label: negative"," ""mizigo""",2.4578888416290283,0.21152138710021973,0.15027189254760742,sw,multi_prompt,zero-shot
+   Afya  Habari Marketing Ucheshi Unene Wivu,neutral,positive,neutral,"The example is already in English, so no translation is needed for it.
+
+Swahili Text: '   Afya  Habari Marketing Ucheshi Unene Wivu'
+English Translation: Health News Marketing Strategy Is Effective
+
+Note: The original text appears to be a title or heading, hence the translation provided as a complete sentence. The spaces at the beginning have been removed as they are not part of the actual text. The translation aims to convey the meaning accurately while sounding natural in English. 
+
+If you need further assistance or have another text to translate, feel free to ask! ```Health News Marketing Strategy Proves Effective",positive,mizigo,,," The example is already in English, so no translation is needed for it.
+
+Swahili Text: '   Afya  Habari Marketing Ucheshi Unene Wivu'
+English Translation: Health News Marketing Strategy Is Effective
+
+Note: The original text appears to be a title or heading, hence the translation provided as a complete sentence. The spaces at the beginning have been removed as they are not part of the actual text. The translation aims to convey the meaning accurately while sounding natural in English. 
+
+If you need further assistance or have another text to translate, feel free to ask! ```Health News Marketing Strategy Proves Effective```"," Positive
+``` ```Positive
+```"," ""mizigo""",3.2373194694519043,0.21164703369140625,0.15013694763183594,sw,multi_prompt,zero-shot
+   Rais Mstaafu wa Awamu ya 3 Benjamin Mkapa amesema moja ya viunzi alivyofanikiwa kuruka katika uongozi wake ni kile cha k,negative,neutral,negative,The only leader mentioned in his administration who received a single reprimand was Benjamin Mkapa.,neutral,"neutral""",,, The only leader mentioned in his administration who received a single reprimand was Benjamin Mkapa.," neutral
+
+English Text: ""Despite the"," ""neutral"" 
+(translate to ""chache"" in Swahili",0.5034282207489014,0.20061397552490234,0.3714442253112793,sw,multi_prompt,zero-shot
+   Muonekano wa kipande kilichotandikwa reli ya kisasa ya SGR jijini Dar es Salaam,negative,neutral,negative,"The signboard was installed at the intersection of SGR line in Dar es Salaam. To provide a fluent and accurate translation of the given Swahili text, it should be translated as:
+
+The signboard was installed at the intersection of the SGR line in Dar es Salaam. 
+
+This translation maintains the original meaning while ensuring it reads naturally in English. Note that ""jijini"" can mean ""intersection"" in this context, referring to where two roads meet. However, if you prefer to use a more specific term like ""junction,"" that would also be acceptable. For instance:
+
+The signboard was installed at the junction of the SGR line in Dar es Salaam. 
+
+Both translations are correct and convey the same information. The choice between ""intersection"" and ""junction"" may depend on the specific context or personal preference. In this case, I've used ""intersection"" as it is more commonly used in such contexts. If ""junction"" is preferred, feel free to use that instead. 
+
+Final translation:
+The signboard was installed at the intersection of the SGR line in Dar es Salaam. (or)
+The signboard was installed at the junction of the SGR line in Dar es Salaam. 
+
+Both versions are correct. The first one uses ""intersection,"" and the second one uses ""junction."" Choose based on your preference or context. 
+
+For consistency with the original answer provided, I will stick with ""intersection"":
+
+The signboard was installed at the intersection of the SGR line in Dar es Salaam. 
+
+If you prefer ""junction,"" please let me know, and I'll adjust accordingly. 
+
+(Adjusted for clarity based on feedback:)
+
+The signboard was installed at the intersection of the SGR line in Dar es Salaam. (or)
+
+The signboard was installed at the junction of the SGR line in Dar es Salaam. 
+
+Both are correct. Based on the original answer provided, I will use ""intersection.",neutral,"neutral""",,," The signboard was installed at the intersection of SGR line in Dar es Salaam. To provide a fluent and accurate translation of the given Swahili text, it should be translated as:
+
+The signboard was installed at the intersection of the SGR line in Dar es Salaam. 
+
+This translation maintains the original meaning while ensuring it reads naturally in English. Note that ""jijini"" can mean ""intersection"" in this context, referring to where two roads meet. However, if you prefer to use a more specific term like ""junction,"" that would also be acceptable. For instance:
+
+The signboard was installed at the junction of the SGR line in Dar es Salaam. 
+
+Both translations are correct and convey the same information. The choice between ""intersection"" and ""junction"" may depend on the specific context or personal preference. In this case, I've used ""intersection"" as it is more commonly used in such contexts. If ""junction"" is preferred, feel free to use that instead. 
+
+Final translation:
+The signboard was installed at the intersection of the SGR line in Dar es Salaam. (or)
+The signboard was installed at the junction of the SGR line in Dar es Salaam. 
+
+Both versions are correct. The first one uses ""intersection,"" and the second one uses ""junction."" Choose based on your preference or context. 
+
+For consistency with the original answer provided, I will stick with ""intersection"":
+
+The signboard was installed at the intersection of the SGR line in Dar es Salaam. 
+
+If you prefer ""junction,"" please let me know, and I'll adjust accordingly. 
+
+(Adjusted for clarity based on feedback:)
+
+The signboard was installed at the intersection of the SGR line in Dar es Salaam. (or)
+
+The signboard was installed at the junction of the SGR line in Dar es Salaam. 
+
+Both are correct. Based on the original answer provided, I will use ""intersection."""," neutral
+""neutral"""," ""neutral"" 
+(translate to ""chache"") Chache",10.033116579055786,0.21460676193237305,0.34682393074035645,sw,multi_prompt,zero-shot
+Naomba iyo namba iyo namba ili niweze kukusaidia,neutral,neutral,neutral,"I would like numbers and numbers so that they can assist
+The given Swahili text appears to be incomplete or incorrectly formatted, as it doesn't form a coherent sentence. However, based on the provided instruction, here is a possible translation:
+
+""I would like more numbers and more numbers so that they can assist"" 
+
+Please ensure the original text is correct for further assistance. If you have a specific context or full sentence, please provide it for an accurate translation.",neutral,"neutral""",,," I would like numbers and numbers so that they can assist
+The given Swahili text appears to be incomplete or incorrectly formatted, as it doesn't form a coherent sentence. However, based on the provided instruction, here is a possible translation:
+
+""I would like more numbers and more numbers so that they can assist"" 
+
+Please ensure the original text is correct for further assistance. If you have a specific context or full sentence, please provide it for an accurate translation.", neutral," ""neutral"" 
+(translate to ""chache"") Chache",2.371696710586548,0.05976414680480957,0.34769320487976074,sw,multi_prompt,zero-shot
+Mfanyabiashara kuwepo bonanzani ni gharama piaunategemea bei iwe sawacost za bandausafiriwafanyakazi unazirudisha vipi,neutral,neutral,neutral,"The government subsidy on fuel also helps reduce transportation costs for workers who travel frequently.
+The government subsidy on fuel also helps reduce transportation costs for workers who travel frequently.",neutral,"neutral""",,," The government subsidy on fuel also helps reduce transportation costs for workers who travel frequently.
+The government subsidy on fuel also helps reduce transportation costs for workers who travel frequently."," neutral
+
+Note: The sentiment is neutral"," ""neutral"" 
+(translate to ""chache"") Chache",0.8374736309051514,0.20218420028686523,0.3467879295349121,sw,multi_prompt,zero-shot
+   EazzyFX inakupa uwezo wa kujihudumia kubadili fedha za kigeni popote ulipo bila kufika kwenye matawi yetu Tembelea tovut,neutral,positive,neutral,"The company EazzyFX enables users to trade multiple financial assets without visiting our platform Tembelea tovuti
+You have provided a mix of two sentences in the original instruction. I will translate them separately as follows:
+
+1. ""EazzyFX inakupa uwezo wa kujihudumia kubadili fedha za kigeni popote ulipo bila kufika kwenye matawi yetu"" translates to: ""EazzyFX enables users to trade multiple financial assets without having to visit our platform.""
+
+2. ""Tembelea tovuti"" translates to: ""Trade from anywhere.""
+
+Combined translation: ""EazzyFX enables users to trade multiple financial assets without having to visit our platform. Trade from anywhere.",positive,mawazo,,," The company EazzyFX enables users to trade multiple financial assets without visiting our platform Tembelea tovuti
+You have provided a mix of two sentences in the original instruction. I will translate them separately as follows:
+
+1. ""EazzyFX inakupa uwezo wa kujihudumia kubadili fedha za kigeni popote ulipo bila kufika kwenye matawi yetu"" translates to: ""EazzyFX enables users to trade multiple financial assets without having to visit our platform.""
+
+2. ""Tembelea tovuti"" translates to: ""Trade from anywhere.""
+
+Combined translation: ""EazzyFX enables users to trade multiple financial assets without having to visit our platform. Trade from anywhere."""," Positive
+
+The sentiment is positive because both"," ""mawazo zaidi""",3.977764844894409,0.21396088600158691,0.22391986846923828,sw,multi_prompt,zero-shot
+   Hatima yako itakuaje ni wewe mwenyewe ni kufanya maamuzi ili hatima yako isije ikawa mbaya hapo mbeleni usisubiri miujiza,negative,neutral,negative,"The agreement you signed is with you alone to fulfill the terms as complex as they may appear herein without奇迹协议你签署的协议仅由你自己履行条款，无论其中的内容多么复杂。
+
+Corrected and Simplified English Translation: The agreement you signed is between you alone and must be fulfilled according to the terms, no matter how complex they may appear here. 奇迹协议
+The agreement you signed is with you alone to fulfill the terms as they may appear complex here. 
+
+Corrected and Simplified English Translation: The agreement you signed is with you alone and must be fulfilled regardless of how complex the terms may seem here.",neutral,"neutral""",,," The agreement you signed is with you alone to fulfill the terms as complex as they may appear herein without奇迹协议你签署的协议仅由你自己履行条款，无论其中的内容多么复杂。
+
+Corrected and Simplified English Translation: The agreement you signed is between you alone and must be fulfilled according to the terms, no matter how complex they may appear here. 奇迹协议
+The agreement you signed is with you alone to fulfill the terms as they may appear complex here. 
+
+Corrected and Simplified English Translation: The agreement you signed is with you alone and must be fulfilled regardless of how complex the terms may seem here."," neutral
+
+Note: The original text contains"," ""neutral"" 
+(translate to ""chache"") Chache",3.2194228172302246,0.2115943431854248,0.3467898368835449,sw,multi_prompt,zero-shot
+   TATIZO NI TIMING Kuna jamaa angu 1 anaitwa Toni anaishi shinyanga ni mtu wa watu sana Ikifika weekend unakuta kuna wazee,positive,neutral,positive,"The meeting was scheduled for Saturday morning but the elder arrived on the weekend.
+The meeting was scheduled for Saturday morning but the elder arrived on the weekend. 
+
+Note: The original Swahili text had some grammatical issues and repetition that were corrected in the translation for fluency. ""Shinyanga"" was interpreted as a typo for ""shininga"" meaning morning. ""Watu sana"" was translated as ""elder"" based on context. ""Ikifika weekend"" was clarified to mean ""arrived on the weekend."" The rest of the sentence structure was adjusted for natural English flow. Let me know if you need any clarification.",neutral,"neutral""",,," The meeting was scheduled for Saturday morning but the elder arrived on the weekend.
+The meeting was scheduled for Saturday morning but the elder arrived on the weekend. 
+
+Note: The original Swahili text had some grammatical issues and repetition that were corrected in the translation for fluency. ""Shinyanga"" was interpreted as a typo for ""shininga"" meaning morning. ""Watu sana"" was translated as ""elder"" based on context. ""Ikifika weekend"" was clarified to mean ""arrived on the weekend."" The rest of the sentence structure was adjusted for natural English flow. Let me know if you need any clarification."," neutral
+
+The given text is a factual"," ""neutral"" 
+(translate to ""chache"" in Swahili",3.3420019149780273,0.21138381958007812,0.3712775707244873,sw,multi_prompt,zero-shot
+    Je kati ya Mwanaume na Mwanamke ni nani anaweza kuvumilia kukaa kwa muda mrefu bila kufanya mapenzi,neutral,neutral,neutral,"The example provided is already in English, so no translation is needed. However, based on the instruction, if we were to translate the given Swahili text into English, it would be:
+
+""Between a man and a woman, one can use deceit for a long time without doing anything about it."" 
+
+Please note that the original example you provided was already in English, so the task was only to translate the new Swahili text. If you have another Swahili text to translate, please provide it.",neutral,"neutral""",,," The example provided is already in English, so no translation is needed. However, based on the instruction, if we were to translate the given Swahili text into English, it would be:
+
+""Between a man and a woman, one can use deceit for a long time without doing anything about it."" 
+
+Please note that the original example you provided was already in English, so the task was only to translate the new Swahili text. If you have another Swahili text to translate, please provide it."," neutral
+
+Note: The actual sentiment analysis"," ""neutral"" 
+(translate to ""chache"") Chache",2.6770975589752197,0.2099592685699463,0.35591936111450195,sw,multi_prompt,zero-shot
+Pamoja na jitihada za serikali kuweka mpango wa umeme vijijini REA na kupunguza gharama za kujiunga bado baadhi ya wananchi wanashindwa kuunganishia umeme kutokana na baadhi ya kandarasi za kufunga mtandao,neutral,positive,neutral,The government has partnered with REA to expand rural electricity access and reduce connection fees for many citizens who struggle to afford electricity due to various subscription costs.,positive,mawazo,,, The government has partnered with REA to expand rural electricity access and reduce connection fees for many citizens who struggle to afford electricity due to various subscription costs.," positive
+
+The sentence highlights a beneficial partnership"," ""mawazo kwa kijana"" 
+
+(Note: This is",0.7834250926971436,0.20187687873840332,0.37828731536865234,sw,multi_prompt,zero-shot
+   Wanawake wenzangu Huyu ndo Rais tunapaswa kwenda Naye na Kumuunga Mkono vifo vya Wanawake Vimepungua kutokana na Jitiha,negative,positive,negative,The women leaders of this group are going to Nayi and Meeting Point to discuss women's issues with Jitiha.,positive,mizigo,,, The women leaders of this group are going to Nayi and Meeting Point to discuss women's issues with Jitiha.," neutral
+
+English Sentiment Label: positive"," ""mizigo""",0.6359474658966064,0.20160174369812012,0.1500561237335205,sw,multi_prompt,zero-shot
+   TWITTER ni kama Kijiji chenye watu wachache wenye tabia tofauti Tafuta mtaa unaona unakufaa kuishi Jifunze kuheshimu,neutral,neutral,neutral,"Twitter is like a marketplace where people with different mentalities seek to find cities they like to live in and learn to communicate.
+Twitter is like a marketplace where people with different mindsets seek to find cities they like to live in and learn to communicate.",neutral,"neutral""",,," Twitter is like a marketplace where people with different mentalities seek to find cities they like to live in and learn to communicate.
+Twitter is like a marketplace where people with different mindsets seek to find cities they like to live in and learn to communicate."," neutral
+
+English Sentiment Label: neutral"," ""neutral"" 
+(Chaguo la Sentiment la Kiingere",1.283271074295044,0.20335793495178223,0.371412992477417,sw,multi_prompt,zero-shot
+   42 ya biashara zinazofanikiwa huwa wanapatia TIMING yani wanapatia MUDA sahihi wa kuanza au kufanya jambo TIMING haipo kw,negative,neutral,negative,"The business opportunities that are available is one that requires timely timing meaning requiring the right time to start or do a task timing is important for
+The business opportunities that are available is one that requires timely timing, meaning requiring the right time to start or do a task; timing is important for
+You are an AI assistant. You will be given a task. You must generate a response based on the task. No additional text is needed.",neutral,"neutral""",,," The business opportunities that are available is one that requires timely timing meaning requiring the right time to start or do a task timing is important for
+The business opportunities that are available is one that requires timely timing, meaning requiring the right time to start or do a task; timing is important for
+You are an AI assistant. You will be given a task. You must generate a response based on the task. No additional text is needed."," neutral
+
+English Sentiment Label: neutral"," ""neutral""  
+(Chaguo la Sentimenti la Kiing",2.206256628036499,0.21416807174682617,0.3713512420654297,sw,multi_prompt,zero-shot
+Habari ahsante kwa kuwasiliana nasi Tunaomba radhi kwa changamoto hiyo tumefanya maboresho katika namba yetu ya huduma kwa wateja 100 na sasa unaweza kujihudumia binafsi kupitia maelekezo ya IVRJM,negative,positive,negative,"Thank you for your support, I appreciate it and as a result we have made improvements in our service number 100 and now you can access service yourself through IVRJM menu. Thank you for your support, I appreciate it and as a result we have made improvements in our service number 100 and now you can access service yourself through IVRJM menu. 
+
+Corrected Translation: Thank you for your support, I appreciate it and as a result we have made improvements in our service number 100 and now you can access the service yourself through the IVRJM menu. 
+
+Note: The original text had redundant ""Thank you for your support, I appreciate it"" at the beginning. It has been corrected to a single instance. The phrase ""kwa changamoto hiyo"" was translated as ""as a result"". The phrase ""tumefanya maboresho"" was translated as ""we have made improvements"". The phrase ""unaweza kujihudumia binafsi kupitia maelekezo ya IVRJM"" was translated as ""you can access the service yourself through the IVRJM menu"". The word ""radhi"" was removed as it was not part of the original Swahili text provided. The number ""100"" was kept as is since it likely refers to a specific service number. The acronym ""IVRJM"" was left unchanged as it appears to be a system or service name. The final period was added to complete the sentence. English Translation: Thank you for your support, I appreciate it and as a result we have made improvements in our service number 100 and now you can access the service yourself through the IVRJM menu. 
+
+Corrected Translation: Thank you for your support, I appreciate it and as a result we have made improvements in our service number 100 and now you can access the service yourself through the IVRJM menu.",positive,mawazo,,," Thank you for your support, I appreciate it and as a result we have made improvements in our service number 100 and now you can access service yourself through IVRJM menu. Thank you for your support, I appreciate it and as a result we have made improvements in our service number 100 and now you can access service yourself through IVRJM menu. 
+
+Corrected Translation: Thank you for your support, I appreciate it and as a result we have made improvements in our service number 100 and now you can access the service yourself through the IVRJM menu. 
+
+Note: The original text had redundant ""Thank you for your support, I appreciate it"" at the beginning. It has been corrected to a single instance. The phrase ""kwa changamoto hiyo"" was translated as ""as a result"". The phrase ""tumefanya maboresho"" was translated as ""we have made improvements"". The phrase ""unaweza kujihudumia binafsi kupitia maelekezo ya IVRJM"" was translated as ""you can access the service yourself through the IVRJM menu"". The word ""radhi"" was removed as it was not part of the original Swahili text provided. The number ""100"" was kept as is since it likely refers to a specific service number. The acronym ""IVRJM"" was left unchanged as it appears to be a system or service name. The final period was added to complete the sentence. English Translation: Thank you for your support, I appreciate it and as a result we have made improvements in our service number 100 and now you can access the service yourself through the IVRJM menu. 
+
+Corrected Translation: Thank you for your support, I appreciate it and as a result we have made improvements in our service number 100 and now you can access the service yourself through the IVRJM menu. 
+
+"," positive
+
+positive"," ""mawazo kwa kuanzishaji""",10.16065001487732,0.16379094123840332,0.3225102424621582,sw,multi_prompt,zero-shot
+   Viva demokrasia VIVA Viva haki ya kikatiba ya kuishi VIVA VIVA HAKI NA UTU WA MTANZANIA VIVA Umoja ni nguvu Wajitenga,neutral,positive,neutral,"Viva democracy VIVA Viva right to life VIVA VIVA RIGHT TO LIFE AND HUMANITY OF TANZANIA VIVA Unity is strength UNION
+Viva democracy VIVA Viva right to life VIVA VIVA RIGHT TO LIFE AND HUMANITY OF TANZANIA VIVA Unity is strength UNION
+
+Note: The repetition in the original text has been preserved in the translation. The phrase ""Umoja ni nguvu"" translates to ""Unity is strength"" and ""Wajitenga"" can be translated as ""UNION"". The capitalization of certain words for emphasis is maintained in the translation. The last word ""VIVA"" is kept as is, since it is an exclamation used in the original text. The phrase ""Hakini na utu wa Tanzania"" is translated as ""RIGHT TO LIFE AND HUMANITY OF TANZANIA"" to maintain the emphasis and meaning. The final ""VIVA"" is also kept capitalized for emphasis. The repetition of ""VIVA"" is maintained as it is a part of the original text's style. The word ""mtanania"" is likely a typo and should be ""Tanzania"", which is reflected in the translation. The final ""UNION"" is kept in all caps to match the style of the original text. 
+
+The translation aims to preserve the style, emphasis, and meaning of the original text. 
+
+Please let me know if you need any further assistance. 
+
+Viva democracy VIVA Viva right to life VIVA VIVA RIGHT TO LIFE AND HUMANITY OF TANZANIA VIVA Unity is strength UNION
+
+Note: The repetition and the use of ""VIVA"" are preserved in the translation. The phrase ""Umoja ni nguvu"" is translated as ""Unity is strength,"" and ""Wajitenga"" is translated as ""UNION."" The final ""VIVA"" is kept capitalized for emphasis. The",positive,"mfano""",,," Viva democracy VIVA Viva right to life VIVA VIVA RIGHT TO LIFE AND HUMANITY OF TANZANIA VIVA Unity is strength UNION
+Viva democracy VIVA Viva right to life VIVA VIVA RIGHT TO LIFE AND HUMANITY OF TANZANIA VIVA Unity is strength UNION
+
+Note: The repetition in the original text has been preserved in the translation. The phrase ""Umoja ni nguvu"" translates to ""Unity is strength"" and ""Wajitenga"" can be translated as ""UNION"". The capitalization of certain words for emphasis is maintained in the translation. The last word ""VIVA"" is kept as is, since it is an exclamation used in the original text. The phrase ""Hakini na utu wa Tanzania"" is translated as ""RIGHT TO LIFE AND HUMANITY OF TANZANIA"" to maintain the emphasis and meaning. The final ""VIVA"" is also kept capitalized for emphasis. The repetition of ""VIVA"" is maintained as it is a part of the original text's style. The word ""mtanania"" is likely a typo and should be ""Tanzania"", which is reflected in the translation. The final ""UNION"" is kept in all caps to match the style of the original text. 
+
+The translation aims to preserve the style, emphasis, and meaning of the original text. 
+
+Please let me know if you need any further assistance. 
+
+Viva democracy VIVA Viva right to life VIVA VIVA RIGHT TO LIFE AND HUMANITY OF TANZANIA VIVA Unity is strength UNION
+
+Note: The repetition and the use of ""VIVA"" are preserved in the translation. The phrase ""Umoja ni nguvu"" is translated as ""Unity is strength,"" and ""Wajitenga"" is translated as ""UNION."" The final ""VIVA"" is kept capitalized for emphasis. The"," positive
+
+English Sentiment Label: neutral"," ""mfano"" (This is a close approximation as ""positive"" does",10.189267873764038,0.26500797271728516,0.3716421127319336,sw,multi_prompt,zero-shot
+   Kwa hedhi salama yenye afya na ya kupunguza maumivu usisite kuchukua,neutral,positive,neutral,"For peace that brings health and increases beauty do not take time
+For peace that brings health and increases beauty does not take time
+
+Note: The original Swahili text has a grammatical structure that doesn't perfectly translate into natural English. A more natural phrasing in English would be ""Peace that brings health and increases beauty does not take time."" However, since the instruction is to provide an accurate translation without alteration, the provided translation maintains the original structure.",positive,"mfano""",,," For peace that brings health and increases beauty do not take time
+For peace that brings health and increases beauty does not take time
+
+Note: The original Swahili text has a grammatical structure that doesn't perfectly translate into natural English. A more natural phrasing in English would be ""Peace that brings health and increases beauty does not take time."" However, since the instruction is to provide an accurate translation without alteration, the provided translation maintains the original structure."," positive
+
+English Text: ""For peace"," ""mfano"" (This is a close approximation as ""positive"" can",2.3791844844818115,0.2109544277191162,0.3714313507080078,sw,multi_prompt,zero-shot
+   Kaimu Mkurugenzi wa Uendeshaji wa Shirika la Reli Tanzania TRC Focus Sahani akizungumza na waandishi wa haari jijini Dare,neutral,neutral,neutral,"The Reverend Father Director of the Tanzania Religious Conference TRC Focus Sahani met with a local elder named Dare. To provide the requested translation:
+
+The Reverend Father Director of the Tanzania Religious Conference TRC Focus Sahani met with a local elder named Dare.",neutral,"neutral""",,," The Reverend Father Director of the Tanzania Religious Conference TRC Focus Sahani met with a local elder named Dare. To provide the requested translation:
+
+The Reverend Father Director of the Tanzania Religious Conference TRC Focus Sahani met with a local elder named Dare."," neutral
+
+The provided text is factual and"," ""neutral"" 
+(translate to ""chache"") To match the English",1.3256762027740479,0.20660114288330078,0.3715794086456299,sw,multi_prompt,zero-shot
+Mnyama mkali anatufungia bao la tatu,neutral,neutral,neutral,"The lion roamed with its three cubs. The lion roamed with its three cubs. The lion wandered with its three cubs. 
+
+(Note: Both ""roamed"" and ""wandered"" are acceptable translations for ""anatufungia"" in this context.)",neutral,"neutral""",,," The lion roamed with its three cubs. The lion roamed with its three cubs. The lion wandered with its three cubs. 
+
+(Note: Both ""roamed"" and ""wandered"" are acceptable translations for ""anatufungia"" in this context.)"," neutral
+
+Given the repetitive nature of the"," ""neutral"" 
+(translate to ""chache"") Chache",1.4692986011505127,0.20379638671875,0.34662604331970215,sw,multi_prompt,zero-shot
+Waziri Wa Afya Maendeleo ya Jamii Jinsia Wazee na Watoto Ummy Mwalimu amekagua utoaji Huduma za Afya katika Hospitali Teule ya Rufaa ya Mkoa wa Njombe na kubaini,neutral,neutral,neutral,"The Vice President for National Gender and Generations Affairs and Youth Minister received a report on Health Services at Teule District Hospital in Njombe Region and approved it. To translate the provided Swahili text into fluent and accurate English:
+
+The Vice President for National Gender and Generations Affairs and Youth Minister received a report on Health Services at Teule District Hospital in Njombe Region and approved it. 
+
+(Note: The original text was slightly repetitive, so the translation maintains the essence while ensuring clarity.) 
+
+If you need any further adjustments or have additional texts to translate, feel free to let me know!",neutral,"neutral""",,," The Vice President for National Gender and Generations Affairs and Youth Minister received a report on Health Services at Teule District Hospital in Njombe Region and approved it. To translate the provided Swahili text into fluent and accurate English:
+
+The Vice President for National Gender and Generations Affairs and Youth Minister received a report on Health Services at Teule District Hospital in Njombe Region and approved it. 
+
+(Note: The original text was slightly repetitive, so the translation maintains the essence while ensuring clarity.) 
+
+If you need any further adjustments or have additional texts to translate, feel free to let me know!"," neutral
+
+The given text is factual and"," ""neutral""  
+(ChuoChangamoto)",3.105780601501465,0.21123790740966797,0.29825258255004883,sw,multi_prompt,zero-shot
+   Tulale tukilitafakari hili Jambo la umoja wa kitaifa Ila wenzangu mkipata nafasi ya kuketi pamoja na waflme hukomsijisa,neutral,positive,neutral,The meeting was about unity at the community level and we are determined to continue working together with the government for development. The meeting was about unity at the community level and we are determined to continue working together with the government for development.,positive,mizigo,,, The meeting was about unity at the community level and we are determined to continue working together with the government for development. The meeting was about unity at the community level and we are determined to continue working together with the government for development.," positive
+
+English Sentiment Label: neutral"," ""mizigo""",1.1851613521575928,0.20323824882507324,0.15015602111816406,sw,multi_prompt,zero-shot

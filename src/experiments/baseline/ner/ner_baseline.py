@@ -45,42 +45,7 @@ ENGLISH_FEW_SHOT_EXAMPLES_NER_TYPE_TEXT_FORMAT = [
 #     }
 # }
 
-# Define LRL-specific few-shot examples using the [TYPE: Entity Text] format
-LRL_FEW_SHOT_EXAMPLES_NER_TYPE_TEXT_FORMAT = {
-    "sw": [
-        {
-            "text": "Rais Samia Suluhu Hassan alitembelea Nairobi mwezi Januari.",
-            "entities_str": "[PER: Samia Suluhu Hassan] [LOC: Nairobi] [DATE: mwezi Januari]"
-        },
-        {
-            "text": "Kampuni ya Yetu Microfinance Bank PLC iliorodheshwa katika Soko la Hisa la Dar es Salaam (DSE) mwaka 2015.",
-            "entities_str": "[ORG: Yetu Microfinance Bank PLC] [LOC: Soko la Hisa la Dar es Salaam] [ORG: DSE] [DATE: 2015]"
-        },
-        {
-            "text": "Hakuna huluki hapa.",
-            "entities_str": "[NO_ENTITIES_FOUND]"
-        }
-    ],
-    "ha": [
-    {
-            "text": "Shugaba Bola Tinubu zai je Kano ranar Litinin.",
-            "entities_str": "[PER: Bola Tinubu] [LOC: Kano] [DATE: ranar Litinin]"
-        },
-        {
-            "text": "Kamfanin Dangote Cement ya sanar da ribar Naira biliyan 300 a shekarar 2022.",
-            "entities_str": "[ORG: Dangote Cement] [MONEY: Naira biliyan 300] [DATE: 2022]" # Note: MONEY type might need to be added to ENTITY_TYPES if consistently used
-        },
-        {
-            "text": "Babu wasu abubuwa anan.", # Roughly "No entities here"
-            "entities_str": "[NO_ENTITIES_FOUND]"
-        }
-    ]
-    # Add other languages here if LRL examples are available
-}
-
-# Fallback English few-shot examples if LRL examples are not defined for a language
-# but LRL instructions are requested. This uses the same structure as LRL_FEW_SHOT_EXAMPLES_NER_TYPE_TEXT_FORMAT.
-FALLBACK_ENGLISH_FEW_SHOT_EXAMPLES_NER_TYPE_TEXT_FORMAT = ENGLISH_FEW_SHOT_EXAMPLES_NER_TYPE_TEXT_FORMAT
+# All few-shot examples are now consistently in English across all configurations
 
 # LRL Instructions (defined globally)
 LRL_INSTRUCTIONS = {
@@ -245,8 +210,8 @@ def generate_ner_prompt(text: str, lang_code: str = "en", model_name: str = "", 
 
 def generate_lrl_instruct_ner_prompt(text: str, lang_code: str = "sw", model_name: str = "", use_few_shot: bool = True) -> str:
     """
-    Generates an NER prompt with instructions AND few-shot examples in the specified 
-    Low-Resource Language (LRL) if available.
+    Generates an NER prompt with instructions in the specified Low-Resource Language (LRL) 
+    if available, but with English few-shot examples.
     Outputs entities in the format [TYPE: Entity Text].
     This is used when prompt_in_lrl is True.
     """

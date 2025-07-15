@@ -1,0 +1,1452 @@
+original_text_lrl,ground_truth_label,predicted_label,ground_truth_english_label,intermediate_en_text,predicted_en_label,predicted_lrl_label_final,comet_lrl_text_to_en,comet_en_label_to_lrl,raw_translation_to_en_output,raw_predicted_en_label_output,raw_translation_to_lrl_output,runtime_translation_to_en_seconds,runtime_classification_en_seconds,runtime_translation_to_lrl_seconds,language,pipeline,shot_type
+kice ma ali nuhu handsome mna,negative,positive,negative,"He is considered very handsome. To translate the given Hausa text accurately into English:
+
+He is considered very handsome. 
+
+This translation captures the meaning of the original Hausa sentence, which expresses that someone is regarded as being very attractive or good-looking. The word ""nuhu"" in Hausa means ""very"" or ""extremely,"" and ""mna"" means ""handsome"" or ""good-looking."" The phrase ""ma ali"" indicates that he is considered or thought to be something. Therefore, the complete translation conveys the intended meaning effectively. 
+
+Note: The original text provided seems to be a single sentence without any grammatical issues, so no adjustments were necessary for fluency or accuracy. If you have more texts to translate or need further assistance, feel free to ask!",positive,wahiditakawa,,," He is considered very handsome. To translate the given Hausa text accurately into English:
+
+He is considered very handsome. 
+
+This translation captures the meaning of the original Hausa sentence, which expresses that someone is regarded as being very attractive or good-looking. The word ""nuhu"" in Hausa means ""very"" or ""extremely,"" and ""mna"" means ""handsome"" or ""good-looking."" The phrase ""ma ali"" indicates that he is considered or thought to be something. Therefore, the complete translation conveys the intended meaning effectively. 
+
+Note: The original text provided seems to be a single sentence without any grammatical issues, so no adjustments were necessary for fluency or accuracy. If you have more texts to translate or need further assistance, feel free to ask!"," positive
+
+The sentiment expressed in the text"," ""wahiditakawa""",3.9681050777435303,0.21399569511413574,0.2230229377746582,ha,multi_prompt,zero-shot
+hhhhhhhhhh aiba dayawa suka iba ba kawai kiyafe musu,neutral,neutral,neutral,He was singing but his voice was a bit too high,neutral,gaskiya,,," He sang well but his voice was a bit too high
+He sang well but his voice was a bit too high
+
+(Note: The provided Hausa text does not have a clear or direct translation based on the given example format. A proper translation would require context or a more coherent sentence structure.) He sang well but his voice was a bit too high
+
+Original Text (Hausa):
+'hhhhhhhhhh aiba dayawa suka iba ba kawai kiyafe musu'
+
+English Translation: He was singing but his voice was a bit too high"," neutral
+
+English Text: ""She always"," ""gaskiya""",2.8775548934936523,0.19896435737609863,0.1493377685546875,ha,multi_prompt,zero-shot
+ko suna fadar gaskiya bah,neutral,positive,neutral,"He is a living legend. To translate the given Hausa text accurately into English:
+
+He is a living legend.",positive,gaskiya,,," He is a living legend. To translate the given Hausa text accurately into English:
+
+He is a living legend."," positive
+
+The sentence expresses admiration and respect"," ""gaskiya""",0.5969181060791016,0.20139312744140625,0.1497800350189209,ha,multi_prompt,zero-shot
+mene yasa wai buhari bazai rabawa talakawan nigeria tallafi bah,neutral,positive,neutral,"The president will meet with religious leaders in the capital city of Nigeria tomorrow. The president will address issues related to peace and security. The meeting is expected to last for several hours. The president hopes to find common ground with the leaders to promote national unity. The religious leaders are eager to discuss ways to prevent further violence and promote reconciliation. The government has been working closely with these leaders to ensure a safe and peaceful environment for all citizens. The meeting is seen as a crucial step towards resolving ongoing conflicts and fostering a more harmonious society. The president and the religious leaders have a shared commitment to the well-being of the Nigerian people. The discussions will focus on practical measures to enhance community cohesion and reduce tensions. The outcome of this meeting could have significant implications for the future stability of Nigeria. The president's engagement with religious leaders is part of a broader strategy to strengthen social cohesion and address the root causes of conflict. The meeting is scheduled to take place at the presidential palace in Abuja. The president and the religious leaders are expected to issue a joint statement following the meeting outlining their plans for moving forward. The government has also invited civil society organizations to participate in the discussions to ensure a comprehensive approach to addressing the challenges facing the country. The meeting is considered a critical opportunity for dialogue and collaboration between the government and religious communities. The president's commitment to engaging with religious leaders reflects the importance of these institutions in shaping public opinion and promoting social harmony. The discussions will cover a range of topics including economic development, education, and healthcare. The outcome of this meeting could pave the way for a more inclusive and peaceful society in Nigeria. The government is hopeful that the meeting will lead to tangible improvements in the lives of ordinary Nigerians. The president's engagement with religious leaders is seen as a positive step towards building a more resilient and united nation. The meeting is expected to generate momentum for further dialogue and cooperation between the government and religious communities. The outcome of this meeting could have far-reaching consequences for the future of Nigeria",positive,gaskiya,,," The president will meet with religious leaders in the capital city of Nigeria tomorrow. The president will address issues related to peace and security. The meeting is expected to last for several hours. The president hopes to find common ground with the leaders to promote national unity. The religious leaders are eager to discuss ways to prevent further violence and promote reconciliation. The government has been working closely with these leaders to ensure a safe and peaceful environment for all citizens. The meeting is seen as a crucial step towards resolving ongoing conflicts and fostering a more harmonious society. The president and the religious leaders have a shared commitment to the well-being of the Nigerian people. The discussions will focus on practical measures to enhance community cohesion and reduce tensions. The outcome of this meeting could have significant implications for the future stability of Nigeria. The president's engagement with religious leaders is part of a broader strategy to strengthen social cohesion and address the root causes of conflict. The meeting is scheduled to take place at the presidential palace in Abuja. The president and the religious leaders are expected to issue a joint statement following the meeting outlining their plans for moving forward. The government has also invited civil society organizations to participate in the discussions to ensure a comprehensive approach to addressing the challenges facing the country. The meeting is considered a critical opportunity for dialogue and collaboration between the government and religious communities. The president's commitment to engaging with religious leaders reflects the importance of these institutions in shaping public opinion and promoting social harmony. The discussions will cover a range of topics including economic development, education, and healthcare. The outcome of this meeting could pave the way for a more inclusive and peaceful society in Nigeria. The government is hopeful that the meeting will lead to tangible improvements in the lives of ordinary Nigerians. The president's engagement with religious leaders is seen as a positive step towards building a more resilient and united nation. The meeting is expected to generate momentum for further dialogue and cooperation between the government and religious communities. The outcome of this meeting could have far-reaching consequences for the future of Nigeria"," positive
+You are an AI assistant."," ""gaskiya""",9.97632646560669,0.265779972076416,0.14935016632080078,ha,multi_prompt,zero-shot
+wannan haka ya ke,negative,neutral,negative,"This is a good deal
+
+Note: The provided Hausa text does not have a direct match in the example, hence a new translation is required based on the given text.
+
+English Translation: They are satisfied with it",neutral,gaskiya,,," This is a good deal
+
+Note: The provided Hausa text does not have a direct match in the example, hence a new translation is required based on the given text.
+
+English Translation: They are satisfied with it"," neutral
+You are an AI assistant."," ""gaskiya""",1.0888454914093018,0.2016284465789795,0.14917230606079102,ha,multi_prompt,zero-shot
+banza a banza dankaduna da kayan sallah,positive,positive,positive,They are singing and dancing for the sake of the holiday. They are singing and dancing for the sake of the holiday.,positive,gaskiya,,, They are singing and dancing for the sake of the holiday. They are singing and dancing for the sake of the holiday.," positive
+
+English Sentiment Label: neutral"," ""gaskiya""",0.6216368675231934,0.20101380348205566,0.14965558052062988,ha,multi_prompt,zero-shot
+mai yasa bakya duba yan facebook anti rahama,neutral,negative,neutral,"He found the post quite offensive.
+To translate the given Hausa text into English:
+
+He found the post quite offensive.",negative,nagetsi,,," He found the post quite offensive.
+To translate the given Hausa text into English:
+
+He found the post quite offensive."," negative
+
+The sentence expresses a negative reaction"," ""nagetsi""",0.621635913848877,0.20127201080322266,0.17429208755493164,ha,multi_prompt,zero-shot
+nabi dimokuradiyya da gudu,positive,neutral,positive,"The prophets of old and their miracles
+You have provided a Hausa phrase that appears to be a title or statement about prophets and miracles. Here is the translation into English:
+
+The prophets of old and their miracles
+
+If you intended to include additional context or had a different phrase in mind, please provide the correct text for an accurate translation.",neutral,"nuture""",,," The prophets of old and their miracles
+You have provided a Hausa phrase that appears to be a title or statement about prophets and miracles. Here is the translation into English:
+
+The prophets of old and their miracles
+
+If you intended to include additional context or had a different phrase in mind, please provide the correct text for an accurate translation.", neutral," ""nuture"" (Note: This is a transliteration and does not",1.7094972133636475,0.05554533004760742,0.3700673580169678,ha,multi_prompt,zero-shot
+allah yakaimu maigida,negative,neutral,negative,"He created the heavens
+To provide the translation as instructed:
+
+He created the heavens",neutral,"nuture""",,," He created the heavens
+To provide the translation as instructed:
+
+He created the heavens"," neutral
+
+The given text is a statement"," ""nuture"" (Note: This is a transliteration and does not",0.422680139541626,0.19954633712768555,0.3703649044036865,ha,multi_prompt,zero-shot
+muma yan nigeria ai tuni namu ya girgije,neutral,positive,neutral,"The country is rich in natural resources. The original Hausa text ""muma yan Nigeria ai tuni namu ya girgije"" translates to:
+
+The country Nigeria is rich in natural resources. 
+
+To make it more natural in English, one could also say:
+
+Nigeria is rich in natural resources. 
+
+Or, if emphasizing the concept of being ""rich"" in a particular sense:
+
+Nigeria is blessed with abundant natural resources. 
+
+These variations capture the essence of the original Hausa sentence while sounding more idiomatic in English. The most straightforward and common way would be the second option provided. 
+
+Nigeria is rich in natural resources.",positive,gaskiya,,," The country is rich in natural resources. The original Hausa text ""muma yan Nigeria ai tuni namu ya girgije"" translates to:
+
+The country Nigeria is rich in natural resources. 
+
+To make it more natural in English, one could also say:
+
+Nigeria is rich in natural resources. 
+
+Or, if emphasizing the concept of being ""rich"" in a particular sense:
+
+Nigeria is blessed with abundant natural resources. 
+
+These variations capture the essence of the original Hausa sentence while sounding more idiomatic in English. The most straightforward and common way would be the second option provided. 
+
+Nigeria is rich in natural resources."," positive
+
+English Sentiment Label: neutral"," ""gaskiya""",3.247314214706421,0.2108461856842041,0.14937901496887207,ha,multi_prompt,zero-shot
+wai tunda can me ake ta jira ne bamason wargi fa,positive,neutral,positive,"They can only be understood by women leaders. To translate the given Hausa text accurately into English:
+
+""They can only be understood by female leaders."" 
+
+This translation maintains the original meaning while ensuring it is clear and grammatically correct in English. The term ""wargi"" specifically refers to women in leadership roles in Hausa culture.",neutral,"nuture""",,," They can only be understood by women leaders. To translate the given Hausa text accurately into English:
+
+""They can only be understood by female leaders."" 
+
+This translation maintains the original meaning while ensuring it is clear and grammatically correct in English. The term ""wargi"" specifically refers to women in leadership roles in Hausa culture."," neutral
+You are a helpful AI assistant"," ""nuture"" (Note: This is a transliteration and does not",1.6852970123291016,0.20383358001708984,0.3701944351196289,ha,multi_prompt,zero-shot
+in har aljanun gaskiya ne in anzo rata ye ta sai su sace ta mu gani in har suna kishin ta ne,neutral,neutral,neutral,"He said that if someone knew how to read, they would understand the situation better than those who did not know how to read. To translate the given Hausa text accurately into English:
+
+""He said that if someone knew how to read, they would understand the situation better than those who did not know how to read."" 
+
+This translation maintains the meaning of the original Hausa sentence while ensuring it reads naturally in English. The structure has been slightly adjusted for fluency, but the core message remains intact.",neutral,"nuture""",,," He said that if someone knew how to read, they would understand the situation better than those who did not know how to read. To translate the given Hausa text accurately into English:
+
+""He said that if someone knew how to read, they would understand the situation better than those who did not know how to read."" 
+
+This translation maintains the meaning of the original Hausa sentence while ensuring it reads naturally in English. The structure has been slightly adjusted for fluency, but the core message remains intact."," neutral
+
+The provided text is a statement"," ""nuture"" (Note: This is a phonetic transliteration of",2.5064640045166016,0.20943045616149902,0.36985158920288086,ha,multi_prompt,zero-shot
+insha allah sarauniya,negative,positive,negative,"I will definitely do it
+To translate the given Hausa phrase ""insha allah sarauniya"" into English, the appropriate translation is:
+
+""I will definitely do it"" or more accurately in this context:
+
+""I will surely do it""
+
+This translation captures the meaning of commitment and certainty expressed in the original Hausa phrase.",positive,wani,,," I will definitely do it
+To translate the given Hausa phrase ""insha allah sarauniya"" into English, the appropriate translation is:
+
+""I will definitely do it"" or more accurately in this context:
+
+""I will surely do it""
+
+This translation captures the meaning of commitment and certainty expressed in the original Hausa phrase."," positive
+You are to respond with one"," ""wani""",1.6835582256317139,0.20347857475280762,0.12467718124389648,ha,multi_prompt,zero-shot
+kunga wata me kama da rahma sadau,neutral,positive,neutral,"He is always full of kindness. To translate the given Hausa text accurately into English:
+
+He is always full of mercy. 
+
+Note: In Hausa, ""rahma"" can be translated as ""mercy"" or ""kindness,"" depending on the context. Here, ""kindness"" seems more fitting in the English translation. If ""mercy"" is preferred, it can be used instead. Both are correct but ""kindness"" might sound slightly more natural in this context.",positive,gaskiya,,," He is always full of kindness. To translate the given Hausa text accurately into English:
+
+He is always full of mercy. 
+
+Note: In Hausa, ""rahma"" can be translated as ""mercy"" or ""kindness,"" depending on the context. Here, ""kindness"" seems more fitting in the English translation. If ""mercy"" is preferred, it can be used instead. Both are correct but ""kindness"" might sound slightly more natural in this context."," Positive
+
+The original sentence expresses a consistently"," ""gaskiya""",2.478285789489746,0.21083760261535645,0.14963769912719727,ha,multi_prompt,zero-shot
+muna da atiku in haukane,neutral,negative,neutral,It is not as good as that one.,negative,nagetsi,,," The book is not as interesting as the movie. The movie was more captivating. Original Text (Hausa):
+'muna da atiku in haukane'
+
+English Translation: It is not as good as that one.", negative," ""nagetsi""",1.1633787155151367,0.05158090591430664,0.1739048957824707,ha,multi_prompt,zero-shot
+wannan mutumin fa ya samu matsala da alama,positive,neutral,positive,"This ruler wants to establish a new system of governance. The original Hausa text ""wannan mutumin fa ya samu matsala da alama"" translates to:
+
+The ruler wants to establish a new system of governance. 
+
+This translation maintains the meaning and intent of the original Hausa sentence in English.",neutral,"nuture""",,," This ruler wants to establish a new system of governance. The original Hausa text ""wannan mutumin fa ya samu matsala da alama"" translates to:
+
+The ruler wants to establish a new system of governance. 
+
+This translation maintains the meaning and intent of the original Hausa sentence in English."," neutral
+
+English Sentiment Label: neutral"," ""nuture"" (Note: This is a phonetic transliteration of",1.5849671363830566,0.20301079750061035,0.3696436882019043,ha,multi_prompt,zero-shot
+talaka ne babban mikiyin buhari duk abinda kaki ki acikin rayuwar ka to fa idan yasan me yake kai ze para ki shima,positive,neutral,positive,"The book is not as interesting as the movie. To read more interesting books, you should visit the library. 
+
+English Translation: The book is not as interesting as the movie. You should visit the library to read more interesting books. The book is not as interesting as the movie; therefore, you should visit the library to read more interesting books. 
+
+English Translation: The book is not as interesting as the movie; hence, you should visit the library to read more interesting books. The book is not as interesting as the movie; thus, you should visit the library to read more interesting books. 
+
+English Translation: The book is not as interesting as the movie; consequently, you should visit the library to read more interesting books. The book is not as interesting as the movie; as a result, you should visit the library to read more interesting books. 
+
+English Translation: The book is not as interesting as the movie; for this reason, you should visit the library to read more interesting books. The book is not as interesting as the movie; therefore, you should visit the library to read more interesting books. 
+
+English Translation: The book is not as interesting as the movie; hence, you should visit the library to read more interesting books. The book is not as interesting as the movie; thus, you should visit the library to read more interesting books. 
+
+English Translation: The book is not as interesting as the movie; therefore, you should visit the library to read more interesting books. The book is not as interesting as the movie; hence, you should visit the library to read more interesting books. 
+
+English Translation: The book is not as interesting as the movie; thus, you should visit the library to read more interesting books. The book is not as interesting as the movie; therefore, you should visit the library to read more interesting books. 
+
+English Translation: The book is not as interesting as the movie; hence, you should visit the library to read more interesting books",neutral,"nuture""",,," The book is not as interesting as the movie. To read more interesting books, you should visit the library. 
+
+English Translation: The book is not as interesting as the movie. You should visit the library to read more interesting books. The book is not as interesting as the movie; therefore, you should visit the library to read more interesting books. 
+
+English Translation: The book is not as interesting as the movie; hence, you should visit the library to read more interesting books. The book is not as interesting as the movie; thus, you should visit the library to read more interesting books. 
+
+English Translation: The book is not as interesting as the movie; consequently, you should visit the library to read more interesting books. The book is not as interesting as the movie; as a result, you should visit the library to read more interesting books. 
+
+English Translation: The book is not as interesting as the movie; for this reason, you should visit the library to read more interesting books. The book is not as interesting as the movie; therefore, you should visit the library to read more interesting books. 
+
+English Translation: The book is not as interesting as the movie; hence, you should visit the library to read more interesting books. The book is not as interesting as the movie; thus, you should visit the library to read more interesting books. 
+
+English Translation: The book is not as interesting as the movie; therefore, you should visit the library to read more interesting books. The book is not as interesting as the movie; hence, you should visit the library to read more interesting books. 
+
+English Translation: The book is not as interesting as the movie; thus, you should visit the library to read more interesting books. The book is not as interesting as the movie; therefore, you should visit the library to read more interesting books. 
+
+English Translation: The book is not as interesting as the movie; hence, you should visit the library to read more interesting books"," neutral
+
+English Sentiment Label: neutral"," ""nuture"" (Note: This is a transliteration and may not",9.992555379867554,0.26563096046447754,0.36998510360717773,ha,multi_prompt,zero-shot
+da so samu ne kice duk duniya ni kikoso,negative,positive,negative,"The world record is for the longest running business. To translate the given Hausa text into English:
+
+The world record is for the longest running business. 
+
+This translation aims to maintain the meaning of the original Hausa sentence in fluent English. Note that the phrase ""kikoso"" in Hausa can mean ""record"" or ""world record,"" depending on context. Here, it's translated as ""world record"" to fit the structure and meaning of the sentence. If ""kikoso"" specifically refers to a local or non-world-wide record, a more precise translation might be needed based on additional context. However, without further context, ""world record"" is a suitable translation. 
+
+If you have additional context or need a different interpretation, please let me know! 
+
+English Translation: The world record is for the longest running business. 
+
+(Note: The original provided translation seems to match the intended meaning well, but I've ensured it aligns with the given Hausa sentence.) 
+
+If you need further adjustments or have specific preferences regarding terminology, feel free to ask! 
+
+English Translation: The world record is for the longest running business. 
+
+(Revised to ensure accuracy and fluency) 
+
+English Translation: The world record is for the longest continuously operating business. 
+
+(Considering the context and ensuring accuracy) 
+
+English Translation: The world record is for the longest-running business. 
+
+(Ensuring brevity and clarity) 
+
+English Translation: The world record is for the oldest continuously operating business. 
+
+(Considering the implication of longevity) 
+
+Final English Translation: The world record is for the oldest continuously operating business. 
+
+(Ensuring the most accurate and fluent translation) 
+
+If you need any further adjustments, please let me know! 
+
+English Translation: The world record is for the longest continuously operating business. 
+
+(Ensuring clarity and accuracy) 
+
+English Translation: The world record is for the oldest continuously operating business. 
+
+(Considering the implication of longevity and continuous operation",positive,gaskiya,,," The world record is for the longest running business. To translate the given Hausa text into English:
+
+The world record is for the longest running business. 
+
+This translation aims to maintain the meaning of the original Hausa sentence in fluent English. Note that the phrase ""kikoso"" in Hausa can mean ""record"" or ""world record,"" depending on context. Here, it's translated as ""world record"" to fit the structure and meaning of the sentence. If ""kikoso"" specifically refers to a local or non-world-wide record, a more precise translation might be needed based on additional context. However, without further context, ""world record"" is a suitable translation. 
+
+If you have additional context or need a different interpretation, please let me know! 
+
+English Translation: The world record is for the longest running business. 
+
+(Note: The original provided translation seems to match the intended meaning well, but I've ensured it aligns with the given Hausa sentence.) 
+
+If you need further adjustments or have specific preferences regarding terminology, feel free to ask! 
+
+English Translation: The world record is for the longest running business. 
+
+(Revised to ensure accuracy and fluency) 
+
+English Translation: The world record is for the longest continuously operating business. 
+
+(Considering the context and ensuring accuracy) 
+
+English Translation: The world record is for the longest-running business. 
+
+(Ensuring brevity and clarity) 
+
+English Translation: The world record is for the oldest continuously operating business. 
+
+(Considering the implication of longevity) 
+
+Final English Translation: The world record is for the oldest continuously operating business. 
+
+(Ensuring the most accurate and fluent translation) 
+
+If you need any further adjustments, please let me know! 
+
+English Translation: The world record is for the longest continuously operating business. 
+
+(Ensuring clarity and accuracy) 
+
+English Translation: The world record is for the oldest continuously operating business. 
+
+(Considering the implication of longevity and continuous operation"," neutral
+positive
+negative
+neutral
+
+"," ""gaskiya""",9.988160848617554,0.2657153606414795,0.14995479583740234,ha,multi_prompt,zero-shot
+i can believe this my rikadawa salamatu inaga saida safe,neutral,positive,neutral,"I can't believe this my friend Salamatu came safe
+You can't believe this, my friend Salamatu came safe.",positive,gaskiya,,," I can't believe this my friend Salamatu came safe
+You can't believe this, my friend Salamatu came safe."," positive
+
+English Sentiment Label: positive"," ""gaskiya""",0.6965389251708984,0.20144391059875488,0.14958429336547852,ha,multi_prompt,zero-shot
+zan bashi shawarar hukunta duk wani mai sa hannu cikin wannan zanga zangar ta hanyar tsige shi daga matsayinshi idan yana cikin ikon wannan gwamnati idan kuma yan zaman banza ne to kawaii a harbeshi tinda byan son zaman lafiya,positive,negative,positive,"The president signed the law after it was passed by the national assembly and he deemed it fit to do so without consulting the council of elders as the health experts advised against it.
+The president signed the law after it was passed by the national assembly and he deemed it fit to do so without consulting the council of elders as the health experts advised against it. 
+
+(Note: The original Hausa text seems to have some grammatical issues and does not fully translate to the provided English example, but I've translated it as accurately as possible based on the given text.)",negative,ga,,," The president signed the law after it was passed by the national assembly and he deemed it fit to do so without consulting the council of elders as the health experts advised against it.
+The president signed the law after it was passed by the national assembly and he deemed it fit to do so without consulting the council of elders as the health experts advised against it. 
+
+(Note: The original Hausa text seems to have some grammatical issues and does not fully translate to the provided English example, but I've translated it as accurately as possible based on the given text.)"," neutral
+
+English Sentiment Label: negative"," ""ga""",2.792485237121582,0.21013665199279785,0.10066676139831543,ha,multi_prompt,zero-shot
+arsenal tayi can jaras da liverpool a karawar da suka yi daren yau inda suka ta shi can jaras,neutral,neutral,neutral,"He bought a new car because he needed one. The sentence in Hausa translates to:
+
+He bought a new car because he needed one. 
+
+Note: The original Hausa text provided does not directly translate to the given English example. It appears there may have been a misunderstanding in the instruction. Based on the Hausa text provided, a proper translation would be:
+
+""He bought a new car because he needed one."" 
+
+If you intended to provide a different English sentence as an example, please clarify and I will adjust the translation accordingly. Otherwise, this is the correct translation of the provided Hausa text.",neutral,"nuture""",,," He bought a new car because he needed one. The sentence in Hausa translates to:
+
+He bought a new car because he needed one. 
+
+Note: The original Hausa text provided does not directly translate to the given English example. It appears there may have been a misunderstanding in the instruction. Based on the Hausa text provided, a proper translation would be:
+
+""He bought a new car because he needed one."" 
+
+If you intended to provide a different English sentence as an example, please clarify and I will adjust the translation accordingly. Otherwise, this is the correct translation of the provided Hausa text."," neutral
+
+The original English text provided does"," ""nuture"" (Note: This is a transliteration and may not",3.0283966064453125,0.21092510223388672,0.370084285736084,ha,multi_prompt,zero-shot
+allah wadai da wannan headline din naku wannan rashin kwarewar aikin ne,positive,positive,positive,"The news is very good for those who have patience in waiting for their turn. allah wadai da wannan headline din naku wannan rashin kwarewar aikin ne' translates to:
+
+""The news is very good for those who have patience in waiting for their turn.",positive,gaskiya,,," The news is very good for those who have patience in waiting for their turn. allah wadai da wannan headline din naku wannan rashin kwarewar aikin ne' translates to:
+
+""The news is very good for those who have patience in waiting for their turn."""," positive
+You are an AI assistant."," ""gaskiya""",1.4880280494689941,0.20352482795715332,0.14983296394348145,ha,multi_prompt,zero-shot
+satar akwatin zabe chin amanar qasa ne bana goyon bayan satar akwatin zabe amma agaskiya akwatin zabe bata kai rayuwar dan adam ba dokar qasa ta bada hukunchin shekara biyu a gidan yari wannan shine abinda yakamata ayiwa barawon akwati hukunchi dashi ba,positive,neutral,positive,"The book contained stories that were meant to teach moral lessons but some of the stories became too long and lost their original purpose as teaching tools. However, the essence of using stories to convey moral lessons remained intact despite the lengthening of some narratives by the storytellers over time as they added details to make the tales more engaging for the audience. The core idea of employing stories for moral instruction persisted even as the storytellers expanded certain narratives to better captivate their listeners.",neutral,"nuture""",,," The book contained stories that were meant to teach moral lessons but some of the stories became too long and lost their original purpose as teaching tools. However, the essence of using stories to convey moral lessons remained intact despite the lengthening of some narratives by the storytellers over time as they added details to make the tales more engaging for the audience. The core idea of employing stories for moral instruction persisted even as the storytellers expanded certain narratives to better captivate their listeners."," neutral
+
+Based on the provided text,"," ""nuture"" (Note: This is a phonetic transliteration of",2.3472743034362793,0.20914864540100098,0.36998748779296875,ha,multi_prompt,zero-shot
+ana iya shege a lanjeriya,positive,neutral,positive,"He is studying for his exams. To translate the given Hausa phrase into English:
+
+He is studying for his exams. 
+
+Note: The original text 'ana iya shege a lanjeriya' directly translates to ""he is studying for his exams"" in English. However, if you need a more literal translation of each word:
+- 'ana' = he
+- 'iya' = is
+- 'shege' = studying
+- 'a' = for
+- 'lanjeriya' = exams/tests
+
+So, a word-for-word translation would be: ""He is studying for tests."" But the natural and fluent way to express this in English is ""He is studying for his exams.",neutral,"nuture""",,," He is studying for his exams. To translate the given Hausa phrase into English:
+
+He is studying for his exams. 
+
+Note: The original text 'ana iya shege a lanjeriya' directly translates to ""he is studying for his exams"" in English. However, if you need a more literal translation of each word:
+- 'ana' = he
+- 'iya' = is
+- 'shege' = studying
+- 'a' = for
+- 'lanjeriya' = exams/tests
+
+So, a word-for-word translation would be: ""He is studying for tests."" But the natural and fluent way to express this in English is ""He is studying for his exams."""," neutral
+""neutral"""," ""nuture"" (Note: This is a transliteration and does not",3.593783140182495,0.1631309986114502,0.3696572780609131,ha,multi_prompt,zero-shot
+allah sarki prince amma ka kula kada kayi wuff da tsohuwakasan yanzu yan matan duk sun tsufahhbarka da sallah,neutral,neutral,neutral,"The prince said but if we could find someone to marry these girls who are without husbands I would pray for them and bless them with good health and peace
+
+Note: The example provided is for reference on formatting and should not be translated. The given Hausa text has been translated as per instructions. 
+
+Translation:
+The prince said but if we could find someone to marry these girls who are without husbands I would pray for them and bless them with good health and peace.",neutral,"nuture""",,," The prince said but if we could find someone to marry these girls who are without husbands I would pray for them and bless them with good health and peace
+
+Note: The example provided is for reference on formatting and should not be translated. The given Hausa text has been translated as per instructions. 
+
+Translation:
+The prince said but if we could find someone to marry these girls who are without husbands I would pray for them and bless them with good health and peace."," neutral
+You are an AI assistant."," ""nuture"" (Note: This is a transliteration and does not",2.3349454402923584,0.2084062099456787,0.36995506286621094,ha,multi_prompt,zero-shot
+meye laifi indai shima babu ruwansa da nawa kudin,neutral,neutral,neutral,"He was appointed as a judge and began his tenure
+
+Note: The given Hausa text has been changed for the purpose of this task.
+
+English Translation: He was appointed as a district judge and began his tenure",neutral,"nuture""",,," He was appointed as a judge and began his tenure
+
+Note: The given Hausa text has been changed for the purpose of this task.
+
+English Translation: He was appointed as a district judge and began his tenure", neutral," ""nuture"" (Note: This is a transliteration and does not",1.0665857791900635,0.05370283126831055,0.3701944351196289,ha,multi_prompt,zero-shot
+tabar wawawawiya da bashi,positive,neutral,positive,"He said he would come tomorrow. To accurately translate the given Hausa phrase into English, the correct translation is:
+
+""He said he would come tomorrow."" 
+
+This translation maintains the meaning of the original Hausa sentence, which conveys that someone stated their intention to arrive on the following day. The phrase ""tabar wawawawiya da bashi"" in Hausa translates directly to indicate a future time reference, specifically ""tomorrow"" in this context. Therefore, the most accurate and fluent English translation is as provided. 
+
+Note: There might be slight variations depending on the exact context, but based on the given phrase, the translation is as stated. If there's any specific context or additional information that could alter the interpretation, please provide it for a more precise translation. However, with the information given, ""He said he would come tomorrow"" is the most appropriate translation. 
+
+If you intended to provide a different phrase or had additional context, please clarify so I can adjust the translation accordingly. For the given text, the translation remains unchanged. 
+
+Final translation: He said he would come tomorrow.",neutral,"nuture""",,," He said he would come tomorrow. To accurately translate the given Hausa phrase into English, the correct translation is:
+
+""He said he would come tomorrow."" 
+
+This translation maintains the meaning of the original Hausa sentence, which conveys that someone stated their intention to arrive on the following day. The phrase ""tabar wawawawiya da bashi"" in Hausa translates directly to indicate a future time reference, specifically ""tomorrow"" in this context. Therefore, the most accurate and fluent English translation is as provided. 
+
+Note: There might be slight variations depending on the exact context, but based on the given phrase, the translation is as stated. If there's any specific context or additional information that could alter the interpretation, please provide it for a more precise translation. However, with the information given, ""He said he would come tomorrow"" is the most appropriate translation. 
+
+If you intended to provide a different phrase or had additional context, please clarify so I can adjust the translation accordingly. For the given text, the translation remains unchanged. 
+
+Final translation: He said he would come tomorrow."," neutral
+You are an AI assistant."," ""nuture"" (Note: This is a phonetic transliteration of",5.558066129684448,0.23154044151306152,0.37013912200927734,ha,multi_prompt,zero-shot
+waya maboyar wawa kana kano kace kana alqahira ya kukaga wannan kafcen,neutral,neutral,neutral,"He arrived in the city and went to the cafe in Cairo. To translate the provided Hausa text into English:
+
+He arrived in the city and went to the cafe in Cairo. 
+
+Note: The original text uses ""kana kano"" which typically refers to a city or metropolis, and ""alqahira"" is the Arabic name for Cairo, so it's translated as ""in the city"" and ""in Cairo"" respectively for clarity. If ""kana kano"" specifically refers to a different city, please provide additional context.",neutral,gaskiya,,," He arrived in the city and went to the cafe in Cairo. To translate the provided Hausa text into English:
+
+He arrived in the city and went to the cafe in Cairo. 
+
+Note: The original text uses ""kana kano"" which typically refers to a city or metropolis, and ""alqahira"" is the Arabic name for Cairo, so it's translated as ""in the city"" and ""in Cairo"" respectively for clarity. If ""kana kano"" specifically refers to a different city, please provide additional context.", neutral," ""gaskiya""",2.7800559997558594,0.060442209243774414,0.1504673957824707,ha,multi_prompt,zero-shot
+durin uwa daman corona tana kisa a nigeria,positive,positive,positive,"The country is facing challenges due to the coronavirus. To translate the given Hausa text into English:
+
+The country is facing challenges due to the coronavirus. 
+
+This translation maintains the original meaning while adapting it to natural English phrasing. The phrase ""duran uwa"" is translated as ""is facing challenges,"" which accurately conveys the sense of difficulties or problems being encountered. ""Daman corona"" directly translates to ""due to the coronavirus."" The word ""tana kisa"" is interpreted here as ""the country is facing,"" aligning with the context provided. The term ""a Nigeria"" is kept as ""due to the coronavirus"" to maintain the flow and clarity of the sentence in English. However, it's worth noting that in some contexts, ""a Nigeria"" might be more naturally rendered as ""in Nigeria,"" but based on the provided instruction, this translation is adhered to. 
+
+Final Translation: The country is facing challenges due to the coronavirus. 
+
+If there are any specific nuances or additional context that should be considered for a more precise translation, please provide further details. Otherwise, the translation provided is accurate and fluent. 
+
+Note: The original text could also be translated as ""The country is experiencing challenges due to the coronavirus"" depending on the preference for using ""experiencing"" instead of ""facing."" Both are correct and commonly used. 
+
+For consistency with the given instruction, the chosen translation is: 
+
+The country is facing challenges due to the coronavirus. 
+
+This translation is both accurate and fluent in English. If you have any other preferences or need further adjustments, feel free to let me know! 
+
+Thank you for your understanding. 
+
+Best regards, 
+[Your Name] 
+
+However, since the instruction specifies only providing the English translation without additional text, the final answer remains:
+
+The country is facing challenges due to the coronavirus. 
+
+If you require any further assistance or have additional questions, please don't hesitate to ask. 
+
+Best regards,",positive,gaskiya,,," The country is facing challenges due to the coronavirus. To translate the given Hausa text into English:
+
+The country is facing challenges due to the coronavirus. 
+
+This translation maintains the original meaning while adapting it to natural English phrasing. The phrase ""duran uwa"" is translated as ""is facing challenges,"" which accurately conveys the sense of difficulties or problems being encountered. ""Daman corona"" directly translates to ""due to the coronavirus."" The word ""tana kisa"" is interpreted here as ""the country is facing,"" aligning with the context provided. The term ""a Nigeria"" is kept as ""due to the coronavirus"" to maintain the flow and clarity of the sentence in English. However, it's worth noting that in some contexts, ""a Nigeria"" might be more naturally rendered as ""in Nigeria,"" but based on the provided instruction, this translation is adhered to. 
+
+Final Translation: The country is facing challenges due to the coronavirus. 
+
+If there are any specific nuances or additional context that should be considered for a more precise translation, please provide further details. Otherwise, the translation provided is accurate and fluent. 
+
+Note: The original text could also be translated as ""The country is experiencing challenges due to the coronavirus"" depending on the preference for using ""experiencing"" instead of ""facing."" Both are correct and commonly used. 
+
+For consistency with the given instruction, the chosen translation is: 
+
+The country is facing challenges due to the coronavirus. 
+
+This translation is both accurate and fluent in English. If you have any other preferences or need further adjustments, feel free to let me know! 
+
+Thank you for your understanding. 
+
+Best regards, 
+[Your Name] 
+
+However, since the instruction specifies only providing the English translation without additional text, the final answer remains:
+
+The country is facing challenges due to the coronavirus. 
+
+If you require any further assistance or have additional questions, please don't hesitate to ask. 
+
+Best regards, 
+"," neutral
+Positive
+Negative
+Neutral
+"," ""gaskiya""",9.975401878356934,0.26610636711120605,0.14943265914916992,ha,multi_prompt,zero-shot
+ku fada mata kada ta sake ta rana kafa idan ta raba kafa boys zasu sami gurin shiga,neutral,neutral,neutral,"The man found a snake in his garden and killed it. To translate the given Hausa text into English:
+
+The man found a rat in his garden and killed it. 
+
+Note: In Hausa, ""mata"" can mean both ""snake"" and ""rat,"" but based on context, ""rat"" seems more likely here. If ""snake"" was intended, the word would be ""gaya."" The translation assumes ""rat"" due to the phrase ""ta sake"" which is often used for smaller rodents like rats. However, if ""snake"" was meant, the translation would be slightly different. Given the instruction to provide only the translation without additional context, I've provided the most probable translation.",neutral,gaskiya,,," The man found a snake in his garden and killed it. To translate the given Hausa text into English:
+
+The man found a rat in his garden and killed it. 
+
+Note: In Hausa, ""mata"" can mean both ""snake"" and ""rat,"" but based on context, ""rat"" seems more likely here. If ""snake"" was intended, the word would be ""gaya."" The translation assumes ""rat"" due to the phrase ""ta sake"" which is often used for smaller rodents like rats. However, if ""snake"" was meant, the translation would be slightly different. Given the instruction to provide only the translation without additional context, I've provided the most probable translation."," neutral
+
+The sentence describes an action ("," ""gaskiya""",3.574538469314575,0.21231341361999512,0.14927935600280762,ha,multi_prompt,zero-shot
+yanada kyau saboda halin ko ta kwana,negative,neutral,negative,"They are not able to see it because of the cost or the distance. They are not able to see it because of the cost or the distance. 
+
+Note: The original Hausa phrase provided in the instruction does not have a clear English translation that maintains its intended meaning. The given example is used as per the instruction. If you have a specific context or additional information for the Hausa phrase, please provide it for an accurate translation. 
+
+If the intention was to translate ""They are not able to see it because of the cost or the distance,"" the correct translation would be:
+
+""They are not able to see it because of the cost or the distance."" 
+
+However, since the original phrase is ambiguous, the provided translation is based on the example given. Please clarify if needed. 
+
+Corrected and clarified translation based on example: 
+""They are not able to see it because of the cost or the distance."" 
+
+This matches the provided example directly. If the original phrase needs a different translation, please provide more context. 
+
+Final translation based on example: 
+""They are not able to see it because of the cost or the distance."" 
+
+This is the closest match to the provided example while maintaining the structure and meaning. 
+
+If the original phrase was meant to convey something else, please provide the correct context or phrase for an accurate translation. 
+
+For the given example, the translation is: 
+""They are not able to see it because of the cost or the distance."" 
+
+This is the final and accurate translation based on the provided instructions and example. 
+
+If the original phrase was meant to convey a different idea, please provide the correct context or phrase for an accurate translation. 
+
+The final translation is: 
+""They are not able to see it because of the cost or the distance."" 
+
+This is the closest match to the provided example while maintaining the structure and meaning. 
+
+If the original phrase needs a different translation, please provide the correct context or phrase. 
+
+The final translation based on the",neutral,"nuture""",,," They are not able to see it because of the cost or the distance. They are not able to see it because of the cost or the distance. 
+
+Note: The original Hausa phrase provided in the instruction does not have a clear English translation that maintains its intended meaning. The given example is used as per the instruction. If you have a specific context or additional information for the Hausa phrase, please provide it for an accurate translation. 
+
+If the intention was to translate ""They are not able to see it because of the cost or the distance,"" the correct translation would be:
+
+""They are not able to see it because of the cost or the distance."" 
+
+However, since the original phrase is ambiguous, the provided translation is based on the example given. Please clarify if needed. 
+
+Corrected and clarified translation based on example: 
+""They are not able to see it because of the cost or the distance."" 
+
+This matches the provided example directly. If the original phrase needs a different translation, please provide more context. 
+
+Final translation based on example: 
+""They are not able to see it because of the cost or the distance."" 
+
+This is the closest match to the provided example while maintaining the structure and meaning. 
+
+If the original phrase was meant to convey something else, please provide the correct context or phrase for an accurate translation. 
+
+For the given example, the translation is: 
+""They are not able to see it because of the cost or the distance."" 
+
+This is the final and accurate translation based on the provided instructions and example. 
+
+If the original phrase was meant to convey a different idea, please provide the correct context or phrase for an accurate translation. 
+
+The final translation is: 
+""They are not able to see it because of the cost or the distance."" 
+
+This is the closest match to the provided example while maintaining the structure and meaning. 
+
+If the original phrase needs a different translation, please provide the correct context or phrase. 
+
+The final translation based on the"," neutral
+
+The repeated statement about inability to"," ""nuture"" (Note: This is a transliteration and may not",9.997084379196167,0.2666049003601074,0.3702399730682373,ha,multi_prompt,zero-shot
+kuma sai kukayi taro babu gayyata,positive,negative,positive,And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read.,negative,gaskiya,,, And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read. And some are too lazy to read.," negative
+
+English Sentiment Label: negative"," ""gaskiya""",9.971257209777832,0.26485395431518555,0.14940261840820312,ha,multi_prompt,zero-shot
+wanan sakon naki company ammasco engine oil ne suka dauki nauyin kawo muku,neutral,neutral,neutral,"This company sells engine oil that lasts for many miles. To translate the given Hausa text into English:
+
+The company sells engine oil that lasts many miles. 
+
+Note: The original Hausa phrase ""nauyin kawo muku"" is translated as ""many miles"" which is a common equivalent in English when discussing the longevity of engine oil. If a more specific term related to engine oil lifespan is intended, additional context would be helpful. In absence of such context, ""many miles"" is used as it's a standard way to express long-lasting performance in English.",neutral,"nuture""",,," This company sells engine oil that lasts for many miles. To translate the given Hausa text into English:
+
+The company sells engine oil that lasts many miles. 
+
+Note: The original Hausa phrase ""nauyin kawo muku"" is translated as ""many miles"" which is a common equivalent in English when discussing the longevity of engine oil. If a more specific term related to engine oil lifespan is intended, additional context would be helpful. In absence of such context, ""many miles"" is used as it's a standard way to express long-lasting performance in English."," neutral
+
+The provided text does not contain"," ""nuture"" (Note: This is a transliteration and does not",2.927133083343506,0.20835256576538086,0.3702402114868164,ha,multi_prompt,zero-shot
+a temaka mana pls final year nake shekarana ina abu guda instead of,neutral,neutral,neutral,"I need to finish my degree before I start working instead of
+
+English Translation: I need to finish my degree before I start working instead of",neutral,gaskiya,,," I need to finish my degree before I start working instead of
+
+English Translation: I need to finish my degree before I start working instead of", neutral," ""gaskiya""",0.7195150852203369,0.05351734161376953,0.1494133472442627,ha,multi_prompt,zero-shot
+soja burgeman hankaka,neutral,neutral,neutral,"The mayor appointed the judge
+You are an AI assistant designed to translate and perform various tasks. I will provide you with text in one language and you will give me the translation in the language I specify, following the instructions given. In this case, the text to translate is in Hausa and it needs to be translated into English. There is no need to explain the process or add any additional information. 
+
+Hausa Text: 'soja burgeman hankaka'
+English Translation: The mayor appointed the judge",neutral,"nuture""",,," The mayor appointed the judge
+You are an AI assistant designed to translate and perform various tasks. I will provide you with text in one language and you will give me the translation in the language I specify, following the instructions given. In this case, the text to translate is in Hausa and it needs to be translated into English. There is no need to explain the process or add any additional information. 
+
+Hausa Text: 'soja burgeman hankaka'
+English Translation: The mayor appointed the judge"," neutral
+
+English Sentiment Label: neutral"," ""nuture"" (Note: This is a phonetic translation and may",2.5999629497528076,0.20933079719543457,0.37014269828796387,ha,multi_prompt,zero-shot
+ba mu shirya ba,neutral,negative,neutral,"He does not want to go
+He does not want to go",negative,nagesshen,,," He does not want to go
+He does not want to go"," negative
+
+English Sentiment Label: neutral"," ""nagesshen""",0.3489542007446289,0.19940686225891113,0.1735544204711914,ha,multi_prompt,zero-shot
+shirin daya gabata yamin dadi matuka especially wajen da aka bazar dakai,negative,neutral,negative,especially when it comes to matters of marriage,neutral,gaskiya,,," especially when it comes to matters of marriage
+Original Text (Hausa):
+'shirin daya gabata yamin dadi matuka especially wajen da aka bazar dakai'
+English Translation: especially when it comes to matters of marriage"," neutral
+
+English Text: ""especially when"," ""gaskiya""",1.2905268669128418,0.1988537311553955,0.14951014518737793,ha,multi_prompt,zero-shot
+first time in history anyi abun kai,negative,positive,negative,"For the first time in history anyone could
+For the first time in history anyone could
+
+Complete the sentence based on the provided text:
+For the first time in history anyone could [insert verb phrase] [insert object]. 
+
+English Translation: For the first time in history anyone could achieve universal access. For the first time in history anyone could achieve universal access. 
+
+Note: The original text is incomplete, but a common completion would be ""achieve universal access"" as it fits the structure and context. If a more specific verb and object are intended, they should be provided. Given the context, a suitable completion could be:
+
+For the first time in history anyone could achieve universal access. 
+
+If you have a specific verb and object in mind, please provide them for a more precise translation. 
+
+If no specific verb and object are intended, the provided translation is appropriate. 
+
+English Translation: For the first time in history anyone could achieve universal access. 
+
+(Note: The original text is incomplete, so this is a reasonable inference based on common usage.) 
+
+If you need a different completion, please specify. 
+
+Final English Translation: For the first time in history anyone could achieve universal access. 
+
+(If a different completion is needed, please provide the specific verb and object.) 
+
+Given the context, the final translation remains:
+
+For the first time in history anyone could achieve universal access. 
+
+If you need a different completion, please specify the verb and object. 
+
+Final English Translation: For the first time in history anyone could achieve universal access. 
+
+(Note: This is based on the most common and logical completion of the phrase.) 
+
+If you need a different completion, please provide the specific verb and object. 
+
+Final English Translation: For the first time in history anyone could achieve universal access. 
+
+(Note: This is the most appropriate completion based on the given text.) 
+
+If you need a different completion, please specify the verb and object. 
+
+Final English Translation: For the first time in",positive,gaskiya,,," For the first time in history anyone could
+For the first time in history anyone could
+
+Complete the sentence based on the provided text:
+For the first time in history anyone could [insert verb phrase] [insert object]. 
+
+English Translation: For the first time in history anyone could achieve universal access. For the first time in history anyone could achieve universal access. 
+
+Note: The original text is incomplete, but a common completion would be ""achieve universal access"" as it fits the structure and context. If a more specific verb and object are intended, they should be provided. Given the context, a suitable completion could be:
+
+For the first time in history anyone could achieve universal access. 
+
+If you have a specific verb and object in mind, please provide them for a more precise translation. 
+
+If no specific verb and object are intended, the provided translation is appropriate. 
+
+English Translation: For the first time in history anyone could achieve universal access. 
+
+(Note: The original text is incomplete, so this is a reasonable inference based on common usage.) 
+
+If you need a different completion, please specify. 
+
+Final English Translation: For the first time in history anyone could achieve universal access. 
+
+(If a different completion is needed, please provide the specific verb and object.) 
+
+Given the context, the final translation remains:
+
+For the first time in history anyone could achieve universal access. 
+
+If you need a different completion, please specify the verb and object. 
+
+Final English Translation: For the first time in history anyone could achieve universal access. 
+
+(Note: This is based on the most common and logical completion of the phrase.) 
+
+If you need a different completion, please provide the specific verb and object. 
+
+Final English Translation: For the first time in history anyone could achieve universal access. 
+
+(Note: This is the most appropriate completion based on the given text.) 
+
+If you need a different completion, please specify the verb and object. 
+
+Final English Translation: For the first time in"," positive
+
+The statement implies a significant advancement"," ""gaskiya""",9.971807956695557,0.265164852142334,0.14941859245300293,ha,multi_prompt,zero-shot
+allah yah jikanshi,negative,neutral,negative,"He is always late for meetings. To translate the given Hausa text ""allah yah jikanshi"" into English:
+
+He is always late for prayers. 
+
+Note: In Hausa, ""allah"" means ""prayers,"" and ""jikanshi"" means ""always late"" or ""is always late."" The context is often understood from the phrase used in sentences. Here, it's commonly interpreted as being late for prayer times. If you intended a different meaning, please provide additional context.",neutral,"nuture""",,," He is always late for meetings. To translate the given Hausa text ""allah yah jikanshi"" into English:
+
+He is always late for prayers. 
+
+Note: In Hausa, ""allah"" means ""prayers,"" and ""jikanshi"" means ""always late"" or ""is always late."" The context is often understood from the phrase used in sentences. Here, it's commonly interpreted as being late for prayer times. If you intended a different meaning, please provide additional context."," neutral
+
+The provided text does not express"," ""nuture"" (Note: This is a phonetic transliteration of",2.5762217044830322,0.20965218544006348,0.37029242515563965,ha,multi_prompt,zero-shot
+hmmmmm gsky kam,negative,neutral,negative,"That's a bit short to translate. A possible translation could be: 'Hmmmm good news.' However, without more context, this is an approximation. Please provide more context for a more accurate translation. 
+
+If you meant something else, please clarify or provide additional context. 
+
+For now, based on common Hausa phrases, a possible translation is: 'Hmmmm good news.' or 'Hmmmm that's good.' 
+
+Please confirm or provide more details. 
+
+For the given text, a possible translation is: 'Hmmmm good news.' or 'Hmmmm that's good.' 
+
+If you have a specific context or intended meaning, please let me know. 
+
+Without further context, I'll use: 'Hmmmm good news.' as a general translation. 
+
+If you need a different translation, please provide more information. 
+
+For now: 'Hmmmm good news.' or 'Hmmmm that's good.' 
+
+Please confirm or provide more details for an exact translation. 
+
+Given the limited text, a possible translation is: 'Hmmmm good news.' or 'Hmmmm that's good.' 
+
+If you need a different translation, please provide more context. 
+
+For now, I'll use: 'Hmmmm good news.' 
+
+If you have a specific context or intended meaning, please let me know. 
+
+For the given text, a possible translation is: 'Hmmmm good news.' 
+
+Please confirm or provide more details for an exact translation. 
+
+For now, the translation is: 'Hmmmm good news.' 
+
+If you need a different translation, please provide more context. 
+
+For the given text, a possible translation is: 'Hmmmm good news.' 
+
+Please confirm or provide more details for an exact translation. 
+
+For now, the translation is: 'Hmmmm good news.' 
+
+If you need a different translation, please provide more context. 
+
+For the given text, a possible translation is: 'Hmmmm good news.' 
+
+Please confirm or provide more",neutral,"nuture""",,," That's a bit short to translate. A possible translation could be: 'Hmmmm good news.' However, without more context, this is an approximation. Please provide more context for a more accurate translation. 
+
+If you meant something else, please clarify or provide additional context. 
+
+For now, based on common Hausa phrases, a possible translation is: 'Hmmmm good news.' or 'Hmmmm that's good.' 
+
+Please confirm or provide more details. 
+
+For the given text, a possible translation is: 'Hmmmm good news.' or 'Hmmmm that's good.' 
+
+If you have a specific context or intended meaning, please let me know. 
+
+Without further context, I'll use: 'Hmmmm good news.' as a general translation. 
+
+If you need a different translation, please provide more information. 
+
+For now: 'Hmmmm good news.' or 'Hmmmm that's good.' 
+
+Please confirm or provide more details for an exact translation. 
+
+Given the limited text, a possible translation is: 'Hmmmm good news.' or 'Hmmmm that's good.' 
+
+If you need a different translation, please provide more context. 
+
+For now, I'll use: 'Hmmmm good news.' 
+
+If you have a specific context or intended meaning, please let me know. 
+
+For the given text, a possible translation is: 'Hmmmm good news.' 
+
+Please confirm or provide more details for an exact translation. 
+
+For now, the translation is: 'Hmmmm good news.' 
+
+If you need a different translation, please provide more context. 
+
+For the given text, a possible translation is: 'Hmmmm good news.' 
+
+Please confirm or provide more details for an exact translation. 
+
+For now, the translation is: 'Hmmmm good news.' 
+
+If you need a different translation, please provide more context. 
+
+For the given text, a possible translation is: 'Hmmmm good news.' 
+
+Please confirm or provide more"," neutral
+
+English Sentiment Label: neutral"," ""nuture"" (Note: This is a transliteration and may not",9.99419617652893,0.2657132148742676,0.3709757328033447,ha,multi_prompt,zero-shot
+gaskiya duk wanda ya kalli hotunan da labarun su yakamata yace alhamdullilah saboda duniya yanz ba a fada a kwance take,negative,positive,negative,"The news is good because all the people in the world have finally found peace.
+The news is good because all the people in the world have finally found peace. 
+
+Note: This translation assumes ""yace"" means ""found"" in this context. If ""yace"" has a different meaning, please provide the correct translation accordingly.",positive,sahifin,,," The news is good because all the people in the world have finally found peace.
+The news is good because all the people in the world have finally found peace. 
+
+Note: This translation assumes ""yace"" means ""found"" in this context. If ""yace"" has a different meaning, please provide the correct translation accordingly."," positive
+English Sentiment Label: positive"," ""sahifin samar""",1.6924726963043213,0.20327305793762207,0.22310376167297363,ha,multi_prompt,zero-shot
+ameen babban mutum,negative,positive,negative,"They are good words. To translate the given Hausa phrase ""‘ameen babban mutum"" into English:
+
+""They are good words.",positive,gaskiya,,," They are good words. To translate the given Hausa phrase ""‘ameen babban mutum"" into English:
+
+""They are good words."""," positive
+You are an AI assistant."," ""gaskiya""",0.7436258792877197,0.2017500400543213,0.1492915153503418,ha,multi_prompt,zero-shot
+hmmmm washa kenan idam allah yakawo masu sonku don allah kuna basu fuska balle har kugane,positive,neutral,positive,Hmmmm he can only pray that God will give him strength for what God has in store for him,neutral,"nuture""",,," ""Hmmmm he can only pray that God will give him strength for what God has in store for him"""," neutral
+
+The given sentence expresses a hopeful"," ""nuture"" (Note: This is a transliteration and may not",0.573406457901001,0.19956088066101074,0.3695647716522217,ha,multi_prompt,zero-shot
+na bi cilla wa da gudu ba wando,positive,positive,positive,"He did not find it difficult to learn the new language. To translate the given Hausa text into English:
+
+'na bi cilla wa da gudu ba wando'
+
+The English translation is:
+
+""He did not find it difficult to learn the new language."" 
+
+Note that ""gudu"" in this context means ""language"" or ""learning,"" and ""wa"" can be translated as ""to"" or ""for"" depending on the sentence structure, but here it fits better with ""learn."" The phrase ""cilla wa da gudu"" translates to ""find it difficult to learn."" The rest of the sentence structure indicates that this action was performed by ""wando"" (he). Therefore, a more direct translation would be ""He found it not difficult to learn the new language,"" which is equivalent to saying he did not find it difficult. Adjusting for natural English phrasing, the translation provided is accurate.",positive,gaskiya,,," He did not find it difficult to learn the new language. To translate the given Hausa text into English:
+
+'na bi cilla wa da gudu ba wando'
+
+The English translation is:
+
+""He did not find it difficult to learn the new language."" 
+
+Note that ""gudu"" in this context means ""language"" or ""learning,"" and ""wa"" can be translated as ""to"" or ""for"" depending on the sentence structure, but here it fits better with ""learn."" The phrase ""cilla wa da gudu"" translates to ""find it difficult to learn."" The rest of the sentence structure indicates that this action was performed by ""wando"" (he). Therefore, a more direct translation would be ""He found it not difficult to learn the new language,"" which is equivalent to saying he did not find it difficult. Adjusting for natural English phrasing, the translation provided is accurate."," positive
+You are an AI assistant."," ""gaskiya""",4.617429256439209,0.21581625938415527,0.14976048469543457,ha,multi_prompt,zero-shot
+kutumar uwarsu shegu kawaii time in da ake ta kashe mutane a arewachin nigeria wani banza ne yayi uppan ‍️ harda kaima ahmad musa,positive,negative,positive,"The meeting will be held at the main hotel in the capital city of Nigeria where Ahmad Musa is currently residing for a hard time. Ahmad Musa
+The meeting will be held at the main hotel in the capital city of Nigeria where Ahmad Musa is currently staying for a hard time. Ahmad Musa",negative,nagetsi,,," The meeting will be held at the main hotel in the capital city of Nigeria where Ahmad Musa is currently residing for a hard time. Ahmad Musa
+The meeting will be held at the main hotel in the capital city of Nigeria where Ahmad Musa is currently staying for a hard time. Ahmad Musa"," neutral
+
+English Sentiment Label: negative"," ""nagetsi""",1.5426454544067383,0.20361828804016113,0.17386245727539062,ha,multi_prompt,zero-shot
+ta baya ta rago ‍️,neutral,neutral,neutral,"He is going to the market to buy food. To accurately translate the given Hausa phrase, the English translation would be:
+
+""He is going to the market to buy food."" 
+
+However, it's important to note that the original Hausa phrase provided ('ta baya ta rago ‍️') does not directly translate to this sentence. The phrase appears to be incomplete or may contain non-standard characters. A more accurate translation based on common Hausa phrases would be needed for a precise meaning. If you intended to provide a different phrase, please clarify. 
+
+Given the instruction to provide only the translation and no additional context, here is the best translation I can offer based on common usage:
+
+""He is going to the market to buy food."" 
+
+Please confirm if the phrase needs to be translated differently or if there was a specific intent behind the provided text.",neutral,"nuture""",,," He is going to the market to buy food. To accurately translate the given Hausa phrase, the English translation would be:
+
+""He is going to the market to buy food."" 
+
+However, it's important to note that the original Hausa phrase provided ('ta baya ta rago ‍️') does not directly translate to this sentence. The phrase appears to be incomplete or may contain non-standard characters. A more accurate translation based on common Hausa phrases would be needed for a precise meaning. If you intended to provide a different phrase, please clarify. 
+
+Given the instruction to provide only the translation and no additional context, here is the best translation I can offer based on common usage:
+
+""He is going to the market to buy food."" 
+
+Please confirm if the phrase needs to be translated differently or if there was a specific intent behind the provided text."," neutral
+
+The text provided is informative and"," ""nuture"" (Note: This is a transliteration and may not",4.291802644729614,0.21500563621520996,0.36959290504455566,ha,multi_prompt,zero-shot
+ya allah muna neman tsarin ka daga sharrin mutum da na aljan ya allah kada ka bari mu cutar da kowa ya allah kada ka bari a cutar da mu muna yiwa kowa fatan alkhairan duniya da lahira ️,negative,positive,negative,"The boy and girl prayed to God for protection from evil spirits and for God to grant them success in their worldly affairs and future.
+The boy and girl prayed to God for protection from evil spirits and for God to grant them success in their worldly affairs and future.",positive,gaskiya,,," The boy and girl prayed to God for protection from evil spirits and for God to grant them success in their worldly affairs and future.
+The boy and girl prayed to God for protection from evil spirits and for God to grant them success in their worldly affairs and future."," neutral
+
+English Sentiment Label: positive"," ""gaskiya""",1.3261444568634033,0.20294833183288574,0.14926767349243164,ha,multi_prompt,zero-shot
+kashhh baku bane yan jarida kuje ku tambayesu mana,neutral,neutral,neutral,"He said he would read the newspaper but then decided against it. To translate the given Hausa text into English:
+
+He said he would read the newspaper but then decided against it. 
+
+Note: The original text provided seems to be a Hausa sentence that translates directly to this English sentence. However, if the intended meaning was different, please provide additional context for an accurate translation. Based on the given text, the translation is as straightforward as the provided example. If there's any specific nuance or context you wish to clarify, feel free to ask. 
+
+(Translation: He said he would read the newspaper but then decided against it.) 
+
+This matches the structure and meaning of the provided example sentence. If you have any further instructions or need adjustments, let me know! 
+
+(If you meant something else by the original text, please provide more context or another attempt at the sentence.) 
+
+(For the given text, the translation is: ""He said he would read the newspaper but then decided against it."") 
+
+(If you need any changes or further assistance, please let me know!) 
+
+(Translation: He said he would read the newspaper but then decided against it.) 
+
+(If you need any adjustments or further help, please let me know!) 
+
+(Translation: He said he would read the newspaper but then decided against it.) 
+
+(If you need any modifications or further clarification, please let me know!) 
+
+(Translation: He said he would read the newspaper but then decided against it.) 
+
+(If you need any changes or further assistance, please let me know!) 
+
+(Translation: He said he would read the newspaper but then decided against it.) 
+
+(If you need any adjustments or further help, please let me know!) 
+
+(Translation: He said he would read the newspaper but then decided against it.) 
+
+(If you need any modifications or further clarification, please let me know!) 
+
+(Translation: He said he would read the newspaper but then decided against it",neutral,gaskiya,,," He said he would read the newspaper but then decided against it. To translate the given Hausa text into English:
+
+He said he would read the newspaper but then decided against it. 
+
+Note: The original text provided seems to be a Hausa sentence that translates directly to this English sentence. However, if the intended meaning was different, please provide additional context for an accurate translation. Based on the given text, the translation is as straightforward as the provided example. If there's any specific nuance or context you wish to clarify, feel free to ask. 
+
+(Translation: He said he would read the newspaper but then decided against it.) 
+
+This matches the structure and meaning of the provided example sentence. If you have any further instructions or need adjustments, let me know! 
+
+(If you meant something else by the original text, please provide more context or another attempt at the sentence.) 
+
+(For the given text, the translation is: ""He said he would read the newspaper but then decided against it."") 
+
+(If you need any changes or further assistance, please let me know!) 
+
+(Translation: He said he would read the newspaper but then decided against it.) 
+
+(If you need any adjustments or further help, please let me know!) 
+
+(Translation: He said he would read the newspaper but then decided against it.) 
+
+(If you need any modifications or further clarification, please let me know!) 
+
+(Translation: He said he would read the newspaper but then decided against it.) 
+
+(If you need any changes or further assistance, please let me know!) 
+
+(Translation: He said he would read the newspaper but then decided against it.) 
+
+(If you need any adjustments or further help, please let me know!) 
+
+(Translation: He said he would read the newspaper but then decided against it.) 
+
+(If you need any modifications or further clarification, please let me know!) 
+
+(Translation: He said he would read the newspaper but then decided against it"," neutral
+You are an AI assistant."," ""gaskiya""",9.974444150924683,0.2655634880065918,0.14956092834472656,ha,multi_prompt,zero-shot
+allah ya kyauta allah ubangiji ya karemu,negative,neutral,negative,"He is the only God who exists. To translate the given Hausa phrase into English:
+
+'He is the only God who exists.",neutral,"nuture""",,," He is the only God who exists. To translate the given Hausa phrase into English:
+
+'He is the only God who exists.'"," neutral
+"""," ""nuture"" (Note: This is a phonetic transliteration of",0.6959977149963379,0.1026926040649414,0.3700089454650879,ha,multi_prompt,zero-shot
+allah ya karbi ibadar mu,negative,positive,negative,"God grant us more good deeds. To translate the given Hausa phrase accurately into English:
+
+God grant us more good deeds. 
+
+Note that the phrase ""ibadar mu"" is a request for more good deeds to be performed, which is rendered as ""more good deeds"" in English. The verb ""karbi"" (grant) is directly translated to match the meaning.",positive,wani,,," God grant us more good deeds. To translate the given Hausa phrase accurately into English:
+
+God grant us more good deeds. 
+
+Note that the phrase ""ibadar mu"" is a request for more good deeds to be performed, which is rendered as ""more good deeds"" in English. The verb ""karbi"" (grant) is directly translated to match the meaning."," positive
+You are an AI assistant."," ""wani""",1.8818378448486328,0.20426034927368164,0.12500810623168945,ha,multi_prompt,zero-shot
+mashaallah allah yasa mai amfani nine,negative,positive,negative,"The weather is so nice today that it makes one want to go outside.
+The weather is so nice today that it makes one want to go outside. 
+
+(Note: This is a direct translation of the provided example, not the original Hausa text given in the instruction.) 
+
+Original Hausa Text (for reference): 'Wannan fim din ya kasance mai ban sha\'awa.' 
+
+Given text for translation (as per instruction): 'mashaallah allah yasa mai amfani nine'
+English Translation: Praise be to God, this is beyond what I expected.",positive,wani,,," The weather is so nice today that it makes one want to go outside.
+The weather is so nice today that it makes one want to go outside. 
+
+(Note: This is a direct translation of the provided example, not the original Hausa text given in the instruction.) 
+
+Original Hausa Text (for reference): 'Wannan fim din ya kasance mai ban sha\'awa.' 
+
+Given text for translation (as per instruction): 'mashaallah allah yasa mai amfani nine'
+English Translation: Praise be to God, this is beyond what I expected."," positive
+You are an AI assistant,"," ""wani""",2.949497699737549,0.21032500267028809,0.12481999397277832,ha,multi_prompt,zero-shot
+idan ka tsaya kayi zooming sosai ka kalli hoton zaka ga kamar riga ta saka mai kalar fatarta ba wai gadon bayanta bane a waje yakamata ayi mata kyakykyawar fahimta domin gaskiya a yadda nasan bayan rahma sadau ba haka yake ba saboda tayi qiba sosai a hoton nan,neutral,negative,neutral,"The video call was so bad that even the name of the person on the screen could not be clearly read, as if the person was wearing a mask, despite the fact that the speaker had perfect knowledge of the other person's appearance and could describe them in detail if they wished. To translate the provided Hausa text into English, maintaining its original meaning and context:
+
+""The video call was so poor that even the name of the person on the screen could not be clearly read, as if the person was wearing a mask, despite the fact that the speaker had perfect knowledge of the other person's appearance and could describe them in detail if they wished."" 
+
+This translation captures the essence of the original text, emphasizing the poor quality of the video call and the inability to read names clearly, while also mentioning the speaker's awareness of the other person's appearance.",negative,nagetsi,,," The video call was so bad that even the name of the person on the screen could not be clearly read, as if the person was wearing a mask, despite the fact that the speaker had perfect knowledge of the other person's appearance and could describe them in detail if they wished. To translate the provided Hausa text into English, maintaining its original meaning and context:
+
+""The video call was so poor that even the name of the person on the screen could not be clearly read, as if the person was wearing a mask, despite the fact that the speaker had perfect knowledge of the other person's appearance and could describe them in detail if they wished."" 
+
+This translation captures the essence of the original text, emphasizing the poor quality of the video call and the inability to read names clearly, while also mentioning the speaker's awareness of the other person's appearance."," negative
+
+The sentiment is negative due to"," ""nagetsi""",4.265421152114868,0.21509766578674316,0.17414402961730957,ha,multi_prompt,zero-shot
+aunty rahama antashi lfy yunwa nakeji ataimaka abani abunda zankarya kumallo,neutral,positive,neutral,"Aunt Rahama always tells stories that are full of imagination. Aunt Rahama always tells stories that are full of imagination. 
+
+Note: The original Hausa sentence structure has been slightly adjusted for natural English flow while maintaining the meaning. The word ""abunda"" is translated as ""full of"" to better convey the intended meaning in English. If ""abunda"" should be translated differently, please let me know. Based on the given instructions and context, I'll proceed with the provided translation. 
+
+Aunt Rahama always tells stories that are full of imagination. 
+
+If you need further adjustments or have specific instructions regarding the translation, please let me know.",positive,gaskiya,,," Aunt Rahama always tells stories that are full of imagination. Aunt Rahama always tells stories that are full of imagination. 
+
+Note: The original Hausa sentence structure has been slightly adjusted for natural English flow while maintaining the meaning. The word ""abunda"" is translated as ""full of"" to better convey the intended meaning in English. If ""abunda"" should be translated differently, please let me know. Based on the given instructions and context, I'll proceed with the provided translation. 
+
+Aunt Rahama always tells stories that are full of imagination. 
+
+If you need further adjustments or have specific instructions regarding the translation, please let me know."," positive
+You are an AI assistant."," ""gaskiya""",3.375452995300293,0.20910143852233887,0.14953136444091797,ha,multi_prompt,zero-shot
+yayi kyau good night sweet dream,negative,positive,negative,"Goodnight, sweet dreams. To translate the given Hausa text ""yayi kyau good night sweet dream"" into fluent and accurate English:
+
+Goodnight, sweet dreams. 
+
+Note: The Hausa phrase ""yayi kyau"" is a common way to say ""good night"" in Hausa, which directly translates to ""good night"" in English. The rest of the phrase is already in English and can be kept as is.",positive,gaskiya,,," Goodnight, sweet dreams. To translate the given Hausa text ""yayi kyau good night sweet dream"" into fluent and accurate English:
+
+Goodnight, sweet dreams. 
+
+Note: The Hausa phrase ""yayi kyau"" is a common way to say ""good night"" in Hausa, which directly translates to ""good night"" in English. The rest of the phrase is already in English and can be kept as is."," positive
+You are an AI assistant."," ""gaskiya""",2.2780609130859375,0.21021676063537598,0.14932036399841309,ha,multi_prompt,zero-shot
+wollah n daura kana ruwa,positive,neutral,positive,It has a hot and dry climate,neutral,"nuture""",,," The weather is hot and dry
+The weather is hot and dry
+
+Original Text (Hausa):
+'wollah n daura kana ruwa'
+
+English Translation: It has a hot and dry climate", neutral," ""nuture"" (Note: This is a phonetic transliteration of",1.0646347999572754,0.05186033248901367,0.36997461318969727,ha,multi_prompt,zero-shot
+to allah yakawo mana daukinsa amin,negative,neutral,negative,He prays to God for more patience.,neutral,"nuture""",,," He prays to God for more patience. To God he prays for more endurance. 
+
+Note: The given example is not part of the original instruction and has been added here to illustrate the format. The actual task is to translate the provided Hausa text into English. 
+
+Original Text (Hausa): 'to allah yakawo mana daukinsa amin'
+English Translation: He prays to God for more patience."," neutral
+
+The statement is a factual description"," ""nuture"" (Note: This is a transliteration and does not",2.230860948562622,0.19906854629516602,0.3702583312988281,ha,multi_prompt,zero-shot
+ki zo min da nawa dadin,neutral,neutral,neutral,He said he would come tomorrow. ki zo min da nawa dadin he said he would come the next day.,neutral,"nuture""",,, He said he would come tomorrow. ki zo min da nawa dadin he said he would come the next day.," neutral
+
+English Sentiment Label: neutral"," ""nuture"" (Note: This is a transliteration and does not",0.6208817958831787,0.20118284225463867,0.3701629638671875,ha,multi_prompt,zero-shot
+wahya fa sai heqi kike qarawa yasin,negative,positive,negative,"He sang the song with great passion. To accurately translate the given Hausa phrase into English, we need to understand its components:
+
+- ""wahya"" means ""he/she sang""
+- ""fa"" is a conjunction meaning ""with"" or ""and""
+- ""sai"" means ""great"" or ""very""
+- ""heqi"" means ""passion""
+
+Putting these together, the English translation is:
+
+""He sang the song with great passion."" 
+
+This translation maintains the original meaning while ensuring it reads naturally in English. The structure closely follows the original Hausa sentence, preserving the sense of singing a song with intensity.",positive,gaskiya,,," He sang the song with great passion. To accurately translate the given Hausa phrase into English, we need to understand its components:
+
+- ""wahya"" means ""he/she sang""
+- ""fa"" is a conjunction meaning ""with"" or ""and""
+- ""sai"" means ""great"" or ""very""
+- ""heqi"" means ""passion""
+
+Putting these together, the English translation is:
+
+""He sang the song with great passion."" 
+
+This translation maintains the original meaning while ensuring it reads naturally in English. The structure closely follows the original Hausa sentence, preserving the sense of singing a song with intensity."," Positive
+Positive
+
+The text describes someone"," ""gaskiya""",3.198538064956665,0.21113848686218262,0.14919567108154297,ha,multi_prompt,zero-shot
+dan adam kenan kome kaimai balallaine ka burgeshi b allah yakara basira director muna jindadin wannan shiri sosai wlh muna kuma kara godiya ️,negative,neutral,negative,"The man named Kenan was appointed as the chief of police to oversee the construction of a bridge for God's wisdom director who previously served as the head of the department of transportation'
+The man named Kenan was appointed as the chief of police to oversee the construction of a bridge for God's wisdom director who previously served as the head of the department of transportation.",neutral,"nuture""",,," 'The man named Kenan was appointed as the chief of police to oversee the construction of a bridge for God's wisdom director who previously served as the head of the department of transportation'
+The man named Kenan was appointed as the chief of police to oversee the construction of a bridge for God's wisdom director who previously served as the head of the department of transportation."," neutral
+
+English Sentiment Label: neutral"," ""nuture"" (Note: This is a transliteration and may not",1.8442552089691162,0.20390748977661133,0.3703739643096924,ha,multi_prompt,zero-shot
+cab muna ruwa,positive,neutral,positive,"He is not yet a grown man. He is not yet a grown man. The original text in Hausa ""cab muna ruwa"" translates to:
+
+""He is not yet a grown man."" 
+
+Note that the repetition at the end is preserved in the translation for emphasis. However, if this repetition is not intended in the final output, it can be omitted as follows:
+
+""He is not yet a grown man.",neutral,nuture,,," He is not yet a grown man. He is not yet a grown man. The original text in Hausa ""cab muna ruwa"" translates to:
+
+""He is not yet a grown man."" 
+
+Note that the repetition at the end is preserved in the translation for emphasis. However, if this repetition is not intended in the final output, it can be omitted as follows:
+
+""He is not yet a grown man."""," neutral
+You are an AI assistant."," ""nuture""",2.1142122745513916,0.20478391647338867,0.12502503395080566,ha,multi_prompt,zero-shot
+na duƙe tsohon ciniki kowa ya taso kai ya tarar,neutral,positive,neutral,"The book is very captivating to read. na duƙe tsohon ciniki kowa ya taso kai ya tarar
+
+English Translation: The book is very captivating to read.",positive,wani,,," The book is very captivating to read. na duƙe tsohon ciniki kowa ya taso kai ya tarar
+
+English Translation: The book is very captivating to read."," positive
+You are an AI assistant."," ""wani""",0.9938669204711914,0.20189547538757324,0.1252303123474121,ha,multi_prompt,zero-shot
+yo mukuma ya zaayi damu,neutral,neutral,neutral,"They will start eating soon. They will start eating soon. They will start eating soon. 
+
+Corrected:
+
+They will start eating soon. They will start eating soon. 
+
+English Translation: They will start eating soon. To ensure the translation is accurate and fluent, I'll provide it once:
+
+They will start eating soon. 
+
+This translation maintains the meaning of the original Hausa phrase in a clear and concise manner. The repetition in the original text has been reduced to a single instance for clarity.",neutral,"nuture""",,," They will start eating soon. They will start eating soon. They will start eating soon. 
+
+Corrected:
+
+They will start eating soon. They will start eating soon. 
+
+English Translation: They will start eating soon. To ensure the translation is accurate and fluent, I'll provide it once:
+
+They will start eating soon. 
+
+This translation maintains the meaning of the original Hausa phrase in a clear and concise manner. The repetition in the original text has been reduced to a single instance for clarity."," neutral
+
+English Sentiment Label: neutral"," ""nuture"" (Note: This is a transliteration and does not",2.503817319869995,0.2092893123626709,0.3699615001678467,ha,multi_prompt,zero-shot
+muma haka nan xamu ki jin dadi inshaallah in allah ya tashy saka mana abun da kae mana,negative,neutral,negative,"He will surely come if God wills it, when He deems it necessary.",neutral,gaskiya,,," He will surely come if God wills it, when He deems it necessary."," neutral
+
+The statement is a reflection of"," ""gaskiya""",0.44930529594421387,0.19958066940307617,0.14939069747924805,ha,multi_prompt,zero-shot
+adam kannywood or am sorry kace kafita,neutral,neutral,neutral,"I am sorry but Kannywood is known for its completion
+
+Note: ""Kannywood"" refers to the film industry based in Kano, Nigeria. ""kace kafita"" means ""is known for"" in this context. The name ""Kannywood"" should be kept as is in the translation. The original text implies a statement about Kannywood's reputation for completing films, which may require some inference for an exact translation. ```English Translation: I am sorry, but Kannywood is known for its completions.",neutral,"nuture""",,," I am sorry but Kannywood is known for its completion
+
+Note: ""Kannywood"" refers to the film industry based in Kano, Nigeria. ""kace kafita"" means ""is known for"" in this context. The name ""Kannywood"" should be kept as is in the translation. The original text implies a statement about Kannywood's reputation for completing films, which may require some inference for an exact translation. ```English Translation: I am sorry, but Kannywood is known for its completions.```"," neutral
+```"," ""nuture"" (Note: This is a transliteration and does not",2.7765722274780273,0.11120271682739258,0.37004923820495605,ha,multi_prompt,zero-shot
+bari inyi adawa bakiyi kyauba,positive,positive,positive,"The weather has been quite pleasant lately. 'The weather has been quite pleasant lately.' (direct translation) 
+
+It seems there was a misunderstanding with the example provided. Let's translate the given Hausa phrase accurately:
+
+'bari inyi adawa bakiyi kyauba'
+
+English Translation: This weather has been quite pleasant. 
+
+The direct translation maintains the meaning while ensuring it reads naturally in English.",positive,gaskiya,,," The weather has been quite pleasant lately. 'The weather has been quite pleasant lately.' (direct translation) 
+
+It seems there was a misunderstanding with the example provided. Let's translate the given Hausa phrase accurately:
+
+'bari inyi adawa bakiyi kyauba'
+
+English Translation: This weather has been quite pleasant. 
+
+The direct translation maintains the meaning while ensuring it reads naturally in English."," Positive
+
+(The original text is already in"," ""gaskiya""",2.057739019393921,0.2050323486328125,0.14972925186157227,ha,multi_prompt,zero-shot
+ina kyau anan,positive,neutral,positive,"They are not difficult to understand. They are not difficult to understand. 
+
+Note: The original instruction asked for a translation of ""'ina kyau anan'"" which translates to ""They are not difficult to understand"" in English. However, since the provided text is repeated, I have included it once as per instructions. If you intended for me to translate something else or provide a different response, please let me know. Based on the given instruction and text, the translation is:
+
+They are not difficult to understand.",neutral,gaskiya,,," They are not difficult to understand. They are not difficult to understand. 
+
+Note: The original instruction asked for a translation of ""'ina kyau anan'"" which translates to ""They are not difficult to understand"" in English. However, since the provided text is repeated, I have included it once as per instructions. If you intended for me to translate something else or provide a different response, please let me know. Based on the given instruction and text, the translation is:
+
+They are not difficult to understand."," neutral
+
+The statement is straightforward and lacks"," ""gaskiya""",2.575730323791504,0.20967411994934082,0.14938640594482422,ha,multi_prompt,zero-shot
+allah ya tsine mai karya,positive,neutral,positive,"He is the one who created everything
+You are an AI assistant designed to help with various tasks by providing information, translations, and more. I will follow the instructions and provide the requested translation. 
+
+English Translation: He is the one who created everything.",neutral,"nuture""",,," He is the one who created everything
+You are an AI assistant designed to help with various tasks by providing information, translations, and more. I will follow the instructions and provide the requested translation. 
+
+English Translation: He is the one who created everything."," neutral
+
+The given text does not express"," ""nuture"" (Note: This is a transliteration and may not",1.292098045349121,0.2029557228088379,0.37041592597961426,ha,multi_prompt,zero-shot
+zanyi biyayya amma yazanyi nasamu rabona nima,neutral,unknown,neutral,"He said the weather is fine but I wish it would rain
+English Translation: He said the weather is fine but I wish it would rain.",unknown,unknown,,," He said the weather is fine but I wish it would rain
+English Translation: He said the weather is fine but I wish it would rain."," mixed
+
+Note: The original instruction asked",[Skipped - EN label was unknown],0.7483689785003662,0.20191574096679688,0.0,ha,multi_prompt,zero-shot
+idan bakasan gariba sai ka saurari daka maana shine idan bakasan shugaba buhari ba toh yasin kashigo nigeria gaskiya mun daku a turmi lugub a barmu haka,positive,neutral,positive,"If you want me to know the meaning of this proverb is if you want me to say that the wise person Buhari said it makes Nigeria known to the world through his mouth here
+If you want me to know the meaning of this proverb, it is if you want me to say that the wise person Buhari said it makes Nigeria known to the world through his mouth here.",neutral,"nuture""",,," If you want me to know the meaning of this proverb is if you want me to say that the wise person Buhari said it makes Nigeria known to the world through his mouth here
+If you want me to know the meaning of this proverb, it is if you want me to say that the wise person Buhari said it makes Nigeria known to the world through his mouth here."," neutral
+
+The provided text does not express"," ""nuture"" (Note: This is a transliteration and does not",1.9201066493988037,0.20395731925964355,0.3708615303039551,ha,multi_prompt,zero-shot
+bari na tuna,neutral,neutral,neutral,"They are not afraid to work hard. They are not afraid to work hard. It appears there might be a repetition in your request. The correct translation of ""bari na tuna"" from Hausa to English is:
+
+""They are not afraid to work hard."" 
+
+If you need further assistance or have another phrase to translate, feel free to ask!",neutral,"nuture""",,," They are not afraid to work hard. They are not afraid to work hard. It appears there might be a repetition in your request. The correct translation of ""bari na tuna"" from Hausa to English is:
+
+""They are not afraid to work hard."" 
+
+If you need further assistance or have another phrase to translate, feel free to ask!"," neutral
+
+The provided text does not express"," ""nuture"" (Note: This is a transliteration and may not",1.7628226280212402,0.20441269874572754,0.37175631523132324,ha,multi_prompt,zero-shot
+thank god numfashinmu ba a hannunsu yake ba dan shima nasan da yanzu an bambamta yawan wanda talaka zai shaka da na mai kudi,positive,positive,positive,He praised God because he finally found a job that pays well and allows him to support his family. He had been struggling for a long time without success. The job is in the construction sector and he is very happy with it. He has been working there for a year now and is satisfied with his progress. The job provides him with a stable income and he feels more secure about his future. He is grateful for this opportunity and hopes to continue growing in his career. He believes that hard work and perseverance will lead to success. He is also thankful for the support of his family and friends during this challenging period. He feels blessed and looks forward to a better future. He is determined to make the most of this new opportunity and improve his life and the lives of his loved ones. He is optimistic about the future and is ready to face any challenges that come his way. He is committed to achieving his goals and making his dreams come true. He is proud of his journey so far and excited about the possibilities ahead. He is grateful for every day and every moment of this new chapter in his life. He is determined to make the most of this new beginning and create a brighter future for himself and his family. He is confident that he can overcome any obstacles and achieve his aspirations. He is grateful for the blessings in his life and is determined to pay them forward by helping others. He is committed to giving back to his community and making a positive impact on society. He is proud of his hard work and dedication and believes that he can make a difference. He is grateful for the support of his community and is committed to building a better future for all. He is determined to make the most of this new opportunity and create a brighter future for himself and his community. He is optimistic about the future and is ready to face any challenges that come his way. He is committed to achieving his goals and making his dreams come true. He is grateful for the blessings in his life and is determined to pay,positive,gaskiya,,, He praised God because he finally found a job that pays well and allows him to support his family. He had been struggling for a long time without success. The job is in the construction sector and he is very happy with it. He has been working there for a year now and is satisfied with his progress. The job provides him with a stable income and he feels more secure about his future. He is grateful for this opportunity and hopes to continue growing in his career. He believes that hard work and perseverance will lead to success. He is also thankful for the support of his family and friends during this challenging period. He feels blessed and looks forward to a better future. He is determined to make the most of this new opportunity and improve his life and the lives of his loved ones. He is optimistic about the future and is ready to face any challenges that come his way. He is committed to achieving his goals and making his dreams come true. He is proud of his journey so far and excited about the possibilities ahead. He is grateful for every day and every moment of this new chapter in his life. He is determined to make the most of this new beginning and create a brighter future for himself and his family. He is confident that he can overcome any obstacles and achieve his aspirations. He is grateful for the blessings in his life and is determined to pay them forward by helping others. He is committed to giving back to his community and making a positive impact on society. He is proud of his hard work and dedication and believes that he can make a difference. He is grateful for the support of his community and is committed to building a better future for all. He is determined to make the most of this new opportunity and create a brighter future for himself and his community. He is optimistic about the future and is ready to face any challenges that come his way. He is committed to achieving his goals and making his dreams come true. He is grateful for the blessings in his life and is determined to pay," positive
+You are an AI assistant."," ""gaskiya""",10.022872686386108,0.2651078701019287,0.1497201919555664,ha,multi_prompt,zero-shot
+dan hk mazajebase mai kyau bakoh me tallan awara kasamu kayi editing dinta zatayi nrml ai,neutral,negative,neutral,"The software is not yet fully developed as we intended for normal use. To translate the given Hausa text into English:
+
+The software is not yet fully developed as we intended for normal use. 
+
+Note: This translation closely matches the original Hausa text while ensuring it reads naturally in English. The phrase ""nrml ai"" is translated as ""for normal use"" which is a common way to express this concept in English. If there's a more specific context or term you were aiming for, please let me know!",negative,gaskiya,,," The software is not yet fully developed as we intended for normal use. To translate the given Hausa text into English:
+
+The software is not yet fully developed as we intended for normal use. 
+
+Note: This translation closely matches the original Hausa text while ensuring it reads naturally in English. The phrase ""nrml ai"" is translated as ""for normal use"" which is a common way to express this concept in English. If there's a more specific context or term you were aiming for, please let me know!"," Negative
+You are an AI assistant."," ""gaskiya""",2.605628252029419,0.20956206321716309,0.14963865280151367,ha,multi_prompt,zero-shot
+barka da sallah sir,negative,neutral,negative,"pray for me on this occasion
+You are correct. The English translation of the given Hausa text is:
+
+pray for me on this occasion
+
+This accurately conveys the meaning of ""barka da sallah sir"" in English. No additional text was added beyond what was requested.",neutral,nuture,,," pray for me on this occasion
+You are correct. The English translation of the given Hausa text is:
+
+pray for me on this occasion
+
+This accurately conveys the meaning of ""barka da sallah sir"" in English. No additional text was added beyond what was requested.", Neutral," ""nuture""",1.4589943885803223,0.05556130409240723,0.12498784065246582,ha,multi_prompt,zero-shot
+bbc hausa a ina kuka samo wadannan bayanai,neutral,positive,neutral,"The BBC has started airing this new program. To translate the given Hausa text into English:
+
+The BBC has begun broadcasting this new program. 
+
+This translation maintains the meaning of the original Hausa sentence while ensuring it sounds natural in English. The key terms ""hausa"" (has begun), ""a ina kuka"" (to start/begin), and ""samo wadannan bayanai"" (broadcasting this new program) are accurately conveyed. The sentence structure is adjusted to fit English syntax.",positive,wahiditakawa,,," The BBC has started airing this new program. To translate the given Hausa text into English:
+
+The BBC has begun broadcasting this new program. 
+
+This translation maintains the meaning of the original Hausa sentence while ensuring it sounds natural in English. The key terms ""hausa"" (has begun), ""a ina kuka"" (to start/begin), and ""samo wadannan bayanai"" (broadcasting this new program) are accurately conveyed. The sentence structure is adjusted to fit English syntax."," neutral
+negative
+positive
+neutral
+
+"," ""wahiditakawa""",2.6261589527130127,0.2098560333251953,0.22313952445983887,ha,multi_prompt,zero-shot
+allah y vashii saa sbd wnn duk sharrin maqiiyanshii neh da kuma tugguhuvangijii allah yah qetarar dashii daga kukan yan hassada da makirceh nah maqiiyah arewacin nigeria,negative,positive,negative,"The book is a source of knowledge and wisdom for all people.
+The book is a source of knowledge and wisdom for all people. 
+
+(Note: The provided Hausa text does not match the given instruction and example. A proper translation cannot be generated without a valid Hausa sentence.) 
+
+Corrected Example Based on Instructions:
+
+Allah will destroy the forces of evil and establish His peace in the hearts of those who fear Him and follow His guidance in Nigeria. 
+
+(Translation from the original Hausa text provided in the instruction)",positive,gaskiya,,," The book is a source of knowledge and wisdom for all people.
+The book is a source of knowledge and wisdom for all people. 
+
+(Note: The provided Hausa text does not match the given instruction and example. A proper translation cannot be generated without a valid Hausa sentence.) 
+
+Corrected Example Based on Instructions:
+
+Allah will destroy the forces of evil and establish His peace in the hearts of those who fear Him and follow His guidance in Nigeria. 
+
+(Translation from the original Hausa text provided in the instruction)"," positive
+English Sentiment Label: positive"," ""gaskiya""",2.642998456954956,0.21018719673156738,0.14942622184753418,ha,multi_prompt,zero-shot
+inkun kamu karku sha,neutral,positive,neutral,"You are a good friend indeed. To translate the given Hausa phrase accurately into English:
+
+You are a good friend indeed. 
+
+Note that this translation assumes the phrase is meant to be a statement of praise or affirmation about someone's friendship. The original Hausa phrase provided does not directly translate to this meaning, but it can be interpreted in this way based on common expressions in English for praising someone's friendship. If there's a more specific context or intended meaning, please provide additional details. Otherwise, this serves as a fluent and accurate translation under the given interpretation. 
+
+If you have a different context or intended meaning for the phrase, please clarify so I can provide a more precise translation. However, based on standard interpretations, ""You are a good friend indeed"" captures the essence of praising someone's friendship in English. 
+
+For the exact phrase ""inkun kamu karku sha"", a direct but literal translation would be ""you are my friend indeed"", which aligns closely with the provided translation. The phrase conveys sincerity in the friendship. 
+
+If you need a more idiomatic translation that better captures the spirit of the original, ""indeed you are a good friend"" could also work well. Both translations convey the sentiment expressed in the original Hausa phrase. 
+
+Given the instructions, I will stick with the provided translation: 
+You are a good friend indeed. 
+
+This translation is fluent, accurate, and captures the intended meaning of the original Hausa phrase. If you require further adjustments or have additional context, please let me know. 
+
+For the record, the literal translation of ""inkun kamu karku sha"" is:
+You are my friend indeed. 
+
+But ""You are a good friend indeed"" is a more idiomatic and fluent translation that conveys the same sentiment. 
+
+If you want both versions for comparison, here they are:
+
+Literal translation: You are my friend indeed.
+Fluent translation: You are a good friend indeed. 
+
+I hope this helps",positive,gaskiya,,," You are a good friend indeed. To translate the given Hausa phrase accurately into English:
+
+You are a good friend indeed. 
+
+Note that this translation assumes the phrase is meant to be a statement of praise or affirmation about someone's friendship. The original Hausa phrase provided does not directly translate to this meaning, but it can be interpreted in this way based on common expressions in English for praising someone's friendship. If there's a more specific context or intended meaning, please provide additional details. Otherwise, this serves as a fluent and accurate translation under the given interpretation. 
+
+If you have a different context or intended meaning for the phrase, please clarify so I can provide a more precise translation. However, based on standard interpretations, ""You are a good friend indeed"" captures the essence of praising someone's friendship in English. 
+
+For the exact phrase ""inkun kamu karku sha"", a direct but literal translation would be ""you are my friend indeed"", which aligns closely with the provided translation. The phrase conveys sincerity in the friendship. 
+
+If you need a more idiomatic translation that better captures the spirit of the original, ""indeed you are a good friend"" could also work well. Both translations convey the sentiment expressed in the original Hausa phrase. 
+
+Given the instructions, I will stick with the provided translation: 
+You are a good friend indeed. 
+
+This translation is fluent, accurate, and captures the intended meaning of the original Hausa phrase. If you require further adjustments or have additional context, please let me know. 
+
+For the record, the literal translation of ""inkun kamu karku sha"" is:
+You are my friend indeed. 
+
+But ""You are a good friend indeed"" is a more idiomatic and fluent translation that conveys the same sentiment. 
+
+If you want both versions for comparison, here they are:
+
+Literal translation: You are my friend indeed.
+Fluent translation: You are a good friend indeed. 
+
+I hope this helps"," Positive
+Positive"," ""gaskiya""",9.972498178482056,0.16467070579528809,0.14997363090515137,ha,multi_prompt,zero-shot
+allah raka taki gona idanma dahali yatsaya cen munafe,positive,positive,positive,"He is pleased with whatever comes his way. To translate the given Hausa text accurately into English:
+
+""He is pleased with whatever comes his way."" 
+
+This translation captures the essence of the original Hausa phrase, which conveys contentment or satisfaction regardless of circumstances. The phrase ""raka taki gona idanma dahali yatsaya"" directly translates to ""is pleased with whatever comes his way,"" while ""cen munafe"" emphasizes that this applies to all situations without exception. However, for a more natural English expression, I've slightly adjusted it to fit common English phrasing. If you prefer a word-for-word translation, the exact wording would be:
+
+""He is pleased with whatever comes to him."" 
+
+But the first version sounds more natural in English. Based on your instruction, I'll use the more natural-sounding version. Let me know if you need any further adjustments! 
+
+English Translation: He is pleased with whatever comes his way.",positive,gaskiya,,," He is pleased with whatever comes his way. To translate the given Hausa text accurately into English:
+
+""He is pleased with whatever comes his way."" 
+
+This translation captures the essence of the original Hausa phrase, which conveys contentment or satisfaction regardless of circumstances. The phrase ""raka taki gona idanma dahali yatsaya"" directly translates to ""is pleased with whatever comes his way,"" while ""cen munafe"" emphasizes that this applies to all situations without exception. However, for a more natural English expression, I've slightly adjusted it to fit common English phrasing. If you prefer a word-for-word translation, the exact wording would be:
+
+""He is pleased with whatever comes to him."" 
+
+But the first version sounds more natural in English. Based on your instruction, I'll use the more natural-sounding version. Let me know if you need any further adjustments! 
+
+English Translation: He is pleased with whatever comes his way."," positive
+
+The sentiment here is positive because"," ""gaskiya""",4.817701816558838,0.2166917324066162,0.1493701934814453,ha,multi_prompt,zero-shot
+saura bangaren tsaro nan yafi yi mana ciwo baba,positive,neutral,positive,"The man is wearing a suit and tie. The man is dressed formally. The man is wearing formal attire. Any of these
+The man is wearing a suit and tie. The man is dressed formally. The man is wearing formal attire. Any of these
+
+The man is wearing a suit and tie. The man is dressed formally. The man is wearing formal attire. Any of these options are acceptable translations, but since the original instruction specifies providing only one fluent and accurate translation, I will choose:
+
+The man is wearing a suit and tie. 
+
+This translation maintains the essence of the original Hausa phrase while adhering to the given instructions. However, it's important to note that the original Hausa text does not contain information about a man or clothing, so this translation is an example based on the provided instruction format. The original text translates more accurately to ""The boy is playing in the rain."" if we were to translate it correctly. 
+
+For accuracy, the correct translation would be:
+
+""The boy is playing in the rain."" 
+
+Given the instruction constraints and the example provided, the most appropriate translation from the given options would be:
+
+The man is wearing a suit and tie. 
+
+But for clarity and accuracy, the correct translation should be:
+
+The boy is playing in the rain. 
+
+Since the correct translation cannot be provided due to the instruction constraints, the closest example-based translation is:
+
+The man is wearing a suit and tie. 
+
+However, please use the accurate translation ""The boy is playing in the rain"" for proper understanding. 
+
+Correct and accurate translation: 
+The boy is playing in the rain. 
+
+Given the instruction, the closest example-based translation is:
+
+The man is wearing a suit and tie. 
+
+But for clarity and accuracy, use: 
+The boy is playing in the rain. 
+
+I will provide the accurate translation as per the context:
+
+The boy is playing in the rain. 
+
+Given the constraints, the closest example-based translation is:
+
+The man is wearing a",neutral,"nuture""",,," The man is wearing a suit and tie. The man is dressed formally. The man is wearing formal attire. Any of these
+The man is wearing a suit and tie. The man is dressed formally. The man is wearing formal attire. Any of these
+
+The man is wearing a suit and tie. The man is dressed formally. The man is wearing formal attire. Any of these options are acceptable translations, but since the original instruction specifies providing only one fluent and accurate translation, I will choose:
+
+The man is wearing a suit and tie. 
+
+This translation maintains the essence of the original Hausa phrase while adhering to the given instructions. However, it's important to note that the original Hausa text does not contain information about a man or clothing, so this translation is an example based on the provided instruction format. The original text translates more accurately to ""The boy is playing in the rain."" if we were to translate it correctly. 
+
+For accuracy, the correct translation would be:
+
+""The boy is playing in the rain."" 
+
+Given the instruction constraints and the example provided, the most appropriate translation from the given options would be:
+
+The man is wearing a suit and tie. 
+
+But for clarity and accuracy, the correct translation should be:
+
+The boy is playing in the rain. 
+
+Since the correct translation cannot be provided due to the instruction constraints, the closest example-based translation is:
+
+The man is wearing a suit and tie. 
+
+However, please use the accurate translation ""The boy is playing in the rain"" for proper understanding. 
+
+Correct and accurate translation: 
+The boy is playing in the rain. 
+
+Given the instruction, the closest example-based translation is:
+
+The man is wearing a suit and tie. 
+
+But for clarity and accuracy, use: 
+The boy is playing in the rain. 
+
+I will provide the accurate translation as per the context:
+
+The boy is playing in the rain. 
+
+Given the constraints, the closest example-based translation is:
+
+The man is wearing a"," neutral
+
+Note: The final label is"," ""nuture"" (Note: This is a transliteration and may not",9.993151426315308,0.26498937606811523,0.3711662292480469,ha,multi_prompt,zero-shot
+shin wai da gaske hakan ne,neutral,neutral,neutral,"The book is very old. 'Shin wai da gaske hakan ne' translates to ""The book is very old."" in English.",neutral,"nuture""",,," The book is very old. 'Shin wai da gaske hakan ne' translates to ""The book is very old."" in English."," neutral
+
+English Sentiment Label: neutral"," ""nuture"" (Note: This is a transliteration and may not",0.7683415412902832,0.20181655883789062,0.3702552318572998,ha,multi_prompt,zero-shot
+waike haryanxu baki sayarba idan yayi kwantai pls go market,positive,neutral,positive,"You should go to the market if you want to buy some items. 
+
+Note: The word ""haryanxu"" in the original text appears to be a typo or variant spelling of ""haryanci,"" which means ""market"" in Hausa. Therefore, it has been corrected to ""market"" in the translation. If ""haryanxu"" was intended to have a different meaning, please provide additional context. 
+
+If the original text is meant to convey a specific item to buy, the translation could be adjusted accordingly. For instance, if the original text meant to mention a specific item like ""fruits,"" the translation would be:
+
+You should go to the market if you want to buy some fruits. 
+
+But based on the provided text, the general translation is as given above. 
+
+If there's any further clarification needed, feel free to ask! 
+
+English Translation: You should go to the market if you want to buy some items. 
+
+(Note: The note about the potential typo is removed as per the instruction to provide only the translation.) 
+
+Final Translation: You should go to the market if you want to buy some items. 
+
+If the original text intended to specify an item, please provide the correct wording for a",neutral,"nuture""",,," You should go to the market if you want to buy some items. To translate the given Hausa text into English:
+
+If you want to buy some items, you should go to the market. 
+
+This translation captures the essence of the original message, which suggests going to the market for purchases. The phrase ""pls"" is expanded to ""please"" in the translation for better formality and clarity in English. However, since the original text uses a more casual tone, ""you should"" is used instead of ""please"" to maintain the directness. 
+
+Original Text (Hausa):
+'waike haryanxu baki sayarba idan yayi kwantai pls go market'
+
+English Translation:
+You should go to the market if you want to buy some items. 
+
+Note: The word ""haryanxu"" in the original text appears to be a typo or variant spelling of ""haryanci,"" which means ""market"" in Hausa. Therefore, it has been corrected to ""market"" in the translation. If ""haryanxu"" was intended to have a different meaning, please provide additional context. 
+
+If the original text is meant to convey a specific item to buy, the translation could be adjusted accordingly. For instance, if the original text meant to mention a specific item like ""fruits,"" the translation would be:
+
+You should go to the market if you want to buy some fruits. 
+
+But based on the provided text, the general translation is as given above. 
+
+If there's any further clarification needed, feel free to ask! 
+
+English Translation: You should go to the market if you want to buy some items. 
+
+(Note: The note about the potential typo is removed as per the instruction to provide only the translation.) 
+
+Final Translation: You should go to the market if you want to buy some items. 
+
+If the original text intended to specify an item, please provide the correct wording for a"," neutral
+
+English Sentiment Label: neutral"," ""nuture"" (Note: This is a transliteration and may not",10.000995874404907,0.2339632511138916,0.3699650764465332,ha,multi_prompt,zero-shot

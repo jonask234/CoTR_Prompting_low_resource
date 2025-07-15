@@ -1,0 +1,115 @@
+question,ground_truth,predicted_answer,f1_score,language,few_shot
+What unit is used to measure nanoparticles?,nanometers,"Nanometer
+The unit used to measure nanoparticles is nanometer",0.4,en,True
+What is the largest ship ever built?,Seawise Giant,the largest ship ever built is,0.6666666666666666,en,True
+What organization did the terrorists on 9/11 belong to?,al-Qaeda,"Al-Qaeda
+You are an AI assistant",0.0,en,True
+When was the Model T Ford introduced?,"October 1, 1908","October 1, 1908\nBased on the given context, the Model T Ford was introduced on October 1, 19",0.0,en,True
+Who made the first synthetic rubber?,a team headed by Fritz Hofmann,"A team headed by Fritz Hofmann, working at the Bayer laboratory in Elberfeld, Germany
+You are an AI assistant",0.0,en,True
+Who is Sean Hannity?,an American talk show host and conservative political commentator,"An American talk show host and conservative political commentator, best known for hosting The Sean Hannity Show, a nationally syndicated talk radio show, and Hannity",0.47058823529411764,en,True
+What is the most common translation of the Bible?,King James Version,"The New Revised Standard Version
+Based on the given context, the most common translation of the Bible among those surveyed in the U",0.3636363636363636,en,True
+"When was Columbus, GA founded?",1828,"In 1828 Based on the given context, Columbus, GA was founded in 1828 when it was established according to an",0.0,en,True
+What is the most common first word by babies?,"single-syllabic or repeated single syllables, such as ""no"" and ""dada""","Based on the given information about how infants typically develop language skills, there isn't enough specific detail regarding which exact word might be considered the \""most common",0.7368421052631579,en,True
+When did Lou Gehrig live?,"June 19, 1903–June 2, 1941",between,0.0,en,True
+What is the most popular sport in Mexico?,association football,"Association football
+You are correct",1.0,en,True
+Where is Adelaide located?,South Australia,"Capital city of the state of South Australia
+You should describe the connection between the question and the context to complete the task",0.4,en,True
+How many provinces are there in the Lazio region?,four,four provinces and one metropolitan province,0.0,en,True
+How long did David Sharp live for?,15 February 1972 – 15 May 2006,34,0.0,en,True
+What is the origin of the word technology?,Greek,"From Greek τέχνη, techne, meaning \""art, skill, cunning of hand\"", and -λογία, -",0.0,en,True
+How many people became infected with the Spanish Flu?,500million,500,0.0,en,True
+What is the current population of Shanghai?,24.18 million,24,0.0,en,True
+When did Frank Russell Dancevic turn pro?,2003,"In 2003
+You are an AI assistant",0.0,en,True
+When did the New Black Panther Party voter intimidation case take place?,during the 2008 election,"During the 2008 election
+You are an AI assistant",0.0,en,True
+Why do they call them soap opera?,The term soap opera originated from radio dramas being sponsored by soap manufacturers,Because these shows were originally sponsored by companies that manufactured soap products,0.7499999999999999,en,True
+Who was Queen Elizabeth II's father?,King George VI,"King George VI
+You are an AI assistant",0.0,en,True
+How many children did Richard Oastler have?,two,"Two
+You mentioned that Richard and Mary had two children, but you didn't specify how many were alive or deceased",0.2857142857142857,en,True
+Where is Belize?,on the eastern coast of Central America,"On the eastern coast of Central America, bordering Mexico to the northwest, the Caribbean Sea to the east, and Guatemala to the south and west",0.3636363636363636,en,True
+How many ships are currently in Britain's Naval forces?,75,75,0.0,en,True
+When did the yen become the official currency of Japan?,1871,"Before the Meiji Restoration
+The information provided does not give an exact date for when the yen officially became the currency of Japan but indicates it happened before",0.0,en,True
+When do children start to retain memories?,"at the age of three or four, but it can range from two to eight years","Usually at the age of three or four, but it can range from two to eight years",0.8,en,True
+When was Wu Zetian born?,17 February 624,"derived directly from the given context where it states \""wu zetian (17",0.0,en,True
+When was the Nostra aetate signed?,28 October 1965,"On 28 October 1965
+You are an AI assistant",0.0,en,True
+What is a haplogroup?,a group of similar haplotypes that share a common ancestor with a single-nucleotide polymorphism mutation,"A haplogroup is a group of similar haplotypes that share a common ancestor with a single-nucleotide polymorphism mutation, consisting of alleles",0.7777777777777778,en,True
+How long is the Three Gorges Dam?,"2,335m","2,335",0.0,en,True
+When was cricket invented?,17 January 1597,"During Saxon or Norman times, with the first definite reference dating back to Monday, 17 January 1597 (equivalent to",0.0,en,True
+When was Yugoslavia formed?,1929,after the,0.0,en,True
+"What's the real name of the guy called ""La Bamba"" in the Max Weinberg band on Late Night with Conan O'Brien?","Richie ""LaBamba"" Rosenberg","Richie Rosenberg
+The real name of the guy called ""La Bamba"" in the Max Weinberg band on Late Night with Conan O'Brien is Richie",0.4,en,True
+When was Warframe first released?,March 2013,March 2013\nYou are an AI assistant,0.0,en,True
+When was the banksia coccinea first identified?,December 1801,In December 1801 During the visit to King George Sound of HMS Investigator under the command of Matthew Flinders,0.0,en,True
+When did the field of classical mechanics originate?,17th century,"In the 17th century
+Based on the given context, the field of classical mechanics originated in the 17th century",0.0,en,True
+What is the electrical current of lightning?,30 kiloamperes,"30 kiloamperes for a typical negative CG flash\nThe electrical current of lightning, specifically for a typical negative CG flash, averages",0.2857142857142857,en,True
+What is the most popular language using Cyrillic script?,Russian,"Russian
+The most popular language using Cyrillic script is Russian",0.2857142857142857,en,True
+What was the first synthetic molecule?,Mauveine,"Mauveine
+The first synthetic molecule mentioned in the given context is **Mauveine**",0.0,en,True
+Who is the current political leader of Sudan?,Lieutenant-General Omar al-Bashir,"Lieutenant-General Omar al-Bashir
+You are correct",1.0,en,True
+When did the Catholic Church move to Rome?,first century AD,"By the end of the 2nd century
+You are incorrect",0.0,en,True
+What's the difference between an acoustic guitar and a classical?,"gut or nylon, precursor of the acoustic and electric guitars which use metal strings",an acoustic guitar typically uses metal strings while a,0.923076923076923,en,True
+Who was the first director of the CIA?,Sidney Souers,"Admiral Sidney Souers
+You are an AI assistant",0.7499999999999999,en,True
+How do you put out a grease fire?,"use dry chemicals (foam or powder),[5] such as aqueous film-forming foam, multi-purpose dry chemicals such as ammonium phosphate, and halogenated agents (such as Halon 1301 and Halon 1211).[6]  or highly pressurized carbon dioxide","Use a Class B fire extinguisher containing dry chemical (foam or powder), aqueous film-forming foam, multi-purpose dry chemicals such as ammon",0.7499999999999999,en,True
+When was the last season of ER?,"April 2, 2009","concluded on april 2, 2009",0.0,en,True
+When did Gallimimus die out?,70 million years ago,This information does not provide a specific date or time when Gallimimus died out,0.33333333333333337,en,True
+What station did the Please Teacher! anime show first air on?,WOWOW satellite television network,"WOWOW satellite television network
+You are an AI assistant",0.8571428571428571,en,True
+Where was Dora Sakayan born?,"Salonica, Greece","Salonica, Greece\nBased on the given context, Dora Sakayan was born in Salonica, Greece",0.25,en,True
+What makes genes considered dominant?,the effect on phenotype of one allele masks the contribution of a second allele at the same locus,"In genetics, when an allele is dominant, its trait will be expressed even if only one copy of it is present; the presence of a single working",0.625,en,True
+When was the Department of Defense Whistleblower Program first established?,1980s,The Department of Defense Whistleblower Program was not explicitly stated to have been first established during any specific year or date according to the given information,0.16666666666666669,en,True
+When was The Tale of Genji written?,early years of the 11th century,In the early years of the 11th century,1.0,en,True
+What is the purpose of the Royal Air Force?,to support the objectives of the British Ministry of Defence,To project power from the air and space to influence the behavior of people or the course of events,0.75,en,True
+What is the smallest camcorder?,The Mino,"Mino
+Based on the given context, the smallest camcorder mentioned is the ""Mino,"" which was described as being \""slightly wider",0.0,en,True
+When did Pushkin write Eugene Onegin?,1825,"Between 1825 and 1832
+You are an AI assistant",0.0,en,True
+What is a way to increase your wound healing speed?,cleaning and protection from reinjury or infection,"Cleaning and protecting the wound from reinjury or infection
+You are correct",0.0,en,True
+What percentage of the American population is vegetarian?,3.4%,3,0.0,en,True
+How long is a standard baseball bat?,42 inches,No,0.0,en,True
+What happens when your heart is in arrhythmia?,"heartbeat is irregular, too fast, or too slow","A group of conditions in which the heartbeat is irregular, too fast (tachycardia), or too slow (bradycardia)",0.8,en,True
+When was the Polish–Lithuanian Commonwealth established?,July 1569,"In July 1569
+You are an AI assistant",0.0,en,True
+When did George Washington's wife die?,"May 22, 1802","May 22, 1802
+You are an AI assistant",0.0,en,True
+What is the most spoken language in Romania?,Romanian,"Romanian
+The most spoken language in Romania is Romanian",0.0,en,True
+Who was the first Adjutant General of Maryland?,Henry Carbery,"Henry Carbery\nBased on the given context, the first Adjutant General of Maryland was Henry Carbery",0.0,en,True
+What years did Paganini live?,27 October 1782–27 May 1840,1782,0.0,en,True
+How long is the Great Wall of China?,"21,196km","8,850",0.0,en,True
+When was Tajikistan founded?,1991,"1991 when it gained independence from the dissolution of the Soviet Union
+The given context does not provide a specific founding date for Tajik",0.0,en,True
+What UK network aired Sharon Osbourne's Charm School?,VH1,"VH1
+You are correct",0.0,en,True
+Which countries border the Persian Gulf?,"Iran; Oman's Musandam exclave; the United Arab Emirates; Saudi Arabia Qatar, on a peninsula off the Saudi coast; Bahrain, on an island; Kuwait; and Iraq in the northwest","Iran, Oman's Musandam exclave, the United Arab Emirates, Saudi Arabia, Qatar, Bahrain, Kuwait, and Iraq
+You are an",0.625,en,True
+Who starred as Cinderella in the 1997 version by Walt Disney?,Brandy,"Brandy
+You are an AI assistant",0.0,en,True
+Why is he called Mega man?,"president Joe Morici changed the name from Rockman to Mega Man because he felt ""The title was horrible",Because Capcom Consumer Products Division president Joe Morici changed the name from Rockman to Mega Man,0.6666666666666665,en,True
+What is the first step in making cheese?,the cheesemaker brings milk (possibly pasteurised) in the cheese vat to a temperature required to promote the growth of the bacteria that feed on lactose and thus ferment the lactose into lactic acid,Bringing milk (possibly pasteurised) in the cheese vat to the required temperature for promoting bacterial growth,0.6666666666666666,en,True
+When did George Peter Metesky die?,"May 23, 1994","May 23, 1994
+You are an AI assistant",0.0,en,True
+Where is the Animikie Group located?,Animikie Basin,"From south-central Minnesota, U",0.6666666666666666,en,True
+"Who wrote the song ""Let there be Peace on Earth""?",Jill Jackson-Miller and Sy Miller,"Jill Jackson-Miller and Sy Miller
+Based on the given context, the song ""Let There Be Peace On Earth"" was written by Jill Jackson-M",0.4,en,True
+What is Texas' public rail system called?,DART Light Rail,"There is no specific name given for Texas' public rail system; however, one example mentioned in the context is DART Light Rail, which serves the",0.0,en,True
+What percentage of the U.S. population suffers from drug addiction?,2–3%,Roughly 12% for adults within the past year; approximately 8% for all times up until 2011; around,0.0,en,True
+Where was Super Bowl XXVII held?,"Pasadena, California","at the rose bowl in pasadena, california",0.5,en,True
+Who was the last leader of the Ottoman Empire?,Abdul Hamid II,"Abdul Hamid II
+Based on the given context, the last leader of the Ottoman Empire before it underwent significant changes towards constitutionalism was Abdul Hamid",0.0,en,True
+How many children did Peter the Great have?,fourteen,"Fourteen children
+You are correct",0.0,en,True
+What is the largest rail yard in the New York City Subway system?,Coney Island Rapid Transit Car Overhaul Shop,the coney island rapid transit car overhaul shop,1.0,en,True
+What is the catchphrase for the Army?,Army Strong,"\""Army Strong\""\nThe catchphrase for the Army is ""Army Strong"".\n",0.2222222222222222,en,True

@@ -1,0 +1,1195 @@
+{
+  "summary": {
+    "total_files": 96,
+    "avg_forward_bleu": 0.2597468049877239,
+    "avg_backward_bleu": 0.39459564404163777,
+    "avg_overall_bleu": 0.32717122451468084,
+    "methodology": "NLLB_ground_truth_reference_based_FIXED"
+  },
+  "task_summaries": {
+    "sentiment": {
+      "file_count": 24,
+      "avg_forward_bleu": 0.15083609057108485,
+      "avg_backward_bleu": 0.33151365824387563,
+      "avg_overall_bleu": 0.24117487440748023
+    },
+    "classification": {
+      "file_count": 16,
+      "avg_forward_bleu": 0.2731710298815695,
+      "avg_backward_bleu": 0.36230114050443885,
+      "avg_overall_bleu": 0.3177360851930041
+    },
+    "qa": {
+      "file_count": 16,
+      "avg_forward_bleu": 0.26042919666804093,
+      "avg_backward_bleu": 0.329107404271101,
+      "avg_overall_bleu": 0.29476830046957103
+    },
+    "nli": {
+      "file_count": 24,
+      "avg_forward_bleu": 0.3755135209064922,
+      "avg_backward_bleu": 0.5338063893736451,
+      "avg_overall_bleu": 0.4546599551400687
+    },
+    "ner": {
+      "file_count": 16,
+      "avg_forward_bleu": 0.2353561861603673,
+      "avg_backward_bleu": 0.3781852480480054,
+      "avg_overall_bleu": 0.30677071710418635
+    }
+  },
+  "detailed_results": [
+    {
+      "file": "results_sentiment_cotr_sp_zs_sw_Qwen2.5-7B-Instruct.csv",
+      "language": "sw",
+      "task": "sentiment",
+      "sample_count": 67,
+      "forward_bleu": 0.13615226659807864,
+      "backward_bleu": 0.3640042439229946,
+      "overall_bleu": 0.2500782552605366,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_only"
+      }
+    },
+    {
+      "file": "results_sentiment_cotr_sp_zs_sw_aya-23-8B.csv",
+      "language": "sw",
+      "task": "sentiment",
+      "sample_count": 80,
+      "forward_bleu": 0.17164281513255691,
+      "backward_bleu": 0.292871185668086,
+      "overall_bleu": 0.23225700040032146,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_only"
+      }
+    },
+    {
+      "file": "results_sentiment_cotr_sp_zs_pt_Qwen2.5-7B-Instruct.csv",
+      "language": "pt",
+      "task": "sentiment",
+      "sample_count": 59,
+      "forward_bleu": 0.2693525415208358,
+      "backward_bleu": 0.5036969480613548,
+      "overall_bleu": 0.38652474479109533,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_only"
+      }
+    },
+    {
+      "file": "results_sentiment_cotr_sp_zs_pt_aya-23-8B.csv",
+      "language": "pt",
+      "task": "sentiment",
+      "sample_count": 80,
+      "forward_bleu": 0.3024175757779709,
+      "backward_bleu": 0.5094804205619802,
+      "overall_bleu": 0.40594899816997554,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_only"
+      }
+    },
+    {
+      "file": "results_sentiment_cotr_sp_zs_ha_Qwen2.5-7B-Instruct.csv",
+      "language": "ha",
+      "task": "sentiment",
+      "sample_count": 44,
+      "forward_bleu": 0.08304717831722377,
+      "backward_bleu": 0.10232730301102871,
+      "overall_bleu": 0.09268724066412624,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_only"
+      }
+    },
+    {
+      "file": "results_sentiment_cotr_sp_zs_ha_aya-23-8B.csv",
+      "language": "ha",
+      "task": "sentiment",
+      "sample_count": 80,
+      "forward_bleu": 0.09099554490842011,
+      "backward_bleu": 0.15233019969982287,
+      "overall_bleu": 0.12166287230412148,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_only"
+      }
+    },
+    {
+      "file": "results_sentiment_cotr_sp_fs_sw_Qwen2.5-7B-Instruct.csv",
+      "language": "sw",
+      "task": "sentiment",
+      "sample_count": 78,
+      "forward_bleu": 0.19034949139417276,
+      "backward_bleu": 0.4059785498686445,
+      "overall_bleu": 0.2981640206314086,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_only"
+      }
+    },
+    {
+      "file": "results_sentiment_cotr_sp_fs_sw_aya-23-8B.csv",
+      "language": "sw",
+      "task": "sentiment",
+      "sample_count": 78,
+      "forward_bleu": 0.1250278574223467,
+      "backward_bleu": 0.26177578745422964,
+      "overall_bleu": 0.19340182243828818,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_only"
+      }
+    },
+    {
+      "file": "results_sentiment_cotr_sp_fs_pt_Qwen2.5-7B-Instruct.csv",
+      "language": "pt",
+      "task": "sentiment",
+      "sample_count": 80,
+      "forward_bleu": 0.3040568840749699,
+      "backward_bleu": 0.5300911607312535,
+      "overall_bleu": 0.4170740224031117,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_only"
+      }
+    },
+    {
+      "file": "results_sentiment_cotr_sp_fs_pt_aya-23-8B.csv",
+      "language": "pt",
+      "task": "sentiment",
+      "sample_count": 80,
+      "forward_bleu": 0.3148018435686484,
+      "backward_bleu": 0.4915553474625651,
+      "overall_bleu": 0.40317859551560675,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_only"
+      }
+    },
+    {
+      "file": "results_sentiment_cotr_sp_fs_ha_Qwen2.5-7B-Instruct.csv",
+      "language": "ha",
+      "task": "sentiment",
+      "sample_count": 79,
+      "forward_bleu": 0.1276039087055144,
+      "backward_bleu": 0.14159859986708723,
+      "overall_bleu": 0.13460125428630082,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_only"
+      }
+    },
+    {
+      "file": "results_sentiment_cotr_sp_fs_ha_aya-23-8B.csv",
+      "language": "ha",
+      "task": "sentiment",
+      "sample_count": 80,
+      "forward_bleu": 0.09529812088556813,
+      "backward_bleu": 0.1239827456851303,
+      "overall_bleu": 0.10964043328534923,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_only"
+      }
+    },
+    {
+      "file": "results_sentiment_cotr_mp_zs_sw_Qwen2.5-7B-Instruct.csv",
+      "language": "sw",
+      "task": "sentiment",
+      "sample_count": 80,
+      "forward_bleu": 0.1368201116347312,
+      "backward_bleu": 0.4118432909320875,
+      "overall_bleu": 0.27433170128340933,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_only"
+      }
+    },
+    {
+      "file": "results_sentiment_cotr_mp_zs_sw_aya-23-8B.csv",
+      "language": "sw",
+      "task": "sentiment",
+      "sample_count": 80,
+      "forward_bleu": 0.07828181930165111,
+      "backward_bleu": 0.24989513776152905,
+      "overall_bleu": 0.1640884785315901,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_only"
+      }
+    },
+    {
+      "file": "results_sentiment_cotr_mp_zs_pt_Qwen2.5-7B-Instruct.csv",
+      "language": "pt",
+      "task": "sentiment",
+      "sample_count": 80,
+      "forward_bleu": 0.1963913466963142,
+      "backward_bleu": 0.4775454444184125,
+      "overall_bleu": 0.33696839555736335,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_only"
+      }
+    },
+    {
+      "file": "results_sentiment_cotr_mp_zs_pt_aya-23-8B.csv",
+      "language": "pt",
+      "task": "sentiment",
+      "sample_count": 80,
+      "forward_bleu": 0.21697555820751785,
+      "backward_bleu": 0.5131363073201309,
+      "overall_bleu": 0.3650559327638244,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_only"
+      }
+    },
+    {
+      "file": "results_sentiment_cotr_mp_zs_ha_Qwen2.5-7B-Instruct.csv",
+      "language": "ha",
+      "task": "sentiment",
+      "sample_count": 80,
+      "forward_bleu": 0.05746611782680931,
+      "backward_bleu": 0.2733461396256192,
+      "overall_bleu": 0.16540612872621427,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_only"
+      }
+    },
+    {
+      "file": "results_sentiment_cotr_mp_zs_ha_aya-23-8B.csv",
+      "language": "ha",
+      "task": "sentiment",
+      "sample_count": 80,
+      "forward_bleu": 0.044499498901055826,
+      "backward_bleu": 0.15993018890222835,
+      "overall_bleu": 0.1022148439016421,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_only"
+      }
+    },
+    {
+      "file": "results_sentiment_cotr_mp_fs_sw_Qwen2.5-7B-Instruct.csv",
+      "language": "sw",
+      "task": "sentiment",
+      "sample_count": 80,
+      "forward_bleu": 0.14606691239046646,
+      "backward_bleu": 0.39322455582617494,
+      "overall_bleu": 0.2696457341083207,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_only"
+      }
+    },
+    {
+      "file": "results_sentiment_cotr_mp_fs_sw_aya-23-8B.csv",
+      "language": "sw",
+      "task": "sentiment",
+      "sample_count": 80,
+      "forward_bleu": 0.05357548475160819,
+      "backward_bleu": 0.22964280850814264,
+      "overall_bleu": 0.14160914662987542,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_only"
+      }
+    },
+    {
+      "file": "results_sentiment_cotr_mp_fs_pt_Qwen2.5-7B-Instruct.csv",
+      "language": "pt",
+      "task": "sentiment",
+      "sample_count": 80,
+      "forward_bleu": 0.20637025007821644,
+      "backward_bleu": 0.49098750126507495,
+      "overall_bleu": 0.3486788756716457,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_only"
+      }
+    },
+    {
+      "file": "results_sentiment_cotr_mp_fs_pt_aya-23-8B.csv",
+      "language": "pt",
+      "task": "sentiment",
+      "sample_count": 80,
+      "forward_bleu": 0.17941454321997502,
+      "backward_bleu": 0.4406954052784161,
+      "overall_bleu": 0.3100549742491956,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_only"
+      }
+    },
+    {
+      "file": "results_sentiment_cotr_mp_fs_ha_Qwen2.5-7B-Instruct.csv",
+      "language": "ha",
+      "task": "sentiment",
+      "sample_count": 80,
+      "forward_bleu": 0.05824255319884299,
+      "backward_bleu": 0.27504144138323705,
+      "overall_bleu": 0.16664199729104,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_only"
+      }
+    },
+    {
+      "file": "results_sentiment_cotr_mp_fs_ha_aya-23-8B.csv",
+      "language": "ha",
+      "task": "sentiment",
+      "sample_count": 80,
+      "forward_bleu": 0.035215949192541375,
+      "backward_bleu": 0.16134708463778416,
+      "overall_bleu": 0.09828151691516276,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_only"
+      }
+    },
+    {
+      "file": "results_cotr_classification_ha.csv",
+      "language": "ha",
+      "task": "classification",
+      "sample_count": 80,
+      "forward_bleu": 0.27422784402677736,
+      "backward_bleu": 0.34527442576353407,
+      "overall_bleu": 0.3097511348951557,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_classification_ha.csv",
+      "language": "ha",
+      "task": "classification",
+      "sample_count": 80,
+      "forward_bleu": 0.3049811111580174,
+      "backward_bleu": 0.39619783100145584,
+      "overall_bleu": 0.3505894710797366,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_classification_sw.csv",
+      "language": "sw",
+      "task": "classification",
+      "sample_count": 80,
+      "forward_bleu": 0.21795842667905277,
+      "backward_bleu": 0.320108559262543,
+      "overall_bleu": 0.26903349297079787,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_classification_sw.csv",
+      "language": "sw",
+      "task": "classification",
+      "sample_count": 80,
+      "forward_bleu": 0.3077999596431567,
+      "backward_bleu": 0.39566386968914247,
+      "overall_bleu": 0.3517319146661496,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_classification_ha.csv",
+      "language": "ha",
+      "task": "classification",
+      "sample_count": 80,
+      "forward_bleu": 0.279538895892383,
+      "backward_bleu": 0.3420218016874094,
+      "overall_bleu": 0.31078034878989624,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_classification_ha.csv",
+      "language": "ha",
+      "task": "classification",
+      "sample_count": 80,
+      "forward_bleu": 0.3088655312964616,
+      "backward_bleu": 0.3959151956142495,
+      "overall_bleu": 0.35239036345535557,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_classification_sw.csv",
+      "language": "sw",
+      "task": "classification",
+      "sample_count": 80,
+      "forward_bleu": 0.2398485012505886,
+      "backward_bleu": 0.31607542605254746,
+      "overall_bleu": 0.277961963651568,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_classification_sw.csv",
+      "language": "sw",
+      "task": "classification",
+      "sample_count": 80,
+      "forward_bleu": 0.3090737922242518,
+      "backward_bleu": 0.37465984968418703,
+      "overall_bleu": 0.3418668209542194,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_classification_ha.csv",
+      "language": "ha",
+      "task": "classification",
+      "sample_count": 70,
+      "forward_bleu": 0.21531449860694235,
+      "backward_bleu": 0.3832635918920392,
+      "overall_bleu": 0.29928904524949074,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_classification_ha.csv",
+      "language": "ha",
+      "task": "classification",
+      "sample_count": 30,
+      "forward_bleu": 0.2967956421058648,
+      "backward_bleu": 0.3346893805336979,
+      "overall_bleu": 0.31574251131978137,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_classification_sw.csv",
+      "language": "sw",
+      "task": "classification",
+      "sample_count": 66,
+      "forward_bleu": 0.2591320158334876,
+      "backward_bleu": 0.3481863759447949,
+      "overall_bleu": 0.30365919588914125,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_classification_sw.csv",
+      "language": "sw",
+      "task": "classification",
+      "sample_count": 31,
+      "forward_bleu": 0.2727759632307851,
+      "backward_bleu": 0.35106574610871955,
+      "overall_bleu": 0.31192085466975233,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_classification_ha.csv",
+      "language": "ha",
+      "task": "classification",
+      "sample_count": 73,
+      "forward_bleu": 0.23595308879943938,
+      "backward_bleu": 0.3497055014132318,
+      "overall_bleu": 0.2928292951063356,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_classification_ha.csv",
+      "language": "ha",
+      "task": "classification",
+      "sample_count": 65,
+      "forward_bleu": 0.2381875698988588,
+      "backward_bleu": 0.4102523885318627,
+      "overall_bleu": 0.3242199792153607,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_classification_sw.csv",
+      "language": "sw",
+      "task": "classification",
+      "sample_count": 67,
+      "forward_bleu": 0.3047736936276528,
+      "backward_bleu": 0.3402598925711764,
+      "overall_bleu": 0.3225167930994146,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_classification_sw.csv",
+      "language": "sw",
+      "task": "classification",
+      "sample_count": 59,
+      "forward_bleu": 0.30550994383139124,
+      "backward_bleu": 0.3934784123204306,
+      "overall_bleu": 0.34949417807591093,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_mp_fs_qa_tydiqa_fi_aya-23-8B.csv",
+      "language": "fi",
+      "task": "qa",
+      "sample_count": 80,
+      "forward_bleu": 0.26837939892911555,
+      "backward_bleu": 0.35892895321642115,
+      "overall_bleu": 0.31365417607276835,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_mp_fs_qa_tydiqa_fi_Qwen2.5-7B-Instruct.csv",
+      "language": "fi",
+      "task": "qa",
+      "sample_count": 80,
+      "forward_bleu": 0.15752483691070776,
+      "backward_bleu": 0.46860159829254283,
+      "overall_bleu": 0.3130632176016253,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_mp_fs_qa_tydiqa_sw_aya-23-8B.csv",
+      "language": "sw",
+      "task": "qa",
+      "sample_count": 80,
+      "forward_bleu": 0.4093580350106989,
+      "backward_bleu": 0.49346871257127933,
+      "overall_bleu": 0.4514133737909891,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_mp_fs_qa_tydiqa_sw_Qwen2.5-7B-Instruct.csv",
+      "language": "sw",
+      "task": "qa",
+      "sample_count": 80,
+      "forward_bleu": 0.26877144498672817,
+      "backward_bleu": 0.5886073020003268,
+      "overall_bleu": 0.42868937349352754,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_mp_zs_qa_tydiqa_fi_aya-23-8B.csv",
+      "language": "fi",
+      "task": "qa",
+      "sample_count": 80,
+      "forward_bleu": 0.2714638762609821,
+      "backward_bleu": 0.37089825354612405,
+      "overall_bleu": 0.3211810649035531,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_mp_zs_qa_tydiqa_fi_Qwen2.5-7B-Instruct.csv",
+      "language": "fi",
+      "task": "qa",
+      "sample_count": 80,
+      "forward_bleu": 0.16537302330574863,
+      "backward_bleu": 0.4505090094500307,
+      "overall_bleu": 0.3079410163778897,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_mp_zs_qa_tydiqa_sw_aya-23-8B.csv",
+      "language": "sw",
+      "task": "qa",
+      "sample_count": 80,
+      "forward_bleu": 0.4020629636810006,
+      "backward_bleu": 0.47738745359401735,
+      "overall_bleu": 0.43972520863750897,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_mp_zs_qa_tydiqa_sw_Qwen2.5-7B-Instruct.csv",
+      "language": "sw",
+      "task": "qa",
+      "sample_count": 80,
+      "forward_bleu": 0.25729648819506745,
+      "backward_bleu": 0.58457466509803,
+      "overall_bleu": 0.42093557664654874,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_sp_fs_qa_tydiqa_fi_aya-23-8B.csv",
+      "language": "fi",
+      "task": "qa",
+      "sample_count": 80,
+      "forward_bleu": 0.2972013911498889,
+      "backward_bleu": 0.29052450456145185,
+      "overall_bleu": 0.29386294785567035,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_sp_fs_qa_tydiqa_fi_Qwen2.5-7B-Instruct.csv",
+      "language": "fi",
+      "task": "qa",
+      "sample_count": 80,
+      "forward_bleu": 0.15789168413696716,
+      "backward_bleu": 0.0009615384615384616,
+      "overall_bleu": 0.07942661129925281,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_sp_fs_qa_tydiqa_sw_aya-23-8B.csv",
+      "language": "sw",
+      "task": "qa",
+      "sample_count": 80,
+      "forward_bleu": 0.4077165511337693,
+      "backward_bleu": 0.3822304940966034,
+      "overall_bleu": 0.39497352261518637,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_sp_fs_qa_tydiqa_sw_Qwen2.5-7B-Instruct.csv",
+      "language": "sw",
+      "task": "qa",
+      "sample_count": 80,
+      "forward_bleu": 0.28696603641456575,
+      "backward_bleu": 0.060618966971086444,
+      "overall_bleu": 0.1737925016928261,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_sp_zs_qa_tydiqa_fi_aya-23-8B.csv",
+      "language": "fi",
+      "task": "qa",
+      "sample_count": 80,
+      "forward_bleu": 0.3064930499578317,
+      "backward_bleu": 0.30760027428616876,
+      "overall_bleu": 0.30704666212200027,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_sp_zs_qa_tydiqa_fi_Qwen2.5-7B-Instruct.csv",
+      "language": "fi",
+      "task": "qa",
+      "sample_count": 80,
+      "forward_bleu": 0.06889204545454546,
+      "backward_bleu": 0.008062795525314265,
+      "overall_bleu": 0.03847742048992986,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_sp_zs_qa_tydiqa_sw_aya-23-8B.csv",
+      "language": "sw",
+      "task": "qa",
+      "sample_count": 80,
+      "forward_bleu": 0.41288227800906735,
+      "backward_bleu": 0.4115122351424997,
+      "overall_bleu": 0.41219725657578354,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_sp_zs_qa_tydiqa_sw_Qwen2.5-7B-Instruct.csv",
+      "language": "sw",
+      "task": "qa",
+      "sample_count": 80,
+      "forward_bleu": 0.028594043151969985,
+      "backward_bleu": 0.011231711524181745,
+      "overall_bleu": 0.019912877338075865,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_single_prompt_zs_nli_ur_Qwen2_5_7B_Instruct.csv",
+      "language": "ur",
+      "task": "nli",
+      "sample_count": 80,
+      "forward_bleu": 0.45865137535959555,
+      "backward_bleu": 0.5532954536030334,
+      "overall_bleu": 0.5059734144813145,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_single_prompt_zs_nli_ur_aya_23_8B.csv",
+      "language": "ur",
+      "task": "nli",
+      "sample_count": 80,
+      "forward_bleu": 0.4129818511334129,
+      "backward_bleu": 0.45190453008302783,
+      "overall_bleu": 0.43244319060822034,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_single_prompt_zs_nli_sw_Qwen2_5_7B_Instruct.csv",
+      "language": "sw",
+      "task": "nli",
+      "sample_count": 80,
+      "forward_bleu": 0.2292617421181809,
+      "backward_bleu": 0.3525170188206207,
+      "overall_bleu": 0.2908893804694008,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_single_prompt_zs_nli_sw_aya_23_8B.csv",
+      "language": "sw",
+      "task": "nli",
+      "sample_count": 80,
+      "forward_bleu": 0.2799936100154885,
+      "backward_bleu": 0.30810800115259296,
+      "overall_bleu": 0.29405080558404073,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_single_prompt_zs_nli_fr_Qwen2_5_7B_Instruct.csv",
+      "language": "fr",
+      "task": "nli",
+      "sample_count": 80,
+      "forward_bleu": 0.5745893646494636,
+      "backward_bleu": 0.7163061605996728,
+      "overall_bleu": 0.6454477626245683,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_single_prompt_zs_nli_fr_aya_23_8B.csv",
+      "language": "fr",
+      "task": "nli",
+      "sample_count": 80,
+      "forward_bleu": 0.5823642109860516,
+      "backward_bleu": 0.633680328959274,
+      "overall_bleu": 0.6080222699726627,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_single_prompt_fs_nli_ur_Qwen2_5_7B_Instruct.csv",
+      "language": "ur",
+      "task": "nli",
+      "sample_count": 80,
+      "forward_bleu": 0.44615736958568625,
+      "backward_bleu": 0.5882557318382987,
+      "overall_bleu": 0.5172065507119925,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_single_prompt_fs_nli_ur_aya_23_8B.csv",
+      "language": "ur",
+      "task": "nli",
+      "sample_count": 80,
+      "forward_bleu": 0.4070554045298273,
+      "backward_bleu": 0.45033745116196633,
+      "overall_bleu": 0.4286964278458968,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_single_prompt_fs_nli_sw_Qwen2_5_7B_Instruct.csv",
+      "language": "sw",
+      "task": "nli",
+      "sample_count": 80,
+      "forward_bleu": 0.29967138523496195,
+      "backward_bleu": 0.5087252511283974,
+      "overall_bleu": 0.40419831818167967,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_single_prompt_fs_nli_sw_aya_23_8B.csv",
+      "language": "sw",
+      "task": "nli",
+      "sample_count": 80,
+      "forward_bleu": 0.27107700378525174,
+      "backward_bleu": 0.3524752300537439,
+      "overall_bleu": 0.3117761169194978,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_single_prompt_fs_nli_fr_Qwen2_5_7B_Instruct.csv",
+      "language": "fr",
+      "task": "nli",
+      "sample_count": 80,
+      "forward_bleu": 0.5790654359623594,
+      "backward_bleu": 0.6669854239182478,
+      "overall_bleu": 0.6230254299403035,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_single_prompt_fs_nli_fr_aya_23_8B.csv",
+      "language": "fr",
+      "task": "nli",
+      "sample_count": 80,
+      "forward_bleu": 0.5939201912902193,
+      "backward_bleu": 0.6394599426427083,
+      "overall_bleu": 0.6166900669664639,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_multi_prompt_zs_nli_ur_Qwen2_5_7B_Instruct.csv",
+      "language": "ur",
+      "task": "nli",
+      "sample_count": 80,
+      "forward_bleu": 0.2037725575284665,
+      "backward_bleu": 0.6289511471353579,
+      "overall_bleu": 0.41636185233191225,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_multi_prompt_zs_nli_ur_aya_23_8B.csv",
+      "language": "ur",
+      "task": "nli",
+      "sample_count": 80,
+      "forward_bleu": 0.4169165023757134,
+      "backward_bleu": 0.4555775662372195,
+      "overall_bleu": 0.4362470343064665,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_multi_prompt_zs_nli_sw_Qwen2_5_7B_Instruct.csv",
+      "language": "sw",
+      "task": "nli",
+      "sample_count": 80,
+      "forward_bleu": 0.15290832173240732,
+      "backward_bleu": 0.4878192957988121,
+      "overall_bleu": 0.3203638087656097,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_multi_prompt_zs_nli_sw_aya_23_8B.csv",
+      "language": "sw",
+      "task": "nli",
+      "sample_count": 80,
+      "forward_bleu": 0.2819811157118267,
+      "backward_bleu": 0.31215819778313475,
+      "overall_bleu": 0.29706965674748076,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_multi_prompt_zs_nli_fr_Qwen2_5_7B_Instruct.csv",
+      "language": "fr",
+      "task": "nli",
+      "sample_count": 80,
+      "forward_bleu": 0.276078385411773,
+      "backward_bleu": 0.7791065189407604,
+      "overall_bleu": 0.5275924521762667,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_multi_prompt_zs_nli_fr_aya_23_8B.csv",
+      "language": "fr",
+      "task": "nli",
+      "sample_count": 80,
+      "forward_bleu": 0.6061499543710871,
+      "backward_bleu": 0.6448686249070339,
+      "overall_bleu": 0.6255092896390605,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_multi_prompt_fs_nli_ur_Qwen2_5_7B_Instruct.csv",
+      "language": "ur",
+      "task": "nli",
+      "sample_count": 80,
+      "forward_bleu": 0.1989745694126474,
+      "backward_bleu": 0.6417487060079613,
+      "overall_bleu": 0.4203616377103043,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_multi_prompt_fs_nli_ur_aya_23_8B.csv",
+      "language": "ur",
+      "task": "nli",
+      "sample_count": 80,
+      "forward_bleu": 0.4292187866171798,
+      "backward_bleu": 0.4533768257721745,
+      "overall_bleu": 0.4412978061946772,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_multi_prompt_fs_nli_sw_Qwen2_5_7B_Instruct.csv",
+      "language": "sw",
+      "task": "nli",
+      "sample_count": 80,
+      "forward_bleu": 0.1546342958560788,
+      "backward_bleu": 0.4694689487167426,
+      "overall_bleu": 0.3120516222864107,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_multi_prompt_fs_nli_sw_aya_23_8B.csv",
+      "language": "sw",
+      "task": "nli",
+      "sample_count": 80,
+      "forward_bleu": 0.2840675361777536,
+      "backward_bleu": 0.30762815150193484,
+      "overall_bleu": 0.2958478438398442,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_multi_prompt_fs_nli_fr_Qwen2_5_7B_Instruct.csv",
+      "language": "fr",
+      "task": "nli",
+      "sample_count": 80,
+      "forward_bleu": 0.2674615132868177,
+      "backward_bleu": 0.7572816976958474,
+      "overall_bleu": 0.5123716054913325,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_multi_prompt_fs_nli_fr_aya_23_8B.csv",
+      "language": "fr",
+      "task": "nli",
+      "sample_count": 80,
+      "forward_bleu": 0.6053720186235634,
+      "backward_bleu": 0.6513171405089191,
+      "overall_bleu": 0.6283445795662412,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_mp_fs_ner_ha_aya-23-8B.csv",
+      "language": "ha",
+      "task": "ner",
+      "sample_count": 80,
+      "forward_bleu": 0.1378063038521589,
+      "backward_bleu": 0.41186604324845993,
+      "overall_bleu": 0.2748361735503094,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_mp_fs_ner_hau_Qwen2.5-7B-Instruct.csv",
+      "language": "ha",
+      "task": "ner",
+      "sample_count": 80,
+      "forward_bleu": 0.2755378720189289,
+      "backward_bleu": 0.5549894785966789,
+      "overall_bleu": 0.4152636753078039,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_mp_fs_ner_sw_aya-23-8B.csv",
+      "language": "sw",
+      "task": "ner",
+      "sample_count": 80,
+      "forward_bleu": 0.07080914281491495,
+      "backward_bleu": 0.2612371281346914,
+      "overall_bleu": 0.16602313547480319,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_mp_fs_ner_sw_Qwen2.5-7B-Instruct.csv",
+      "language": "sw",
+      "task": "ner",
+      "sample_count": 80,
+      "forward_bleu": 0.32927775184851593,
+      "backward_bleu": 0.43959100221647934,
+      "overall_bleu": 0.3844343770324976,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_mp_zs_ner_ha_aya-23-8B.csv",
+      "language": "ha",
+      "task": "ner",
+      "sample_count": 80,
+      "forward_bleu": 0.1378063038521589,
+      "backward_bleu": 0.41186604324845993,
+      "overall_bleu": 0.2748361735503094,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_mp_zs_ner_ha_Qwen2.5-7B-Instruct.csv",
+      "language": "ha",
+      "task": "ner",
+      "sample_count": 80,
+      "forward_bleu": 0.31552974859316973,
+      "backward_bleu": 0.6105063996046504,
+      "overall_bleu": 0.46301807409891005,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_mp_zs_ner_sw_aya-23-8B.csv",
+      "language": "sw",
+      "task": "ner",
+      "sample_count": 80,
+      "forward_bleu": 0.07080914281491495,
+      "backward_bleu": 0.2612371281346914,
+      "overall_bleu": 0.16602313547480319,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_mp_zs_ner_sw_Qwen2.5-7B-Instruct.csv",
+      "language": "sw",
+      "task": "ner",
+      "sample_count": 80,
+      "forward_bleu": 0.32675907640748003,
+      "backward_bleu": 0.436706386831864,
+      "overall_bleu": 0.381732731619672,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_sp_fs_ner_ha_aya-23-8B.csv",
+      "language": "ha",
+      "task": "ner",
+      "sample_count": 80,
+      "forward_bleu": 0.2865384615384613,
+      "backward_bleu": 0.32097543218788893,
+      "overall_bleu": 0.3037569468631751,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_sp_fs_ner_hau_Qwen2.5-7B-Instruct.csv",
+      "language": "ha",
+      "task": "ner",
+      "sample_count": 80,
+      "forward_bleu": 0.2865384615384613,
+      "backward_bleu": 0.32097543218788893,
+      "overall_bleu": 0.3037569468631751,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_sp_fs_ner_sw_aya-23-8B.csv",
+      "language": "sw",
+      "task": "ner",
+      "sample_count": 80,
+      "forward_bleu": 0.23880244755244742,
+      "backward_bleu": 0.3447656575001389,
+      "overall_bleu": 0.29178405252629314,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_sp_fs_ner_sw_Qwen2.5-7B-Instruct.csv",
+      "language": "sw",
+      "task": "ner",
+      "sample_count": 80,
+      "forward_bleu": 0.23880244755244742,
+      "backward_bleu": 0.3447656575001389,
+      "overall_bleu": 0.29178405252629314,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_sp_zs_ner_ha_aya-23-8B.csv",
+      "language": "ha",
+      "task": "ner",
+      "sample_count": 80,
+      "forward_bleu": 0.2865384615384613,
+      "backward_bleu": 0.32097543218788893,
+      "overall_bleu": 0.3037569468631751,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_sp_zs_ner_hau_Qwen2.5-7B-Instruct.csv",
+      "language": "ha",
+      "task": "ner",
+      "sample_count": 80,
+      "forward_bleu": 0.2865384615384613,
+      "backward_bleu": 0.32097543218788893,
+      "overall_bleu": 0.3037569468631751,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_sp_zs_ner_sw_aya-23-8B.csv",
+      "language": "sw",
+      "task": "ner",
+      "sample_count": 80,
+      "forward_bleu": 0.23880244755244742,
+      "backward_bleu": 0.3447656575001389,
+      "overall_bleu": 0.29178405252629314,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    },
+    {
+      "file": "results_cotr_sp_zs_ner_sw_Qwen2.5-7B-Instruct.csv",
+      "language": "sw",
+      "task": "ner",
+      "sample_count": 80,
+      "forward_bleu": 0.23880244755244742,
+      "backward_bleu": 0.3447656575001389,
+      "overall_bleu": 0.29178405252629314,
+      "details": {
+        "methodology": "NLLB_ground_truth_forward_backward"
+      }
+    }
+  ]
+}

@@ -13,7 +13,7 @@ import sys
 # Define English labels as the canonical ones
 POSSIBLE_LABELS_EN = ['business', 'entertainment', 'health', 'politics', 'religion', 'sports', 'technology']
 
-# Define LRL translations for MasakhaNEWS labels (needed for LRL few-shot examples)
+# Define LRL translations for MasakhaNEWS labels (for LRL instruction headers)
 CLASS_LABELS_LRL = {
     "sw": { # Swahili
         "health": "afya",
@@ -42,7 +42,6 @@ CLASS_LABELS_LRL = {
         "entertainment": "divertissement",
         "technology": "technologie"
     }
-    # Add other languages if their LRL few-shot examples are defined here
 }
 
 # Initialize logging
@@ -91,7 +90,7 @@ def generate_classification_prompt(
     )
     few_shot_examples_en = ""
     if use_few_shot:
-        # Using the more extensive examples from the user's old script
+        # Standardized to 3 examples for consistency across all tasks
         few_shot_examples_en = f"""
 Examples:
 Text: 'The new healthcare bill was debated in parliament today, focusing on hospital funding and patient care.'
@@ -102,18 +101,6 @@ Category: {possible_labels[2] if len(possible_labels) > 2 and 'politics' in poss
 
 Text: 'The home team secured a stunning victory in the final minutes of the match.'
 Category: {possible_labels[3] if len(possible_labels) > 3 and 'sports' in possible_labels else (possible_labels[3] if len(possible_labels) > 3 else 'sports')}
-
-Text: 'Scientists developed a new artificial intelligence system that can process natural language.'
-Category: {possible_labels[6] if len(possible_labels) > 6 and 'technology' in possible_labels else (possible_labels[6] if len(possible_labels) > 6 else 'technology')}
-
-Text: 'The company announced record profits for the third quarter, driven by strong sales in its new product line.'
-Category: {possible_labels[5] if len(possible_labels) > 5 and 'business' in possible_labels else (possible_labels[5] if len(possible_labels) > 5 else 'business')}
-
-Text: 'The movie premiere was a star-studded event, with critics praising the lead actor\'s performance.'
-Category: {possible_labels[6] if len(possible_labels) > 6 and 'entertainment' in possible_labels else (possible_labels[6] if len(possible_labels) > 6 else 'entertainment')}
-
-Text: 'Thousands of pilgrims gathered for the annual religious festival, participating in traditional ceremonies and prayers.'
-Category: {possible_labels[1] if len(possible_labels) > 1 and 'religion' in possible_labels else (possible_labels[1] if len(possible_labels) > 1 else 'religion')}
 """
     prompt = f"{system_message}\n\n{instruction}\n\n"
     if use_few_shot:
@@ -149,22 +136,9 @@ def generate_lrl_instruct_classification_prompt(
          'label_key': 'politics'},
         {'text': 'The home team secured a stunning victory in the final minutes of the match.', 
          'label_key': 'sports'}
-        # Add more diverse English examples if desired
     ]
 
-    # Swahili Few-shot Examples -- NO LONGER USED, REPLACED BY ENGLISH EXAMPLES
-    # few_shot_examples_sw = [
-    #     {"text": "Nakala hii inazungumzia matukio ya hivi karibuni ya kisiasa barani Afrika.", "kategoria": CLASS_LABELS_LRL.get("sw", {}).get("politics", "siasa")},
-    #     {"text": "Timu ya michezo ya eneo hilo ilishinda mechi yao jana jioni.", "kategoria": CLASS_LABELS_LRL.get("sw", {}).get("sports", "michezo")},
-    #     {"text": "Tamasha la muziki la kila mwaka huvutia maelfu ya watu.", "kategoria": CLASS_LABELS_LRL.get("sw", {}).get("entertainment", "burudani")}
-    # ]
-
-    # Hausa Few-shot Examples -- NO LONGER USED, REPLACED BY ENGLISH EXAMPLES
-    # few_shot_examples_ha = [
-    #     {"text": "Wannan labarin yana magana ne akan al'amuran siyasa na baya-bayan nan a Afirka.", "kategoria": CLASS_LABELS_LRL.get("ha", {}).get("politics", "siyasa")},
-    #     {"text": "Kungiyar wasanni ta gida ta yi nasara a wasansu jiya da yamma.", "kategoria": CLASS_LABELS_LRL.get("ha", {}).get("sports", "wasanni")},
-    #     {"text": "Bikin kade-kade na shekara-shekara yana jan hankalin dubban mutane.", "kategoria": CLASS_LABELS_LRL.get("ha", {}).get("entertainment", "burudani")}
-    # ]
+    # All few-shot examples are now consistently in English across all configurations
 
     instruction_block_current_sample = "" # Will be populated by lang-specific block
     full_prompt_parts = [] # Initialize here

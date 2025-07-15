@@ -1,0 +1,453 @@
+id,text,ground_truth_entities,predicted_entities,runtime_seconds,language,model_name,shot_type,prompt_language,temperature_used,top_p_used,top_k_used,max_tokens_used,repetition_penalty_used,do_sample_used,raw_output
+110,"Mratibu wa Mkoa wa Pwani John Elungata ametoa ripoti hiyo masaa kadhaa baada ya shambulio la kushitukiza katika eneo la Nyongoro , sehemu maarufu ambayo Al - Shabaab imekuwa ikifanya mashambulizi yanayo lenga abiria katika magari na vyombo vya usalama .","[{'text': 'Pwani', 'type': 'LOC'}, {'text': 'John Elungata', 'type': 'PER'}, {'text': 'Nyongoro', 'type': 'LOC'}, {'text': 'Al - Shabaab', 'type': 'ORG'}]","[{'text': 'Mratibu wa Mkoa wa Pwani John Elungata', 'type': 'PER'}, {'text': 'eneo la Nyongoro, sehemu maarufu ambayo Al - Shabaab imekuwa ikifanya mashambulizi yanayo lenga abiria katika magari na vyombo vya usalama', 'type': 'LOC'}, {'text': 'Pwani', 'type': 'LOC'}, {'text': 'Al - Shabaab', 'type': 'ORG'}]",6.79893946647644,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Mratibu wa Mkoa wa Pwani John Elungata] [LOC: eneo la Nyongoro, sehemu maarufu ambayo Al - Shabaab imekuwa ikifanya mashambulizi yanayo lenga abiria katika magari na vyombo vya usalama] [LOC: Pwani] [ORG: Al - Shabaab] ```sw
+Huluki: [PER: Mratibu wa Mkoa wa Pwani John Elungata] [LOC: eneo la Nyongoro, sehemu maarufu ambayo Al - Shabaab imekuwa ikifanya mashambulizi yanayo lenga abiria katika magari na vyombo v"
+452,” Mwelekeo huo ulivurugika wakati wa kashfa ya Watergate ambayo ilipelekea Rais Richard Nixon kujiuzulu mwaka 1974 .,"[{'text': 'Richard Nixon', 'type': 'PER'}, {'text': '1974', 'type': 'DATE'}]","[{'text': 'Rais Richard Nixon', 'type': 'PER'}, {'text': 'mwaka 1974', 'type': 'DATE'}, {'text': 'Watergate', 'type': 'ORG'}, {'text': 'kashfa ya Watergate', 'type': 'LOC'}, {'text': 'kashfa ya Watergate', 'type': 'ORG'}]",6.8232033252716064,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Rais Richard Nixon] [DATE: mwaka 1974] [ORG: Watergate] [LOC: kashfa ya Watergate] ```sw
+Huluki: [PER: Rais Richard Nixon] [DATE: mwaka 1974] [ORG: kashfa ya Watergate] [LOC: kashfa ya Watergate]
+```
+
+Kuna kufikiria kuwa nini yanaweza kubadilika, kumbuka kwamba huluki zinazotolewa kama zina pamoja na majina zao za maandishi. Hii ni njia ya kujibu na kukusaidia kutoa maandishi yako kwenye h"
+568,"Jamhuri ya Kidemokrasia ya Congo - DRC Serikali ya Jamhuri ya kidemokrasia ya Congo inatarajiwa kulegeza masharti yaliyowekwa kudhibiti maambukizi ya virusi vya Corona , hasa katika mji mkuu wa Kinshasa ambao umerekodi visa vingi vya maambukizi ya virusi vya Corona nchini humo .","[{'text': 'Jamhuri ya Kidemokrasia ya Congo', 'type': 'LOC'}, {'text': 'DRC', 'type': 'LOC'}, {'text': 'Jamhuri ya kidemokrasia ya Congo', 'type': 'LOC'}, {'text': 'Kinshasa', 'type': 'LOC'}]","[{'text': 'Jamhuri ya Kidemokrasia ya Congo - DRC', 'type': 'LOC'}, {'text': 'Kinshasa', 'type': 'LOC'}, {'text': 'Serikali ya Jamhuri ya kidemokrasia ya Congo', 'type': 'ORG'}, {'text': 'visa vingi vya maambukizi ya virusi vya Corona nchini humo', 'type': 'DATE'}]",6.982749938964844,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[LOC: Jamhuri ya Kidemokrasia ya Congo - DRC] [LOC: Kinshasa] [ORG: Serikali ya Jamhuri ya kidemokrasia ya Congo] [DATE: visa vingi vya maambukizi ya virusi vya Corona nchini humo]
+Certainly! Here is the text with the entities identified:
+
+**Maandishi (Kiswahili):** 
+'Jamhuri ya Kidemokrasia ya Congo - DRC Serikali ya Jamhuri ya kidemokrasia ya Congo inatarajiwa kulegeza masharti yaliyowekwa kudhibiti maambukizi ya virusi vya Corona, hasa katika mji"
+77,8 na cha Frankfurt Dax kiliporomoka kwa asilimia 1 .,"[{'text': 'Frankfurt', 'type': 'LOC'}]",[],7.019556045532227,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+Maandishi (Kiswahili) ni kufuatayo kwa kutosha, lakini sasa hili inaweza kuwa kulingana na maandishi yote ya ujumla na huchukua huluki zinazotolewa. Kwa hiyo, kuna nani ambayo inaweza kubadilisha ili kupata huluki zinazohitajika? Soma neno la maandishi:
+
+Maandishi (Kiswahili): '8 na cha Frankfurt Dax kiliporomoka kwa asilimia 1.'
+
+Huluki: [NO_ENTITIES_FOUND]
+
+Neno la maandishi inaweza ku"
+181,"Kuongezeka kasi kwa kesi hiyo anasema inatokana na wanachama wa ngazi ya juu na mwanasheria wa Trump binafsi , Rudy Giuliani kupuuza hati ya wito juu ya shauri la uchunguzi linalotaka kumuondoa madarakani rais .","[{'text': 'Trump', 'type': 'PER'}, {'text': 'Rudy Giuliani', 'type': 'PER'}]",[],6.952280282974243,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Wanachama wa ngazi ya juu] [PER: mwanasheria wa Trump] [PER: Rudy Giuliani] [ORG: madarakani rais] [NO_ENTITIES_FOUND] (In this case, ""wanachama wa ngazi ya juu"" is a general term and not a specific person's name, hence it's not considered as a PER entity. Similarly, ""madarakani rais"" is a position and not an organization name, so it's not considered as an ORG entity.)
+```plaintext
+Huluki: [PER: mwanasheria wa Trump] [PER: Rudy Giuliani] [ORG: madarakani rais] [NO_ENTITIES_FOUND]
+```
+```plaintext
+Maandishi (Kiswahili"
+284,"Nchi hiyo , ambayo ni maarufu kwa utalii na moja wapo ya mataifa imara zaidi barani Afrika , hufanya uchaguzi kila baada ya miaka mitano , na wa mwisho ulifanyika mnamo 2014 .","[{'text': 'Afrika', 'type': 'LOC'}, {'text': '2014', 'type': 'DATE'}]",[],6.793567180633545,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[ORG: mataifa] [LOC: Afrika] [DATE: 2014] [PER: utalii]\n
+Maandishi (Kiswahili): 'Kazi hili ni kujenga jamii kwenye maeneo ya kuwa na mazingira kwa ajili ya kujenga maendeleo ya watu.'
+
+Huluki: [NO_ENTITIES_FOUND]
+Maandishi (Kiswahili): 'Wanawake wengi wamefanya kazi kwa kijamii kwenye maeneo ya kuwa na mazingira.'
+
+Huluki: [PER: Wanawake wengi]
+Maandishi (Kiswahili): 'U"
+10,"Ruhakana Rugunda na waziri wa mambo ya nje Sam Kutesa , kusimamia mpango wa kuwarejesha nyumbani raia wa Uganda waliokwama nje ya nchi .","[{'text': 'Ruhakana Rugunda', 'type': 'PER'}, {'text': 'Sam Kutesa', 'type': 'PER'}, {'text': 'Uganda', 'type': 'LOC'}]","[{'text': 'Rugunda', 'type': 'PER'}, {'text': 'Sam Kutesa', 'type': 'PER'}, {'text': 'waziri wa mambo ya nje', 'type': 'ORG'}, {'text': 'Uganda', 'type': 'LOC'}, {'text': 'nchi', 'type': 'LOC'}]",5.7556984424591064,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Rugunda] [PER: Sam Kutesa] [ORG: waziri wa mambo ya nje] [LOC: Uganda] [LOC: nchi] ```sw
+Huluki: [PER: Rugunda] [PER: Sam Kutesa] [ORG: waziri wa mambo ya nje] [LOC: Uganda] [LOC: nchi]
+```sw
+
+Kuna kujibu kwa kila huluki zilizo kubadilisha na maandishi yake. Hii ni matokeo yoyote yako ya huluki kama orodha."
+473,"May alielezea sifa za Mkurugenzi wa VOA , Amanda Bennett kama ni mtu aliyetoka katika utawala wa Rais Mdemokrat Barack Obama , ambaye alishindwa kuelezea kwa kina sera za utawala wa Trump kwa dunia .","[{'text': 'May', 'type': 'PER'}, {'text': 'VOA', 'type': 'ORG'}, {'text': 'Amanda Bennett', 'type': 'PER'}, {'text': 'Barack Obama', 'type': 'PER'}, {'text': 'Trump', 'type': 'PER'}]","[{'text': 'Amanda Bennett', 'type': 'PER'}, {'text': 'Barack Obama', 'type': 'PER'}, {'text': 'Donald Trump', 'type': 'PER'}, {'text': 'Voice of America (VOA)', 'type': 'ORG'}, {'text': 'Utawala wa Rais Mdemokrat Barack Obama', 'type': 'LOC'}, {'text': 'Dunia', 'type': 'LOC'}]",5.975716829299927,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Amanda Bennett] [PER: Barack Obama] [PER: Donald Trump] [ORG: Voice of America (VOA)] [LOC: Utawala wa Rais Mdemokrat Barack Obama] [LOC: Dunia] ```sw
+Huluki: [PER: Amanda Bennett] [PER: Barack Obama] [PER: Donald Trump] [ORG: Voice of America (VOA)] [LOC: Utawala wa Rais Mdemokrat Barack Obama] [LOC: Dunia]
+```
+Kuna kujadili kwa kila huluki zilizo kubadilika na maandishi yake."
+78,5 .,[],[],7.0192906856536865,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+Maandishi (Kiswahili): '5 '\n\nHuluki: [NO_ENTITIES_FOUND]
+Maandishi (Kiswahili): 'Ndiyo, hapa ni namba ya muda.'\n\nHuluki: [DATE: namba ya muda]
+Maandishi (Kiswahili): 'Ndiyo, hapa ni namba ya muda. Hii ni namba ya muda zaidi ya 10.'\n\nHuluki: [DATE: namba ya muda]
+Maandishi (Kiswahili): 'Ndiyo, hapa ni namba ya muda. Hii ni namba ya muda z"
+350,"Ujumbe wa Video Kupitia ujumbe wa video fupi iliyosambaa mitandaoni wakati Masele akihojiwa kuhusu tuhuma zinazomkabili Rais wa PAP , alisema amefurahi baada ya kamati ya uchunguzi iliyoundwa na Bunge hilo kuchunguza tuhuma hizo zinazomkabili Rais kukamilisha kazi yake .","[{'text': 'Masele', 'type': 'PER'}, {'text': 'PAP', 'type': 'ORG'}]",[],6.964308023452759,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Rais wa PAP] [ORG: Bunge] [PER: Masele akihojiwa] [NO_ENTITIES_FOUND]
+It seems there was a misunderstanding in the tagging of entities in the provided text. Let's correct it:
+
+**Maandishi (Kiswahili):** ""Ujumbe wa Video Kupitia ujumbe wa video fupi iliyosambaa mitandaoni wakati Masele akihojiwa kuhusu tuhuma zinazomkabili Rais wa PAP, alisema amefurahi baada ya kamati ya uchunguzi iliyoundwa na Bunge hilo kuchunguza tuhuma hizo z"
+55,"Sikukuu ya siku tatu , inayoadhimisha kumalizika kwa mwezi mtufuku wa Ramadhan , kwa kawaida inasheherekewa misikitini , karamu katika familia na ununuzi wa nguo mpya , zawadi na kupeana vyakula vitamu .","[{'text': 'siku tatu', 'type': 'DATE'}]",[],7.007141590118408,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+Mfano wa jibu:
+Maandishi (Kiswahili): 'Sikukuu ya siku tatu, inayoadhimisha kumalizika kwa mwezi mtufuku wa Ramadhan, kwa kawaida inasheherekewa misikitini, karamu katika familia na ununuzi wa nguo mpya, zawadi na kupeana vyakula vitamu.'
+Huluki: [NO_ENTITIES_FOUND]
+
+Kwa kutosha, hakuna huluki zilizopatikana katika maandishi hii. Maandishi hii ni muhimu kwa kutosha na hakuna majina ya person"
+118,Kwa mujibu wa shirika la habari la Uingereza Reuters hisa za shirika la ndege la Ujerumani Luftansa zilipanda kwa asilimia 6 .,"[{'text': 'Uingereza', 'type': 'LOC'}, {'text': 'Reuters', 'type': 'ORG'}, {'text': 'Ujerumani', 'type': 'LOC'}, {'text': 'Luftansa', 'type': 'ORG'}]","[{'text': 'Reuters', 'type': 'ORG'}, {'text': 'Luftansa', 'type': 'ORG'}, {'text': 'Ujerumani', 'type': 'ORG'}, {'text': 'asilimia 6', 'type': 'DATE'}]",6.6890058517456055,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[ORG: Reuters] [ORG: Luftansa]
+Maandishi (Kiswahili): 'Kwa mujibu wa shirika la habari la Uingereza Reuters hisa za shirika la ndege la Ujerumani Luftansa zilipanda kwa asilimia 6 .'\n\nHuluki: [ORG: Reuters] [ORG: Luftansa] [ORG: Ujerumani] [DATE: asilimia 6] Jukumu lako ni kutambua huluki zilizo na majina katika maandishi yafuatayo ya Kiswahili. Huluki zinazojulikana ni: PER (Person), ORG (Organization), LOC"
+109,Wanajeshi wa Kenya Alhamisi wamewaua washukiwa wanne wa wapiganaji wa kikundi cha Al - Shabaab na kumkamata mmoja wao baada ya tukio la kushambuliwa basi katika Kaunti ya Lamu .,"[{'text': 'Kenya', 'type': 'LOC'}, {'text': 'Alhamisi', 'type': 'DATE'}, {'text': 'Al - Shabaab', 'type': 'ORG'}, {'text': 'Lamu', 'type': 'LOC'}]","[{'text': 'Wanajeshi wa Kenya Alhamisi', 'type': 'PER'}, {'text': 'Wapiganaji wa kikundi cha Al-Shabaab', 'type': 'ORG'}, {'text': 'Kaunti ya Lamu', 'type': 'LOC'}]",6.691410303115845,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Wanajeshi wa Kenya Alhamisi] [ORG: Wapiganaji wa kikundi cha Al-Shabaab] [LOC: Kaunti ya Lamu] ```sw
+[PER: Wanajeshi wa Kenya Alhamisi] [ORG: Wapiganaji wa kikundi cha Al-Shabaab] [LOC: Kaunti ya Lamu]
+```sw
+
+Mfano za kujibu:
+
+1. Maandishi (Kiswahili): 'Wanajeshi wa Kenya Alhamisi wamewaua washukiwa wanne wa wapiganaji wa kikundi cha Al - Shabaab na kumkamata mmoja wao baada ya tukio la"
+592,"Nchi hiyo , haijaripoti kisa chochote cha maambukizi ya Corona , lakini amri ya watu kusalia makwao imekuwa ikitekelezwa kwa mda wa wiki tatu zilizopita .",[],[],6.839426279067993,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+Maandishi (Kiswahili) ni: 'Nchi hiyo haijaripoti kisa chochote cha maambukizi ya Corona, lakini amri ya watu kusalia makwao imekuwa ikitekelezwa kwa mda wa wiki tatu zilizopita.'
+
+Huluki: [NO_ENTITIES_FOUND] Yes, that's correct. The text does not contain any named entities such as persons, organizations, or locations. Therefore, the appropriate classification is [NO_ENTITIES_FOUND].
+
+Here’s the final output:
+
+Maandishi (Kiswahili): 'Nchi hiyo haijaripoti kisa chochote cha maambukizi ya Corona, lakini"
+371,Msigwa alihoji .,"[{'text': 'Msigwa', 'type': 'PER'}]",[],6.796015501022339,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+
+Mfano zaidi (Kiswahili): 'Msimbi wa Wanyama wa Ujuzi ulikuwa na msingi mrefu katika Nairobi kati ya kawaida.'\n\nHuluki: [PER: Wanyama wa Ujuzi] [LOC: Nairobi] ```sw
+Mfano (Kiswahili): 'Msimbi wa Wanyama wa Ujuzi ulikuwa na msingi mrefu katika Nairobi kati ya kawaida.'
+
+Huluki: [PER: Wanyama wa Ujuzi] [LOC: Nairobi]
+``` 
+
+Kuna kujadili kwa kutosha kwa sabab"
+234,Walikuwa wapi ?,[],[],6.714167594909668,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+
+Maandishi (Kiswahili): 'Mungu ni Mungu na wewe ni wewe, kuna njia mbalimbali kuhusu kazi yako na kazi yangu.' 
+Huluki: [NO_ENTITIES_FOUND]
+Maandishi (Kiswahili): 'Mungu ni Mungu na wewe ni wewe, kuna njia mbalimbali kuhusu kazi yako na kazi yangu.'
+Huluki: [NO_ENTITIES_FOUND] Maandishi (Kiswahili): 'Mungu ni Mungu na wewe ni wewe, kuna njia mbalimbali kuhusu kazi yako na"
+30,Maafisa wa serikali ya Kenya wanasema watu watatu wameuawa Alhamisi wakati watu wanaoshukiwa kuwa ni wapiganaji wa al - Shabab walipo lishambulia basi katika kaunti ya pwani ya Lamu .,"[{'text': 'Kenya', 'type': 'LOC'}, {'text': 'Alhamisi', 'type': 'DATE'}, {'text': 'al - Shabab', 'type': 'ORG'}, {'text': 'Lamu', 'type': 'LOC'}]",[],6.701927185058594,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Al - Shabab] [ORG: Serikali ya Kenya] [LOC: Lamu] [DATE: Alhamisi] [NO_ENTITIES_FOUND] (Kumbuka kuwa kipengele ""Alhamisi"" ni kipengele mpya kwa sababu hili ni kipengele ya kati ya maana, huchukuliwa kama kipengele mpya.) Maandishi yako yanayofuata kama iliyopatikana katika muundo hii.
+Maandishi (Kiswahili): 'Maafisa wa serikali ya Kenya wanasema watu watatu wameuawa Alhamisi wakati watu wana"
+212,"Serikali ya Tanzania imekata rufaa kupinga kuachiliwa huru Mkurugenzi Mkuu wa zamani wa Shirika la Utangazaji Tanzania ( TBC ) , Tido Mhando .","[{'text': 'Tanzania', 'type': 'LOC'}, {'text': 'Shirika la Utangazaji Tanzania', 'type': 'ORG'}, {'text': 'TBC', 'type': 'ORG'}, {'text': 'Tido Mhando', 'type': 'PER'}]","[{'text': 'Mkurugenzi Mkuu wa zamani wa Shirika la Utangazaji Tanzania (TBC)', 'type': 'PER'}, {'text': 'Shirika la Utangazaji Tanzania (TBC)', 'type': 'ORG'}, {'text': 'Tido Mhando', 'type': 'LOC'}, {'text': 'Serikali ya Tanzania', 'type': 'ORG'}]",6.70805549621582,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Mkurugenzi Mkuu wa zamani wa Shirika la Utangazaji Tanzania (TBC)] [ORG: Shirika la Utangazaji Tanzania (TBC)] [LOC: Tido Mhando] [ORG: Serikali ya Tanzania] ```sw
+[PER: Mkurugenzi Mkuu wa zamani wa Shirika la Utangazaji Tanzania (TBC)] [ORG: Shirika la Utangazaji Tanzania (TBC)] [LOC: Tido Mhando] [ORG: Serikali ya Tanzania]
+```sw
+
+Kuna kujadili kwa kila huluki zilizo kubadilika na majina ya maandishi yako. Hii ni njia"
+184,"Ofisi ya bajeti ya White House pia imekataa ombi la Baraza hilo , na mwanasheria binafsi wa Rais Trump , Rudy Giuliani pia amekataa kuitika wito wa hati inayomtaka kutoa nyaraka zinazohusiana na juhudi za kuishinikiza Ukraine kumchunguza makamu wa rais wa zamani na mgombea urais wa Democrat hivi sasa , Joe Biden .","[{'text': 'White House', 'type': 'LOC'}, {'text': 'Trump', 'type': 'PER'}, {'text': 'Rudy Giuliani', 'type': 'PER'}, {'text': 'Ukraine', 'type': 'LOC'}, {'text': 'Democrat', 'type': 'ORG'}, {'text': 'Joe Biden', 'type': 'PER'}]","[{'text': 'White House', 'type': 'ORG'}, {'text': 'Rudy Giuliani', 'type': 'PER'}, {'text': 'Donald Trump', 'type': 'PER'}, {'text': 'Joe Biden', 'type': 'PER'}, {'text': 'Ukraine', 'type': 'LOC'}]",7.370686769485474,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[ORG: White House] [PER: Rudy Giuliani] [PER: Donald Trump] [PER: Joe Biden] [LOC: Ukraine] ```sw
+Huluki: [ORG: White House] [PER: Rudy Giuliani] [PER: Donald Trump] [PER: Joe Biden] [LOC: Ukraine]
+```sw
+
+Kuna kujadili kwa kutosha kwa sababu:
+
+- **ORG (Organization)**: ""White House"" ni ofisi ya kawaida ya ujumla.
+- **PER (Person)**: ""Rudy Giuliani"", ""Donald Trump"", na ""Joe Biden"" ni majina ya wateja.
+- **LOC (Location)**: ""Ukraine"" ni jina la jamii.
+
+Sijapit"
+86,"37 kwa pipa , kikiwa juu kwa asilimia 4 .",[],[],7.0721755027771,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+
+Mfano wa kuongeza (Kiswahili): 'Mwalimu Mwita alikuwa amepiga ujumla wa ajira za 500,000 kwa siku 30 kwenye jeshi la Umoja na Uchumi wa Kiunguja.'\n\nHuluki: [PER: Mwalimu Mwita] [ORG: Umoja na Uchumi wa Kiunguja] [DATE: siku 30] [NO_ENTITIES_FOUND] (Safi kwa siku 30, linatumika kama kipato ya kipengele)\n\nTafadhali tuma matokeo"
+2,"” Miongoni mwa hatua alizochukua rais huyo kukabiliana na maambukizi ya virusi vya Corona ni kupiga marufuku usafiri wa magari , kufunga biashara ambazo sio muhimu isipokuwa uuzaji na ununuzi wa chakula na dawa .",[],"[{'text': 'rais huyo', 'type': 'PER'}, {'text': 'maambukizi ya virusi vya Corona', 'type': 'LOC'}, {'text': 'marufuku usafiri wa magari', 'type': 'ORG'}, {'text': 'sio muhimu', 'type': 'DATE'}]",7.1888651847839355,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: rais huyo] [LOC: maambukizi ya virusi vya Corona] [ORG: marufuku usafiri wa magari] [DATE: sio muhimu] [NO_ENTITIES_FOUND: biashara ambazo sio muhimu isipokuwa uuzaji na ununuzi wa chakula na dawa] ```plaintext
+[PER: rais huyo] [LOC: maambukizi ya virusi vya Corona] [ORG: marufuku usafiri wa magari] [NO_ENTITIES_FOUND: biashara ambazo sio muhimu isipokuwa uuzaji na ununuzi wa chakula na dawa]
+```plaintext
+[PER: rais h"
+374,"Kauli ya Chenge Chenge ambaye aliwahi kuwa Mwanasheria Mkuu wa Serikali , aliwataka wabunge kusubiri hadi taarifa ya suala hilo itakapowasilishwa bungeni na Kamati ya Kudumu ya Bunge ya Haki , Maadili na Madaraka ya Bunge na watakuwa na nafasi ya kujadili .","[{'text': 'Chenge Chenge', 'type': 'PER'}]",[],6.677173376083374,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Mwanasheria Mkuu wa Serikali] [ORG: Kamati ya Kudumu ya Bunge ya Haki , Maadili na Madaraka ya Bunge] [NO_ENTITIES_FOUND] (Kwa sababu hakuna jina la jumla linalovunza au jina la jamii, ushauri, au mashirika) ```plaintext
+Huluki: [PER: Mwanasheria Mkuu wa Serikali] [ORG: Kamati ya Kudumu ya Bunge ya Haki , Maadili na Madaraka ya Bunge] [NO_ENTITIES_FOUND]
+``` 
+
+Kwa kutosha, huluki zitajwa kama ni kwa sab"
+538,Lakini uchumi wao unaporomoka .,[],[],6.6785383224487305,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND] Maandishi (Kiswahili) linalofuata kama [NO_ENTITIES_FOUND] kwa sababu wake linatumika kama ujumla au ukweli na linapatikana kwenye maeneo yoyote, jinsi ni kwa ajili ya ujumla au kujadili. Angalia kumbuka hii na usisite matokeo yako kwenye muundo huu.
+Maandishi (Kiswahili): 'Lakini uchumi wao unaporomoka kwenye nyumba yake.'
+
+Huluki: [PER: uchumi] [LOC: nyumba yake]
+Mfano h"
+600,Bei ya mkate imeongezeka kutoka dola 20 za Zimbabwe had idola 30 .,"[{'text': 'Zimbabwe', 'type': 'LOC'}]",[],7.004455804824829,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+Maandishi (Kiswahili) ni kipengele ambazo inaweza kufuatayo kwa ajili ya kujulikana na huluki zinazotolewa. Kuna nini ambayo inaweza kufuatayo kwa maandishi hii? Maandishi (Kiswahili): 'Bei ya mkate imeongezeka kutoka dola 20 za Zimbabwe had idola 30.'
+Huluki: [NO_ENTITIES_FOUND]
+
+Maandishi (Kiswahili) inaweza kufuatayo kama:
+
+Bei ya mkate imeongezeka kutoka dola 20 za Zimbabwe had idola 30"
+370,"Bunge litakuwa na nguvu gani ya kuwalinda hawa tunaowachagua ? """"""""",[],[],7.060866832733154,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+
+Maandishi (Kiswahili): 'Mungu alimwambia Mungu alikuwa anaweza kufanya hivi kwa sababu alikuwa anapenda watu.'
+Huluki: [NO_ENTITIES_FOUND]
+Maandishi (Kiswahili): 'Mungu alimwambia Mungu alikuwa anaweza kufanya hivi kwa sababu alikuwa anapenda watu.'
+Huluki: [NO_ENTITIES_FOUND] Maandishi (Kiswahili): 'Bunge litakuwa na nguvu gani ya kuwalinda hawa tunaowachagua?'
+Huluki: [NO_ENTITIES"
+318,Li .,"[{'text': 'Li', 'type': 'PER'}]",[],5.2402143478393555,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND] Maandishi (Kiswahili) ni sifa ya maandishi ambayo hutoa huluki zilizopo. Kwa hiyo, kumbuka kuwa [NO_ENTITIES_FOUND] ni neno linalotumika kwa ajili ya kuwa huluki zilizopo katika maandishi yake. Hii ni matokeo yoyote ya kujibu.
+Maandishi ya Kiswahili: 'Li .'
+Huluki: [NO_ENTITIES_FOUND]"
+72,"Iran Iran , ambayo imepitia mlipuko wenye vifo vingi katika Mashariki ya Kati , imewataka raia wake kuepuka kusafiri wakati wa Eid wakati ikipambana kudhibiti kiwango cha maambukizo nchini humo .","[{'text': 'Iran Iran', 'type': 'LOC'}]","[{'text': 'Iran', 'type': 'LOC'}, {'text': 'Mashariki ya Kati', 'type': 'LOC'}, {'text': 'raia wake', 'type': 'PER'}, {'text': 'Eid wakati ikipambana', 'type': 'DATE'}, {'text': 'kiwango cha maambukizo', 'type': 'ORG'}]",6.7177414894104,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[LOC: Iran] [LOC: Mashariki ya Kati] [PER: raia wake] [DATE: Eid wakati ikipambana] [ORG: kiwango cha maambukizo]\n
+Huluki zilizo ni: [LOC: Iran] [LOC: Mashariki ya Kati] [PER: raia wake] [DATE: Eid wakati ikipambana] [ORG: kiwango cha maambukizo].\n\nWasiliana: [LOC: Iran] [LOC: Mashariki ya Kati] [PER: raia wake] [DATE: Eid wakati ikipambana] [ORG: kiwango cha maambukizo].\n\nMf"
+135,"Abdallah Hammoud muandamanaji mjini Beirut akizungumza na shirika la habari la Reuters , amewapongeza waandamanaji kwa ushindi wao .","[{'text': 'Abdallah Hammoud', 'type': 'PER'}, {'text': 'Beirut', 'type': 'LOC'}, {'text': 'Reuters', 'type': 'ORG'}]","[{'text': 'Abdallah Hammoud', 'type': 'PER'}, {'text': 'shirika la habari la Reuters', 'type': 'ORG'}, {'text': 'Beirut', 'type': 'LOC'}]",4.5838024616241455,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Abdallah Hammoud] [ORG: shirika la habari la Reuters] [LOC: Beirut] ```sw
+Huluki: [PER: Abdallah Hammoud] [ORG: shirika la habari la Reuters] [LOC: Beirut]
+```sw
+
+Kuna tiba tayari kuhusu huluki za maandishi yako. Hakikisha kuongeza kila mistari kama zinazofanana na maandishi yako."
+559,Kenyatta alisema hayo baada ya video inayoonyesha watu wanaoruka ukuta kutoka katika kituo cha karantini kusambaa kwenye mitandao ya kijamii .,"[{'text': 'Kenyatta', 'type': 'PER'}]","[{'text': 'Kenyatta', 'type': 'PER'}, {'text': 'kituo cha karantini', 'type': 'LOC'}, {'text': 'mitandao ya kijamii', 'type': 'LOC'}, {'text': 'Desamba 2023', 'type': 'DATE'}, {'text': 'Januari 2024', 'type': 'DATE'}, {'text': 'nchi za Afrika', 'type': 'LOC'}, {'text': 'nchi za Afrika Mashariki', 'type': 'LOC'}]",7.0745134353637695,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Kenyatta] [LOC: kituo cha karantini] [LOC: mitandao ya kijamii]
+Maandishi (Kiswahili): 'Nchi za Afrika alipata tiba za kazi kwa jamii kwenye nchi za Afrika Mashariki kati ya Desamba 2023 na Januari 2024.'\n\nHuluki: [DATE: Desamba 2023] [DATE: Januari 2024] [LOC: nchi za Afrika] [LOC: nchi za Afrika Mashariki]
+Maandishi (Kiswahili): 'Wanawake wengi wanaele"
+443,"Hiyo ni kwa sababu wakati taasisi ya habari kwa kawaida inaongozwa na mtu anayeteuliwa na White House , habari zinazofanywa na waandishi waliobobea katika taaluma hiyo wanatakiwa kisheria kutoelemea upande wowote .","[{'text': 'White House', 'type': 'LOC'}]","[{'text': 'White House', 'type': 'PER'}, {'text': 'waandishi waliobobea katika taaluma hiyo', 'type': 'ORG'}, {'text': 'kwa sababu wakati taasisi ya habari kwa kawaida', 'type': 'LOC'}, {'text': 'hiyo wanatakiwa kisheria kutoelemea upande wowote', 'type': 'DATE'}, {'text': 'waandishi waliobea katika taaluma hiyo', 'type': 'ORG'}]",7.045823574066162,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: White House] [ORG: waandishi waliobobea katika taaluma hiyo] [LOC: kwa sababu wakati taasisi ya habari kwa kawaida] [DATE: hiyo wanatakiwa kisheria kutoelemea upande wowote] ```plaintext
+Huluki: [PER: White House] [ORG: waandishi waliobea katika taaluma hiyo] [LOC: kwa sababu wakati taasisi ya habari kwa kawaida] [DATE: hiyo wanatakiwa kisheria kutoelemea upande wowote]
+```plaintext
+Huluki: [PER: White House] ["
+599,Bei ya vyakula imeendelea kuongezeka katika wiki za hivi karibuni .,[],[],6.834299802780151,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+Maandishi (Kiswahili): 'Mungu imewasha wimbo wake kwenye mazingira ya Kenya kati ya 1960 na 1970.'\n\nHuluki: [PER: Mungu] [LOC: Kenya] [DATE: 1960-1970] Mfano wa muundo: [PER: Juma Kaseja] [LOC: Dar es Salaam] [DATE: Julai 2024].
+
+Maandishi (Kiswahili): 'Nchi ya Kenya inaweza kujenga mazingira kwenye nchi ya Uganda kwa ajili ya kufanya busara k"
+163,"Prince Harry ameiambia ITV kuwa mengi ya mambo ambayo yanachapishwa katika magazeti ya udaku siyo ya kweli , akiongeza “ sitakubali kuingizwa katika hujuma iliyomuua mama yangu .","[{'text': 'Harry', 'type': 'PER'}, {'text': 'ITV', 'type': 'ORG'}]",[],4.8458662033081055,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Prince Harry] [ORG: ITV] [NO_ENTITIES_FOUND] Maandishi (Kiswahili): 'Prince Harry ameiambia ITV kuwa mengi ya mambo ambayo yanachapishwa katika magazeti ya udaku siyo ya kweli, akiongeza ""sitakubali kuingizwa katika hujuma iliyomuua mama yangu.'
+
+Huluki: [PER: Prince Harry] [ORG: ITV] [NO_ENTITIES_FOUND]"
+82,"Wawekezaji wanaonekana kuvunjika moyo kutokana na tahadhari iliyotolewa Jumatano na Mwenyekiti wa Benki Kuu ya Marekani Jerome Powell , kuwa hali ya kudorora hivi sasa kwa uchumi imesababishwa na mlipuko wa COVID - 19 ulimwenguni na utaendelea kwa muda mrefu katika siku za usoni .","[{'text': 'Jumatano', 'type': 'DATE'}, {'text': 'Marekani', 'type': 'LOC'}, {'text': 'Jerome Powell', 'type': 'PER'}]",[],6.8300697803497314,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Jerome Powell] [ORG: Benki Kuu ya Marekani] [DATE: Hivi Sasa] [LOC: Marekani]
+Maandishi (Kiswahili): 'Nchi ya Kenya inaweza kujenga mazingira kwa ajili ya kufanya kazi kwa jirani kwa jirani.'
+
+Huluki: [NO_ENTITIES_FOUND] Maandishi (Kiswahili): 'Wanawake wanaonekana kuvunjika moyo kutokana na tahadhari iliyotolewa Jumatano na Mwenyekiti wa Benki Kuu ya Marekani Jerome Powell, kuwa hali ya kudorora hivi sasa"
+257,"Nyota mchekeshaji kwenye jukwaa , filamu na televisheni Jerry Stiller amefariki akiwa na umri wa miaka 92 .","[{'text': 'Jerry Stiller', 'type': 'PER'}]","[{'text': 'Jerry Stiller', 'type': 'PER'}, {'text': 'miaka 92', 'type': 'DATE'}, {'text': 'filamu na televisheni', 'type': 'ORG'}, {'text': 'Jukwaa', 'type': 'LOC'}]",6.748586416244507,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Jerry Stiller] [DATE: miaka 92] [ORG: filamu na televisheni] [LOC: Jukwaa] ```sw
+Huluki: [PER: Jerry Stiller] [DATE: miaka 92] [ORG: filamu na televisheni] [LOC: Jukwaa]
+```sw
+
+Kuna kujadili kwa kujadiliano kwa kila huluki:
+
+- **PER (Person)**: Jerry Stiller
+- **DATE (Date)**: miaka 92
+- **ORG (Organization)**: filamu na televisheni
+- **LOC (Location)**: Jukwaa
+
+Mfano wako ni sahi"
+192,"Kauli ya mabalozi nchini Tanzania “ Kwa kawaida , naanza siku yangu kwa kusoma baadhi ya magazeti , likiwemo gazeti lililofungiwa la The Citizen , “ Balozi wa Uingereza nchini Tanzania Sarah Cooke ameandika katika akaunti yake ya Twitter .","[{'text': 'Tanzania', 'type': 'LOC'}, {'text': 'The Citizen', 'type': 'ORG'}, {'text': 'Uingereza', 'type': 'LOC'}, {'text': 'Tanzania', 'type': 'LOC'}, {'text': 'Sarah Cooke', 'type': 'PER'}, {'text': 'Twitter', 'type': 'ORG'}]",[],6.784996032714844,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Sarah Cooke] [ORG: The Citizen] [LOC: Tanzania] [NO_ENTITIES_FOUND] (kwa sababu hakuna ujuzi wa kawaida ya kauli katika maandishi hii) ```plaintext
+[PER: Sarah Cooke] [ORG: The Citizen] [LOC: Tanzania]
+```plaintext
+[NO_ENTITIES_FOUND]
+```plaintext
+```plaintext
+[PER: Sarah Cooke] [ORG: The Citizen] [LOC: Tanzania]
+```plaintext
+```plaintext
+[NO_ENTITIES_FOUND]
+```plaintext
+```plaintext
+[PER: Sarah Cooke] [ORG: The Citizen] [LOC: Tanzania]
+```plaintext
+```plaintext
+[NO_ENTITIES_FOUND]
+```plaintext
+```plaintext
+[PER: Sarah"
+457,"“ Walikuwa wakisema , katika habari hivi leo Rais ametajwa kuwa ni mhusika ambaye hatashtakiwa katika mgogoro wa Watergate … na Mke wake Bi Nixon amefungua shule mpya ya watoto hapa Washington DC .","[{'text': 'Bi Nixon', 'type': 'PER'}, {'text': 'Washington DC', 'type': 'LOC'}]","[{'text': 'Rais, Mke wake Bi Nixon', 'type': 'PER'}, {'text': 'mgogoro wa Watergate, Washington DC', 'type': 'LOC'}]",6.73960018157959,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Rais, Mke wake Bi Nixon] [LOC: mgogoro wa Watergate, Washington DC] ```sw
+Huluki: [PER: Rais, Mke wake Bi Nixon] [LOC: mgogoro wa Watergate, Washington DC]
+```
+
+Kuna kujadili kwa kujadiliano kwa kutosha, nimekufanya kazi kama vile:
+
+- ""Rais"" ni jina la mwanamke ambalo inaweza kubadilika kwa ""Mwalimu"" au ""Wali"" kama wakati.
+- ""mgogoro wa Watergate"" ni jina la mji ambalo inaweza kubadilika kwa ""Watergate"
+132,Ghasia hizo zilisababishwa na wafuasi wa kundi la kishia la Hezbollah linaloongozwa na Imam Hassan Nasrallah na kundi la Amal la Nabih Berri .,"[{'text': 'Hezbollah', 'type': 'ORG'}, {'text': 'Hassan Nasrallah', 'type': 'PER'}, {'text': 'Amal', 'type': 'ORG'}, {'text': 'Nabih Berri', 'type': 'PER'}]","[{'text': 'Imam Hassan Nasrallah', 'type': 'PER'}, {'text': 'Hezbollah', 'type': 'ORG'}, {'text': 'Amal', 'type': 'ORG'}, {'text': 'Nabih Berri', 'type': 'PER'}]",4.568005084991455,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Imam Hassan Nasrallah] [ORG: Hezbollah] [ORG: Amal] [PER: Nabih Berri] ```sw
+[PER: Imam Hassan Nasrallah] [ORG: Hezbollah] [ORG: Amal] [PER: Nabih Berri]
+```sw
+
+Kuna kujadili kwa kutosha! Huluki zitajwa kipindi cha kila moja kama iliyopatikana katika maandishi yake."
+518,"Wakati wa ghasia huko DRC , Ntganda na jopo lake la wanajeshi wa UPC wengi kutoka kabila la Hema waliwalenga kabila la Lendu kwenye jimbo lenye utajiri wa madini la Ituri .","[{'text': 'DRC', 'type': 'LOC'}, {'text': 'Ntganda', 'type': 'PER'}, {'text': 'UPC', 'type': 'ORG'}, {'text': 'Ituri', 'type': 'LOC'}]","[{'text': 'DRC', 'type': 'LOC'}, {'text': 'Ntganda', 'type': 'PER'}, {'text': 'UPC', 'type': 'ORG'}, {'text': 'Ituri', 'type': 'LOC'}, {'text': 'kabila la Hema', 'type': 'LOC'}, {'text': 'kabila la Lendu', 'type': 'LOC'}, {'text': 'Mungu', 'type': 'PER'}, {'text': 'Dar es Salaam', 'type': 'LOC'}, {'text': 'wimbi wake', 'type': 'PER'}]",6.884359836578369,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[LOC: DRC] [PER: Ntganda] [ORG: UPC] [LOC: Ituri] [LOC: kabila la Hema] [LOC: kabila la Lendu]
+Maandishi (Kiswahili): 'Kila siku, Mungu alimwambia wimbi wake kwenye mizimu wa Mtakatifu wa Ujumla katika Dar es Salaam.'\n\nHuluki: [PER: Mungu] [LOC: Dar es Salaam] [PER: wimbi wake]
+Maandishi (Kiswahili): 'Nchi za Afrika au Afrika za Umoja wamekuwa na ujumla wa kufanya k"
+445,Mkurugenzi wa VOA Amanda Bennett alilipinga dai hilo na kusema shirika “ linajitahidi kuripoti bila ya kupigia debe habari ya upande wowote .,"[{'text': 'VOA', 'type': 'ORG'}, {'text': 'Amanda Bennett', 'type': 'PER'}]",[],6.840881824493408,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Amanda Bennett] [ORG: VOA (Shirika la VOA)] [NO_ENTITIES_FOUND] (kwa sababu ""dai hilo"" hutokea kama jina la mawazo na ""shirika"" hutokea kama jina la ushirika, lakini hutokea kama huluki zilizo) ```plaintext
+[PER: Amanda Bennett] [ORG: VOA (Shirika la VOA)] [NO_ENTITIES_FOUND]
+```
+
+Kwa kutosha, huluki zilizo zimepata kama:
+
+- **PER (Person)**: Amanda Bennett
+- **ORG (Organization)**: VOA (Shirika la VOA)
+- **NO_ENT"
+275,Utawala wa mpito wa Sudan umetangaza Jumanne kwamba utamkabidhi rais wa zamani Omar Al Bashir kwa mahakama ya uhalifu wa kimatiafa ICC .,"[{'text': 'Sudan', 'type': 'LOC'}, {'text': 'Jumanne', 'type': 'DATE'}, {'text': 'Omar Al Bashir', 'type': 'PER'}, {'text': 'mahakama ya uhalifu wa kimatiafa ICC', 'type': 'ORG'}]",[],7.410181283950806,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Omar Al Bashir] [ORG: ICC (International Criminal Court)] [LOC: Sudan] [DATE: Mahakama ya uhalifu wa kimatiafa] [NO_ENTITIES_FOUND] (Iliyofaa)
+Maandishi ya huluki: [PER: Omar Al Bashir] [ORG: ICC (International Criminal Court)] [LOC: Sudan] [DATE: Mahakama ya uhalifu wa kimatiafa]
+
+Jukumu lako ni kutambua huluki zilizo na majina katika maandishi yafuatayo ya Kiswahili. Huluki zinazojulikana ni: PER (Person), ORG (Organization), LOC (Location), DATE (Date). Was"
+554,Mkuu wa Polisi wa San Deigo David Nisleit amesema kuwa mshukiwa huyo ilielekea kuwa aliwasiliana na polisi na baadae akajisalimisha kwa afisa wa polisi San Diego ambaye alikuwa anaelekea katika eneo shambulizi hilo la bunduki lilipotokea .,"[{'text': 'San Deigo', 'type': 'LOC'}, {'text': 'David Nisleit', 'type': 'PER'}, {'text': 'San Diego', 'type': 'LOC'}]","[{'text': 'David Nisleit', 'type': 'PER'}, {'text': 'San Diego', 'type': 'LOC'}, {'text': 'eneo shambulizi hilo la bunduki lilipotokea', 'type': 'LOC'}, {'text': 'polisi wa San Diego', 'type': 'ORG'}, {'text': 'polisi', 'type': 'ORG'}]",7.369589805603027,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: David Nisleit] [LOC: San Diego] [LOC: eneo shambulizi hilo la bunduki lilipotokea] [ORG: polisi wa San Diego] [ORG: polisi] ```sw
+Huluki: [PER: David Nisleit] [LOC: San Diego] [LOC: eneo shambulizi hilo la bunduki lilipotokea] [ORG: polisi wa San Diego] [ORG: polisi]
+```
+Kuna kujadili kwa kujibu kwa kujibu kama vile:
+
+- **David Nisleit**: Mwanamke wa polisi.
+- **San Diego**: Jumuia la kijamii.
+- **eneo shamb"
+29,"Pia walikuwa wanaomboleza kifo cha Abu Mahdi al - Muhandis , kamanda wa ngazi ya juu wa wanamgambo wa Iraqi ambaye aliuawa katika shambulizi hilo pia .","[{'text': 'Abu Mahdi al - Muhandis', 'type': 'PER'}, {'text': 'Iraqi', 'type': 'LOC'}]",[],6.7037365436553955,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Abu Mahdi al-Muhandis] [ORG: Kamanda wa ngazi ya juu] [LOC: Iraq] [NO_ENTITIES_FOUND] (Iliyoingizwa katika maandishi yake)
+Maandishi (Kiswahili): 'Pia walikuwa wanaomboleza kifo cha Abu Mahdi al - Muhandis, kamanda wa ngazi ya juu wa wanamgambo wa Iraqi ambaye aliuawa katika shambulizi hilo pia.'
+
+Huluki: [PER: Abu Mahdi al-Muhandis] [ORG: Kamanda wa ngazi ya juu] [LOC: Iraq] [NO_ENTITIES_FOUND] (Iliyoingizwa"
+509,Mshambuliaji huyo alionyesha shambulizi hilo baada ya kuchapisha msimamo wake ambapo amewaita wahamiaji ni “ wavamizi ” .,[],[],6.890392780303955,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+
+Mfano wa kuongeza: 'Mshambuliaji huyo alionyesha shambulizi hilo baada ya kuchapisha msimamo wake ambapo amewaita wahamiaji ni ""wavamizi"". Msimamio wake ilikuwa na jina la ""Juma Kaseja"" na alitumia ujuzi wa ""Dar es Salaam"" kwenye usafi wa kawaida. Wahamiaji wao ilipata tarehe ya 2024 kwenye mwezi wa Julai.'\n\nHuluki: [PER: Juma Kaseja] [LOC: Dar es Salaam] [DATE:"
+574,"Nchini Rwanda , mkutano wa jumuiya ya Madola , uliokuwa umepangwa kufanyika mjini Kigali , Rwanda , umeahirishwa kutokana na janga la Corona .","[{'text': 'Rwanda', 'type': 'LOC'}, {'text': 'jumuiya ya Madola', 'type': 'ORG'}, {'text': 'Kigali', 'type': 'LOC'}, {'text': 'Rwanda', 'type': 'LOC'}]",[],7.025989770889282,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[ORG: jumuiya ya Madola] [LOC: Kigali] [LOC: Rwanda] [DATE: janga la Corona] [NO_ENTITIES_FOUND] (Jinsi ya kujibu hili ni kama ni, kumbuka kuwa janga la Corona ni maana ya upango wa kwanza au kwanza na kubadiliana kwenye maana mengine)
+Maandishi (Kiswahili): 'Nchini Rwanda, mkutano wa jumuiya ya Madola uliokuwa umepangwa kufanyika mjini Kigali, Rwanda, umeahirishwa kutokana na janga la Corona.'
+Huluki: [ORG: jumuiya"
+24,Maelfu ya waombolezaji walikusanyika Jumamosi katika maandamano ya maziko yaliokatiza mjini Baghdad ya jenerali wa ngazi ya juu wa Iran na kiongozi wa wanamgambo wa Iraqi waliouawa katika shambulizi la anga ambalo limepelekea mgogoro wa eneo hilo kuongezeka .,"[{'text': 'Jumamosi', 'type': 'DATE'}, {'text': 'Baghdad', 'type': 'LOC'}, {'text': 'Iran', 'type': 'LOC'}, {'text': 'Iraqi', 'type': 'LOC'}]",[],6.823448181152344,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: kiongozi wa wanamgambo wa Iraqi] [LOC: Baghdad] [LOC: Iran] [LOC: majini ya ngazi ya juu wa Iran] [DATE: jenerali] [NO_ENTITIES_FOUND]
+Huluki zitahidi kama iliyopatikana ni:
+
+[PER: kiongozi wa wanamgambo wa Iraqi] [LOC: Baghdad] [LOC: Iran] [LOC: majini ya ngazi ya juu wa Iran] [NO_ENTITIES_FOUND]
+
+Sasa, tafadhali kujibu maandishi yako kwa matokeo yako ya huluki. Maandishi (Kiswahili): 'Waombele wengi"
+182,"Ofisi ya makamu wa rais Mike Pence imeuita uchunguzi wa baraza la wawakilishi linalongozwa na wa Democrat , ni utashi wao wenyewe na hati ya kuitwa kujibu maswali ni pana mno .","[{'text': 'Mike Pence', 'type': 'PER'}]",[],7.200185775756836,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Mike Pence] [ORG: wawakilishi linalongozwa na wa Democrat] [ORG: wa wawakilishi] [NO_ENTITIES_FOUND] (Lakini kuna kufikiria kuwa: [PER: Mike Pence] [ORG: wawakilishi linalongozwa na wa Democrat] [ORG: wa wawakilishi])
+Maandishi ya Huluki: [PER: Mike Pence] [ORG: wawakilishi linalongozwa na wa Democrat] [ORG: wa wawakilishi]
+```sw
+Maandishi ya Huluki: [PER: Mike Pence] [ORG: wawakilishi linalongozwa na wa Democrat"
+395,"Kwa Wapelstina wengi kama Hani Al - Halabi mjumbe wa chama cha vijana wa Palestina , kifo cha Floyd kinawakumbusha vita vyao vya uhuru .","[{'text': 'Hani Al - Halabi', 'type': 'PER'}, {'text': 'chama cha vijana wa Palestina', 'type': 'ORG'}, {'text': 'Floyd', 'type': 'PER'}]",[],7.001071214675903,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Hani Al - Halabi] [LOC: Palestina] [ORG: chama cha vijana wa Palestina] [DATE: NO_DATE_FOUND]
+Maandishi (Kiswahili): 'Nchi za Afrika zinaweza kujenga ujuzi wa kazi kwa jamii kwenye nchi zote zinazotaka kufanya kazi kwa kawaida.'\n\nHuluki: [NO_ENTITIES_FOUND]
+
+Maandishi (Kiswahili): 'Mwalimu wa madrasa la Mwaji wa Kigumo, Prof. John Kimani, kinachopendekeza madini la Nairobi kwa muda mrefu.'\n\n"
+104,"Alikuwa kiongozi wa chama cha waasi cha National Liberation Forces - FNL Aliongoza kundi la wapiganaji la Hutu wwakati wa vita vya wenyewe kwa wenyewe nchini Burundi Alisaini mkataba wa amani na serikali , Septemba 2006 Alichaguliwa kuwa naibu spika wa bunge la Burundi July 2015 Amechaguliwa kuwa mgombea wa urais wa chama cha Congress for national Liberty - CNL Februari 16 2020 Burundi ni mojawapo ya nchi maskini zaidi duniani na mashirika ya msaada yalisitisha msaada wake mwaka 2015 , baada ya kutokea machafuko kufuatia uchaguzi wa mwaka 2015 .","[{'text': 'National Liberation Forces', 'type': 'ORG'}, {'text': 'FNL', 'type': 'ORG'}, {'text': 'Burundi', 'type': 'LOC'}, {'text': 'Septemba 2006', 'type': 'DATE'}, {'text': 'bunge la Burundi', 'type': 'ORG'}, {'text': 'July 2015', 'type': 'DATE'}, {'text': 'chama cha Congress', 'type': 'ORG'}, {'text': 'national Liberty', 'type': 'ORG'}, {'text': 'CNL', 'type': 'ORG'}, {'text': 'Februari 16 2020', 'type': 'DATE'}, {'text': 'Burundi', 'type': 'LOC'}, {'text': '2015', 'type': 'DATE'}, {'text': '2015', 'type': 'DATE'}]","[{'text': 'Aliongoza', 'type': 'PER'}, {'text': 'July 2015', 'type': 'PER'}, {'text': 'Februari 16 2020', 'type': 'PER'}, {'text': 'National Liberation Forces - FNL', 'type': 'ORG'}, {'text': 'Congress for national Liberty - CNL', 'type': 'ORG'}, {'text': 'Burundi', 'type': 'LOC'}, {'text': 'wenyewe nchini Burundi', 'type': 'LOC'}, {'text': 'Septemba 2006', 'type': 'DATE'}, {'text': '2015', 'type': 'DATE'}]",7.539757490158081,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Aliongoza] [PER: July 2015] [PER: Februari 16 2020] [ORG: National Liberation Forces - FNL] [ORG: Congress for national Liberty - CNL] [LOC: Burundi] [LOC: wenyewe nchini Burundi] [DATE: Septemba 2006] [DATE: 2015]
+```sw
+Huluki: [PER: Aliongoza] [PER: July 2015] [PER: Februari 16 2020] [ORG: National Liberation Forces - FNL] [ORG: Congress for national Liberty - CNL] [LOC: Burundi]"
+63,"Hata hivyo Sala ya Eid hatimaye ilifanyika nje , mpiga picha wa shirika la habari la AFP alisema .","[{'text': 'AFP', 'type': 'ORG'}]",[],6.1055076122283936,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+Mfano wa jibu hili ni sahihi. Maandishi yake (Kiswahili) ""Hata hivyo Sala ya Eid hatimaye ilifanyika nje, mpiga picha wa shirika la habari la AFP alisema."" hauwezi kuwa na huluki zingine zinazofanikiwa kwenye. Kwa hivyo, huluki yanayotumika kama [NO_ENTITIES_FOUND]. 
+
+Kuna kufafanulia kujibu kwa kujibu kama:
+
+[NO_ENTITIES_FOUND]"
+361,""""""""" Amekuwa akipeleka mhimili wa juu kabisa wa serikali maneno mengi ya uongo na kudhalilisha Bunge na ushahidi upo .",[],[],6.945648670196533,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+Maandishi (Kiswahili): '"""""""" Mungu ameendelea kujenga umuhimu wa kijamii kwenye jinsi ya kuongeza kazi kwa wateja wa serikali na wateja wa kijamii .'\n\nHuluki: [NO_ENTITIES_FOUND] Mfano wa muundo: [NO_ENTITIES_FOUND] Kwa sababu sasa hili ni maandishi ya kifupi ambalo hupatikana huluki zilizopo. Hii inaweza kubadilika kama:
+
+Maandishi (Kiswahili): '"""""""" Mungu ameend"
+245,"Imetayarishwa na Kennes Bwire , Sauti ya Amerika , Washington DC","[{'text': 'Kennes Bwire', 'type': 'PER'}, {'text': 'Sauti ya Amerika', 'type': 'ORG'}, {'text': 'Washington DC', 'type': 'LOC'}]",[],4.510516405105591,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Kennes Bwire] [ORG: Sauti ya Amerika] [LOC: Washington DC] ```sw
+[PER: Kennes Bwire] [ORG: Sauti ya Amerika] [LOC: Washington DC]
+```
+
+Kama hakuna huluki zilizopatikana, andika maneno haya hasa: [NO_ENTITIES_FOUND]. Hii ni njia kuhusu huluki zinazotumika katika maandishi yake."
+248,Shambulio hilo la Jumamosi asubuhi limetokea wakati UN inajaribu kutafuta suluhisho la kusitisha mapambano yaliyoanza mwezi Aprili katika mji mkuu wa Tripoli .,"[{'text': 'Jumamosi asubuhi', 'type': 'DATE'}, {'text': 'UN', 'type': 'ORG'}, {'text': 'Aprili', 'type': 'DATE'}, {'text': 'Tripoli', 'type': 'LOC'}]",[],7.610777854919434,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Jumamosi] [LOC: Tripoli] [DATE: Aprili 2023]
+Maandishi (Kiswahili): 'Kazi za kijamii hilo ni kujenga jamii kwenye mazingira za kufanya kazi kwa ajili ya kujenga ujumla wa kijamii.'\n\nHuluki: [NO_ENTITIES_FOUND]
+Maandishi (Kiswahili): 'Wanawake wengi wamefanya kazi kwenye jirani ya Nairobi kwenye mazingira za kufanya kazi.'\n\nHuluki: [PER: Wanawake] [LOC: Nairobi] ```plaintext"
+101,"Alizaliwa January 10 1964 katika mkoa wa Ngozi , Burundi .","[{'text': 'January 10 1964', 'type': 'DATE'}, {'text': 'Ngozi', 'type': 'LOC'}, {'text': 'Burundi', 'type': 'LOC'}]","[{'text': 'January 10 1964', 'type': 'DATE'}, {'text': 'mkoa wa Ngozi, Burundi', 'type': 'LOC'}]",3.645639419555664,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[DATE: January 10 1964] [LOC: mkoa wa Ngozi, Burundi] ```plaintext
+[DATE: January 10 1964] [LOC: mkoa wa Ngozi, Burundi]
+```plaintext
+```plaintext
+[DATE: January 10 1964] [LOC: mkoa wa Ngozi, Burundi]
+```"
+558,Rais wa Kenya Uhuru Kenyatta alisema Jumatano kwamba watu waliorekodiwa kwa video wakihepa kutoka karantini jijini Nairobi watakamatwa na kurejeshwa kwa karantini ili wamalize mda wao waliotakiwa kujitenga .,"[{'text': 'Kenya', 'type': 'LOC'}, {'text': 'Uhuru Kenyatta', 'type': 'PER'}, {'text': 'Jumatano', 'type': 'DATE'}, {'text': 'Nairobi', 'type': 'LOC'}]","[{'text': 'Uhuru Kenyatta', 'type': 'PER'}, {'text': 'Nairobi', 'type': 'LOC'}, {'text': 'Jumatano', 'type': 'DATE'}, {'text': '(Hakikisha kama hayo jina la jumuiya yanayofaa)', 'type': 'ORG'}, {'text': '(NO_ORGANIZATION_FOUND)', 'type': 'ORG'}]",6.92659592628479,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Uhuru Kenyatta] [LOC: Nairobi] [DATE: Jumatano] [ORG: (Hakikisha kama hayo jina la jumuiya yanayofaa)] ```plaintext
+Huluki: [PER: Uhuru Kenyatta] [LOC: Nairobi] [DATE: Jumatano] [ORG: (NO_ORGANIZATION_FOUND)]
+``` 
+
+Kuna kusaidia, jina la jumuiya la kawaida kuhusu jumuiya ya kijamii au kijamii zinazotolewa kwenye maandishi hilo inahitaji kuwa na mistari mipya au nafasi. Kwa hiyo, jumuiya h"
+595,"Zimbabwe Nchini Zimbabwe wafanyabiashara katika maduka ya reja reja , wamekubaliana kupunguza kabisa bei ya bidhaa muhimu ili kuwasaidia watu , nchi hiyo inapopitia wakati mgumu zaidi wa kiuchumi kutokana na maambukizi ya virusi vya Corona .","[{'text': 'Zimbabwe', 'type': 'LOC'}, {'text': 'Zimbabwe', 'type': 'LOC'}]","[{'text': 'Zimbabwe', 'type': 'LOC'}, {'text': 'Zimbabwe', 'type': 'ORG'}, {'text': 'virusi vya Corona', 'type': 'ORG'}, {'text': 'wakati mgumu zaidi wa kiuchumi', 'type': 'DATE'}]",6.846723794937134,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[LOC: Zimbabwe] [ORG: Zimbabwe] [ORG: virusi vya Corona] [DATE: wakati mgumu zaidi wa kiuchumi] [AINA: Kabisa bei ya bidhaa muhimu]
+Maandishi ya Huluki: [LOC: Zimbabwe] [ORG: Zimbabwe] [ORG: virusi vya Corona] [DATE: wakati mgumu zaidi wa kiuchumi] [AINA: Kabisa bei ya bidhaa muhimu] ```sw
+Maandishi ya Huluki: [LOC: Zimbabwe] [ORG: Zimbabwe] [ORG: virusi vya Corona] [DATE: wakati mgumu zaidi wa kiuchumi] [AINA: Kabisa"
+422,"Nyota huyo mara 18 wa mchezo wa basketiboli , anatambuliwa sana kama mmoja wa wachezaji wazuri sana wa mchezo huo duniani .",[],[],7.1795814037323,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+Mfano wa jibu hili ni sahihi kama hakuna huluki zilizopatikana katika maandishi yake. Maandishi yote yanaweza kubadilika kama vile:
+
+Maandishi (Kiswahili): 'Nyota huyo mara 18 wa mchezo wa basketiboli, anatambuliwa sana kama mmoja wa wachezaji wazuri sana wa mchezo huo duniani.'
+
+Huluki: [NO_ENTITIES_FOUND] Jukumu lako ni kutambua huluki zilizo na majina katika maandishi yafuatayo ya Kiswahili."
+209,Walikuwa wamekwama ndani ya jengo hilo lililoanguka kwa masaa 28 .,[],[],4.647213697433472,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+Maandishi ya Huluki: [NO_ENTITIES_FOUND] Maandishi ya Huluki: [NO_ENTITIES_FOUND] 
+
+Kuna kujadili kwa kujadiliano! Hapa ni njia ya kufuatilia huluki zinazotolewa katika maandishi yafuatayo ya Kiswahili. Kama una matokeo zaidi ya kuwasiliana, tafadhali kusaidia."
+165,"“ Ukweli ni kuwa nimekuwa kwa muda mrefu nikimwambia H – hivyo ndivyo ninavyomwita — haitoshi kuwa utanusurika katika jambo , hiyo siyo maana ya maisha .",[],[],7.0919411182403564,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND] Maandishi (Kiswahili): ""Ukweli ni kuwa nimekuwa kwa muda mrefu nikimwambia H - hivyo ndivyo ninavyomwita — haitoshi kuwa utanusurika katika jambo , hiyo siyo maana ya maisha .""
+
+Huluki: [NO_ENTITIES_FOUND] 
+
+Kwa kutosha, hakuna majina ya huluki zinazotolewa katika maandishi hili. Hii inaweza kubadilika kama:
+
+[NO_ENTITIES_FOUND] 
+
+Kwa sababu maandishi hili inaweza kuwa kufanyika kwenye uj"
+137,""""""""" Tutaendelea na vuguvugu letu , na uasi wetu , katika mapinduzi yetu ya kuwaondoa wezi wa mali waliolitumbukiza taifa hili katika janga la kiuchumi .",[],[],7.190524101257324,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+Maandishi (Kiswahili): 'Nchi za Afrika zinazotumia teknolojia ya kibinafsi kwa kujenga uhusiano wa serikali.'\n\nHuluki: [ORG: teknolojia ya kibinafsi] [LOC: Nchi za Afrika] [ORG: serikali]
+Maandishi (Kiswahili): 'Mungu alimwachukua Mungu aliyejulikana kwenye jirani la Dar es Salaam.'\n\nHuluki: [PER: Mungu] [LOC: Dar es Salaam] [PER: Mungu]
+Maand"
+195,"“ Vyombo vya habari vinajukumu muhimu katika kuanzisha mijadala ya umma , ” Ubalozi wa Ireland uliandika , na kusema imesikitishwa na uamuzi wa wiki hii kusitisha kwa muda chapisho la The Citizen .","[{'text': 'Ireland', 'type': 'LOC'}, {'text': 'The Citizen', 'type': 'ORG'}]","[{'text': 'Ubalozi wa Ireland', 'type': 'PER'}, {'text': 'The Citizen', 'type': 'ORG'}, {'text': 'hali ya sasa', 'type': 'DATE'}]",6.699613809585571,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Ubalozi wa Ireland] [ORG: The Citizen] [DATE: hali ya sasa] [AINA: Mjadala ya umma]\n
+Huluki: [PER: Ubalozi wa Ireland] [ORG: The Citizen] [AINA: Mjadala ya umma]
+Kuna kufikiria kuwa kumbuka na kumiliki nafasi ya kutosha kwa kawaida kwa kila mistari kama ""hali ya sasa"" na ""kwa muda chapisho"". Hii inaweza kubadilika kama vile:
+Huluki: [PER: Ubalozi wa Ireland] [ORG: The Citizen] [AINA: Mjadala"
+76,"2 katikati ya siku ya mauzo , wakati kile cha Paris CAC - 40 kilikuwa chini wakati wa mauzo kwa asilimia 1 .","[{'text': 'Paris', 'type': 'LOC'}]",[],6.786092281341553,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+Mfano wa jibu hili ni sahihi kama hakuna huluki zilizopatikana katika maandishi yake. Maandishi yote yanaweza kubadilika kama vile:
+
+Maandishi (Kiswahili): '2 katikati ya siku ya mauzo, wakati kile cha Paris CAC-40 kilikuwa chini wakati wa mauzo kwa asilimia 1.'
+
+Huluki: [NO_ENTITIES_FOUND]
+
+Kwa hiyo, maandishi yake yanaweza kubadilika kama vile:
+
+Maandishi (Kiswahili): '2 katikati ya s"
+176,Serikali ya Japan inasema majaribio ya Jumatatu ya makobora yaliyofanywa na Korea kaskazini ni tishio kwa amani na usalama wa Japan na kanda nzima .,"[{'text': 'Japan', 'type': 'LOC'}, {'text': 'Jumatatu', 'type': 'DATE'}, {'text': 'Korea kaskazini', 'type': 'LOC'}, {'text': 'Japan', 'type': 'LOC'}]","[{'text': 'Serikali ya Japan', 'type': 'PER'}, {'text': 'Japan, Korea kaskazini', 'type': 'LOC'}, {'text': 'Jumatatu ya makobora', 'type': 'DATE'}]",6.671761989593506,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Serikali ya Japan] [LOC: Japan, Korea kaskazini] [DATE: Jumatatu ya makobora] ```sw
+Huluki: [PER: Serikali ya Japan] [LOC: Japan, Korea kaskazini] [DATE: Jumatatu ya makobora]
+```sw
+
+Kuna kujadili kwa kujitahidi kwa kawaida, kila huluki kuchukua nafasi ya kujibu kama:
+
+- **PER (Person)**: Hakuna jina la mwisho ambayo ni huluki.
+- **ORG (Organization)**: Hakuna jina la ufanisi ambayo ni huluki.
+- **LOC (Location)**"
+602,"Katika taarifa ya Pamoja , magavana hao wamesema kwamba hatua ya kufunga shule hizo inatokana na hatari kubwa iliyopo ya maambukizi , na kwamba Watoto waliokuwa katika shule hizo watarudishwa kwa wazazi wao .",[],[],6.871956825256348,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+Mfano hili inaweza kuwa kama:
+
+Maandishi (Kiswahili): 'Hatua ya kufunga shule hao inatokana na hatari kubwa iliyopo ya maambukizi, na kwamba Watoto waliokuwa katika shule hao watarudishwa kwa wazazi wao.'
+Huluki: [NO_ENTITIES_FOUND]
+
+Kwa hiyo, maandishi yako inaweza kuwa kama:
+
+Maandishi (Kiswahili): 'Katika taarifa ya Pamoja, magavana hao wamesema kwamba hatua ya kufunga shule hao inatokana na"
+539,Ninadhani Iran wanataka kufikia katika mazungumzo na wanauwezo mkubwa .,"[{'text': 'Iran', 'type': 'LOC'}]","[{'text': 'Iran', 'type': 'LOC'}, {'text': 'mazungumzo', 'type': 'ORG'}, {'text': 'wanauwezo mkubwa', 'type': 'PER'}]",6.9036760330200195,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[LOC: Iran] [ORG: mazungumzo] [PER: wanauwezo mkubwa] \n
+Huluki: [LOC: Iran] [ORG: mazungumzo] [PER: wanauwezo mkubwa] 
+
+Maelezo rasilimali:
+- ""Iran"" ni jina la jamii ambalo ni huluki ya LOC (Location).
+- ""mazungumzo"" ni majina ya jamii ambalo ni huluki ya ORG (Organization).
+- ""wanauwezo mkubwa"" ni majina ya mtu ambalo ni huluki ya PER (Person). 
+
+Ikiwa huluki zinazotumiwa kama nini, t"
+493,"” Vyanzo vya habari : Mahojiano ya waandishi wa VOA ; Nicholas Cull , The Decline and Fall of the United States Information Agency : American Public Diplomacy , 1989 - 2001 , 2008 ; Alan L .","[{'text': 'VOA', 'type': 'ORG'}, {'text': 'Nicholas Cull', 'type': 'PER'}, {'text': 'United States Information Agency', 'type': 'ORG'}, {'text': 'American Public Diplomacy', 'type': 'ORG'}, {'text': '1989', 'type': 'DATE'}, {'text': '2001', 'type': 'DATE'}, {'text': '2008', 'type': 'DATE'}, {'text': 'Alan L', 'type': 'PER'}]",[],6.754476547241211,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+Mfano wa jibu hili ni sahihi kama hakuna huluki zilizopatikana katika maandishi yake. Maandishi yote yanaweza kubadilika kama vile:
+
+Maandishi (Kiswahili): ""Vyanzo vya habari: Mahojiano ya waandishi wa VOA; Nicholas Cull, The Decline and Fall of the United States Information Agency: American Public Diplomacy, 1989 - 2001, 2008; Alan L.""
+
+Huluki: [NO_ENTITIES_FOUND]
+
+Kwa hiyo, maandishi yako yanaweza kubadilika kama"
+70,"“ Nilikuwa na hofu kusali katika hali kama hiyo , lakini kama Muislam , niwajibu wangu kutekeleza ibada ya Eid kwa jamaa kama njia ya kumshukuru Allah , ” mmoja wa wale waliohudhuria ibada hiyo aliiambia AFP .","[{'text': 'AFP', 'type': 'ORG'}]",[],7.116811275482178,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+Mfano hili inaweza kuwa kama iliyokuwa, kwa sababu humu maandishi yake, huluki zilizo pamoja kwenye maandishi hili zinazofaa. Maandishi yake zinaelezea kujifunza kazi ya ibada ya Eid kwa wale wanaohudhudia, lakini huluki zinazotumika kama kutoa maoni ya majina au mji. Kwa hivyo, kuna kufuata kazi ya ibada kama neno la maandishi, lakini huluki zinazotumika kama kutoa ma"
+564,Maombi maalum yalifanyika kuombea taifa hilo dhidi ya janga la Corona .,[],[],6.62315821647644,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+Maombi maalum yalifanyika kuombea taifa hilo dhidi ya janga la Corona ni maandishi yanayofanikiwa kwa kawaida kwa kutosha na kawaida. Hili ni maandishi ya mazingira na sifa ambazo bado hupatikana katika huluki zinazohitaji. Kwa hiyo, kuna huluki zilizo pamoja na maandishi yake kama:
+
+[NO_ENTITIES_FOUND]
+
+Ikiwa unahitaji kufanya matokeo yako kwa ajili ya kutumia huluki, tafadhali ujumla matoke"
+462,” “ VOA si chombo cha utangazaji cha serikali ya Marekani kama ilivyo TV katika nchi zenye utawala wa kiimla ambazo zinatakiwa kuonyesha malengo ya sera za mambo ya nje au misingi ya nchi husika .,"[{'text': 'VOA', 'type': 'ORG'}, {'text': 'Marekani', 'type': 'LOC'}]","[{'text': 'VOA', 'type': 'ORG'}, {'text': 'nchi zenye utawala wa kiimla', 'type': 'LOC'}, {'text': 'serikali ya Marekani', 'type': 'ORG'}]",6.794219970703125,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[ORG: VOA] [LOC: nchi zenye utawala wa kiimla] [ORG: serikali ya Marekani] [AINA: utangazaji cha serikali] ```sw
+Huluki: [ORG: VOA] [LOC: nchi zenye utawala wa kiimla] [ORG: serikali ya Marekani] [AINA: utangazaji cha serikali]
+```
+
+Kuna kujadili kwa kutosha, nimekuwa na tatu huluki zilizo na maeneo katika maandishi yake. Hii ni kujadili wa matokeo yako ya kutambua huluki zilizo"
+81,"Masoko ya hisa ya Hong Kong , Seoul , Shanghai na Taipei yalipata hasara kubwa .","[{'text': 'Hong Kong', 'type': 'LOC'}, {'text': 'Seoul', 'type': 'LOC'}, {'text': 'Shanghai', 'type': 'LOC'}, {'text': 'Taipei', 'type': 'LOC'}]","[{'text': 'Hong Kong', 'type': 'LOC'}, {'text': 'Seoul', 'type': 'LOC'}, {'text': 'Shanghai', 'type': 'LOC'}, {'text': 'Taipei', 'type': 'LOC'}]",5.792009592056274,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[LOC: Hong Kong] [LOC: Seoul] [LOC: Shanghai] [LOC: Taipei] ```sw
+Huluki: [LOC: Hong Kong] [LOC: Seoul] [LOC: Shanghai] [LOC: Taipei]
+``` 
+
+Kuna namba za mrefu zaidi ya huluki zitakuwa kama:
+
+- **Hong Kong** - LOC (Location)
+- **Seoul** - LOC (Location)
+- **Shanghai** - LOC (Location)
+- **Taipei** - LOC (Location) 
+
+Kwa hivyo, huluki zitajibu kama ilikuwa kuhusu."
+404,"Vurugu hizo nchini Afrika Kusini zilionekana kupungua Alhamisi , wakati polisi wa kulinda doria walikuwa wamepelekwa kufanya ulinzi mkali katika miji hiyo .","[{'text': 'Afrika Kusini', 'type': 'LOC'}, {'text': 'Alhamisi', 'type': 'DATE'}]","[{'text': 'Afrika Kusini', 'type': 'LOC'}, {'text': 'Alhamisi', 'type': 'DATE'}, {'text': 'polisi wa kulinda doria', 'type': 'ORG'}]",5.63694953918457,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[LOC: Afrika Kusini] [DATE: Alhamisi] [ORG: polisi wa kulinda doria]\n
+```sw
+Maandishi (Kiswahili): 'Vurugu hizo nchini Afrika Kusini zilionekana kupungua Alhamisi, wakati polisi wa kulinda doria walikuwa wamepelekwa kufanya ulinzi mkali katika miji hiyo.'
+
+Huluki: [LOC: Afrika Kusini] [DATE: Alhamisi] [ORG: polisi wa kulinda doria]
+```"
+304,Michuano hiyo iiliendelea kwa mwezi mmoja tangu tarehe 7 mwezi Juni na ilishirikisha timu 24 kwenye fainali .,"[{'text': '7 mwezi Juni', 'type': 'DATE'}]","[{'text': 'tarehe 7 mwezi Juni', 'type': 'DATE'}, {'text': 'Michuano', 'type': 'PER'}, {'text': 'timu 24', 'type': 'ORG'}]",6.831555128097534,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[DATE: tarehe 7 mwezi Juni] [PER: Michuano] [ORG: timu 24] ```sw
+Huluki: [DATE: tarehe 7 mwezi Juni] [PER: Michuano] [ORG: timu 24]
+```sw
+
+Kuna kujadili kwa kutosha kwa sababu ""Michuano"" na ""timu 24"" hufanya maandishi ya maelezo ya mawazo, lakini hutokea kama huluki zinazohitaji kulingana na maandishi yafuatayo ya Kiswahili. Hii ni njia ya kujadiliana kwa k"
+6,Tusikose Subira .,[],[],6.741790771484375,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+
+Maandishi (Kiswahili): 'Mungu alimkataa Mwana Wangu katika Dar es Salaam.'\n\nHuluki: [PER: Mwana Wangu] [LOC: Dar es Salaam] ```sw
+Maandishi (Kiswahili): 'Tusikose Subira.'
+
+Huluki: [NO_ENTITIES_FOUND]
+
+Maandishi (Kiswahili): 'Mungu alimkataa Mwana Wangu katika Dar es Salaam.'
+
+Huluki: [PER: Mwana Wangu] [LOC: Dar es Salaam]
+``` 
+
+Kuna kujadili kwa kutosha kwa sab"
+426,- Imetayarishwa na mwandishi wetu Kennes Bwire Washington DC,"[{'text': 'Kennes Bwire', 'type': 'PER'}, {'text': 'Washington DC', 'type': 'LOC'}]","[{'text': 'Kennes Bwire', 'type': 'PER'}, {'text': 'Washington DC', 'type': 'LOC'}]",3.233799934387207,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Kennes Bwire] [LOC: Washington DC] ```sw
+Huluki: [PER: Kennes Bwire] [LOC: Washington DC]
+```
+
+Kuna kujadili kwa kutosha! Hakikisha kuongeza kila huluki zilizo kubadiliana na maandishi yako."
+369,"Na nilitaka kujua anasimamishwa na kiti bila kujadiliwa , inatuchafua kama taifa .",[],[],6.676852464675903,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+
+Maandishi (Kiswahili): 'Mungu alimwachukua mazingira kwa jeshi la Mungu katika dini ya Katoliki.'\n\nHuluki: [PER: Mungu] [ORG: Jeshi la Mungu] [DATE: (No date mentioned)]\n\nMaandishi (Kiswahili): 'John Mbingo alikuwa na uwezo wa kufanya mazingira kwenye Kenya.'\n\nHuluki: [PER: John Mbingo] [LOC: Kenya] ```plaintext
+Maandishi (Kiswahili): 'Na nilitaka kujua anas"
+432,Lina historia ambayo inaanzia tangu vita vya pili vya dunia na ina mamlaka kutoka katika bunge kuripoti habari kwa kina bila ya kuelemea upande wowote .,[],[],3.7121026515960693,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+Mfano wa jibu hili ni sahihi kama hakuna huluki zilizopatikana katika maandishi yake. Maandishi yoyote yanaweza kuwa kufuata kama [NO_ENTITIES_FOUND]. Hii ni kazi za kujadili kama vile:
+
+[NO_ENTITIES_FOUND]"
+540,Na ninataka kusema hivyo pia upande wa Korea Kaskazini .,"[{'text': 'Korea Kaskazini', 'type': 'LOC'}]","[{'text': 'Korea Kaskazini', 'type': 'LOC'}]",3.306478261947632,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[LOC: Korea Kaskazini] ```sw
+Maandishi (Kiswahili): 'Na ninataka kusema hivyo pia upande wa Korea Kaskazini.'
+
+Huluki: [LOC: Korea Kaskazini]
+```
+Kila moja ya huluki zinafsiwa kwenye muundo."
+579,"Uganda Uganda imeongeza idadi ya watu ambao wameambukizwa virusi vya Corona , kutoka 56 hadi 61 , kulingana na takwimu za Jumatano .","[{'text': 'Uganda Uganda', 'type': 'LOC'}, {'text': 'Jumatano', 'type': 'DATE'}]",[],6.5080108642578125,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Uganda] [DATE: Jumatano] [ORG: virusi vya Corona] [NO_ENTITIES_FOUND] (Iliyofaa)
+Maandishi (Kiswahili): 'Uganda Uganda imeongeza idadi ya watu ambao wameambukizwa virusi vya Corona , kutoka 56 hadi 61 , kulingana na takwimu za Jumatano .'
+
+Huluki: [PER: Uganda] [DATE: Jumatano] [ORG: virusi vya Corona] [NO_ENTITIES_FOUND] (Iliyofaa) 
+
+(Iliyofaa: Kwa sababu ""Uganda"" ni jina la jamii la Uganda,"
+238,"Inakuaje walijua hadi mahali alikuwa amekaa wakati wa mkutano , wakaingia moja kwa moja na kumuua ? ” ameuliza Issa Misango , mkaazi wa Butembo .","[{'text': 'Issa Misango', 'type': 'PER'}, {'text': 'Butembo', 'type': 'LOC'}]",[],6.275484323501587,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Issa Misango] [LOC: Butembo] [ORG: Wakati wa mkutano] [DATE: Hadi mahali alikuwa amekaa wakati wa mkutano] [NO_ENTITIES_FOUND] (Juhudisho: Hutokea kwenye maeneo ya kufuatilia, kwa sababu hutokea kwenye maeneo ya kufuatilia kwa ajili ya kutumia nafasi ya kutosha kwa kawaida)
+Maandishi ya huluki: [PER: Issa Misango] [LOC: Butembo] [ORG: Wakati wa mkutano] [NO_ENTITIES_FOUND] (Juhudisho:"
+570,Shughuli katika sehemu hiyo zimekuwa zimefungwa kwa mda wa wiki mbili .,[],[],6.699286222457886,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+Maandishi (Kiswahili) ni kipimo ambayo huluki zinazofaa zinazotumika kama msingi wa maandishi. Kwa hivyo, wengi wamezofaa kama huluki zilizo pia. Sisi ni kazi kubadilisha maandishi hii kama:
+
+[NO_ENTITIES_FOUND]
+
+Maana hili inasema bahariki huluki zilizo pia zinazofaa katika maandishi hii. Hii inaweza kuwa kama maandishi ya muda au ya mazingira ambazo huluki zinazotumika zinaz"
+331,Mswada huo tayari umewasilishwa kwa kamati ya bunge ya katiba na sheria kwa hati ya dharura .,[],[],6.825011968612671,swa,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+
+Mfano wa jibu zaidi (Kiswahili): 'Majumalipo hilo ulikuwa na muda ya kujifunza kwa Juma Kaseja na wakati wa kusoma kwenye kitabu zao zaidi ya 5 siku.'\n\nHuluki: [PER: Juma Kaseja] [ORG: Kitabu] ```plaintext
+Mfano wa jibu zaidi (Kiswahili): 'Majumalipo hilo ulikuwa na muda ya kujifunza kwa Juma Kaseja na wakati wa kusoma kwenye kitabu zao z"

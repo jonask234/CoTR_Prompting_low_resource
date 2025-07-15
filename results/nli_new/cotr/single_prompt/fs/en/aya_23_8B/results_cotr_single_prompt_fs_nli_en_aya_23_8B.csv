@@ -1,0 +1,398 @@
+premise_lrl,hypothesis_lrl,original_gt_label_int,ground_truth_eng_label_str,premise_en,hypothesis_en,predicted_english_label_model_intermediate,predicted_lrl_label_model_raw,predicted_label_for_accuracy,raw_model_response,runtime_seconds,error_message
+"The remaining dimensions are imagined as curled up on the Planck length scale in what are called  Calabi-Yau  spaces, or more generally, compactified moduli.",Calabi-Yau spaces are spread out a ton.,2,contradiction,"The remaining dimensions are imagined as curled up on the Planck length scale in what are called Calabi-Yau spaces, or more generally, compactified moduli.",Calabi-Yau spaces are spread out a ton.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: The remaining dimensions are imagined as curled up on the Planck length scale in what are called Calabi-Yau spaces, or more generally, compactified moduli.
+
+Translated English Hypothesis: Calabi-Yau spaces are spread out a ton.
+
+English NLI Label: Contradiction.",4.52912712097168,
+23Financial  Continued Momentum Essential to Achieve CFO Act Goals,23Financial is close to completing all of their Act Goals.,1,neutral,Financial continued momentum is essential to achieve CFO Act goals.,23Financial is close to completing all of their Act goals.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: Financial continued momentum is essential to achieve CFO Act goals.
+
+Translated English Hypothesis: 23Financial is close to completing all of their Act goals.
+
+English NLI Label: Entailment",3.087200880050659,
+"I am pressed,  she informed him.",She had told him that she was pressured.,0,entailment,"I am pressed, she informed him.",She had told him that she was pressured.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: I am pressed, she informed him.
+
+Translated English Hypothesis: She had told him that she was pressured.
+
+English NLI Label: Entailment",2.794496536254883,
+it's probably more because i just enjoy the coverage than it is because i don't have time to read the paper you know,They cover a lot more than you will get from the paper.,1,neutral,"It's probably more because I just enjoy the coverage than it is because I don't have time to read the paper, you know.",They cover a lot more than you will get from the paper.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: It's probably more because I just enjoy the coverage than it is because I don't have time to read the paper, you know.
+
+Translated English Hypothesis: They cover a lot more than you will get from the paper.
+
+English NLI Label: Entailment.",4.148054361343384,
+"Jane,Dave, and an FBI analyst who was on detail to the CIA's Bin Ladin unit went to New York on June 11 to meet with the agents about the Cole case.",The FBI analyst talked to seven agents about the Cole case.,1,neutral,"Jane, Dave, and an FBI analyst who was on detail to the CIA's Bin Ladin unit went to New York on June 11 to meet with the agents about the Cole case.",The FBI analyst talked to seven agents about the Cole case.,neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: Jane, Dave, and an FBI analyst who was on detail to the CIA's Bin Ladin unit went to New York on June 11 to meet with the agents about the Cole case.
+
+Translated English Hypothesis: The FBI analyst talked to seven agents about the Cole case.
+
+English NLI Label: Neutral.",4.744630813598633,
+"On the other hand, particles and the three nongravitational forces have yet to be incorporated into a spin network picture.",The nongravitational forces must be incorporated in order for the spin network picture to be complete.,1,neutral,"On the other hand, particles and the three nongravitational forces have yet to be incorporated into a spin network picture.",The nongravitational forces must be incorporated in order for the spin network picture to be complete.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: On the other hand, particles and the three nongravitational forces have yet to be incorporated into a spin network picture.
+
+Translated English Hypothesis: The nongravitational forces must be incorporated in order for the spin network picture to be complete.
+
+English NLI Label: Entailment",4.633839130401611,
+You should have seen the danger.,You must not look at the crisis happening at this very moment.,2,contradiction,You should have perceived the peril.,You must not gaze upon the emergency that is occurring right now.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: You should have perceived the peril.
+
+Translated English Hypothesis: You must not gaze upon the emergency that is occurring right now.
+
+English NLI Label: Contradiction",2.6866536140441895,
+"Her sister could pass for white, and in fact did pass for white.",Her sister had the fairest skin of anyone in the neighborhood.,1,neutral,"Her sister could pass for white, and in fact did pass for white.",Her sister had the fairest skin of anyone in the neighborhood.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: Her sister could pass for white, and in fact did pass for white.
+
+Translated English Hypothesis: Her sister had the fairest skin of anyone in the neighborhood.
+
+English NLI Label: Entailment",3.305050849914551,
+"Our borders and immigration system, including law enforcement, ought to send a message of welcome, tolerance, and justice to members of immigrant communities in the United States and in their countries of origin.",Our country should repair our image globally and welcome refugees here.,1,neutral,"Our borders and immigration system, including law enforcement, ought to send a message of welcome, tolerance, and justice to members of immigrant communities in the United States and in their countries of origin.",Our country should repair our image globally and welcome refugees here.,neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: Our borders and immigration system, including law enforcement, ought to send a message of welcome, tolerance, and justice to members of immigrant communities in the United States and in their countries of origin.
+
+Translated English Hypothesis: Our country should repair our image globally and welcome refugees here.
+
+English NLI Label: Neutral.",4.683692216873169,
+"The publication of the RPH book is followed by the book tour, which leads to the next fact about the",The RPH book is going to have a tour associated with it.,0,entailment,"The publication of the RPH book is followed by the book tour, which leads to the next fact about the.",The RPH book is going to have a tour associated with it.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: The publication of the RPH book is followed by the book tour, which leads to the next fact about the.
+
+Translated English Hypothesis: The RPH book is going to have a tour associated with it.
+
+English NLI Label: entailment",4.0660765171051025,
+The chairlift is a great favourite.,No one likes the chairlift.,2,contradiction,The chairlift is a great favorite.,No one likes the chairlift.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: The chairlift is a great favorite.
+
+Translated English Hypothesis: No one likes the chairlift.
+
+English NLI Label: Contradiction",2.39615797996521,
+"For aids to the September 11 evacuation, see, e.g., Civilian interview 14 (Apr.",There are no aids available with regards to the September 11 evacuation.,2,contradiction,"For aids to the September 11 evacuation, see, for example, the civilian interview from April 14.",There are no aids available regarding the September 11 evacuation.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: For aids to the September 11 evacuation, see, for example, the civilian interview from April 14.
+
+Translated English Hypothesis: There are no aids available regarding the September 11 evacuation. 
+
+English NLI Label: Contradiction",3.877997636795044,
+"'  A Tennessee informant used dog weather for `hot, rainless weather,' which may derive from the expression dog days referring to dry August weather.",June and July are also very hot in Tennessee.,1,neutral,"A Tennessee informant used the term ""dog weather"" to describe hot, rainless weather, which may be derived from the expression ""dog days,"" referring to the dry August weather.",June and July are also very hot in Tennessee.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: A Tennessee informant used the term ""dog weather"" to describe hot, rainless weather, which may be derived from the expression ""dog days,"" referring to the dry August weather.
+
+Translated English Hypothesis: June and July are also very hot in Tennessee.
+
+English NLI Label: Entailment",4.100257635116577,
+"I killed him, it is true.",The man's life was spared.,2,contradiction,"I killed him, it is true.",The man's life was spared.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: I killed him, it is true.
+
+Translated English Hypothesis: The man's life was spared.
+
+English NLI Label: Contradiction",2.547335386276245,
+But I was in haste to land you.,The person wanted a lover.,1,neutral,But I was in haste to land you.,The person wanted a lover.,neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: But I was in haste to land you.
+
+Translated English Hypothesis: The person wanted a lover.
+
+English NLI Label: Neutral.",2.4472124576568604,
+"If you're feeling up to it, push on along the Mist Trail, past Emerald Pool, to Nevada Fall, and you'll begin to lose the crowds.",Nevada Falls is a great hike with a few people on it.,1,neutral,"If you're feeling up to it, push on along the Mist Trail, past Emerald Pool, to Nevada Fall, and you'll begin to lose the crowds.",Nevada Falls is a great hike with a few people on it.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: If you're feeling up to it, push on along the Mist Trail, past Emerald Pool, to Nevada Fall, and you'll begin to lose the crowds.
+
+Translated English Hypothesis: Nevada Falls is a great hike with a few people on it.
+
+English NLI Label: Contradiction",4.756519794464111,
+"I reported this in a letter to Dr.  it seemed to amuse him, and he sent me a small fruitcake that Christmas.",The doctor sent me a bottle of wine that Christmas.,2,contradiction,"I reported this in a letter to Dr. It seemed to amuse him, and he sent me a small fruitcake that Christmas.",The doctor sent me a bottle of wine that Christmas.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: I reported this in a letter to Dr. It seemed to amuse him, and he sent me a small fruitcake that Christmas.
+
+Translated English Hypothesis: The doctor sent me a bottle of wine that Christmas.
+
+English NLI Label: Contradiction",4.032464504241943,
+the sense that the checkbook is just a blank check you know and it's unlimited funds not that she goes out and spends it unlimitedly but it's almost that attitude,She feels like she can spend more than $1000 a night.,1,neutral,"""The checkbook seems to be seen as a way to spend without limit, despite not actually having unlimited funds. It's almost as if the person thinks they can afford anything.""","""She believes she can spend liberally, up to a thousand dollars or more, without restriction.""",entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: ""The checkbook seems to be seen as a way to spend without limit, despite not actually having unlimited funds. It's almost as if the person thinks they can afford anything.""
+
+Translated English Hypothesis: ""She believes she can spend liberally, up to a thousand dollars or more, without restriction.""
+
+English NLI Label: Entailment",5.126413822174072,
+"My hero, though, is Richard Heseltine, the chairman of the Overseas Investment Trust, who resigned earlier this month in opposition to the business plan forced on him by his superiors.",Heseltine quit his job.,0,entailment,"My hero, though, is Richard Heseltine, the chairman of the Overseas Investment Trust, who resigned earlier this month in opposition to the business plan forced on him by his superiors.",Heseltine quit his job.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: My hero, though, is Richard Heseltine, the chairman of the Overseas Investment Trust, who resigned earlier this month in opposition to the business plan forced on him by his superiors.
+
+Translated English Hypothesis: Heseltine quit his job.
+
+English NLI Label: Entailment",4.941424369812012,
+"The source claimed that Bin Ladin asked for and received assistance from the bomb-making expert, who remained there giving training until September 1996, which is when the information was passed to the United States.",The source knew nothing about Bin Laden.,2,contradiction,"The source claimed that Bin Ladin asked for and received assistance from the bomb-making expert, who remained there giving training until September 1996, which is when the information was passed to the United States.",The source knew nothing about Bin Laden.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: The source claimed that Bin Ladin asked for and received assistance from the bomb-making expert, who remained there giving training until September 1996, which is when the information was passed to the United States.
+
+Translated English Hypothesis: The source knew nothing about Bin Laden.
+
+English NLI Label: Contradiction",4.7278151512146,
+"Linked to Nova Scotia by the narrow Chignecto Isthmus, New Brunswick became a separate province in 1784 at the demand of 14,000 Loyalist refugees.",New Brunswick was not a province in 1784.,2,contradiction,"Linked to Nova Scotia by the narrow Chignecto Isthmus, New Brunswick became a separate province in 1784 at the demand of 14,000 Loyalist refugees.",New Brunswick was not a province in 1784.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: Linked to Nova Scotia by the narrow Chignecto Isthmus, New Brunswick became a separate province in 1784 at the demand of 14,000 Loyalist refugees.
+
+Translated English Hypothesis: New Brunswick was not a province in 1784.
+
+English NLI Label: contradiction",4.9241063594818115,
+They stressed that constant vigilance was needed to ensure that controls remained appropriate--addressing current risks and not unnecessarily hindering operations--and that individuals who used and maintained information systems complied with organizational policies.,They said it was important to be vigilent when it came to the news factory controls.,1,neutral,They emphasized that constant vigilance was necessary to ensure that controls were kept appropriate—addressing present dangers and not unduly hampering activities—and that those who employed and sustained information systems abided by organizational guidelines.,They asserted that it was crucial to remain vigilant regarding news factory controls.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: They emphasized that constant vigilance was necessary to ensure that controls were kept appropriate—addressing present dangers and not unduly hampering activities—and that those who employed and sustained information systems abided by organizational guidelines.
+
+Translated English Hypothesis: They asserted that it was crucial to remain vigilant regarding news factory controls.
+
+English NLI Label: Entailment",5.175948143005371,
+If there was anything I could do.,I knew there was nothing i could do.,2,contradiction,If there was anything I could do.,I knew there was nothing I could do.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: If there was anything I could do.
+
+Translated English Hypothesis: I knew there was nothing I could do.
+
+English NLI Label: contradiction",2.4388673305511475,
+Much has been made of hiring Michael Apted to bring a more human touch to the series.,Michael Apted was hired to add a personal quality to the series.,0,entailment,Much has been made of hiring Michael Apted to bring a more human touch to the series.,Michael Apted was hired to add a personal quality to the series.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: Much has been made of hiring Michael Apted to bring a more human touch to the series.
+
+Translated English Hypothesis: Michael Apted was hired to add a personal quality to the series.
+
+English NLI Label: Entailment",3.6015443801879883,
+"In appreciation for your contribution $100 or more to the campaign, you and a guest are invited to attend a special reception on Thursday, March 23,2000 from 5:30- 8:00 PM in Herron Hall.",You and a guest will be invited to attend a special reception if you donate $100 or more to the campaign.,0,entailment,"In appreciation for your contribution of $100 or more to the campaign, you and a guest are invited to attend a special reception on Thursday, March 23, 2000, from 5:30 to 8:00 PM in Herron Hall.",You and a guest will be invited to attend a special reception if you donate $100 or more to the campaign.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: In appreciation for your contribution of $100 or more to the campaign, you and a guest are invited to attend a special reception on Thursday, March 23, 2000, from 5:30 to 8:00 PM in Herron Hall.
+
+Translated English Hypothesis: You and a guest will be invited to attend a special reception if you donate $100 or more to the campaign.
+
+English NLI Label: Entailment",6.779586553573608,
+You'll see videos of Anne's story and of Amsterdam under occupation along with photographs and artifacts of the time.,You will not see photographs.,2,contradiction,"You'll see videos of Anne's story and of Amsterdam under occupation, along with photographs and artifacts of the time.",You will not see photographs.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: You'll see videos of Anne's story and of Amsterdam under occupation, along with photographs and artifacts of the time.
+
+Translated English Hypothesis: You will not see photographs.
+
+English NLI Label: Contradiction",3.4321043491363525,
+"In addition, Indiana residents may receive tax benefits through the Indiana tax credit which is applied directly against the bottom line of the state tax return.",Indiana residents get a 50% tax credit if they donate to the theater.,1,neutral,"In addition, Indiana residents may receive tax benefits through the Indiana tax credit, which is applied directly against the bottom line of the state tax return.",Indiana residents get a 50% tax credit if they donate to the theater.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: In addition, Indiana residents may receive tax benefits through the Indiana tax credit, which is applied directly against the bottom line of the state tax return.
+
+Translated English Hypothesis: Indiana residents get a 50% tax credit if they donate to the theater.
+
+English NLI Label: Contradiction",5.245145082473755,
+"The mayor of Letohrad, the town where Josef Korbel grew up, says he sent Albright three letters in recent years.",Korbel led Letohrad.,0,entailment,"The mayor of Letohrad, the town where Josef Korbel grew up, says he sent Albright three letters in recent years.",Korbel led Letohrad.,neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: The mayor of Letohrad, the town where Josef Korbel grew up, says he sent Albright three letters in recent years.
+
+Translated English Hypothesis: Korbel led Letohrad.
+
+English NLI Label: Neutral.",2.9999282360076904,
+"In an economy with reinvestment, what happens if we can take our advantages of trade and reinvest any excess so that we can create more apples and pears than we had to start with?",We can't trade with anyone around us.,2,contradiction,"In an economy with reinvestment, what happens if we can take our trading advantages and reinvest any excess to create more apples and pears than we started with?",We cannot trade with anyone nearby.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: In an economy with reinvestment, what happens if we can take our trading advantages and reinvest any excess to create more apples and pears than we started with?
+
+Translated English Hypothesis: We cannot trade with anyone nearby.
+
+English NLI Label: Contradiction.",3.346731662750244,
+We can continue to strengthen the education of good lawyers.,"We can educate lawyers, I'm sure of it!",0,entailment,We can continue to strengthen the education of good lawyers.,We can educate lawyers; I'm sure of it!,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: We can continue to strengthen the education of good lawyers.
+
+Translated English Hypothesis: We can educate lawyers; I'm sure of it!
+
+English NLI Label: entailment",2.465790271759033,
+"The ultimate recipient in Pakistan would then go to the Pakistani hawaladar and receive his money, in rupees, from whatever money the Pakistani hawaladar has on hand.",The ultimate recipient would need to travel to Turkey to get his money.,2,contradiction,"The ultimate recipient in Pakistan would then go to the Pakistani hawaladar and receive his money, in rupees, from whatever money the Pakistani hawaladar has on hand.",The ultimate recipient would need to travel to Turkey to get his money.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: The ultimate recipient in Pakistan would then go to the Pakistani hawaladar and receive his money, in rupees, from whatever money the Pakistani hawaladar has on hand.
+
+Translated English Hypothesis: The ultimate recipient would need to travel to Turkey to get his money.
+
+English NLI Label: Contradiction",3.7954912185668945,
+The real cause for concern is that HMOs may fail to control costs in the long term.,Everyone appreciates that HMOs will be able to control costs in the long term.,2,contradiction,The real cause for concern is that HMOs may fail to control costs in the long term.,Everyone appreciates that HMOs will be able to control costs in the long term.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: The real cause for concern is that HMOs may fail to control costs in the long term.
+
+Translated English Hypothesis: Everyone appreciates that HMOs will be able to control costs in the long term.
+
+English NLI Label: Contradiction",3.5142343044281006,
+and it still scared me,I was just a little bit scared.,1,neutral,And it still scared me.,I was just a little bit scared.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: And it still scared me.
+
+Translated English Hypothesis: I was just a little bit scared.
+
+English NLI Label: entailment",2.062429428100586,
+oh oh my word well that sounds adventuresome,That sounds like an awful experience.,2,contradiction,"Oh, oh my word! Well, that sounds adventurous!",That sounds like an awful experience.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: Oh, oh my word! Well, that sounds adventurous!
+
+Translated English Hypothesis: That sounds like an awful experience.
+
+English NLI Label: Contradiction",2.645577907562256,
+"Based on this risk assessment, Centrelink developed a range of specific prevention strategies aimed at educating beneficiaries and employers on income reporting requirements.",Centrelink had a lot of strategies to teach people how to report income because the government was losing a lot of money in mistakes.,1,neutral,"Based on this risk assessment, Centrelink developed a range of specific prevention strategies aimed at educating beneficiaries and employers on income reporting requirements.",Centrelink had a lot of strategies to teach people how to report income because the government was losing a lot of money due to mistakes.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: Based on this risk assessment, Centrelink developed a range of specific prevention strategies aimed at educating beneficiaries and employers on income reporting requirements.
+
+Translated English Hypothesis: Centrelink had a lot of strategies to teach people how to report income because the government was losing a lot of money due to mistakes.
+
+English NLI Label: Entailment",4.672671318054199,
+"This is extremely important to the long-term survival of elephants in human care, as well as the wild.",There is nothing that can be done to help elephants.,2,contradiction,This is extremely important for the long-term survival of elephants in human care and in the wild.,There is nothing that can be done to help elephants.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: This is extremely important for the long-term survival of elephants in human care and in the wild.
+
+Translated English Hypothesis: There is nothing that can be done to help elephants.
+
+English NLI Label: Contradiction",3.1894075870513916,
+We assume a direct linear relationship between volume per capita and pieces per possible,We know there's no connection between volume per capita and pieces per possible.,2,contradiction,We assume a direct linear relationship between volume per capita and pieces per possible.,We know there's no connection between volume per capita and pieces per possible.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: We assume a direct linear relationship between volume per capita and pieces per possible.
+
+Translated English Hypothesis: We know there's no connection between volume per capita and pieces per possible.
+
+English NLI Label: Contradiction",3.5797605514526367,
+"At the moment, the thinking is that it's perhaps best to leave these smaller, less developed islands in peace.",People think the islands should be left alone.,0,entailment,"At the moment, the thinking is that it's perhaps best to leave these smaller, less developed islands in peace.",People think the islands should be left alone.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: At the moment, the thinking is that it's perhaps best to leave these smaller, less developed islands in peace.
+
+Translated English Hypothesis: People think the islands should be left alone.
+
+English NLI Label: Entailment",3.487992286682129,
+"One thing M. Tesniares hasn't reckoned with, though, is the Anglo-Saxon input.",M. Tesniares performs Anglo-Saxon input.,2,contradiction,"One thing M. Tesniares hasn't reckoned with, though, is the Anglo-Saxon input.",M. Tesniares performs Anglo-Saxon input.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: One thing M. Tesniares hasn't reckoned with, though, is the Anglo-Saxon input.
+
+Translated English Hypothesis: M. Tesniares performs Anglo-Saxon input.
+
+English NLI Label: Entailment",3.731584072113037,
+My name is Wade--Lord Julian Wade.,"His name was not Wade but instead, Smith.",2,contradiction,My name is Wade—Lord Julian Wade.,"His name was not Wade but instead, Smith.",contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: My name is Wade—Lord Julian Wade.
+
+Translated English Hypothesis: His name was not Wade but instead, Smith.
+
+English NLI Label: Contradiction",2.4673869609832764,
+"It would be extremely difficult for a legal services attorney in California to know whether a client, who has been working in the migrant stream in Arizona, has temporarily crossed the border into Mexico.",The attorney can get the information through the migrant worker network.,1,neutral,"It would be extremely difficult for a legal services attorney in California to know whether a client, who has been working in the migrant stream in Arizona, has temporarily crossed the border into Mexico.",The attorney can get the information through the migrant worker network.,neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: It would be extremely difficult for a legal services attorney in California to know whether a client, who has been working in the migrant stream in Arizona, has temporarily crossed the border into Mexico.
+
+Translated English Hypothesis: The attorney can get the information through the migrant worker network.
+
+English NLI Label: Neutral.",4.307449579238892,
+"Likewise, the statistics in Tables A2 and A3 show that routes with high carrier route volume reside in ZIP Codes with higher levels of household income and education attainment.",High volume areas also have high incomes.,0,entailment,"Likewise, the statistics in Tables A2 and A3 show that routes with high carrier route volume reside in ZIP codes with higher levels of household income and education attainment.",High-volume areas also have high incomes.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: Likewise, the statistics in Tables A2 and A3 show that routes with high carrier route volume reside in ZIP codes with higher levels of household income and education attainment.
+
+Translated English Hypothesis: High-volume areas also have high incomes.
+
+English NLI Label: Entailment",4.041458368301392,
+And she was always there for us,She gave us all the money we needed.,1,neutral,And she was always there for us.,She gave us all the money we needed.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: And she was always there for us.
+
+Translated English Hypothesis: She gave us all the money we needed.
+
+English NLI Label: entailment",2.4568288326263428,
+"Um, and she said, she said, she said, Baby, she said, You don't understand about life the way I understand about life.",She told me I didn't have a clue how the real world worked and I should follow her.,1,neutral,"""Um, and she said, she said, she said, Baby, she said, You don't understand about life the way I understand about life.""","""She told me I didn't have a clue how the real world worked and I should follow her.""",entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: ""Um, and she said, she said, she said, Baby, she said, You don't understand about life the way I understand about life.""
+
+Translated English Hypothesis: ""She told me I didn't have a clue how the real world worked and I should follow her.""
+
+English NLI Label: Entailment",4.473613023757935,
+"Property is an endless succession of bubbles in space, or cyberspace, with different people claiming an endless variety of interests in them.",Property is just people saying they own something.,0,entailment,"Property is an endless succession of bubbles in space, or cyberspace, with different people claiming an endless variety of interests in them.",Property is just people saying they own something.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: Property is an endless succession of bubbles in space, or cyberspace, with different people claiming an endless variety of interests in them.
+
+Translated English Hypothesis: Property is just people saying they own something.
+
+English NLI Label: Contradiction",3.5314199924468994,
+"These workers were not trapped, yet unlike most occupants on the upper floors, they had chosen not to descend immediately after impact.",Some workers thought that the situation wouldn't escalate.,1,neutral,"These workers were not trapped, yet unlike most occupants on the upper floors, they had chosen not to descend immediately after impact.",Some workers thought that the situation wouldn't escalate.,neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: These workers were not trapped, yet unlike most occupants on the upper floors, they had chosen not to descend immediately after impact.
+
+Translated English Hypothesis: Some workers thought that the situation wouldn't escalate.
+
+English NLI Label: Neutral.",3.678833246231079,
+"Nothing underscores the subtle complexities of language more strikingly than the miscommunications that occur among pilots, crew members, and air traffic controllers.",Pilots are always perfect communicators.,2,contradiction,"Nothing underscores the subtle complexities of language more strikingly than the miscommunications that occur among pilots, crew members, and air traffic controllers.",Pilots are always perfect communicators.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: Nothing underscores the subtle complexities of language more strikingly than the miscommunications that occur among pilots, crew members, and air traffic controllers.
+
+Translated English Hypothesis: Pilots are always perfect communicators.
+
+English NLI Label: Contradiction",4.044607639312744,
+"Yousef managed to escape to Pakistan, but his accomplice, Murad-whom KSM claims to have sent to Yousef with $3,000 to help fund the operation-was arrested and disclosed details of the plot while under interrogation.",Murad told investigators where to locate Yousef in Pakistan.,1,neutral,"Yousef managed to escape to Pakistan, but his accomplice, Murad—whom KSM claims sent Murad to Yousef with $3,000 to help fund the operation—was arrested and disclosed details of the plot during interrogation.",Murad told investigators where to find Yousef in Pakistan.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: Yousef managed to escape to Pakistan, but his accomplice, Murad—whom KSM claims sent Murad to Yousef with $3,000 to help fund the operation—was arrested and disclosed details of the plot during interrogation.
+
+Translated English Hypothesis: Murad told investigators where to find Yousef in Pakistan.
+
+English NLI Label: Entailment",4.881533861160278,
+"One can imagine a bulldozer operator as he blades out a road for a new development being hailed by the developer   Hey, Loyd ...",You can imagine a bulldozer operator starting a bulldozer.,1,neutral,"One can imagine a bulldozer operator as he blades out a road for a new development being hailed by the developer. Hey, Loyd...",You can imagine a bulldozer operator starting a bulldozer.,neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: One can imagine a bulldozer operator as he blades out a road for a new development being hailed by the developer. Hey, Loyd...
+
+Translated English Hypothesis: You can imagine a bulldozer operator starting a bulldozer. 
+
+English NLI Label: Neutral.",3.6982808113098145,
+"So anyway, Dad goes and makes this nice big glass of chocolate milk for me.",Dad got me some chocolate milk from the fridge.,1,neutral,"So, my dad made me a huge glass of chocolate milk.",My dad got me chocolate milk from the fridge.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: So, my dad made me a huge glass of chocolate milk.
+
+Translated English Hypothesis: My dad got me chocolate milk from the fridge.
+
+English NLI Label: Entailment",2.7831037044525146,
+well supposedly in seven days they're going they're going to look through y our background and make sure you are not an ex-con or don't have,They will supposedly do a background check over the next seven days.,0,entailment,"Well, supposedly in seven days, they're going to look through *your* background and make sure you are not an ex-con or don't have any criminal record.",They will supposedly do a background check over the next seven days.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: Well, supposedly in seven days, they're going to look through *your* background and make sure you are not an ex-con or don't have any criminal record. 
+
+Translated English Hypothesis: They will supposedly do a background check over the next seven days. 
+
+English NLI Label: Entailment.",4.39501166343689,
+"I'm uh, Chief Master Sergeant, retired, as Rick said.",Rick told you I was retired.,0,entailment,"I'm a Chief Master Sergeant, retired, as Rick said.",Rick told you I was retired.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: I'm a Chief Master Sergeant, retired, as Rick said.
+
+Translated English Hypothesis: Rick told you I was retired.
+
+English NLI Label: Entailment",2.798117160797119,
+Anyhow the man comes in.,The man entered the room.,0,entailment,"Anyway, the man comes in.",The man entered the room.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: Anyway, the man comes in.
+
+Translated English Hypothesis: The man entered the room.
+
+English NLI Label: Entailment",2.280068874359131,
+"Of course, not every typographical error should be ascribed to a hidden unconscious motive on the part of the typesetter (or typist).",Typesetters and typists never make typographical errors.,2,contradiction,"Of course, not every typographical error should be ascribed to a hidden unconscious motive on the part of the typesetter (or typist).",Typesetters and typists never make typographical errors.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: Of course, not every typographical error should be ascribed to a hidden unconscious motive on the part of the typesetter (or typist).
+
+Translated English Hypothesis: Typesetters and typists never make typographical errors.
+
+English NLI Label: contradiction",3.7013232707977295,
+"If you would like additional information about the IU School of Medicine campaign or Dr. Field's research, please call 274-3270.",Dr. Field works as a dentist at University of Florida.,2,contradiction,"If you would like more information about the IU School of Medicine campaign or Dr. Field's research, please call 274-3270.",Dr. Field works as a dentist at the University of Florida.,neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: If you would like more information about the IU School of Medicine campaign or Dr. Field's research, please call 274-3270.
+
+Translated English Hypothesis: Dr. Field works as a dentist at the University of Florida.
+
+English NLI Label: Neutral.",4.584287881851196,
+"Although even some o' they should know better, for there's still a few was on Barbados with us, and are acquainted like me and you with Colonel Bishop.",We are also acquainted with Captain Blood.,1,neutral,"Although even some of them should know better, for there's still a few who were on Barbados with us, and are acquainted like me and you with Colonel Bishop.",We are also acquainted with Captain Blood.,neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: Although even some of them should know better, for there's still a few who were on Barbados with us, and are acquainted like me and you with Colonel Bishop.
+
+Translated English Hypothesis: We are also acquainted with Captain Blood.
+
+English NLI Label: Neutral.",3.6641287803649902,
+"On obtaining clean passports and the two damaged passports, see Intelligence reports, interrogations of KSM, July 3, 2003; Sept. 9, 2003.",KSM always failed to get clean documents.,2,contradiction,"Upon receiving clean passports and the two damaged ones, refer to Intelligence reports, interrogations of KSM, July 3, 2003; September 9, 2003.",KSM consistently failed to obtain valid documentation.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: Upon receiving clean passports and the two damaged ones, refer to Intelligence reports, interrogations of KSM, July 3, 2003; September 9, 2003.
+
+Translated English Hypothesis: KSM consistently failed to obtain valid documentation.
+
+English NLI Label: Contradiction",4.62101411819458,
+"Across from the square are the back streets of Laleli, the place to look for low-priced clothes.",Cheap clothes are for sale in Laleli if you go to the right boutiques.,1,neutral,"Across from the square are the back streets of Laleli, the place to look for low-priced clothes.",Cheap clothes are for sale in Laleli if you go to the right boutiques.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: Across from the square are the back streets of Laleli, the place to look for low-priced clothes.
+
+Translated English Hypothesis: Cheap clothes are for sale in Laleli if you go to the right boutiques.
+
+English NLI Label: Entailment",4.044665575027466,
+"Besides the lexicon, grammar--especially syntax--has changed somewhat, too, though again not so much as to be incomprehensible to the average modern reader.",Grammar has changed but not too much.,0,entailment,"Besides the lexicon, grammar—especially syntax—has changed somewhat, too, though again not so much as to be incomprehensible to the average modern reader.",Grammar has changed but not too much.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: Besides the lexicon, grammar—especially syntax—has changed somewhat, too, though again not so much as to be incomprehensible to the average modern reader.
+
+Translated English Hypothesis: Grammar has changed but not too much.
+
+English NLI Label: Entailment",3.908271074295044,
+"The main conclusion to draw from our simulation is that autonomous agents coupling one or more autocatalytic and work cycles are a perfectly reasonable, if novel, form of nonequilibrium, open chemical reaction network.",We can draw a conclusion from the simulation we did on the computer.,1,neutral,"The main conclusion to draw from our simulation is that autonomous agents coupling one or more autocatalytic and work cycles are a perfectly reasonable, if novel, form of nonequilibrium, open chemical reaction network.",We can draw a conclusion from the simulation we did on the computer.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: The main conclusion to draw from our simulation is that autonomous agents coupling one or more autocatalytic and work cycles are a perfectly reasonable, if novel, form of nonequilibrium, open chemical reaction network.
+
+Translated English Hypothesis: We can draw a conclusion from the simulation we did on the computer.
+
+English NLI Label: entailment",4.7632811069488525,
+"For an authentic feel of old Portugal, slip into the cool entrance hall of theimpressive Leal Senado ( Loyal Senate  building), a fine example of colonial architecture.",The Loyal Senate building is beautiful.,0,entailment,"For an authentic feel of old Portugal, slip into the cool entrance hall of the impressive Leal Senado (Loyal Senate) building, a fine example of colonial architecture.",The Loyal Senate building is beautiful.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: For an authentic feel of old Portugal, slip into the cool entrance hall of the impressive Leal Senado (Loyal Senate) building, a fine example of colonial architecture.
+
+Translated English Hypothesis: The Loyal Senate building is beautiful.
+
+English NLI Label: Entailment",3.4924862384796143,
+"One agency intended to implement an employee travel claim procedure allowing travelers, with certain exceptions, to merely list an aggregate amount of all expenses that individually cost $75 or less.",This idea was not well-received by t=other agencies.,1,neutral,"One agency intended to implement an employee travel claim procedure allowing travelers, with certain exceptions, to merely list an aggregate amount of all expenses that individually cost $75 or less.",This idea was not well-received by other agencies.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: One agency intended to implement an employee travel claim procedure allowing travelers, with certain exceptions, to merely list an aggregate amount of all expenses that individually cost $75 or less.
+
+Translated English Hypothesis: This idea was not well-received by other agencies.
+
+English NLI Label: Entailment",5.065135717391968,
+yeah i have two two boys twelve and sixteen,I also have a daughter that is younger than the boys.,1,neutral,"Yeah, I have two boys, ages 12 and 16.",I also have a daughter who is younger than my sons.,neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: Yeah, I have two boys, ages 12 and 16.
+
+Translated English Hypothesis: I also have a daughter who is younger than my sons.
+
+English NLI Label: Neutral.",3.230461359024048,
+The Friends operate at two levels -the Citywide Friends and the Branch Friends -and you can become active at either one or both levels.,"We don't separate the level of friends, everyone is the same.",2,contradiction,The Friends operate at two levels - the Citywide Friends and the Branch Friends - and you can become active at either one or both levels.,We don't separate the level of friends; everyone is the same.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: The Friends operate at two levels - the Citywide Friends and the Branch Friends - and you can become active at either one or both levels.
+
+Translated English Hypothesis: We don't separate the level of friends; everyone is the same.
+
+English NLI Label: contradiction",4.3585498332977295,
+"I want to say that there wasn't any danger of going in with the bomb because it would not explode, regardless of how hard it hit the ground.",There was a great danger of the bomb exploding.,2,contradiction,"I want to say that there wasn't any danger of going in with the bomb because it would not explode, regardless of how hard it hit the ground.",There was a great danger of the bomb exploding.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: I want to say that there wasn't any danger of going in with the bomb because it would not explode, regardless of how hard it hit the ground.
+
+Translated English Hypothesis: There was a great danger of the bomb exploding.
+
+English NLI Label: contradiction",4.501560211181641,
+Our initial observations suggest that GPRA performance reports are likely to be more useful if they,The usefulness of GPRA reports might be increased.,0,entailment,Our initial observations suggest that GPRA performance reports are likely to be more useful if they,The usefulness of GPRA reports might be increased.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: Our initial observations suggest that GPRA performance reports are likely to be more useful if they
+
+Translated English Hypothesis: The usefulness of GPRA reports might be increased.
+
+English NLI Label: Entailment",3.260333299636841,
+"I assure you, sir, that I was fully informed of all.",It is the detective's death that I was informed about.,1,neutral,"I assure you, sir, that I was fully informed of all.",It is the detective's death that I was informed about.,neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: I assure you, sir, that I was fully informed of all.
+
+Translated English Hypothesis: It is the detective's death that I was informed about.
+
+English NLI Label: Neutral.",3.5434274673461914,
+"He was born in 1880 something, like 188, I think it was 1889, I think it was when he was born.",He wasn't born until 1984.,2,contradiction,"He was born in the 1880s, around 1889, I believe. It was likely when he came into this world.",He wasn't born until 1984.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: He was born in the 1880s, around 1889, I believe. It was likely when he came into this world.
+
+Translated English Hypothesis: He wasn't born until 1984.
+
+English NLI Label: Contradiction",4.568215847015381,
+"H. H. Richardson and his protege Charles Follen McKim were alumni, as well as McKim's assistants, John M. Carrare and Thomas Hastings.","H. H. Richardson, Charles Follen McKim, John M. Carrare and Thomas Hastings were all alumni.",0,entailment,"H. H. Richardson and his protée, Charles Follen McKim, were alumni, as well as McKim's assistants, John M. Carrare, and Thomas Hastings.","H. H. Richardson, Charles Follen McKim, John M. Carrare, and Thomas Hastings were all alumni.",entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: H. H. Richardson and his protée, Charles Follen McKim, were alumni, as well as McKim's assistants, John M. Carrare, and Thomas Hastings.
+
+Translated English Hypothesis: H. H. Richardson, Charles Follen McKim, John M. Carrare, and Thomas Hastings were all alumni.
+
+English NLI Label: entailment",5.842844247817993,
+men um free of the charge one guy went in stabbed his ex-wife to death because she was sleeping with another guy i mean ex-wife you know we're talking and,A man killed his ex wife for sleeping with another guy after being freed from a prior charge.,0,entailment,Men um free of the charge one guy went in stabbed his ex-wife to death because she was sleeping with another guy I mean ex-wife you know we're talking and.,A man killed his ex-wife for sleeping with another guy after being freed from a prior charge.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: Men um free of the charge one guy went in stabbed his ex-wife to death because she was sleeping with another guy I mean ex-wife you know we're talking and.
+Translated English Hypothesis: A man killed his ex-wife for sleeping with another guy after being freed from a prior charge.
+
+English NLI Label: Contradiction",5.514086008071899,
+"And I had put uh, five detachments out of U2's.",I worked with the detachments for the U2's every day for forty years.,1,neutral,"And I had put uh, five detachments out of U2's.",I worked with the detachments for the U2's every day for forty years.,neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: And I had put uh, five detachments out of U2's.
+
+Translated English Hypothesis: I worked with the detachments for the U2's every day for forty years.
+
+English NLI Label: Neutral.",3.8738906383514404,
+"Napoleon attacked and destroyed Catalonia's sacred shrine, the monastery at Montserrat.",Napoleon was responsible for the destruction of the monastery at Montserrat.,0,entailment,"Napoleon attacked and destroyed Catalonia's sacred shrine, the monastery at Montserrat.",Napoleon was responsible for the destruction of the monastery at Montserrat.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: Napoleon attacked and destroyed Catalonia's sacred shrine, the monastery at Montserrat.
+
+Translated English Hypothesis: Napoleon was responsible for the destruction of the monastery at Montserrat.
+
+English NLI Label: Entailment",3.300377607345581,
+oh i see well i like the atmosphere myself,I do like the vibe myself.,0,entailment,"Oh, I see. Well, I like the atmosphere myself.",I do like the vibe myself.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: Oh, I see. Well, I like the atmosphere myself.
+
+Translated English Hypothesis: I do like the vibe myself.
+
+English NLI Label: Entailment",2.8322627544403076,
+I shall always be grateful.,I am so happy and grateful for what you have done today.,1,neutral,I shall always be grateful.,I am so happy and grateful for what you have done today.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: I shall always be grateful.
+
+Translated English Hypothesis: I am so happy and grateful for what you have done today.
+
+English NLI Label: entailment",2.705731153488159,
+"It is, of course, rather radical to suppose that there is quantum uncertainty in the law, but it does not seem obviously impossible.",It's not impossible to suppose that there is quantum uncertainty in the law.,0,entailment,"It is, of course, rather radical to suppose that there is quantum uncertainty in the law, but it does not seem obviously impossible.",It's not impossible to suppose that there is quantum uncertainty in the law.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: It is, of course, rather radical to suppose that there is quantum uncertainty in the law, but it does not seem obviously impossible.
+
+Translated English Hypothesis: It's not impossible to suppose that there is quantum uncertainty in the law.
+
+English NLI Label: Entailment",4.572975158691406,
+and that's a lot of it is due to the fact that the mothers are on drugs,The mothers are drug addicts.,1,neutral,And that's a lot of it is due to the fact that the mothers are on drugs.,The mothers are drug addicts.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: And that's a lot of it is due to the fact that the mothers are on drugs.
+
+Translated English Hypothesis: The mothers are drug addicts.
+
+English NLI Label: Entailment",3.3185389041900635,
+"To suppress the image of homosexuality as a vice, Clinton and Birch attribute civic virtues to gays.",Clinton and Birch are homosexuals.,1,neutral,"To suppress the image of homosexuality as a vice, Clinton and Birch attribute civic virtues to gays.",Clinton and Birch are homosexuals.,neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: To suppress the image of homosexuality as a vice, Clinton and Birch attribute civic virtues to gays.
+
+Translated English Hypothesis: Clinton and Birch are homosexuals.
+
+English NLI Label: Neutral.",3.2483928203582764,
+"Then I get it and I'm like great, What do I do with it?",I don't know how I was supposed to use the contraption.,1,neutral,"Then I get it and I'm like great, What do I do with it?",I don't know how I was supposed to use the contraption.,neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: Then I get it and I'm like great, What do I do with it?
+
+Translated English Hypothesis: I don't know how I was supposed to use the contraption.
+
+English NLI Label: Neutral.",3.5761890411376953,
+Samuel Sheinbein will serve a murder sentence in Israel.,Samuel Sheinbein will serve a murder sentence in Canada.,2,contradiction,Samuel Sheinbein will serve a murder sentence in Israel.,Samuel Sheinbein will serve a murder sentence in Canada.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: Samuel Sheinbein will serve a murder sentence in Israel.
+
+Translated English Hypothesis: Samuel Sheinbein will serve a murder sentence in Canada.
+
+English NLI Label: Contradiction",3.1528329849243164,
+"(It has been said, not altogether jokingly, that if the Japanese were required to pay a license fee for every English word they used, their trade surplus would vanish.)",Proper nouns are often overused when translating to English from foreign languages.,1,neutral,"It has been said, not altogether jokingly, that if the Japanese were required to pay a license fee for every English word they used, their trade surplus would vanish.",Proper nouns are often overused when translating to English from foreign languages.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: It has been said, not altogether jokingly, that if the Japanese were required to pay a license fee for every English word they used, their trade surplus would vanish.
+Translated English Hypothesis: Proper nouns are often overused when translating to English from foreign languages.
+English NLI Label: Contradiction",4.531797170639038,

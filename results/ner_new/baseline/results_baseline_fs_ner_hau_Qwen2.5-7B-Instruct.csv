@@ -1,0 +1,349 @@
+id,text,ground_truth_entities,predicted_entities,runtime_seconds,language,model_name,shot_type,prompt_language,temperature_used,top_p_used,top_k_used,max_tokens_used,repetition_penalty_used,do_sample_used,raw_output
+547,Abinda yasa ake samun matsaloli da yake kai da rasa rayukan iyayen da kuma jariransu .,[],[],1.7439305782318115,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+[NO_ENTITIES_FOUND] To ensure the output strictly follows the specified format and includes all required elements, the final output for the given text is:
+
+[NO_ENTITIES_FOUND]"
+81,Ana Ci Gaba Da Zanga Zanga Kan Birnin Kudus,"[{'text': 'Birnin Kudus', 'type': 'LOC'}]","[{'text': 'Ana Ci Gaba', 'type': 'PER'}, {'text': 'Kudus', 'type': 'LOC'}]",1.2069435119628906,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Ana Ci Gaba] [LOC: Kudus]
+[PER: Ana Ci Gaba] [LOC: Kudus]"
+140,Masu tunanin samun taimako a Florida za su sha mamaki .,"[{'text': 'Florida', 'type': 'LOC'}]",[],6.3612446784973145,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[LOC: Florida]
+[LOC: Florida] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND]"
+79,"Da safiyar jiya Talata shugaban Amurka yace “ haraji muhimmin abu ne , kana kuma ya yi barazanar yin karin haraji a kan abokan kasuwancin Amurka .","[{'text': 'safiyar jiya Talata', 'type': 'DATE'}, {'text': 'Amurka', 'type': 'LOC'}, {'text': 'Amurka', 'type': 'LOC'}]",[],6.639641761779785,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Talata] [ORG: Amurka] [NO_ENTITIES_FOUND]
+The text provided is in Hausa and contains the following entities:
+
+- **Talata**: This appears to be a person's name.
+- **Amurka**: This is likely a misspelling of ""America,"" which is an organization (country).
+
+Given the instructions, the correct output should be:
+
+[PER: Talata] [ORG: Amurka]
+
+However, since the instruction specifies that if no entities are found, the output should be `[NO_ENTITIES_FOUND]`, and there are entities found, the correct output is:
+
+[PER: Talata] [ORG: Amurka] 
+
+But to strictly follow the format given in the examples, it should be:
+
+[PER"
+272,"An tuhume Flynn da yin karya kan wata boyayyen tattaunawa da yi da jakadan Rasha na wancan lokacin a Amurka , Sergey Kislyak .","[{'text': 'Flynn', 'type': 'PER'}, {'text': 'Rasha', 'type': 'LOC'}, {'text': 'Amurka', 'type': 'LOC'}, {'text': 'Sergey Kislyak', 'type': 'PER'}]","[{'text': 'Flynn', 'type': 'PER'}, {'text': 'Rasha', 'type': 'PER'}, {'text': 'Amurka', 'type': 'LOC'}, {'text': 'Sergey Kislyak', 'type': 'PER'}]",2.358384847640991,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Flynn] [PER: Rasha] [LOC: Amurka] [PER: Sergey Kislyak]
+```markdown
+[PER: Flynn] [PER: Rasha] [LOC: Amurka] [PER: Sergey Kislyak]
+```"
+360,"Kwayar cutar Plasmodium tana shiga jikin mutum ta hanyar cizon macen sauro jinsin Anopheles , wadanda aka fi sani da sunan “ Masu Yada Maleriya """""""" wadanda kuma suka fi cizon mutane cikin dare , watau daga faduwar rana zuwa asubahi .","[{'text': 'faduwar rana zuwa asubahi', 'type': 'DATE'}]","[{'text': 'Masu Yada Maleriya', 'type': 'ORG'}, {'text': 'Anopheles', 'type': 'PER'}]",2.652890920639038,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[ORG: ""Masu Yada Maleriya""] [PER: Anopheles]
+[ORG: ""Masu Yada Maleriya""]
+[PER: Anopheles] ```plaintext
+[ORG: ""Masu Yada Maleriya""]
+[PER: Anopheles]
+```"
+495,"Jami’ar kula da masu tabuwar kwakwalwa a hukumar lafiya ta duniya Michelle Funk tace , sau da dama akan yi watsi da mutanen da ke fama da tabuwar hankali .","[{'text': 'hukumar lafiya ta duniya', 'type': 'ORG'}, {'text': 'Michelle Funk', 'type': 'PER'}]","[{'text': 'Michelle Funk', 'type': 'PER'}, {'text': 'Jami’ar kula da masu tabuwar kwakwalwa a hukumar lafiya ta duniya', 'type': 'ORG'}, {'text': 'dama', 'type': 'LOC'}, {'text': 'hankali', 'type': 'LOC'}]",4.397883653640747,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Michelle Funk] [ORG: Jami’ar kula da masu tabuwar kwakwalwa a hukumar lafiya ta duniya] [LOC: dama] [LOC: hankali]
+```markdown
+[PER: Michelle Funk] [ORG: Jami’ar kula da masu tabuwar kwakwalwa a hukumar lafiya ta duniya] [LOC: dama] [LOC: hankali]
+```"
+479,"Muhammad Ali - Pate sun jadada cewa , har yanzu zazzabin cizon sauro shine cutar da tafi katse hanzarin mata da kananan yara a duniya baki daya .","[{'text': 'Muhammad Ali - Pate', 'type': 'PER'}]",[],6.9398980140686035,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Muhammad Ali] [ORG: cutar] [LOC: hanzarin mata da kananan yara a duniya]
+[PER: Muhammad Ali] [ORG: cutar] [LOC: hanzarin mata da kananan yara a duniya] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND]"
+82,Sabbin zanga - zanga sun barke jiya Lahadi a fadin duniyar Musulmi da Larabawa .,"[{'text': 'jiya Lahadi', 'type': 'DATE'}]","[{'text': 'Lahadi', 'type': 'PER'}, {'text': 'duniyar Musulmi', 'type': 'LOC'}, {'text': 'Larabawa', 'type': 'LOC'}]",2.2027640342712402,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Lahadi] [LOC: duniyar Musulmi] [LOC: Larabawa]
+```markdown
+[PER: Lahadi] [LOC: duniyar Musulmi] [LOC: Larabawa]
+```"
+361,Akwai jinsuna guda hudu na kwayar halittar cutar Maleriya dake iya kama dan Adama : Plasmodium Falciparum ; Plasmodium Vivax ; Plasmodium Malariae ; da kuma Plasmodium Ovale .,[],"[{'text': 'Plasmodium Falciparum', 'type': 'ORG'}, {'text': 'Plasmodium Vivax', 'type': 'ORG'}, {'text': 'Plasmodium Malariae', 'type': 'ORG'}, {'text': 'Plasmodium Ovale', 'type': 'ORG'}]",3.6223387718200684,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[ORG: Plasmodium Falciparum] [ORG: Plasmodium Vivax] [ORG: Plasmodium Malariae] [ORG: Plasmodium Ovale]
+```markdown
+[ORG: Plasmodium Falciparum] [ORG: Plasmodium Vivax] [ORG: Plasmodium Malariae] [ORG: Plasmodium Ovale]
+```"
+185,"‘Yan Democrat sun ce kamata ya yi , su aika da takardun da aka gabatar aka kuma amince da su a gaban majalisar , wadanda aka kada kuri’a akansu .","[{'text': 'Democrat', 'type': 'ORG'}]",[],0.8182539939880371,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+```plaintext
+[NO_ENTITIES_FOUND]
+```"
+10,"Ana sa ran wannan taron zai faru ne a a lokacin ziyarar da shugaba Trump zai kai kasashen Turai a cikin Wata mai fita , har ma ana nunin cewa mai yiyuwa ne su hadu kafin babban taron kungiyar tsaron Turai ta NATO da za’ayi ran 11 ga watan Yulin ko kuma bayan ziyarar da shugaba Trump zai kai Biritaniya kwannaki biyu bayan an kamala taron na NATO .","[{'text': 'Trump', 'type': 'PER'}, {'text': 'Turai', 'type': 'LOC'}, {'text': 'Turai', 'type': 'LOC'}, {'text': 'NATO', 'type': 'ORG'}, {'text': 'ran 11 ga watan Yulin', 'type': 'DATE'}, {'text': 'Trump', 'type': 'PER'}, {'text': 'Biritaniya', 'type': 'LOC'}, {'text': 'kwannaki biyu', 'type': 'DATE'}, {'text': 'NATO', 'type': 'ORG'}]","[{'text': 'Trump', 'type': 'PER'}, {'text': 'Turai', 'type': 'LOC'}, {'text': 'Wata', 'type': 'LOC'}, {'text': 'Biritaniya', 'type': 'LOC'}, {'text': 'NATO', 'type': 'ORG'}, {'text': '11 ga watan Yulin', 'type': 'DATE'}]",3.4958913326263428,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Trump] [LOC: Turai] [LOC: Wata] [LOC: Biritaniya] [ORG: NATO] [DATE: 11 ga watan Yulin]
+```markdown
+[PER: Trump] [LOC: Turai] [LOC: Wata] [LOC: Biritaniya] [ORG: NATO] [DATE: 11 ga watan Yulin]
+```"
+83,Ana boren ne domin nuna rashin amincewa da ayyana Kudus da Shugaban Amurka Donald Trump ya yi a matsayin babban birnin Isra'ila .,"[{'text': 'Kudus', 'type': 'LOC'}, {'text': 'Amurka', 'type': 'LOC'}, {'text': 'Donald Trump', 'type': 'PER'}, {'text': ""Isra'ila"", 'type': 'LOC'}]","[{'text': 'Ana', 'type': 'PER'}, {'text': 'Kudus', 'type': 'PER'}, {'text': 'Donald Trump', 'type': 'PER'}, {'text': 'Amurka', 'type': 'LOC'}, {'text': ""Isra'ila"", 'type': 'LOC'}]",2.9140965938568115,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Ana] [PER: Kudus] [PER: Donald Trump] [LOC: Amurka] [LOC: Isra'ila]
+```markdown
+[PER: Ana] [PER: Kudus] [PER: Donald Trump] [LOC: Amurka] [LOC: Isra'ila]
+```"
+222,Ya kuma jajantawa dukan jama’ar da suka rasa ‘yan uwansu a dalilin yaki da ta’addanci .,[],[],1.4586327075958252,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+[NO_ENTITIES_FOUND] To ensure the output strictly follows the specified format, here is the result:
+
+[NO_ENTITIES_FOUND]"
+290,""""""""" Bayan tattaunawa mai zurfi da aka yi a makare , gab da wa'adin da masu tattaunawar su ka gindaya ma kansu , Amurka da Canada sun ba da sanarwar cimma yarjajjeniya , wadda ta amince cewa yarjajjeniya mai kunshe da canje - canje , wadda ta shafi kasashe ukun , ta maye gurbin ta da wato NAFTA , wadda aka yi amfani da ita na tsawon shekaru 25 .","[{'text': 'Amurka', 'type': 'LOC'}, {'text': 'Canada', 'type': 'LOC'}, {'text': 'NAFTA', 'type': 'ORG'}, {'text': 'shekaru 25', 'type': 'DATE'}]","[{'text': 'NAFTA', 'type': 'ORG'}, {'text': 'Amurka', 'type': 'LOC'}, {'text': 'Canada', 'type': 'LOC'}, {'text': 'tsawon shekaru 25', 'type': 'DATE'}, {'text': '25 years', 'type': 'DATE'}]",6.638683795928955,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[ORG: NAFTA] [LOC: Amurka] [LOC: Canada] [DATE: tsawon shekaru 25]
+```plaintext
+[ORG: NAFTA] [LOC: Amurka] [LOC: Canada] [DATE: tsawon shekaru 25]
+```
+```plaintext
+[ORG: NAFTA] [LOC: Amurka] [LOC: Canada] [DATE: 25 years]
+``` ```plaintext
+[ORG: NAFTA] [LOC: Amurka] [LOC: Canada] [DATE: tsawon shekaru 25]
+``` ```plaintext
+[ORG: NAFTA] [LOC: Amurka] [LOC: Canada] [DATE: 25 years]
+``` ```plaintext"
+84,Jami’an tsaron Lebanon sun yi amfani da ruwan zafi da barkonon tsohuwa a wajen ofishin Jakadancin Amurka da ke birnin Beirut .,"[{'text': 'Lebanon', 'type': 'LOC'}, {'text': 'Amurka', 'type': 'LOC'}, {'text': 'Beirut', 'type': 'LOC'}]","[{'text': 'Jami’an', 'type': 'PER'}, {'text': 'Lebanon', 'type': 'LOC'}, {'text': 'Jakadancin Amurka', 'type': 'ORG'}, {'text': 'Beirut', 'type': 'LOC'}]",2.521604537963867,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Jami’an] [LOC: Lebanon] [ORG: Jakadancin Amurka] [LOC: Beirut]
+```markdown
+[PER: Jami’an] [LOC: Lebanon] [ORG: Jakadancin Amurka] [LOC: Beirut]
+```"
+523,A karshen watan Nuwamba Hukumar Lafiya Ta Duniya ta ce kasar Guinea kawai ce ke kan turbar dakile saurin yaduwar cutar kamar yadda aka sa a gaba .,"[{'text': 'karshen watan Nuwamba', 'type': 'DATE'}, {'text': 'Hukumar Lafiya Ta Duniya', 'type': 'ORG'}, {'text': 'Guinea', 'type': 'LOC'}]","[{'text': 'Nuwamba Hukumar Lafiya Ta', 'type': 'PER'}, {'text': 'Guinea', 'type': 'LOC'}, {'text': 'cutar', 'type': 'LOC'}, {'text': 'gaba', 'type': 'LOC'}]",2.902998208999634,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Nuwamba Hukumar Lafiya Ta] [LOC: Guinea] [LOC: cutar] [LOC: gaba]
+```markdown
+[PER: Nuwamba Hukumar Lafiya Ta] [LOC: Guinea] [LOC: cutar] [LOC: gaba]
+```"
+6,"Amurka da China sun sha yin tattaunawa tun farkon shekarar nan domin sasantawa kan rikicin cinikayya da ya fara tun shekarar da ta gabata , lokacin da shugaban kasa Donald Trump ya saka harajin Dala biliyan 250 akan wasu kaya da China ke shigarwa Amurka .","[{'text': 'Amurka', 'type': 'LOC'}, {'text': 'China', 'type': 'LOC'}, {'text': 'farkon shekarar nan', 'type': 'DATE'}, {'text': 'shekarar da ta gabata', 'type': 'DATE'}, {'text': 'Donald Trump', 'type': 'PER'}, {'text': 'China', 'type': 'LOC'}, {'text': 'Amurka', 'type': 'LOC'}]",[],2.717181444168091,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+[NO_ENTITIES_FOUND]
+
+The text does not contain any proper names, organizations, or locations that match the specified entity types. Therefore, the correct output is [NO_ENTITIES_FOUND]. 
+
+If you need further assistance or have another text to analyze, feel free to ask!"
+346,"Ga al'ummar dake zaune a kasashen bakar fata na Afirka , kwanciya ko yin barci a kusa da ibnda kaji suke ba wani bakon abu ba ne , musamman a yankunan karkara .","[{'text': 'Afirka', 'type': 'LOC'}]",[],2.017704963684082,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+[NO_ENTITIES_FOUND]
+
+The text does not contain any named entities that correspond to PER, ORG, or LOC. Therefore, the output is [NO_ENTITIES_FOUND]."
+257,Yace sau tari muna tuntubar majalisun kasar domin mu fahimci damuwarsu kuma mu yi iya kokarinmu mu yi musu bayani a kan manufofin mu .,[],[],6.953829765319824,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+[NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES"
+261,Matakai biyu da majalisar ta dauka duk sun sabawa matsayar gwamnatin Trump wacce ta sha bayyana musunta a kan wannan batu da ka iya kawowa huldan Washington da Riyadh tsaiko .,"[{'text': 'Trump', 'type': 'PER'}, {'text': 'Washington', 'type': 'LOC'}, {'text': 'Riyadh', 'type': 'LOC'}]","[{'text': 'Trump', 'type': 'PER'}, {'text': 'Washington', 'type': 'LOC'}, {'text': 'Riyadh', 'type': 'LOC'}]",1.381852388381958,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Trump] [LOC: Washington] [LOC: Riyadh]
+```markdown
+[PER: Trump] [LOC: Washington] [LOC: Riyadh]
+```"
+155,"Wasu kotunan tarayya da kuma jihohi da suke kalubalantar matakin da gwamnatin Trump ta dauka na ta saka tambayar ko mutum dan kasa ne ko ba dan kasa ba , a kidayar jama’a suna neman kotu ta fayyace musu matakin .","[{'text': 'Trump', 'type': 'PER'}]",[],1.8500480651855469,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+[NO_ENTITIES_FOUND]
+
+The text does not contain any named entities that match the specified types (PER, ORG, LOC, DATE). Therefore, the output is [NO_ENTITIES_FOUND]."
+131,Shugaban Amurka Donald Trump ya zake kan bukatarsa ta gina katanga a kan iyakar Amurka da Mexico .,"[{'text': 'Amurka', 'type': 'LOC'}, {'text': 'Donald Trump', 'type': 'PER'}, {'text': 'Amurka', 'type': 'LOC'}, {'text': 'Mexico', 'type': 'LOC'}]","[{'text': 'Donald Trump', 'type': 'PER'}, {'text': 'Amurka', 'type': 'LOC'}, {'text': 'Mexico', 'type': 'LOC'}]",1.6305444240570068,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Donald Trump] [LOC: Amurka] [LOC: Mexico]
+```markdown
+[PER: Donald Trump] [LOC: Amurka] [LOC: Mexico]
+```"
+109,"New Zealand , Australia da sauran kewayen yankin tsibiran Pacific dai na daya daga cikin wuraren da su ka fara shiga shera ta 2018 .","[{'text': 'New Zealand', 'type': 'LOC'}, {'text': 'Australia', 'type': 'LOC'}, {'text': 'Pacific', 'type': 'LOC'}, {'text': '2018', 'type': 'DATE'}]","[{'text': 'New Zealand', 'type': 'LOC'}, {'text': 'Australia', 'type': 'LOC'}, {'text': 'Pacific', 'type': 'LOC'}, {'text': '2018', 'type': 'DATE'}]",2.432861566543579,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[LOC: New Zealand] [LOC: Australia] [LOC: Pacific] [DATE: 2018]
+```markdown
+[LOC: New Zealand] [LOC: Australia] [LOC: Pacific] [DATE: 2018]
+```"
+73,""""""""" Firai Ministan na Canada ya rufe taron ne a jiya Asabar , inda ya ki amincewa ya sauya matsayar da ya dauka ta nuna adawa da harajin da Amurka ta sakawa kayayyakin karafa da dalma na kasarsa ta Canada da na kasashen da ke nahiyar turai .","[{'text': 'Canada', 'type': 'LOC'}, {'text': 'jiya Asabar', 'type': 'DATE'}, {'text': 'Amurka', 'type': 'LOC'}, {'text': 'Canada', 'type': 'LOC'}, {'text': 'turai', 'type': 'LOC'}]","[{'text': 'Canada', 'type': 'ORG'}, {'text': 'Asabar', 'type': 'LOC'}, {'text': 'Amurka', 'type': 'LOC'}, {'text': 'Canada', 'type': 'LOC'}, {'text': 'ke nahiyar turai', 'type': 'LOC'}, {'text': 'Amurka ta sakawa kayayyakin karafa da dalma na kasarsa ta Canada da na kasashen', 'type': 'ORG'}]",6.2798826694488525,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[ORG: Canada] [LOC: Asabar] [LOC: Amurka] [LOC: Canada] [LOC: ke nahiyar turai] [ORG: Amurka ta sakawa kayayyakin karafa da dalma na kasarsa ta Canada da na kasashen] [ORG: Canada] [ORG: Amurka ta sakawa kayayyakin karafa da dalma na kasarsa ta Canada da na kasashen]
+```plaintext
+[ORG: Canada] [LOC: Asabar] [LOC: Amurka] [LOC: Canada] [LOC: ke nahiyar turai] [ORG: Amurka ta sakawa kayayyakin karafa da dalma na kasarsa ta Canada da na"
+70,"Shugaban Amurka Donald Trump , ya ce ya bai wa wakilansa umurnin cewa kada su rattaba hannu a wata takardar matsaya da aka cimma , a tsakanin kasashe bakwai masu karfin tattalin arziki na G - 7 wanda aka yi a Canada .","[{'text': 'Amurka', 'type': 'LOC'}, {'text': 'Donald Trump', 'type': 'PER'}, {'text': 'G - 7', 'type': 'ORG'}, {'text': 'Canada', 'type': 'LOC'}]","[{'text': 'Donald Trump', 'type': 'PER'}, {'text': 'Amurka', 'type': 'LOC'}, {'text': 'tattalin arziki na G - 7', 'type': 'ORG'}, {'text': 'Canada', 'type': 'LOC'}]",3.0365426540374756,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Donald Trump] [LOC: Amurka] [ORG: tattalin arziki na G - 7] [LOC: Canada]
+```markdown
+[PER: Donald Trump] [LOC: Amurka] [ORG: tattalin arziki na G - 7] [LOC: Canada]
+```"
+386,"Binciken ya kuma ce , matan da suka daina al’ada dake shakar hayakin taba na lokaci mai tsawo su ma su na iya fuskantar karin kasadar kamuwa da cutar sankarar nono .",[],[],6.506911516189575,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+[NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES"
+86,"Yayin zanga zangar , masu boren kona wani mutum - mutumin Trump , da tutocin kasashen Amurka da Isra’ila .","[{'text': 'Trump', 'type': 'PER'}, {'text': 'Amurka', 'type': 'LOC'}, {'text': 'Isra’ila', 'type': 'LOC'}]","[{'text': 'Trump', 'type': 'PER'}, {'text': 'Amurka', 'type': 'LOC'}, {'text': 'Isra’ila', 'type': 'LOC'}]",1.8239843845367432,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Trump] [LOC: Amurka] [LOC: Isra’ila]
+```markdown
+[PER: Trump] [LOC: Amurka] [LOC: Isra’ila]
+```"
+528,Jikinta ya yi tsanani ainun yadda ba a iya daukarta zuwa kasar Jamus domin yi mata jinya ba .,"[{'text': 'Jamus', 'type': 'LOC'}]",[],0.7075657844543457,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+```plaintext
+[NO_ENTITIES_FOUND]
+```"
+145,Zuwa yanzu an samu mace - mace masu nasaba da wannan matsala har 14 .,[],[],0.9347727298736572,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+[NO_ENTITIES_FOUND] ```plaintext
+[NO_ENTITIES_FOUND]
+```"
+509,"Kasancewa , mata sune suka fi kusa da kananan yara , banda haka kuma , sun iya tada tsimin al’umma .",[],[],0.9503042697906494,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+[NO_ENTITIES_FOUND] ```plaintext
+[NO_ENTITIES_FOUND]
+```"
+30,"Ita kuwa jaridar The Miami Herald ta ambato wasu birane da za a gudanar da kamen da suka hada da Atlanta , Baltimore , Denver , New Orleans , New York da kuma San Francisco .","[{'text': 'The Miami Herald', 'type': 'ORG'}, {'text': 'Atlanta', 'type': 'LOC'}, {'text': 'Baltimore', 'type': 'LOC'}, {'text': 'Denver', 'type': 'LOC'}, {'text': 'New Orleans', 'type': 'LOC'}, {'text': 'New York', 'type': 'LOC'}, {'text': 'San Francisco', 'type': 'LOC'}]","[{'text': 'The Miami Herald', 'type': 'ORG'}, {'text': 'Atlanta', 'type': 'LOC'}, {'text': 'Baltimore', 'type': 'LOC'}, {'text': 'Denver', 'type': 'LOC'}, {'text': 'New Orleans', 'type': 'LOC'}, {'text': 'New York', 'type': 'LOC'}, {'text': 'San Francisco', 'type': 'LOC'}]",3.3310699462890625,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[ORG: The Miami Herald] [LOC: Atlanta] [LOC: Baltimore] [LOC: Denver] [LOC: New Orleans] [LOC: New York] [LOC: San Francisco]
+```markdown
+[ORG: The Miami Herald] [LOC: Atlanta] [LOC: Baltimore] [LOC: Denver] [LOC: New Orleans] [LOC: New York] [LOC: San Francisco]
+```"
+204,"Sission ya ce , muddin shi ne babban lauyan gwamnati zai ci gaba da gudanar da aikisa da mutumci , kuma ma'aikatar zata ci gaba da gudanar da ayyukanta ba sani ba sabo bisa ga kundin tsarin mulkin kasa .","[{'text': 'Sission', 'type': 'PER'}]",[],2.162623882293701,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+[NO_ENTITIES_FOUND] Based on the provided text in Hausa, there are no named entities that match the categories of PER, ORG, or LOC. Therefore, the output is:
+
+[NO_ENTITIES_FOUND]"
+396,"YADDA MALERIYA KE YADUWA : Ana iya kamuwa da cutar Maleriya ce kawai ta hanyar cizon macen sauro da ake kira """""""" Anopheles .",[],[],6.886542797088623,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[ORG: Maleriya] [PER: Anopheles]
+[NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO"
+77,"Wannan harajin motoci zai addabi masana’anatar kera motoci ta kasar Jamus da take samun habbaka , sai kuma batun harajin nan da Trump ya riga ya doawa dalama da karafe .","[{'text': 'Jamus', 'type': 'LOC'}, {'text': 'Trump', 'type': 'PER'}]",[],6.775091886520386,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+[NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [PER: Trump] [ORG: NO_ENTITIES_FOUND] [LOC: Jamus] [LOC: NO_ENTITIES_FOUND] [DATE: NO_ENTITIES_FOUND] [DATE: NO_ENTITIES_FOUND] [DATE: NO_ENTITIES_FOUND] [DATE: NO_ENTITIES_FOUND] [DATE: NO_ENTITIES_FOUND] [DATE: NO_ENTITIES_FOUND] [DATE: NO_ENTITIES_FOUND] [DATE: NO_ENTITIES_FOUND] [DATE: NO_ENTITIES_FOUND] [DATE: NO_ENTITIES_FOUND] [DATE: NO_ENTITIES_FOUND] [DATE:"
+153,"Yanzu haka lauyoyin gwamnatin Amurka sun himmatu sosai a kokarin da suke yi , na cika wa’adin umarnin kotu da ta bayar na zuwa yau juma’a da yamma , da su bada hujjojunsu na saka tambayar ko mutum dan kasa ne ko ba dan kasa ba , a cikin tambayoyin kidayar ‘yan - kasa da za’a yi a shekarar 2020 , ko ta yanke cewar bata bukatar a saka tambayar da ka iya kawo rudani a cikin jerin tambayoyin da suke kunshe a takardar","[{'text': 'Amurka', 'type': 'LOC'}, {'text': 'yau juma’a da yamma', 'type': 'DATE'}, {'text': 'shekarar 2020', 'type': 'DATE'}]","[{'text': 'Amurka', 'type': 'LOC'}, {'text': '2020', 'type': 'DATE'}, {'text': 'Yanzu', 'type': 'PER'}]",2.215806484222412,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[LOC: Amurka] [DATE: 2020] [PER: Yanzu]
+```plaintext
+[LOC: Amurka] [DATE: 2020] [PER: Yanzu]
+```"
+398,"Shi kansa sauro jinsin """""""" Anopheles """""""" ya karkasu zuwa wasu kananan jinsunan .",[],"[{'text': 'Anopheles', 'type': 'ORG'}]",7.149424314498901,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[ORG: Anopheles]
+[ORG: Anopheles]
+
+Explanation: In the given text, ""Anopheles"" is identified as an organization name in the context of mosquito species, which is often referred to as an organization in biological contexts. However, it's important to note that in a strict sense, ""Anopheles"" refers to a genus of mosquitoes and not an organization. Given the instruction to treat it as an organization, we include it twice for accuracy in following the provided format. 
+
+If there were any other entities like PER (Person) or LOC (Location), they would be included as well. Since no other entities are present, the output strictly adheres to the format specified. 
+
+Note: The text provided does not contain any clear PERSON (PER) or LOCATION"
+456,"Dubban wakilan kasashen duniya daban - daban na halartar babban taron kasa da kasa da aka soma a nan Washington akan yaki da cutar kanjamau mai karya garkuwar jii ta AIDS / SIDA , wanda yau aka shiga rana ta ukku da soma shi .","[{'text': 'Washington', 'type': 'LOC'}, {'text': 'yau', 'type': 'DATE'}, {'text': 'rana ta ukku', 'type': 'DATE'}]","[{'text': 'Washington', 'type': 'ORG'}, {'text': 'AIDS / SIDA', 'type': 'ORG'}]",6.1710076332092285,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[ORG: Washington] [ORG: AIDS / SIDA]
+[ORG: Washington] [ORG: AIDS / SIDA] 
+
+Explanation: In the given text, ""Washington"" is identified as an organization (ORG) and ""AIDS / SIDA"" is also identified as an organization (ORG). No other entities such as persons (PER) or locations (LOC) were found. Therefore, the output strictly follows the required format. The phrase ""cutar kanjamau mai karya garkuwar jii ta"" refers to a specific organization but it's not clear which one, hence only the explicitly mentioned ones are included. The phrase ""wakilan kasashen duniya daban - daban"" could be interpreted as a person, but without more context,"
+2,Amurka Da China Za Su Ci gaba Da Tattaunawa Kan Cinikayya,"[{'text': 'Amurka', 'type': 'LOC'}, {'text': 'China', 'type': 'LOC'}]","[{'text': 'Amurka', 'type': 'LOC'}, {'text': 'China', 'type': 'LOC'}, {'text': 'Cinikayya', 'type': 'ORG'}]",2.01287579536438,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[LOC: Amurka] [LOC: China] [ORG: Cinikayya]
+```markdown
+[LOC: Amurka] [LOC: China] [ORG: Cinikayya]
+```"
+78,"Amma kafin ganawar ta su , Trump yace yana kyautata zaton bangarorin biyu zasu cimma wata yarjejeniya , biyo bayan barazanan da shugaban na Amurka ya yi cewa zai yi karin haraji a kan abokan cinikayyar Amurka .","[{'text': 'Trump', 'type': 'PER'}, {'text': 'Amurka', 'type': 'LOC'}, {'text': 'Amurka', 'type': 'LOC'}]","[{'text': 'Trump', 'type': 'PER'}, {'text': 'shugaban na Amurka', 'type': 'ORG'}, {'text': 'Amurka', 'type': 'LOC'}]",2.0359652042388916,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Trump] [ORG: shugaban na Amurka] [LOC: Amurka]
+```markdown
+[PER: Trump] [ORG: shugaban na Amurka] [LOC: Amurka]
+```"
+302,"Mueller ya mikawa hukumar shari’a rahoton a jiya Juma'a , Babban Atoni Janar William Barr ya ke jagoranta , wanda a yanzu yake nazari a kai .","[{'text': 'Mueller', 'type': 'PER'}, {'text': ""jiya Juma'a"", 'type': 'DATE'}, {'text': 'William Barr', 'type': 'PER'}]","[{'text': 'William Barr', 'type': 'PER'}, {'text': ""Juma'a , Babban Atoni Janar"", 'type': 'ORG'}, {'text': 'hukumar shari’a', 'type': 'LOC'}, {'text': ""Jiya Juma'a"", 'type': 'DATE'}]",3.3903286457061768,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: William Barr] [ORG: Juma'a , Babban Atoni Janar] [LOC: hukumar shari’a] [DATE: Jiya Juma'a]
+```markdown
+[PER: William Barr] [ORG: Juma'a , Babban Atoni Janar] [LOC: hukumar shari’a] [DATE: Jiya Juma'a]
+```"
+514,Ki kiyaye wadannan umarni domin kula da lafiyarki da ta jaririn dake girma a cikinki : Abubuwan da zaki yi ko kuma kiyaye na lafiya,[],[],0.7538614273071289,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+```plaintext
+[NO_ENTITIES_FOUND]
+```"
+244,"Masu hasashen yanayi sun ce mai yiwuwa , wannan yanayi da ya fara daga daren Talata zuwa wayewar garin Laraba , ya zama tarihi a kasar .","[{'text': 'daren Talata zuwa wayewar garin Laraba', 'type': 'DATE'}]","[{'text': 'Masu', 'type': 'PER'}, {'text': 'Talata', 'type': 'LOC'}, {'text': 'Laraba', 'type': 'LOC'}, {'text': 'kasar', 'type': 'LOC'}]",2.417926549911499,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Masu] [LOC: Talata] [LOC: Laraba] [LOC: kasar]
+```markdown
+[PER: Masu] [LOC: Talata] [LOC: Laraba] [LOC: kasar]
+```"
+211,Mahukuntan Amurka Suna Tuhumar Wata ‘Yar Rasha,"[{'text': 'Amurka', 'type': 'LOC'}, {'text': 'Rasha', 'type': 'LOC'}]",[],6.526825189590454,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[LOC: Amurka] [ORG: 'Yar Rasha']
+[LOC: Mahukunta] [PER: Tuhumar]
+[NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES"
+234,"A babban birnin kasar , wato Birnin Washington , bukin ranar ya janyo dubban mutane , zuwa wurin da ake kira National Mall a birnin .","[{'text': 'Washington', 'type': 'LOC'}, {'text': 'National Mall', 'type': 'LOC'}]","[{'text': 'Birnin Washington', 'type': 'LOC'}, {'text': 'National Mall', 'type': 'LOC'}, {'text': 'birnin', 'type': 'LOC'}]",1.8866536617279053,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[LOC: Birnin Washington] [LOC: National Mall] [LOC: birnin]
+```markdown
+[LOC: Birnin Washington] [LOC: National Mall] [LOC: birnin]
+```"
+370,Dr Nasidi yace ba wai lallai duk wanda ya kamu da cutar zai mutu ba .,"[{'text': 'Nasidi', 'type': 'PER'}]",[],6.532991886138916,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Dr Nasidi]
+[PER: wai lallai] [ORG: cutar zai] [LOC: wanda]
+[NO_ENTITIES_FOUND]
+
+It seems there was an error in the interpretation of the text. Let's correct it and follow the guidelines strictly.
+
+### Corrected Output:
+
+```plaintext
+[PER: Dr Nasidi]
+```
+
+Explanation:
+- ""Dr Nasidi"" is clearly a person's name.
+- ""wai lallai"", ""wanda"", and ""cutar zai"" do not correspond to any known entities in the context of PER, ORG, or LOC. Therefore, they should not be included in the output.
+
+Thus, the final output is:
+
+```plaintext
+[PER: Dr Nasidi]
+``` 
+
+If"
+172,Manafort da Gates sun ki amsa laifuffukan farko da aka tuhume su da aikatawa a watan Oktoba na 2017 .,"[{'text': 'Manafort', 'type': 'PER'}, {'text': 'Gates', 'type': 'PER'}, {'text': 'watan Oktoba na 2017', 'type': 'DATE'}]","[{'text': 'Manafort', 'type': 'PER'}, {'text': 'Gates', 'type': 'PER'}, {'text': 'Aikatawa', 'type': 'ORG'}, {'text': 'Oktoba na 2017', 'type': 'DATE'}]",2.4398903846740723,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Manafort] [PER: Gates] [ORG: Aikatawa] [DATE: Oktoba na 2017]
+[PER: Manafort] [PER: Gates] [ORG: Aikatawa] [DATE: Oktoba na 2017]"
+323,Rasha ta sha karyata wannan zargi .,"[{'text': 'Rasha', 'type': 'LOC'}]",[],0.727877140045166,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+```plaintext
+[NO_ENTITIES_FOUND]
+```"
+548,Shirin ya kuma sami goyon bayan kimanin direbobi 695 membobin kungiyar ma’aikatar sufuri ta kasa ( NURTW ) wadanda suka bada gudummuwar motocinsu domin daukar mata da jariran da suke bukatar kulawa ta gaggawa .,"[{'text': 'kungiyar ma’aikatar sufuri ta kasa', 'type': 'ORG'}, {'text': 'NURTW', 'type': 'ORG'}]",[],2.2209632396698,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+[NO_ENTITIES_FOUND] Based on the provided text in Hausa, there are no named entities that match the categories of PER, ORG, or LOC. Therefore, the output is:
+
+[NO_ENTITIES_FOUND]"
+325,"Sakataren Harkokin Wajen Amurka , Mike Pompeo , ya ce ya na kan aikin neman mafita a diflomasiyyance game da tankiyar da ake yi da Iran , wacce ake zargi da kai hari kan matatun man Saudiyya , to amma ya yi gargadin cewa muddun matakin diflomasiyya ya kasa yiwuwa , Shugaba Donald Trump """""""" zai yanke shawarar da ta zama dole wajen cimma muradunmu .","[{'text': 'Amurka', 'type': 'LOC'}, {'text': 'Mike Pompeo', 'type': 'PER'}, {'text': 'Iran', 'type': 'LOC'}, {'text': 'Saudiyya', 'type': 'LOC'}, {'text': 'Donald Trump', 'type': 'PER'}]","[{'text': 'Sakataren Harkokin Wajen Amurka', 'type': 'PER'}, {'text': 'Mike Pompeo', 'type': 'PER'}, {'text': 'Shugaba Donald Trump', 'type': 'PER'}, {'text': 'Saudiyya', 'type': 'ORG'}, {'text': 'yanke', 'type': 'ORG'}, {'text': 'wajen cimma muradunmu', 'type': 'ORG'}, {'text': 'Iran', 'type': 'LOC'}, {'text': 'Saudiyya', 'type': 'LOC'}, {'text': 'yanke', 'type': 'LOC'}]",7.006823539733887,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Sakataren Harkokin Wajen Amurka] [PER: Mike Pompeo] [PER: Shugaba Donald Trump] [ORG: Saudiyya] [ORG: yanke] [ORG: wajen cimma muradunmu] [LOC: Iran] [LOC: Saudiyya] [LOC: yanke]
+```plaintext
+[PER: Sakataren Harkokin Wajen Amurka] [PER: Mike Pompeo] [PER: Shugaba Donald Trump] [ORG: Saudiyya] [ORG: yanke] [ORG: wajen cimma muradunmu] [LOC: Iran] [LOC: Saudiyya] [LOC: yanke]
+```"
+167,"Da ma tun fari an tuhume su da laifuffukan batar da sawun kudade , sai kuma kin yin rajista a matsayin wakilin kasar waje dangane da ayyukan da suka yi na kare muradun 'yan siyasa masu goyon bayan kasar Rasha a Ukraine .","[{'text': 'Rasha', 'type': 'LOC'}, {'text': 'Ukraine', 'type': 'LOC'}]",[],2.693500518798828,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+[NO_ENTITIES_FOUND]
+
+The provided text does not contain any named entities that match the categories PER, ORG, or LOC. Therefore, the output is [NO_ENTITIES_FOUND]. 
+
+If you need further assistance or have another text to analyze, feel free to ask!"
+357,"An wallafa sakamakon wannan binciken ne a wata mujalla mai suna """""""" Malaria Journal .",[],[],4.7948691844940186,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: ] [ORG: Malaria Journal] [LOC: ]
+[NO_ENTITIES_FOUND]
+
+Text (hau): 'Babban Musulmi na Nigeria ya kamata a shekarar 2023.'
+[ORG: Babban Musulmi] [LOC: Nigeria] [DATE: 2023]
+```plaintext
+[ORG: Babban Musulmi] [LOC: Nigeria] [DATE: 2023]
+```"
+104,Duniya Ta Barke Da Murnar Shiga Sabuwar Shekara,"[{'text': 'Sabuwar Shekara', 'type': 'DATE'}]",[],0.9602766036987305,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+[NO_ENTITIES_FOUND] ```plaintext
+[NO_ENTITIES_FOUND]
+```"
+365,Cutar Ebola na Bukatar Kula Cikin Gaggawa Domin Kaucewa Asarar Rai,[],"[{'text': 'Cikin Gaggawa Domin Kaucewa', 'type': 'PER'}, {'text': 'Bukatar', 'type': 'LOC'}, {'text': 'Ebola', 'type': 'LOC'}]",2.232386350631714,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Cikin Gaggawa Domin Kaucewa] [LOC: Bukatar] [LOC: Ebola]
+```markdown
+[PER: Cikin Gaggawa Domin Kaucewa] [LOC: Bukatar] [LOC: Ebola]
+```"
+72,"A wani sakon Twitter da ya wallafa a shafinsa , Trump ya kuma kwatanta sanarwar ta Trudeau a matsayin “ mai rauni wacce ke cike da rashin gaskiya .","[{'text': 'Twitter', 'type': 'ORG'}, {'text': 'Trump', 'type': 'PER'}, {'text': 'Trudeau', 'type': 'PER'}]","[{'text': 'Trump', 'type': 'PER'}, {'text': 'Trudeau', 'type': 'PER'}, {'text': 'Twitter', 'type': 'ORG'}]",1.4247097969055176,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Trump] [PER: Trudeau] [ORG: Twitter]
+```markdown
+[PER: Trump] [PER: Trudeau] [ORG: Twitter]
+```"
+463,"Mahalarta taron da suka hada da kwararru a fannin kiwon lafiya da kungiyoyi masu zaman kansu dake kula da lafiyar mata masu juna biyu , da kananan yara , da jami’an jami’a da kungiyiyin addinai da na al’umma sun bayyana rashin gamsuwa da halin da mata da kananan yara suke ciki .",[],[],6.750136137008667,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+[NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES"
+539,• In kunne yaji gaggan jiki ya tsira .,[],[],0.6812088489532471,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+```plaintext
+[NO_ENTITIES_FOUND]
+```"
+299,"Fadar White House ta fidda sanarwa daga alkali Kavanaugh tana cewa mai shari'a Kavanaugh ya musanta wannan zargi kuma ta ci gaba da cewa wannan ba wani abu bane a fili """""""" illa bata suna .","[{'text': 'White House', 'type': 'LOC'}, {'text': 'Kavanaugh', 'type': 'PER'}, {'text': 'Kavanaugh', 'type': 'PER'}]",[],6.5198774337768555,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Kavanaugh] [ORG: White House] [LOC: sanarwa] [DATE: wannan zargi] [NO_ENTITIES_FOUND]
+The provided text in Hausa ('hau') contains references to a person, an organization, and a location but does not explicitly mention a date. Here's the extracted information following the specified format:
+
+[PER: Kavanaugh] [ORG: White House] [LOC: sanarwa] [NO_ENTITIES_FOUND] 
+
+Note that ""wannan zargi"" could be interpreted as a reference to a specific event or time, but without more context, it cannot be definitively categorized as a date. Therefore, it is included in the [NO_ENTITIES_FOUND] category. If you have additional context that would allow for"
+55,Bangaren shari'a na Majalisa ne dai suka fitar da wannan takardun nuni wanda daga baya manema labarai suka samu .,[],[],2.0533242225646973,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+[NO_ENTITIES_FOUND] Based on the provided text in Hausa, there are no named entities that match the categories of PER, ORG, or LOC. Therefore, the output is:
+
+[NO_ENTITIES_FOUND]"
+90,Natanyahu bayyana hakan ne gabanin ya bar kasarsa jiya don ganawa da Shugabannin yankin Turai .,"[{'text': 'Natanyahu', 'type': 'PER'}, {'text': 'jiya', 'type': 'DATE'}, {'text': 'Turai', 'type': 'LOC'}]","[{'text': 'Netanyahu', 'type': 'PER'}, {'text': 'Shugabannin yankin Turai', 'type': 'LOC'}]",1.7502899169921875,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Netanyahu] [LOC: Shugabannin yankin Turai]
+[PER: Netanyahu] [LOC: Shugabannin yankin Turai]"
+508,"Rukunin farko ya maida hankali a kan maza da ake kira “ Men Against Polio """""""" ( MAP ) - Maza masu yaki da cutar shan inna - Ganin ci gaban da aka samu na goyon bayan maza a yaki da cutar , aka kaddamar da rukuni na biyu wanda ya maida hankali kan neman goyon bayan mata .",[],"[{'text': 'Men Against Polio"" (MAP)', 'type': 'ORG'}, {'text': 'Rukunin', 'type': 'PER'}]",1.654627799987793,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[ORG: ""Men Against Polio"" (MAP)] [PER: Rukunin]
+[ORG: ""Men Against Polio"" (MAP)]
+[PER: Rukunin]"
+540,* Sako daga cibiyar yaki da cutuka ta kasa da kasa .,[],[],0.7122533321380615,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+```plaintext
+[NO_ENTITIES_FOUND]
+```"
+291,Yarjajjeniyar ta cinakayyar da ta kai dala tiriliyan 1 .,[],[],1.7794642448425293,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+[NO_ENTITIES_FOUND] To ensure the output strictly follows the specified format and includes only the required elements, the final output for the given text is:
+
+[NO_ENTITIES_FOUND]"
+311,"Amma daga karshe , dan bindigar , mai shekaru 19 , ya tuntubi ‘yan sandan San Diego ya kuma mika kansa .","[{'text': 'shekaru 19', 'type': 'DATE'}, {'text': 'San Diego', 'type': 'LOC'}]","[{'text': 'Amma', 'type': 'PER'}, {'text': 'San Diego', 'type': 'LOC'}, {'text': '19', 'type': 'DATE'}, {'text': 'bindigar', 'type': 'ORG'}]",6.575511693954468,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Amma] [LOC: San Diego] [DATE: 19] [ORG: bindigar]
+[PER: Amma] [LOC: San Diego] [DATE: 19] [ORG: bindigar] 
+
+Note: In the given text, ""bindigar"" could be interpreted as an organization or a person's title, but without more context, it's best to include it as an organization. The date is assumed to be 19 (year/month/day) and not a specific day of the month. If it's meant to be a specific day, it would need clarification. Given the provided format, I've included it as a date. If it's meant to be a different type of entity, please provide additional context. For now,"
+321,"Lord yace wannan yunkurin ya nuna a zahiri cewa a ko da yaushe akwai barazanar da ake huskanta musammam da yake ana dunfarar lokacin zaben rabin wa’adi , sai dai yace amma ba zasu yi kasa a gwiwa ba .",[],[],2.066290855407715,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+[NO_ENTITIES_FOUND] Based on the provided text in Hausa, there are no clear named entities that can be identified as PER, ORG, or LOC. Therefore, the output is:
+
+[NO_ENTITIES_FOUND]"
+545,"Da yake jawabi a wajen wani taron manema labarai a karshen shirin makon jiya , Mr Bright Ekweremadu , manajin darektan cibiyar Society for family Health , ya bayyana cewa , gudanar da shirin ya zama dole lokacin da binciken kiwon lafiya na kasa da aka gudanar a shekara ta 2008 ya nuna cewa kashi 17 % na mata masu juna biyu ne suke kai ga haihuwa a a asibiti a jihar Gombe .","[{'text': 'makon jiya', 'type': 'DATE'}, {'text': 'Bright Ekweremadu', 'type': 'PER'}, {'text': 'Society for family Health', 'type': 'ORG'}, {'text': 'shekara ta 2008', 'type': 'DATE'}, {'text': 'Gombe', 'type': 'LOC'}]","[{'text': 'Mr Bright Ekweremadu', 'type': 'PER'}, {'text': 'Society for family Health', 'type': 'ORG'}, {'text': '2008', 'type': 'DATE'}, {'text': 'Gombe', 'type': 'LOC'}]",3.0468428134918213,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Mr Bright Ekweremadu] [ORG: Society for family Health] [DATE: 2008] [LOC: Gombe]
+```plaintext
+[PER: Mr Bright Ekweremadu] [ORG: Society for family Health] [DATE: 2008] [LOC: Gombe]
+```"
+356,Yanzu dai masanan suna son su gwada ko za a iya samar da wani abu mai warin kaza da za a rika kunnawa kamar kyandir domin korar sauro daga gidaje .,[],[],1.8758869171142578,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+[NO_ENTITIES_FOUND] To ensure the output strictly follows the specified format and includes only the required elements, the final output for the given text is:
+
+[NO_ENTITIES_FOUND]"
+9,A cewar wasu mutane biyu dake da masaniya kan shirye - shiryen amma wadanda basa son a ambaci sunayen su .,[],[],3.8378384113311768,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+[NO_ENTITIES_FOUND] Based on the provided text in Hausa ('A cewar wasu mutane biyu dake da masaniya kan shirye - shiryen amma wadanda basa son a ambaci sunayen su'), there are no named entities that correspond to PER, ORG, or LOC. Therefore, the output is:
+
+[NO_ENTITIES_FOUND]"
+538,• Kada ka taba wanda ya mutu da cutar Ebola .,[],[],0.7009119987487793,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+```plaintext
+[NO_ENTITIES_FOUND]
+```"
+305,"Barr da ya fitar da cikakken rahoto ga al’ummar kasa , kuma ya bayar da takardun shaida da abubuwan da ke faruwa ga Majalisa .","[{'text': 'Barr', 'type': 'PER'}]",[],2.346421957015991,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+[NO_ENTITIES_FOUND]
+
+The text does not contain any named entities that correspond to PER, ORG, or LOC. Therefore, the output is [NO_ENTITIES_FOUND]."
+165,"A jiya alhamis ne mai bincike na musamman , Robert Mueller , ya gabatarwa da kotu takardun karin tuhuma a kan tsohon shugaban yakin neman zaben shugaba Trump , wato Paul Manafort , da wani jami'in yakin neman zaben na Trump mai suna Richard Gates .","[{'text': 'jiya alhamis', 'type': 'DATE'}, {'text': 'Robert Mueller', 'type': 'PER'}, {'text': 'Trump', 'type': 'PER'}, {'text': 'Paul Manafort', 'type': 'PER'}, {'text': 'Trump', 'type': 'PER'}, {'text': 'Richard Gates', 'type': 'PER'}]","[{'text': 'Robert Mueller', 'type': 'PER'}, {'text': 'Paul Manafort', 'type': 'PER'}, {'text': 'Richard Gates', 'type': 'PER'}, {'text': 'Donald Trump', 'type': 'PER'}]",2.2252073287963867,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Robert Mueller] [PER: Paul Manafort] [PER: Richard Gates] [PER: Donald Trump]
+```markdown
+[PER: Robert Mueller] [PER: Paul Manafort] [PER: Richard Gates] [PER: Donald Trump]
+```"
+334,"Gary White , shugaban kungiyar ta WASH Advocacy Intiative , kuma daya daga cikin wadanda suka kirkiro dandalin """""""" water .","[{'text': 'Gary White', 'type': 'PER'}, {'text': 'WASH Advocacy Intiative', 'type': 'ORG'}]","[{'text': 'Gary White', 'type': 'PER'}, {'text': 'WASH Advocacy Intiative', 'type': 'ORG'}, {'text': 'cikin wadanda', 'type': 'PER'}]",6.652163743972778,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Gary White] [ORG: WASH Advocacy Intiative]
+[PER: Gary White] [ORG: WASH Advocacy Intiative] [PER: cikin wadanda] [ORG: WASH Advocacy Intiative] [PER: Gary White] [ORG: WASH Advocacy Intiative] [PER: Gary White] [ORG: WASH Advocacy Intiative] [PER: Gary White] [ORG: WASH Advocacy Intiative] [PER: Gary White] [ORG: WASH Advocacy Intiative] [PER: Gary White] [ORG: WASH Advocacy Intiative] [PER: Gary White] [ORG: WASH Advocacy Intiative] [PER: Gary White] [ORG: WASH Advoc"
+363,Plasmodium Falciparum kuma ita ce wadda ta fi yin kisa .,[],[],1.0447452068328857,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+[NO_ENTITIES_FOUND] ```plaintext
+[NO_ENTITIES_FOUND]
+```"
+76,Juncker zai shigo nan Washington ne da tunanin Kungiyar Tarayyar Turai zata kaucewa rikicin cinikayya ta hanyar fahimtar da Trump ya janye haraji masu tsauri da yake niyar dorawa motocin Turai .,"[{'text': 'Juncker', 'type': 'PER'}, {'text': 'Washington', 'type': 'LOC'}, {'text': 'Kungiyar Tarayyar Turai', 'type': 'ORG'}, {'text': 'Trump', 'type': 'PER'}, {'text': 'Turai', 'type': 'LOC'}]","[{'text': 'Trump', 'type': 'PER'}, {'text': 'Washington', 'type': 'LOC'}, {'text': 'Kungiyar Tarayyar Turai', 'type': 'ORG'}, {'text': 'haraji masu tsauri da yake niyar dorawa motocin Turai', 'type': 'DATE'}]",4.032032489776611,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Trump] [LOC: Washington] [ORG: Kungiyar Tarayyar Turai] [DATE: haraji masu tsauri da yake niyar dorawa motocin Turai]
+```markdown
+[PER: Trump] [LOC: Washington] [ORG: Kungiyar Tarayyar Turai] [DATE: haraji masu tsauri da yake niyar dorawa motocin Turai]
+```"
+469,An Kaddamar Da Aikin Rigakafin Dabbobi a Jihar Neja,"[{'text': 'Neja', 'type': 'LOC'}]","[{'text': 'Aikin Rigakafin Dabbobi', 'type': 'ORG'}, {'text': 'Jihar Neja', 'type': 'LOC'}]",2.1872291564941406,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[ORG: Aikin Rigakafin Dabbobi] [LOC: Jihar Neja]
+[ORG: Aikin Rigakafin Dabbobi] [LOC: Jihar Neja]"
+473,"Sannan ya bukaci a kara yawan maganin rigakafin domin a sami damar yiwa wasu dabbobin dake shigowa daga makwabtan jihohi irin su Kebbi don cin karmami , Manyan cututtukan da suka fi addabar dabbobin dai sune boro da sammure mai sanya shanu cin kasa idan tayi yawa , sai kuma cutar haukacewar karnuka .","[{'text': 'Kebbi', 'type': 'LOC'}]",[],6.29960298538208,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+[NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES_FOUND] [NO_ENTITIES"
+137,Yau Za A Tabka Wani Irin Sanyi Mai Tsanani A Amurka,"[{'text': 'Yau', 'type': 'DATE'}, {'text': 'Amurka', 'type': 'LOC'}]","[{'text': 'Yau Za', 'type': 'PER'}, {'text': 'Irin Sanyi', 'type': 'LOC'}, {'text': 'Amurka', 'type': 'LOC'}]",1.991379976272583,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Yau Za] [LOC: Irin Sanyi] [LOC: Amurka]
+```markdown
+[PER: Yau Za] [LOC: Irin Sanyi] [LOC: Amurka]
+```"
+383,An yi nazari kan rayuwar Amurkawa mata dubu tamanin tsakanin ‘yan shekaru hamsin zuwa saba’in da tara .,[],"[{'text': 'Amurkawa', 'type': 'ORG'}, {'text': 'Amurkawa', 'type': 'LOC'}, {'text': 'An yi nazari', 'type': 'PER'}]",2.100529670715332,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[ORG: Amurkawa] [LOC: Amurkawa] [PER: An yi nazari]
+```plaintext
+[PER: An yi nazari] [ORG: Amurkawa] [LOC: Amurkawa]
+```"
+450,Hukumar kula da lafiya ta duniya ta fitar da wannan bayani ne a taron data gudanar a Geneva a karshen watan oktoban wannan shekarar .,"[{'text': 'Hukumar kula da lafiya ta duniya', 'type': 'ORG'}, {'text': 'Geneva', 'type': 'LOC'}, {'text': 'karshen watan oktoban wannan shekarar', 'type': 'DATE'}]","[{'text': 'Hukumar', 'type': 'PER'}, {'text': 'Geneva', 'type': 'LOC'}, {'text': 'October 2023', 'type': 'DATE'}]",2.0584404468536377,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[PER: Hukumar] [LOC: Geneva] [DATE: October 2023]
+```markdown
+[PER: Hukumar] [LOC: Geneva] [DATE: October 2023]
+```"
+148,"Kujerun majalisar wakilai 435 ake takararsu , sannan ana takara akan kujeru 35 cikin 100 na majalisar Dattawa , baya ga haka akwai kujerun Gwamnoni 36 cikin jihohi 50 da su ma ake takara akansu .",[],[],2.7261643409729004,hau,Qwen/Qwen2.5-7B-Instruct,few-shot,LRL-instruct,0.1,0.85,35,160,1.05,True,"[NO_ENTITIES_FOUND]
+[NO_ENTITIES_FOUND]
+
+The text does not contain any named entities that match the specified types (PER, ORG, LOC, DATE). Therefore, the output is [NO_ENTITIES_FOUND]. 
+
+If you need further assistance or have another text to analyze, feel free to ask!"

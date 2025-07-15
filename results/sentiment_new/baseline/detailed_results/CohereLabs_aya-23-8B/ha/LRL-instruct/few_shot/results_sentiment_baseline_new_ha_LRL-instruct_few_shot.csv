@@ -1,0 +1,277 @@
+id,text,ground_truth_label,predicted_label,language,runtime_seconds,prompt_language,shot_type,raw_model_output
+hau_test_530,kice ma ali nuhu handsome mna,negative,positive,ha,1.3176,LRL-instruct,few-shot,"positive
+
+'nana kace baare'
+Alamar Ra"
+hau_test_3527,hhhhhhhhhh aiba dayawa suka iba ba kawai kiyafe musu,neutral,positive,ha,0.4734,LRL-instruct,few-shot,"positive
+
+Rubutu hausa:
+'hhhhhhhhh"
+hau_test_3165,ko suna fadar gaskiya bah,neutral,positive,ha,0.4725,LRL-instruct,few-shot,"positive
+
+'ko suna fadar gaskiya bah'"
+hau_test_2395,mene yasa wai buhari bazai rabawa talakawan nigeria tallafi bah,neutral,positive,ha,0.4763,LRL-instruct,few-shot,"positive
+
+Kana hausa yahaya abubakar ba da"
+hau_test_79,wannan haka ya ke,negative,positive,ha,0.4720,LRL-instruct,few-shot,"positive
+
+'wannan haka ya ke'
+Alamar Ra"
+hau_test_4518,banza a banza dankaduna da kayan sallah,positive,positive,ha,0.4722,LRL-instruct,few-shot,"positive
+
+'Bannan sallah'
+Alamar Ra'"
+hau_test_2937,mai yasa bakya duba yan facebook anti rahama,neutral,positive,ha,0.4719,LRL-instruct,few-shot,"positive
+
+'Kuma saka baa kan kula yah"
+hau_test_5093,nabi dimokuradiyya da gudu,positive,positive,ha,0.4711,LRL-instruct,few-shot,"positive
+
+'nabi dimokuradiyya da gudu'"
+hau_test_1293,allah yakaimu maigida,negative,positive,ha,0.4719,LRL-instruct,few-shot,"positive
+
+'Allah yakeem kuma gaba'
+Al"
+hau_test_2951,muma yan nigeria ai tuni namu ya girgije,neutral,positive,ha,0.4729,LRL-instruct,few-shot,"positive
+
+Kana hausawa ruubutu:
+""m"
+hau_test_4585,wai tunda can me ake ta jira ne bamason wargi fa,positive,positive,ha,0.4731,LRL-instruct,few-shot,"positive
+
+'waina kan wana gaba kuma baura"
+hau_test_2522,in har aljanun gaskiya ne in anzo rata ye ta sai su sace ta mu gani in har suna kishin ta ne,neutral,positive,ha,0.4748,LRL-instruct,few-shot,"positive
+
+'in har aljanun gaskiya ne in an"
+hau_test_230,insha allah sarauniya,negative,positive,ha,0.4720,LRL-instruct,few-shot,"positive
+
+'insha allah sarauniya'
+Al"
+hau_test_2232,kunga wata me kama da rahma sadau,neutral,positive,ha,0.4730,LRL-instruct,few-shot,"positive
+
+'naka nako ba ko sa'an gaba"
+hau_test_3523,muna da atiku in haukane,neutral,positive,ha,0.4735,LRL-instruct,few-shot,"positive
+
+'Da ninkin hausaya kuma baura"
+hau_test_4516,wannan mutumin fa ya samu matsala da alama,positive,positive,ha,0.4727,LRL-instruct,few-shot,"positive
+
+'wannan mutumin fa ya samu matsala da"
+hau_test_4782,talaka ne babban mikiyin buhari duk abinda kaki ki acikin rayuwar ka to fa idan yasan me yake kai ze para ki shima,positive,positive,ha,0.4862,LRL-instruct,few-shot,"positive
+
+'yau ba ko sannamdan gaba k"
+hau_test_167,da so samu ne kice duk duniya ni kikoso,negative,positive,ha,0.4731,LRL-instruct,few-shot,"positive
+
+'Da so samu ne kice duka duni"
+hau_test_1992,i can believe this my rikadawa salamatu inaga saida safe,neutral,positive,ha,0.4734,LRL-instruct,few-shot,"positive
+
+'I am very angry about what happened to me today'"
+hau_test_3550,zan bashi shawarar hukunta duk wani mai sa hannu cikin wannan zanga zangar ta hanyar tsige shi daga matsayinshi idan yana cikin ikon wannan gwamnati idan kuma yan zaman banza ne to kawaii a harbeshi tinda byan son zaman lafiya,positive,positive,ha,0.4892,LRL-instruct,few-shot,"positive
+
+Turanci Rubutu:
+'zana bashi"
+hau_test_2311,arsenal tayi can jaras da liverpool a karawar da suka yi daren yau inda suka ta shi can jaras,neutral,positive,ha,0.4753,LRL-instruct,few-shot,"positive
+
+'I love Arsenal and they are better than Liverpool in football"
+hau_test_4359,allah wadai da wannan headline din naku wannan rashin kwarewar aikin ne,positive,positive,ha,0.4752,LRL-instruct,few-shot,"positive
+
+'Allah wadai da wannan headline din naku w"
+hau_test_4538,satar akwatin zabe chin amanar qasa ne bana goyon bayan satar akwatin zabe amma agaskiya akwatin zabe bata kai rayuwar dan adam ba dokar qasa ta bada hukunchin shekara biyu a gidan yari wannan shine abinda yakamata ayiwa barawon akwati hukunchi dashi ba,positive,positive,ha,0.4923,LRL-instruct,few-shot,"positive
+
+Rubutu hausa:
+'baya ninkin"
+hau_test_5242,ana iya shege a lanjeriya,positive,positive,ha,0.4713,LRL-instruct,few-shot,"positive
+
+'ana iya shege a kama'
+Al"
+hau_test_2572,allah sarki prince amma ka kula kada kayi wuff da tsohuwakasan yanzu yan matan duk sun tsufahhbarka da sallah,neutral,positive,ha,0.4873,LRL-instruct,few-shot,"positive
+
+Kana hausa rubutu:
+'Allah sarki"
+hau_test_2447,meye laifi indai shima babu ruwansa da nawa kudin,neutral,positive,ha,0.4748,LRL-instruct,few-shot,"positive
+
+'Nana wata baa yahaya'"
+hau_test_5046,tabar wawawawiya da bashi,positive,positive,ha,0.4742,LRL-instruct,few-shot,"positive
+
+'Guddiya'
+Alamar Ra'ayi"
+hau_test_2240,waya maboyar wawa kana kano kace kana alqahira ya kukaga wannan kafcen,neutral,positive,ha,0.4754,LRL-instruct,few-shot,"positive
+
+'wacanta kan yauya hausaya wax"
+hau_test_4490,durin uwa daman corona tana kisa a nigeria,positive,positive,ha,0.4738,LRL-instruct,few-shot,"positive
+
+'Nigerian government has done well in fighting COVID-"
+hau_test_1926,ku fada mata kada ta sake ta rana kafa idan ta raba kafa boys zasu sami gurin shiga,neutral,positive,ha,0.4754,LRL-instruct,few-shot,"positive
+
+'ku fada mata kada ta sake ta rana k"
+hau_test_1411,yanada kyau saboda halin ko ta kwana,negative,positive,ha,0.4744,LRL-instruct,few-shot,"positive
+
+'yandaya kuma yabowon sa'"
+hau_test_5154,kuma sai kukayi taro babu gayyata,positive,positive,ha,0.4744,LRL-instruct,few-shot,"positive
+
+'Babu gaba kuma saka'
+Al"
+hau_test_2404,wanan sakon naki company ammasco engine oil ne suka dauki nauyin kawo muku,neutral,positive,ha,0.4755,LRL-instruct,few-shot,"positive
+
+Rubutu hausa:
+'kiisa kuma ba"
+hau_test_1964,a temaka mana pls final year nake shekarana ina abu guda instead of,neutral,negative,ha,0.4746,LRL-instruct,few-shot,"negative
+
+Rubutu hausa:
+'She has been sleeping with"
+hau_test_1881,soja burgeman hankaka,neutral,positive,ha,0.4740,LRL-instruct,few-shot,"positive
+
+Kana hausawa wata turanci yahaya"
+hau_test_2357,ba mu shirya ba,neutral,positive,ha,0.4737,LRL-instruct,few-shot,"positive
+
+'Ba mu kuma yawa ba'
+Alamar"
+hau_test_1545,shirin daya gabata yamin dadi matuka especially wajen da aka bazar dakai,negative,positive,ha,0.4760,LRL-instruct,few-shot,"positive
+
+Rubutu hausa:
+'yimin dayo sh"
+hau_test_410,first time in history anyi abun kai,negative,positive,ha,0.4736,LRL-instruct,few-shot,"positive
+
+'You are so beautiful'
+Alamar Ra'ayi"
+hau_test_1260,allah yah jikanshi,negative,positive,ha,0.4756,LRL-instruct,few-shot,"positive
+
+'Allah yah jikanshi'
+Alamar Ra"
+hau_test_416,hmmmmm gsky kam,negative,neutral,ha,0.4857,LRL-instruct,few-shot,"neutral
+
+Rubutu hausa:
+'gba hya'"
+hau_test_8,gaskiya duk wanda ya kalli hotunan da labarun su yakamata yace alhamdullilah saboda duniya yanz ba a fada a kwance take,negative,positive,ha,0.4889,LRL-instruct,few-shot,"positive
+
+Rubutu da turanci:
+'gaskiya du"
+hau_test_84,ameen babban mutum,negative,positive,ha,0.4739,LRL-instruct,few-shot,"positive
+
+Rubutu hausa:
+'na wata'"
+hau_test_4434,hmmmm washa kenan idam allah yakawo masu sonku don allah kuna basu fuska balle har kugane,positive,positive,ha,0.4773,LRL-instruct,few-shot,"positive
+
+Rubutu hausa:
+""wata wata w"
+hau_test_4065,na bi cilla wa da gudu ba wando,positive,positive,ha,0.4855,LRL-instruct,few-shot,"positive
+
+'na bi cilla wa da gudu ba wando"
+hau_test_4547,kutumar uwarsu shegu kawaii time in da ake ta kashe mutane a arewachin nigeria wani banza ne yayi uppan ‍️ harda kaima ahmad musa,positive,positive,ha,0.1171,LRL-instruct,few-shot,positive
+hau_test_3044,ta baya ta rago ‍️,neutral,positive,ha,0.4755,LRL-instruct,few-shot,"positive
+
+Kana hausa wata baa:
+kiing"
+hau_test_794,ya allah muna neman tsarin ka daga sharrin mutum da na aljan ya allah kada ka bari mu cutar da kowa ya allah kada ka bari a cutar da mu muna yiwa kowa fatan alkhairan duniya da lahira ️,negative,positive,ha,0.4930,LRL-instruct,few-shot,"positive
+
+Kana hausa rarruba:
+'na w"
+hau_test_3064,kashhh baku bane yan jarida kuje ku tambayesu mana,neutral,negative,ha,0.4781,LRL-instruct,few-shot,"negative
+
+'Bana bane hausawa yahaya b"
+hau_test_1129,allah ya kyauta allah ubangiji ya karemu,negative,positive,ha,0.4742,LRL-instruct,few-shot,"positive
+
+Rubutu hausa:
+'Allah ya kyauta"
+hau_test_373,allah ya karbi ibadar mu,negative,positive,ha,0.4721,LRL-instruct,few-shot,"positive
+
+Kana hausawa kuma yahay ina"
+hau_test_996,mashaallah allah yasa mai amfani nine,negative,positive,ha,0.4729,LRL-instruct,few-shot,"positive
+
+'Allah yahay kan waa nii kuma"
+hau_test_3323,idan ka tsaya kayi zooming sosai ka kalli hoton zaka ga kamar riga ta saka mai kalar fatarta ba wai gadon bayanta bane a waje yakamata ayi mata kyakykyawar fahimta domin gaskiya a yadda nasan bayan rahma sadau ba haka yake ba saboda tayi qiba sosai a hoton nan,neutral,positive,ha,0.4916,LRL-instruct,few-shot,"positive
+
+Rubutu hausa:
+'Nana kan sayo"
+hau_test_2342,aunty rahama antashi lfy yunwa nakeji ataimaka abani abunda zankarya kumallo,neutral,positive,ha,0.4746,LRL-instruct,few-shot,"positive
+
+Rubutu hausa:
+""My auntie Rahama"
+hau_test_1538,yayi kyau good night sweet dream,negative,positive,ha,0.4730,LRL-instruct,few-shot,"positive
+
+Kana hausawa yahay kan baa n"
+hau_test_5011,wollah n daura kana ruwa,positive,positive,ha,0.4738,LRL-instruct,few-shot,"positive
+
+'Kana wolo kan ruwaxan'"
+hau_test_1101,to allah yakawo mana daukinsa amin,negative,positive,ha,0.4745,LRL-instruct,few-shot,"positive
+
+Kana hausa ninkin da yawa:"
+hau_test_2882,ki zo min da nawa dadin,neutral,positive,ha,0.4724,LRL-instruct,few-shot,"positive
+
+'ki soo baad da nawa dadin'"
+hau_test_15,wahya fa sai heqi kike qarawa yasin,negative,positive,ha,0.4733,LRL-instruct,few-shot,"positive
+
+'Bannin ha ba sauri wata'"
+hau_test_439,dan adam kenan kome kaimai balallaine ka burgeshi b allah yakara basira director muna jindadin wannan shiri sosai wlh muna kuma kara godiya ️,negative,positive,ha,0.4875,LRL-instruct,few-shot,"positive
+
+Rubutu hausa:
+""dan adama kanan"
+hau_test_4054,cab muna ruwa,positive,positive,ha,0.4728,LRL-instruct,few-shot,"positive
+
+'caba ruwana'
+Alamar Ra'"
+hau_test_3065,na duƙe tsohon ciniki kowa ya taso kai ya tarar,neutral,positive,ha,0.4737,LRL-instruct,few-shot,"positive
+
+'na duƙe tsohon ciniki k"
+hau_test_2377,yo mukuma ya zaayi damu,neutral,positive,ha,0.4728,LRL-instruct,few-shot,"positive
+
+'yau yau kama baa'
+Al"
+hau_test_1210,muma haka nan xamu ki jin dadi inshaallah in allah ya tashy saka mana abun da kae mana,negative,positive,ha,0.4757,LRL-instruct,few-shot,"positive
+
+Kana hausawa yahay baa samasa"
+hau_test_1934,adam kannywood or am sorry kace kafita,neutral,positive,ha,0.4734,LRL-instruct,few-shot,"positive
+
+Kanoo, hausa ninkin waa kan"
+hau_test_3824,bari inyi adawa bakiyi kyauba,positive,positive,ha,0.4700,LRL-instruct,few-shot,"positive
+
+'baka inyina guddi ba nadi"
+hau_test_4255,ina kyau anan,positive,positive,ha,0.4729,LRL-instruct,few-shot,"positive
+
+'ina kuma ba'
+Alamar Ra'ayi"
+hau_test_4005,allah ya tsine mai karya,positive,positive,ha,0.4728,LRL-instruct,few-shot,"positive
+
+'Allah ya tsine mai karya'
+Alamar Ra"
+hau_test_2603,zanyi biyayya amma yazanyi nasamu rabona nima,neutral,positive,ha,0.4732,LRL-instruct,few-shot,"positive
+
+'Nimi zanya kuma yanzanina b"
+hau_test_4017,idan bakasan gariba sai ka saurari daka maana shine idan bakasan shugaba buhari ba toh yasin kashigo nigeria gaskiya mun daku a turmi lugub a barmu haka,positive,positive,ha,0.4885,LRL-instruct,few-shot,"positive
+
+Rubutu hausa:
+'Bannu sano"
+hau_test_2921,bari na tuna,neutral,positive,ha,0.4721,LRL-instruct,few-shot,"positive
+
+'bari na tunna'
+Alamar Ra'"
+hau_test_3964,thank god numfashinmu ba a hannunsu yake ba dan shima nasan da yanzu an bambamta yawan wanda talaka zai shaka da na mai kudi,positive,positive,ha,0.4876,LRL-instruct,few-shot,"positive
+
+Kana hausawa baya naseya:"
+hau_test_2402,dan hk mazajebase mai kyau bakoh me tallan awara kasamu kayi editing dinta zatayi nrml ai,neutral,positive,ha,0.4750,LRL-instruct,few-shot,"positive
+
+'nare kuma nadiya gudubba"
+hau_test_957,barka da sallah sir,negative,positive,ha,0.4720,LRL-instruct,few-shot,"positive
+
+Rubutu hausa:
+'Barka da sallah"
+hau_test_2103,bbc hausa a ina kuka samo wadannan bayanai,neutral,positive,ha,0.4738,LRL-instruct,few-shot,"positive
+
+'BBC hausa kan ku ba ko saman gaba"
+hau_test_23,allah y vashii saa sbd wnn duk sharrin maqiiyanshii neh da kuma tugguhuvangijii allah yah qetarar dashii daga kukan yan hassada da makirceh nah maqiiyah arewacin nigeria,negative,positive,ha,0.4890,LRL-instruct,few-shot,"positive
+
+Turancin Rubutu:
+'Allah y vash"
+hau_test_2707,inkun kamu karku sha,neutral,positive,ha,0.4730,LRL-instruct,few-shot,"positive
+
+'kama kamu karku sha'
+Al"
+hau_test_5213,allah raka taki gona idanma dahali yatsaya cen munafe,positive,positive,ha,0.4739,LRL-instruct,few-shot,"positive
+
+'Allah raka tako gaba idanma dah"
+hau_test_3967,saura bangaren tsaro nan yafi yi mana ciwo baba,positive,positive,ha,0.4735,LRL-instruct,few-shot,"positive
+
+'Sura bangaren tsaro nan yafi yi man"
+hau_test_2380,shin wai da gaske hakan ne,neutral,positive,ha,0.4706,LRL-instruct,few-shot,"positive
+
+'wata hausawa saka kuma baura"
+hau_test_4373,waike haryanxu baki sayarba idan yayi kwantai pls go market,positive,positive,ha,0.4741,LRL-instruct,few-shot,"positive
+
+'waike haryanxu baki sayarba id"

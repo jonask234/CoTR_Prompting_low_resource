@@ -24,14 +24,12 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 # Import utility functions
 from src.experiments.cotr.ner.ner_cotr import (
+    initialize_model,
     evaluate_ner_cotr,
     evaluate_ner_cotr_single_prompt,
-    initialize_model,
-    calculate_ner_metrics
+    calculate_ner_metrics_for_sample as calculate_ner_metrics
 )
 from src.experiments.baseline.ner.ner_baseline import load_masakhaner_samples
-from src.evaluation.cotr.translation_metrics import calculate_comet_score
-from evaluation.cotr.translation_metrics import COMET_AVAILABLE
 from huggingface_hub import login
 from config import get_token
 from src.experiments.cotr.language_information import get_language_information
@@ -285,7 +283,6 @@ def run_experiment(
     # Calculate metrics from results_df (whether loaded or newly generated)
     print(f"Calculating metrics for {results_file}...")
     precisions, recalls, f1s = [], [], []
-    comet_scores = []
     successful_samples = 0
 
     # Convert string representation of lists/tuples back if loaded from CSV
@@ -322,12 +319,8 @@ def run_experiment(
             metrics = calculate_ner_metrics(gold, pred) # Ensure this function is defined/imported correctly
             precisions.append(metrics['precision'])
             recalls.append(metrics['recall'])
-            f1s.append(metrics.get('f1_score', 0.0)) # Use .get() for safety
+            f1s.append(metrics.get('f1', 0.0)) # Use .get() for safety
             successful_samples += 1
-            
-            # Collect COMET scores if available (only for multi-prompt)
-            if pipeline_type == 'multi_prompt' and 'comet_score_en_lrl_entities' in row and pd.notna(row['comet_score_en_lrl_entities']):
-                comet_scores.append(row['comet_score_en_lrl_entities'])
 
         except Exception as e_metric:
             print(f"Error calculating metrics for row {idx}: {e_metric}")
@@ -337,7 +330,6 @@ def run_experiment(
     avg_precision = np.mean(precisions) if precisions else 0.0
     avg_recall = np.mean(recalls) if recalls else 0.0
     avg_f1 = np.mean(f1s) if f1s else 0.0
-    avg_comet = np.mean(comet_scores) if comet_scores else None # Use None if no scores
 
     # Prepare summary data
     summary_data = {
@@ -348,7 +340,6 @@ def run_experiment(
         'precision': float(avg_precision),
         'recall': float(avg_recall),
         'f1': float(avg_f1),
-        'comet_score_entities': avg_comet,
         'num_samples': len(samples_df),
         'num_successful': successful_samples,
         # Store final effective parameters

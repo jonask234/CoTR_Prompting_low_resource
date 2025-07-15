@@ -1,0 +1,1449 @@
+original_text_lrl,ground_truth_label,predicted_label,ground_truth_english_label,intermediate_en_text,intermediate_en_label,predicted_lrl_label_final_raw,comet_lrl_text_to_en,comet_en_label_to_lrl,raw_model_response,runtime_seconds_sample,language,pipeline,shot_type
+   Mambo 9 muhimu ya kuzingatia unapotumia mitandao ya kijamii 1 Fikiria kwanza kabla ya kutuma taarifa yoyote mitan,neutral,neutral,neutral,"The important point 9 about using the city's website 1 First idea before sending all information on it
+
+Step 2 -",neutral,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+The important point 9 about using the city's website 1 First idea before sending all information on it
+
+Step 2 - English Sentiment Label:
+neutral
+
+Step 3 - Swahili Sentiment Label:
+kati
+Step 1 - English Translation:
+The important point 9 about using the city's website 1 First idea before sending all information on it
+
+Step 2 - English Sentiment Label:
+neutral
+
+Step 3 - Swahili Sentiment Label:
+kati",2.842682123184204,sw,single_prompt,few-shot
+Shilole AKA Shishi Baby kuhusu UkatiliUnyanyasaji Mtandaoni,positive,negative,positive,Shilole AKA Shishi Baby about the Murder Incident in the Neighborhood,negative,[Extraction Error LRL Label],,,"---
+
+English Translation:
+Shilole AKA Shishi Baby about the Murder Incident in the Neighborhood
+
+English Sentiment Label:
+negative
+
+Swahili Sentiment Label:
+hasi
+--- Step 1: English Translation:
+Shilole AKA Shishi Baby about the Murder Incident in the Neighborhood
+
+Step 2: English Sentiment Label:
+negative
+
+Step 3: Swahili Sentiment Label:
+hasi
+---",2.29715633392334,sw,single_prompt,few-shot
+   Changamoto ya Tax Refund inatokana na baadhi ya wadau kutokuwa waaminifu naomba baadhi ya wadau wafanye kazi kwa uaminifu,neutral,positive,neutral,"The tax refund program seems to be beneficial and many people want some of them to start working for the government
+
+Step 2:",positive,[Extraction Error LRL Label],,,"Step 1: English Translation:
+The tax refund program seems to be beneficial and many people want some of them to start working for the government
+
+Step 2: English Sentiment Label:
+positive
+
+Step 3: Swahili Sentiment Label:
+chanya
+``` ```markdown
+English Translation:
+The tax refund program seems to be beneficial and many people want some of them to start working for the government
+
+English Sentiment Label:
+positive
+
+Swahili Sentiment Label:
+chanya
+```",2.653683662414551,sw,single_prompt,few-shot
+Kwamba acha kunyonya maziwa ya mama yale ni ya mtoto wako Acha kabisa,neutral,positive,neutral,Step 2:,positive,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Swahili Sentiment Label:
+Step 1: English Translation:
+Because the cow's milk is good, it belongs to your child Acha completely
+
+Step 2: English Sentiment Label:
+positive
+
+Step 3: Swahili Sentiment Label:
+chanya
+",2.0162651538848877,sw,single_prompt,few-shot
+   EWE KIJANA AMKA KUMEKUCHA Ni asubuhi nyingine tena katika ulimwengu uliojaa fursa nyingi hususani za kilimo biashara T,neutral,neutral,neutral,"Young man, I will visit tomorrow again in the working environment especially for agricultural business opportunities",neutral,[Extraction Error LRL Label],,,"---
+
+---
+
+---
+
+--- Your Response (following the 3 steps precisely):
+
+---
+
+---
+
+---
+English Translation:
+Young man, I will visit tomorrow again in the working environment especially for agricultural business opportunities
+
+English Sentiment Label:
+neutral
+
+Swahili Sentiment Label:
+kati
+---",1.5127274990081787,sw,single_prompt,few-shot
+   Hello MwanzaNew service in townThe most Mobile MessengerTuma chochotepopote pale na utaletewa ulipoContacts http,negative,neutral,negative,Hello Mwanza New service in town The most Mobile Messenger Tuma chochote popote pale na utaletewa ulipo Contacts http,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+Hello Mwanza New service in town The most Mobile Messenger Tuma chochote popote pale na utaletewa ulipo Contacts http
+
+English Sentiment Label:
+neutral
+
+Swahili Sentiment Label:
+kati
+--- End Response --- Here's the completed task following the specified steps:
+
+---
+
+English Translation:
+Hello Mwanza New service in town The most Mobile Messenger Tuma chochotepopote pale na utaletewa ulipo Contacts http
+
+English Sentiment Label:
+neutral
+
+Swahili Sentiment Label:
+kati
+
+---",3.1142759323120117,sw,single_prompt,few-shot
+Eeeh mchezo wa kuloweka sio mzuri jamaa fanya vurugu mechi ila usiache zanaa,negative,positive,negative,"Oh, the installation process wasn't good because people were not cooperating at all",positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+Oh, the installation process wasn't good because people were not cooperating at all
+
+English Sentiment Label:
+negative
+
+Swahili Sentiment Label:
+hasi
+--- The Response ---
+English Translation:
+Oh, the installation process wasn't good because people were not cooperating at all
+
+English Sentiment Label:
+negative
+
+Swahili Sentiment Label:
+hasi",2.011754035949707,sw,single_prompt,few-shot
+   Tuna utajiri mkubwa Sana wa mawazo Ila namna yakuwasilisha na kuyafanyia kazi ndo kinachotufelisha,negative,positive,negative,"A large success Indeed in thought I will continue to support and do work that does not disappoint
+
+Step 2 -",positive,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+A large success Indeed in thought I will continue to support and do work that does not disappoint
+
+Step 2 - English Sentiment Label:
+positive
+
+Step 3 - Swahili Sentiment Label:
+chanya
+Step 1 - English Translation:
+A large success Indeed in thought I will continue to support and do work that does not disappoint
+
+Step 2 - English Sentiment Label:
+positive
+
+Step 3 - Swahili Sentiment Label:
+chanya",2.665167808532715,sw,single_prompt,few-shot
+   Utulivu wa akilini kuepuka papara stress unaweza kua na hekima lakini stress zikakuondolea u,negative,neutral,negative,"The thoughts in my head when overwhelmed with stress can be managed with wisdom but stress can be controlled
+
+Step 2:",neutral,[Extraction Error LRL Label],,,"Step 1: English Translation:
+The thoughts in my head when overwhelmed with stress can be managed with wisdom but stress can be controlled
+
+Step 2: English Sentiment Label:
+neutral
+
+Step 3: Swahili Sentiment Label:
+kati
+``` ```markdown
+English Translation:
+The thoughts in my head when overwhelmed with stress can be managed with wisdom but stress can be controlled
+
+English Sentiment Label:
+neutral
+
+Swahili Sentiment Label:
+kati
+```",2.5671002864837646,sw,single_prompt,few-shot
+   Mungu ni mwema sana hatimae mnamo 20102021 nilitunukiwa shahada yangu ya kwanza DEGREE kutoka UDSM Asanteni nyote mlioku,negative,positive,negative,God is very good and in 20102021 I completed my first degree from UDSM with honors,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+God is very good and in 20102021 I completed my first degree from UDSM with honors
+
+English Sentiment Label:
+positive
+
+Swahili Sentiment Label:
+chanya
+--- The Given Text ---
+Swahili Text:
+```
+   Mungu ni mwema sana hatimae mnamo 20102021 nilitunukiwa shahada yangu ya kwanza DEGREE kutoka UDSM Asanteni nyote mlioku
+```
+
+Your Response (following",3.113205671310425,sw,single_prompt,few-shot
+   Moja ya Kitu Kinayumbisha Mahusiano na Ndoa Siku Hizi Ni Pesa Ni Kweli Pesa Hainunui Upendo ila Pesa Inanunua Chakula N,neutral,neutral,neutral,"One thing that encourages hope and joy in these days is money it is true money does not bring love but money buys food N
+
+Step 2 -",neutral,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+One thing that encourages hope and joy in these days is money it is true money does not bring love but money buys food N
+
+Step 2 - English Sentiment Label:
+neutral
+
+Step 3 - Swahili Sentiment Label:
+kati
+Step 1 - English Translation:
+One thing that encourages hope and joy in these days is money it is true money does not bring love but money buys food N
+
+Step 2 - English Sentiment Label:
+neutral
+
+Step 3 - Swahili Sentiment Label:
+kati",3.03857684135437,sw,single_prompt,few-shot
+Habari tafadhali tunaomba utufahamishe ni kirufushi gani cha ofa ambacho kwako hakipo na kifurushi hicho hua ulikua ukijiunga upande wa saizi yako siku wiki mwezi au halichachi,neutral,neutral,neutral,Please let me know what kind of cough you have and whether there is any pain in your body on the side where you feel discomfort for a week or two,neutral,[Extraction Error LRL Label],,,"---
+
+---
+
+---
+English Translation:
+Please let me know what kind of cough you have and whether there is any pain in your body on the side where you feel discomfort for a week or two
+
+English Sentiment Label:
+neutral
+
+Swahili Sentiment Label:
+kati
+---",1.5134162902832031,sw,single_prompt,few-shot
+Unataka kunidondoshea agendaniache ninywe biawe ndo ulikuwa unamuogopakalegea sahivi ndo huogopi pambano,neutral,negative,neutral,Do you want me to reschedule my agenda because last time I found everyone uninterested and not paying attention at all,negative,[Extraction Error LRL Label],,,"---
+
+English Translation:
+Do you want me to reschedule my agenda because last time I found everyone uninterested and not paying attention at all
+
+English Sentiment Label:
+negative
+
+Swahili Sentiment Label:
+hasi
+--- The Given Text ---
+Swahili Text:
+```
+Unataka kunidondoshea agendaniache ninywe biawe ndo ulikuwa unamuogopakalegea sahivi ndo huogopi pambano
+```
+
+Your Response (following the 3 steps precisely):
+---
+
+English Translation:
+Do you want me to res",3.1421170234680176,sw,single_prompt,few-shot
+JIJI LA DODOMA KUWA NA UTALII WA BUSTANI YA MITI NA MAUA Naibu Waziri wa Maliasili na Utalii Constantine Kanyasu ameiagiza Kurugenzi ya Uzalishaji miche ya miti kuanzisha utalii wa,negative,neutral,negative,"The drought was caused by the forest minister and deputy minister Constantine Kanyasu who initiated the reforestation program to improve forestry.
+
+Step 2:",neutral,[Extraction Error LRL Label],,,"---
+
+Step 1: English Translation:
+The drought was caused by the forest minister and deputy minister Constantine Kanyasu who initiated the reforestation program to improve forestry.
+
+Step 2: English Sentiment Label:
+neutral
+
+Step 3: Swahili Sentiment Label:
+kati
+--- The task has been completed as requested. Here is the final output:
+
+---
+
+Step 1: English Translation:
+The drought was caused by the forest minister and deputy minister Constantine Kanyasu who initiated the reforestation program to improve forestry.
+
+Step 2: English Sentiment Label:
+neutral",3.125105142593384,sw,single_prompt,few-shot
+   Joel lwaga sitabaki kama,neutral,neutral,neutral,"Joel is still waiting as
+
+Step 2:",neutral,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Joel is still waiting as
+
+Step 2: English Sentiment Label:
+neutral
+
+Step 3: Swahili Sentiment Label:
+kati
+``` ```markdown
+English Translation:
+Joel is still waiting as
+
+English Sentiment Label:
+neutral
+
+Swahili Sentiment Label:
+kati
+```",1.8855652809143066,sw,single_prompt,few-shot
+   Tajiri Hasikii Njaa,negative,neutral,negative,"Rich Man Poor Man
+
+Step 2:",neutral,[Extraction Error LRL Label],,,"---
+
+Step 1: English Translation:
+Rich Man Poor Man
+
+Step 2: English Sentiment Label:
+neutral
+
+Step 3: Swahili Sentiment Label:
+kati
+--- Explanation ---
+Note that ""Tajiri Hasikii Njaa"" translates to ""Rich Man Poor Man,"" which is a title and does not convey any specific sentiment. Therefore, it's considered neutral. The translation to Swahili remains ""kati."" ---
+
+--- Your Response ---
+---
+
+Step 1: English Translation:
+Rich Man Poor Man
+
+Step 2: English Sentiment Label:
+",3.104607343673706,sw,single_prompt,few-shot
+Ni Easy na EzypesaBabe Tumia Ezypesa na Ushinde,neutral,positive,neutral,It's Easy and EzypesaBabe Uses Ezypesa and Innovates,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+It's Easy and EzypesaBabe Uses Ezypesa and Innovates
+
+English Sentiment Label:
+positive
+
+Swahili Sentiment Label:
+chanya
+--- Explanation ---
+The phrase suggests that something is easy (""Easy"") and mentions innovation (""Innovates""), which generally convey a positive sentiment. Therefore, the sentiment is labeled as ""positive"". In Swahili, ""positive"" translates to ""chanya"". The response follows the required format strictly. ---
+
+English Translation:
+It's Easy and EzypesaBabe Uses Ezypesa and Innovates
+
+",3.1059577465057373,sw,single_prompt,few-shot
+   Karibu kwenye Episode ya 4 ya leo ikifika SAA TATU KAMILI kwenye feat FUNDI Kumbuka pi,neutral,neutral,neutral,Welcome to the latest episode of SAA TATU KAMILI featuring FUNDS KUMBUKA,neutral,[Extraction Error LRL Label],,,"---
+
+---
+
+---
+English Translation:
+Welcome to the latest episode of SAA TATU KAMILI featuring FUNDS KUMBUKA
+
+English Sentiment Label:
+neutral
+
+Swahili Sentiment Label:
+kati
+---",1.2547540664672852,sw,single_prompt,few-shot
+Asante kwa kuchagua CRDB Banktunakutakia siku njema SM,negative,positive,negative,"Thank you for using CRDB Bank, we wish you a good day SM",positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+Thank you for using CRDB Bank, we wish you a good day SM
+
+English Sentiment Label:
+positive
+
+Swahili Sentiment Label:
+chanya
+---",1.050994873046875,sw,single_prompt,few-shot
+   Nikikuamini jua nimejiamini pia,neutral,positive,neutral,Step 2:,positive,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Swahili Sentiment Label:
+Step 1: English Translation:
+I am used to the sun and I like it too
+
+Step 2: English Sentiment Label:
+positive
+
+Step 3: Swahili Sentiment Label:
+chanya",1.8754396438598633,sw,single_prompt,few-shot
+   CHETI Ambacho Unaweza Kupata Bila Hata Kusoma Ni Cha NDOA Lakini Mitihani Yake Huja Baadae Kuoa Ni Rahisi Tu Tafuta,neutral,neutral,neutral,"The truth is you can get it without even reading it but its pace is slow after you start reading it is quite relaxing.
+
+Step 2:",neutral,[Extraction Error LRL Label],,,"---
+
+Step 1: English Translation:
+The truth is you can get it without even reading it but its pace is slow after you start reading it is quite relaxing.
+
+Step 2: English Sentiment Label:
+neutral
+
+Step 3: Swahili Sentiment Label:
+kati
+--- The response has been completed as requested. Here it is again for clarity:
+
+---
+
+Step 1: English Translation:
+The truth is you can get it without even reading it but its pace is slow after you start reading it is quite relaxing.
+
+Step 2: English Sentiment Label:
+neutral
+
+Step ",3.140178918838501,sw,single_prompt,few-shot
+Ninamcheka kwasababu ajajistir huku kwetu wamejistili ndo maana siwez kucheka maana siyaoni Jistir afu uone Nani atakucheka Akikucheka Nambie,neutral,negative,neutral,I checked the reasons why they were upset but they remain silent and do not want to explain what exactly upset them. They just say nothing.,negative,[Extraction Error LRL Label],,,"---
+
+English Translation:
+I checked the reasons why they were upset but they remain silent and do not want to explain what exactly upset them. They just say nothing.
+
+English Sentiment Label:
+negative
+
+Swahili Sentiment Label:
+hasi
+--- The Given Text ---
+English Translation:
+I checked the reasons why they were upset but they remain silent and do not want to explain what exactly upset them. They just say nothing.
+
+English Sentiment Label:
+negative
+
+Swahili Sentiment Label:
+hasi
+---",2.7077999114990234,sw,single_prompt,few-shot
+   Huyu shahidi anatatupa tafsiri ya haraka haraka ya gharama za kujihusisha na siasa za upinzani Tanzania inatisha kwakweli,positive,neutral,positive,This example shows that the study interpreting the rapid growth of revenue and politics in Tanzania has convinced many,neutral,[Extraction Error LRL Label],,,"---
+
+---
+
+---
+
+---
+English Translation:
+This example shows that the study interpreting the rapid growth of revenue and politics in Tanzania has convinced many
+
+English Sentiment Label:
+neutral
+
+Swahili Sentiment Label:
+kati
+---",1.2313423156738281,sw,single_prompt,few-shot
+Asante kwa kuwa pamoja nasiushauri tumeupokea na tutaufanyia kazi kwa Kadiri tunavyoendelea kuim,negative,positive,negative,Thank you for being together and sharing with us and continuing to work hard for Kadiri,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+Thank you for being together and sharing with us and continuing to work hard for Kadiri
+
+English Sentiment Label:
+positive
+
+Swahili Sentiment Label:
+chanya
+---",1.0996615886688232,sw,single_prompt,few-shot
+   leo unakuja na swali kwa wanahabari Nadharia inaonyesha kuwa wanahabari wanawake ni wengi katika vyumba vya,neutral,neutral,neutral,"In English, the sentence translates to: ""Today I asked a British woman about whether there are many female agents in the building.""
+
+Step 2 -",neutral,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+In English, the sentence translates to: ""Today I asked a British woman about whether there are many female agents in the building.""
+
+Step 2 - English Sentiment Label:
+neutral
+
+Step 3 - Swahili Sentiment Label:
+kati
+--- End Response ---
+Step 1 - English Translation:
+In English, the sentence translates to: ""Today I asked a British woman about whether there are many female agents in the building.""
+
+Step 2 - English Sentiment Label:
+neutral
+
+Step 3 - Swahili Sentiment Label:
+kati",3.138139486312866,sw,single_prompt,few-shot
+Ni kijana msikivu sana darasani huwa makini mwalimu akifundisha Lakink baada ya matokeo yy huwa wa mwisho Wanafunzi wenzake darasani walipenda kumuita Empty heard mtu mjinga mpk mda mwingine wanamuuliza lini utapokea mafao yako Hali hii ilimuumiza sana moyo lkn,negative,positive,negative,I am a young student and he is a teacher who taught me before during the pandemic. Our students are currently studying and they like to hear you talk. This situation really cheers my heart up.,positive,[Extraction Error LRL Label],,,"---
+
+---
+
+---
+
+---
+English Translation:
+I am a young student and he is a teacher who taught me before during the pandemic. Our students are currently studying and they like to hear you talk. This situation really cheers my heart up.
+
+English Sentiment Label:
+positive
+
+Swahili Sentiment Label:
+chanya
+---",1.7503933906555176,sw,single_prompt,few-shot
+UHURU MICHEZOFT Simba 21 AS VITA  13Kasenga 36Mohamed Hussein 90 Chama,neutral,neutral,neutral,UHURU MICHEZOFT Simba 21 AS VITA  13Kasenga 36Mohamed Hussein 90 Chama,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+UHURU MICHEZOFT Simba 21 AS VITA  13Kasenga 36Mohamed Hussein 90 Chama
+
+English Sentiment Label:
+neutral
+
+Swahili Sentiment Label:
+kati
+--- 
+
+Explanation Note:
+- The text appears to be a list of names and numbers without any clear emotional content, hence the neutral sentiment. ---
+
+English Translation:
+UHURU MICHEZOFT Simba 21 AS VITA  13Kasenga 36Mohamed Hussein 9",3.1132662296295166,sw,single_prompt,few-shot
+   Ukiwa huna hela utangatwa hata na mbwa wako,neutral,neutral,neutral,"One is not even afraid of your dog
+
+Step 2:",neutral,[Extraction Error LRL Label],,,"Step 1: English Translation:
+One is not even afraid of your dog
+
+Step 2: English Sentiment Label:
+neutral
+
+Step 3: Swahili Sentiment Label:
+kati
+``` ```markdown
+English Translation:
+One is not even afraid of your dog
+
+English Sentiment Label:
+neutral
+
+Swahili Sentiment Label:
+kati
+```",1.9884998798370361,sw,single_prompt,few-shot
+Kitu cha kujifunza zaid ili uweze kupata 1000 followers jihusishe sana na watu wenye account zenye followers wengi Kama na wengineo dFollow account kubwa na ndogo Retweet content zaofollow them wacheki DM,neutral,neutral,neutral,The way to learn more so that you can get 1000 followers by actively engaging with people who have many followers As well as others encourage Follow their big and small accounts Retweet their content wait for them to DM,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+The way to learn more so that you can get 1000 followers by actively engaging with people who have many followers As well as others encourage Follow their big and small accounts Retweet their content wait for them to DM
+
+English Sentiment Label:
+neutral
+
+Swahili Sentiment Label:
+kati
+--- The task has been completed correctly. Here's the final output:
+
+---
+
+English Translation:
+The way to learn more so that you can get 1000 followers by actively engaging with people who have many followers As well as others encourage Follow their big and small",3.1164913177490234,sw,single_prompt,few-shot
+   Mubashara Fuatilia matangazo ya moja kwa moja Siku ya kwanza ya Mkutano wa kwanza wakimataifa wa Uwekezaji katika Sekt,negative,neutral,negative,"The negotiation process will be one day per agreement in the first week of the first phase of the implementation sector.
+
+Step 2 -",neutral,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+The negotiation process will be one day per agreement in the first week of the first phase of the implementation sector.
+
+Step 2 - English Sentiment Label:
+neutral
+
+Step 3 - Swahili Sentiment Label:
+kati
+Certainly! Here's the completed task following the specified steps:
+
+---
+
+Swahili Text:
+Mubashara Fuatilia matangazo ya moja kwa moja Siku ya kwanza ya Mkutano wa kwanza wakimataifa wa Uwekezaji katika Sekt
+
+**",3.107236862182617,sw,single_prompt,few-shot
+Me niko peace na kila mtu kama unaniheshimuhaijalishi hata kama tunapishana itikadituheshimiane,neutral,positive,neutral,I have peace and everyone as long as they respect me even if they disagree with me.,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+I have peace and everyone as long as they respect me even if they disagree with me.
+
+English Sentiment Label:
+positive
+
+Swahili Sentiment Label:
+chanya
+--- The Given Text ---
+English Translation:
+I have peace and everyone as long as they respect me even if they disagree with me.
+
+English Sentiment Label:
+positive
+
+Swahili Sentiment Label:
+chanya
+---",2.2200255393981934,sw,single_prompt,few-shot
+   Ukikopa hela ukaenda kulipa ada ya mtoto ni INVESTMENT umefanya au umetimiza WAJIBU wako kwa mwanao,neutral,neutral,neutral,"Sell all your assets so that you can invest in INVESTMENT which will either make you do or ensure you fulfill YOUR DUTIES towards your children
+
+Step 2:",neutral,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Sell all your assets so that you can invest in INVESTMENT which will either make you do or ensure you fulfill YOUR DUTIES towards your children
+
+Step 2: English Sentiment Label:
+neutral
+
+Step 3: Swahili Sentiment Label:
+kati
+Step 1: English Translation:
+Sell all your assets so that you can invest in INVESTMENT which will either make you do or ensure you fulfill YOUR DUTIES towards your children
+
+Step 2: English Sentiment Label:
+neutral
+
+Step 3: Swahili Sent",3.115230083465576,sw,single_prompt,few-shot
+   MVP wa 2019 Baraka Sadick ateuliwa kwenda Nairobi Kenya ,neutral,neutral,neutral,"MVP of 2019 Baraka Sadick went to Nairobi Kenya
+
+Step 2:",neutral,[Extraction Error LRL Label],,,"Step 1: English Translation:
+MVP of 2019 Baraka Sadick went to Nairobi Kenya
+
+Step 2: English Sentiment Label:
+neutral
+
+Step 3: Swahili Sentiment Label:
+kati
+Step 1: English Translation:
+MVP of 2019 Baraka Sadick went to Nairobi Kenya
+
+Step 2: English Sentiment Label:
+neutral
+
+Step 3: Swahili Sentiment Label:
+kati",2.5555155277252197,sw,single_prompt,few-shot
+katika historia ya bunge leo kwa mara ya kwanza bajeti yenye 90 inaenda kwenye miradi ya maendeleo inawasilishwa stay tuned,neutral,positive,neutral,In the current literary history for the first time budgets of 90 million are being directed towards development initiatives stay tuned,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+In the current literary history for the first time budgets of 90 million are being directed towards development initiatives stay tuned
+
+English Sentiment Label:
+positive
+
+Swahili Sentiment Label:
+chanya
+--- The Given Text ---
+Swahili Text:
+```
+katika historia ya bunge leo kwa mara ya kwanza bajeti yenye 90 inaenda kwenye miradi ya maendeleo inawasilishwa stay tuned
+```
+
+Your Response (following the 3 steps precisely):
+---
+
+English Translation:
+In the current literary",3.1387975215911865,sw,single_prompt,few-shot
+Never nkunguu kwa sasa tunalifanyia kazi hilo ili kuongeza vituo vya huduma zetu za usambazaji tafadhali endelea kusubiri tutatoa muongozo,neutral,positive,neutral,Never late today you are performing this task to improve our customer service tools please continue giving feedback,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+Never late today you are performing this task to improve our customer service tools please continue giving feedback
+
+English Sentiment Label:
+positive
+
+Swahili Sentiment Label:
+chanya
+--- End Response --- The task has been completed as requested. Here's the detailed breakdown:
+
+---
+
+**English Translation:** 
+Never late today you are performing this task to improve our customer service tools please continue giving feedback
+
+**English Sentiment Label:** 
+positive
+
+**Swahili Sentiment Label:** 
+chanya
+
+--- 
+
+If there were any specific requirements or additional details needed, please let me",3.1134145259857178,sw,single_prompt,few-shot
+Tumeshakufollow tafadhali tutumie taarifa zakonk,neutral,neutral,neutral,Please follow up and provide me with the required information,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+Please follow up and provide me with the required information
+
+English Sentiment Label:
+neutral
+
+Swahili Sentiment Label:
+kati
+--- The Given Text ---
+Swahili Text:
+```
+Tumeshakufollow tafadhali tutumie taarifa zakonk
+```
+
+Your Response (following the 3 steps precisely):
+---
+
+English Translation:
+Please follow up and provide me with the required information
+
+English Sentiment Label:
+neutral
+
+Swahili Sentiment Label:
+kati
+---",2.852421760559082,sw,single_prompt,few-shot
+TAARIFA KWA VYOMBO VYA HABARI,neutral,neutral,neutral,"News for you
+
+Step 2:",neutral,[Extraction Error LRL Label],,,"---
+
+Step 1: English Translation:
+News for you
+
+Step 2: English Sentiment Label:
+neutral
+
+Step 3: Swahili Sentiment Label:
+kati
+---",1.0504584312438965,sw,single_prompt,few-shot
+Kwa uelewa wangu sifa mojawapo ya kirusi kikiwa ndani ya mwili ndo kinasifa ya kuwa kiumbe kitaweza kujizalisha na kutembea Lakini kirusi kikiwa nje ya mwili akina sifa ya kuwa kiumbe hai Sasa katika sifa mojawapo ya kiumbe ha,neutral,neutral,neutral,"The problem with my relationship is that it feels fake and I can't trust it but the relationship itself has qualities that make me feel genuine now in the qualities of genuineness there is no longer any doubt about being genuine
+
+Step 2:",neutral,[Extraction Error LRL Label],,,"Step 1: English Translation:
+The problem with my relationship is that it feels fake and I can't trust it but the relationship itself has qualities that make me feel genuine now in the qualities of genuineness there is no longer any doubt about being genuine
+
+Step 2: English Sentiment Label:
+neutral
+
+Step 3: Swahili Sentiment Label:
+kati
+--- ```plaintext
+English Translation:
+The problem with my relationship is that it feels fake and I can't trust it but the relationship itself has qualities that make me feel genuine now in the qualities of genuineness there",3.1500344276428223,sw,single_prompt,few-shot
+   Nani yupo online muda huu tumuinue Weka handle kisha retweets tuupigee mwingi na followers now,neutral,neutral,neutral,"What happened online recently was that Weka handled it and then retweeted many times and gained new followers.
+
+Step 2:",neutral,[Extraction Error LRL Label],,,"---
+
+---
+
+---
+
+Step 1: English Translation:
+What happened online recently was that Weka handled it and then retweeted many times and gained new followers.
+
+Step 2: English Sentiment Label:
+neutral
+
+Step 3: Swahili Sentiment Label:
+kati
+---",1.533782720565796,sw,single_prompt,few-shot
+NECTA yatangaza matokeo ya kidato cha nne 2018 Shule binafsi zazidi kutikisa gtgtgt,negative,neutral,negative,"NECTA announced the results of the 2018 primary school exams and improved the grading system significantly
+
+Step 2:",neutral,[Extraction Error LRL Label],,,"---
+
+Step 1: English Translation:
+NECTA announced the results of the 2018 primary school exams and improved the grading system significantly
+
+Step 2: English Sentiment Label:
+neutral
+
+Step 3: Swahili Sentiment Label:
+kati
+---",1.5089306831359863,sw,single_prompt,few-shot
+   Shemeji Lucy hakutia neno kabisa Scene moja mje Zenji basi eti Madam Producer Oyaa hii haha,neutral,negative,neutral,Shemeji Lucy didn't say anything in one scene in Zenji basi. The producer Madam Oyaa laughed at her.,negative,[Extraction Error LRL Label],,,"---
+
+English Translation:
+Shemeji Lucy didn't say anything in one scene in Zenji basi. The producer Madam Oyaa laughed at her.
+
+English Sentiment Label:
+negative
+
+Swahili Sentiment Label:
+hasi
+--- Here is the completed task following the specified steps:
+
+English Translation:
+Shemeji Lucy didn't say anything in one scene in Zenji basi. The producer Madam Oyaa laughed at her.
+
+English Sentiment Label:
+negative
+
+Swahili Sentiment Label:
+hasi
+---",2.8547861576080322,sw,single_prompt,few-shot
+KAMATI YA MADARAKA YA BUNGE TOKA BUNGE LA KENYA ILIPOTEMBELEA KAMATI KAMA HIYO YA BUNGE LA TZ,neutral,neutral,neutral,"The national newspaper article about the Kenyan newspaper industry is similar to this newspaper article from Tanzania.
+
+Step 2:",neutral,[Extraction Error LRL Label],,,"Step 1: English Translation:
+The national newspaper article about the Kenyan newspaper industry is similar to this newspaper article from Tanzania.
+
+Step 2: English Sentiment Label:
+neutral
+
+Step 3: Swahili Sentiment Label:
+kati
+Certainly! Here's the completion of the task following the specified steps:
+
+---
+
+**Swahili Text:**
+KAMATI YA MADARAKA YA BUNGE TOKA BUNGE LA KENYA ILIPOTEMBELEA KAMATI KAMA HIYO YA BUNGE LA TZ
+
+**Step ",3.111530065536499,sw,single_prompt,few-shot
+   Nataka kuongea hapa na Rais wetu aliyopo Ikulu anayeitwa kupitia tweets tatu Wana mmelala Can i speak,negative,neutral,negative,I want to go there and President Uhuru is being referred to through three tweets They are calm Can I speak,neutral,[Extraction Error LRL Label],,,"---
+
+---
+
+---
+English Translation:
+I want to go there and President Uhuru is being referred to through three tweets They are calm Can I speak
+
+English Sentiment Label:
+neutral
+
+Swahili Sentiment Label:
+kati
+--- 
+--- 
+
+Explanation Note: The original text does not convey strong emotions either way; it's more factual and informational in nature. Hence, the sentiment is considered neutral. In Swahili, ""neutral"" translates to ""kati."" --- 
+--- 
+
+End of Response. --- 
+--- To ensure clarity and adherence to the guidelines, here is the final structured",3.1385433673858643,sw,single_prompt,few-shot
+Viwango vyetu vya kubadilishia fedha za kigeni leo tarehe 17 Septemba 2018,negative,neutral,negative,Step 2 -,neutral,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+Step 2 - English Sentiment Label:
+Step 3 - Swahili Sentiment Label:
+Step 1 - English Translation:
+Our plans to increase minimum wages effective September 17, 2018
+
+Step 2 - English Sentiment Label:
+neutral
+
+Step 3 - Swahili Sentiment Label:
+kati",2.020084857940674,sw,single_prompt,few-shot
+   Rais Dkt John Magufuli akizungumza na wananchi mbalimbali katika hospitali ya Taifa ya Muhimbili mara baada ya kutoka kuwaj,negative,neutral,negative,"Rais Dkt John Magufuli addressed various citizens at the National Hospital after returning from his trip.
+
+Step 2:",neutral,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Rais Dkt John Magufuli addressed various citizens at the National Hospital after returning from his trip.
+
+Step 2: English Sentiment Label:
+neutral
+
+Step 3: Swahili Sentiment Label:
+kati
+--- End Response --- To ensure clarity and precision in the task completion, here's the final formatted response:
+
+---
+
+Step 1: English Translation:
+Rais Dkt John Magufuli addressed various citizens at the National Hospital after returning from his trip.
+
+Step 2: English Sentiment Label:
+neutral
+
+Step 3:",3.1141140460968018,sw,single_prompt,few-shot
+   Sonino pita Hapa Mzee Wangu Tufanye Mpango Wa Kwenda Chuga Kwenye Nyama Nyoma,neutral,neutral,neutral,Sonino pita Hapa Mzee Wangu Tufanye Mpango Wa Kwenda Chuga Kwenye Nyama Nyoma,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+Sonino pita Hapa Mzee Wangu Tufanye Mpango Wa Kwenda Chuga Kwenye Nyama Nyoma
+
+English Sentiment Label:
+neutral
+
+Swahili Sentiment Label:
+kati
+--- 
+
+End of Response ---",1.4830384254455566,sw,single_prompt,few-shot
+Habari unaweza ukatupatia namba yako DM tukupatie maelezo ya kutosha kuhusu huduma hiiKA,negative,neutral,negative,You can find the number to DM and you will receive detailed information about this service KA,neutral,[Extraction Error LRL Label],,,"---
+
+---
+
+---
+English Translation:
+You can find the number to DM and you will receive detailed information about this service KA
+
+English Sentiment Label:
+neutral
+
+Swahili Sentiment Label:
+kati
+--- 
+Note: The original message seems to be incomplete or contains some unusual characters at the end (""KA""). This has been noted but not included in the sentiment analysis process. ---
+
+--- 
+End of Response --- 
+
+Please ensure that any unusual characters or incomplete sentences do not affect the sentiment analysis process. If such issues arise in future inputs, please clarify or remove them before proceeding with the analysis",3.110584259033203,sw,single_prompt,few-shot
+Wizara ya kilimo nchini Kenya imebaini harasa ya Ksh 32 Milioni kutokana na upotevuuharibifu wa zao la mahindi nchini humo kwa 12 mwaka 2016 Upotevu huo umeripotiwa kuchangiwa na ukame wa muda mrefu na uvamizi wa viwa vijeshi ktk maeneo ya kaskazini mwa Kenya,positive,positive,positive,"Ministry of agriculture in Kenya has improved significantly by receiving Ksh 32 million for their maize storage facilities over 12 years starting from 2016. This fund has been reallocated after a long period and due to climate challenges in Kenya.
+
+Step 2:",positive,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Ministry of agriculture in Kenya has improved significantly by receiving Ksh 32 million for their maize storage facilities over 12 years starting from 2016. This fund has been reallocated after a long period and due to climate challenges in Kenya.
+
+Step 2: English Sentiment Label:
+positive
+
+Step 3: Swahili Sentiment Label:
+chanya
+Step 1: English Translation:
+Ministry of agriculture in Kenya has improved significantly by receiving Ksh 32 million for their maize storage facilities over 12 years starting",3.1258275508880615,sw,single_prompt,few-shot
+   Ugonjwa wa Saratani nchini kwa sasa una sura ya Mwanamke Saratani 2 ambazo zinawapata wanawake tu shingo ya uzazi na ma,neutral,neutral,neutral,"The annual event in the country is currently hosting the Miss Saratani 2 contest where participants have received beauty and fitness training.
+
+Step 2 -",neutral,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+The annual event in the country is currently hosting the Miss Saratani 2 contest where participants have received beauty and fitness training.
+
+Step 2 - English Sentiment Label:
+neutral
+
+Step 3 - Swahili Sentiment Label:
+kati
+--- End Response --- To ensure clarity and adherence to the instructions, here is the completed task:
+
+---
+
+Swahili Text:
+Ugonjwa wa Saratani nchini kwa sasa una sura ya Mwanamke Saratani 2 ambazo zinawapata wanaw",3.124007225036621,sw,single_prompt,few-shot
+Siku kadhaa hapa nilikuwa na dili na ofisi za serikali hongereni kwakweli huduma ni nzuri mmepunguza kufanya kazi kwa mazoea,neutral,positive,neutral,For a day here we were without access to government offices and they improved services so that people could easily do their work,positive,[Extraction Error LRL Label],,,"---
+
+---
+
+---
+
+--- Here's the completion of the task based on the provided Swahili text:
+
+---
+
+English Translation:
+For a day here we were without access to government offices and they improved services so that people could easily do their work
+
+English Sentiment Label:
+positive
+
+Swahili Sentiment Label:
+chanya
+---",1.7975382804870605,sw,single_prompt,few-shot
+Mwenyekiti wa Jumuiya za Tawala za Mikoa ALAT Gulamhafeez Mukadamu kulia akipokea mfano wa hundi ya Sh milioni 100 kutoka kwa Meneja wa NMB Kanda ya Kati  Nsolo Mlozi kama udhamini wa mkutano Mkuu wa Mwaka wa ALAT unaotarajiwa kufanyika kuanzia wiki ijayo Jijini Dodoma,neutral,neutral,neutral,ALAT Cooperative Society Chairman Gulamhefez Mukadamu visited an example of a Shilling million 100 loan provided by NMB Central Manager at Dodoma Southern Lodge as a guest speaker and the CEO of ALAT Annual Conference has been successfully organized since the week in Jijini Dodoma,neutral,[Extraction Error LRL Label],,,"---
+
+---
+
+---
+English Translation:
+ALAT Cooperative Society Chairman Gulamhefez Mukadamu visited an example of a Shilling million 100 loan provided by NMB Central Manager at Dodoma Southern Lodge as a guest speaker and the CEO of ALAT Annual Conference has been successfully organized since the week in Jijini Dodoma
+
+English Sentiment Label:
+neutral
+
+Swahili Sentiment Label:
+kati
+---",2.3098413944244385,sw,single_prompt,few-shot
+Habari EliasGharama ni shilingi 3500 kwa kiasi hicho JB,negative,neutral,negative,EliasGharama's fare is 3500 shillings for any distance JB,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+EliasGharama's fare is 3500 shillings for any distance JB
+
+English Sentiment Label:
+neutral
+
+Swahili Sentiment Label:
+kati
+--- 
+
+End of Response --- The task has been completed as requested. If you need further assistance or have another text to analyze, feel free to ask!",1.9929964542388916,sw,single_prompt,few-shot
+   Katibu Mkuu Wizara ya Fedha amp Mipango wa Serikali ya Mapinduzi Zanzibar Khamis Omar akisaini makabidhiano ya kiufundi ya Mel,negative,neutral,negative,"The Chief Minister of Finance and Planning Ministry of Zanzibar's Government Mr. Khamis Omar announced the education budget.
+
+Step 2:",neutral,[Extraction Error LRL Label],,,"Step 1: English Translation:
+The Chief Minister of Finance and Planning Ministry of Zanzibar's Government Mr. Khamis Omar announced the education budget.
+
+Step 2: English Sentiment Label:
+neutral
+
+Step 3: Swahili Sentiment Label:
+kati
+--- End Response --- The task has been completed as requested. No further action is needed. If you need another example or have more texts to analyze, please let me know! 
+
+--- End Confirmation ---",2.5783987045288086,sw,single_prompt,few-shot
+iwapo zoezi hili halitaleta mabadiliko tuandikie namba yako ya kadi namba ya simu na mahali unapopatikana kwa msaada wa kuifundi Salim,neutral,negative,neutral,"If this virus continues to spread, update your bank account number, phone number and location where you can be reached through Salim's repair service.",negative,[Extraction Error LRL Label],,,"---
+
+English Translation:
+If this virus continues to spread, update your bank account number, phone number and location where you can be reached through Salim's repair service.
+
+English Sentiment Label:
+neutral
+
+Swahili Sentiment Label:
+kati
+--- The Given Text ---
+Swahili Text:
+```
+iwapo zoezi hili halitaleta mabadiliko tuandikie namba yako ya kadi namba ya simu na mahali unapopatikana kwa msaada wa kuifundi Salim
+```
+
+Your Response (following",3.113657236099243,sw,single_prompt,few-shot
+Nzuri Sana,negative,positive,negative,"Very Good
+
+Step 2:",positive,[Extraction Error LRL Label],,,"---
+
+---
+
+---
+
+Step 1: English Translation:
+Very Good
+
+Step 2: English Sentiment Label:
+positive
+
+Step 3: Swahili Sentiment Label:
+chanya
+--- 
+
+--- 
+End of Response --- 
+---",1.301161766052246,sw,single_prompt,few-shot
+Ahsante kwa kutembelea ukurasa wetu Tumia Ezypesa ushinde,neutral,positive,neutral,Thank you for reading our article Using Ezypesa ushinde,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+Thank you for reading our article Using Ezypesa ushinde
+
+English Sentiment Label:
+positive
+
+Swahili Sentiment Label:
+chanya
+---",0.9958987236022949,sw,single_prompt,few-shot
+   Aah kwasababu tunaishia kifuani tuu not fair,neutral,negative,neutral,"Aah, we are upset because this is not fair
+
+Step 2:",negative,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Aah, we are upset because this is not fair
+
+Step 2: English Sentiment Label:
+negative
+
+Step 3: Swahili Sentiment Label:
+hasi
+Step 1: English Translation:
+Aah, we are upset because this is not fair
+
+Step 2: English Sentiment Label:
+negative
+
+Step 3: Swahili Sentiment Label:
+hasi",2.310549020767212,sw,single_prompt,few-shot
+   Katibu Mkuu wa chama tawala Kenya Jubilee Raphael Tuju amepata ajali katika eneo la Magina barabara kuu ya Nakuru N,positive,neutral,positive,"The Head Teacher of the school resigned from Kenya Jubilee Raphael Tuju and will be taking over in the management of the large sub-county of Nakuru N.
+
+Step 2 -",neutral,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+The Head Teacher of the school resigned from Kenya Jubilee Raphael Tuju and will be taking over in the management of the large sub-county of Nakuru N.
+
+Step 2 - English Sentiment Label:
+neutral
+
+Step 3 - Swahili Sentiment Label:
+kati
+--- End Response --- ```plaintext
+English Translation:
+The Head Teacher of the school resigned from Kenya Jubilee Raphael Tuju and will be taking over in the management of the large sub-county of Nakuru N.
+
+English Sentiment Label:
+neutral
+
+Swahili Sentiment",3.1074461936950684,sw,single_prompt,few-shot
+   Tuache uchochezi wa fikra watanzania wengi wepes kuamini maneno ya hovyowizara haiwez kukaa open hata kama na,neutral,neutral,neutral,You have ideas that many people consider important but the words of the ministers cannot be considered open even though they are,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+You have ideas that many people consider important but the words of the ministers cannot be considered open even though they are
+
+English Sentiment Label:
+neutral
+
+Swahili Sentiment Label:
+kati
+--- The Given Swahili Text ---
+Swahili Text:
+```
+Tuache uchochezi wa fikra watanzania wengi wepes kuamini maneno ya hovyowizara haiwez kukaa open hata kama na
+```
+
+Your Response (following the 3 steps precisely):
+---
+
+English Translation:
+You have ideas that",3.1169540882110596,sw,single_prompt,few-shot
+   Kambi hii maalum ya watoto inaandaliwa na binti mdogo mwenye miaka 11 pekee MzaziMlezi mlete mwanao apate elimu,neutral,positive,neutral,"The park known by children as ""Kambi"" has been improved by a young girl aged 11 and her mother who ensured their education
+
+Step 2 -",positive,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+The park known by children as ""Kambi"" has been improved by a young girl aged 11 and her mother who ensured their education
+
+Step 2 - English Sentiment Label:
+positive
+
+Step 3 - Swahili Sentiment Label:
+chanya
+Step 1 - English Translation:
+The park known by children as ""Kambi"" has been improved by a young girl aged 11 and her mother who ensured their education
+
+Step 2 - English Sentiment Label:
+positive
+
+Step 3 - Swahili Sentiment Label:
+ch",3.1088449954986572,sw,single_prompt,few-shot
+   Afya  Habari Marketing Ucheshi Unene Wivu,neutral,positive,neutral,Health News Marketing Strategy Is Good,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+Health News Marketing Strategy Is Good
+
+English Sentiment Label:
+positive
+
+Swahili Sentiment Label:
+chanya
+--- The Given Text ---
+Swahili Text:
+Afya  Habari Marketing Ucheshi Unene Wivu
+
+English Translation:
+Health News Marketing Strategy Is Good
+
+English Sentiment Label:
+positive
+
+Swahili Sentiment Label:
+chanya
+---",2.194368362426758,sw,single_prompt,few-shot
+   Rais Mstaafu wa Awamu ya 3 Benjamin Mkapa amesema moja ya viunzi alivyofanikiwa kuruka katika uongozi wake ni kile cha k,negative,neutral,negative,President Benjamin Mkapa said one of the challenges facing his administration is corruption.,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+President Benjamin Mkapa said one of the challenges facing his administration is corruption.
+
+English Sentiment Label:
+neutral
+
+Swahili Sentiment Label:
+kati
+--- Step 3 Output ---
+Swahili Sentiment Label:
+kati
+--- Step 3 Output ---
+Swahili Sentiment Label:
+kati
+--- Final Response ---
+English Translation:
+President Benjamin Mkapa said one of the challenges facing his administration is corruption.
+
+English Sentiment Label:
+neutral
+
+Swahili Sentiment Label:
+kati
+---",2.867833375930786,sw,single_prompt,few-shot
+   Muonekano wa kipande kilichotandikwa reli ya kisasa ya SGR jijini Dar es Salaam,negative,neutral,negative,"The train station sign was installed recently at Dar es Salaam city center
+
+Step 2 -",neutral,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+The train station sign was installed recently at Dar es Salaam city center
+
+Step 2 - English Sentiment Label:
+neutral
+
+Step 3 - Swahili Sentiment Label:
+kati
+--- End Response --- ```plaintext
+English Translation:
+The train station sign was installed recently at Dar es Salaam city center
+
+English Sentiment Label:
+neutral
+
+Swahili Sentiment Label:
+kati
+```",2.375147819519043,sw,single_prompt,few-shot
+Naomba iyo namba iyo namba ili niweze kukusaidia,neutral,neutral,neutral,"I want and number and number so that I can use them
+
+Step 2:",neutral,[Extraction Error LRL Label],,,"---
+
+---
+
+---
+
+Step 1: English Translation:
+I want and number and number so that I can use them
+
+Step 2: English Sentiment Label:
+neutral
+
+Step 3: Swahili Sentiment Label:
+kati
+---",1.3290655612945557,sw,single_prompt,few-shot
+Mfanyabiashara kuwepo bonanzani ni gharama piaunategemea bei iwe sawacost za bandausafiriwafanyakazi unazirudisha vipi,neutral,neutral,neutral,The businessman who received the bonus also needs to be told what the costs of business travel are and how his employees handle them.,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+The businessman who received the bonus also needs to be told what the costs of business travel are and how his employees handle them.
+
+English Sentiment Label:
+neutral
+
+Swahili Sentiment Label:
+kati
+--- The Response ---
+English Translation:
+The businessman who received the bonus also needs to be told what the costs of business travel are and how his employees handle them.
+
+English Sentiment Label:
+neutral
+
+Swahili Sentiment Label:
+kati
+---",2.5266661643981934,sw,single_prompt,few-shot
+   EazzyFX inakupa uwezo wa kujihudumia kubadili fedha za kigeni popote ulipo bila kufika kwenye matawi yetu Tembelea tovut,neutral,positive,neutral,EazzyFX provides the ability to trade financial products without having to go to our platform Tembelea tovut,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+EazzyFX provides the ability to trade financial products without having to go to our platform Tembelea tovut
+
+English Sentiment Label:
+positive
+
+Swahili Sentiment Label:
+chanya
+---
+Explanation:
+- The sentence describes a feature that allows users to trade without visiting a physical location, which seems like a convenient and positive aspect.
+- Therefore, the sentiment is labeled as positive.
+- In Swahili, ""positive"" translates to ""chanya."" --- Your Response (following the 3 steps precisely):
+---
+
+English Translation:
+EazzyFX provides",3.1125147342681885,sw,single_prompt,few-shot
+   Hatima yako itakuaje ni wewe mwenyewe ni kufanya maamuzi ili hatima yako isije ikawa mbaya hapo mbeleni usisubiri miujiza,negative,negative,negative,Your patience has run out and you yourself need to do something to settle your matter quickly here before anything miraculous happens,negative,[Extraction Error LRL Label],,,"---
+
+English Translation:
+Your patience has run out and you yourself need to do something to settle your matter quickly here before anything miraculous happens
+
+English Sentiment Label:
+negative
+
+Swahili Sentiment Label:
+hasi
+--- The Given Text ---
+Swahili Text:
+```
+Hatima yako itakuaje ni wewe mwenyewe ni kufanya maamuzi ili hatima yako isije ikawa mbaya hapo mbeleni usisubiri miujiza
+```
+
+Your Response (following the 3 steps precisely):
+---
+
+English Translation:
+Your patience",3.112231969833374,sw,single_prompt,few-shot
+   TATIZO NI TIMING Kuna jamaa angu 1 anaitwa Toni anaishi shinyanga ni mtu wa watu sana Ikifika weekend unakuta kuna wazee,positive,neutral,positive,"A shop is open. There are people at 1 o'clock and they call him Toni. He likes the weather very much. When he comes on the weekend, there are many elders.
+
+Step 2:",neutral,[Extraction Error LRL Label],,,"Step 1: English Translation:
+A shop is open. There are people at 1 o'clock and they call him Toni. He likes the weather very much. When he comes on the weekend, there are many elders.
+
+Step 2: English Sentiment Label:
+neutral
+
+Step 3: Swahili Sentiment Label:
+kati
+---
+
+English Translation:
+A shop is open. There are people at 1 o'clock and they call him Toni. He likes the weather very much. When he comes on the weekend, there are many elders.
+
+English Sentiment Label:
+neutral
+
+Sw",3.120645046234131,sw,single_prompt,few-shot
+    Je kati ya Mwanaume na Mwanamke ni nani anaweza kuvumilia kukaa kwa muda mrefu bila kufanya mapenzi,neutral,neutral,neutral,Step 2 -,neutral,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+Step 2 - English Sentiment Label:
+Step 3 - Swahili Sentiment Label:
+Step 1 - English Translation:
+There is something that people and women can use continuously without making an effort
+
+Step 2 - English Sentiment Label:
+neutral
+
+Step 3 - Swahili Sentiment Label:
+kati",1.9425077438354492,sw,single_prompt,few-shot
+Pamoja na jitihada za serikali kuweka mpango wa umeme vijijini REA na kupunguza gharama za kujiunga bado baadhi ya wananchi wanashindwa kuunganishia umeme kutokana na baadhi ya kandarasi za kufunga mtandao,neutral,positive,neutral,"Government collaboration has improved rural electricity access and reduced connection fees for many citizens who struggled to afford electricity due to various business costs
+
+Step 2:",positive,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Government collaboration has improved rural electricity access and reduced connection fees for many citizens who struggled to afford electricity due to various business costs
+
+Step 2: English Sentiment Label:
+positive
+
+Step 3: Swahili Sentiment Label:
+chanya
+Certainly! Here's the completion of the task following the specified steps:
+
+---
+
+**Step 1: English Translation:**
+Government collaboration has improved rural electricity access and reduced connection fees for many citizens who struggled to afford electricity due to various business costs
+
+**Step 2: English Sentiment Label:**
+positive
+
+**",3.135892391204834,sw,single_prompt,few-shot
+   Wanawake wenzangu Huyu ndo Rais tunapaswa kwenda Naye na Kumuunga Mkono vifo vya Wanawake Vimepungua kutokana na Jitiha,negative,neutral,negative,"The women in our country This man is the president who went to the United States and signed the Women's Rights Bill while meeting with the First Lady
+
+Step 2:",neutral,[Extraction Error LRL Label],,,"Step 1: English Translation:
+The women in our country This man is the president who went to the United States and signed the Women's Rights Bill while meeting with the First Lady
+
+Step 2: English Sentiment Label:
+neutral
+
+Step 3: Swahili Sentiment Label:
+kati
+Certainly! Here is the completed task following the specified format:
+
+---
+
+Swahili Text:
+```
+Wanawake wenzangu Huyu ndo Rais tunapaswa kwenda Naye na Kumuunga Mkono vifo vya Wanawake Vimepung",3.113056182861328,sw,single_prompt,few-shot
+   TWITTER ni kama Kijiji chenye watu wachache wenye tabia tofauti Tafuta mtaa unaona unakufaa kuishi Jifunze kuheshimu,neutral,positive,neutral,"TWITTER is like a marketplace where people with different conditions seek help find cities they have seen unite learn to communicate
+
+Step 2:",positive,[Extraction Error LRL Label],,,"Step 1: English Translation:
+TWITTER is like a marketplace where people with different conditions seek help find cities they have seen unite learn to communicate
+
+Step 2: English Sentiment Label:
+positive
+
+Step 3: Swahili Sentiment Label:
+chanya
+Step 1: English Translation:
+TWITTER is like a marketplace where people with different conditions seek help find cities they have seen unite learn to communicate
+
+Step 2: English Sentiment Label:
+positive
+
+Step 3: Swahili Sentiment Label:
+chanya",2.8799972534179688,sw,single_prompt,few-shot
+   42 ya biashara zinazofanikiwa huwa wanapatia TIMING yani wanapatia MUDA sahihi wa kuanza au kufanya jambo TIMING haipo kw,negative,neutral,negative,"The 42 business opportunities that were missed means he/she/they missed the timing which means missing the right time to start or do work Timing is important
+
+Step 2:",neutral,[Extraction Error LRL Label],,,"Step 1: English Translation:
+The 42 business opportunities that were missed means he/she/they missed the timing which means missing the right time to start or do work Timing is important
+
+Step 2: English Sentiment Label:
+neutral
+
+Step 3: Swahili Sentiment Label:
+kati
+Step 1: English Translation:
+The 42 business opportunities that were missed means he/she/they missed the timing which means missing the right time to start or do work Timing is important
+
+Step 2: English Sentiment Label:
+neutral
+
+Step 3: Swah",3.1124823093414307,sw,single_prompt,few-shot
+Habari ahsante kwa kuwasiliana nasi Tunaomba radhi kwa changamoto hiyo tumefanya maboresho katika namba yetu ya huduma kwa wateja 100 na sasa unaweza kujihudumia binafsi kupitia maelekezo ya IVRJM,negative,positive,negative,"Thank you for contacting us. We appreciate your patience and we have made improvements in our service number 100. Now you can serve yourself through IVR system.
+
+Step 2:",positive,[Extraction Error LRL Label],,,"---
+
+---
+
+---
+
+Step 1: English Translation:
+Thank you for contacting us. We appreciate your patience and we have made improvements in our service number 100. Now you can serve yourself through IVR system.
+
+Step 2: English Sentiment Label:
+positive
+
+Step 3: Swahili Sentiment Label:
+chanya
+---",1.893261432647705,sw,single_prompt,few-shot
+   Viva demokrasia VIVA Viva haki ya kikatiba ya kuishi VIVA VIVA HAKI NA UTU WA MTANZANIA VIVA Umoja ni nguvu Wajitenga,neutral,positive,neutral,Viva democracy VIVA Right to live freedom VIVA VIVA RIGHTS AND HUMANITY TANZANIA VIVA Unity is strength Cohesion,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+Viva democracy VIVA Right to live freedom VIVA VIVA RIGHTS AND HUMANITY TANZANIA VIVA Unity is strength Cohesion
+
+English Sentiment Label:
+positive
+
+Swahili Sentiment Label:
+chanya
+--- The Given Text ---
+English Translation:
+Viva democracy VIVA Right to live freedom VIVA VIVA RIGHTS AND HUMANITY TANZANIA VIVA Unity is strength Cohesion
+
+English Sentiment Label:
+positive
+
+Swahili Sentiment Label:
+chanya
+---",2.861044406890869,sw,single_prompt,few-shot
+   Kwa hedhi salama yenye afya na ya kupunguza maumivu usisite kuchukua,neutral,positive,neutral,For this peace that is healthy and conducive to maintaining tranquility,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+For this peace that is healthy and conducive to maintaining tranquility
+
+English Sentiment Label:
+positive
+
+Swahili Sentiment Label:
+chanya
+--- Explanation ---
+The phrase expresses a sense of well-being and calmness, which indicates a positive sentiment. In Swahili, ""chanya"" captures the essence of positivity in this context. --- Your Response (following the 3 steps precisely):
+---
+
+English Translation:
+For this peace that is healthy and conducive to maintaining tranquility
+
+English Sentiment Label:
+positive
+
+Swahili Sentiment Label:
+chanya
+---",3.107363224029541,sw,single_prompt,few-shot
+   Kaimu Mkurugenzi wa Uendeshaji wa Shirika la Reli Tanzania TRC Focus Sahani akizungumza na waandishi wa haari jijini Dare,neutral,neutral,neutral,The CEO of Reli Tanzania Insurance Company TRC Focus Sahani met with the chairman of the board Dare.,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+The CEO of Reli Tanzania Insurance Company TRC Focus Sahani met with the chairman of the board Dare.
+
+English Sentiment Label:
+neutral
+
+Swahili Sentiment Label:
+kati
+--- 
+
+Explanation (Optional - Not Required):
+---
+
+The sentence describes a factual event without any emotional tone, making it neutral in sentiment. The translation and sentiment analysis were performed accordingly. ---
+
+English Translation:
+The CEO of Reli Tanzania Insurance Company TRC Focus Sahani met with the chairman of the board Dare.
+
+English Sentiment Label:
+neutral
+
+Swahili Sentiment Label:
+",3.112271308898926,sw,single_prompt,few-shot
+Mnyama mkali anatufungia bao la tatu,neutral,neutral,neutral,"A black cat crossed my path three times
+
+Step 2 -",neutral,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+A black cat crossed my path three times
+
+Step 2 - English Sentiment Label:
+neutral
+
+Step 3 - Swahili Sentiment Label:
+kati
+```markdown
+English Translation:
+A black cat crossed my path three times
+
+English Sentiment Label:
+neutral
+
+Swahili Sentiment Label:
+kati
+```",1.9601373672485352,sw,single_prompt,few-shot
+Waziri Wa Afya Maendeleo ya Jamii Jinsia Wazee na Watoto Ummy Mwalimu amekagua utoaji Huduma za Afya katika Hospitali Teule ya Rufaa ya Mkoa wa Njombe na kubaini,neutral,neutral,neutral,"Minister of General Gender Health Affairs and Children's Honorable Members of Parliament have approved health services reforms at Teule Regional Referral Hospital in Njombe region and beyond.
+
+Step 2 -",neutral,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+Minister of General Gender Health Affairs and Children's Honorable Members of Parliament have approved health services reforms at Teule Regional Referral Hospital in Njombe region and beyond.
+
+Step 2 - English Sentiment Label:
+neutral
+
+Step 3 - Swahili Sentiment Label:
+kati
+Step 1 - English Translation:
+Minister of General Gender Health Affairs and Children's Honorable Members of Parliament have approved health services reforms at Teule Regional Referral Hospital in Njombe region and beyond.
+
+Step 2 - English Sentiment Label:
+neutral
+
+",3.1632840633392334,sw,single_prompt,few-shot
+   Tulale tukilitafakari hili Jambo la umoja wa kitaifa Ila wenzangu mkipata nafasi ya kuketi pamoja na waflme hukomsijisa,neutral,positive,neutral,"We are thinking about this peace initiative among our people to ensure equal participation and fair governance
+
+Step 2:",positive,[Extraction Error LRL Label],,,"Step 1: English Translation:
+We are thinking about this peace initiative among our people to ensure equal participation and fair governance
+
+Step 2: English Sentiment Label:
+positive
+
+Step 3: Swahili Sentiment Label:
+chanya
+Certainly! Here's the completed task following the specified format:
+
+---
+
+Swahili Text:
+```
+Tulale tukilitafakari hili Jambo la umoja wa kitaifa Ila wenzangu mkipata nafasi ya kuketi pamoja na waflme hukomsijisa
+```
+
+**Step",3.1122915744781494,sw,single_prompt,few-shot

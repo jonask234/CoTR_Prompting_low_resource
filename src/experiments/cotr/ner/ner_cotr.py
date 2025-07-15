@@ -34,8 +34,6 @@ from src.experiments.baseline.ner.ner_baseline import (
     create_dummy_ner_data
 )
 
-from src.evaluation.cotr.translation_metrics import calculate_comet_score
-
 # Remove the old block that added project root to Python path
 # project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', '..'))
 # sys.path.insert(0, project_root)
@@ -46,7 +44,7 @@ from src.utils.data_loaders.load_masakhaner import load_masakhaner_samples
 # from src.utils.llm_utils import call_llm_api
 
 # Import COMET if available
-from evaluation.cotr.translation_metrics import COMET_AVAILABLE 
+# from evaluation.cotr.translation_metrics import COMET_AVAILABLE
 
 # Baseline imports for alignment
 from src.experiments.baseline.ner.ner_baseline import extract_entities as extract_entities_baseline # Import baseline extraction
@@ -291,41 +289,77 @@ def translate_text(
     
     return translation
 
-def generate_ner_prompt_english(text: str, model_name: str = "") -> str:
+def generate_ner_prompt_english(text: str, model_name: str = "", use_few_shot: bool = True) -> str:
     """
     Generates a prompt for English NER.
     """
-    # Adding a one-shot example to guide the model better.
-    example_text = "Microsoft, a company founded by Bill Gates, is based in Redmond."
-    example_json = '''```json
-{
-  "entities": [
-    {
-      "entity_text": "Microsoft",
-      "entity_type": "ORG"
-    },
-    {
-      "entity_text": "Bill Gates",
-      "entity_type": "PER"
-    },
-    {
-      "entity_text": "Redmond",
-      "entity_type": "LOC"
-    }
-  ]
-}
-```'''
-    prompt = f"""You are an expert entity extraction system.
+    base_instruction = """You are an expert entity extraction system.
 Extract all named entities (PER, ORG, LOC, DATE) from the text.
 Provide your answer as a single JSON object with a key "entities" that contains a list of objects.
-Do not provide any explanation or other text. Only the JSON object.
+Do not provide any explanation or other text. Only the JSON object."""
 
---- Example ---
-Text: "{example_text}"
+    few_shot_example = ""
+    if use_few_shot:
+        # Standardized to 3 examples matching baseline
+        few_shot_example = f"""
+
+--- Examples ---
+
+Example 1:
+Text: "Angela Merkel visited Paris on September 1st, 2021 with a delegation from the European Union."
 
 JSON:
-{example_json}
----
+```json
+{{
+  "entities": [
+    {{
+      "entity_text": "Angela Merkel",
+      "entity_type": "PER"
+    }},
+    {{
+      "entity_text": "Paris",
+      "entity_type": "LOC"
+    }},
+    {{
+      "entity_text": "September 1st, 2021",
+      "entity_type": "DATE"
+    }},
+    {{
+      "entity_text": "European Union",
+      "entity_type": "ORG"
+    }}
+  ]
+}}
+```
+
+Example 2:
+Text: "The quick brown fox jumps over the lazy dog in New York."
+
+JSON:
+```json
+{{
+  "entities": [
+    {{
+      "entity_text": "New York",
+      "entity_type": "LOC"
+    }}
+  ]
+}}
+```
+
+Example 3:
+Text: "There are no entities here."
+
+JSON:
+```json
+{{
+  "entities": []
+}}
+```
+---"""
+
+    prompt = f"""{base_instruction}
+{few_shot_example}
 Text: "{text}"
 
 JSON:
@@ -338,14 +372,15 @@ def process_ner_english(
     text: str,
     generation_params: Dict[str, Any],
     max_input_length: int = 4096,
-    model_name: str = ""
+    model_name: str = "",
+    use_few_shot: bool = True
 ) -> List[Dict[str, str]]:
     """
     Process a text for NER in English using a unified generation parameter dictionary.
     """
     try:
-        # Generate the NER prompt in English
-        prompt = generate_ner_prompt_english(text, model_name)
+        # Generate the NER prompt in English, passing use_few_shot parameter
+        prompt = generate_ner_prompt_english(text, model_name, use_few_shot=use_few_shot)
         
         # Tokenize with truncation
         inputs = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=max_input_length)
@@ -602,6 +637,7 @@ def evaluate_ner_cotr(
                 text=text_en,
                 generation_params=ner_params,
                 model_name=model_name,
+                use_few_shot=use_few_shot
             )
             result_row["entities_en"] = entities_en
 
@@ -618,17 +654,17 @@ def evaluate_ner_cotr(
             result_row["predicted_entities"] = predicted_entities
             
             # 4. (Optional) Calculate COMET scores if available and successful
-            if COMET_AVAILABLE:
-                # Score for text translation
-                if text and text_en:
-                    result_row["comet_score_text"] = calculate_comet_score([text], [text_en])
+            # if COMET_AVAILABLE:
+            #     # Score for text translation
+            #     if text and text_en:
+            #         result_row["comet_score_text"] = calculate_comet_score([text], [text_en])
                 
-                # Score for entity back-translation (batched)
-                if entities_en and predicted_entities and len(entities_en) == len(predicted_entities):
-                    source_texts = [str(e.get('entity', e.get('entity_text', ''))) for e in entities_en]
-                    pred_texts = [str(p.get('entity', p.get('entity_text', ''))) for p in predicted_entities]
-                    if all(source_texts) and all(pred_texts):
-                         result_row["comet_score_entities"] = calculate_comet_score(source_texts, pred_texts)
+            #     # Score for entity back-translation (batched)
+            #     if entities_en and predicted_entities and len(entities_en) == len(predicted_entities):
+            #         source_texts = [str(e.get('entity', e.get('entity_text', ''))) for e in entities_en]
+            #         pred_texts = [str(p.get('entity', p.get('entity_text', ''))) for p in predicted_entities]
+            #         if all(source_texts) and all(pred_texts):
+            #              result_row["comet_score_entities"] = calculate_comet_score(source_texts, pred_texts)
 
         except Exception as e:
             logger.error(f"ERROR processing sample {row.get('id', idx)} for {lang_code} (multi_prompt, {'few' if use_few_shot else 'zero'}-shot): {e}", exc_info=True)
@@ -701,24 +737,63 @@ OUTPUT FORMAT REQUIREMENTS:
 
     few_shot_example_str = ""
     if use_few_shot:
-        example_lrl_text = "Rais wa zamani wa Marekani, Barack Obama, alizuru Kenya Jumanne."
-        # This is the ONLY output the model should generate. No reasoning text.
-        example_lrl_entities_json = """{
-  "entities": [
-    {"entity_text": "Barack Obama", "entity_type": "PER"},
-    {"entity_text": "Marekani", "entity_type": "LOC"},
-    {"entity_text": "Kenya", "entity_type": "LOC"},
-    {"entity_text": "Jumanne", "entity_type": "DATE"}
-  ]
-}"""
+        # Standardized to 3 examples matching baseline
         few_shot_example_str = f"""
---- Example ---
-Text: "{example_lrl_text}"
 
-JSON Response (exactly as shown, no additional text):
-{example_lrl_entities_json}
---- End Example ---
-"""
+--- Examples ---
+
+Example 1:
+Text: "Angela Merkel visited Paris on September 1st, 2021 with a delegation from the European Union."
+
+JSON:
+```json
+{{
+  "entities": [
+    {{
+      "entity_text": "Angela Merkel",
+      "entity_type": "PER"
+    }},
+    {{
+      "entity_text": "Paris",
+      "entity_type": "LOC"
+    }},
+    {{
+      "entity_text": "September 1st, 2021",
+      "entity_type": "DATE"
+    }},
+    {{
+      "entity_text": "European Union",
+      "entity_type": "ORG"
+    }}
+  ]
+}}
+```
+
+Example 2:
+Text: "The quick brown fox jumps over the lazy dog in New York."
+
+JSON:
+```json
+{{
+  "entities": [
+    {{
+      "entity_text": "New York",
+      "entity_type": "LOC"
+    }}
+  ]
+}}
+```
+
+Example 3:
+Text: "There are no entities here."
+
+JSON:
+```json
+{{
+  "entities": []
+}}
+```
+---"""
 
     final_prompt = f"""{prompt_instruction}
 {few_shot_example_str}

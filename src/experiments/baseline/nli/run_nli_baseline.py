@@ -68,7 +68,7 @@ MODEL_NLI_ADJUSTMENTS = {
 }
 
 # Placeholder NLI Data Loader - REPLACE THIS with your actual data loader
-def load_nli_samples(lang_code: str, split: str = "validation", num_samples: Optional[int] = None, seed: int = 42) -> pd.DataFrame:
+def load_nli_samples(lang_code: str, split: str = "test", num_samples: Optional[int] = None, seed: int = 42) -> pd.DataFrame:
     """
     Placeholder for loading NLI samples (e.g., from XNLI dataset).
     This function should return a pandas DataFrame with at least three columns:

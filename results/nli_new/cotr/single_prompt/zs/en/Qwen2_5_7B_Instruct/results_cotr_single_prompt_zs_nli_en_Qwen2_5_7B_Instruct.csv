@@ -1,0 +1,1033 @@
+premise_lrl,hypothesis_lrl,original_gt_label_int,ground_truth_eng_label_str,premise_en,hypothesis_en,predicted_english_label_model_intermediate,predicted_lrl_label_model_raw,predicted_label_for_accuracy,raw_model_response,runtime_seconds,error_message
+"The remaining dimensions are imagined as curled up on the Planck length scale in what are called  Calabi-Yau  spaces, or more generally, compactified moduli.",Calabi-Yau spaces are spread out a ton.,2,contradiction,"The remaining dimensions are imagined as curled up on the Planck length scale in what are called Calabi-Yau spaces, or more generally, compactified moduli.""","Calabi-Yau spaces are spread out a ton.""",contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Let's follow the steps exactly as instructed:
+
+**Step 1: Translate Premise to English**
+- The original premise is already in English:
+""Translated English Premise: The remaining dimensions are imagined as curled up on the Planck length scale in what are called Calabi-Yau spaces, or more generally, compactified moduli.""
+
+**Step 2: Translate Hypothesis to English**
+- The original hypothesis is also already in English:
+""Translated English Hypothesis: Calabi-Yau spaces are spread out a ton.""
+
+**Step 3: Perform English NLI**
+- After analyzing the Translated English Premise and Translated English Hypothesis, we can see that they contradict each other. The premise states that dimensions are curled up at the Planck length scale within Calabi-Yau spaces, while the hypothesis claims that Calabi-Yau spaces are spread out extensively.
+- Therefore, the relationship between the premise and the hypothesis is a contradiction.
+
+**Final Output:**
+English NLI Label: contradiction
+--- 
+This completes the task according to the specified format. The final answer based on the provided premises and hypotheses is ""contradiction"". ---",12.642774105072021,
+23Financial  Continued Momentum Essential to Achieve CFO Act Goals,23Financial is close to completing all of their Act Goals.,1,neutral,'23Financial  Continued Momentum Essential to Achieve CFO Act Goals','23Financial is close to completing all of their Act Goals.',neutral,N/A_SP_EN_eval,neutral,"---
+
+Let's begin:
+Translated English Premise: '23Financial  Continued Momentum Essential to Achieve CFO Act Goals'
+
+Translated English Hypothesis: '23Financial is close to completing all of their Act Goals.'
+
+English NLI Label: neutral
+--- Explanation ---
+The premise states that continued momentum is essential to achieve the goals set forth by the CFO Act, but it does not specify whether 23Financial has already achieved those goals or is close to achieving them. The hypothesis suggests that 23Financial is close to completing all of their Act Goals, which cannot be directly inferred from the premise. Therefore, there is no clear entailment or contradiction; hence, the relationship is neutral. --- Your response is correct and follows the specified format. Here is the complete output again for clarity:
+
+**Translated English Premise:** '23Financial  Continued Momentum Essential to Achieve CFO Act Goals'
+
+**Translated English Hypothesis:** '23Financial is close to completing all of their Act Goals.'
+
+**English NLI Label:** neutral
+
+This confirms that based on the given premise and hypothesis, the relationship between them is neutral. Well done! If you have any more tasks or need further assistance, feel free to ask. ---",13.417969942092896,
+"I am pressed,  she informed him.",She had told him that she was pressured.,0,entailment,"** I am pressed, she informed him.",** She had told him that she was pressured.,entailment,N/A_SP_EN_eval,entailment,"---
+
+Let's follow the steps precisely:
+
+**Translated English Premise:** I am pressed, she informed him.
+
+**Translated English Hypothesis:** She had told him that she was pressured.
+
+**English NLI Label:** Entailment
+
+The premise states that ""she"" informed ""him"" about being pressed, which aligns with the hypothesis stating that ""she"" had told ""him"" that she was pressured. Therefore, the relationship between the premise and the hypothesis is entailment. --- The English NLI Label is: Entailment. ---",6.026140928268433,
+it's probably more because i just enjoy the coverage than it is because i don't have time to read the paper you know,They cover a lot more than you will get from the paper.,1,neutral,'it's probably more because i just enjoy the coverage than it is because i don't have time to read the paper you know','They cover a lot more than you will get from the paper.',neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided information, here are the steps performed:
+
+**Step 1: Translate Premise to English**
+- The Original English Premise is already in English:
+  Translated English Premise: 'it's probably more because i just enjoy the coverage than it is because i don't have time to read the paper you know'
+
+**Step 2: Translate Hypothesis to English**
+- The Original English Hypothesis is already in English:
+  Translated English Hypothesis: 'They cover a lot more than you will get from the paper.'
+
+**Step 3: Perform English NLI**
+- After analyzing the Translated English Premise and Translated English Hypothesis, we can see that they do not directly relate to each other. The premise talks about enjoying coverage over reading a paper due to lack of time, while the hypothesis discusses the content covered in comparison to what is in the paper. There is no clear entailment, neutrality, or contradiction between them.
+  English NLI Label: neutral
+
+The final output is:
+English NLI Label: neutral",11.934083938598633,
+"Jane,Dave, and an FBI analyst who was on detail to the CIA's Bin Ladin unit went to New York on June 11 to meet with the agents about the Cole case.",The FBI analyst talked to seven agents about the Cole case.,1,neutral,"** Jane, Dave, and an FBI analyst who was on detail to the CIA's Bin Ladin unit went to New York on June 11 to meet with the agents about the Cole case.",** The FBI analyst talked to seven agents about the Cole case.,neutral,N/A_SP_EN_eval,neutral,"---
+
+Let's follow the steps precisely:
+
+**Translated English Premise:** Jane, Dave, and an FBI analyst who was on detail to the CIA's Bin Ladin unit went to New York on June 11 to meet with the agents about the Cole case.
+
+**Translated English Hypothesis:** The FBI analyst talked to seven agents about the Cole case.
+
+**English NLI Label:** Neutral
+
+Explanation: The premise states that Jane, Dave, and an FBI analyst met with some agents regarding the Cole case but does not specify how many agents were involved. The hypothesis claims that the FBI analyst specifically talked to seven agents, which cannot be confirmed based solely on the information provided in the premise. Therefore, the relationship between the premise and the hypothesis is neutral.",8.311418294906616,
+"On the other hand, particles and the three nongravitational forces have yet to be incorporated into a spin network picture.",The nongravitational forces must be incorporated in order for the spin network picture to be complete.,1,neutral,"On the other hand, particles and the three nongravitational forces have yet to be incorporated into a spin network picture.",The nongravitational forces must be incorporated in order for the spin network picture to be complete.,neutral,N/A_SP_EN_eval,neutral,"---
+
+Let's follow the steps precisely:
+
+**Step 1: Translate Premise to English**
+- The original premise is already in English, so no translation is needed.
+- Translated English Premise: On the other hand, particles and the three nongravitational forces have yet to be incorporated into a spin network picture.
+
+**Step 2: Translate Hypothesis to English**
+- The original hypothesis is already in English, so no translation is needed.
+- Translated English Hypothesis: The nongravitational forces must be incorporated in order for the spin network picture to be complete.
+
+**Step 3: Perform English NLI**
+- After analyzing the Translated English Premise and Translated English Hypothesis:
+- The premise states that particles and nongravitational forces have not been fully incorporated into a spin network picture yet.
+- The hypothesis suggests that incorporating nongravitational forces is necessary for completing the spin network picture.
+- These statements do not necessarily contradict each other; rather, they complement each other. The premise acknowledges the current state while the hypothesis provides a goal or requirement.
+- Therefore, the relationship between the premise and the hypothesis can be considered neutral.
+
+**English NLI Label:** neutral
+
+This completes the task according to the specified format. The final answer is ""neutral"".",14.670794486999512,
+You should have seen the danger.,You must not look at the crisis happening at this very moment.,2,contradiction,You should have seen the danger.,You must not look at the crisis happening at this very moment.,contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Translated English Premise: You should have seen the danger.
+
+Translated English Hypothesis: You must not look at the crisis happening at this very moment.
+
+English NLI Label: contradiction
+---",2.2064437866210938,
+"Her sister could pass for white, and in fact did pass for white.",Her sister had the fairest skin of anyone in the neighborhood.,1,neutral,"Her sister could pass for white, and in fact did pass for white.",Her sister had the fairest skin of anyone in the neighborhood.,neutral,N/A_SP_EN_eval,neutral,"---
+
+Let's begin:
+---
+
+Translated English Premise: Her sister could pass for white, and in fact did pass for white.
+
+Translated English Hypothesis: Her sister had the fairest skin of anyone in the neighborhood.
+
+English NLI Label: neutral
+
+---
+
+Explanation: The premise states that her sister could pass for white and actually did so, which means she has very light skin. However, the hypothesis claims that her sister has the fairest skin compared to everyone else in the neighborhood. While both statements suggest that the sister has very light skin, there is no information provided about how her skin compares specifically to others in the neighborhood. Therefore, we cannot definitively conclude that the hypothesis is entailed by the premise or that it contradicts it; hence, the relationship is neutral. ---",8.657671451568604,
+"Our borders and immigration system, including law enforcement, ought to send a message of welcome, tolerance, and justice to members of immigrant communities in the United States and in their countries of origin.",Our country should repair our image globally and welcome refugees here.,1,neutral,"Our borders and immigration system, including law enforcement, ought to send a message of welcome, tolerance, and justice to members of immigrant communities in the United States and in their countries of origin.",Our country should repair its image globally and welcome refugees here.,neutral,N/A_SP_EN_eval,neutral,"---
+
+Let's begin:
+---
+
+Translated English Premise: Our borders and immigration system, including law enforcement, ought to send a message of welcome, tolerance, and justice to members of immigrant communities in the United States and in their countries of origin.
+
+Translated English Hypothesis: Our country should repair its image globally and welcome refugees here.
+
+English NLI Label: neutral
+
+---
+
+Explanation: The premise focuses on sending messages of welcome, tolerance, and justice through the borders and immigration system, while the hypothesis talks about repairing the country's global image and welcoming refugees. Although both statements advocate for welcoming immigrants/refugees, they do not necessarily imply each other directly. Therefore, the relationship between them is neutral. ---",7.664936304092407,
+"The publication of the RPH book is followed by the book tour, which leads to the next fact about the",The RPH book is going to have a tour associated with it.,0,entailment,"'The publication of the RPH book is followed by the book tour, which leads to the next fact about the'",'The RPH book is going to have a tour associated with it.',entailment,N/A_SP_EN_eval,entailment,"---
+
+Based on the provided information:
+
+**Original English Premise:** 'The publication of the RPH book is followed by the book tour, which leads to the next fact about the'
+
+**Original English Hypothesis:** 'The RPH book is going to have a tour associated with it.'
+
+Let's proceed with the steps:
+
+1. **Translate English Premise to English**: The translation is already in English, so we will use the original sentence:
+   - Translated English Premise: 'The publication of the RPH book is followed by the book tour, which leads to the next fact about the'
+
+2. **Translate English Hypothesis to English**: The translation is also already in English, so we will use the original sentence:
+   - Translated English Hypothesis: 'The RPH book is going to have a tour associated with it.'
+
+3. **Perform English NLI**: 
+   - We need to determine if the hypothesis logically follows from the premise. The premise states that there is a sequence where the publication of the RPH book is followed by a book tour. This implies that the book does indeed have a tour associated with it. Therefore, the hypothesis is supported by the premise.
+   - English NLI Label: entailment
+
+Final Output:
+- English NLI Label: entailment",14.310851097106934,
+The chairlift is a great favourite.,No one likes the chairlift.,2,contradiction,The chairlift is a great favourite.,No one likes the chairlift.,contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Based on the provided information, here's the breakdown following the specified steps:
+
+1. **Translate English Premise to English**:
+   Translated English Premise: The chairlift is a great favourite.
+
+2. **Translate English Hypothesis to English**:
+   Translated English Hypothesis: No one likes the chairlift.
+
+3. **Perform English NLI**:
+   English NLI Label: contradiction
+
+The premise states that the chairlift is a great favorite, which implies that many people like it. However, the hypothesis claims that no one likes the chairlift. These two statements cannot both be true at the same time, thus they contradict each other. Therefore, the NLI label is ""contradiction"". ---",7.991875410079956,
+"For aids to the September 11 evacuation, see, e.g., Civilian interview 14 (Apr.",There are no aids available with regards to the September 11 evacuation.,2,contradiction,"** For aids to the September 11 evacuation, see, e.g., Civilian interview 14 (Apr.",** There are no aids available with regards to the September 11 evacuation.,contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Based on the provided information, here are the steps performed:
+
+1. **Translated English Premise:** For aids to the September 11 evacuation, see, e.g., Civilian interview 14 (Apr.
+
+2. **Translated English Hypothesis:** There are no aids available with regards to the September 11 evacuation.
+
+3. **English NLI Label:** contradiction
+
+The premise states that there are aids available for the September 11 evacuation, while the hypothesis claims that there are no aids available. These two statements directly contradict each other. Therefore, the NLI label is ""contradiction."" --- The English NLI Label is: contradiction ---",7.404303312301636,
+"'  A Tennessee informant used dog weather for `hot, rainless weather,' which may derive from the expression dog days referring to dry August weather.",June and July are also very hot in Tennessee.,1,neutral,[PREMISE_EN_EXTRACTION_FAILED],[HYPOTHESIS_EN_EXTRACTION_FAILED],neutral,N/A_SP_EN_eval,neutral,"---
+
+Let's follow the steps precisely:
+
+**Step 1: Translate Premise to English**
+The original premise is already in English:
+""An informant from Tennessee used the phrase 'dog weather' for 'hot, rainless weather,' which may derive from the expression 'dog days' referring to dry August weather.""
+
+**Step 2: Translate Hypothesis to English**
+The original hypothesis is already in English:
+""June and July are also very hot in Tennessee.""
+
+**Step 3: Perform English NLI**
+Analyzing the translated premise and hypothesis:
+- The premise talks about a specific term 'dog weather' being used for hot, rainless weather and its possible origin from 'dog days' in August.
+- The hypothesis states that June and July are also very hot in Tennessee.
+
+Given the information provided, there is no direct entailment or contradiction between the two statements. The premise does not provide any information about the temperature in June and July specifically, only mentioning August. Therefore, we cannot conclude based on the premise alone whether June and July are also very hot in Tennessee.
+
+**English NLI Label:** neutral
+--- 
+This concludes the task according to the specified format. The final answer is ""neutral"".",13.100079774856567,
+"I killed him, it is true.",The man's life was spared.,2,contradiction,"** I killed him, it is true.",** The man's life was spared.,contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Let's follow the steps precisely:
+
+**Translated English Premise:** I killed him, it is true.
+
+**Translated English Hypothesis:** The man's life was spared.
+
+**English NLI Label:** contradiction
+
+The premise states that someone was killed, while the hypothesis claims that the man's life was spared. These two statements cannot both be true simultaneously, hence they contradict each other. Therefore, the NLI label is ""contradiction."" ---",5.036867618560791,
+But I was in haste to land you.,The person wanted a lover.,1,neutral,'But I was in haste to land you.','The person wanted a lover.',neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided premises and hypotheses, let's follow the steps:
+
+1. **Translate English Premise to English**:
+   Translated English Premise: 'But I was in haste to land you.'
+
+2. **Translate English Hypothesis to English**:
+   Translated English Hypothesis: 'The person wanted a lover.'
+
+3. **Perform English NLI**:
+   English NLI Label: neutral
+
+The premise does not provide any information about wanting a lover, so there is no direct entailment or contradiction between the two statements. Therefore, the relationship is neutral.",6.538870573043823,
+"If you're feeling up to it, push on along the Mist Trail, past Emerald Pool, to Nevada Fall, and you'll begin to lose the crowds.",Nevada Falls is a great hike with a few people on it.,1,neutral,"If you're feeling up to it, push on along the Mist Trail, past Emerald Pool, to Nevada Fall, and you'll begin to lose the crowds.",Nevada Falls is a great hike with a few people on it.,neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided information:
+
+**Original English Premise:** 'If you're feeling up to it, push on along the Mist Trail, past Emerald Pool, to Nevada Fall, and you'll begin to lose the crowds.'
+
+**Original English Hypothesis:** 'Nevada Falls is a great hike with a few people on it.'
+
+### Step 1: Translate Premise to English
+Translated English Premise: If you're feeling up to it, push on along the Mist Trail, past Emerald Pool, to Nevada Fall, and you'll begin to lose the crowds.
+
+### Step 2: Translate Hypothesis to English
+Translated English Hypothesis: Nevada Falls is a great hike with a few people on it.
+
+### Step 3: Perform English NLI
+English NLI Label: neutral
+
+The premise suggests that continuing to Nevada Fall will result in fewer crowds, but it does not explicitly state whether there are only a few people at Nevada Fall or if it is considered a great hike. The hypothesis makes assumptions about both the quality of the hike and the number of people present that are not directly supported by the premise. Therefore, the relationship between the premise and the hypothesis is neutral. ---",13.204014301300049,
+"I reported this in a letter to Dr.  it seemed to amuse him, and he sent me a small fruitcake that Christmas.",The doctor sent me a bottle of wine that Christmas.,2,contradiction,"I reported this in a letter to Dr. it seemed to amuse him, and he sent me a small fruitcake that Christmas.",The doctor sent me a bottle of wine that Christmas.,contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Let's begin:
+Translated English Premise: I reported this in a letter to Dr. it seemed to amuse him, and he sent me a small fruitcake that Christmas.
+
+Translated English Hypothesis: The doctor sent me a bottle of wine that Christmas.
+
+English NLI Label: contradiction
+---",3.4017367362976074,
+the sense that the checkbook is just a blank check you know and it's unlimited funds not that she goes out and spends it unlimitedly but it's almost that attitude,She feels like she can spend more than $1000 a night.,1,neutral,** 'the sense that the checkbook is just a blank check you know and it's unlimited funds not that she goes out and spends it unlimitedly but it's almost that attitude',** 'She feels like she can spend more than $1000 a night.',neutral,N/A_SP_EN_eval,neutral,"---
+
+Let's follow the steps precisely:
+
+**Translated English Premise:** 'the sense that the checkbook is just a blank check you know and it's unlimited funds not that she goes out and spends it unlimitedly but it's almost that attitude'
+
+**Translated English Hypothesis:** 'She feels like she can spend more than $1000 a night.'
+
+**English NLI Label:** neutral
+
+The premise suggests a general feeling about having unlimited funds, while the hypothesis makes a specific claim about spending habits. There isn't enough information to determine whether the person actually spends more than $1000 a night based solely on the idea that they feel their funds are unlimited. Therefore, the relationship between the premise and the hypothesis is neutral.",8.20210337638855,
+"My hero, though, is Richard Heseltine, the chairman of the Overseas Investment Trust, who resigned earlier this month in opposition to the business plan forced on him by his superiors.",Heseltine quit his job.,0,entailment,"My hero, though, is Richard Heseltine, the chairman of the Overseas Investment Trust, who resigned earlier this month in opposition to the business plan forced on him by his superiors.",Heseltine quit his job.,entailment,N/A_SP_EN_eval,entailment,"---
+
+Translated English Premise: My hero, though, is Richard Heseltine, the chairman of the Overseas Investment Trust, who resigned earlier this month in opposition to the business plan forced on him by his superiors.
+
+Translated English Hypothesis: Heseltine quit his job.
+
+English NLI Label: entailment
+---",3.8277664184570312,
+"The source claimed that Bin Ladin asked for and received assistance from the bomb-making expert, who remained there giving training until September 1996, which is when the information was passed to the United States.",The source knew nothing about Bin Laden.,2,contradiction,"The source claimed that Bin Ladin asked for and received assistance from the bomb-making expert, who remained there giving training until September 1996, which is when the information was passed to the United States.",The source knew nothing about Bin Laden.,contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Translated English Premise: The source claimed that Bin Ladin asked for and received assistance from the bomb-making expert, who remained there giving training until September 1996, which is when the information was passed to the United States.
+
+Translated English Hypothesis: The source knew nothing about Bin Laden.
+
+English NLI Label: contradiction
+---",3.8994078636169434,
+"Linked to Nova Scotia by the narrow Chignecto Isthmus, New Brunswick became a separate province in 1784 at the demand of 14,000 Loyalist refugees.",New Brunswick was not a province in 1784.,2,contradiction,"Linked to Nova Scotia by the narrow Chignecto Isthmus, New Brunswick became a separate province in 1784 at the demand of 14,000 Loyalist refugees.",New Brunswick was not a province in 1784.,contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Translated English Premise: Linked to Nova Scotia by the narrow Chignecto Isthmus, New Brunswick became a separate province in 1784 at the demand of 14,000 Loyalist refugees.
+
+Translated English Hypothesis: New Brunswick was not a province in 1784.
+
+English NLI Label: contradiction
+---",4.145860433578491,
+They stressed that constant vigilance was needed to ensure that controls remained appropriate--addressing current risks and not unnecessarily hindering operations--and that individuals who used and maintained information systems complied with organizational policies.,They said it was important to be vigilent when it came to the news factory controls.,1,neutral,'They stressed that constant vigilance was needed to ensure that controls remained appropriate--addressing current risks and not unnecessarily hindering operations--and that individuals who used and maintained information systems complied with organizational policies.','They said it was important to be vigilant when it came to the news factory controls.',neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided instructions, here's the analysis:
+
+**Step 1: Translate Premise to English**
+- The original premise is already in English, so no translation is necessary.
+- Translated English Premise: 'They stressed that constant vigilance was needed to ensure that controls remained appropriate--addressing current risks and not unnecessarily hindering operations--and that individuals who used and maintained information systems complied with organizational policies.'
+
+**Step 2: Translate Hypothesis to English**
+- The original hypothesis is already in English, so no translation is necessary.
+- Translated English Hypothesis: 'They said it was important to be vigilant when it came to the news factory controls.'
+
+**Step 3: Perform English NLI**
+- The premise talks about the need for constant vigilance in maintaining appropriate controls for information systems and ensuring they do not hinder operations unnecessarily.
+- The hypothesis simplifies this to saying that it is important to be vigilant regarding controls at a 'news factory'.
+- While both statements emphasize the importance of vigilance, the specific context and scope differ significantly. The premise is more general and includes considerations beyond just 'news factory' controls.
+- Therefore, the relationship between the premise and the hypothesis is neutral because the hypothesis does not fully capture the broader scope and context mentioned in the premise.
+
+**English NLI Label:** neutral
+
+This completes the analysis according to the specified steps. The final answer is:
+**neutral**.",15.50042724609375,
+If there was anything I could do.,I knew there was nothing i could do.,2,contradiction,** If there was anything I could do.,** I knew there was nothing I could do.,contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Based on the provided premises and hypotheses, let's follow the steps precisely:
+
+**Translated English Premise:** If there was anything I could do.
+**Translated English Hypothesis:** I knew there was nothing I could do.
+**English NLI Label:** contradiction
+
+The premise suggests that something might be possible to do, while the hypothesis states certainty that nothing can be done. These statements are contradictory. Therefore, the correct NLI label is ""contradiction."" --- The English NLI Label is: contradiction. ---",5.774277448654175,
+Much has been made of hiring Michael Apted to bring a more human touch to the series.,Michael Apted was hired to add a personal quality to the series.,0,entailment,Much has been made of hiring Michael Apted to bring a more human touch to the series.,Michael Apted was hired to add a personal quality to the series.,entailment,N/A_SP_EN_eval,entailment,"---
+
+Let's begin:
+Translated English Premise: Much has been made of hiring Michael Apted to bring a more human touch to the series.
+Translated English Hypothesis: Michael Apted was hired to add a personal quality to the series.
+English NLI Label: entailment
+---",3.2249128818511963,
+"In appreciation for your contribution $100 or more to the campaign, you and a guest are invited to attend a special reception on Thursday, March 23,2000 from 5:30- 8:00 PM in Herron Hall.",You and a guest will be invited to attend a special reception if you donate $100 or more to the campaign.,0,entailment,"In appreciation for your contribution $100 or more to the campaign, you and a guest are invited to attend a special reception on Thursday, March 23,2000 from 5:30- 8:00 PM in Herron Hall.",You and a guest will be invited to attend a special reception if you donate $100 or more to the campaign.,entailment,N/A_SP_EN_eval,entailment,"---
+
+Let's begin:
+---
+
+Translated English Premise: In appreciation for your contribution $100 or more to the campaign, you and a guest are invited to attend a special reception on Thursday, March 23,2000 from 5:30- 8:00 PM in Herron Hall.
+
+Translated English Hypothesis: You and a guest will be invited to attend a special reception if you donate $100 or more to the campaign.
+
+English NLI Label: entailment
+
+---",5.939364194869995,
+You'll see videos of Anne's story and of Amsterdam under occupation along with photographs and artifacts of the time.,You will not see photographs.,2,contradiction,You'll see videos of Anne's story and of Amsterdam under occupation along with photographs and artifacts of the time.,You will not see photographs.,contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Based on the provided premises and hypotheses, let's follow the steps:
+
+1. **Translate English Premise to English**:
+   Translated English Premise: You'll see videos of Anne's story and of Amsterdam under occupation along with photographs and artifacts of the time.
+
+2. **Translate English Hypothesis to English**:
+   Translated English Hypothesis: You will not see photographs.
+
+3. **Perform English NLI**:
+   English NLI Label: contradiction
+
+The premise explicitly states that photographs will be seen, while the hypothesis claims that no photographs will be seen. These statements are in direct opposition, hence the contradiction.",7.021743535995483,
+"In addition, Indiana residents may receive tax benefits through the Indiana tax credit which is applied directly against the bottom line of the state tax return.",Indiana residents get a 50% tax credit if they donate to the theater.,1,neutral,"'In addition, Indiana residents may receive tax benefits through the Indiana tax credit which is applied directly against the bottom line of the state tax return.'",'Indiana residents get a 50% tax credit if they donate to the theater.',neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided information:
+
+Original English Premise: 'In addition, Indiana residents may receive tax benefits through the Indiana tax credit which is applied directly against the bottom line of the state tax return.'
+Original English Hypothesis: 'Indiana residents get a 50% tax credit if they donate to the theater.'
+
+**Step 1: Translate Premise to English**
+Translated English Premise: 'In addition, Indiana residents may receive tax benefits through the Indiana tax credit which is applied directly against the bottom line of the state tax return.'
+
+**Step 2: Translate Hypothesis to English**
+Translated English Hypothesis: 'Indiana residents get a 50% tax credit if they donate to the theater.'
+
+**Step 3: Perform English NLI**
+English NLI Label: neutral
+
+The premise states that Indiana residents can receive tax benefits through the Indiana tax credit without specifying any conditions such as donations to the theater. The hypothesis introduces a condition (donating to the theater) for receiving a 50% tax credit, which is not mentioned in the premise. Therefore, there is no direct entailment or contradiction between the two statements; hence, the relationship is neutral. ---",12.85040020942688,
+"The mayor of Letohrad, the town where Josef Korbel grew up, says he sent Albright three letters in recent years.",Korbel led Letohrad.,0,entailment,"The mayor of Letohrad, the town where Josef Korbel grew up, says he sent Albright three letters in recent years.",Korbel led Letohrad.,contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Translated English Premise: The mayor of Letohrad, the town where Josef Korbel grew up, says he sent Albright three letters in recent years.
+
+Translated English Hypothesis: Korbel led Letohrad.
+
+English NLI Label: contradiction
+---",3.112842559814453,
+"In an economy with reinvestment, what happens if we can take our advantages of trade and reinvest any excess so that we can create more apples and pears than we had to start with?",We can't trade with anyone around us.,2,contradiction,"In an economy with reinvestment, what happens if we can take our advantages of trade and reinvest any excess so that we can create more apples and pears than we had to start with?""","We can't trade with anyone around us.""",contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Let's follow the steps precisely:
+
+**Step 1: Translate Premise to English**
+The original premise is already in English:
+""Translated English Premise: In an economy with reinvestment, what happens if we can take our advantages of trade and reinvest any excess so that we can create more apples and pears than we had to start with?""
+
+**Step 2: Translate Hypothesis to English**
+The original hypothesis is also already in English:
+""Translated English Hypothesis: We can't trade with anyone around us.""
+
+**Step 3: Perform English NLI**
+Now, let's analyze the translated premise and hypothesis:
+- The premise discusses the potential benefits of reinvesting trade advantages to increase production.
+- The hypothesis states that no trading can occur with nearby entities.
+
+Given that the premise assumes the possibility of trade and its reinvestment, while the hypothesis explicitly denies the ability to trade, there is a direct contradiction between them.
+
+**English NLI Label:** contradiction
+--- 
+Therefore, the final answer based on the provided instructions is:
+**English NLI Label:** contradiction
+---",11.957683324813843,
+We can continue to strengthen the education of good lawyers.,"We can educate lawyers, I'm sure of it!",0,entailment,We can continue to strengthen the education of good lawyers.,"We can educate lawyers, I'm sure of it!",entailment,N/A_SP_EN_eval,entailment,"---
+
+Let's begin:
+---
+
+Translated English Premise: We can continue to strengthen the education of good lawyers.
+
+Translated English Hypothesis: We can educate lawyers, I'm sure of it!
+
+English NLI Label: entailment
+
+---",2.696012496948242,
+"The ultimate recipient in Pakistan would then go to the Pakistani hawaladar and receive his money, in rupees, from whatever money the Pakistani hawaladar has on hand.",The ultimate recipient would need to travel to Turkey to get his money.,2,contradiction,"** The ultimate recipient in Pakistan would then go to the Pakistani hawaladar and receive his money, in rupees, from whatever money the Pakistani hawaladar has on hand.",** The ultimate recipient would need to travel to Turkey to get his money.,contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Let's follow the steps precisely:
+
+**Translated English Premise:** The ultimate recipient in Pakistan would then go to the Pakistani hawaladar and receive his money, in rupees, from whatever money the Pakistani hawaladar has on hand.
+
+**Translated English Hypothesis:** The ultimate recipient would need to travel to Turkey to get his money.
+
+**English NLI Label:** contradiction
+
+The premise states that the ultimate recipient will go to the Pakistani hawaladar to receive their money, while the hypothesis suggests they need to travel to Turkey. These two statements are contradictory. Therefore, the NLI label is contradiction.",6.895440101623535,
+The real cause for concern is that HMOs may fail to control costs in the long term.,Everyone appreciates that HMOs will be able to control costs in the long term.,2,contradiction,The real cause for concern is that HMOs may fail to control costs in the long term.,Everyone appreciates that HMOs will be able to control costs in the long term.,contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Let's begin:
+Translated English Premise: The real cause for concern is that HMOs may fail to control costs in the long term.
+
+Translated English Hypothesis: Everyone appreciates that HMOs will be able to control costs in the long term.
+
+English NLI Label: contradiction
+---",3.4141452312469482,
+and it still scared me,I was just a little bit scared.,1,neutral,'and it still scared me','I was just a little bit scared.',neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided premises and hypotheses, let's follow the steps:
+
+1. **Translate English Premise to English**:
+   Translated English Premise: 'and it still scared me'
+
+2. **Translate English Hypothesis to English**:
+   Translated English Hypothesis: 'I was just a little bit scared.'
+
+3. **Perform English NLI**:
+   English NLI Label: neutral
+
+The premise states that something still scares the speaker, while the hypothesis suggests that the speaker was only slightly scared. These statements do not necessarily contradict each other but also don't confirm the same level of fear intensity, hence the neutral label.",7.265307188034058,
+oh oh my word well that sounds adventuresome,That sounds like an awful experience.,2,contradiction,** 'oh oh my word well that sounds adventuresome',** 'That sounds like an awful experience.',contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Let's follow the steps:
+
+**Translated English Premise:** 'oh oh my word well that sounds adventuresome'
+
+**Translated English Hypothesis:** 'That sounds like an awful experience.'
+
+**English NLI Label:** contradiction
+
+The premise suggests something adventurous, while the hypothesis states it is an awful experience. These two statements contradict each other. Therefore, the relationship between the premise and the hypothesis is a contradiction. ---",4.764707565307617,
+"Based on this risk assessment, Centrelink developed a range of specific prevention strategies aimed at educating beneficiaries and employers on income reporting requirements.",Centrelink had a lot of strategies to teach people how to report income because the government was losing a lot of money in mistakes.,1,neutral,"** Based on this risk assessment, Centrelink developed a range of specific prevention strategies aimed at educating beneficiaries and employers on income reporting requirements.",** Centrelink had a lot of strategies to teach people how to report income because the government was losing a lot of money in mistakes.,neutral,N/A_SP_EN_eval,neutral,"---
+
+Let's follow the steps precisely:
+
+**Translated English Premise:** Based on this risk assessment, Centrelink developed a range of specific prevention strategies aimed at educating beneficiaries and employers on income reporting requirements.
+
+**Translated English Hypothesis:** Centrelink had a lot of strategies to teach people how to report income because the government was losing a lot of money in mistakes.
+
+**English NLI Label:** Neutral
+
+Explanation: The premise states that Centrelink developed strategies based on a risk assessment related to income reporting education. The hypothesis suggests that Centrelink developed many strategies due to significant financial losses caused by errors. While both statements involve Centrelink developing strategies for income reporting, there is no direct information provided about the reason behind the development of these strategies in the premise. Therefore, we cannot conclude that the hypothesis is entailed by the premise; it could be true but is not necessarily supported by the given information. Hence, the relationship is neutral. ---",9.94928503036499,
+"This is extremely important to the long-term survival of elephants in human care, as well as the wild.",There is nothing that can be done to help elephants.,2,contradiction,"** This is extremely important to the long-term survival of elephants in human care, as well as the wild.",** There is nothing that can be done to help elephants.,contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Original English Premise: 'This is extremely important to the long-term survival of elephants in human care, as well as the wild.'
+Original English Hypothesis: 'There is nothing that can be done to help elephants.'
+
+**Translated English Premise:** This is extremely important to the long-term survival of elephants in human care, as well as the wild.
+**Translated English Hypothesis:** There is nothing that can be done to help elephants.
+**English NLI Label:** contradiction
+
+The premise emphasizes the importance of actions for the long-term survival of elephants both in human care and the wild, while the hypothesis states that no action can help elephants. These two statements are contradictory. Therefore, the NLI label is contradiction. ---",7.955922365188599,
+We assume a direct linear relationship between volume per capita and pieces per possible,We know there's no connection between volume per capita and pieces per possible.,2,contradiction,** We assume a direct linear relationship between volume per capita and pieces per possible,** We know there's no connection between volume per capita and pieces per possible.,contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Original English Premise: 'We assume a direct linear relationship between volume per capita and pieces per possible'
+Original English Hypothesis: 'We know there's no connection between volume per capita and pieces per possible.'
+
+**Translated English Premise:** We assume a direct linear relationship between volume per capita and pieces per possible
+**Translated English Hypothesis:** We know there's no connection between volume per capita and pieces per possible.
+**English NLI Label:** contradiction
+
+The premise states that there is a direct linear relationship between volume per capita and pieces per possible, while the hypothesis claims there is no connection between them. These two statements are contradictory. Therefore, the NLI label is contradiction. ---",7.529379844665527,
+"At the moment, the thinking is that it's perhaps best to leave these smaller, less developed islands in peace.",People think the islands should be left alone.,0,entailment,"At the moment, the thinking is that it's perhaps best to leave these smaller, less developed islands in peace.",People think the islands should be left alone.,entailment,N/A_SP_EN_eval,entailment,"---
+
+Let's go through the steps as instructed:
+
+**Step 1: Translate Premise to English**
+- The original premise is already in English: 'At the moment, the thinking is that it's perhaps best to leave these smaller, less developed islands in peace.'
+- Translated English Premise: At the moment, the thinking is that it's perhaps best to leave these smaller, less developed islands in peace.
+
+**Step 2: Translate Hypothesis to English**
+- The original hypothesis is already in English: 'People think the islands should be left alone.'
+- Translated English Hypothesis: People think the islands should be left alone.
+
+**Step 3: Perform English NLI**
+- After analyzing the Translated English Premise ('At the moment, the thinking is that it's perhaps best to leave these smaller, less developed islands in peace.') and the Translated English Hypothesis ('People think the islands should be left alone.'), we can see that both statements convey similar ideas about leaving certain islands undisturbed. 
+- Therefore, the relationship between the two statements is Entailment.
+
+**Final Output:**
+English NLI Label: entailment
+--- 
+
+This concludes the task according to the specified format. The final answer based on the analysis provided is entailment.",14.142310380935669,
+"One thing M. Tesniares hasn't reckoned with, though, is the Anglo-Saxon input.",M. Tesniares performs Anglo-Saxon input.,2,contradiction,"One thing M. Tesniares hasn't reckoned with, though, is the Anglo-Saxon input.",M. Tesniares performs Anglo-Saxon input.,contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Translated English Premise: One thing M. Tesniares hasn't reckoned with, though, is the Anglo-Saxon input.
+
+Translated English Hypothesis: M. Tesniares performs Anglo-Saxon input.
+
+English NLI Label: contradiction
+---",2.9493250846862793,
+My name is Wade--Lord Julian Wade.,"His name was not Wade but instead, Smith.",2,contradiction,My name is Wade--Lord Julian Wade.,"His name was not Wade but instead, Smith.",contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Let's begin:
+Translated English Premise: My name is Wade--Lord Julian Wade.
+Translated English Hypothesis: His name was not Wade but instead, Smith.
+English NLI Label: contradiction
+--- Explanation ---
+The premise states that someone's name is Wade, while the hypothesis claims that his name was not Wade but Smith. These two statements directly contradict each other, hence the label ""contradiction"". The use of ""Lord Julian Wade"" in the premise does not affect the core assertion about the name being Wade, which contradicts the hypothesis stating it was Smith. --- Based on the provided instructions, here is the detailed response:
+
+Translated English Premise: My name is Wade--Lord Julian Wade.
+Translated English Hypothesis: His name was not Wade but instead, Smith.
+English NLI Label: contradiction
+
+This concludes the task as specified. The final answer based on the analysis is ""contradiction"". ---",9.961963176727295,
+"It would be extremely difficult for a legal services attorney in California to know whether a client, who has been working in the migrant stream in Arizona, has temporarily crossed the border into Mexico.",The attorney can get the information through the migrant worker network.,1,neutral,"** It would be extremely difficult for a legal services attorney in California to know whether a client, who has been working in the migrant stream in Arizona, has temporarily crossed the border into Mexico.",** The attorney can get the information through the migrant worker network.,neutral,N/A_SP_EN_eval,neutral,"---
+
+Let's follow the steps precisely:
+
+**Translated English Premise:** It would be extremely difficult for a legal services attorney in California to know whether a client, who has been working in the migrant stream in Arizona, has temporarily crossed the border into Mexico.
+
+**Translated English Hypothesis:** The attorney can get the information through the migrant worker network.
+
+**English NLI Label:** Neutral
+
+The premise states that it is difficult for a legal services attorney to determine if a client has crossed the border into Mexico. The hypothesis suggests that the attorney could obtain such information through a migrant worker network. While the hypothesis provides a potential solution, it does not necessarily imply that the situation described in the premise is false or that obtaining such information is easy. Therefore, the relationship between the two statements is neutral. ---",8.635283470153809,
+"Likewise, the statistics in Tables A2 and A3 show that routes with high carrier route volume reside in ZIP Codes with higher levels of household income and education attainment.",High volume areas also have high incomes.,0,entailment,"** 'Likewise, the statistics in Tables A2 and A3 show that routes with high carrier route volume reside in ZIP Codes with higher levels of household income and education attainment.'",** 'High volume areas also have high incomes.',entailment,N/A_SP_EN_eval,entailment,"---
+
+Based on the provided information, here's the analysis following the specified steps:
+
+1. **Translated English Premise:** 'Likewise, the statistics in Tables A2 and A3 show that routes with high carrier route volume reside in ZIP Codes with higher levels of household income and education attainment.'
+
+2. **Translated English Hypothesis:** 'High volume areas also have high incomes.'
+
+3. **English NLI Label:** entailment
+
+The premise states that routes with high carrier route volume are associated with higher levels of household income among other factors. The hypothesis simplifies this to say that high volume areas have high incomes, which aligns with part of what the premise conveys. Therefore, the relationship between the premise and the hypothesis is one of entailment. ---",8.418819665908813,
+And she was always there for us,She gave us all the money we needed.,1,neutral,And she was always there for us,She gave us all the money we needed.,neutral,N/A_SP_EN_eval,neutral,"---
+
+Translated English Premise: And she was always there for us
+
+Translated English Hypothesis: She gave us all the money we needed.
+
+English NLI Label: neutral
+---",1.9999620914459229,
+"Um, and she said, she said, she said, Baby, she said, You don't understand about life the way I understand about life.",She told me I didn't have a clue how the real world worked and I should follow her.,1,neutral,"'Um, and she said, she said, she said, Baby, she said, You don't understand about life the way I understand about life.'",'She told me I didn't have a clue how the real world worked and I should follow her.',neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided information, here's the analysis following the specified steps:
+
+1. **Translate English Premise to English**:
+   Translated English Premise: 'Um, and she said, she said, she said, Baby, she said, You don't understand about life the way I understand about life.'
+
+2. **Translate English Hypothesis to English**:
+   Translated English Hypothesis: 'She told me I didn't have a clue how the real world worked and I should follow her.'
+
+3. **Perform English NLI**:
+   English NLI Label: neutral
+
+The premise expresses that someone is saying another person does not understand life as well as they do, but it doesn't specify whether the speaker suggests following them or not. The hypothesis introduces new elements like telling the speaker they lack understanding and suggesting they should follow the speaker, which are not present in the premise. Therefore, there is no clear entailment or contradiction; the statements are neutral relative to each other. ---",11.103418827056885,
+"Property is an endless succession of bubbles in space, or cyberspace, with different people claiming an endless variety of interests in them.",Property is just people saying they own something.,0,entailment,"Property is an endless succession of bubbles in space, or cyberspace, with different people claiming an endless variety of interests in them.",Property is just people saying they own something.,neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided information:
+
+**Original English Premise:** 'Property is an endless succession of bubbles in space, or cyberspace, with different people claiming an endless variety of interests in them.'
+
+**Original English Hypothesis:** 'Property is just people saying they own something.'
+
+### Step 1: Translate Premise to English
+Translated English Premise: Property is an endless succession of bubbles in space, or cyberspace, with different people claiming an endless variety of interests in them.
+
+### Step 2: Translate Hypothesis to English
+Translated English Hypothesis: Property is just people saying they own something.
+
+### Step 3: Perform English NLI
+English NLI Label: neutral
+
+The premise suggests that property involves various claims and interests over time and across different spaces, while the hypothesis simplifies it to mere declarations of ownership. These statements do not necessarily contradict each other but also do not fully entail one another; thus, the relationship is neutral.",10.734110593795776,
+"These workers were not trapped, yet unlike most occupants on the upper floors, they had chosen not to descend immediately after impact.",Some workers thought that the situation wouldn't escalate.,1,neutral,"These workers were not trapped, yet unlike most occupants on the upper floors, they had chosen not to descend immediately after impact.",Some workers thought that the situation wouldn't escalate.,neutral,N/A_SP_EN_eval,neutral,"---
+
+Let's begin:
+---
+
+Translated English Premise: These workers were not trapped, yet unlike most occupants on the upper floors, they had chosen not to descend immediately after impact.
+
+Translated English Hypothesis: Some workers thought that the situation wouldn't escalate.
+
+English NLI Label: Neutral
+
+---
+
+Explanation: The premise provides information about certain workers who did not descend immediately but does not give any indication of their thoughts regarding the situation escalating or not. The hypothesis introduces new information about some workers thinking the situation wouldn't escalate, which is neither directly supported nor contradicted by the premise. Therefore, the relationship between the premise and the hypothesis is neutral. ---",7.113616466522217,
+"Nothing underscores the subtle complexities of language more strikingly than the miscommunications that occur among pilots, crew members, and air traffic controllers.",Pilots are always perfect communicators.,2,contradiction,"Nothing underscores the subtle complexities of language more strikingly than the miscommunications that occur among pilots, crew members, and air traffic controllers.",Pilots are always perfect communicators.,contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Let's begin:
+---
+
+Translated English Premise: Nothing underscores the subtle complexities of language more strikingly than the miscommunications that occur among pilots, crew members, and air traffic controllers.
+
+Translated English Hypothesis: Pilots are always perfect communicators.
+
+English NLI Label: contradiction
+
+---",3.3052632808685303,
+"Yousef managed to escape to Pakistan, but his accomplice, Murad-whom KSM claims to have sent to Yousef with $3,000 to help fund the operation-was arrested and disclosed details of the plot while under interrogation.",Murad told investigators where to locate Yousef in Pakistan.,1,neutral,"** Yousef managed to escape to Pakistan, but his accomplice, Murad-whom KSM claims to have sent to Yousef with $3,000 to help fund the operation-was arrested and disclosed details of the plot while under interrogation.",** Murad told investigators where to locate Yousef in Pakistan.,neutral,N/A_SP_EN_eval,neutral,"---
+
+**Translated English Premise:** Yousef managed to escape to Pakistan, but his accomplice, Murad-whom KSM claims to have sent to Yousef with $3,000 to help fund the operation-was arrested and disclosed details of the plot while under interrogation.
+
+**Translated English Hypothesis:** Murad told investigators where to locate Yousef in Pakistan.
+
+**English NLI Label:** neutral
+
+The premise states that Murad was arrested and disclosed details of the plot, but it does not specify whether he provided information about Yousef's location. Therefore, there is no direct entailment or contradiction between the two statements; hence, the relationship is neutral. ---",7.761098623275757,
+"One can imagine a bulldozer operator as he blades out a road for a new development being hailed by the developer   Hey, Loyd ...",You can imagine a bulldozer operator starting a bulldozer.,1,neutral,"** One can imagine a bulldozer operator as he blades out a road for a new development being hailed by the developer Hey, Lloyd...",** You can imagine a bulldozer operator starting a bulldozer.,neutral,N/A_SP_EN_eval,neutral,"---
+
+Let's follow the steps precisely:
+
+**Translated English Premise:** One can imagine a bulldozer operator as he blades out a road for a new development being hailed by the developer Hey, Lloyd...
+
+**Translated English Hypothesis:** You can imagine a bulldozer operator starting a bulldozer.
+
+**English NLI Label:** Neutral
+
+The premise describes a scene where a bulldozer operator is working on a project, while the hypothesis only mentions the act of starting a bulldozer without any context related to the scenario described in the premise. Therefore, there is no direct entailment or contradiction; they are neutral in relation to each other.",7.066959857940674,
+"So anyway, Dad goes and makes this nice big glass of chocolate milk for me.",Dad got me some chocolate milk from the fridge.,1,neutral,"'So anyway, Dad goes and makes this nice big glass of chocolate milk for me.'",'Dad got me some chocolate milk from the fridge.',neutral,N/A_SP_EN_eval,neutral,"---
+
+Let's follow the steps precisely:
+
+**Step 1: Translate Premise to English**
+Translated English Premise: 'So anyway, Dad goes and makes this nice big glass of chocolate milk for me.'
+
+**Step 2: Translate Hypothesis to English**
+Translated English Hypothesis: 'Dad got me some chocolate milk from the fridge.'
+
+**Step 3: Perform English NLI**
+English NLI Label: neutral
+
+The premise states that Dad made a glass of chocolate milk, while the hypothesis suggests that Dad got chocolate milk from the fridge. These two statements do not necessarily contradict each other but also don't confirm one based on the information provided in the other. Therefore, the relationship between the premise and the hypothesis is neutral.",8.162820100784302,
+well supposedly in seven days they're going they're going to look through y our background and make sure you are not an ex-con or don't have,They will supposedly do a background check over the next seven days.,0,entailment,well supposedly in seven days they're going they're going to look through y our background and make sure you are not an ex-con or don't have,They will supposedly do a background check over the next seven days.,entailment,N/A_SP_EN_eval,entailment,"---
+
+Translated English Premise: well supposedly in seven days they're going they're going to look through y our background and make sure you are not an ex-con or don't have
+
+Translated English Hypothesis: They will supposedly do a background check over the next seven days.
+
+English NLI Label: entailment
+---",3.5934948921203613,
+"I'm uh, Chief Master Sergeant, retired, as Rick said.",Rick told you I was retired.,0,entailment,"'I'm uh, Chief Master Sergeant, retired, as Rick said.'",'Rick told you I was retired.',entailment,N/A_SP_EN_eval,entailment,"---
+
+Let's begin:
+---
+
+Translated English Premise: 'I'm uh, Chief Master Sergeant, retired, as Rick said.'
+
+Translated English Hypothesis: 'Rick told you I was retired.'
+
+English NLI Label: entailment
+---",2.734846591949463,
+Anyhow the man comes in.,The man entered the room.,0,entailment,** Anyhow the man comes in.,** The man entered the room.,neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided premises and hypotheses, let's follow the steps:
+
+1. **Translated English Premise:** Anyhow the man comes in.
+2. **Translated English Hypothesis:** The man entered the room.
+3. **English NLI Label:** neutral
+
+The premise states that ""the man comes in"" without specifying where he came into, while the hypothesis specifies that he entered a room. There isn't enough information in the premise to definitively conclude that the man entered a specific room, so the relationship between the two statements is neutral.",6.203243017196655,
+"Of course, not every typographical error should be ascribed to a hidden unconscious motive on the part of the typesetter (or typist).",Typesetters and typists never make typographical errors.,2,contradiction,"'Of course, not every typographical error should be ascribed to a hidden unconscious motive on the part of the typesetter (or typist).'",'Typesetters and typists never make typographical errors.',contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Based on the provided information, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'Of course, not every typographical error should be ascribed to a hidden unconscious motive on the part of the typesetter (or typist).'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'Typesetters and typists never make typographical errors.'
+
+3. **Perform English NLI**:
+   The premise suggests that while some typographical errors might have underlying motives, it does not imply that such errors do not occur at all. On the contrary, the hypothesis states that typesetters and typists never make any typographical errors, which directly contradicts the idea that they can sometimes make mistakes but those mistakes shouldn't always be attributed to hidden motives. Therefore, the relationship between the premise and the hypothesis is contradictory.
+
+English NLI Label: contradiction
+--- 
+End of Response. --- 
+The English NLI Label is: contradiction. ---",11.723818302154541,
+"If you would like additional information about the IU School of Medicine campaign or Dr. Field's research, please call 274-3270.",Dr. Field works as a dentist at University of Florida.,2,contradiction,"If you would like additional information about the IU School of Medicine campaign or Dr. Field's research, please call 274-3270.",Dr. Field works as a dentist at University of Florida.,contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Let's begin:
+---
+
+Translated English Premise: If you would like additional information about the IU School of Medicine campaign or Dr. Field's research, please call 274-3270.
+
+Translated English Hypothesis: Dr. Field works as a dentist at University of Florida.
+
+English NLI Label: contradiction
+
+---",3.782923460006714,
+"Although even some o' they should know better, for there's still a few was on Barbados with us, and are acquainted like me and you with Colonel Bishop.",We are also acquainted with Captain Blood.,1,neutral,"'Although even some of them should know better, for there are still a few who are on Barbados with us, and are acquainted like me and you with Colonel Bishop.'",'We are also acquainted with Captain Blood.',neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided premises and hypotheses, here are the translations and analysis:
+
+**Step 1: Translate Premise to English**
+Translated English Premise: 'Although even some of them should know better, for there are still a few who are on Barbados with us, and are acquainted like me and you with Colonel Bishop.'
+
+**Step 2: Translate Hypothesis to English**
+Translated English Hypothesis: 'We are also acquainted with Captain Blood.'
+
+**Step 3: Perform English NLI**
+English NLI Label: Neutral
+
+The premise talks about people being acquainted with Colonel Bishop, but it does not mention anything about Captain Blood. The hypothesis introduces information that is neither supported nor contradicted by the premise. Therefore, the relationship between the premise and the hypothesis is neutral. ---",8.58658742904663,
+"On obtaining clean passports and the two damaged passports, see Intelligence reports, interrogations of KSM, July 3, 2003; Sept. 9, 2003.",KSM always failed to get clean documents.,2,contradiction,"** On obtaining clean passports and the two damaged passports, see Intelligence reports, interrogations of KSM, July 3, 2003; Sept. 9, 2003.",** KSM always failed to get clean documents.,contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Let's follow the steps precisely:
+
+**Translated English Premise:** On obtaining clean passports and the two damaged passports, see Intelligence reports, interrogations of KSM, July 3, 2003; Sept. 9, 2003.
+
+**Translated English Hypothesis:** KSM always failed to get clean documents.
+
+**English NLI Label:** contradiction
+
+The premise mentions that KSM was involved in obtaining clean passports, which directly contradicts the hypothesis stating that KSM always failed to get clean documents. Therefore, the relationship between the premise and the hypothesis is contradictory.",6.714185476303101,
+"Across from the square are the back streets of Laleli, the place to look for low-priced clothes.",Cheap clothes are for sale in Laleli if you go to the right boutiques.,1,neutral,"Across from the square are the back streets of Laleli, the place to look for low-priced clothes.",Cheap clothes are for sale in Laleli if you go to the right boutiques.,neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided information, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: Across from the square are the back streets of Laleli, the place to look for low-priced clothes.
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: Cheap clothes are for sale in Laleli if you go to the right boutiques.
+
+3. **Perform English NLI**:
+   English NLI Label: Neutral
+
+The premise states that there are low-priced clothes available in the back streets of Laleli, but it does not specify where exactly within Laleli these can be found. The hypothesis suggests that cheap clothes are available in specific boutiques in Laleli. While both statements indicate the availability of inexpensive clothing in Laleli, they do not necessarily confirm or deny each other's locations or methods of obtaining such clothing. Therefore, the relationship between the premise and the hypothesis is neutral. --- Based on the provided information, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: Across from the square are the back streets of Laleli, the place to look for low-priced clothes.
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: Cheap clothes are for sale in Laleli if you go to the right boutiques.
+
+3. **Perform English NLI**:
+   English NLI Label: Neutral
+
+The premise indicates that low-priced clothes can be found in the back streets of Laleli, while the hypothesis suggests that cheap clothes are available in specific boutiques in Lale",18.905057668685913,
+"Besides the lexicon, grammar--especially syntax--has changed somewhat, too, though again not so much as to be incomprehensible to the average modern reader.",Grammar has changed but not too much.,0,entailment,"Besides the lexicon, grammar--especially syntax--has changed somewhat, too, though again not so much as to be incomprehensible to the average modern reader.",Grammar has changed but not too much.,entailment,N/A_SP_EN_eval,entailment,"---
+
+Let's begin:
+---
+
+Translated English Premise: Besides the lexicon, grammar--especially syntax--has changed somewhat, too, though again not so much as to be incomprehensible to the average modern reader.
+
+Translated English Hypothesis: Grammar has changed but not too much.
+
+English NLI Label: entailment
+---",3.677072286605835,
+"The main conclusion to draw from our simulation is that autonomous agents coupling one or more autocatalytic and work cycles are a perfectly reasonable, if novel, form of nonequilibrium, open chemical reaction network.",We can draw a conclusion from the simulation we did on the computer.,1,neutral,"** The main conclusion to draw from our simulation is that autonomous agents coupling one or more autocatalytic and work cycles are a perfectly reasonable, if novel, form of nonequilibrium, open chemical reaction network.",** We can draw a conclusion from the simulation we did on the computer.,entailment,N/A_SP_EN_eval,entailment,"---
+
+Based on the provided information, here are the steps performed:
+
+1. **Translated English Premise:** The main conclusion to draw from our simulation is that autonomous agents coupling one or more autocatalytic and work cycles are a perfectly reasonable, if novel, form of nonequilibrium, open chemical reaction network.
+
+2. **Translated English Hypothesis:** We can draw a conclusion from the simulation we did on the computer.
+
+3. **English NLI Label:** Entailment
+
+The hypothesis is less specific but still logically follows from the premise. The premise states that there was a simulation which led to certain conclusions about autonomous agents forming a type of chemical reaction network. The hypothesis simplifies this to saying that a conclusion can be drawn from the simulation, which is true based on the premise. Thus, the relationship between the premise and hypothesis is entailment. ---",9.306999683380127,
+"For an authentic feel of old Portugal, slip into the cool entrance hall of theimpressive Leal Senado ( Loyal Senate  building), a fine example of colonial architecture.",The Loyal Senate building is beautiful.,0,entailment,"For an authentic feel of old Portugal, slip into the cool entrance hall of the impressive Leal Senado (Loyal Senate) building, a fine example of colonial architecture.",The Loyal Senate building is beautiful.,neutral,N/A_SP_EN_eval,neutral,"---
+
+Let's begin:
+---
+
+Translated English Premise: For an authentic feel of old Portugal, slip into the cool entrance hall of the impressive Leal Senado (Loyal Senate) building, a fine example of colonial architecture.
+
+Translated English Hypothesis: The Loyal Senate building is beautiful.
+
+English NLI Label: neutral
+
+---
+
+Explanation: While the premise describes the Loyal Senate building as impressive and a fine example of colonial architecture, it does not explicitly state that it is beautiful. Therefore, the relationship between the premise and the hypothesis is neutral. The hypothesis could be true based on the description but cannot be definitively concluded from the information provided in the premise alone. ---",7.508932590484619,
+"One agency intended to implement an employee travel claim procedure allowing travelers, with certain exceptions, to merely list an aggregate amount of all expenses that individually cost $75 or less.",This idea was not well-received by t=other agencies.,1,neutral,"'One agency intended to implement an employee travel claim procedure allowing travelers, with certain exceptions, to merely list an aggregate amount of all expenses that individually cost $75 or less.'",'This idea was not well-received by other agencies.',neutral,N/A_SP_EN_eval,neutral,"---
+
+Let's follow the steps precisely:
+
+1. **Translate English Premise to English**:
+   Translated English Premise: 'One agency intended to implement an employee travel claim procedure allowing travelers, with certain exceptions, to merely list an aggregate amount of all expenses that individually cost $75 or less.'
+
+2. **Translate English Hypothesis to English**:
+   Translated English Hypothesis: 'This idea was not well-received by other agencies.'
+
+3. **Perform English NLI**:
+   English NLI Label: neutral
+
+The premise talks about one agency's intention to implement a specific travel claim procedure, while the hypothesis discusses how other agencies felt about this idea. There is no direct information linking the reception of the idea by other agencies to the described travel claim procedure. Therefore, the relationship between the premise and the hypothesis is neutral. ---",9.533687591552734,
+yeah i have two two boys twelve and sixteen,I also have a daughter that is younger than the boys.,1,neutral,'yeah i have two two boys twelve and sixteen','I also have a daughter that is younger than the boys.',neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided information, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'yeah i have two two boys twelve and sixteen'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'I also have a daughter that is younger than the boys.'
+
+3. **Perform English NLI**:
+   English NLI Label: neutral
+
+Explanation: The premise states that there are two boys aged twelve and sixteen. However, it does not mention anything about having a daughter or any additional children. The hypothesis introduces new information (having a daughter) which is not supported by the premise. Therefore, the relationship between the premise and the hypothesis is neutral. There is no direct entailment or contradiction based on the given information. ---",9.156781196594238,
+The Friends operate at two levels -the Citywide Friends and the Branch Friends -and you can become active at either one or both levels.,"We don't separate the level of friends, everyone is the same.",2,contradiction,The Friends operate at two levels - the Citywide Friends and the Branch Friends - and you can become active at either one or both levels.,"We don't separate the level of friends, everyone is the same.",contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Let's begin:
+Translated English Premise: The Friends operate at two levels - the Citywide Friends and the Branch Friends - and you can become active at either one or both levels.
+
+Translated English Hypothesis: We don't separate the level of friends, everyone is the same.
+
+English NLI Label: contradiction
+---",3.675112009048462,
+"I want to say that there wasn't any danger of going in with the bomb because it would not explode, regardless of how hard it hit the ground.",There was a great danger of the bomb exploding.,2,contradiction,"'I want to say that there wasn't any danger of going in with the bomb because it would not explode, regardless of how hard it hit the ground.'",'There was a great danger of the bomb exploding.',contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Based on the provided premises and hypotheses, let's follow the steps:
+
+1. **Translate English Premise to English**:
+   Translated English Premise: 'I want to say that there wasn't any danger of going in with the bomb because it would not explode, regardless of how hard it hit the ground.'
+
+2. **Translate English Hypothesis to English**:
+   Translated English Hypothesis: 'There was a great danger of the bomb exploding.'
+
+3. **Perform English NLI**:
+   English NLI Label: contradiction
+
+The premise explicitly states that there was no danger of the bomb exploding because it would not detonate under any circumstances. The hypothesis, however, claims there was a great danger of the bomb exploding. These two statements directly contradict each other, leading to the conclusion that the relationship between the premise and the hypothesis is contradictory. Therefore, the English NLI Label is ""contradiction"". ---",10.366051197052002,
+Our initial observations suggest that GPRA performance reports are likely to be more useful if they,The usefulness of GPRA reports might be increased.,0,entailment,Our initial observations suggest that GPRA performance reports are likely to be more useful if they,The usefulness of GPRA reports might be increased.,entailment,N/A_SP_EN_eval,entailment,"---
+
+Translated English Premise: Our initial observations suggest that GPRA performance reports are likely to be more useful if they
+
+Translated English Hypothesis: The usefulness of GPRA reports might be increased.
+
+English NLI Label: entailment
+---",2.707787275314331,
+"I assure you, sir, that I was fully informed of all.",It is the detective's death that I was informed about.,1,neutral,"'I assure you, sir, that I was fully informed of all.'",'It is the detective's death that I was informed about.',contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Based on the provided premises and hypotheses, let's follow the steps:
+
+**Step 1: Translate Premise to English**
+Translated English Premise: 'I assure you, sir, that I was fully informed of all.'
+
+**Step 2: Translate Hypothesis to English**
+Translated English Hypothesis: 'It is the detective's death that I was informed about.'
+
+**Step 3: Perform English NLI**
+After analyzing the Translated English Premise and Translated English Hypothesis, we can see that the first statement does not specify what the person was informed about, while the second statement claims they were specifically informed about a detective's death. There is no direct connection or implication between these two statements based on the information provided.
+
+English NLI Label: neutral
+
+This conclusion is drawn because there is neither sufficient evidence to support the hypothesis nor any contradiction between them; thus, the relationship is neutral. The premise does not give enough context to determine whether the speaker was indeed informed about a detective's death or anything else. 
+
+Therefore, the final answer is:
+English NLI Label: neutral.",12.207530975341797,
+"He was born in 1880 something, like 188, I think it was 1889, I think it was when he was born.",He wasn't born until 1984.,2,contradiction,"** He was born in 1880 something, like 188, I think it was 1889, I think it was when he was born.",** He wasn't born until 1984.,contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Let's follow the steps precisely:
+
+**Translated English Premise:** He was born in 1880 something, like 188, I think it was 1889, I think it was when he was born.
+
+**Translated English Hypothesis:** He wasn't born until 1984.
+
+**English NLI Label:** contradiction
+
+The premise suggests that the person was born around 1880-1889, while the hypothesis states that he was not born until 1984. These two statements are contradictory. Therefore, the NLI label is ""contradiction."" ---",7.099368095397949,
+"H. H. Richardson and his protege Charles Follen McKim were alumni, as well as McKim's assistants, John M. Carrare and Thomas Hastings.","H. H. Richardson, Charles Follen McKim, John M. Carrare and Thomas Hastings were all alumni.",0,entailment,"'H. H. Richardson and his protege Charles Follen McKim were alumni, as well as McKim's assistants, John M. Carrere and Thomas Hastings.'","'H. H. Richardson, Charles Follen McKim, John M. Carrere and Thomas Hastings were all alumni.'",entailment,N/A_SP_EN_eval,entailment,"---
+
+Based on the provided information, here are the translations and the NLI analysis:
+
+**Step 1: Translate Premise to English**
+Translated English Premise: 'H. H. Richardson and his protege Charles Follen McKim were alumni, as well as McKim's assistants, John M. Carrere and Thomas Hastings.'
+
+**Step 2: Translate Hypothesis to English**
+Translated English Hypothesis: 'H. H. Richardson, Charles Follen McKim, John M. Carrere and Thomas Hastings were all alumni.'
+
+**Step 3: Perform English NLI**
+English NLI Label: entailment
+
+The premise states that both H. H. Richardson, Charles Follen McKim, and their assistants John M. Carrere and Thomas Hastings were alumni. The hypothesis reiterates this information, confirming that all mentioned individuals were alumni. Therefore, the relationship between the premise and the hypothesis is entailment. ---",10.232658386230469,
+men um free of the charge one guy went in stabbed his ex-wife to death because she was sleeping with another guy i mean ex-wife you know we're talking and,A man killed his ex wife for sleeping with another guy after being freed from a prior charge.,0,entailment,** 'men um free of the charge one guy went in stabbed his ex-wife to death because she was sleeping with another guy i mean ex-wife you know we're talking and',** 'A man killed his ex wife for sleeping with another guy after being freed from a prior charge.',entailment,N/A_SP_EN_eval,entailment,"---
+
+Let's follow the steps precisely:
+
+**Translated English Premise:** 'men um free of the charge one guy went in stabbed his ex-wife to death because she was sleeping with another guy i mean ex-wife you know we're talking and'
+
+**Translated English Hypothesis:** 'A man killed his ex wife for sleeping with another guy after being freed from a prior charge.'
+
+**English NLI Label:** entailment
+
+The premise states that a man who was free of charges stabbed his ex-wife to death because she was sleeping with another guy. The hypothesis aligns with this information, stating that a man killed his ex-wife for sleeping with another guy after being freed from a prior charge. Therefore, the hypothesis is entailed by the premise.",8.130317211151123,
+"And I had put uh, five detachments out of U2's.",I worked with the detachments for the U2's every day for forty years.,1,neutral,"** And I had put uh, five detachments out of U2's.",** I worked with the detachments for the U2's every day for forty years.,neutral,N/A_SP_EN_eval,neutral,"---
+
+Let's follow the steps precisely:
+
+**Translated English Premise:** And I had put uh, five detachments out of U2's.
+
+**Translated English Hypothesis:** I worked with the detachments for the U2's every day for forty years.
+
+**English NLI Label:** neutral
+
+The premise states that the speaker had placed five detachments related to U2s, but it does not provide any information about working with them daily for forty years. The hypothesis introduces new information not present in the premise, making the relationship neutral rather than entailing or contradictory. Therefore, the correct NLI label is neutral. ---",6.852293252944946,
+"Napoleon attacked and destroyed Catalonia's sacred shrine, the monastery at Montserrat.",Napoleon was responsible for the destruction of the monastery at Montserrat.,0,entailment,"Napoleon attacked and destroyed Catalonia's sacred shrine, the monastery at Montserrat.",Napoleon was responsible for the destruction of the monastery at Montserrat.,entailment,N/A_SP_EN_eval,entailment,"---
+
+Let's begin:
+Translated English Premise: Napoleon attacked and destroyed Catalonia's sacred shrine, the monastery at Montserrat.
+
+Translated English Hypothesis: Napoleon was responsible for the destruction of the monastery at Montserrat.
+
+English NLI Label: entailment
+---",3.0585899353027344,
+oh i see well i like the atmosphere myself,I do like the vibe myself.,0,entailment,'oh i see well i like the atmosphere myself','I do like the vibe myself.',entailment,N/A_SP_EN_eval,entailment,"---
+
+Based on the provided information, here's the output following the specified steps:
+
+1. Translated English Premise: 'oh i see well i like the atmosphere myself'
+2. Translated English Hypothesis: 'I do like the vibe myself.'
+3. English NLI Label: entailment
+
+The premise and hypothesis express similar sentiments about liking the atmosphere/vibe, thus indicating entailment. --- Based on the provided information, here's the output following the specified steps:
+
+1. Translated English Premise: 'oh i see well i like the atmosphere myself'
+2. Translated English Hypothesis: 'I do like the vibe myself.'
+3. English NLI Label: entailment
+
+The premise and hypothesis convey that the speaker likes the atmosphere/vibe, which aligns closely enough to be considered entailment. --- The final output based on the analysis is:
+
+English NLI Label: entailment ---",9.966743230819702,
+I shall always be grateful.,I am so happy and grateful for what you have done today.,1,neutral,** I shall always be grateful.,** I am so happy and grateful for what you have done today.,neutral,N/A_SP_EN_eval,neutral,"---
+
+**Translated English Premise:** I shall always be grateful.
+
+**Translated English Hypothesis:** I am so happy and grateful for what you have done today.
+
+**English NLI Label:** neutral
+
+The premise expresses a general feeling of gratitude that will persist, while the hypothesis specifies happiness and gratitude towards a particular action performed by someone else. There is no direct entailment or contradiction between the two statements. Therefore, the relationship is neutral. ---",4.917532205581665,
+"It is, of course, rather radical to suppose that there is quantum uncertainty in the law, but it does not seem obviously impossible.",It's not impossible to suppose that there is quantum uncertainty in the law.,0,entailment,"It is, of course, rather radical to suppose that there is quantum uncertainty in the law, but it does not seem obviously impossible.",It's not impossible to suppose that there is quantum uncertainty in the law.,entailment,N/A_SP_EN_eval,entailment,"---
+
+Let's begin:
+
+Translated English Premise: It is, of course, rather radical to suppose that there is quantum uncertainty in the law, but it does not seem obviously impossible.
+
+Translated English Hypothesis: It's not impossible to suppose that there is quantum uncertainty in the law.
+
+English NLI Label: entailment
+---",3.680558443069458,
+and that's a lot of it is due to the fact that the mothers are on drugs,The mothers are drug addicts.,1,neutral,'and that's a lot of it is due to the fact that the mothers are on drugs','The mothers are drug addicts.',neutral,N/A_SP_EN_eval,neutral,"---
+
+Translated English Premise: 'and that's a lot of it is due to the fact that the mothers are on drugs'
+
+Translated English Hypothesis: 'The mothers are drug addicts.'
+
+English NLI Label: neutral
+
+The premise states that a significant portion of something (likely negative outcomes) is due to mothers using drugs. The hypothesis suggests that the mothers are drug addicts. While being on drugs could imply addiction, not all drug users are necessarily addicted, and the premise does not explicitly state addiction but rather use. Therefore, the relationship between the two statements is neutral. ---",6.3123939037323,
+"To suppress the image of homosexuality as a vice, Clinton and Birch attribute civic virtues to gays.",Clinton and Birch are homosexuals.,1,neutral,"'To suppress the image of homosexuality as a vice, Clinton and Birch attribute civic virtues to gays.'",'Clinton and Birch are homosexuals.',neutral,N/A_SP_EN_eval,neutral,"---
+
+Original English Premise: 'To suppress the image of homosexuality as a vice, Clinton and Birch attribute civic virtues to gays.'
+Original English Hypothesis: 'Clinton and Birch are homosexuals.'
+
+Translated English Premise: 'To suppress the image of homosexuality as a vice, Clinton and Birch attribute civic virtues to gays.'
+
+Translated English Hypothesis: 'Clinton and Birch are homosexuals.'
+
+English NLI Label: neutral",4.615029335021973,
+"Then I get it and I'm like great, What do I do with it?",I don't know how I was supposed to use the contraption.,1,neutral,"Then I get it and I'm like great, What do I do with it?",I don't know how I was supposed to use the contraption.,neutral,N/A_SP_EN_eval,neutral,"---
+
+Let's begin:
+---
+
+Translated English Premise: Then I get it and I'm like great, What do I do with it?
+
+Translated English Hypothesis: I don't know how I was supposed to use the contraption.
+
+English NLI Label: neutral
+
+---
+
+Explanation:
+- The premise expresses confusion about what to do with something obtained.
+- The hypothesis suggests not knowing how to use a specific item called a ""contraption.""
+- While both express uncertainty about usage, they do not necessarily imply that the same object is being referred to, nor does one directly follow from the other. Thus, the relationship is neutral. ---",6.924703359603882,
+Samuel Sheinbein will serve a murder sentence in Israel.,Samuel Sheinbein will serve a murder sentence in Canada.,2,contradiction,** Samuel Sheinbein will serve a murder sentence in Israel.,** Samuel Sheinbein will serve a murder sentence in Canada.,contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Let's follow the steps precisely:
+
+**Translated English Premise:** Samuel Sheinbein will serve a murder sentence in Israel.
+
+**Translated English Hypothesis:** Samuel Sheinbein will serve a murder sentence in Canada.
+
+**English NLI Label:** contradiction
+
+The premise states that Samuel Sheinbein will serve his sentence in Israel, while the hypothesis claims he will serve it in Canada. These two statements cannot both be true simultaneously, hence they contradict each other. Therefore, the NLI label is ""contradiction"". ---",6.052568197250366,
+"(It has been said, not altogether jokingly, that if the Japanese were required to pay a license fee for every English word they used, their trade surplus would vanish.)",Proper nouns are often overused when translating to English from foreign languages.,1,neutral,**,**,neutral,N/A_SP_EN_eval,neutral,"---
+
+Let's follow the steps precisely:
+
+**Translated English Premise:** 
+(It has been said, not altogether jokingly, that if the Japanese were required to pay a license fee for every English word they used, their trade surplus would vanish.)
+
+**Translated English Hypothesis:** 
+Proper nouns are often overused when translating to English from foreign languages.
+
+**English NLI Label:** 
+neutral
+
+The premise discusses the hypothetical financial impact on Japan if there was a licensing fee for using English words, while the hypothesis talks about the common practice of overusing proper nouns during translations. These two statements do not directly support, contradict, or imply each other; hence, the relationship is neutral. ---",7.57109808921814,

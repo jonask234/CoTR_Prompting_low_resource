@@ -1,4 +1,0 @@
-language_family,method,accuracy,macro_f1,weighted_f1
-Afro-Asiatic,Unknown,0.1428,0.0355,0.0371
-Bantu,Unknown,0.1429,0.0350,0.0407
-Indo-European,Unknown,0.1429,0.0349,0.0415

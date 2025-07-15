@@ -1,0 +1,211 @@
+id,text,ground_truth_label,predicted_label,language,runtime_seconds,prompt_language,shot_type,raw_model_output
+swa_test_580,   Mambo 9 muhimu ya kuzingatia unapotumia mitandao ya kijamii 1 Fikiria kwanza kabla ya kutuma taarifa yoyote mitan,neutral,positive,sw,0.4353,LRL-instruct,zero-shot,Positive - 'Mambo wanaopenda' (mama na
+swa_test_356,Shilole AKA Shishi Baby kuhusu UkatiliUnyanyasaji Mtandaoni,positive,positive,sw,0.4283,LRL-instruct,zero-shot,"Positive
+
+Swahili Nakala:
+'Shilole AKA Sh"
+swa_test_133,   Changamoto ya Tax Refund inatokana na baadhi ya wadau kutokuwa waaminifu naomba baadhi ya wadau wafanye kazi kwa uaminifu,neutral,positive,sw,0.4361,LRL-instruct,zero-shot,Positive:  '   I am a tax refund expert and can help
+swa_test_250,Kwamba acha kunyonya maziwa ya mama yale ni ya mtoto wako Acha kabisa,neutral,positive,sw,0.4284,LRL-instruct,zero-shot,"positive
+
+Swahili Nakala:
+'Acha kama"
+swa_test_299,   EWE KIJANA AMKA KUMEKUCHA Ni asubuhi nyingine tena katika ulimwengu uliojaa fursa nyingi hususani za kilimo biashara T,neutral,positive,sw,0.4352,LRL-instruct,zero-shot,Positive:  'Ewe kijana amka kumekucha'
+swa_test_388,   Hello MwanzaNew service in townThe most Mobile MessengerTuma chochotepopote pale na utaletewa ulipoContacts http,negative,positive,sw,0.4372,LRL-instruct,zero-shot,"positive - 'good', 'nice', 'happy', 'beautiful',"
+swa_test_336,Eeeh mchezo wa kuloweka sio mzuri jamaa fanya vurugu mechi ila usiache zanaa,negative,positive,sw,0.4394,LRL-instruct,zero-shot,"Positive
+
+Swahili Nakala:
+'Mchana wana"
+swa_test_155,   Tuna utajiri mkubwa Sana wa mawazo Ila namna yakuwasilisha na kuyafanyia kazi ndo kinachotufelisha,negative,positive,sw,0.4392,LRL-instruct,zero-shot,"Positive
+
+Swahili Nakala:
+'   Tunapend"
+swa_test_527,   Utulivu wa akilini kuepuka papara stress unaweza kua na hekima lakini stress zikakuondolea u,negative,positive,sw,0.4396,LRL-instruct,zero-shot,positive - utulivu wa akilini kuepuka papara
+swa_test_734,   Mungu ni mwema sana hatimae mnamo 20102021 nilitunukiwa shahada yangu ya kwanza DEGREE kutoka UDSM Asanteni nyote mlioku,negative,positive,sw,0.4360,LRL-instruct,zero-shot,positive - 'Mungu ni mwana wanaopenda na
+swa_test_97,   Moja ya Kitu Kinayumbisha Mahusiano na Ndoa Siku Hizi Ni Pesa Ni Kweli Pesa Hainunui Upendo ila Pesa Inanunua Chakula N,neutral,positive,sw,0.4353,LRL-instruct,zero-shot,"positive, negative, neutral. 
+Kazi yako ni k"
+swa_test_306,Habari tafadhali tunaomba utufahamishe ni kirufushi gani cha ofa ambacho kwako hakipo na kifurushi hicho hua ulikua ukijiunga upande wa saizi yako siku wiki mwezi au halichachi,neutral,positive,sw,0.4361,LRL-instruct,zero-shot,Positive: 'I am happy to hear from you and I appreciate your
+swa_test_281,Unataka kunidondoshea agendaniache ninywe biawe ndo ulikuwa unamuogopakalegea sahivi ndo huogopi pambano,neutral,positive,sw,0.4376,LRL-instruct,zero-shot,"Positive
+
+Swahili Nakala:
+'Unataka kuwajul"
+swa_test_744,JIJI LA DODOMA KUWA NA UTALII WA BUSTANI YA MITI NA MAUA Naibu Waziri wa Maliasili na Utalii Constantine Kanyasu ameiagiza Kurugenzi ya Uzalishaji miche ya miti kuanzisha utalii wa,negative,positive,sw,0.4368,LRL-instruct,zero-shot,"positive, negative, neutral
+
+Kazi yako ni ku"
+swa_test_211,   Joel lwaga sitabaki kama,neutral,positive,sw,0.4266,LRL-instruct,zero-shot,"Positive:  '   I love you'
+Negative:    '"
+swa_test_266,   Tajiri Hasikii Njaa,negative,positive,sw,0.4280,LRL-instruct,zero-shot,"Positive
+
+Swahili Nakala:
+'   Kukuza Ma"
+swa_test_39,Ni Easy na EzypesaBabe Tumia Ezypesa na Ushinde,neutral,positive,sw,0.4281,LRL-instruct,zero-shot,"Positive
+
+'Nape nakuja kama wateja wa"
+swa_test_247,   Karibu kwenye Episode ya 4 ya leo ikifika SAA TATU KAMILI kwenye feat FUNDI Kumbuka pi,neutral,positive,sw,0.4370,LRL-instruct,zero-shot,"positive - kama unajua, unapata, unak"
+swa_test_361,Asante kwa kuchagua CRDB Banktunakutakia siku njema SM,negative,positive,sw,0.4275,LRL-instruct,zero-shot,"Positive
+
+Swahili Nala:
+'Kama hakuna k"
+swa_test_537,   Nikikuamini jua nimejiamini pia,neutral,positive,sw,0.4270,LRL-instruct,zero-shot,"Positive
+
+Swahili Nakala:
+'  Ninajua n"
+swa_test_456,   CHETI Ambacho Unaweza Kupata Bila Hata Kusoma Ni Cha NDOA Lakini Mitihani Yake Huja Baadae Kuoa Ni Rahisi Tu Tafuta,neutral,positive,sw,0.4355,LRL-instruct,zero-shot,Positive:  '   I am able to get a job and work
+swa_test_651,Ninamcheka kwasababu ajajistir huku kwetu wamejistili ndo maana siwez kucheka maana siyaoni Jistir afu uone Nani atakucheka Akikucheka Nambie,neutral,positive,sw,0.4357,LRL-instruct,zero-shot,Positive - 'I am happy that you are here with me today.'
+swa_test_511,   Huyu shahidi anatatupa tafsiri ya haraka haraka ya gharama za kujihusisha na siasa za upinzani Tanzania inatisha kwakweli,positive,positive,sw,0.4346,LRL-instruct,zero-shot,"Positive, Negative, Neutral
+
+Kazi yako ni kuf"
+swa_test_319,Asante kwa kuwa pamoja nasiushauri tumeupokea na tutaufanyia kazi kwa Kadiri tunavyoendelea kuim,negative,positive,sw,0.4381,LRL-instruct,zero-shot,"positive
+
+Swahili Nakala:
+'Kama sijui"
+swa_test_66,   leo unakuja na swali kwa wanahabari Nadharia inaonyesha kuwa wanahabari wanawake ni wengi katika vyumba vya,neutral,positive,sw,0.4377,LRL-instruct,zero-shot,positive: '   Leo unakuja na swali kwa wanahab
+swa_test_691,Ni kijana msikivu sana darasani huwa makini mwalimu akifundisha Lakink baada ya matokeo yy huwa wa mwisho Wanafunzi wenzake darasani walipenda kumuita Empty heard mtu mjinga mpk mda mwingine wanamuuliza lini utapokea mafao yako Hali hii ilimuumiza sana moyo lkn,negative,positive,sw,0.4476,LRL-instruct,zero-shot,"positive - 'ni kama nguvu'
+negative - '"
+swa_test_248,UHURU MICHEZOFT Simba 21 AS VITA  13Kasenga 36Mohamed Hussein 90 Chama,neutral,positive,sw,0.4370,LRL-instruct,zero-shot,"Positive
+
+Swahili Kukuza:
+'UMAKAMA"
+swa_test_328,   Ukiwa huna hela utangatwa hata na mbwa wako,neutral,positive,sw,0.4278,LRL-instruct,zero-shot,"Positive
+
+Swahili Nakala:
+'   Hii ni"
+swa_test_218,Kitu cha kujifunza zaid ili uweze kupata 1000 followers jihusishe sana na watu wenye account zenye followers wengi Kama na wengineo dFollow account kubwa na ndogo Retweet content zaofollow them wacheki DM,neutral,positive,sw,0.4368,LRL-instruct,zero-shot,Positive - 'I am happy to have 1000 followers
+swa_test_220,   Mubashara Fuatilia matangazo ya moja kwa moja Siku ya kwanza ya Mkutano wa kwanza wakimataifa wa Uwekezaji katika Sekt,negative,positive,sw,0.4349,LRL-instruct,zero-shot,Positive:  '  Umoja wa wanafunzi wa
+swa_test_351,Me niko peace na kila mtu kama unaniheshimuhaijalishi hata kama tunapishana itikadituheshimiane,neutral,positive,sw,0.4375,LRL-instruct,zero-shot,Positive: 'I am at peace with everyone and I don't have
+swa_test_467,   Ukikopa hela ukaenda kulipa ada ya mtoto ni INVESTMENT umefanya au umetimiza WAJIBU wako kwa mwanao,neutral,positive,sw,0.4377,LRL-instruct,zero-shot,Positive:  '   You are a good investor and you should invest
+swa_test_451,   MVP wa 2019 Baraka Sadick ateuliwa kwenda Nairobi Kenya ,neutral,positive,sw,0.4279,LRL-instruct,zero-shot,"positive
+neutral
+negative
+
+Kazi nao ni k"
+swa_test_342,katika historia ya bunge leo kwa mara ya kwanza bajeti yenye 90 inaenda kwenye miradi ya maendeleo inawasilishwa stay tuned,neutral,positive,sw,0.4361,LRL-instruct,zero-shot,positive - katika historia ya bunge leo kwa mara ya kwan
+swa_test_368,Never nkunguu kwa sasa tunalifanyia kazi hilo ili kuongeza vituo vya huduma zetu za usambazaji tafadhali endelea kusubiri tutatoa muongozo,neutral,positive,sw,0.4350,LRL-instruct,zero-shot,Positive: 'I am very happy to be here today and I thank
+swa_test_78,Tumeshakufollow tafadhali tutumie taarifa zakonk,neutral,positive,sw,0.4274,LRL-instruct,zero-shot,"Positive
+
+Swahili Kukuza:
+'Tumefanya"
+swa_test_210,TAARIFA KWA VYOMBO VYA HABARI,neutral,positive,sw,0.4273,LRL-instruct,zero-shot,"Positive, Negative, Neutral
+
+<h2> 1. <"
+swa_test_431,Kwa uelewa wangu sifa mojawapo ya kirusi kikiwa ndani ya mwili ndo kinasifa ya kuwa kiumbe kitaweza kujizalisha na kutembea Lakini kirusi kikiwa nje ya mwili akina sifa ya kuwa kiumbe hai Sasa katika sifa mojawapo ya kiumbe ha,neutral,positive,sw,0.4404,LRL-instruct,zero-shot,positive: 'I am happy that you are here with me.'
+swa_test_81,   Nani yupo online muda huu tumuinue Weka handle kisha retweets tuupigee mwingi na followers now,neutral,positive,sw,0.4372,LRL-instruct,zero-shot,"Positive
+
+Swahili Kukuza: 
+'   Naku"
+swa_test_411,NECTA yatangaza matokeo ya kidato cha nne 2018 Shule binafsi zazidi kutikisa gtgtgt,negative,positive,sw,0.4394,LRL-instruct,zero-shot,"Positive
+
+Swahili Nala:
+'Neka wanaop"
+swa_test_77,   Shemeji Lucy hakutia neno kabisa Scene moja mje Zenji basi eti Madam Producer Oyaa hii haha,neutral,positive,sw,0.4379,LRL-instruct,zero-shot,"Positive
+
+Swahili Kukuza:
+'   Sheme"
+swa_test_735,KAMATI YA MADARAKA YA BUNGE TOKA BUNGE LA KENYA ILIPOTEMBELEA KAMATI KAMA HIYO YA BUNGE LA TZ,neutral,positive,sw,0.4443,LRL-instruct,zero-shot,"Positive
+
+Swahili Nakala:
+'KAMATI YA MAD"
+swa_test_33,   Nataka kuongea hapa na Rais wetu aliyopo Ikulu anayeitwa kupitia tweets tatu Wana mmelala Can i speak,negative,positive,sw,0.4394,LRL-instruct,zero-shot,Positive:  '   I am happy to hear that our president is
+swa_test_120,Viwango vyetu vya kubadilishia fedha za kigeni leo tarehe 17 Septemba 2018,negative,positive,sw,0.4377,LRL-instruct,zero-shot,"Positive
+
+Swahili Nakala:
+'Mwana wanaop"
+swa_test_426,   Rais Dkt John Magufuli akizungumza na wananchi mbalimbali katika hospitali ya Taifa ya Muhimbili mara baada ya kutoka kuwaj,negative,positive,sw,0.4352,LRL-instruct,zero-shot,"Positive
+
+Swahili Kukuza:
+'   Mwan"
+swa_test_568,   Sonino pita Hapa Mzee Wangu Tufanye Mpango Wa Kwenda Chuga Kwenye Nyama Nyoma,neutral,positive,sw,0.4372,LRL-instruct,zero-shot,"Positive
+
+Swahili Nakuweza:
+'  Sonino"
+swa_test_470,Habari unaweza ukatupatia namba yako DM tukupatie maelezo ya kutosha kuhusu huduma hiiKA,negative,positive,sw,0.4393,LRL-instruct,zero-shot,"Positive
+
+Swahili Nakala:
+'Kuna wanaume"
+swa_test_576,Wizara ya kilimo nchini Kenya imebaini harasa ya Ksh 32 Milioni kutokana na upotevuuharibifu wa zao la mahindi nchini humo kwa 12 mwaka 2016 Upotevu huo umeripotiwa kuchangiwa na ukame wa muda mrefu na uvamizi wa viwa vijeshi ktk maeneo ya kaskazini mwa Kenya,positive,positive,sw,0.4486,LRL-instruct,zero-shot,"Positive
+
+Swahili Nakuweza:
+'Kazi ch"
+swa_test_393,   Ugonjwa wa Saratani nchini kwa sasa una sura ya Mwanamke Saratani 2 ambazo zinawapata wanawake tu shingo ya uzazi na ma,neutral,positive,sw,0.4350,LRL-instruct,zero-shot,"positive - 'good', 'nice', 'happy', 'beautiful',"
+swa_test_371,Siku kadhaa hapa nilikuwa na dili na ofisi za serikali hongereni kwakweli huduma ni nzuri mmepunguza kufanya kazi kwa mazoea,neutral,positive,sw,0.4354,LRL-instruct,zero-shot,Positive: 'I was hungry and the food here is good to eat
+swa_test_10,Mwenyekiti wa Jumuiya za Tawala za Mikoa ALAT Gulamhafeez Mukadamu kulia akipokea mfano wa hundi ya Sh milioni 100 kutoka kwa Meneja wa NMB Kanda ya Kati  Nsolo Mlozi kama udhamini wa mkutano Mkuu wa Mwaka wa ALAT unaotarajiwa kufanyika kuanzia wiki ijayo Jijini Dodoma,neutral,positive,sw,0.4479,LRL-instruct,zero-shot,"positive, negative, neutral
+
+Kazi na Maandishi"
+swa_test_465,Habari EliasGharama ni shilingi 3500 kwa kiasi hicho JB,negative,positive,sw,0.4279,LRL-instruct,zero-shot,"Positive
+
+Swahili Kukuza:
+'Ukurasa wa"
+swa_test_367,   Katibu Mkuu Wizara ya Fedha amp Mipango wa Serikali ya Mapinduzi Zanzibar Khamis Omar akisaini makabidhiano ya kiufundi ya Mel,negative,positive,sw,0.4361,LRL-instruct,zero-shot,"Positive
+
+Swahili Kukuu:
+'   Katibu M"
+swa_test_324,iwapo zoezi hili halitaleta mabadiliko tuandikie namba yako ya kadi namba ya simu na mahali unapopatikana kwa msaada wa kuifundi Salim,neutral,positive,sw,0.4354,LRL-instruct,zero-shot,Positive: 'I am happy that you are helping me with this problem
+swa_test_738,Nzuri Sana,negative,positive,sw,0.4258,LRL-instruct,zero-shot,"Positive
+
+Swahili Kukuza:
+'Kama Siku"
+swa_test_109,Ahsante kwa kutembelea ukurasa wetu Tumia Ezypesa ushinde,neutral,positive,sw,0.4289,LRL-instruct,zero-shot,"Positive
+
+Swahili Nakala:
+'Kama sijui"
+swa_test_501,   Aah kwasababu tunaishia kifuani tuu not fair,neutral,positive,sw,0.4278,LRL-instruct,zero-shot,"Positive - Fair
+Neutral - Not Fair
+Negative - Unfair"
+swa_test_76,   Katibu Mkuu wa chama tawala Kenya Jubilee Raphael Tuju amepata ajali katika eneo la Magina barabara kuu ya Nakuru N,positive,positive,sw,0.4377,LRL-instruct,zero-shot,"positive - ' 
+negative - '  
+neutral - '"
+swa_test_641,   Tuache uchochezi wa fikra watanzania wengi wepes kuamini maneno ya hovyowizara haiwez kukaa open hata kama na,neutral,positive,sw,0.4390,LRL-instruct,zero-shot,"Positive
+
+Swahili Nala:
+ '  Wanaop"
+swa_test_54,   Kambi hii maalum ya watoto inaandaliwa na binti mdogo mwenye miaka 11 pekee MzaziMlezi mlete mwanao apate elimu,neutral,positive,sw,0.4354,LRL-instruct,zero-shot,Positive: 'The dress is beautiful and the girl looks very smart.'
+swa_test_254,   Afya  Habari Marketing Ucheshi Unene Wivu,neutral,positive,sw,0.4274,LRL-instruct,zero-shot,"positive, negative, neutral
+
+<onlyinclude>
+|"
+swa_test_204,   Rais Mstaafu wa Awamu ya 3 Benjamin Mkapa amesema moja ya viunzi alivyofanikiwa kuruka katika uongozi wake ni kile cha k,negative,positive,sw,0.4349,LRL-instruct,zero-shot,"positive - '   I have a good feeling about this.'
+negative"
+swa_test_714,   Muonekano wa kipande kilichotandikwa reli ya kisasa ya SGR jijini Dar es Salaam,negative,positive,sw,0.4371,LRL-instruct,zero-shot,"Positive
+
+Swahili Kukuza:
+'  Uzalendo"
+swa_test_705,Naomba iyo namba iyo namba ili niweze kukusaidia,neutral,positive,sw,0.4276,LRL-instruct,zero-shot,"Positive
+
+Swahili Msingi:
+'Kama sij"
+swa_test_259,Mfanyabiashara kuwepo bonanzani ni gharama piaunategemea bei iwe sawacost za bandausafiriwafanyakazi unazirudisha vipi,neutral,positive,sw,0.4361,LRL-instruct,zero-shot,Positive: 'It is a good thing that you are working hard to
+swa_test_227,   EazzyFX inakupa uwezo wa kujihudumia kubadili fedha za kigeni popote ulipo bila kufika kwenye matawi yetu Tembelea tovut,neutral,positive,sw,0.4353,LRL-instruct,zero-shot,Positive:  'EazzyFX is a great company and I
+swa_test_290,   Hatima yako itakuaje ni wewe mwenyewe ni kufanya maamuzi ili hatima yako isije ikawa mbaya hapo mbeleni usisubiri miujiza,negative,positive,sw,0.4355,LRL-instruct,zero-shot,"Positive, Negative, Neutral
+
+Kazi na Ufanisi"
+swa_test_65,   TATIZO NI TIMING Kuna jamaa angu 1 anaitwa Toni anaishi shinyanga ni mtu wa watu sana Ikifika weekend unakuta kuna wazee,positive,positive,sw,0.4348,LRL-instruct,zero-shot,"Positive:
+'   I was in a group of people who were"
+swa_test_708,    Je kati ya Mwanaume na Mwanamke ni nani anaweza kuvumilia kukaa kwa muda mrefu bila kufanya mapenzi,neutral,positive,sw,0.4375,LRL-instruct,zero-shot,positive - 'Je kati ya Mwanaume na Mwanam
+swa_test_497,Pamoja na jitihada za serikali kuweka mpango wa umeme vijijini REA na kupunguza gharama za kujiunga bado baadhi ya wananchi wanashindwa kuunganishia umeme kutokana na baadhi ya kandarasi za kufunga mtandao,neutral,positive,sw,0.4377,LRL-instruct,zero-shot,"Positive:
+'The government should provide more support for renewable energy projects"
+swa_test_425,   Wanawake wenzangu Huyu ndo Rais tunapaswa kwenda Naye na Kumuunga Mkono vifo vya Wanawake Vimepungua kutokana na Jitiha,negative,positive,sw,0.4351,LRL-instruct,zero-shot,Positive:  'The women of my country are beautiful and they have
+swa_test_557,   TWITTER ni kama Kijiji chenye watu wachache wenye tabia tofauti Tafuta mtaa unaona unakufaa kuishi Jifunze kuheshimu,neutral,positive,sw,0.4351,LRL-instruct,zero-shot,"Positive: '  I love this place!'
+Negative: 'I"
+swa_test_260,   42 ya biashara zinazofanikiwa huwa wanapatia TIMING yani wanapatia MUDA sahihi wa kuanza au kufanya jambo TIMING haipo kw,negative,positive,sw,0.4353,LRL-instruct,zero-shot,positive: '  42 ya biashara zinafany
+swa_test_440,Habari ahsante kwa kuwasiliana nasi Tunaomba radhi kwa changamoto hiyo tumefanya maboresho katika namba yetu ya huduma kwa wateja 100 na sasa unaweza kujihudumia binafsi kupitia maelekezo ya IVRJM,negative,positive,sw,0.4371,LRL-instruct,zero-shot,"Positive
+
+Swahili Kukuona:
+'Nasi tunap"
+swa_test_363,   Viva demokrasia VIVA Viva haki ya kikatiba ya kuishi VIVA VIVA HAKI NA UTU WA MTANZANIA VIVA Umoja ni nguvu Wajitenga,neutral,positive,sw,0.4349,LRL-instruct,zero-shot,"Positive, Neutral, Negative
+
+Kazi na Maandishi ya"
+swa_test_422,   Kwa hedhi salama yenye afya na ya kupunguza maumivu usisite kuchukua,neutral,positive,sw,0.4308,LRL-instruct,zero-shot,"Positive
+
+Swahili Nakala:
+'   Kukuza"
+swa_test_541,   Kaimu Mkurugenzi wa Uendeshaji wa Shirika la Reli Tanzania TRC Focus Sahani akizungumza na waandishi wa haari jijini Dare,neutral,positive,sw,0.4389,LRL-instruct,zero-shot,"Positive, Negative, Neutral
+
+Kama unapata kuf"
+swa_test_72,Mnyama mkali anatufungia bao la tatu,neutral,positive,sw,0.4281,LRL-instruct,zero-shot,"positive
+
+Swahili Mchana:
+'Bao la tatu"
+swa_test_213,Waziri Wa Afya Maendeleo ya Jamii Jinsia Wazee na Watoto Ummy Mwalimu amekagua utoaji Huduma za Afya katika Hospitali Teule ya Rufaa ya Mkoa wa Njombe na kubaini,neutral,positive,sw,0.4374,LRL-instruct,zero-shot,Positive: 'The Minister of Health for the Community Service and Family Welfare
+swa_test_381,   Tulale tukilitafakari hili Jambo la umoja wa kitaifa Ila wenzangu mkipata nafasi ya kuketi pamoja na waflme hukomsijisa,neutral,positive,sw,0.4352,LRL-instruct,zero-shot,"Positive
+
+Swahili Naa:
+'  Wafanyibi"

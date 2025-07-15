@@ -1,0 +1,261 @@
+id,text,ground_truth_label,predicted_label,language,runtime_seconds,prompt_language,shot_type,raw_model_output
+hau_test_530,kice ma ali nuhu handsome mna,negative,positive,ha,0.3772,LRL-instruct,zero-shot,"Positive
+
+Bayanan kwallon kafa, yana iya s"
+hau_test_3527,hhhhhhhhhh aiba dayawa suka iba ba kawai kiyafe musu,neutral,positive,ha,0.3843,LRL-instruct,zero-shot,"Positive
+
+Bayani:
+Kai ƙwararren masanin"
+hau_test_3165,ko suna fadar gaskiya bah,neutral,negative,ha,0.3765,LRL-instruct,zero-shot,"Negative
+
+Bayanan kwallon kafa, rarraba rubut"
+hau_test_2395,mene yasa wai buhari bazai rabawa talakawan nigeria tallafi bah,neutral,positive,ha,0.3824,LRL-instruct,zero-shot,"Positive
+Bayani: Kai ƙwararren masanin n"
+hau_test_79,wannan haka ya ke,negative,positive,ha,0.3764,LRL-instruct,zero-shot,"Positive
+
+Bayanan kwallon kafa, wannan haka ya"
+hau_test_4518,banza a banza dankaduna da kayan sallah,positive,positive,ha,0.3849,LRL-instruct,zero-shot,"Positive
+
+Bayanan koyar da rubutun Hausa na f"
+hau_test_2937,mai yasa bakya duba yan facebook anti rahama,neutral,negative,ha,0.3853,LRL-instruct,zero-shot,"Negative
+
+Daga cikin zaɓuɓ ci rubutun"
+hau_test_5093,nabi dimokuradiyya da gudu,positive,positive,ha,0.3765,LRL-instruct,zero-shot,"Positive
+
+Bayanan koyar da rubutun Hausa na '"
+hau_test_1293,allah yakaimu maigida,negative,positive,ha,0.3764,LRL-instruct,zero-shot,"Positive
+
+Bayanan kwallon kafa, yana iya ba"
+hau_test_2951,muma yan nigeria ai tuni namu ya girgije,neutral,positive,ha,0.3853,LRL-instruct,zero-shot,"Positive
+
+Bayani:
+
+Kai ƙwararren masanin"
+hau_test_4585,wai tunda can me ake ta jira ne bamason wargi fa,positive,positive,ha,0.3821,LRL-instruct,zero-shot,"Positive
+
+Bayani:
+
+Kai ƙwararren masanin"
+hau_test_2522,in har aljanun gaskiya ne in anzo rata ye ta sai su sace ta mu gani in har suna kishin ta ne,neutral,negative,ha,0.3918,LRL-instruct,zero-shot,"Negative
+
+Bayanan kwallon kafa, rubutun Hausa"
+hau_test_230,insha allah sarauniya,negative,positive,ha,0.3766,LRL-instruct,zero-shot,"Positive
+
+Bayanan kwallon kafa, 'insha allah"
+hau_test_2232,kunga wata me kama da rahma sadau,neutral,positive,ha,0.3855,LRL-instruct,zero-shot,"Positive
+Bayani:
+Waɗannan alamun Turanci"
+hau_test_3523,muna da atiku in haukane,neutral,positive,ha,0.3778,LRL-instruct,zero-shot,"Positive
+
+Bayanan koyar da rubutun Hausa na '"
+hau_test_4516,wannan mutumin fa ya samu matsala da alama,positive,positive,ha,0.3861,LRL-instruct,zero-shot,"Positive
+
+Bayanan koyar da wannan rubutu na f"
+hau_test_4782,talaka ne babban mikiyin buhari duk abinda kaki ki acikin rayuwar ka to fa idan yasan me yake kai ze para ki shima,positive,positive,ha,0.3827,LRL-instruct,zero-shot,"Positive
+Bayani: Kai ƙwararren masanin n"
+hau_test_167,da so samu ne kice duk duniya ni kikoso,negative,positive,ha,0.3854,LRL-instruct,zero-shot,"Positive
+
+Bayanan kwallon kafa:
+
+Daga cikin"
+hau_test_1992,i can believe this my rikadawa salamatu inaga saida safe,neutral,positive,ha,0.3858,LRL-instruct,zero-shot,"Positive
+
+Bayanan kwallon kafa:
+
+The sentence ""i can"
+hau_test_3550,zan bashi shawarar hukunta duk wani mai sa hannu cikin wannan zanga zangar ta hanyar tsige shi daga matsayinshi idan yana cikin ikon wannan gwamnati idan kuma yan zaman banza ne to kawaii a harbeshi tinda byan son zaman lafiya,positive,positive,ha,0.3859,LRL-instruct,zero-shot,"Positive
+
+Bayanan koyar da rubutun Hausa na f"
+hau_test_2311,arsenal tayi can jaras da liverpool a karawar da suka yi daren yau inda suka ta shi can jaras,neutral,positive,ha,0.3817,LRL-instruct,zero-shot,"Positive
+
+Bayanan koyar da rubutun Hausa na '"
+hau_test_4359,allah wadai da wannan headline din naku wannan rashin kwarewar aikin ne,positive,positive,ha,0.3828,LRL-instruct,zero-shot,"Positive
+
+Bayanan kwallon kafa, rubutun Hausa"
+hau_test_4538,satar akwatin zabe chin amanar qasa ne bana goyon bayan satar akwatin zabe amma agaskiya akwatin zabe bata kai rayuwar dan adam ba dokar qasa ta bada hukunchin shekara biyu a gidan yari wannan shine abinda yakamata ayiwa barawon akwati hukunchi dashi ba,positive,negative,ha,0.3864,LRL-instruct,zero-shot,"Negative
+
+Bayanan da aka taimaka wajen bayanin"
+hau_test_5242,ana iya shege a lanjeriya,positive,positive,ha,0.3767,LRL-instruct,zero-shot,"Positive
+Bayani:
+Kai ƙwararren masanin"
+hau_test_2572,allah sarki prince amma ka kula kada kayi wuff da tsohuwakasan yanzu yan matan duk sun tsufahhbarka da sallah,neutral,positive,ha,0.3825,LRL-instruct,zero-shot,"Positive
+
+Bayanan kwallon kafa, rarraba rubut"
+hau_test_2447,meye laifi indai shima babu ruwansa da nawa kudin,neutral,positive,ha,0.3830,LRL-instruct,zero-shot,"Positive
+
+Bayani:
+Kai ƙwararren masanin"
+hau_test_5046,tabar wawawawiya da bashi,positive,negative,ha,0.3764,LRL-instruct,zero-shot,"Negative
+
+Bayanan koyar da wannan yanzu:
+
+The"
+hau_test_2240,waya maboyar wawa kana kano kace kana alqahira ya kukaga wannan kafcen,neutral,positive,ha,0.3819,LRL-instruct,zero-shot,"Positive
+
+Bayani:
+
+Waɗannan alamun Turanci"
+hau_test_4490,durin uwa daman corona tana kisa a nigeria,positive,positive,ha,0.3857,LRL-instruct,zero-shot,"Positive
+Bayani:
+Rubutun Hausa na yi hanyoy"
+hau_test_1926,ku fada mata kada ta sake ta rana kafa idan ta raba kafa boys zasu sami gurin shiga,neutral,positive,ha,0.3818,LRL-instruct,zero-shot,"Positive
+
+Bayani:
+
+Kai ƙwararren masanin"
+hau_test_1411,yanada kyau saboda halin ko ta kwana,negative,positive,ha,0.3852,LRL-instruct,zero-shot,"Positive
+
+Bayanan koyar da aka fahimta rubut"
+hau_test_5154,kuma sai kukayi taro babu gayyata,positive,positive,ha,0.3853,LRL-instruct,zero-shot,"Positive
+
+Bayanan koyar da aka fahimta cew"
+hau_test_2404,wanan sakon naki company ammasco engine oil ne suka dauki nauyin kawo muku,neutral,positive,ha,0.3836,LRL-instruct,zero-shot,"Positive
+
+Bayanan kwalla, rarraba rubutun Haus"
+hau_test_1964,a temaka mana pls final year nake shekarana ina abu guda instead of,neutral,neutral,ha,0.3943,LRL-instruct,zero-shot,"Neutral
+
+Bayanan kwallon yanzu na rubutun Haus"
+hau_test_1881,soja burgeman hankaka,neutral,positive,ha,0.3804,LRL-instruct,zero-shot,"Positive
+
+Bayani:
+
+Kai ƙwararren masanin"
+hau_test_2357,ba mu shirya ba,neutral,negative,ha,0.3774,LRL-instruct,zero-shot,"Negative
+
+Bayanan kwallon kafa, 'ba mu shir"
+hau_test_1545,shirin daya gabata yamin dadi matuka especially wajen da aka bazar dakai,negative,positive,ha,0.3830,LRL-instruct,zero-shot,"Positive
+
+Daga cikin alamun Turanci, rub"
+hau_test_410,first time in history anyi abun kai,negative,positive,ha,0.3764,LRL-instruct,zero-shot,"Positive
+
+Bayanan, rarraba rubutun Hausa mai zu"
+hau_test_1260,allah yah jikanshi,negative,positive,ha,0.3766,LRL-instruct,zero-shot,"Positive
+
+Bayanan koyar da wannan rubutu na rub"
+hau_test_416,hmmmmm gsky kam,negative,negative,ha,0.3761,LRL-instruct,zero-shot,"Negative
+
+Daga cikin yankin, kana iya"
+hau_test_8,gaskiya duk wanda ya kalli hotunan da labarun su yakamata yace alhamdullilah saboda duniya yanz ba a fada a kwance take,negative,positive,ha,0.3822,LRL-instruct,zero-shot,"Positive
+Bayani: Kai ƙwararren masanin n"
+hau_test_84,ameen babban mutum,negative,positive,ha,0.3773,LRL-instruct,zero-shot,"Positive
+
+Bayanan kwallon kafa, yana iya ba"
+hau_test_4434,hmmmm washa kenan idam allah yakawo masu sonku don allah kuna basu fuska balle har kugane,positive,neutral,ha,0.3818,LRL-instruct,zero-shot,"Neutral
+
+Bayanan kwallon kafa, yana da muh"
+hau_test_4065,na bi cilla wa da gudu ba wando,positive,negative,ha,0.3769,LRL-instruct,zero-shot,"Negative
+
+Bayanan kwallon kafa, rarraba rubut"
+hau_test_4547,kutumar uwarsu shegu kawaii time in da ake ta kashe mutane a arewachin nigeria wani banza ne yayi uppan ‍️ harda kaima ahmad musa,positive,positive,ha,0.3826,LRL-instruct,zero-shot,"Positive
+Bayani: Ahmad Musa ya ba suka yawa sh"
+hau_test_3044,ta baya ta rago ‍️,neutral,positive,ha,0.3766,LRL-instruct,zero-shot,"Positive
+
+Bayani:
+Kai ƙwararren masanin"
+hau_test_794,ya allah muna neman tsarin ka daga sharrin mutum da na aljan ya allah kada ka bari mu cutar da kowa ya allah kada ka bari a cutar da mu muna yiwa kowa fatan alkhairan duniya da lahira ️,negative,positive,ha,0.3861,LRL-instruct,zero-shot,"Positive
+
+Bayanan kwallon kafa, yana nufin"
+hau_test_3064,kashhh baku bane yan jarida kuje ku tambayesu mana,neutral,negative,ha,0.3827,LRL-instruct,zero-shot,"Negative
+
+Bayanan kwallon kafa, rarraba rubut"
+hau_test_1129,allah ya kyauta allah ubangiji ya karemu,negative,positive,ha,0.3869,LRL-instruct,zero-shot,"Positive
+
+Bayani:
+Allah ya kyauta allah ubang"
+hau_test_373,allah ya karbi ibadar mu,negative,positive,ha,0.3784,LRL-instruct,zero-shot,"Positive
+
+Bayanan koyar da aka zama rubutun Haus"
+hau_test_996,mashaallah allah yasa mai amfani nine,negative,positive,ha,0.3774,LRL-instruct,zero-shot,"Positive
+
+Bayanan koyar da aka zama rubutun Haus"
+hau_test_3323,idan ka tsaya kayi zooming sosai ka kalli hoton zaka ga kamar riga ta saka mai kalar fatarta ba wai gadon bayanta bane a waje yakamata ayi mata kyakykyawar fahimta domin gaskiya a yadda nasan bayan rahma sadau ba haka yake ba saboda tayi qiba sosai a hoton nan,neutral,positive,ha,0.3869,LRL-instruct,zero-shot,"Positive
+
+Bayani na daya:
+
+Rubutun Hausa zaɓ"
+hau_test_2342,aunty rahama antashi lfy yunwa nakeji ataimaka abani abunda zankarya kumallo,neutral,positive,ha,0.3795,LRL-instruct,zero-shot,"Positive
+Bayani: Kai ƙwararren masanin n"
+hau_test_1538,yayi kyau good night sweet dream,negative,positive,ha,0.3767,LRL-instruct,zero-shot,"Positive
+
+Daga cikin yankin, rarraba rub"
+hau_test_5011,wollah n daura kana ruwa,positive,positive,ha,0.3766,LRL-instruct,zero-shot,"Positive
+Bayani: Kai ƙwararren masanin n"
+hau_test_1101,to allah yakawo mana daukinsa amin,negative,positive,ha,0.3850,LRL-instruct,zero-shot,"Positive
+
+Bayani:
+
+Kai ƙwararren masanin"
+hau_test_2882,ki zo min da nawa dadin,neutral,positive,ha,0.3765,LRL-instruct,zero-shot,"Positive
+
+Bayanan kwallon kafa, rubutun Hausa"
+hau_test_15,wahya fa sai heqi kike qarawa yasin,negative,positive,ha,0.3857,LRL-instruct,zero-shot,"Positive
+
+Bayanan kwallon kafa:
+
+Daga cikin"
+hau_test_439,dan adam kenan kome kaimai balallaine ka burgeshi b allah yakara basira director muna jindadin wannan shiri sosai wlh muna kuma kara godiya ️,negative,positive,ha,0.3827,LRL-instruct,zero-shot,"Positive
+Bayani: Kai ƙwararren masanin n"
+hau_test_4054,cab muna ruwa,positive,positive,ha,0.3763,LRL-instruct,zero-shot,"Positive
+Bayani: Kai ƙwararren masanin n"
+hau_test_3065,na duƙe tsohon ciniki kowa ya taso kai ya tarar,neutral,positive,ha,0.3805,LRL-instruct,zero-shot,"Positive
+Bayanan Hausa sun hada da 'tsohon cin"
+hau_test_2377,yo mukuma ya zaayi damu,neutral,negative,ha,0.3767,LRL-instruct,zero-shot,"Negative
+
+Bayanan koyar da aka zama yankunan da"
+hau_test_1210,muma haka nan xamu ki jin dadi inshaallah in allah ya tashy saka mana abun da kae mana,negative,positive,ha,0.3815,LRL-instruct,zero-shot,"Positive
+
+Bayani:
+Kai ƙwararren masanin"
+hau_test_1934,adam kannywood or am sorry kace kafita,neutral,negative,ha,0.3854,LRL-instruct,zero-shot,"Negative
+Daga cikin yanzu, rubutun Haus"
+hau_test_3824,bari inyi adawa bakiyi kyauba,positive,negative,ha,0.3856,LRL-instruct,zero-shot,"Negative
+
+Bayanan koyar da aka zama yanzu na"
+hau_test_4255,ina kyau anan,positive,negative,ha,0.3761,LRL-instruct,zero-shot,"Negative
+
+Bayanan kare:
+
+Daga cikin yanzu"
+hau_test_4005,allah ya tsine mai karya,positive,positive,ha,0.3762,LRL-instruct,zero-shot,"Positive
+
+Daga biyu, rarraba rubutun Hausa"
+hau_test_2603,zanyi biyayya amma yazanyi nasamu rabona nima,neutral,positive,ha,0.3829,LRL-instruct,zero-shot,"Positive
+
+Bayani:
+Kai ƙwararren masanin"
+hau_test_4017,idan bakasan gariba sai ka saurari daka maana shine idan bakasan shugaba buhari ba toh yasin kashigo nigeria gaskiya mun daku a turmi lugub a barmu haka,positive,positive,ha,0.3831,LRL-instruct,zero-shot,"Positive
+
+Bayanan kwallon kafa, rubutun Hausa"
+hau_test_2921,bari na tuna,neutral,negative,ha,0.3762,LRL-instruct,zero-shot,"Negative
+
+Bayanan kwallon kafa, 'bari na tuna"
+hau_test_3964,thank god numfashinmu ba a hannunsu yake ba dan shima nasan da yanzu an bambamta yawan wanda talaka zai shaka da na mai kudi,positive,positive,ha,0.3831,LRL-instruct,zero-shot,"Positive
+
+Bayani sun hada da rubutun Hausa kuma"
+hau_test_2402,dan hk mazajebase mai kyau bakoh me tallan awara kasamu kayi editing dinta zatayi nrml ai,neutral,negative,ha,0.3820,LRL-instruct,zero-shot,"Negative
+
+Bayanan kwallon kafa, rubutun Hausa"
+hau_test_957,barka da sallah sir,negative,positive,ha,0.3793,LRL-instruct,zero-shot,"Positive
+
+Bayanan koyar da rubutun Hausa 'b"
+hau_test_2103,bbc hausa a ina kuka samo wadannan bayanai,neutral,positive,ha,0.3870,LRL-instruct,zero-shot,"Positive
+
+Daga cikin yankin, rarraba rub"
+hau_test_23,allah y vashii saa sbd wnn duk sharrin maqiiyanshii neh da kuma tugguhuvangijii allah yah qetarar dashii daga kukan yan hassada da makirceh nah maqiiyah arewacin nigeria,negative,positive,ha,0.3849,LRL-instruct,zero-shot,"Positive
+Daga cikin waɗannan alamun Tur"
+hau_test_2707,inkun kamu karku sha,neutral,positive,ha,0.3767,LRL-instruct,zero-shot,"Positive
+
+Bayani:
+Kai ƙwararren masanin"
+hau_test_5213,allah raka taki gona idanma dahali yatsaya cen munafe,positive,positive,ha,0.3829,LRL-instruct,zero-shot,"Positive
+
+Bayanan kwallon kafa, rarraba rubut"
+hau_test_3967,saura bangaren tsaro nan yafi yi mana ciwo baba,positive,positive,ha,0.3883,LRL-instruct,zero-shot,"Positive
+
+Bayanan kwallon kafa, 'saura bangaren"
+hau_test_2380,shin wai da gaske hakan ne,neutral,positive,ha,0.3768,LRL-instruct,zero-shot,"Positive
+
+Bayanan kwallon kafa, rarraba rubut"
+hau_test_4373,waike haryanxu baki sayarba idan yayi kwantai pls go market,positive,positive,ha,0.3832,LRL-instruct,zero-shot,"Positive
+
+Bayanan kwallon kafa, yana nufin"

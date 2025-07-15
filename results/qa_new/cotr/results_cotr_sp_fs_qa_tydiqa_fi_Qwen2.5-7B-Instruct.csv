@@ -1,0 +1,563 @@
+id,lrl_question,lrl_context,lrl_ground_truth_answers_list,en_question_model,en_context_model,en_answer_model_intermediate,lrl_answer_model_final,comet_lrl_q_to_en,comet_lrl_c_to_en,comet_en_a_to_lrl,raw_model_response_single_prompt,error_message,runtime_sec
+fi-validation-596,Milloin ensimmäinen Tähtien sota elokuva julkaistiin?,"Sarjan ensimmäinen elokuva, Tähtien sota (myöhemmältä lisänimeltään Episodi IV – Uusi toivo), sai ensi-iltansa 25. toukokuuta 1977 20th Century Foxin levittämänä ja siitä tuli maailmanlaajuinen ilmiö. Sille ilmestyi kaksi yhtä lailla menestynyttä jatko-osaa Imperiumin vastaisku (1980) ja Jedin paluu (1983); näistä kolmesta elokuvasta koostuu alkuperäinen Tähtien sota -trilogia. Esiosatrilogia ilmestyi myöhemmin vuosina 1999–2005, joka sai faneilta ja kriitikoilta kriittisemmän vastaanoton kuin alkuperäinen trilogia. Kaikki kuusi ovat joko voittaneet tai olleet ehdolla Oscar-palkintojen saajiksi, ja ne ovat tuottaneet yhteensä 4,38 miljardia dollaria.[1] Se on tällä hetkellä maailman toiseksi eniten tuottanut elokuvasarja.[2] Sarjaa laajennettiin suuremmaksi mediajatkumoksi Expanded Universen kautta, johon kuuluu kirjoja, televisiosarjoja, videopelejä, ja sarjakuvia.",['25. toukokuuta 1977'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]
+English",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]
+English",,1.4011945724487305
+fi-validation-588,Milloin Berliinin muuri kaatui?,"Muurin murtuminen johtui oikeastaan väärinkäsityksestä. Syksyllä 1989 alkoivat suuret Itä-Saksan hallituksen vastaiset mielenosoitukset. Maan johtaja Erich Honecker erosi 18. lokakuuta. Uusi hallitus päätti marraskuussa lievittää hiukan ankaria matkustusrajoituksia ihmisten lepyttämiseksi. Tiedotteen lukija Günter Schabowski ei ollut mukana päätöksenteossa eikä tiennyt yksityiskohtia, ei myöskään sitä, että päätöksen piti astua voimaan vasta seuraavana päivänä. Schabowski sekosi papereissaan suorassa lähetyksessä ja ilmoitti, että matkoja muurin toiselle puolelle tehtäisiin vastedes ilman ennakkoehtoja. Hän vastasi italialaistoimittajan kysymykseen: ”Minun tietääkseni voimassa heti, ilman viivettä.” Tämä ilmoitettiin myös länsisaksalaisilla televisiokanavilla ja pian kymmenet tuhannet uteliaat ihmiset ryntäsivät muurille. Hämmästyneet rajavartijat eivät tienneet, mitä tehdä pääsyä muurin toiselle puolelle vaatineille ihmismassoille. Koska vaihtoehtona olisi ollut omien kansalaisten ampuminen, rajavartijat antoivat periksi ja päästivät kansanjoukot läpi. Muurin toisella puolella heitä tervehtivät riemuitsevat länsiberliiniläiset. Tätä marraskuun yhdeksättä päivää vuonna 1989 pidetään muurin murtumispäivänä.[5]",['1989'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.4244225025177002
+fi-validation-208,Ketkä sotivat peloponnesolaissodassa?,"
+
+Peloponnesolaissota käytiin pääasiassa Ateenan ja Spartan johtamien liittojen välillä vuosina 431–404 eaa. Persialaissotien jälkeen Ateenan valta oli kasvanut valtavasti, ja muut kaupunkivaltiot pelkäsivät, että Ateenasta tulisi liian voimakas. Lopulta sota syttyi Spartan ja Ateenan välillä. Peloponnesolaissota oli yksi antiikin Kreikan historian käännekohdista. Sota veti mukaansa miltei kaikki kreikkalaiset kaupunkivaltiot, ja sen aikana kuoli ennennäkemätön määrä ihmisiä. Sodan aikana kumpikin osapuoli teki myös julmuuksia, joilta aikaisemmin oli säästytty.",['Ateenan ja Sparta'],"[Your English Translation of the Question] English Context: [Your English Translation of the Context] English Answer: [Your English Answer based on the English Context and Question] Finnish Answer: [Your Finnish Translation of the English Answer]
+English","[Your English Translation of the Context] English Answer: [Your English Answer based on the English Context and Question] Finnish Answer: [Your Finnish Translation of the English Answer]
+English","[Your English Answer based on the English Context and Question] Finnish Answer: [Your Finnish Translation of the English Answer]
+English","[Your Finnish Translation of the English Answer]
+English",,,,"English Question: [Your English Translation of the Question] English Context: [Your English Translation of the Context] English Answer: [Your English Answer based on the English Context and Question] Finnish Answer: [Your Finnish Translation of the English Answer]
+English",,1.3669257164001465
+fi-validation-291,Mikä oli Stephenie Meyer ensimmäinen kirja?,"
+
+Stephenie Meyer (o.s. Morgan, s. 24. joulukuuta 1973 Hartford, Connecticut) on yhdysvaltalainen kirjailija. Hänet tunnetaan neliosaisesta romanttisesta fantasiasarjasta Houkutus (). Kirjasarjan ensimmäinen osa, vuonna 2005 julkaistu Houkutus, oli Meyerin esikoisteos. Meyerin Houkutus-sarjan kirjoja on myyty maailmanlaajuisesti yli 42 miljoonaa kappaletta,[1][2] ja sarjaa on käännetty 37 kielelle.[3] Vuonna 2005 Publishers Weekly -lehti valitsi Meyerin yhdeksi vuoden lupaavimmista uusista kirjailijoista.[4]",['Houkutus'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3526136875152588
+fi-validation-174,Minkä Suomen historian aikakauden katsotaan alkaneen Helmikuun manifestista?,"Ensimmäisen sortokauden katsotaan alkaneen, kun keisari Nikolai II vuonna 1899 antoi helmikuun manifestin.[1][2][3] Sitä vastaan kerättiin Suuri adressi.",['Ensimmäisen sortokauden'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.336130142211914
+fi-validation-292,Mikä oli SOAD ensimmäinen levy?,"Kesällä 1998 System of a Down julkaisi debyyttialbuminsa nimeltään System of a Down. Albumi menestyi hyvin, ja sen ensimmäisestä singlestään Sugar tuli radiosuosikki. Vähän ajan päästä SOAD julkaisi toisen singlensä, nimeltään Spiders. Kolmas single oli War?. Albumin ilmestyttyä yhtye keikkaili laajasti Slayerin lämmittelijänä, ennen kuin he pääsivät esiintymään Ozzfestille. Ozzfestin jälkeen he keikkailivat yhdessä muiden bändien kanssa ympäri Yhdysvaltoja, mutta myös pienemmillä kiertueilla Euroopassa.",['System of a Down'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3515527248382568
+fi-validation-711,Minkä maalainen yhtiö Ubisoft on?,"
+Ubisoft Entertainment S.A. (aikaisemmin Ubi Soft Entertainment Software) on ranskalainen videopelien kehittämiseen ja julkaisuun keskittynyt yritys. Se on Euroopan kolmanneksi suurin ja Yhdysvaltojen seitsemänneksi suurin itsenäinen videopeliyritys. ",['ranskalainen'],...,...,"...
+English Answer: ...
+
+
+English Question: What type of company is Ubisoft?
+English Context: Ubisoft Entertainment S.A. (previously known as Ubi Soft Entertainment Software) is a French video",[SP_Extract_Error_LRL_A],,,,"English Question: ...
+English Context: ...
+English Answer: ...
+English Answer: ...
+
+
+English Question: What type of company is Ubisoft?
+English Context: Ubisoft Entertainment S.A. (previously known as Ubi Soft Entertainment Software) is a French video",,1.3413076400756836
+fi-validation-210,Milloin Eurovisionia on aloitettu järjestämään?,Ensimmäinen Eurovision laulukilpailu pidettiin Sveitsin Luganossa vuonna 1956. Idean isä oli EBU:n ranskalainen voimahahmo Marcel Bezençon. EBU:n perustajayhtiöillä oli tarve keksiä kaikkia jäsenmaita kiinnostavia televisio-ohjelmia.[14] Pienin yhteinen nimittäjä löytyi laulukilpailusta ja esikuvana oli 1951 alkanut Italian valtion TV-yhtiö RAI:n ja Sanremon kasinon järjestämä kansallinen laulukilpailu Festival di Sanremo. ,['1956'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.350343942642212
+fi-validation-266,Miksi vironruotsalaiset ovat historiallinen vähemmistö?,"
+Ruotsalaisia on asunut Viron alueella ainakin 1200-luvulta lähtien. 1210- ja 1220-luvulla saksalaiset ja tanskalaiset valloittivat virolaisten alueet. Virolaisia ei ollut perinteisesti asunut paljon rannikoilla. Tästä syystä paikalliset kartanonherrat alkoivat houkutella ruotsalaisia siirtolaisia mailleen. Ruotsalaisia pidettiin myös ehkä luotettavampina kuin hiljattain käännytettyjä virolaisia.[1] Siitä, mistä Viroon muuttaneet ruotsalaiset tulivat, ei ole tarkkaa tietoa, eikä muuttoliikettä mainita ruotsalaisissa aikalaislähteissä. Siirtolaisia tuli ilmeisesti Gotlannista, Ruotsin itärannikolta ja Suomen ruotsalaisyhteisöistä. Varhaisin kirjallinen lähde ruotsalaisista Virossa on vuodelta 1294 Haapsalusta. Lähteessä mainittiin ruotsalaisia elävän paitsi Haapsalussa myös Saarenmaan alueella. 1200-luvun siirtolaisten määrä lienee ollut pieni. Siirtolaisia tuli enemmän 1340-luvulla, kun virolaisten epäonnistunut yrjönyön kapina tyhjensi kyliä ja maatiloja.[1] Ruotsalaisten muuttoaalto Viroon oli huipussaan 1400- ja 1500-luvulla. Siirtolaiset saivat niin sanotun ruotsalaisoikeuden, joka takasi heille paremman oikeudellisen aseman ja lievemmän verotuksen kuin virolaisille.[2] Samaan aikaan virolaisista tuli käytännössä maaorjia.[1] 1560-luvulla ruotsalaisia oli Virossa noin 1000.[3] Ruotsalaisten maahanmuutto loppui 1500-luvun aikana, ja heidän määräänsä vähensivät sodat, joita käytiin alueella 1560-luvulta 1640-luvulle saakka. Sodat ja taudit tappoivat luultavasti yli puolet ruotsalaisväestöstä, ja heidän määränsä palautui 1560-luvun lukemiin vasta 1600-luvun puolivälissä.[1]",['1210- ja 1220-luvulla saksalaiset ja tanskalaiset valloittivat virolaisten alueet. Virolaisia ei ollut perinteisesti asunut paljon rannikoilla. Tästä syystä paikalliset kartanonherrat alkoivat houkutella ruotsalaisia siirtolaisia mailleen'],[Your English Translation of the Question],[Your English Translation of the Context],[Your English Answer based on the English Context and Question],[Your Finnish Translation of the English,,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+Finnish Answer: [Your Finnish Translation of the English",,1.4555604457855225
+fi-validation-331,Minä vuonna kokaiini lähti pois Coca Colan reseptistä?,"Coca-Colassa on sokeria   kohti.[2] Coca-Colaan käytettiin vuoteen 1903 asti tuoreita kokalehtiä, ja lasillinen Coca-Colaa sisälsi siihen aikaan vielä täysin laillista kokaiinia.[3] Toinen Coca-Colan alkuperäisreseptissä käytetty raaka-aine oli kolapähkinä, joka sisältää runsaasti kofeiinia. Coca-Colan varsinainen valmistuskaava on edelleen erittäin suojeltu salaisuus. Erityisesti tämä koskee Merchandise 7X -nimellä kutsuttua ainesosaa.[4]",['1903'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3503830432891846
+fi-validation-192,Milloin Carl Sagan on syntynyt?,"
+Carl Edward Sagan (9. marraskuuta 1934 – 20. joulukuuta 1996) oli yhdysvaltalainen tähtitieteilijä, astrofyysikko, astrobiologi ja tieteen yleistajuistaja. Suurimman osan urastaan hän työskenteli Cornellin yliopistossa, jonka professorina hän toimi vuodesta 1971 aina kuolemaansa asti. Sagan tunnetaan lukuisista tutkimuksistaan ja teorioistaan eksobiologian saralla ja suuresta vaikutuksestaan maan ulkopuolisen älyn etsintään tähtäävän SETI-ohjelman aloittamiseen. Töissään hän pyrki toistuvasti edistämään tieteellisiä tutkimusmenetelmiä.[1]",['9. marraskuuta 1934'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3652353286743164
+fi-validation-738,Missä Oliver Wolf Sacks kuoli?,"
+Oliver Wolf Sacks (9. heinäkuuta 1933 Lontoo, Britannia – 30. elokuuta 2015 New York, Yhdysvallat[1]) oli neurologian professori, joka tunnettiin tieteenalansa popularisoijana. Hän kirjoitti kliinisiä tapauskertomuksia helposti ymmärrettävällä, välillä lähes anekdoottimaisella tyylillä mutta tieteellisyydestä tinkimättä. Sacks osasi nähdä neurologiset oireet inhimillisessä valossa ja kirjoittaa niistä elävästi. Hän pyrki ”inhimillistämään” nykyajan lääketiedettä selvittämällä jokaisen sairauden takaa kunkin yksilön kohtalon ja kyseenalaistamalla ns. normaaliuden ja sairauden välisiä rajoja.","['New York, Yhdysvallat']","[Your English Translation of the Question] English Context: [Your English Translation of the Context] English Answer: [Your English Answer based on the English Context and Question] Finnish Answer: [Your Finnish Translation of the English Answer]
+English","[Your English Translation of the Context] English Answer: [Your English Answer based on the English Context and Question] Finnish Answer: [Your Finnish Translation of the English Answer]
+English","[Your English Answer based on the English Context and Question] Finnish Answer: [Your Finnish Translation of the English Answer]
+English","[Your Finnish Translation of the English Answer]
+English",,,,"English Question: [Your English Translation of the Question] English Context: [Your English Translation of the Context] English Answer: [Your English Answer based on the English Context and Question] Finnish Answer: [Your Finnish Translation of the English Answer]
+English",,1.3667151927947998
+fi-validation-234,Milloin Half-Life 2 julkaistiin?,"Half-Life 2:n kehittäminen alkoi jo vuonna 1999, mutta syyskuussa 2003 Valven tietokoneet joutuivat tietomurron kohteiksi ja pelin lähdekoodi vuoti internetiin. Pelin kehitys oli muutenkin myöhässä, joten koodivuoto johti pelin julkaisun lykkäämiseen.[2] Half-Life 2 julkaistiin 16. marraskuuta 2004. Peli osoittautui suurmenestykseksi niin arvosteluissa kuin myyntilistoillakin.[3][4]",['16. marraskuuta 2004'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3503997325897217
+fi-validation-626,Milloin Lenin kuoli?,"
+Vladimir Iljitš Lenin (; yleensä V. I. Lenin), alkuperäiseltä nimeltään Vladimir Iljitš Uljanov, ( ) (22. huhtikuuta (J: 10. huhtikuuta) 1870 Simbirsk – 21. tammikuuta 1924 Gorki) oli venäläinen vallankumouksellinen, bolševikkipuolueen johtaja ja leninistisen ideologian perustaja.",['21. tammikuuta 1924'],...,...,...,...,,,,"English Question: ...
+English Context: ...
+English Answer: ...
+Finnish Answer: ...
+
+
+---
+
+English Question: When did Lenin die?
+English Context: Vladimir Il'ich Lenin (usually referred to as V.I. Lenin), originally named Vladimir Il",,1.344947099685669
+fi-validation-768,Milloin Kaleva on perustettu?,"
+
+
+Kaleva on Oulussa ilmestyvä sitoutumaton sanomalehti. Toimittaja Juho Raappanan vuonna 1899 perustama Kaleva on nykyisin Suomen neljänneksi suurin seitsenpäiväinen sanomalehti.",['1899'],...,...,"...
+English Answer: ...
+
+
+---
+
+English Question: When was Kaleva founded?
+English Context: Kaleva is an independent newspaper appearing in Oulu. The newspaper Kaleva, founded by journalist Ju",[SP_Extract_Error_LRL_A],,,,"English Question: ...
+English Context: ...
+English Answer: ...
+English Answer: ...
+
+
+---
+
+English Question: When was Kaleva founded?
+English Context: Kaleva is an independent newspaper appearing in Oulu. The newspaper Kaleva, founded by journalist Ju",,1.3495545387268066
+fi-validation-155,Milloin Jokerit on perustettu?,"Helsingin Jokerit[1] on vuonna 1967 perustettu helsinkiläinen jääkiekkoseura, jonka edustusjoukkue pelaa KHL:ssä. Ennen KHL:ää Jokerit pelasi pääosin Suomen pääsarjassa. Jokerit koostuu kahdesta erillisestä organisaatiosta. Edustusjoukkueen taustayhtiö on Jokerit Hockey Club Oy ja juniorijoukkueiden vastaava Helsingin Jokerit ry. Juniorijoukkueet pelaavat edelleen Suomen sarjoissa.",['1967'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3490839004516602
+fi-validation-514,Milloin höyrylaiva SS Edmund Fitzgerald upposi?,"
+Höyrylaiva SS Edmund Fitzgerald (usein pelkästään Fitzgerald, Fitz tai Big Fitz) oli Yhdysvalloissa rakennettu oman aikansa mittapuun mukaan suurikokoinen Suurten järvien malminkuljetuksiin tarkoitettu rahtialus, joka katosi miehistöineen syysmyrskyssä Yläjärvellä 10. marraskuuta 1975. Alus upposi niin nopeasti, että sen 29-henkinen miehistö ei ehtinyt lähettää minkäänlaista hätäsanomaa. Aluksen hylky lepää Yläjärven pohjassa 162 metrin syvyydessä Kanadan aluevesillä, sijainnissa 46°59.9′N 85°6.6′W, noin 27 kilometriä Whitefish Bayn suulta länteen. Myöhemmin Gordon Lightfootin säveltämä balladi ""The Wreck of the Edmund Fitzgerald"" teki tapauksesta Suurten järvien tunnetuimman haaksirikon.",['10. marraskuuta 1975'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3689501285552979
+fi-validation-67,Mikä on uraanin järjestysluku?,"
+
+Uraani on alkuaine ja myrkyllinen raskasmetalli, jonka kaikki luonnossa esiintyvät ja keinotekoiset isotoopit ovat radioaktiivisia, useimmiten alfa-säteilijöitä. Jaksollisessa järjestelmässä sen kemiallinen merkki on U (lat. uranium), järjestysluku 92 ja CAS-numero 7440-61-1. Merkittävimmät isotoopit ovat 235U ja 238U, jotka ovat 234U ohella ainoat isotoopit, joita löydetään luonnosta. Luonnonuraanin sulamispiste on 1135°C ja tiheys 19050kg/m³. 235U-isotooppia voidaan käyttää ydinpolttoaineena energiantuotantoon ja ydinaseiden valmistamiseen.",['92'],...,...,"...
+English Answer: ...
+
+
+English Question: What is the atomic number of uranium?
+English Context: Uranium is an element and a toxic heavy metal, where all naturally occurring and artificial isotopes",[SP_Extract_Error_LRL_A],,,,"English Question: ...
+English Context: ...
+English Answer: ...
+English Answer: ...
+
+
+English Question: What is the atomic number of uranium?
+English Context: Uranium is an element and a toxic heavy metal, where all naturally occurring and artificial isotopes",,1.381227731704712
+fi-validation-196,Milloin Sima Qian syntyi?,"Sima Qian (司馬遷, n. 145 eaa. – 90 eaa.) oli historioitsija ja astrologi. Häntä pidetään Kiinan historiankirjoituksen isänä. Hänen tunnetuin teoksensa on Shiji (史記, ""Muistiinmerkintöjä historiasta""), joka oli ensimmäinen yleiskatsaus Kiinan historiaan.",['90 eaa'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.339949607849121
+fi-validation-109,Milloin Philadelphia on perustettu?,"William Penn perusti Philadelphian 1682, ja se on ollut historiansa aikana poliittisesti, kulttuurisesti ja taloudellisesti Yhdysvaltain merkittävimpiä kaupunkeja. Kaupungissa allekirjoitettiin Yhdysvaltain itsenäisyysjulistus vuonna 1776, ja se toimi myös Yhdysvaltain pääkaupunkina 1790–1800. Vaikka New York ja Washington ajoivat sen ohi talouden ja politiikan keskuksina, Philadelphia säilytti asemansa merkittävän alueellisena teollisuuskeskuksena. Nykyään sen talous on monipuolista, ja keskeisempiä aloja ovat informaatioala, lääketieteellinen tutkimus ja palvelut. Turismi on myös merkittävässä asemassa, sillä harvassa Yhdysvaltain kaupungissa on yhtä monta historiallista nähtävyyttä.",['1682'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3710427284240723
+fi-validation-66,Mitä tarkoittaa hovimarsalkka?,"Hovifuriiri on hovipalvelija, joka hovin palvelusväen eli hovikunnan esimiehenä toimivan hovimarsalkan alaisuudessa hoitaa talousasioita ja valvoo palveluskunnan toimia.[3]",['hovikunnan esimiehenä toimiva'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3379871845245361
+fi-validation-199,Milloin Calle Jularbo kuoli?,"
+Carl ""Calle"" Jularbo (oik. Karl Oskar Karlsson, 6. kesäkuuta 1893 Avesta – 13. helmikuuta 1966 Nacka) oli ruotsalainen harmonikansoittaja, jota on nimitetty jopa Ruotsin ""harmonikkakuninkaaksi"".[1]",['13. helmikuuta 1966'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3432340621948242
+fi-validation-78,Miten Kurt Cobain kuoli?,"
+Lopun alku käynnistyi kun Cobain katosi vieroitusklinikalta maaliskuussa 1994. Courtney Love palkkasi yksityisetsivät paikantamaan miehen. Courtney teki katoamisilmoituksen Kurtin äidin nimellä, jossa varoiteltiin muusikon olevan itsetuhoinen. Kukaan ei löytänyt Cobainia. Ennustettavissa ollut toteutui 5. huhtikuuta 1994: Cobainin verestä löydettiin kolminkertainen yliannos heroiinia. Hän oli myös väitetysti ampunut itseään haulikolla. Jostain syystä haulikosta ei löydetty Cobainin sormenjälkiä. Hänet löysi hälytysjärjestelmän asentaja kahden ja puolen päivän päästä ampumisesta. Asentaja huomasi lasiruudun läpi paitaan, farkkuihin ja kenkiin pukeutuneen ruumiin huoneessa, jonka ikkunassa oli kyltti, jossa luki ""Sovun valtakunta"". Kurt Cobain makasi selällään lattialla. Kurt oli jättänyt myös itsemurhaviestin, jonka hän oli omistanut lapsuuden mielikuvitusystävälleen Boddahille. Paperissa oli pätkä Neil Youngin kappaleesta ""My My, Hey Hey (Out Of The Blue)"". Cobain oli kirjoittanut lappuun ""It's better to burn out than to fade away"" (suom. ""On parempi palaa loppuun kuin hiipua pois"").",['Cobainin verestä löydettiin kolminkertainen yliannos heroiinia. Hän oli myös väitetysti ampunut itseään haulikolla'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.4046621322631836
+fi-validation-470,Mikä oli ensimmäinen Tähtien sota kirja?,"Ensimmäinen Tähtien sota -kirja oli vuonna 1976, puoli vuotta ennen elokuvaa, julkaistu Tähtien sodan romaaniversio. Kirja ilmestyi George Lucasin nimissä, mutta sen todellinen tekijä on Alan Dean Foster. Foster kirjoitti myöhemmin Tähtien sota -aiheisen kirjan Splinter of the Mind’s Eye, joka ilmestyi Suomessa 1980-luvulla nimellä Mustan lordin paluu.",['Tähtien sodan romaaniversio'],"... English Context: ... English Answer: ... English Answer: ...
+English Question: Which was the first Star Wars novel?","... English Answer: ... English Answer: ...
+English Question: Which was the first Star Wars novel?
+English Context: The first Star Wars -novel was published in 1976, half a year before","... English Answer: ...
+English Question: Which was the first Star Wars novel?
+English Context: The first Star Wars -novel was published in 1976, half a year before",[SP_Extract_Error_LRL_A],,,,"English Question: ... English Context: ... English Answer: ... English Answer: ...
+English Question: Which was the first Star Wars novel?
+English Context: The first Star Wars -novel was published in 1976, half a year before",,1.341109275817871
+fi-validation-23,Kuka on ohjannut elokuvan Joulubileet?,"
+Jari Juhani Halonen (s. 30. syyskuuta 1962)[1] on suomalainen elokuva- ja teatteriohjaaja. Halonen on tunnettu kärkevänä kapinasieluna ja omaleimaisena ohjaajana. Elokuvansa hän on tavallisesti kirjoittanut itse ja ollut niissä merkittävissä sivuosissa. Halonen on ohjannut viisi pitkää elokuvaa, joista teatterielokuvia Back to the USSR – takaisin Ryssiin (1992), Lipton Cockton in the Shadows of Sodoma (1995), Joulubileet (1996), Aleksis Kiven elämä (2002) ja Kalevala – Uusi aika (2013).",['Jari Juhani Halonen'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3602654933929443
+fi-validation-338,Kuka on Ihmenelosten vihollinen?,"Ihmeneloset taistelivat monia vihollisia vastaan, joihin kuuluivat muukalaistyranni Kurrgo; mieliä hallitseva Nukkemestari, jonka tytärpuolesta Aliciasta – sokea kuvanveistäjä – tuli Ihmenelosten hyvä ystävä ja Benin pitkäaikainen tyttöystävä; muotoa muuttavan Ihmemiehen, erikoisen muukalaisen josta myöhemmin tuli ryhmän hyvä ystävä; uskomattoman Hulkin; aineettoman Punaisen Haamun ja hänen Superapinansa, jotka saivat voimansa matkimalla Ihmenelosten alkuperää; kieroutuneen neron Hullun Haihattelijan ja hänen Ällistyttävän Androidinsa; Superskrullin (Kl'rt), Ihmenelosten yhdistetyt voimat saaneen skrullin; ajassa matkustavan tyrannin Rama-Tutin, joka tunnettiin myös Kangina; materiaa järjestävän Molekyylimiehen; Hitler-klooni Vihankylväjän; alkemisti Diablon; atlantislaisen sotaherra Attuman; vallasta hullun miljonäärin Gregory Gideonin; ja hirviömäisen androidin Lohikäärmemiehen. Matkan varrella he ystävystyivät sarjakuvan tekijöiden Stan Leen ja Jack Kirbyn ja toisten sankareiden kuten Hämähäkkimiehen (joka yritti turhaan liittyä Ihmenelosiin), Muurahaismiehen (Hank Pym), Nick Furyn, Kostajien, Tohtori Oudon, Ryhmä-X:n ja Daredevilin kanssa. Jopa Namor lämpeni viimein ryhmälle ja hänestä tuli arvokas liittolainen huolimatta faktasta, että Sue valitsi Reedin hänen sijastaan. Seuraaja Uatu kiinnostui erityisesti Ihmenelosista rikkoen jopa valansa olla sekaantumatta asioihin toistuvasti auttaakseen ryhmää vuosien varrella.","[""Ihmeneloset taistelivat monia vihollisia vastaan, joihin kuuluivat muukalaistyranni Kurrgo; mieliä hallitseva Nukkemestari, jonka tytärpuolesta Aliciasta – sokea kuvanveistäjä – tuli Ihmenelosten hyvä ystävä ja Benin pitkäaikainen tyttöystävä; muotoa muuttavan Ihmemiehen, erikoisen muukalaisen josta myöhemmin tuli ryhmän hyvä ystävä; uskomattoman Hulkin; aineettoman Punaisen Haamun ja hänen Superapinansa, jotka saivat voimansa matkimalla Ihmenelosten alkuperää; kieroutuneen neron Hullun Haihattelijan ja hänen Ällistyttävän Androidinsa; Superskrullin (Kl'rt), Ihmenelosten yhdistetyt voimat saaneen skrullin; ajassa matkustavan tyrannin Rama-Tutin, joka tunnettiin myös Kangina; materiaa järjestävän Molekyylimiehen; Hitler-klooni Vihankylväjän; alkemisti Diablon; atlantislaisen sotaherra Attuman; vallasta hullun miljonäärin Gregory Gideonin; ja hirviömäisen androidin Lohikäärmemiehen""]",[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.427194356918335
+fi-validation-704,Milloin Abraham Lincoln syntyi?,"
+
+Abraham Lincoln (12. helmikuuta 1809 Hardinin piirikunta, Kentucky, Yhdysvallat – 15. huhtikuuta 1865 Washington, Yhdysvallat) oli yhdysvaltalainen poliitikko ja Yhdysvaltain presidentti vuosina 1861–65. Hän toimi ennen poliittista uraansa muun muassa lautturina, sekatavarakaupan myyjänä ja postitoimiston johtajana. Toisin kuin aiemmat presidentit, hän oli kongressiedustajana vain yhden kauden. Armeijassakin hän palveli vain lyhyen aikaa vapaaehtoisena ja oli sotilasarvoltaan pelkkä sotamies.",['12. helmikuuta 1809'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3530752658843994
+fi-validation-444,Missä World Boxing Association perustettiin?,"1900-luvun alkupuoliskon aikana ammattilaisnyrkkeilyn painopiste siirtyi Britanniasta Yhdysvaltoihin. Vaikka mitään virallisia maailmanmestaruuksia ei ollutkaan, yleisesti maailmanmestarina pidettiin The National Police Gazette -lehdellä listattuja nimiä. 1920-luvulla NBA (National Boxing Association) ryhtyi järjestämään maailmanmestaruusotteluita. Samaan aikaan perustettiin Ring Magazine, joka julkaisi mestarien luetteloita. Vuonna 1962 NBA vaihtoi nimensä WBA:ksi (World Boxing Association), ja seuraavana vuonna se sai ensimmäisen kilpailijansa WBC:n (World Boxing Council). Kumpikaan niistä ei ollut yleisesti tunnustettu ja tästä johtuivat muun muassa erimielisyydet maailmanmestaruuksista. Vuonna 1983 perustettiin lisäksi uusi järjestö IBF (International Boxing Federation), jolla on myös omat maailmanmestaruutensa kussakin painoluokassa. Vuonna 1988 syntyi vielä neljäs suuri maailmanlaajuinen järjestö WBO (World Boxing Organization) kun joukko puertoricolaisia ja dominikaanisia liikemiehiä riitaantui WBA:n kanssa. Näiden neljän suuren lisäksi on lukemattomia muita omia maailmanmestaruustitteleitään jakavia järjestöjä, joita ei kuitenkaan pienuutensa takia yleisesti tunnusteta näiden neljän suurimman liiton joukkoon.",['1962'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.4040887355804443
+fi-validation-405,Miten tulenkantajat määrittelivät suomalaisuuden?,"Tulenkantajat pyrkivät ohjaamaan suomalaista kirjallisuutta uusille urille lähemmäs eurooppalaisia virtauksia.[1] Ryhmä pyrki eroon ”korpikulttuurista” ja määritteli suomalaisuuden ensisijaisesti teollisuuden, kaupungistumisen ja modernin taiteen kautta. Tulenkantajien tunnuslause oli: ”Ikkunat auki Eurooppaan!”, joka oli lainaus Elmer Diktoniuksen esittämistä Ultra-lehden tavoitteista: ""Ikkunat auki Eurooppaan päin"".[2] 
+Tulenkantajien ryhmä alkoi hajota ristiriitoihin 1920-luvun lopulla. Lopullisesti jäsenten yhteisen taipaleen voidaan katsoa päättyneen 1930-luvun alussa[3].","['ensisijaisesti teollisuuden, kaupungistumisen ja modernin taiteen kautta']",...,...,"...
+English Answer: ...
+
+English Question: How did the emigrants define Finnishness?
+English Context: The emigrants aimed to guide Finnish literature towards new paths closer to European trends. The group sought",[SP_Extract_Error_LRL_A],,,,"English Question: ...
+English Context: ...
+English Answer: ...
+English Answer: ...
+
+English Question: How did the emigrants define Finnishness?
+English Context: The emigrants aimed to guide Finnish literature towards new paths closer to European trends. The group sought",,1.3637771606445312
+fi-validation-39,Kuinka kuu syntyi?,"Kuun synty tapahtui nykynäkemyksen mukaan luultavimmin siten, että Marsin kokoinen planeetta, Theia, törmäsi alku-Maahan, Törmäyksen tuloksena alku-Maan kiertoradalle lensi ainetta, josta syntyi aikaa myöten kasautumalla Kuu. Kuun tarkkaa syntyperää ei silti vieläkään osata varmasti sanoa. Aiemmin Kuun oletettiin syntyneen erikseen ja Maan siepanneen Kuun, jonkin prosessin tuottaneen alusta asti Maan ja Kuun toisiaan kiertämään tai Maan jakautuneen itsestään kahtia.","['Marsin kokoinen planeetta, Theia, törmäsi alku-Maahan, Törmäyksen tuloksena alku-Maan kiertoradalle lensi ainetta, josta syntyi aikaa myöten kasautumalla Kuu. Kuun tarkkaa syntyperää ei silti vieläkään osata varmasti sanoa']",[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3474633693695068
+fi-validation-583,Missä Charles S. Peirce syntyi?,"Charles Sanders Peirce (10. syyskuuta 1839 Cambridge, Massachusetts, Yhdysvallat – 19. huhtikuuta 1914 Milford, Pennsylvania Yhdysvallat) oli yhdysvaltalainen filosofi, loogikko, tiedemies ja yleisnero.[1] Hänet tunnetaan erityisesti filosofisen pragmatismin alullepanija, työstään matemaattisen logiikan saralla, semioottisista tutkimuksistaan (esimerkiksi trikotomisen merkin käsitteen kehittämisestä), fallibilistisesta ja realistisesta tieteenfilosofiastaan sekä saksalaisesta idealismista ja Darwinin evoluutioteoriasta vaikutteita saaneen objektiivista idealismia edustavan metafyysisen järjestelmän kehittäjänä. Peircen filosofian keskiössä on hänen kolmen kategorian oppinsa, jonka oikeuttamiseksi Peirce kehitti Edmund Husserlin fenomenologiaa muistuttavan niin ikään ""fenomenologiaksi"" ja myöhemmin ""faneroskopiaksi"" (phaneroscopy) kutsumansa opin.[2][3] Peircen tieteellinen työ kattoi kuitenkin filosofian ja logiikan lisäksi myös monia muita aloja, esimerkiksi luonnontieteitä, matematiikkaa ja psykologiaa, ja vaikka Peirce tunnetaan nykyään lähinnä filosofina ja loogikkona, hän ei koskaan toiminut palkkatyössä tai tutkijanvirassa näillä aloilla. Hänet tunnettiin omana aikanaan lähinnä luonnontieteilijänä. Tälläkin saralla hän oli innovatiivinen, esimerkiksi tehden uudistuksia tilastollisiin tutkimusmetodeihin.","['Cambridge, Massachusetts, Yhdysvallat']",[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.4238221645355225
+fi-validation-86,Mikä oli Poseidonin vaimon nimi?,"Poseidonin uskottiin asuvan Egeanmeren pohjassa upeassa palatsissa. Sieltä hänen uskottiin poistuvan merihevosten vetämissä vaunuissa. Hänellä oli vaimo Amfitrite, mutta Zeuksen tavoin hän vietteli monia muitakin naisia, kuten Medusan. Hänen symboleitaan ovat kolmikärki, hevonen ja delfiini. Hänen kunniakseen vietettiin Isthmian kisoja.",['Amfitrite'],[Your English Translation of the Question],[Your English Translation of the Context],[Your English Answer based on the English Context and Question],[Your Finnish Translation of the English,,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+Finnish Answer: [Your Finnish Translation of the English",,1.3414082527160645
+fi-validation-137,Missä vesinokkaeläimen kehossa myrkky syntyy?,"
+Vesinokkaeläinuroksilla on nilkoissa kannukset, jotka tuottavat lajille ominaista myrkkyseosta. Se sisältää ainakin 19 eri ainesosaa ja koostuu pääosin defensiiniä muistuttavista peptideistä (DLP), C-tyypin natriureettisistä peptideistä (CNP) ja hermokasvutekijöistä (NGF). Vesinokkaeläimen myrkky on kehittynyt itsenäisesti erillään matelijoiden myrkyn kehityksestä.[23] Myrkkyä ei erity ympäri vuoden vaan ainoastaan vesinokkaeläinten pariutumisaikaan.[24] Myrkkyä tuottavat rauhaset ovat kehittyneet hikirauhasista ja sijaitsevat uroksen takaraajojen polven ja jalkaterän välissä.[10][24] Munuaisenmuotoiset rauhaset liittyvät molemmissa takajaloissa ohutseinäisillä tiehyillä kantaluun kannukseen. Naarasvesinokkaeläimillä on nokkasiilien tapaan kehittymättömät kannusnuput, jotka katoavat ennen ensimmäisen elinvuoden loppua. Naarailla ei ole toimivia myrkkyrauhasia.[10]",['kannukset'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]
+English",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]
+English",,1.3974261283874512
+fi-validation-309,Ketä olivat Kivikasvot?,"
+Kivikasvot on suomalainen laulu- ja viihdekvartetti, jonka RUK:n kurssikaverukset Ismo Sajakorpi, Ilkka Hemming, Matti ""Fredi"" Siitonen ja Georg ""Jori"" Dolivo perustivat kesällä 1965[1]. ","['suomalainen laulu- ja viihdekvartetti, jonka RUK:n kurssikaverukset Ismo Sajakorpi, Ilkka Hemming, Matti ""Fredi"" Siitonen ja Georg ""Jori"" Dolivo perustivat']",[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3337631225585938
+fi-validation-525,Milloin Fakta homma elokuva julkaistiin?,"Fakta homma on suomalainen komediaelokuva vuodelta 1987. Se pohjautuu Yle TV2:n tuottamaan saman nimiseen televisiosarjaan.[1] Fakta homman vahvasti karrikoidut pariskunnat, Aulis ja Hansu sekä Heka ja Pirre, matkaavat leirintäalueelle viettämään juhannusta. Matkan aikana nelikko kohtaa monen sortin sakkia, kuten taiteilijoita, suositun televisiokasvon, Niemisen pariskunnan ja Auliksen entisen kansakoulunopettajan. Elokuva sai vaisun vastaanoton niin yleisöltä kuin kriitikoiltakin.",['1987'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3493776321411133
+fi-validation-557,Kuinka kauan Suomen alueella on ollut asutusta?,"Ensimmäiset ihmiset saapuivat Suomeen noin 8850-luvulla ennen ajanlaskun alkua. Ensimmäisten asukkaiden saapuessa Pohjois-Suomi oli vielä ympärivuotisesti jään peitossa, metsät koostuivat lehtipuista ja vedenpinta oli niin korkealla, että Keski-Suomi ja Savo-Karjala olivat Pohjanlahden rannikkoa. Kaikkiaan asutuksen varhaisvaiheena voidaan pitää ajanjaksoa 8850-8000 eaa. Asutus tuli Suomeen Kundan-Butovon-Veretjen-kulttuureista sekä Norjan rannikon kautta. Aluksi uusille alueille ei jääty pysyvästi, vaan lämpimän vuodenajan jälkeen metsästäjät palasivat takaisin alueille joista olivat lähteneet. Arvaamattomien talvien takia uuteen alueeseen tutustuminen oli turvallisinta kesällä. Uuden alueen olosuhteet ja sen eläinten tultua tutuksi pienet perheryhmät seurasivat pyyntiryhmiä.[6]",['8850-luvulla ennen ajanlaskun alkua'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.396880865097046
+fi-validation-231,Minä vuonna Tenavat-sarjakuva julkaistiin?,"
+Tenavat () on strippimuodossa ilmestynyt sanomalehtisarjakuva, jota kirjoitti ja piirsi yhdysvaltalainen sarjakuvapiirtäjä Charles M. Schulz. Tenavat ilmestyi 2. lokakuuta 1950 – 13. helmikuuta 2000 ja se oli vuosien ajan maailman luetuin sanomalehtisarjakuva. Parhaimmillaan sarjaa julkaistiin yli 2600 sanomalehdessä, sillä oli 355 miljoonaa lukijaa 75 maassa, ja sitä käännettiin 21 eri kielelle. Schulz teki kaikki 17897 strippiä yksin ilman avustajia.",['1950'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.357466697692871
+fi-validation-513,Milloin Himos perustettiin?,"
+
+Himos on Jämsässä sijaitseva matkailukeskus, joka on tullut tunnetuksi Himos Hiihtovuoren hiihtokeskuksesta. Ensimmäiset laskettelurinteet avattiin vuonna 1984. Himoksen rinteiden suurin korkeusero on 151 metriä.[1] Alueen perustajat olivat Juhani Ojala ja Päivi Kuokkanen.[2]",['1984'],...,...,...,...,,,,"English Question: ...
+English Context: ...
+English Answer: ...
+Finnish Answer: ...
+
+
+---
+
+English Question: When was Himos established?
+English Context: Himos is a holiday resort located in Jamsa, known to have evolved from the",,1.339158535003662
+fi-validation-333,Milloin W.A. Mozart syntyi?,"Wolfgang Amadeus Mozart syntyi Salzburgissa vuonna 1756. Hän sai nimensä isoisänsä ja pyhimys Johannes Krysostomoksen mukaan: Johannes Chrysostomus Wolfgangus Theophilus Mozart. Myöhemmin hänen isänsä, hovimuusikko Leopold Mozart lyhensi nimen ja käänsi kreikkalaisen Theophiluksen latinalaiseksi Amadeukseksi (Jumalan rakastama). Mozart käytti itse etunimeä Wolfgang ja sen perään kirjoitti Theophiluksen ranskankielisen (Amadé) tai italiankielisen (Amadeo) käännöksen. Hän ei myöskään käynyt koskaan koulua.",['1756'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3457765579223633
+fi-validation-649,Kuinka suuri on Kreetan pinta-ala?,"
+
+Kreeta () on Kreikan saari, joka sijaitsee itäisellä Välimerellä Egeanmeren etelälaidalla. Se on koko Kreikan suurin ja Välimeren viidenneksi suurin saari. Kreeta on itä–länsisuunnassa noin 250 kilometrin pituinen, 12–60 kilometrin levyinen, ja sen pinta-ala on 8303 neliökilometriä. Saaren asukasluku oli vuoden 2011 väestönlaskennassa 622913.[1] Hallinnollisesti Kreeta muodostaa oman alueensa eli periferiansa, Kreetan alueen, johon kuuluu myös pienempiä lähisaaria.[1][2] Kreetan pääkaupunki ja suurin kaupunki on Iraklion, ja sen muut suurimmat kaupungit ovat Chaniá, Réthymno, Ágios Nikólaos, Ierápetra ja Siteía. Saarella vallitsee leuto välimerenilmasto.[3]",['8303 neliökilometriä'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3663718700408936
+fi-validation-568,Missä W. A. Mozart syntyi?,"Wolfgang Amadeus Mozart syntyi Salzburgissa vuonna 1756. Hän sai nimensä isoisänsä ja pyhimys Johannes Krysostomoksen mukaan: Johannes Chrysostomus Wolfgangus Theophilus Mozart. Myöhemmin hänen isänsä, hovimuusikko Leopold Mozart lyhensi nimen ja käänsi kreikkalaisen Theophiluksen latinalaiseksi Amadeukseksi (Jumalan rakastama). Mozart käytti itse etunimeä Wolfgang ja sen perään kirjoitti Theophiluksen ranskankielisen (Amadé) tai italiankielisen (Amadeo) käännöksen. Hän ei myöskään käynyt koskaan koulua.",['Salzburgissa'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3460121154785156
+fi-validation-778,Milloin SOAD tauko alkoi?,"Vuonna 2006 yhtye ilmoitti jäävänsä määrittelemättömän pituiselle tauolle, jonka jälkeen kaikki jäsenet työskentelivät omien sivuprojektiensa parissa. Yhtye aloitti kiertueensa uudelleen vuonna 2011. System of a Down on julkaissut viisi studioalbumia, joita on myyty maailmanlaajuisesti yli 40 miljoonaa kappaletta.",['2006'],[Your English Translation of the Question],[Your English Translation of the Context],[Your English Answer based on the English Context and Question],[Your Finnish Translation of the English,,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+Finnish Answer: [Your Finnish Translation of the English",,1.3399274349212646
+fi-validation-118,Missä Sergei Djagilev kuoli?,"
+
+
+Sergei Pavlovitš Djagilev (; 31. maaliskuuta (J: 19. maaliskuuta) 1872 Selištši, Venäjän keisarikunta – 19. elokuuta 1929 Venetsia, Italia) oli venäläinen taidekriitikko, baletti-impressaario, lähinnä Euroopassa toimineen Venäläisen baletin, Ballets russes, perustaja ja Mir iskusstvan johtohahmo. Hänen balettiryhmästään nousi useita merkittäviä tanssijoita ja koreografeja. Vaikka Djagilev ei ollut balettitanssija eikä koreografi, hänen vaikutuksensa baletin 1900-luvun kehitykselle on merkittävä.","['Venetsia, Italia']","[Your English Translation of the Question] English Context: [Your English Translation of the Context] English Answer: [Your English Answer based on the English Context and Question] Finnish Answer: [Your Finnish Translation of the English Answer]
+English","[Your English Translation of the Context] English Answer: [Your English Answer based on the English Context and Question] Finnish Answer: [Your Finnish Translation of the English Answer]
+English","[Your English Answer based on the English Context and Question] Finnish Answer: [Your Finnish Translation of the English Answer]
+English","[Your Finnish Translation of the English Answer]
+English",,,,"English Question: [Your English Translation of the Question] English Context: [Your English Translation of the Context] English Answer: [Your English Answer based on the English Context and Question] Finnish Answer: [Your Finnish Translation of the English Answer]
+English",,1.3585429191589355
+fi-validation-650,Kuka Allah on?,"Allāh ( ) on arabian kielen sana, joka tarkoittaa Jumalaa. Muissa kielissä, esimerkiksi suomessa, sanalla viitataan usein erityisesti islamilaiseen käsitykseen Jumalasta. Suomen kielessä on perusteltua käyttää suomenkielistä sanaa Jumala, koska Allah ei ole erisnimi.",['Jumalaa'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.334376335144043
+fi-validation-215,Missä Thomas Hobbes syntyi?,"
+Thomas Hobbes (5. huhtikuuta 1588 Westport, Wiltshire – 4. joulukuuta 1679 Hardwick Hall, Derbyshire) oli englantilainen filosofi. Hänet tunnetaan ennen kaikkea poliittisesta filosofiastaan, mutta hän kirjoitti myös historiasta, geometriasta, etiikasta ja yleisestä filosofiasta.","['Westport, Wiltshire']",[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.338233470916748
+fi-validation-777,Mitä bioprosessitekniikka tutkii?,"Prosessiautomaatio, prosessien mittaukseen ja hallintaan keskittyvä tietotekniikka
+Katalyysitutkimus ja pintakemia, eli pinnoilla ja kalvoissa tapahtuvien ilmiöiden tutkimus
+Reaktiotekniikka, reaktorien suunnittelu ja reaktioiden aineensiirto
+Kemianlaitetekniikka, yksikköoperaatiot, massansiirto-, ja erotuslaitteet, kuten putket, pumput, tislaimet
+Laitossuunnittelu, tehdaskokonaisuuksien prosessilaitteistojen suunnittelu ja hinnan selvittäminen
+Bioprosessitekniikka, biologisten prosessien, kuten käymisen, toteuttaminen teollisuusmittakaavaan
+Polymeeriteknologia, muovien ja polymeerien valmistustekniikka, kuten polymerointikatalyytit
+Metallurginen prosessitekniikka eli prosessimetallurgia","['biologisten prosessien, kuten käymisen, toteuttaminen teollisuusmittakaavaan']",[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3654515743255615
+fi-validation-351,Kuinka supernova syntyy?,"
+
+Supernova on tähden räjähdys, joka voi syntyä kahdella eri tavalla. Massiivinen tähti voi luhistua fuusion loputtua oman painovoimansa johdosta neutronitähdeksi tai mustaksi aukoksi tai kaksoistähdissä valkoinen kääpiö voi kasvattaa massaansa yli Chandrasekharin rajan.[1] Supernovia esiintyy keskimäärin 50 vuoden välein linnunradan kokoisessa galaksissa.[1][2] Kun ennen havaittiin vuosittain yhteensä satoja supernovia eri galakseissa, niin vuonna 2013 löydettiin jo 1454 supernovaa, ja määrä on kasvanut siitäkin.[3]",['luhistua fuusion loputtua oman painovoimansa johdosta neutronitähdeksi tai mustaksi aukoksi tai kaksoistähdissä valkoinen kääpiö voi kasvattaa massaansa yli Chandrasekharin rajan'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3606114387512207
+fi-validation-657,Mitä ovat C-vitamiinit?,"
+C-vitamiini on yksi ihmisen tarvitsemista vesiliukoisista vitamiineista. C-vitamiini tunnetaan myös nimellä askorbiinihappo. Askorbiinihappo on optisesti aktiivinen yhdiste. C-vitamiini on askorbiinihapon L-enantiomeeri.",['C-vitamiini on yksi ihmisen tarvitsemista vesiliukoisista vitamiineista'],...,...,"...
+English Answer: ...
+
+
+English Question: What are vitamin C?
+English Context: Vitamin C is one of the water-soluble vitamins needed by humans. Vitamin C is also known by the",[SP_Extract_Error_LRL_A],,,,"English Question: ...
+English Context: ...
+English Answer: ...
+English Answer: ...
+
+
+English Question: What are vitamin C?
+English Context: Vitamin C is one of the water-soluble vitamins needed by humans. Vitamin C is also known by the",,1.3373520374298096
+fi-validation-77,Kuka on luonut Simpsonit?,"
+Simpsonit () on Matt Groeningin luoma ja Gracie Films -yhtiön tuottama Emmy-palkittu television animaatiosarja, joka kertoo viisihenkisen yhdysvaltalaisperheen elämästä. Sarjan oikeudet omistaa 20th Century Fox, ja sarjan ensimmäinen jakso esitettiin vuonna 1989.",['Matt Groeningin'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.336777925491333
+fi-validation-689,Missä maassa Osama Bin Laden tapettiin?,"Osama bin Laden (koko nimeltään , Usāma ibn Muḥammad ibn `Awad ibn Lādin) (10. maaliskuuta 1957 Riad, Saudi-Arabia – 2. toukokuuta 2011 Abbottabad, Pakistan[1][2]) oli saudiarabialainen terroristi, terroristijärjestö al-Qaidan perustaja ja johtaja, joka tunnetaan syyskuun 11. päivän terroritekojen epäiltynä suunnittelijana. FBI ei näytön puutteesta johtuen etsintäkuuluttanut häntä kyseisistä iskuista. Osama bin Laden itse kiisti osallisuutensa,[3] mutta myöhemmin otti vastuun niistä.[4][5][6]",['Pakistan'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.360600233078003
+fi-validation-326,Mikä on polaroidi?,"Polaroid on yleisesti tunnettu nimitys kaikille pikakameroille ja niiden tuottamille valkoreunuksisille valokuville. Sen lisäksi englanninkielisissä maissa kamera tunnetaan myös nimellä land camera viitaten Polaroid-yrityksen perustajaan ja yhteen sen tärkeimmistä tutkijoista, Edwin H. Landiin. ",['yleisesti tunnettu nimitys kaikille pikakameroille ja niiden tuottamille valkoreunuksisille valokuville'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3411452770233154
+fi-validation-680,Milloin Steam julkaistiin?,"Vuonna 2003 julkaistu Steam oli alkujaan vain Windowsille suunniteltu pelijakelualusta Valven omille peleille.[6] Vuonna 2005 palveluun lisättiin muidenkin tekemiä pelejä. Suurista pelijulkaisijoista id Software, Eidos Interactive ja Capcom lisäsivät omat pelinsä Steamin valikoimaan vuonna 2007.",['2003'],...,...,"...
+English Answer: ...
+
+
+English Question: When was Steam released?
+English Context: Steam, which was released in 2003, was initially designed as a distribution platform for Valve's",[SP_Extract_Error_LRL_A],,,,"English Question: ...
+English Context: ...
+English Answer: ...
+English Answer: ...
+
+
+English Question: When was Steam released?
+English Context: Steam, which was released in 2003, was initially designed as a distribution platform for Valve's",,1.340851068496704
+fi-validation-49,Missä Virrat sijaitsee?,"
+Virrat () on Suomen kaupunki, joka sijaitsee Pirkanmaan maakunnassa. Kunta perustettiin vuoden 1868 alussa, perustamispäätös tehtiin vuonna 1867. Virrat muuttui maalaiskunnasta kauppalaksi 1. tammikuuta 1974, ja kauppalasta kaupungiksi 1. tammikuuta 1977. Virrat kuului aiemmin Vaasan lääniin, josta se siirrettiin Hämeen lääniin vuoden 1969 alussa. Virroilla asuu  ihmistä,[1] ja sen pinta-ala on km2, josta km2 on vesistöjä.[2] Väestötiheys on Expression error: Unrecognized punctuation character ""["". asukasta/km2.",['Pirkanmaan maakunnassa'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3591740131378174
+fi-validation-286,Missä sijaitsee Brian Cloughin ja Peter Taylorin patsas?,Derby County ilmoitti 2009 pystyttävänsä Cloughin ja Taylor patsaan Pride Park Stadiumin ulkopuolelle.[6] Patsas paljastettiin elokuussa 2010.,['Pride Park Stadiumin ulkopuolelle'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3341467380523682
+fi-validation-168,Mikä on maailman korkein torni 2018?,"
+Jeddah Tower (, Burj Jidda; ; suom. Jeddan torni), aiemmalta nimeltään Kingdom Tower, on Jeddaan Saudi-Arabiaan rakenteilla oleva pilvenpiirtäjä.[1][2] Kilometrin korkuiseksi tarkoitettu Jeddah Tower tulisi valmistuttuaan olemaan maailman korkein rakennus, ja 828-metrinen Burj Khalifa jäisi toiseksi.[2] Arkkitehti Adrian Smithin suunnitteleman rakennuksen oli alun perin tarkoitus valmistua 2017, mutta arvioitu valmistumisaika on nyttemmin vuosi 2020. Syyskuussa 2018 kerroksia on 47, alle kolmannes, eikä työmaalla näy toimintaa. Rakennussuunnitelma julkistettiin 2004, ja rakennustyöt aloitettiin 2013[3][1]",['Burj Khalifa'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3661954402923584
+fi-validation-220,Mikä on kalasääsken elinalue?,"Sääksi eli kalasääski[1], vanhemmalta nimeltään kalasääksi[2], (Pandion haliaetus) on suurikokoinen petolintu, joka elää järvialueilla ja merenrannikoilla. Saaristossa levinneisyys rajoittuu sisä- ja välisaaristoon.",['järvialueilla ja merenrannikoilla. Saaristossa levinneisyys rajoittuu sisä- ja välisaaristoon'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3350474834442139
+fi-validation-618,Mihin Sidney Reilly kuoli?,"Sidney George Reilly (oikea nimi Salomon tai Sigmund Rosenblum) (24. maaliskuuta 1873 H’erson tai 24. maaliskuuta 1874 Odessa – 5. marraskuuta 1925 Moskovan lähistöllä) oli Ukrainassa syntynyt seikkailija, huijari ja vakoilija, joka oli Englannin tiedustelupalvelun SIS:n (Secret Intelligence Service) palveluksessa 1900-luvun alussa. Reilly sai mainetta 1920-luvulla kun hänen ystävänsä, englantilainen diplomaatti ja toimittaja sir Bruce Lockhart kirjoitti kuvauksen heidän yrityksestään kaataa Vladimir Leninin bolševikkihallitus kesällä 1918. Reilly vangittiin vuonna 1925 vakoiluretkellään Neuvostoliitossa, johon hänet oli houkuteltu Neuvostoliiton turvallisuuspoliisi OGPU:n soluttaman valejärjestön ”operaatio Trustin” avulla. Hänet teloitettiin vakoilusta, mutta lännessä hänen kohtalonsa pysyi pitkään epäselvänä. Reillyn kuoleman jälkeen julkaistiin London Evening Standard -lehdessä artikkelisarja otsikolla Master Spy, jossa hänen vaiheitaan kuvattiin ihailevaan sävyyn. Väitetään myös, että James Bond -kirjojen tekijä Ian Fleming käytti Reillyä hahmonsa esikuvana.",['Hänet teloitettiin vakoilusta'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.4056041240692139
+fi-validation-515,Milloin Hollolan keskiaikainen kivikirkko on rakennettu?,"
+
+Hollolan keskiaikainen kivikirkko, katolisella ajalla nimetty Pyhän Marian kirkoksi, on Hollolan seurakunnan kirkko ja Päijät-Hämeen alueen tärkeimpiä keskiaikaisia muistomerkkejä. Kirkossa on 550 istumapaikkaa, ja se on Suomen keskiaikaisista seurakuntakirkoista kolmanneksi suurin. Kirkko valmistui nykyiseen muotoonsa 1495–1510, ensin sakaristo 1495, sitten itse kirkkosali 1500 ja viimeiseksi asehuone vuoden 1505 jälkeen. Kirkko kuuluu kolmanteen suomalaiseen kivikirkkosukupolveen, johon kuuluvat kirkot rakennettiin 1480–1560.[1] Kirkko on oletettavasti Hattulan kirkon jälkeen Hämeen vanhin kivikirkko ja yksi suurimmista keskiaikaisista kirkoistamme. Kansantarinan mukaan Hollolan kirkon rakensivat jättiläiset Hollo ja Martta[2]. Kirkko on kuuluisa hyvin säilyneistä puuveistoksista.",['1495–1510'],...,...,"...
+English Answer: ...
+
+
+English Question: Hollolan keskiaikainen kivikirkko on rakennettu vuosina 1495-1510",[SP_Extract_Error_LRL_A],,,,"English Question: ...
+English Context: ...
+English Answer: ...
+English Answer: ...
+
+
+English Question: Hollolan keskiaikainen kivikirkko on rakennettu vuosina 1495-1510",,1.4033539295196533
+fi-validation-281,Milloin Volvo on perustettu?,"
+
+Volvo Group (; virallisesti Aktiebolaget Volvo, lyhenne AB Volvo) on ruotsalainen kuorma- ja linja-autojen, maanrakennuskoneiden ja merimoottoreiden valmistaja. Se perustettiin Göteborgissa, Ruotsissa vuonna 1927.",['1927'],...,...,"...
+English Answer: ...
+
+
+---
+
+English Question: When was Volvo founded?
+English Context: Volvo Group (officially Aktiebolaget Volvo, abbreviated AB Volvo) is a Swedish manufacturer of trucks",[SP_Extract_Error_LRL_A],,,,"English Question: ...
+English Context: ...
+English Answer: ...
+English Answer: ...
+
+
+---
+
+English Question: When was Volvo founded?
+English Context: Volvo Group (officially Aktiebolaget Volvo, abbreviated AB Volvo) is a Swedish manufacturer of trucks",,1.337888240814209
+fi-validation-404,Ketkä pääasiassa omistavat Lehtisaaren osa-alueen?,"Lehtisaaren omistavat pääasiassa Helsingin ja Vantaan seurakunnat. Saari on todennäköisesti lahjoitettu katoliselle kirkolle ns. sielunmessulahjana, joka katolisen opin mukaan saattoi vapauttaa lahjoittajan kiirastulesta. Tällainen maaomistus palautettiin 1500-luvulla uskonpuhdistuksen yhteydessä yleensä kirkolta kruunulle, mutta Lehtisaari jäi tuntemattomasta syystä luterilaisen kirkon eikä valtion omistukseen. Lehtisaari kuuluikin vuosisatoja luontoisetuna Helsingin pitäjän kirkkoherran palkkaukseen. Alueliitosten seurauksena Lehtisaari jaettiin vuonna 1952 Helsingin pitäjän kirkon (nykyisin Vantaan seurakuntien) ja Helsingin seurakuntien kesken. Vanhan manttaalin mukaisesti Vantaan seurakuntayhtymä omistaa edelleen Lehtisaaren maa-alueesta 64,11% ja Helsingin seurakuntayhtymä 35,89%. Lehtisaaren tontit ja rakennusoikeudet on vuokrattu asunto-osakeyhtiöille ja liikekeskuksen osalta Liikekeskus Oy:lle. Poikkeuksen muodostaa osoitteessa Lehtisaarentie 14 oleva kiinteistö, jonka omistaa VVO ja Vantaan seurakuntayhtymän osoitteessa Liljasaarentie 1a myymä merenrantatontti, jolle on valmistumassa viiden asunnon pari-/rivitaloa. Useimpien nykyiset vuokrasopimukset päättyvät vuonna 2019, joiden jatkosta neuvotellaan seurakuntayhtymien kanssa. Ne ovat suunnitelleet tuntuvia korotuksia tonttivuokriin, jolloin joissain taloyhtiöissä vastike jopa yli kaksinkertaistuisi.[2] Helsingin kaupunki omistaa Lehtisaaren katualueet.[3] Seurakunnan omistus näkyy Lehtisaaren kaduston nimissä; yksi kaduista on esimerkiksi Pyhän Laurin tie. Seurakunnat saivat  saaren lahjoituksena virkistyskäyttöön, jossa osa saaresta on vieläkin.",['Helsingin ja Vantaan seurakunnat'],[Your English Translation of the Question],[Your English Translation of the Context],[Your English Answer based on the English Context and Question],[Your Finnish Translation of the English Answer,,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+Finnish Answer: [Your Finnish Translation of the English Answer",,1.450606107711792
+fi-validation-582,Milloin Miguel de Cervantes syntyi?,"
+Miguel de Cervantes Saavedra (29. syyskuuta 1547 Alcalá de Henares – 23. huhtikuuta 1616 Madrid) oli espanjalainen kirjailija. Hänen tunnetuin teoksensa on Don Quijote (El ingenioso hidalgo Don Quijote de la Mancha, 1605/1615). ",['29. syyskuuta 1547'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3435053825378418
+fi-validation-30,Mistä Saksa sain nimityksen Weimarin tasavalta?,"
+
+Weimarin tasavalta () on historiantutkimuksessa käytetty nimitys Saksasta vuosien 1919 ja 1933 välisenä aikana, jolloin maa oli tasavalta. Virallisesti valtion nimi oli silloinkin Saksan valtakunta (Deutsches Reich). Aikakauden katsotaan alkaneen, kun Weimarin kaupungissa säädetty Saksan uusi perustuslaki 11. elokuuta 1919 astui voimaan Saksan kärsittyä tappion ensimmäisessä maailmansodassa. Weimarin tasavallan aika päättyi Adolf Hitlerin ja kansallissosialistien noustua valtaan ja lakkautettua maassa vallinneen demokratian.",['Weimarin kaupungissa säädetty Saksan uusi perustuslaki'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3630504608154297
+fi-validation-360,Mikä joukkue pudotti VPS:n Euroopan liigan karsinnoista kaudella 2017-18?,"Pukin ja Brøndbyn kausi 2017–2018 alkoi edelliskausien tapaan Eurooppa-liigan karsintaotteluilla. Brøndby sai vastaansa 2. karsintakierroksella Veikkausliigassa pelanneen VPS:n.[41] Brøndby voitti otteluparin VPS:aa vastaan, mutta joukkue ei edennyt kuitenkaan Eurooppa-liigan lohkovaiheeseen. Pukki pelasi kolmessa Eurooppa-liigan karsintaottelussa ja teki niissä yhden maalin. Tanskan liigassa Pukki pelasi kaikissa 36 sarjaottelussa, joista 32 avauskokoonpanossa. Pukki teki 17 maalia ja hänen edellään Tanskan liigan maalipörssissä oli vain Hobron Pål Alexander Kirkevold. Pukki oli neljännen kerran peräkkäin Brøndbyn paras maalintekijä. Brøndby johti Tanskan liigaa kauden aikana useaan otteeseen, mutta joukkue jäi kuitenkin edelliskauden tapaan sarjassa toiseksi. Midtjylland voitti mestaruuden neljän pisteen erolla.[42] Brøndby eteni toistamiseen Parkenilla pelattuun Tanskan cupin finaaliin, jossa se kohtasi Silkeborgin. Brøndby voitti finaalin maalein 3–1 ja Tanskan cupin kaudella 2017–2018.[43] Brøndby pääsi seuraavan kauden Eurooppa-liigan karsintoihin. Pukki pelasi Brøndbyssä neljän kauden aikana yhteensä 130 Tanskan liigan ottelua ja teki niissä 55 maalia.",['Brøndby'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.4305427074432373
+fi-validation-33,Mikä on Hondurasin pinta-ala?,"Pohjoisessa Honduras rajoittuu Karibianmereen ja etelässä Fonsecanlahteen Tyynellä valtamerellä. Hondurasin naapurimaat ovat Guatemala, El Salvador ja Nicaragua. Valtion pinta-ala on 112090 neliökilometriä.[4]",['112090 neliökilometriä'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.339301586151123
+fi-validation-31,Minä vuonna Adolfo González on syntynyt?,"
+Don Adolfo Suárez González, Suarezin herttua, Espanjan grande (25. syyskuuta 1932 – 23. maaliskuuta 2014[1]) oli espanjalainen lakimies ja poliitikko. Hän toimi vuosina 1976–1981 Espanjan pääministerinä. Kesäkuussa 1977 hänen johtamansa Demokraattisen keskustan unioni voitti maan ensimmäiset parlamenttivaalit ja hänestä tuli ensimmäinen demokraattisesti valittu pääministeri caudillo Francisco Francon kuoleman jälkeen.",['1932'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3485634326934814
+fi-validation-654,Mikä on Joensuun asukasluku?,"Vuoden 2017 lopussa Joensuussa oli 76 067 asukasta, joista 67 051 asui taajamissa, 8 187 haja-asutusalueilla ja 829 asukkaan asuinpaikan koordinaatit eivät olleet tiedossa. Taajama-aste lasketaan niistä asukkaista, joiden asuinpaikan koordinaatit ovat tiedossa; Joensuun taajama-aste on 89,1 %.[1] Joensuun taajamaväestö jakautuu 11 eri taajaman kesken:[2]",['76 067'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.349073886871338
+fi-validation-713,Milloin Pokemon on luotu?,"Pokémon () on japanilainen tuotesarja. Se sai alkunsa Satoshi Tajirin kehittämästä, vuonna 1996 Nintendon Game Boy:lle julkaistusta videoroolipelistä. Sana ”Pokémon” on lyhenne sanoista ”pocket monsters”, ”taskuhirviöt”. Peleissä on satoja erilaisia Pokémon-hahmoja ja tavoitteena on kerätä jokainen niistä ja kouluttaa hahmoista hyvä tiimi. Tuotesarjaan kuuluu videopelien lisäksi keräilykorttipeli, anime, manga ja lukuisia muita tuotteita. Tunnetuin Pokémon-hahmo on sarjan maskotti, keltainen sähköhiiriolento Pikachu.[1]
+Brändiä hallitsee ja lisensoi The Pokemon Company, josta Nintendo omistaa 32 %.[2]
+Nimi ""Pokémon"" ja hahmojen nimet yms. ovat Nintendon tavaramerkkejä.[3]",['vuonna 1996'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3661093711853027
+fi-validation-719,Kuinka kives syövän voi havaita?,"Kivessyövän yleisin ensioire on toisen kiveksen suureneminen (ilmenee myös kiveskohjussa). Kiveksessä voi olla kyhmy, tai kives voi kovettua. Usein kivessyöpään liittyy myös veren esiintyminen siemennesteessä. Yksi kivessyövän oireista on kiveskipu, vaikka kivessyöpä voi usein olla myös kivuton.","['toisen kiveksen suureneminen (ilmenee myös kiveskohjussa). Kiveksessä voi olla kyhmy, tai kives voi kovettua. Usein kivessyöpään liittyy myös veren esiintyminen siemennesteessä. Yksi kivessyövän oireista on kiveskipu, vaikka kivessyöpä voi usein olla myös kivuton']","... English Context: ... English Answer: ... English Answer: ...
+English Question: How can kidney cancer be detected?","... English Answer: ... English Answer: ...
+English Question: How can kidney cancer be detected?
+English Context: The most common early symptom of kidney cancer is an increase in the size of a stone (also seen in","... English Answer: ...
+English Question: How can kidney cancer be detected?
+English Context: The most common early symptom of kidney cancer is an increase in the size of a stone (also seen in",[SP_Extract_Error_LRL_A],,,,"English Question: ... English Context: ... English Answer: ... English Answer: ...
+English Question: How can kidney cancer be detected?
+English Context: The most common early symptom of kidney cancer is an increase in the size of a stone (also seen in",,1.341482162475586
+fi-validation-608,Kuka Kleon oli?,"Perikleen kuoleman myötä Ateena oli menettänyt selvän johtohahmonsa. Uutta sotaisampaa linjaa alkoi ajaa Perikleen suurin vastustaja Kleon. Ateenan strategia muuttui tämän jälkeen paljon aggressiivisemmaksi, ja vuonna 427 eaa. ateenalainen strategi Nikias valtasi Minoan saaren, jolta saattoi saartaa Megaran sataman.[12]",['Perikleen suurin vastustaja'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3453125953674316
+fi-validation-411,Mikä oli ensimäinen junarata Suomessa?,"
+Suomen rataverkon historian voidaan katsoa ulottuvan ainakin maaliskuun 20. 1849, jolloin tie- ja vesirakennuslaitoksen päällikkö eversti Alfred Stjernvall ehdotti hevosvetoisen rautatien rakentamista Helsingistä Turkhautaan. Rata olisi ylittänyt Salpausselät ja yhdistänyt maan pääkaupungin purjehduskelpoiseen Järvi-Suomeen. Kenraalikuvernööri määräsi asiaa tutkittavaksi, ja vuonna 1851 valmistui suunnitelma veturirautatien rakentamisesta Helsingistä Hämeenlinnaan.[1] Tälle välille avattiinkin vuonna 1862 Suomen rataverkon ensimmäinen rataosuus, joka on nykyään osa Suomen päärataa.[2] 1800-luvun lopulla junat oli Suomessa suunniteltu kulkemaan vain 25 kilometriä tunnissa, joten matkanteko oli hidasta mutta silti hevoskyytiä nopeampaa.",['Helsingistä Hämeenlinnaan'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3747365474700928
+fi-validation-741,Paljonko Jehovalaisia uusia kastettuja arvioidaan olevan vuosittain?,"
+Maailmanlaajuisesti uusia kastettuja on 250000–300000 vuosittain. Vuonna 2014 kastettiin 275581 jäsentä.[22] Aktiivisten julistajien kuukausittaiseksi huipuksi ilmoitetaan vuonna 2015 yli 8,2 miljoonaa, ja heitä oli 240 maassa. Julistajat raportoivat saarnaamistyötä kautta maailman 1933473968 tuntia. He johtivat keskimäärin 9708968:aa maksutonta raamatuntutkiskelua.[23]",['250000–300000'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3512160778045654
+fi-validation-446,Minkä ikäisenä Martina Hingis alkoi pelaamaan tennistä?,Martina aloitti tennispallojen lyömisen jo kahden vuoden iässä ja neljän vanhana hän pelasi ensimmäisessä turnauksessaan. Vuonna 1993 Hingisistä tuli kaikkien aikojen nuorin Grand Slamin juniorisarjan voittaja hänen valloittaessaan 12-vuotiaana junioreiden kaksinpelikruunun Roland Garrosissa. Seuraavana vuonna hän puolusti mestaruuttaan menestyksekkäästi ja voitti myös Wimbledonissa. Hingis oli jo tällöin maailman junioriykkönen.,['kahden vuoden'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.348292350769043
+fi-validation-265,Mikä oli Väinö Riikkilän ensimmäinen kirja?,"Ensimmäinen kirja Pertsa ja Kilu valmistui 1948, mutta se ilmestyi vasta 1951. Kuuden Pertsa ja Kilu -kirjan kasvutarina on poikien siirtyminen kodista aivan sananmukaisestikin avarimmille vesille, ja haaveilu merimieheksi ryhtymisestä korvautui veneen hankkimisella ja ylipäätään vastuunotolla. 1970-luvulla Pertsa ja Kilu -kirjoista tehtiin Vili Auvisen ohjaama televisiosarja. Vuonna 2000 Taavi Vartia teki uuden televisiosarjan Pertsasta ja Kilusta, mutta se ei perustunut Riikkilän teksteihin.",['Pertsa ja Kilu'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3509812355041504
+fi-validation-213,Mistä sana algoritmi tulee?,Sana algoritmi tulee persialaisen matemaatikon ja tähtitieteilijän Muhammed ibn-Musa al-Khwarizmin nimestä.,['persialaisen matemaatikon ja tähtitieteilijän Muhammed ibn-Musa al-Khwarizmin nimestä'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3297572135925293
+fi-validation-324,Milloin maalaisliitto perustettiin?,"Suomen Keskusta (yleiskielessä keskusta,[1] lyhenne Kesk.,[2] ) on suomalainen puolue. Vuonna 1906 perustetun puolueen nimenä oli Maalaisliitto (lyh. ML) vuoteen 1964 asti ja sen jälkeen Keskustapuolue vuoteen 1988 asti, jolloin otettiin käyttöön nykyinen nimi.",['1906'],[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.341134786605835
+fi-validation-622,Mikä on Sisilian pinta-ala?,"
+
+Sisilia (italiaksi ja sisiliaksi Sicilia) on Välimeren suurin saari Italiassa. Saaren koko on 25700 neliökilometriä, ja siellä asuu runsaat viisi miljoonaa ihmistä. Kapeimmillaan vain 3,3 kilometrin levyinen Messinansalmi erottaa Sisilian Apenniinien niemimaasta.[1] Saari lähisaarineen muodostaa Sisilian hallinnollisen alueen, joka on jaettu yhdeksään maakuntatason alueeseen.",['25700 neliökilometriä'],[Your English Translation of the Question],[Your English Translation of the Context],[Your English Answer based on the English Context and Question],[Your Finnish Translation of the English,,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+Finnish Answer: [Your Finnish Translation of the English",,1.3434474468231201
+fi-validation-590,Milloin Svartholman merilinnoitus rakennettiin?,"
+Svartholman merilinnoitus on Loviisan edustalla sijaitseva merilinnoitus, jota rakennettiin Ruotsin laivaston tukikohdaksi sekä Venäjän vastaisen rajan turvaksi. Eversti Augustin Ehrensvärd suunnitteli sen säännölliseksi bastionilinnoitukseksi. Svartholman rakennustyöt aloitettiin vuonna 1748, ja se valmistui keskeisiltä osiltaan 1760-luvun aikana, mutta täysin valmiiksi se ei tullut koskaan.[1]","['se valmistui keskeisiltä osiltaan 1760-luvun aikana, mutta täysin valmiiksi se ei tullut koskaan']",[Your English Translation of the Question],[Your English Translation of the Context],"[Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question]
+English Context: [Your English Translation of the Context]
+English Answer: [Your English Answer based on the English Context and Question]
+English Answer: [Your Finnish Translation of the English Answer]",,1.3483054637908936
+fi-validation-332,Miksi ensimmäinen ristiretki tehtiin?,"
+
+Ensimmäinen ristiretki Suomeen on Ruotsista Lounais-Suomeen mahdollisesti 1150-luvulla tehty ristiretki.[1] Ristiretken todenperäisyydestä ei ole varmuutta. Jonkinlainen laaja sotaretki kuitenkin tehtiin Ruotsista Suomeen 1150-luvulla.[2] Sotaretkeä ei kuitenkaan voida pitää varsinaisena ristiretkenä, vaan ajalle tyypillisenä sotaretkenä, niin sanottuna ledung-retkenä.[3] Myyttisen retken tavoitteena oli estää suomalaisten hyökkäykset Ruotsiin sekä katolisen uskon levittäminen pakanalliseen Lounais-Suomeen.[4]",['tavoitteena oli estää suomalaisten hyökkäykset Ruotsiin sekä katolisen uskon levittäminen pakanalliseen Lounais-Suomeen'],...,...,...,...,,,,"English Question: ...
+English Context: ...
+English Answer: ...
+Finnish Answer: ...
+
+
+English Question: Why was the first crusade made?
+English Context: The first crusade to Finland may have been made from Sweden to Southern Finland around the",,1.3611578941345215
+fi-validation-375,Mihin Hermann Göring kuoli?,"
+Hermann Wilhelm Göring () oli natsi-Saksan sotamarsalkka, ilmailuministeri ja Luftwaffen komentaja (Reichsminister der Luftfahrt und Oberbefehlshaber der Luftwaffe – Ilmailun valtakunnanministeri ja Luftwaffen ylikäskynhaltija) vuosina 1933–1945 sekä valtiopäivien puhemies vuosina 1932–1945. Hän lukeutui kansallissosialistisen puolueen korkeimpiin johtajiin. Göring oli ensimmäisessä maailmansodassa ansioitunut taistelulentäjä ja liittyi rauhan tultua kansallissosialistiseen puolueeseen ensimmäisten joukossa. Hänet tuomittiin Nürnbergin sotarikosoikeudenkäynnissä kuolemaan, mutta hän teki itsemurhan ennen tuomion täytäntöönpanoa.",['teki itsemurhan'],"[Your English Translation of the Question] English Context: [Your English Translation of the Context] English Answer: [Your English Answer based on the English Context and Question] English Answer: [Your Finnish Translation of the English Answer]
+English","[Your English Translation of the Context] English Answer: [Your English Answer based on the English Context and Question] English Answer: [Your Finnish Translation of the English Answer]
+English","[Your English Answer based on the English Context and Question] English Answer: [Your Finnish Translation of the English Answer]
+English",[SP_Extract_Error_LRL_A],,,,"English Question: [Your English Translation of the Question] English Context: [Your English Translation of the Context] English Answer: [Your English Answer based on the English Context and Question] English Answer: [Your Finnish Translation of the English Answer]
+English",,1.3633208274841309
+fi-validation-181,Missä kaupungissa Johan Jakob Nervander syntyi?,"
+
+Johan Jakob Nervander (23. helmikuuta 1805 Uusikaupunki – 15. maaliskuuta 1848 Helsinki)[1] oli suomalainen runoilija, fyysikko ja meteorologi. Nervander oli suomalaisen meteorologisen mittaus- ja havaintotoiminnan alkuunpanija. Hänen vuonna 1844 aloittamistaan magneettisista mittauksista käynnistynyt niin sanottu Helsingin havaintosarja on maailmanlaajuisestikin harvinainen ja nykyisessä tiedeyhteisössä arvostettu.[2] Hän kehitti myös galvanometriä.[3]",['Uusikaupunki'],...,...,"...
+English Answer: ...
+
+
+English Question: Missä kaupungissa Johan Jakob Nervander syntyi?
+English Context: Johan Jakob Nervander (23. helmiku",[SP_Extract_Error_LRL_A],,,,"English Question: ...
+English Context: ...
+English Answer: ...
+English Answer: ...
+
+
+English Question: Missä kaupungissa Johan Jakob Nervander syntyi?
+English Context: Johan Jakob Nervander (23. helmiku",,1.3532614707946777

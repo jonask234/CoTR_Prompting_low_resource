@@ -16,14 +16,7 @@ logger = logging.getLogger(__name__) # Added logger initialization
 # Define expected labels (adjust if dataset uses different ones)
 EXPECTED_LABELS = ["positive", "negative", "neutral"]
 
-# Define Fallback English Few-Shot Examples for Sentiment Analysis
-# This list is used by LRL prompts to ensure consistent English examples.
-FALLBACK_ENGLISH_FEW_SHOT_EXAMPLES_SENTIMENT = [
-    {'text': 'This movie was fantastic, I loved it!', 'label': 'positive'},
-    {'text': 'I am not happy with the service provided.', 'label': 'negative'},
-    {'text': 'The meeting is scheduled for 3 PM.', 'label': 'neutral'},
-    {'text': 'The product is okay, neither good nor bad.', 'label': 'neutral'}
-]
+# All few-shot examples are now consistently in English across all configurations
 
 # --- Added Global Constants and Helper ---
 LANG_NAMES = {
@@ -103,7 +96,7 @@ def generate_sentiment_prompt(text: str, lang_code: str = "en", model_name: str 
     prompt_parts = [f"Text: '{processed_text}'\n", base_instruction]
 
     if use_few_shot:
-        # Consistent English few-shot examples
+        # Standardized to 3 examples for consistency across all tasks
         english_few_shot_examples_text = """
 Examples:
 Text: 'This movie was fantastic, I loved it!'
@@ -113,9 +106,6 @@ Text: 'I am not happy with the service provided.'
 Sentiment: negative
 
 Text: 'The meeting is scheduled for 3 PM.'
-Sentiment: neutral
-
-Text: 'The product is okay, neither good nor bad.'
 Sentiment: neutral"""
         prompt_parts.append("\n" + english_few_shot_examples_text)
             
@@ -132,7 +122,7 @@ def generate_lrl_instruct_sentiment_prompt(text: str, lang_code: str, model_name
     text_escaped = text.replace("'", "\\'") # Keep existing escaping
 
     # --- English Few-Shot Examples (English text, English label) ---
-    # Changed to use English examples for consistency with other tasks
+    # Changed to use English examples for consistency with other tasks - STANDARDIZED TO 3
     english_example_positive_text = "This movie was fantastic, I loved it!"
     english_example_negative_text = "I am not happy with the service provided."
     english_example_neutral_text = "The meeting is scheduled for 3 PM."

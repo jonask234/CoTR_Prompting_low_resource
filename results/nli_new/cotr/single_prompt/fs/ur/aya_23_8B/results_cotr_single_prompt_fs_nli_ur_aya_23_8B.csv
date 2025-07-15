@@ -1,0 +1,401 @@
+premise_lrl,hypothesis_lrl,original_gt_label_int,ground_truth_eng_label_str,premise_en,hypothesis_en,predicted_english_label_model_intermediate,predicted_lrl_label_model_raw,predicted_label_for_accuracy,raw_model_response,runtime_seconds,error_message
+baqi tasawor kiya jata hah hain kai dimension aik ball ki trah curved hui hai planck lenght scale par jise Calabi-Yau spaces kaha jata hah aur zayada aam tor par campacted moduli.,کلابی یاؤ جگہیں ایک ٹن تک پھیل گئی ہیں۔,2,contradiction,"The remaining constructions are those where one dimension is a curve on the Planck length scale, which are referred to as Calabi-Yau spaces and are more commonly found in compact modules.",All Calabi-Yau spaces have only ten dimensions.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: The remaining constructions are those where one dimension is a curve on the Planck length scale, which are referred to as Calabi-Yau spaces and are more commonly found in compact modules.
+
+Translated English Hypothesis: All Calabi-Yau spaces have only ten dimensions.
+
+English NLI Label: Contradiction",4.391545295715332,
+CFO ایکٹ کے اہداف کو حاصل کرنے کے لئے 23 مالی مسلسل لمحات لازمی ہے,23Financial اپنے تمام مقاصد پورے کرنے کے پاس ہے,1,neutral,"CFO for achieving its goals, it is essential to have 23 financial series of insights.",23Financial has all the capabilities to achieve its objectives.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: CFO for achieving its goals, it is essential to have 23 financial series of insights.
+
+Translated English Hypothesis: 23Financial has all the capabilities to achieve its objectives. 
+
+English NLI Label: Entailment",3.3321890830993652,
+میں لاچار ہوں‏، اس عورت نے اس مرد کو بتایا۔,انہوں نے اسے کہا تھا کہ اس پر دباؤ ڈالا گیا تھا۔,0,entailment,"I am a thief, that woman told that man.",He said that he had put a price on his head.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: I am a thief, that woman told that man.
+
+Translated English Hypothesis: He said that he had put a price on his head.
+
+English NLI Label: Entailment",2.905730962753296,
+یہ نہیں ہے کے میرے پاس اخبار پڑھنے کے لۂے وقت نہیں ہے، دراصل مجھے خبریں دیکھنیں میں زیادہ مذہ آتا ہے۔,جو کچھ آپ کو کاغذ پر ملے گا وہ اس سے بہت زیادہ کا احاطہ کرتے ہیں۔,1,neutral,"This is not because I don't have time to read the news, it's more that I find reading news articles very engaging.",Whatever is written on paper will give you a much broader understanding.,neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: This is not because I don't have time to read the news, it's more that I find reading news articles very engaging.
+
+Translated English Hypothesis: Whatever is written on paper will give you a much broader understanding.
+
+English NLI Label: Neutral.",3.613847494125366,
+جین، ڈیو اور ایک ایف بی آئی تجزیہ کار جو سی آئی اے کے بن لادن کے یونٹ سے متعلق تفصیل کے مطابق 11 جون کو کول کیس کے بارے میں ایجنٹوں سے ملنے کے لئے نیویارک پہنچ گیا,ایف بی آئی کے تجزیہ کار کول کے کیس کے بارے میں سات ایجنٹوں سے گفتگو کرتے ہوئے.,1,neutral,"Jane, Joe, and a third person, identified as ""Colby,"" who is reportedly associated with the FBI, arrived in New York on January 11th, according to intelligence reports, to meet with intelligence agents.","The FBI agent, along with two other individuals, including one named ""Colby,"" discussed the case involving Colbie's arrest.",entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: Jane, Joe, and a third person, identified as ""Colby,"" who is reportedly associated with the FBI, arrived in New York on January 11th, according to intelligence reports, to meet with intelligence agents.
+
+Translated English Hypothesis: The FBI agent, along with two other individuals, including one named ""Colby,"" discussed the case involving Colbie's arrest. 
+
+English NLI Label: Entailment",4.822831392288208,
+دوسری طرف، ذروں اور تین غیر کَشِش ثَقَل قوتوں کو سپین نیٹ ورک کے تصور  میں شامل کرنا ابھی باقی ہے.,غیر گروہی قوتیں کو شامل کرنا ضروری ہے ٹکے سپن نیٹ ورک تصویر مکمل ہو سکے,1,neutral,"On the other side, two and three non-cash heavy weights are still left to be included in the spin net image.",It is necessary to include non-cash weights because they can complement the spin net image.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: On the other side, two and three non-cash heavy weights are still left to be included in the spin net image.
+
+Translated English Hypothesis: It is necessary to include non-cash weights because they can complement the spin net image. 
+
+English NLI Label: Entailment",3.3109521865844727,
+آپ کو خطرہ دیکھا تھا.,آپ کو اس لمحے میں ہونے والی بحران پر نظر نہیں رکھنی چاہئے.,2,contradiction,You saw the danger.,You do not want to keep an eye on the crisis that is happening right now.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: You saw the danger.
+
+Translated English Hypothesis: You do not want to keep an eye on the crisis that is happening right now.
+
+English NLI Label: Contradiction",2.5217013359069824,
+اسکی بہن انگریز لگ سکتی تھی ، اور واقع میں انگریز لگتی بھی تھی,اس کی بہن  کی سورت  پڑوس میں  سب سے اچھی  تھی,1,neutral,"She could speak English, and in fact, she did speak English.",His sister's sorter was the best among all.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: She could speak English, and in fact, she did speak English.
+
+Translated English Hypothesis: His sister's sorter was the best among all. 
+
+English NLI Label: Contradiction",3.141066074371338,
+ہماری سرحدوں اور امیگریشن کے نظام، بشمول قانون نافذ کرنے والے اداے، امریکہ میں تارکین وطنکی  کمیونٹی کے ارکان اور ان کے اصل ملکوں میں ، استقبال، رواداری اور انصاف کا ایک پیغام بھیجنا چاہتے ہیں.,ہمارے ملک کو دنیا بھر میں اپنی تصویر کی مرمت اور یہاں پناہ گزینوں کا استقبال کرنا چاہئے.,1,neutral,"Our immigration policies, including the implementation of laws, welcome, tolerance, and fairness, send a message that our country wants to repair its image worldwide and be recognized for its diverse cultures and attractions.",Our country should be recognized for its diverse cultures and attractions worldwide.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: Our immigration policies, including the implementation of laws, welcome, tolerance, and fairness, send a message that our country wants to repair its image worldwide and be recognized for its diverse cultures and attractions. 
+
+Translated English Hypothesis: Our country should be recognized for its diverse cultures and attractions worldwide. 
+
+English NLI Label: Entailment",3.9212851524353027,
+آر پی ایچ کتاب کی اشاعت کے بعد ایک کتابی دورہ ہوگا، جو کہ کتاب کے بارے میں اگلا انکشاف کرے گا.,ار پی ایچ کتاب کے ساتھ ایک دورہ وابستہ ہو گا.,0,entailment,"After the release of the RPIH book, another book will be released, which will be the first discovery about the book.",An attachment will be made with the RPIH book.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: After the release of the RPIH book, another book will be released, which will be the first discovery about the book.
+
+Translated English Hypothesis: An attachment will be made with the RPIH book.
+
+English NLI Label: Contradiction",4.022750616073608,
+چیئر لفٹ ایک پسندیدہ پسندیدہ ہے.,کوئی شخص چیئر لفٹ نہیں پسند کرتا ہے.,2,contradiction,"""Cheerleading is a favorite activity.""","""No one likes cheerleading.""",contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: ""Cheerleading is a favorite activity.""
+
+Translated English Hypothesis: ""No one likes cheerleading.""
+
+English NLI Label: Contradiction",2.1448447704315186,
+11 ستمبر کو نکالنے کے لئے امداد کے لئے، ملاحظہ کریں، مثال کے طور پر، شہری انٹرویو 14 (اپریل,11 ستمبر کو نکالنے کے حوالے سے کوئی امداد دستیاب نہیں ہیں.,2,contradiction,"Note that, for example, in regard to September 11, City Intrigue 14 (April), there was no aid available.",There was no aid available in regards to September 11th.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: Note that, for example, in regard to September 11, City Intrigue 14 (April), there was no aid available.
+
+Translated English Hypothesis: There was no aid available in regards to September 11th.
+
+English NLI Label: Entailment",3.952045440673828,
+ٹینیسی کی خبر رساں نے گرم، خشک موسم کے لئے کتا موسم کے الفاظ استعمال کئے جو اگست کے خشک موسم کی طرف اشارہ کرنے والی اصطلاح کتے دن سے اخذ کئے جا سکتے ہیں۔,تینعسی مین بہی جون اور جولاءی مین شدید گرمی ہوتی ہے,1,neutral,"The weather in July and August tends to be hot and dry, which is referred to as the 'summer season'. This season is characterized by high temperatures and low humidity.","There is a significant increase in temperature during July and August, resembling the harsh conditions of the summer season.",entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: The weather in July and August tends to be hot and dry, which is referred to as the 'summer season'. This season is characterized by high temperatures and low humidity. 
+
+Translated English Hypothesis: There is a significant increase in temperature during July and August, resembling the harsh conditions of the summer season. 
+
+English NLI Label: Entailment",4.353192329406738,
+میں نے اسے مار ڈالا، یہ سچ ہے.,آدمی کی زندگی بچ گئی تھی,2,contradiction,"I killed him, it's true.",The man's life was saved.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: I killed him, it's true.
+
+Translated English Hypothesis: The man's life was saved.
+
+English NLI Label: Contradiction",2.2327184677124023,
+لیکن میں آپ کو زمین کی جلدی میں جلدی میں تھا.,فرد ایک محبت کرنے والا چاہتا تھا,1,neutral,But I was sitting next to you on the bench in the park.,He wanted to express his love.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: But I was sitting next to you on the bench in the park.
+
+Translated English Hypothesis: He wanted to express his love.
+
+English NLI Label: Entailment",2.5429883003234863,
+اگر آپ اس پر محسوس کر رہے ہیں تو، مٹی ٹریل کے ساتھ دھکا،نیدرا گر کے پاس، ایمیلڈ پول کے ماضی میں، اور آپ بھیڑوں کو کھونے کے لئے شروع کر دیں گے.,نوادا کی آبشار کا پیدل راستہ تھوڑے لوگوں کی موجودگی کے باعث زبردست جگہ ہے۔,1,neutral,"If you can sense it, there's a chance that, in the past, you might have been to Niagara Falls, and you might have taken a boat ride, and you might have eaten at the restaurant.","The beauty of Niagara Falls attracts many tourists, and it is a popular destination for those seeking a memorable experience.",entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: If you can sense it, there's a chance that, in the past, you might have been to Niagara Falls, and you might have taken a boat ride, and you might have eaten at the restaurant.
+
+Translated English Hypothesis: The beauty of Niagara Falls attracts many tourists, and it is a popular destination for those seeking a memorable experience.
+
+English NLI Label: Entailment",4.9404637813568115,
+میں نے اس کو اس خط میں ایک خط لکھا تھا کہ اسے اس کا سامنا کرنا پڑا،اور انہوں نے مجھے ایک چھوٹے سے پھل کیک بھیج دیا جو کرسمس.,ډاکتر ماته په هغه کریسمس کي شراب  .واستول,2,contradiction,"I had written a line in this letter that he would meet me, and he sent me a Christmas cookie from his doctor.",The doctor stole Christmas cookies.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: I had written a line in this letter that he would meet me, and he sent me a Christmas cookie from his doctor.
+
+Translated English Hypothesis: The doctor stole Christmas cookies.
+
+English NLI Label: Contradiction",2.9689183235168457,
+یہ سوچ کے چیک بک صرف ایک خالی چک ہے، آپ سمجھ سکتے ہیں، اور اس میں لامحدود رقم ہے، یہ نہیں کہ وہ جاتی ہے اور لامحدود طریقے سے خرچ کرتی ہے لیکن لگ بگھ ایسا رویہ ہے,وہ محسوس کرتے ہیں کہ وہ ایک رات سے زیادہ سے زیادہ 1000 ڈالر خرچ کر سکتے ہیں.,1,neutral,"This is a simple calculator with just one button, you can understand, and it has an infinite number. It's not that it comes and spends unlimited ways but its face is like that.",You can spend more than $1000 in a night.,neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: This is a simple calculator with just one button, you can understand, and it has an infinite number. It's not that it comes and spends unlimited ways but its face is like that.
+
+Translated English Hypothesis: You can spend more than $1000 in a night.
+
+English NLI Label: Neutral.",4.367845296859741,
+میرا ہیرو اگرچہ اورسیز انویسٹمنٹ ٹرسٹ کا چیئرمین رچرڈ ہیسلٹین ہے جس نے حالیہ ماہ میں اپنے اعلی افسران کی طرف سے زبردستی لاگو کیے جانے والے کاروباری منصوبے کے خلاف احتجاجن استیفا دیا تھا۔,ہیسیلتاہں نے اپنی نوکری چھوڑدی,0,entailment,"My hero, despite being the chief researcher at the prestigious University of Cambridge, has filed a complaint against the university for discriminating against her and refusing to promote her to a senior position. This decision was made by the university's highest-ranking officials, and she felt compelled to take legal action.",Healtalations have filed their resignation.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: My hero, despite being the chief researcher at the prestigious University of Cambridge, has filed a complaint against the university for discriminating against her and refusing to promote her to a senior position. This decision was made by the university's highest-ranking officials, and she felt compelled to take legal action.
+
+Translated English Hypothesis: Healtalations have filed their resignation. 
+
+English NLI Label: Contradiction",5.151646852493286,
+ذرائع نے دعوی کیا کہ بن لادن نے پوچھا اور بم سازی کے ماہر سے مدد حاصل کی، جو وہاں وہاں ستمبر 1996 تک تربیت دے رہا تھا، جب یہ معلومات ریاستہائے متحدہ تک پہنچ گئی تھی.,ذریعہ اسامہ بن لادن کے بارے میں کچھ نہیں جانتا تھا۔,2,contradiction,"The al-Qaeda organization filed a lawsuit claiming that Osama bin Laden had sought and received assistance from a master of explosives, who had trained him until September 1996, when this information reached the United States.",There was nothing known about Osama bin Laden's background.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: The al-Qaeda organization filed a lawsuit claiming that Osama bin Laden had sought and received assistance from a master of explosives, who had trained him until September 1996, when this information reached the United States.
+
+Translated English Hypothesis: There was nothing known about Osama bin Laden's background.
+
+English NLI Label: Contradiction",4.294296741485596,
+نیوی سکوسکیا سے تنگ تنگ Chignecto قونس، سے منسلک نیو برونزک 14،000 وفادار پناہ گزینوں کی درخواست پر 1784 میں ایک علیحدہ صوبہ بن گیا,نیو برنسوک 1784 میں ایک صوبہ نہیں تھا۔,2,contradiction,"New York City's Queens County, with a population of 14,000 loyal fans, received 1,784 requests for tickets to a concert. This led to the creation of a single district in 1784.",New York did not have a district named 1784.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: New York City's Queens County, with a population of 14,000 loyal fans, received 1,784 requests for tickets to a concert. This led to the creation of a single district in 1784.
+
+Translated English Hypothesis: New York did not have a district named 1784.
+
+English NLI Label: Contradiction.",5.000078916549683,
+انہوں نے زور دیا کہ مسلسل اہداف کو یقینی بنانے کے لئے ضروری تھا کہ کنٹرول موجودہ خطرات سے نمٹنے کے لئے اور غیر ضروری طور پر معاوضے کی کارروائیوں سے نمٹنے کے لئے ہر وقت تیار رہیں. اور وہ افراد جنہوں نے معلومات کے نظام کا استعمال کیا اور برقرار رکھنے کے تنظیمی پالیسیوں کے ساتھ عمل کیا۔,دوی وویل چې مهمه وه چي محتاط وو کله چي دا  د خبرونو   کنترولولو فا  .بریکي ته راغلو,1,neutral,They had to force the series of goals to be certain that it was necessary to avoid the dangers present and also not to get involved in unnecessary exchanges of information. And those who used the system of information and established policies to act accordingly.,Two will break the rules of the game.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: They had to force the series of goals to be certain that it was necessary to avoid the dangers present and also not to get involved in unnecessary exchanges of information. And those who used the system of information and established policies to act accordingly.
+
+Translated English Hypothesis: Two will break the rules of the game.
+
+English NLI Label: Contradiction",4.161996364593506,
+اگر میں کچھ کر سکتی تھی۔,میں جانتا تھا کہ میرے کرنے کیلۓ کچھ نہیں تھا۔,2,contradiction,"If I could, I would.",I didn't know that I couldn't do it.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: If I could, I would.
+
+Translated English Hypothesis: I didn't know that I couldn't do it.
+
+English NLI Label: Contradiction",2.4459192752838135,
+بہت سے انسانی رابطے کو سیریز میں لے جانے کے لئے مائیکل آڈٹ کو ملازمت سے زیادہ بنا دیا گیا ہے.,مائیکل ایڈ نے سیریز میں ذاتی معیار کو شامل کرنے کے لئے ملازمت کی تھی.,0,entailment,"A lot of human relationships have been built into Michael Adde's series, which has become necessary.",Michael Adde's series included inherent standards.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: A lot of human relationships have been built into Michael Adde's series, which has become necessary.
+
+Translated English Hypothesis: Michael Adde's series included inherent standards.
+
+English NLI Label: Entailment",3.0337777137756348,
+یہ ہسپانوی چھاپے کے رات پر برجٹاؤن میں تھا .آپ مہم کے لئے $ 100 یا اس سے زیادہ آپ کے شراکت کے لئے تعریف کرتے ہیں، آپ اور مہمان کو جمعرات کو 23.2 مارچ کو 5: 30- 8:00 بجے سے جمعرات کو خصوصی استقبال میں شرکت کے لئے مدعو کیا جاتا ہے. ہیروئن ہال,آپ اور ایک مہمان کو ایک خصوصی استقبالیہ میں شرکت کے لیے مدعو کیا جائے گا اگر آپ 100 ڈالر یا زیادہ مہم کے لیے عطیہ دیتے ہیں۔,0,entailment,"This was a hotel employee named John. You are responsible for providing $100 or more for the conference as a gift, and you and the guest will be invited to a private reception on March 23rd from 5:30 to 8:00 pm. Both of you will be there.","If you give a gift of $100 or more for the conference, you and a guest will be invited to a private reception.",entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: This was a hotel employee named John. You are responsible for providing $100 or more for the conference as a gift, and you and the guest will be invited to a private reception on March 23rd from 5:30 to 8:00 pm. Both of you will be there.
+
+Translated English Hypothesis: If you give a gift of $100 or more for the conference, you and a guest will be invited to a private reception.
+
+English NLI Label: Entailment",6.53006911277771,
+آپ ان کی کہانیاں اور ایمسٹرڈیم کے حرفوں کے ساتھ ساتھ تصاویر اور فنکاروں کے ساتھ ساتھ ویڈیوز دیکھیں گے.,تم فوٹو گراف نہیں دیکھو گے,2,contradiction,You will see images and videos with your friends and family using this app.,You won't watch footage.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: You will see images and videos with your friends and family using this app.
+
+Translated English Hypothesis: You won't watch footage.
+
+English NLI Label: Contradiction",2.7142257690429688,
+اس کے علاوہ، انڈیانا کے رہائشیوں کو انڈیانا ٹیکس کریڈٹ کے ذریعہ ٹیکس فوائد مل سکتی ہے جو براہ راست ریاست ٹیکس کی واپسی کی نچلے لائن کے خلاف لاگو کیا جاتا ہے.,انڈیانا کے باشندے 50٪ ٹیکس کریڈٹ حاصل کرتے ہیں تو وہ تھیٹر کو عطیہ دیتے ہیں.,1,neutral,"In addition, the residents of India can benefit from the Indian Tax Credit through the Tax-Free Shopping program, which is exempt from the next layer of tax.","If someone earns more than $50,000 in India, they will be eligible for a tax break.",neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: In addition, the residents of India can benefit from the Indian Tax Credit through the Tax-Free Shopping program, which is exempt from the next layer of tax.
+
+Translated English Hypothesis: If someone earns more than $50,000 in India, they will be eligible for a tax break.
+
+English NLI Label: Neutral.",4.327057123184204,
+لیونہاد کے میئر، جس شہر جوزف کوربل بڑھ گیا، کہتے ہیں کہ انہوں نے حالیہ برسوں میں البرائٹ کو تین خطوط بھیجا.,Korbel led Letohrad.,0,entailment,"In the city of Joseph Korbel, it is said that he built the bridge over the river Brso.",Korbel led Letohrad.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: In the city of Joseph Korbel, it is said that he built the bridge over the river Brso.
+
+Translated English Hypothesis: Korbel led Letohrad.
+
+English NLI Label: Contradiction",3.0277562141418457,
+بحالی کے ساتھ ایک معیشت میں، کیا ہوتا ہے، اگر ہم تجارت کے اپنے فوائد لے سکتے ہیں اور کسی حد تک سرمایہ کاری کر سکتے ہیں تو ہم اس سے زیادہ راستے پیدا کرسکتے ہیں,ہم ہمارے ارد گرد کسی کے ساتھ تجارت نہیں کر سکتے ہیں.,2,contradiction,"Living alongside each other in a community, if we can benefit from each other's trade and work up to a certain limit of warmth, then we will find more straight paths than if we were alone.",We cannot engage in commerce with everyone around us.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: Living alongside each other in a community, if we can benefit from each other's trade and work up to a certain limit of warmth, then we will find more straight paths than if we were alone. 
+
+Translated English Hypothesis: We cannot engage in commerce with everyone around us. 
+
+English NLI Label: Contradiction",4.306917428970337,
+ہم اچھے وکلاء کی تعلیم کو مضبوط بنانے کے لئے جاری رہ سکتے ہیں,ہم وکلاء کو تعلیم دے سکتے ہیں، مجھے یقین ہے کہ!,0,entailment,We can certainly maintain proper discipline among our peers through consistent education.,We can educate our peers; I am confident about it!,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: We can certainly maintain proper discipline among our peers through consistent education. 
+
+Translated English Hypothesis: We can educate our peers; I am confident about it! 
+
+English NLI Label: entailment",2.9215970039367676,
+پاکستان میں حتمی وصول کنندہ پھر پاکستان کے حلفارڈر جائیں گے اور اس کے پیسہ وصول کریں گے، جو کچھ بھی رقم سے پاکستان کے حلفارڈر کے پاس ہے,حتمی وصول کنندہ کو رقم کی وصلولی کے لیے ترکی جانا ہو گا۔,2,contradiction,"Pakistan will definitely arrive in Harford, USA, and will visit the nearby Pakistan Konsulat, which has some money.",It will be necessary to go to the number of the Konsulat to get the money.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: Pakistan will definitely arrive in Harford, USA, and will visit the nearby Pakistan Konsulat, which has some money.
+
+Translated English Hypothesis: It will be necessary to go to the number of the Konsulat to get the money.
+
+English NLI Label: Entailment",3.5928616523742676,
+تشویش کا اصل سبب یہ ہے کہ ایچ ایم او طویل عرصے میں اخراجات کو کنٹرول کرنے میں ناکام ہوسکتا ہے.,ہرشخص اس بات کی قدر کرتاہے کہ کچھ عرصہ میں ایچ ایم اوز اخراجات پر کنٹرول کرسکیں گے۔,2,contradiction,"The root cause of anxiety is that in a wide range of situations, controlling expenses can be difficult.","Everyone believes that in some areas, controlling expenses will work.",entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: The root cause of anxiety is that in a wide range of situations, controlling expenses can be difficult.
+
+Translated English Hypothesis: Everyone believes that in some areas, controlling expenses will work.
+
+English NLI Label: Entailment",3.2484593391418457,
+اور یہ ابھی بھی مجھے ڈرا رہا تھا۔,میں تھوڑا سا ڈر رہا تھا.,1,neutral,And she still remains with me.,I was left alone.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: And she still remains with me.
+
+Translated English Hypothesis: I was left alone.
+
+English NLI Label: Contradiction",1.9714915752410889,
+اوہ اوہ زبردست میں کہتا ہوں یہ تومہم جو معلوم ہورہا ہے,یہ تو بہت بھیانک تجربہ لگ رہاہے۔,2,contradiction,He says that this is known to you.,This is a very rich experience.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: He says that this is known to you. 
+
+Translated English Hypothesis: This is a very rich experience. 
+
+English NLI Label: Entailment",2.0996205806732178,
+اس خطرے کی تشخیص کے مطابق، سنٹرلنک نے مخصوص روک تھام کی حکمت عملی کی ایک حد تیار کی ہے جس کا مقصد جانشینوں اور آجروں کو آمدنی کی رپورٹنگ کی ضروریات پر تعلیم دینا ہے.,Centralink k pass buht si hikmat e amalian han k kaisay logon ko apni amadni report krney k barey mein sikhaya jae kiun k hakomat uski wajah se buht sa paisa kho rahi thy.,1,neutral,"According to the diagnosis of this hazard, Centrelink has implemented an experimental policy that aims to educate individuals and enhance their ability to report on their experiences, thereby reducing the financial burden on the system.","Centrelink has a lot of wisdom in its experimental policies, but it is not clear how this knowledge is applied to help people report their experiences effectively.",neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: According to the diagnosis of this hazard, Centrelink has implemented an experimental policy that aims to educate individuals and enhance their ability to report on their experiences, thereby reducing the financial burden on the system.
+
+Translated English Hypothesis: Centrelink has a lot of wisdom in its experimental policies, but it is not clear how this knowledge is applied to help people report their experiences effectively.
+
+English NLI Label: Neutral.",4.894375562667847,
+انسانی دیکھ بھال کے ساتھ ساتھ جنگل میں بھی ہاتھیوں کی طویل بقا کے لیے یہ انتہائی اہم ہے۔,یہان ایسا کچھ بھی نہیں جسن سے ہاتھیوں کی مدد کی  جا سکتی ہو,2,contradiction,We are human beings who also live in the forest alongside elephants. We have long survived by relying on each other.,It cannot be like this that elephants do not help each other.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: We are human beings who also live in the forest alongside elephants. We have long survived by relying on each other.
+
+Translated English Hypothesis: It cannot be like this that elephants do not help each other.
+
+English NLI Label: Contradiction",3.291950225830078,
+ہم سیکی فی فیتا اور ہر ممکنہ ٹکڑے ٹکڑے کے درمیان براہ راست لکیری تعلقات کا فرض کرتے ہیں,ہم جانتے ہیں کہ حجم فی کلٹی اور ممنوع ٹکڑے  کے درمیان کوئی تعلق نہیں ہے.,2,contradiction,"We take great care in ensuring that the quality of our products meets the highest standards, and we strive to maintain a consistent level of excellence across all our offerings.","We are aware that consistency is key, and we ensure that our products meet the expected quality standards without compromising on any aspect.",entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: We take great care in ensuring that the quality of our products meets the highest standards, and we strive to maintain a consistent level of excellence across all our offerings. 
+
+Translated English Hypothesis: We are aware that consistency is key, and we ensure that our products meet the expected quality standards without compromising on any aspect. 
+
+English NLI Label: Entailment",4.294787168502808,
+اس وقت، یہ سوچ یہ ہے کہ ان چھوٹے، کم ترقی یافتہ جزائر کو  پرامن چھوڑ دینا ہی بہتر ہے ۔,لوگوں کا خیال ہے کہ جزیروں کو اکیلا چھوڑ دینا چاہئے.,0,entailment,"At this time, it is thought that the smaller, less developed islands should be left alone.",People imagine that they want to leave the islands alone.,neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: At this time, it is thought that the smaller, less developed islands should be left alone.
+
+Translated English Hypothesis: People imagine that they want to leave the islands alone.
+
+English NLI Label: Neutral.",3.091709852218628,
+"Aik cheez jo M. Tesnaires nai khaya nahi kya, woh, Anglo-Saxon ka input hah.",کارکردگی کا مظاہرہ کرتا ہے Anglo saxon Tanisery,2,contradiction,"A thing that M. Tesnaires did not eat, it is, an input of Anglo-Saxon.",Work is done by Anglo Saxon Tanisery.,neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: A thing that M. Tesnaires did not eat, it is, an input of Anglo-Saxon.
+
+Translated English Hypothesis: Work is done by Anglo Saxon Tanisery.
+
+English NLI Label: Neutral.",2.9204776287078857,
+میرا نام وڈ - رب جولین وڈ ہے.,اس کا نام ویڈ نہیں بلکہ اس کے برعکس سمتھ تھا,2,contradiction,My name is Ward Robbin.,"This was not his name, but instead, it was the opposite direction.",contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: My name is Ward Robbin.
+
+Translated English Hypothesis: This was not his name, but instead, it was the opposite direction.
+
+English NLI Label: Contradiction",2.2853550910949707,
+کیلیفورنیا میں ایک قانونی خدمات اٹارنی کے لئے یہ بہت مشکل ہو گا کہ یہ معلوم ہوجائے کہ آیا ایک کلائنٹ،جو اریزونا میں تارکین وطن ندی میں کام کر رہی ہے،عارضی طور پر میکسیکو میں سرحد پار کردی ہے.,اٹارنی معلومات تارکین وطن کے ورکر نیٹ ورک سے حاصل کرسکتے ہیں۔,1,neutral,"In California, it will be very difficult to obtain legal services if one is not a citizen of Arizona who has moved to California from out-of-state and crossed the border into Mexico.",Attorney information can be obtained from the Tarkanati Worker Network.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: In California, it will be very difficult to obtain legal services if one is not a citizen of Arizona who has moved to California from out-of-state and crossed the border into Mexico.
+
+Translated English Hypothesis: Attorney information can be obtained from the Tarkanati Worker Network. 
+
+English NLI Label: Entailment",4.461726427078247,
+اسی طرح، ٹیبل اے 2 اور اے 3 میں موجود اعداد وشمار دکھاتے ہیں کہ وہ راستے جن پر زیادہ گاڑیاں چلتی ہیں وہ ان علاقوں میں واقع ہیں جہاں گھروں کی آمدنی اور تعلیم زیادہ ہے۔,zyaad bandon k illaqon mein zyada amadni bhi hoti hai.,0,entailment,"This table has two or three numbers that show the right-hand side, which is more populated than the left, and this relation is true where there is more education and a higher number of residents.",More bands also have more amadni in their relations.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: This table has two or three numbers that show the right-hand side, which is more populated than the left, and this relation is true where there is more education and a higher number of residents.
+
+Translated English Hypothesis: More bands also have more amadni in their relations.
+
+English NLI Label: Entailment",4.5577802658081055,
+اور وہ ہمیشہ ہمارے لئے تھا,اس نے وہ سب رقم ہمیں دے دی جس کی ہمیں ضرورت تھی,1,neutral,He was always with us.,He gave us all the numbers we needed.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: He was always with us.
+
+Translated English Hypothesis: He gave us all the numbers we needed.
+
+English NLI Label: entailment",2.149946689605713,
+ام، اور اس نے کہا، اس نے کہا، اس نے کہا، بچہ، اس نے کہا،آپ زندگی کے بارے میں سمجھتے ہیں جس طرح زندگی کے بارے میں نہیں سمجھتے.,اس نے مجھے بتایا کہ اسے کچھ اندازہ نہیں کہ اصلی دنیا کس طرح  کام کرتی ہے اور مجھے اس کے پیچھے چلنا چاہیے۔,1,neutral,"Mother, and she said, she said, she said, child, she said, You understand life the way you don't understand life.",She told me that she doesn't fully grasp how the world works and wants me to follow her.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: Mother, and she said, she said, she said, child, she said, You understand life the way you don't understand life. 
+
+Translated English Hypothesis: She told me that she doesn't fully grasp how the world works and wants me to follow her. 
+
+English NLI Label: Entailment",3.647408962249756,
+ملکیت بلبلے کی جگہ، یا سائبر اسپیس کی ایک لامتناہی کامیابی ہے، مختلف لوگوں کے ساتھ ان میں دلچسپی کا باعث بنتا ہے.,ملکیت د خلکو ویل په څبردي خو دوي یو  .څه لري,0,entailment,"Ownership of a songbird, or the space between words in a sentence, is a source of delight for many people.",Ownership of a songbird leads to happiness.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: Ownership of a songbird, or the space between words in a sentence, is a source of delight for many people. 
+
+Translated English Hypothesis: Ownership of a songbird leads to happiness. 
+
+English NLI Label: Entailment",3.429081439971924,
+ان مزدوروں کو پھنسے نہیں کیا گیا تھا، اس کے باوجود اوپر کے فرش پر زیادہ تر قبضے کے برعکس، انہوں نے اثرات کے فورا بعد فورا نہیں منتخب کیا.,کچھ ورکرز کے خیال میں صورت حال اور آگے نہیں جائے گی۔,1,neutral,"The workers were not paid, despite the fact that they worked overtime and received less than usual. However, they did not complain about it at the time.",Some workers are imagining that their situation will improve in the future.,neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: The workers were not paid, despite the fact that they worked overtime and received less than usual. However, they did not complain about it at the time.
+
+Translated English Hypothesis: Some workers are imagining that their situation will improve in the future. 
+
+English NLI Label: Neutral.",3.654879570007324,
+کچھ بھی نہیں سمجھتا ہے کہ زبان کی معمولی پیچیدگیوں کو پائلٹوں کے درمیان واقع ہونے والے مواصلات کے مقابلے میں زیادہ دلچسپی سے،عملے کے ارکان، اور ہوائی ٹریفک کنٹرولرز.,پائلٹ ہمیشہ زبردست رابطہ کار ہوتے ہیں,2,contradiction,"There is nothing that cannot be understood when it comes to the delight that arises from the communication between the complexities of language and the mechanisms of платформы, as well as the physical elements and air trim controllers.",Платформи always excel at communication.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: There is nothing that cannot be understood when it comes to the delight that arises from the communication between the complexities of language and the mechanisms of платформы, as well as the physical elements and air trim controllers.
+
+Translated English Hypothesis: Платформи always excel at communication.
+
+English NLI Label: contradiction",3.74900221824646,
+یوسف  پاکستان سے فرار ہونے میں کامیاب ہوگیا، لیکن ان کے ساتھی، مراد - جن کے ایس ایم نے آپریشن کو فنڈ میں مدد کے لئے $ 3،000 کے ساتھ یوسف کو بھیجا ہے، ان کو تحقیقات کے تحت پکڑ لیا اور انکشاف کیا گیا تھا.,مراد نے تفتیشی اہلکاروں کو بتایا کہ یوسف کو پاکستان میں کہاں ڈھونڈھا جا سکتا ہے,1,neutral,"Yusuf managed to escape from Pakistan, but along with him, Murad, through his initiative, gave $3,000 to Yusuf to help him hide, and he was caught and discovered during the investigation.",Murad told the investigators that Yusuf could hide in Pakistan.,neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: Yusuf managed to escape from Pakistan, but along with him, Murad, through his initiative, gave $3,000 to Yusuf to help him hide, and he was caught and discovered during the investigation.
+
+Translated English Hypothesis: Murad told the investigators that Yusuf could hide in Pakistan.
+
+English NLI Label: Neutral.",4.342179536819458,
+آپ تصور کر سکتے ہیں کہ نئی تعمیر کرنے کے لئیے روڈ کھودنے والا بلڈوزر چلانے والے کو ڈویلپر کی حوصلہ افزائی میسر ہوگی  اوہ، خدا...,آپ بلڈوزر بلڈرز شروع کرنے والے بلڈوزر آپریٹر تصور کر سکتے ہیں.,1,neutral,"You can imagine that for new construction, the road-laying bulldozer will be more convenient than the excavator. And God...","You can imagine that for new construction, the bulldozer will start the bulldozer.",entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: You can imagine that for new construction, the road-laying bulldozer will be more convenient than the excavator. And God...
+
+Translated English Hypothesis: You can imagine that for new construction, the bulldozer will start the bulldozer.
+
+English NLI Label: Entailment",3.679938554763794,
+تو ویسے ہی، والد چلا جاتا ہے اور میرے لئے چاکلیٹ دودھ کا یہ اچھا بڑا گلاس بنا دیتا ہے.,والد نے مجھے فرج سے تھوڑا چاکلیٹ کا دودھ نکال کر دیا۔,1,neutral,"Yes, my father, he goes out and brings me a delicious big glass of chakri doda.",My father gave me a glass of chakri doda.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: Yes, my father, he goes out and brings me a delicious big glass of chakri doda.
+
+Translated English Hypothesis: My father gave me a glass of chakri doda.
+
+English NLI Label: Entailment",3.3078832626342773,
+اچھا یہ قیاس ہے کہ سات دنوں میں وہ آپ کے پس منظر کو دیکھنے کے لئے جا رہے ہیں اور اس بات کو یقینی بنانا چاہتے ہیں کہ آپ کوئی سابقہ مجرم ​​نہیں ہیں یا نہیں ہے,وہ غالبا اگلے سات دنوں کے دوران بیک گراونڈ چیگ کریں گے۔,0,entailment,"This is a good comparison, and it will help you see your future self in the next seven days, and you want to be certain that you have not been a criminal in the past or are one now.",He will often go to بيك جراونڈ in the next seven days.,neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: This is a good comparison, and it will help you see your future self in the next seven days, and you want to be certain that you have not been a criminal in the past or are one now. 
+
+Translated English Hypothesis: He will often go to بيك جراونڈ in the next seven days. 
+
+English NLI Label: Neutral.",4.126776933670044,
+میری جنس بہت دلچسپ ہے,ریک نے آپ کو بتایا تھا کہ میں ریٹائرڈ ہوگیا ہوں۔,0,entailment,My gender is very appealing.,Rick told you that I was retired.,neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: My gender is very appealing.
+
+Translated English Hypothesis: Rick told you that I was retired.
+
+English NLI Label: Neutral.",1.7672984600067139,
+بہارل وہ آدمی اندر اجاتا ہے,آدمی کمرے میں داخل ہوا۔,0,entailment,Spring is a time when this person comes inside.,The man went inside his knees.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: Spring is a time when this person comes inside.
+
+Translated English Hypothesis: The man went inside his knees.
+
+English NLI Label: Contradiction",2.5124669075012207,
+بے شک، نوع ٹائپ (یا ٹائپسٹ) کے کسی پوشیدہ غیر معمولی نقطہ نظر کے مطابق ہر ٹائپگرافیکل غلطی کا اشارہ نہیں ہونا چاہئے.,فن طباعت کے ماہر اور ٹائپ کرنے والے کبھی ٹائپ کی غلطی نہیں کرتے ہیں۔,2,contradiction,"""Undoubtedly, in accordance with the unique point of view of type (or types) of graphic design, every typography cannot be incorrect.""","""The experts in typography and typesetting never make mistakes when it comes to typography.""",neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: ""Undoubtedly, in accordance with the unique point of view of type (or types) of graphic design, every typography cannot be incorrect.""
+
+Translated English Hypothesis: ""The experts in typography and typesetting never make mistakes when it comes to typography.""
+
+English NLI Label: Neutral.",3.910473585128784,
+اگر آپ IU سکول آف میڈیسن مہم یا ڈاکٹر فیلڈز ریسرچ کے بارے میں اضافی معلومات چاہتے ہیں، تو براہ کرم 274-3270 کو کال کریں.,Dr. Field University of Florida mein dentist k torr pe kaam krtey han.,2,contradiction,"If you want additional information about the medical school or dental fields of research, please call 274-3270.",Dr. Field works at the University of Florida as a dentist.,neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: If you want additional information about the medical school or dental fields of research, please call 274-3270.
+
+Translated English Hypothesis: Dr. Field works at the University of Florida as a dentist.
+
+English NLI Label: Neutral.",3.3149194717407227,
+اگرچہ کچھ بھی 'انہیں بہتر جاننا چاہئے، کیونکہ ہمارے پاس بارباڈوس میں کچھ بھی نہیں تھا، اور میرے ساتھ اور آپ کرنل بش کے ساتھ واقف ہیں.,ہم کپٹن بلڈ کو جانتے ہیں۔,1,neutral,"Although we may want to know more about her, there was nothing in our crew that she didn't already know, and you are as well informed as I am.",We know Captain Blud.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: Although we may want to know more about her, there was nothing in our crew that she didn't already know, and you are as well informed as I am.
+
+Translated English Hypothesis: We know Captain Blud.
+
+English NLI Label: entailment",3.36885666847229,
+صاف پاسپورٹس اور دو تباہ شدہ پاسپورٹ حاصل کرنے پر، انٹیلی جنس رپورٹس، KSM کی تحقیقات، 3 جولائی، 2003 کو دیکھیں؛ ستمبر 9، 2003.,KSM ہمیشہ صاف دستاویزات حاصل کرنے میں ناکام رہے.,2,contradiction,"On September 9, 2003, see the report on the investigation of KSM, which obtained clean passports and two fake passports on July 3, 2003;",KSM has always been unsuccessful in obtaining clean documents;,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: On September 9, 2003, see the report on the investigation of KSM, which obtained clean passports and two fake passports on July 3, 2003;
+
+Translated English Hypothesis: KSM has always been unsuccessful in obtaining clean documents;
+
+English NLI Label: Contradiction",3.7470598220825195,
+مربع سے زیادہ لاللی کی گلیوں کی سڑکیں، کم قیمت کے کپڑے تلاش کرنے کی جگہ ہے,اگر آپ صحیح بٹوے پر جاتے ہیں تو لاللی میں سستے کپڑے فروخت کی جاتی ہیں,1,neutral,"The market is known for its vibrant and colorful displays of flowers, offering a wide variety at reasonable prices.","If you buy in bulk, soft fruits like apples and oranges are sold at a lower price in Lal.",neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: The market is known for its vibrant and colorful displays of flowers, offering a wide variety at reasonable prices.
+
+Translated English Hypothesis: If you buy in bulk, soft fruits like apples and oranges are sold at a lower price in Lal.
+
+English NLI Label: Neutral.",3.7857675552368164,
+لیکس کے علاوہ، گرامر - خاص طور پر نحو -  بھی تبدیل ہو گیا ہے، اگرچہ، اوسط جدید قارئین کے لۓ ایسا بھی نہیں ہے جو سمجھ نا آسکے۔,گرامر بدل گیا لیکن بہت زیادہ نہیں.,0,entailment,"In addition to lexica, grammar – specifically syntax – has also been transformed, although not to the extent that it cannot be understood without context.","Grammar has been changed, but only to a small degree.",neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: In addition to lexica, grammar – specifically syntax – has also been transformed, although not to the extent that it cannot be understood without context.
+
+Translated English Hypothesis: Grammar has been changed, but only to a small degree. 
+
+English NLI Label: Neutral.",3.521746873855591,
+ہمارے تخروپن سے نکالنے کا بنیادی نتیجہ یہ ہے کہ خود مختار ایجنٹوں میں ایک یا زیادہ خودکار آٹومیٹیکک اور کام سائیکل سائیکل بالکل مناسب ہے، اگر ناول، کسی اکیلبیریم کی شکل، کھلی کیمیائی رد عمل کا نیٹ ورک.,ہم اپنی کمپیوٹر پر کی گئی سیمولیشن کی مدد سے ایک نتیجہ اخذ کر سکتے ہیں,1,neutral,"Our experiments show that autonomous agents with self-improving mechanisms tend to exhibit entirely new behaviors, often unpredictable, even when they are initially designed for a specific task, which may include chemical reactions.",We can obtain a result by using the simulation on our computer.,neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: Our experiments show that autonomous agents with self-improving mechanisms tend to exhibit entirely new behaviors, often unpredictable, even when they are initially designed for a specific task, which may include chemical reactions.
+
+Translated English Hypothesis: We can obtain a result by using the simulation on our computer.
+
+English NLI Label: Neutral.",4.417522430419922,
+پرانے پرتگال کے مستند احساس کے لئے، استحکام کے لیول سینیڈو (وفاداری سینیٹ کی تعمیر) کے ٹھنڈا داخلہ دروازے میں پھیلتے ہیں، نوآبادیاتی فن تعمیر کی ایک اچھی مثال,وفاداری سینیٹ کی عمارت خوبصورت ہے.,0,entailment,"As part of the renovation of the loyalty of the sinthed, the new construction enters through the main entrance doors, presenting an example of good construction.",The sinthed's building is well-constructed.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: As part of the renovation of the loyalty of the sinthed, the new construction enters through the main entrance doors, presenting an example of good construction.
+
+Translated English Hypothesis: The sinthed's building is well-constructed.
+
+English NLI Label: Entailment",3.330392837524414,
+ایک ایجنسی نے ملازمین کے سفری حصے کی مد میں مسافروں کو کچھ لستثناء کے ساتھ، کچھ اخراجات لکھنے کا کہا ہے جو ذاتی طور پر 75$ یا اس سے کم میں ہوتے ہیں.,اس خیال کو باقی اداروں نے اچھی طرح قبول نہیں کیا۔,1,neutral,"A species has suggested that passengers on a cruise ship take some extra money, at least $75, otherwise they will face difficulties.",Other regulations have not accepted this idea well.,neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: A species has suggested that passengers on a cruise ship take some extra money, at least $75, otherwise they will face difficulties.
+
+Translated English Hypothesis: Other regulations have not accepted this idea well.
+
+English NLI Label: Neutral.",3.4850783348083496,
+جی ہاں میرے دو لڑکے ہیں بارہ اور سولہ سال کی عمر کے,میری ایک بیٹی بھی ہے جو لڑکوں سے چھوٹی ہے,1,neutral,"Yes, I have two daughters and a son.",My one daughter is also shy around boys.,neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: Yes, I have two daughters and a son. 
+
+Translated English Hypothesis: My one daughter is also shy around boys. 
+
+English NLI Label: Neutral.",2.6693341732025146,
+دا فرینڈز (دوست) دو سطحوں پر کام کرتے ہیں - سٹی وائڈ فرینڈز (شہر بھر کے دوست) اور برانچ فرینڈز (شاخوں کے دوست) - اور آپ کسی ایک یا دونو سطحوں کے ایک سرگرم رکن بن سکتے ہیں.,ہم دوستوں میں درجہ بندی نہیں کرتے ہیں ، سب برابر ہیں۔,2,contradiction,"Friends (buddies) work on two levels - city-wide buddies (city-to-city friends) and branch buddies (branch-to-branch friends), and you can choose to be part of either one or both of these levels.",We don't rank our friends; they are all equal.,neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: Friends (buddies) work on two levels - city-wide buddies (city-to-city friends) and branch buddies (branch-to-branch friends), and you can choose to be part of either one or both of these levels. 
+
+Translated English Hypothesis: We don't rank our friends; they are all equal. 
+
+English NLI Label: Neutral.",4.859980821609497,
+میں کہنا چاھتا ہوں ، کے کوۂی خطرہ نہیں تھا ، کیونکہ اگر بم زمین پر ضور سے گر بھی جاتا ، تب ھی نہیں پھٹتا۔,وہاں بم پھٹنے کا بڑا خطرہ تھا۔,2,contradiction,"I wanted to say that there was no danger because even if it exploded on the ground, it would not have spread.",There was a great risk of the bomb exploding.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: I wanted to say that there was no danger because even if it exploded on the ground, it would not have spread.
+
+Translated English Hypothesis: There was a great risk of the bomb exploding.
+
+English NLI Label: contradiction",3.139294385910034,
+ہم ابتدائی مشاہدے سے مشورہ دیتے ہیں کہ جی پی آراے کی کارکردگی کی رپورٹیں زیادہ مفید ہوں اگر وہ,GPRA کی رپورٹوں کی افادیت میں اضافہ ہوسکتا ہے.,0,entailment,We advise from the primary scene that the reports of GPRA are more useful if they include.,The reports of GPRA will be more beneficial if they add.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: We advise from the primary scene that the reports of GPRA are more useful if they include.
+
+Translated English Hypothesis: The reports of GPRA will be more beneficial if they add.
+
+English NLI Label: Entailment",3.0310823917388916,
+میں آپ کو یقین دلاتا ہوں، مہودی، کہ میں مکمل طور پر مطلع کیا گیا تھا.,یہ جاسوسی کی موت ہے جسے میں نے اطلاع دی تھی,1,neutral,"I assure you, Modi, that I was fully informed.","This is a spy's death, where I had given information.",entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: I assure you, Modi, that I was fully informed.
+
+Translated English Hypothesis: This is a spy's death, where I had given information.
+
+English NLI Label: Entailment",2.617356061935425,
+وہ 1880 میں کچھ 188 کی طرح پیدا ہوا تھا،مجھے لگتا ہے کہ یہ 1889 تھا، میرا خیال ہے کہ وہ پیدا ہوا تھا.,وہ 1984 تک پیدا نہيں ہوا تھا۔,2,contradiction,"It was something like 188 in 1880, I think it was 1889, my guess is that it was found.",He wasn't found until 1984.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: It was something like 188 in 1880, I think it was 1889, my guess is that it was found.
+
+Translated English Hypothesis: He wasn't found until 1984.
+
+English NLI Label: Contradiction",3.819197416305542,
+ایچ ایچ رچرڈسن اور ان کے پروجیکٹ چارلس فرنکن میکیم عالمگیر اور میکک کے معاون تھے،جان ایم کرررا اور تھامس ہسٹنگ.,ایچ ایچ رچرڈسن چارلس فولن مکم جان م کررارے اور تھموس ہستینگس امام سابق طالب علم تھے,0,entailment,"ICH Racherfson and his project associate Charles Frankenstein were global experts on the immune system and microbes. They worked alongside John Imکرra and Thomas Hastings, who was the former Imam and a scholar of science.","ICH Racherfson, along with Charles Frankenstein, was a colleague of John Imkerra and Thomas Hastings, who was the former Imam and a renowned scientist.",entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: ICH Racherfson and his project associate Charles Frankenstein were global experts on the immune system and microbes. They worked alongside John Imکرra and Thomas Hastings, who was the former Imam and a scholar of science. 
+
+Translated English Hypothesis: ICH Racherfson, along with Charles Frankenstein, was a colleague of John Imkerra and Thomas Hastings, who was the former Imam and a renowned scientist. 
+
+English NLI Label: Entailment",5.23436164855957,
+بغیر پیسوں کے ایک شخص اندر گیا اپنی سابقہ بیوی کو چاقو مار کر ہلاک کردیا کیونکہ اس کے کسی اور مرد کے ساتھ ناجائز تعلقات تھے میرا مطلب ہے ہم سابقہ بیوی کی بات کر رہے ہیں۔,ایک شخص نے ایک پیشگی سزا سے رہائی پاتے ہی اپنی بیوی کو دوسرے شخص کے ساتھ سونے کی وجہ سے مار ڈالا۔,0,entailment,"A person, without any reason, stabbed their former wife to death because she had extramarital affairs with another man. We, her former husband, are claiming that she was killed by her second husband due to jealousy.",A person escaped from prison with the help of a fellow prisoner because they were planning to commit a robbery together.,neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: A person, without any reason, stabbed their former wife to death because she had extramarital affairs with another man. We, her former husband, are claiming that she was killed by her second husband due to jealousy.
+
+Translated English Hypothesis: A person escaped from prison with the help of a fellow prisoner because they were planning to commit a robbery together.
+
+English NLI Label: Neutral.",4.628469705581665,
+اور میں نے 5 میں سے دو علیحدہ کئے تھے۔,کے لئے چالیس سالوں کے لئے کھدائی کے ساتھ کام کیا U2 میں نے ہر روز,1,neutral,I used to work two shifts of five hours each.,"For the past three years, I have been working a shift with a duration of exactly seven hours every day.",neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: I used to work two shifts of five hours each.
+
+Translated English Hypothesis: For the past three years, I have been working a shift with a duration of exactly seven hours every day. 
+
+English NLI Label: Neutral.",3.3199880123138428,
+نپولین نے کاٹالونیا کے مقدس مزار، مونٹسرت کی  خانقاہ پر حملہ کرکے اسے تباہ کردیا۔,منٹسیرات میں مانٹسیریٹ کی تباہی کے لئے نیپولن  ذمہ دار تھا.,0,entailment,Napoleon visited the sacred mausoleum of Catherine the Great in Monte Carlo.,Monte Carlo was the site of Napoleon's celebration of Catherine the Great's death.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: Napoleon visited the sacred mausoleum of Catherine the Great in Monte Carlo.
+
+Translated English Hypothesis: Monte Carlo was the site of Napoleon's celebration of Catherine the Great's death.
+
+English NLI Label: Contradiction",2.6984450817108154,
+اوہ میں اچھی طرح سے دیکھتا ہوں کہ میں اپنے ماحول کو پسند کرتا ہوں,mjhey  khud bhi irtaash pasand hai.,0,entailment,I can clearly see that I enjoy my surroundings.,I also like myself.,entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: I can clearly see that I enjoy my surroundings.
+
+Translated English Hypothesis: I also like myself.
+
+English NLI Label: Entailment",2.1619277000427246,
+میں ہمیشہ شکر گزار ہوں گا.,Jo kuch b apne aj k din kiya mein uski wajah se buht khush aur shukar guzar hun.,1,neutral,I will always be grateful.,"Because of what you did yesterday, I am very happy and grateful.",entailment,N/A_SP_EN_eval,entailment,"Translated English Premise: I will always be grateful.
+
+Translated English Hypothesis: Because of what you did yesterday, I am very happy and grateful. 
+
+English NLI Label: Entailment",2.4125213623046875,
+یہ بات یہ ہے کہ اس حقیقت کا یہ مطلب ہے کہ اس قانون میں کمانڈر غیر یقینیی موجود ہے،لیکن یہ شاید ناممکن نہیں لگتا ہے.,فرض کرنے کے لئے یہ نا ممکن نہیں کے قانون میںبہت زیادہ غیر یقینی ہے,0,entailment,"This statement asserts that it is true that the law allows for uncertainty regarding commanders, but it may not necessarily be impossible to determine.",It is impossible to assume that the law allows for a lot of uncertainty.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: This statement asserts that it is true that the law allows for uncertainty regarding commanders, but it may not necessarily be impossible to determine.
+
+Translated English Hypothesis: It is impossible to assume that the law allows for a lot of uncertainty.
+
+English NLI Label: Contradiction",3.6367766857147217,
+اور اس کی وجع یہ ہے کے ماؤں منشیات لے رہے ہیں,ماؤں منشیات کے عادی افراد ہیں,1,neutral,And it is that their pain is due to the water being contaminated.,We are ordinary individuals.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: And it is that their pain is due to the water being contaminated.
+
+Translated English Hypothesis: We are ordinary individuals.
+
+English NLI Label: Contradiction",2.6274096965789795,
+ہم جنس پرستی کی ایک تصویر کے طور پر ہم جنس پرستی کی تصویر کو دبانے کے لئے، کلنٹن اور برچ ہم جنس پرستوں کے لئے شہری فضیلت کی تعریف کرتے ہیں.,کلنٹن اور برچ ہم جنس پرست ہیں,1,neutral,"We are advocating for the visibility of queer people's experiences, just like straight and cisgender people, and we define city pride as including all queer individuals.",Cisgender and transgender people are one and the same.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: We are advocating for the visibility of queer people's experiences, just like straight and cisgender people, and we define city pride as including all queer individuals. 
+
+Translated English Hypothesis: Cisgender and transgender people are one and the same. 
+
+English NLI Label: Contradiction",4.008248329162598,
+پھر مجھے ملتا ہے اور میں سوچھتا ہوں کے اس کے ساتھ کیا کروں گا,میں نہیں جانتا کہ مجھے کس طرح استعمال کرنا تھا.,1,neutral,I am joining you and I will think about what to do.,I don't know that I should have used it.,neutral,N/A_SP_EN_eval,neutral,"Translated English Premise: I am joining you and I will think about what to do.
+
+Translated English Hypothesis: I don't know that I should have used it.
+
+English NLI Label: Neutral.",2.759317636489868,
+سموئیل شین بین کو اسرائیل میں قتل کی سزا کا سامنا کرنا ہوگا۔,سموئیل شین بین کنیڈا میں قتل کی سزا کاٹے گا۔,2,contradiction,Samuel Shinwell will be sentenced to death in Israel.,Samuel Shinwell will be executed in Canada.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: Samuel Shinwell will be sentenced to death in Israel.
+
+Translated English Hypothesis: Samuel Shinwell will be executed in Canada. 
+
+English NLI Label: Contradiction",2.7436513900756836,
+یہ کہا گیا ہے، مکمل طور پر مزاق کرتے ہوۓ نہیں، کہ اگر جاپانیوں کو لازمی طور پر ہر انگلش لفظ جو انہوں نے استعمال کیا ہے کی لائسنس فیس ادا کرنے کا کہا  جاتا تو ان کی تجارت کی بچت غائب ہو جاتی۔,غیرملکی زبانوں سے انگریزی میں ترجمہ کرتے وقت اسم معرفہ زیادہ استعمال کیے جاتے ہیں,1,neutral,"It is said that they do not fully taste what they say, that if Japanese people give the license fee for the face expression that they use when translating from English to Japanese, their trade will be lost.",Foreign languages are more commonly used in translation than native speakers.,contradiction,N/A_SP_EN_eval,contradiction,"Translated English Premise: It is said that they do not fully taste what they say, that if Japanese people give the license fee for the face expression that they use when translating from English to Japanese, their trade will be lost.
+
+Translated English Hypothesis: Foreign languages are more commonly used in translation than native speakers.
+
+English NLI Label: Contradiction",4.377753496170044,

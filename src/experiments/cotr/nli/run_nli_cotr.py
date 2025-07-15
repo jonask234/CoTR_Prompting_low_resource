@@ -35,7 +35,6 @@ from src.experiments.baseline.nli.nli_baseline import calculate_nli_metrics # AD
 from huggingface_hub import login
 from config import get_token
 # from src.utils.summarization_utils import save_overall_summary, append_to_overall_summary_and_plot # Commented out
-from evaluation.cotr.translation_metrics import COMET_AVAILABLE, calculate_comet_score # Added import
 
 # For plotting
 import matplotlib.pyplot as plt
@@ -60,7 +59,7 @@ def parse_args():
     """Parse command-line arguments."""
     parser = argparse.ArgumentParser(description="Run NLI CoTR experiments")
     parser.add_argument("--models", type=str, default="CohereLabs/aya-23-8B,Qwen/Qwen2.5-7B-Instruct", help="Model to use, comma-separated if multiple models")
-    parser.add_argument("--languages", type=str, default="en,ur", help="Language code(s), comma-separated if multiple")
+    parser.add_argument("--languages", type=str, default="en,ur,sw,fr", help="Language code(s), comma-separated if multiple")
     parser.add_argument("--num_samples", type=int, default=10, help="Number of samples per language")
     parser.add_argument("--data_split", type=str, default="test", choices=["train", "validation", "test"], 
                         help="Dataset split to use. Default: test")
@@ -288,132 +287,55 @@ def run_nli_cotr_experiment( # Signature adapted from run_nli_cotr_old.py
     results_df_computed.to_csv(results_file, index=False) # Line ~280
     logging.info(f"Results saved to {results_file}")       # Line ~281 - Ensure this line starts at the same column as the one above
 
-    # --- Add COMET Score Calculation for CoTR internal translations ---
-    if not results_df_computed.empty:
-        # For LRL Premise -> EN Premise
-        if 'premise_lrl' in results_df_computed.columns and 'premise_en' in results_df_computed.columns:
-            valid_pairs_prem = results_df_computed[['premise_lrl', 'premise_en']].dropna()
-            if not valid_pairs_prem.empty and COMET_AVAILABLE:
-                try:
-                    scores = calculate_comet_score(
-                        sources=valid_pairs_prem['premise_lrl'].tolist(),
-                        predictions=valid_pairs_prem['premise_en'].tolist(),
-                        references=[[p] for p in valid_pairs_prem['premise_lrl'].tolist()] # Self-reference for source
-                    )
-                    # Merge scores back to results_df_computed carefully by index
-                    results_df_computed.loc[valid_pairs_prem.index, 'comet_lrl_prem_to_en'] = scores
-                    logging.info(f"Calculated COMET scores for LRL Premise -> EN Premise for {lang_code}.")
-                except Exception as e_comet:
-                    logging.error(f"Error calculating COMET for LRL Premise -> EN Premise ({lang_code}): {e_comet}")
-            elif not COMET_AVAILABLE:
-                 logging.warning("COMET not available, skipping LRL Premise -> EN Premise COMET scores.")
-
-
-        # For LRL Hypothesis -> EN Hypothesis
-        if 'hypothesis_lrl' in results_df_computed.columns and 'hypothesis_en' in results_df_computed.columns:
-            valid_pairs_hyp = results_df_computed[['hypothesis_lrl', 'hypothesis_en']].dropna()
-            if not valid_pairs_hyp.empty and COMET_AVAILABLE:
-                try:
-                    scores = calculate_comet_score(
-                        sources=valid_pairs_hyp['hypothesis_lrl'].tolist(),
-                        predictions=valid_pairs_hyp['hypothesis_en'].tolist(),
-                        references=[[h] for h in valid_pairs_hyp['hypothesis_lrl'].tolist()]
-                    )
-                    results_df_computed.loc[valid_pairs_hyp.index, 'comet_lrl_hyp_to_en'] = scores
-                    logging.info(f"Calculated COMET scores for LRL Hypothesis -> EN Hypothesis for {lang_code}.")
-                except Exception as e_comet:
-                    logging.error(f"Error calculating COMET for LRL Hypothesis -> EN Hypothesis ({lang_code}): {e_comet}")
-            elif not COMET_AVAILABLE:
-                 logging.warning("COMET not available, skipping LRL Hypothesis -> EN Hypothesis COMET scores.")
-
-        # For EN Label -> LRL Label (Multi-Prompt only, and if lang_code is not 'en')
-        if pipeline_type_to_run == 'multi_prompt' and lang_code != 'en':
-            if 'predicted_english_label_model_intermediate' in results_df_computed.columns and \
-               'predicted_lrl_label_model_raw' in results_df_computed.columns:
-                valid_pairs_label = results_df_computed[[
-                    'predicted_english_label_model_intermediate', 
-                    'predicted_lrl_label_model_raw'
-                ]].dropna()
-                # Filter out error/placeholder values before calculating COMET
-                valid_pairs_label = valid_pairs_label[
-                    ~valid_pairs_label['predicted_english_label_model_intermediate'].str.contains("\[Error|\[N/A", na=False) &
-                    ~valid_pairs_label['predicted_lrl_label_model_raw'].str.contains("\[Error|\[N/A", na=False)
-                ]
-                if not valid_pairs_label.empty and COMET_AVAILABLE:
-                    try:
-                        # For label back-translation, the 'source' is the EN label, 'prediction' is the LRL label.
-                        # Reference is tricky; ideally, it'd be a gold LRL label.
-                        # If we don't have gold LRL label, we can use the EN label as a pseudo-reference for consistency.
-                        scores = calculate_comet_score(
-                            sources=valid_pairs_label['predicted_english_label_model_intermediate'].tolist(),
-                            predictions=valid_pairs_label['predicted_lrl_label_model_raw'].tolist(),
-                            references=[[en_label] for en_label in valid_pairs_label['predicted_english_label_model_intermediate'].tolist()]
-                        )
-                        results_df_computed.loc[valid_pairs_label.index, 'comet_en_label_to_lrl'] = scores
-                        logging.info(f"Calculated COMET scores for EN Label -> LRL Label for {lang_code}.")
-                    except Exception as e_comet:
-                        logging.error(f"Error calculating COMET for EN Label -> LRL Label ({lang_code}): {e_comet}")
-                elif not COMET_AVAILABLE:
-                    logging.warning("COMET not available, skipping EN Label -> LRL Label COMET scores.")
-        
-        # Re-save the results_df_computed if COMET scores were added
-        results_df_computed.to_csv(results_file, index=False, float_format='%.4f')
-        logging.info(f"Results re-saved to {results_file} after attempting COMET score calculations.")
-    # --- End of COMET Score Calculation ---
-
-
     # Prepare DataFrame for metrics (consistent with how existing results are handled)
-        if 'original_gt_label_int' in results_df_computed.columns and \
-           ('ground_truth_label_str' not in results_df_computed.columns or results_df_computed['ground_truth_label_str'].isnull().any()):
-            results_df_computed['ground_truth_label_str'] = results_df_computed['original_gt_label_int'].map(NLI_INT_TO_LABEL_MAP)
-        
-        df_for_metrics_computed = results_df_computed.copy()
+    if 'original_gt_label_int' in results_df_computed.columns and \
+       ('ground_truth_label_str' not in results_df_computed.columns or results_df_computed['ground_truth_label_str'].isnull().any()):
+        results_df_computed['ground_truth_label_str'] = results_df_computed['original_gt_label_int'].map(NLI_INT_TO_LABEL_MAP)
+    
+    df_for_metrics_computed = results_df_computed.copy()
 
-        # Rename columns to match what calculate_nli_metrics expects
-        # Expected: 'premise', 'hypothesis', 'gold_label', 'predicted_label'
-        rename_map = {}
-        if 'premise_en' in df_for_metrics_computed.columns:
-            rename_map['premise_en'] = 'premise'
-        elif 'premise_lrl' in df_for_metrics_computed.columns: # Fallback if EN not generated due to error
-            rename_map['premise_lrl'] = 'premise'
-        
-        if 'hypothesis_en' in df_for_metrics_computed.columns:
-            rename_map['hypothesis_en'] = 'hypothesis'
-        elif 'hypothesis_lrl' in df_for_metrics_computed.columns: # Fallback
-            rename_map['hypothesis_lrl'] = 'hypothesis'
+    # Rename columns to match what calculate_nli_metrics expects
+    # Expected: 'premise', 'hypothesis', 'gold_label', 'predicted_label'
+    rename_map = {}
+    if 'premise_en' in df_for_metrics_computed.columns:
+        rename_map['premise_en'] = 'premise'
+    elif 'premise_lrl' in df_for_metrics_computed.columns: # Fallback if EN not generated due to error
+        rename_map['premise_lrl'] = 'premise'
+    
+    if 'hypothesis_en' in df_for_metrics_computed.columns:
+        rename_map['hypothesis_en'] = 'hypothesis'
+    elif 'hypothesis_lrl' in df_for_metrics_computed.columns: # Fallback
+        rename_map['hypothesis_lrl'] = 'hypothesis'
 
-        if 'ground_truth_eng_label_str' in df_for_metrics_computed.columns:
-            rename_map['ground_truth_eng_label_str'] = 'gold_label'
-        
-        if 'predicted_label_for_accuracy' in df_for_metrics_computed.columns: # This is the English predicted label
-            rename_map['predicted_label_for_accuracy'] = 'predicted_label'
-        
-        df_for_metrics_computed = df_for_metrics_computed.rename(columns=rename_map)
+    if 'ground_truth_eng_label_str' in df_for_metrics_computed.columns:
+        rename_map['ground_truth_eng_label_str'] = 'gold_label'
+    
+    if 'predicted_label_for_accuracy' in df_for_metrics_computed.columns: # This is the English predicted label
+        rename_map['predicted_label_for_accuracy'] = 'predicted_label'
+    
+    df_for_metrics_computed = df_for_metrics_computed.rename(columns=rename_map)
 
-        # Ensure all expected columns are present after renaming, or skip metrics
-        expected_cols_for_metrics = ['premise', 'hypothesis', 'gold_label', 'predicted_label']
-        if not all(col in df_for_metrics_computed.columns for col in expected_cols_for_metrics):
-            logger.error(f"Metric calculation skipped: DataFrame is missing one or more expected columns after renaming: {expected_cols_for_metrics}. Available: {df_for_metrics_computed.columns.tolist()}")
-            # Create a dummy metrics dict to avoid downstream errors if summary still expects these keys
+    # Ensure all expected columns are present after renaming, or skip metrics
+    expected_cols_for_metrics = ['premise', 'hypothesis', 'gold_label', 'predicted_label']
+    if not all(col in df_for_metrics_computed.columns for col in expected_cols_for_metrics):
+        logger.error(f"Metric calculation skipped: DataFrame is missing one or more expected columns after renaming: {expected_cols_for_metrics}. Available: {df_for_metrics_computed.columns.tolist()}")
+        # Create a dummy metrics dict to avoid downstream errors if summary still expects these keys
+        metrics = {
+            'accuracy': 0.0, 'macro_f1': 0.0, 'weighted_f1': 0.0, 
+            'report_dict': {lbl: {'precision': 0, 'recall': 0, 'f1-score': 0, 'support': 0} for lbl in NLI_LABELS_EN_FOR_METRICS}
+        }
+    else:
+        logger.info(f"Columns for metric calculation: {df_for_metrics_computed.columns.tolist()}")
+        try:
+            metrics = calculate_nli_metrics(df_for_metrics_computed) # Using imported function
+        except Exception as e_metrics_calc:
+            logger.error(f"Error during calculate_nli_metrics: {e_metrics_calc}", exc_info=True)
             metrics = {
-                'accuracy': 0.0, 'macro_f1': 0.0, 'weighted_f1': 0.0, 
-                'report_dict': {lbl: {'precision': 0, 'recall': 0, 'f1-score': 0, 'support': 0} for lbl in NLI_LABELS_EN_FOR_METRICS}
-            }
-        else:
-            logger.info(f"Columns for metric calculation: {df_for_metrics_computed.columns.tolist()}")
-            try:
-                metrics = calculate_nli_metrics(df_for_metrics_computed) # Using imported function
-            except Exception as e_metrics_calc:
-                logger.error(f"Error during calculate_nli_metrics: {e_metrics_calc}", exc_info=True)
-                metrics = {
-                'accuracy': 0.0, 'macro_f1': 0.0, 'weighted_f1': 0.0, 
-                'report_dict': {lbl: {'precision': 0, 'recall': 0, 'f1-score': 0, 'support': 0} for lbl in NLI_LABELS_EN_FOR_METRICS}
-            }            
+            'accuracy': 0.0, 'macro_f1': 0.0, 'weighted_f1': 0.0, 
+            'report_dict': {lbl: {'precision': 0, 'recall': 0, 'f1-score': 0, 'support': 0} for lbl in NLI_LABELS_EN_FOR_METRICS}
+        }
 
     # Prepare summary_data dictionary (aligned with old script + new additions)
-    avg_comet_prem = np.mean(results_df_computed['comet_lrl_prem_to_en'].dropna()) if 'comet_lrl_prem_to_en' in results_df_computed.columns and not results_df_computed['comet_lrl_prem_to_en'].dropna().empty else None
-    avg_comet_hyp = np.mean(results_df_computed['comet_lrl_hyp_to_en'].dropna()) if 'comet_lrl_hyp_to_en' in results_df_computed.columns and not results_df_computed['comet_lrl_hyp_to_en'].dropna().empty else None
-    avg_comet_label = np.mean(results_df_computed['comet_en_label_to_lrl'].dropna()) if 'comet_en_label_to_lrl' in results_df_computed.columns and not results_df_computed['comet_en_label_to_lrl'].dropna().empty else None
 
     # Define generation_params_for_summary for logging
     generation_params_for_summary = {}
@@ -436,9 +358,6 @@ def run_nli_cotr_experiment( # Signature adapted from run_nli_cotr_old.py
         'model': model_name_short, 'language': lang_code, 'pipeline_type': pipeline_type_to_run,
             'shot_type': shot_type_for_path, 'samples': len(results_df_computed),
             'accuracy': metrics['accuracy'], 'macro_f1': metrics['macro_f1'],
-        'avg_comet_lrl_prem_to_en': avg_comet_prem,
-        'avg_comet_lrl_hyp_to_en': avg_comet_hyp,
-        'avg_comet_en_label_to_lrl': avg_comet_label,
         **generation_params_for_summary
     }
     # Adding class metrics to summary if available (from old script style)

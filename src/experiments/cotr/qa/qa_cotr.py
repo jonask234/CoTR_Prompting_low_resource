@@ -14,7 +14,7 @@ import numpy as np
 from huggingface_hub import login
 from config import get_token
 from src.utils.data_loaders.load_tydiqa import TYDIQA_LANG_CONFIG_MAP
-from evaluation.cotr.translation_metrics import COMET_AVAILABLE, calculate_comet_score as calculate_translation_quality
+# from evaluation.cotr.translation_metrics import COMET_AVAILABLE, calculate_comet_score as calculate_translation_quality
 
 # --- Global Logger ---
 logger = logging.getLogger(__name__)
@@ -220,12 +220,18 @@ def generate_qa_prompt(question: str, context_en: str, use_few_shot: bool = True
     # Drastically simplifying examples string to isolate linter error
     examples = "" # Set to empty string for now
     if use_few_shot:
-        # A very simple, single example to minimize complexity for the linter
+        # Standardized to 3 examples matching baseline
         examples = (
-            '\nExamples:\n'
-            'Context: \\\'Paris is the capital of France.\\\'\n'
-            'Question: \\\'What is the capital of France?\\\'\n'
-            'Answer: Paris\n'
+            '\\nExamples:\\n'
+            'Context: \\\'Paris is the capital of France.\\\'\\n'
+            'Question: \\\'What is the capital of France?\\\'\\n'
+            'Answer: Paris\\n\\n'
+            'Context: \\\'Leonardo da Vinci painted the Mona Lisa between 1503 and 1519.\\\'\\n'
+            'Question: \\\'Who painted the Mona Lisa?\\\'\\n'
+            'Answer: Leonardo da Vinci\\n\\n'
+            'Context: \\\'Jupiter is the largest planet in our solar system with a mass greater than all other planets combined.\\\'\\n'
+            'Question: \\\'What is the largest planet in our solar system?\\\'\\n'
+            'Answer: Jupiter\\n'
         )
 
     prompt_base = f"""Context: '{safe_context}'
@@ -282,61 +288,55 @@ Provide your answer in this exact format:
     few_shot_examples_str = "" # Initialize as empty
     if use_few_shot:
         lrl_name_for_prompt = get_language_name(lang_code)
-        # Define few-shot examples (CoT in English, LRL parts vary)
-        # Example 1: Question about a known fact, answer directly in context
-        ex1_lrl_q = f"Nani alikuwa rais wa kwanza wa Marekani?" if lang_code == "sw" else (f"అమెరికా మొదటి అధ్యక్షుడు ఎవరు?" if lang_code == "te" else (f"Kuka oli Yhdysvaltain ensimmäinen presidentti?" if lang_code == "fi" else f"[Question about first US president in {lrl_name_for_prompt}]"))
-        ex1_lrl_c = f"George Washington alikuwa rais wa kwanza wa Marekani. Alihudumu kuanzia 1789 hadi 1797." if lang_code == "sw" else (f"జార్జ్ వాషింగ్టన్ అమెరికా మొదటి అధ్యక్షుడు. అతను 1789 నుండి 1797 వరకు పనిచేశారు." if lang_code == "te" else (f"George Washington oli Yhdysvaltain ensimmäinen presidentti. Hän palveli vuosina 1789-1797." if lang_code == "fi" else f"[Context about George Washington in {lrl_name_for_prompt}]"))
-        ex1_en_q = "Who was the first president of the United States?"
-        ex1_en_c = "George Washington was the first president of the United States. He served from 1789 to 1797."
-        ex1_en_a = "George Washington"
-        ex1_lrl_a_map = {"sw": "George Washington", "te": "జార్జ్ వాషింగ్టన్", "fi": "George Washington"}
-        ex1_lrl_a = ex1_lrl_a_map.get(lang_code, f"[George Washington in {lrl_name_for_prompt}]")
+        # Using English examples consistent with baseline requirements - STANDARDIZED TO 3 EXAMPLES
+        ex1_en_q = "What is the capital of France?"
+        ex1_en_c = "Paris is the capital of France."
+        ex1_en_a = "Paris"
 
-        ex2_lrl_q = f"Rangi ya anga kwenye Mirihi ni ipi?" if lang_code == "sw" else (f"అంగారకుడిపై ఆకాశం రంగు ఏమిటి?" if lang_code == "te" else (f"Mikä on Marsin taivaan väri?" if lang_code == "fi" else f"[Question about Mars sky in {lrl_name_for_prompt}]"))
-        ex2_lrl_c = f"Mirihi ni sayari ya nne kutoka Jua." if lang_code == "sw" else (f"అంగారకుడు సూర్యుని నుండి నాల్గవ గ్రహం." if lang_code == "te" else (f"Mars on neljäs planeetta Auringosta." if lang_code == "fi" else f"[Context about Mars in {lrl_name_for_prompt}]"))
-        ex2_en_q = "What is the color of the sky on Mars?"
-        ex2_en_c = "Mars is the fourth planet from the Sun."
-        ex2_en_a = "I don't know"
-        ex2_lrl_a_map = {"sw": "Sijui", "fi": "En tiedä"}
-        ex2_lrl_a = ex2_lrl_a_map.get(lang_code, f"[Equivalent of I don't know in {lrl_name_for_prompt}]")
+        ex2_en_q = "Who painted the Mona Lisa?"
+        ex2_en_c = "Leonardo da Vinci painted the Mona Lisa between 1503 and 1519."
+        ex2_en_a = "Leonardo da Vinci"
 
-        # Handle final answer label for examples based on language
-        if lang_code == 'en':
-            final_answer_label_ex1 = "English Answer"
-            final_answer_val_ex1 = ex1_en_a
-            final_answer_label_ex2 = "English Answer"
-            final_answer_val_ex2 = ex2_en_a
-        else:
-            final_answer_label_ex1 = f"{lrl_name} Answer"
-            final_answer_val_ex1 = ex1_lrl_a
-            final_answer_label_ex2 = f"{lrl_name} Answer"
-            final_answer_val_ex2 = ex2_lrl_a
+        ex3_en_q = "What is the largest planet in our solar system?"
+        ex3_en_c = "Jupiter is the largest planet in our solar system with a mass greater than all other planets combined."
+        ex3_en_a = "Jupiter"
 
-        ex1_lrl_q_esc, ex1_lrl_c_esc, ex1_en_q_esc, ex1_en_c_esc, ex1_en_a_esc, ex1_lrl_a_esc = map(_escape_fstring_val, [ex1_lrl_q, ex1_lrl_c, ex1_en_q, ex1_en_c, ex1_en_a, final_answer_val_ex1])
-        ex2_lrl_q_esc, ex2_lrl_c_esc, ex2_en_q_esc, ex2_en_c_esc, ex2_en_a_esc, ex2_lrl_a_esc = map(_escape_fstring_val, [ex2_lrl_q, ex2_lrl_c, ex2_en_q, ex2_en_c, ex2_en_a, final_answer_val_ex2])
+        # For the few-shot examples, show the English content in both "Original" and translated sections
+        # This demonstrates the translation process but uses English throughout
+        ex1_en_q_esc, ex1_en_c_esc, ex1_en_a_esc = map(_escape_fstring_val, [ex1_en_q, ex1_en_c, ex1_en_a])
+        ex2_en_q_esc, ex2_en_c_esc, ex2_en_a_esc = map(_escape_fstring_val, [ex2_en_q, ex2_en_c, ex2_en_a])
+        ex3_en_q_esc, ex3_en_c_esc, ex3_en_a_esc = map(_escape_fstring_val, [ex3_en_q, ex3_en_c, ex3_en_a])
         
-        # Constructing the few_shot_examples_str using triple-double-quotes f-string.
-        # Variables are already escaped by _escape_fstring_val.
+        # Constructing the few_shot_examples_str with English examples consistently
         few_shot_examples_str = f"""
 --- Examples ---
 
 Example 1:
-Original {lrl_name} Question: '{ex1_lrl_q_esc}'
-Original {lrl_name} Context: '{ex1_lrl_c_esc}'
+Original English Question: '{ex1_en_q_esc}'
+Original English Context: '{ex1_en_c_esc}'
 
 English Question: {ex1_en_q_esc}
 English Context: {ex1_en_c_esc}
 English Answer: {ex1_en_a_esc}
-{final_answer_label_ex1}: {ex1_lrl_a_esc}
+English Answer: {ex1_en_a_esc}
 
 Example 2:
-Original {lrl_name} Question: '{ex2_lrl_q_esc}'
-Original {lrl_name} Context: '{ex2_lrl_c_esc}'
+Original English Question: '{ex2_en_q_esc}'
+Original English Context: '{ex2_en_c_esc}'
 
 English Question: {ex2_en_q_esc}
 English Context: {ex2_en_c_esc}
 English Answer: {ex2_en_a_esc}
-{final_answer_label_ex2}: {ex2_lrl_a_esc}
+English Answer: {ex2_en_a_esc}
+
+Example 3:
+Original English Question: '{ex3_en_q_esc}'
+Original English Context: '{ex3_en_c_esc}'
+
+English Question: {ex3_en_q_esc}
+English Context: {ex3_en_c_esc}
+English Answer: {ex3_en_a_esc}
+English Answer: {ex3_en_a_esc}
 """
 
     # Task prompt also uses triple-double-quotes f-string
@@ -700,13 +700,7 @@ def evaluate_qa_cotr( # For multi-prompt pipeline (from old script, adapted)
             current_result['raw_c_translation_output'] = raw_c_trans
             if "[error]" in en_context.lower() or "[skipped]" in en_context.lower(): raise ValueError(f"CTransFail: {en_context}")
 
-            if COMET_AVAILABLE:
-                if lrl_question and en_question and "[error]" not in en_question.lower() and calculate_translation_quality:
-                    comet_q = calculate_translation_quality(sources=[lrl_question], predictions=[en_question], references=[[lrl_question]])
-                    current_result['comet_lrl_q_to_en'] = comet_q['mean_score'] if isinstance(comet_q, dict) else comet_q
-                if lrl_context and en_context and "[error]" not in en_context.lower() and calculate_translation_quality:
-                    comet_c = calculate_translation_quality(sources=[lrl_context], predictions=[en_context], references=[[lrl_context]])
-                    current_result['comet_lrl_c_to_en'] = comet_c['mean_score'] if isinstance(comet_c, dict) else comet_c
+            # COMET score calculation removed - translation evaluation done separately with NLLB
             
             # --- 3. Process English QA --- #
             answer_en, raw_qa_output, _ = process_qa_english(
@@ -734,9 +728,6 @@ def evaluate_qa_cotr( # For multi-prompt pipeline (from old script, adapted)
                     repetition_penalty=trans_rep_penalty, max_new_tokens=trans_max_new_tokens, 
                     max_input_length=max_input_length, is_answer_translation=True
                 )
-                if COMET_AVAILABLE and answer_en and lrl_answer_final and "[error]" not in lrl_answer_final.lower() and calculate_translation_quality:
-                    comet_a = calculate_translation_quality(sources=[answer_en], predictions=[lrl_answer_final], references=[[answer_en]])
-                    current_result['comet_en_a_to_lrl'] = comet_a['mean_score'] if isinstance(comet_a, dict) else comet_a
             elif answer_en.strip().lower() == "i don't know":
                  lrl_answer_final, raw_a_btrans, _ = translate_text(
                     model, tokenizer, "I don't know", "en", lang_code, 
@@ -918,18 +909,7 @@ def evaluate_qa_cotr_single_prompt(
             extracted_parts = extract_parts_from_single_prompt_qa_response(raw_response, lang_code)
             current_result.update(extracted_parts)
 
-            if lang_code != 'en' and COMET_AVAILABLE and calculate_translation_quality:
-                if lrl_question and extracted_parts["en_question_model"] and "[error]" not in extracted_parts["en_question_model"].lower():
-                    comet_q_sp = calculate_translation_quality(sources=[lrl_question], predictions=[extracted_parts["en_question_model"]], references=[[lrl_question]])
-                    current_result['comet_lrl_q_to_en'] = comet_q_sp['mean_score'] if isinstance(comet_q_sp, dict) else comet_q_sp
-                if lrl_context and extracted_parts["en_context_model"] and "[error]" not in extracted_parts["en_context_model"].lower():
-                    comet_c_sp = calculate_translation_quality(sources=[lrl_context], predictions=[extracted_parts["en_context_model"]], references=[[lrl_context]])
-                    current_result['comet_lrl_c_to_en'] = comet_c_sp['mean_score'] if isinstance(comet_c_sp, dict) else comet_c_sp
-                if extracted_parts["en_answer_model_intermediate"] and extracted_parts["lrl_answer_model_final"] and \
-                   "[error]" not in extracted_parts["en_answer_model_intermediate"].lower() and \
-                   "[error]" not in extracted_parts["lrl_answer_model_final"].lower():
-                    comet_a_sp = calculate_translation_quality(sources=[extracted_parts["en_answer_model_intermediate"]], predictions=[extracted_parts["lrl_answer_model_final"]], references=[[extracted_parts["en_answer_model_intermediate"]]])
-                    current_result['comet_en_a_to_lrl'] = comet_a_sp['mean_score'] if isinstance(comet_a_sp, dict) else comet_a_sp
+            # COMET score calculation removed - translation evaluation done separately with NLLB
         
         except Exception as e_sample_sp:
             logger.error(f"Error processing SP QA sample {sample_id} ({lang_code}): {e_sample_sp}", exc_info=True) # Ensure full traceback

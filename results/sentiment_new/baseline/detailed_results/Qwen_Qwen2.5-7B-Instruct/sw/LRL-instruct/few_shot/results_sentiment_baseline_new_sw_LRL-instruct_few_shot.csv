@@ -1,0 +1,174 @@
+id,text,ground_truth_label,predicted_label,language,runtime_seconds,prompt_language,shot_type,raw_model_output
+swa_test_580,   Mambo 9 muhimu ya kuzingatia unapotumia mitandao ya kijamii 1 Fikiria kwanza kabla ya kutuma taarifa yoyote mitan,neutral,unknown,sw,0.4188,LRL-instruct,few-shot,"To determine the correct label, let's analyze the text:
+
+Swahili"
+swa_test_356,Shilole AKA Shishi Baby kuhusu UkatiliUnyanyasaji Mtandaoni,positive,unknown,sw,0.4092,LRL-instruct,few-shot,"To be determined based on context
+Certainly! Let's analyze and label the"
+swa_test_133,   Changamoto ya Tax Refund inatokana na baadhi ya wadau kutokuwa waaminifu naomba baadhi ya wadau wafanye kazi kwa uaminifu,neutral,unknown,sw,0.4129,LRL-instruct,few-shot,"To determine the correct English sentiment label for this Swahili text, let"
+swa_test_250,Kwamba acha kunyonya maziwa ya mama yale ni ya mtoto wako Acha kabisa,neutral,positive,sw,0.4100,LRL-instruct,few-shot,"positive
+Positive (since the statement expresses satisfaction and happiness about something good happening"
+swa_test_299,   EWE KIJANA AMKA KUMEKUCHA Ni asubuhi nyingine tena katika ulimwengu uliojaa fursa nyingi hususani za kilimo biashara T,neutral,positive,sw,0.4127,LRL-instruct,few-shot,"positive
+Sure, let's break down and analyze the given Swahili"
+swa_test_388,   Hello MwanzaNew service in townThe most Mobile MessengerTuma chochotepopote pale na utaletewa ulipoContacts http,negative,unknown,sw,0.4128,LRL-instruct,few-shot,"To determine the appropriate sentiment label for this text, let's break down its"
+swa_test_336,Eeeh mchezo wa kuloweka sio mzuri jamaa fanya vurugu mechi ila usiache zanaa,negative,negative,sw,0.4102,LRL-instruct,few-shot,"negative
+Sure, here's your example:
+
+**Swahili Text:**"
+swa_test_155,   Tuna utajiri mkubwa Sana wa mawazo Ila namna yakuwasilisha na kuyafanyia kazi ndo kinachotufelisha,negative,positive,sw,0.4134,LRL-instruct,few-shot,"positive
+Sure, here's how you would label that sentence:
+
+**Sw"
+swa_test_527,   Utulivu wa akilini kuepuka papara stress unaweza kua na hekima lakini stress zikakuondolea u,negative,unknown,sw,0.4107,LRL-instruct,few-shot,"Sure, let's analyze the given Swahili text and determine its"
+swa_test_734,   Mungu ni mwema sana hatimae mnamo 20102021 nilitunukiwa shahada yangu ya kwanza DEGREE kutoka UDSM Asanteni nyote mlioku,negative,positive,sw,0.4122,LRL-instruct,few-shot,"positive
+Sure! Here's how you would label that sentence:
+
+**Sw"
+swa_test_97,   Moja ya Kitu Kinayumbisha Mahusiano na Ndoa Siku Hizi Ni Pesa Ni Kweli Pesa Hainunui Upendo ila Pesa Inanunua Chakula N,neutral,positive,sw,0.4117,LRL-instruct,few-shot,"positive
+Certainly! Here's your example with the appropriate English sentiment label:"
+swa_test_306,Habari tafadhali tunaomba utufahamishe ni kirufushi gani cha ofa ambacho kwako hakipo na kifurushi hicho hua ulikua ukijiunga upande wa saizi yako siku wiki mwezi au halichachi,neutral,negative,sw,0.4125,LRL-instruct,few-shot,"negative
+Swahili Text:
+'Habari tafadhali"
+swa_test_281,Unataka kunidondoshea agendaniache ninywe biawe ndo ulikuwa unamuogopakalegea sahivi ndo huogopi pambano,neutral,unknown,sw,0.4134,LRL-instruct,few-shot,"To be determined based on context
+Certainly! Let's analyze and label the"
+swa_test_744,JIJI LA DODOMA KUWA NA UTALII WA BUSTANI YA MITI NA MAUA Naibu Waziri wa Maliasili na Utalii Constantine Kanyasu ameiagiza Kurugenzi ya Uzalishaji miche ya miti kuanzisha utalii wa,negative,unknown,sw,0.4135,LRL-instruct,few-shot,"Swahili Text:
+'The forest fire caused significant damage to trees"
+swa_test_211,   Joel lwaga sitabaki kama,neutral,unknown,sw,0.4082,LRL-instruct,few-shot,To determine the correct English sentiment label for the given Swahili text:
+swa_test_266,   Tajiri Hasikii Njaa,negative,unknown,sw,0.4093,LRL-instruct,few-shot,"To determine the correct label, let's analyze the meaning of the given Sw"
+swa_test_39,Ni Easy na EzypesaBabe Tumia Ezypesa na Ushinde,neutral,unknown,sw,0.4091,LRL-instruct,few-shot,"To be determined based on context
+Certainly! Let's analyze and label the"
+swa_test_247,   Karibu kwenye Episode ya 4 ya leo ikifika SAA TATU KAMILI kwenye feat FUNDI Kumbuka pi,neutral,unknown,sw,0.4117,LRL-instruct,few-shot,"To determine the correct label, let's analyze the given sentence:
+
+Swah"
+swa_test_361,Asante kwa kuchagua CRDB Banktunakutakia siku njema SM,negative,unknown,sw,0.4097,LRL-instruct,few-shot,"To be determined based on context
+Certainly! Let's analyze and determine the"
+swa_test_537,   Nikikuamini jua nimejiamini pia,neutral,unknown,sw,0.4093,LRL-instruct,few-shot,"To be determined based on context
+Certainly! Let's analyze and label the"
+swa_test_456,   CHETI Ambacho Unaweza Kupata Bila Hata Kusoma Ni Cha NDOA Lakini Mitihani Yake Huja Baadae Kuoa Ni Rahisi Tu Tafuta,neutral,unknown,sw,0.4118,LRL-instruct,few-shot,"To determine the correct English sentiment label for this Swahili text, let"
+swa_test_651,Ninamcheka kwasababu ajajistir huku kwetu wamejistili ndo maana siwez kucheka maana siyaoni Jistir afu uone Nani atakucheka Akikucheka Nambie,neutral,neutral,sw,0.4140,LRL-instruct,few-shot,"neutral
+Sure, here's your example translated into an English sentiment label:"
+swa_test_511,   Huyu shahidi anatatupa tafsiri ya haraka haraka ya gharama za kujihusisha na siasa za upinzani Tanzania inatisha kwakweli,positive,unknown,sw,0.4118,LRL-instruct,few-shot,"To determine the correct English sentiment label for this Swahili text, let"
+swa_test_319,Asante kwa kuwa pamoja nasiushauri tumeupokea na tutaufanyia kazi kwa Kadiri tunavyoendelea kuim,negative,positive,sw,0.4111,LRL-instruct,few-shot,"positive
+Sure, here's your example:
+
+**Swahili Text:**"
+swa_test_66,   leo unakuja na swali kwa wanahabari Nadharia inaonyesha kuwa wanahabari wanawake ni wengi katika vyumba vya,neutral,unknown,sw,0.4116,LRL-instruct,few-shot,"To determine the correct English sentiment label for this example:
+
+Swahili Text"
+swa_test_691,Ni kijana msikivu sana darasani huwa makini mwalimu akifundisha Lakink baada ya matokeo yy huwa wa mwisho Wanafunzi wenzake darasani walipenda kumuita Empty heard mtu mjinga mpk mda mwingine wanamuuliza lini utapokea mafao yako Hali hii ilimuumiza sana moyo lkn,negative,positive,sw,0.4363,LRL-instruct,few-shot,"positive
+Sure, here's how you would categorize and label that example"
+swa_test_248,UHURU MICHEZOFT Simba 21 AS VITA  13Kasenga 36Mohamed Hussein 90 Chama,neutral,unknown,sw,0.4115,LRL-instruct,few-shot,"To determine the correct English sentiment label for this text, let's first translate"
+swa_test_328,   Ukiwa huna hela utangatwa hata na mbwa wako,neutral,unknown,sw,0.4107,LRL-instruct,few-shot,"To be determined based on context
+Certainly! Here's how you can label"
+swa_test_218,Kitu cha kujifunza zaid ili uweze kupata 1000 followers jihusishe sana na watu wenye account zenye followers wengi Kama na wengineo dFollow account kubwa na ndogo Retweet content zaofollow them wacheki DM,neutral,positive,sw,0.4142,LRL-instruct,few-shot,"Positive
+Sure! Here's how you would label that text:
+
+**Sw"
+swa_test_220,   Mubashara Fuatilia matangazo ya moja kwa moja Siku ya kwanza ya Mkutano wa kwanza wakimataifa wa Uwekezaji katika Sekt,negative,positive,sw,0.4127,LRL-instruct,few-shot,"positive
+Sure, here's how you would label that sentence:
+
+**Sw"
+swa_test_351,Me niko peace na kila mtu kama unaniheshimuhaijalishi hata kama tunapishana itikadituheshimiane,neutral,unknown,sw,0.4111,LRL-instruct,few-shot,"To be determined based on context
+Certainly! Let's analyze and determine the"
+swa_test_467,   Ukikopa hela ukaenda kulipa ada ya mtoto ni INVESTMENT umefanya au umetimiza WAJIBU wako kwa mwanao,neutral,unknown,sw,0.4108,LRL-instruct,few-shot,"To determine the correct English sentiment label for this Swahili text, let"
+swa_test_451,   MVP wa 2019 Baraka Sadick ateuliwa kwenda Nairobi Kenya ,neutral,unknown,sw,0.4105,LRL-instruct,few-shot,"To determine the correct label, let's analyze the given statement:
+
+Swah"
+swa_test_342,katika historia ya bunge leo kwa mara ya kwanza bajeti yenye 90 inaenda kwenye miradi ya maendeleo inawasilishwa stay tuned,neutral,unknown,sw,0.4125,LRL-instruct,few-shot,"To determine the correct label, let's analyze the text:
+
+Swahili"
+swa_test_368,Never nkunguu kwa sasa tunalifanyia kazi hilo ili kuongeza vituo vya huduma zetu za usambazaji tafadhali endelea kusubiri tutatoa muongozo,neutral,unknown,sw,0.4122,LRL-instruct,few-shot,"To be determined based on context
+Certainly! Let's analyze and label the"
+swa_test_78,Tumeshakufollow tafadhali tutumie taarifa zakonk,neutral,unknown,sw,0.4097,LRL-instruct,few-shot,"To be determined based on context
+Certainly! Here's how you can categor"
+swa_test_210,TAARIFA KWA VYOMBO VYA HABARI,neutral,unknown,sw,0.4088,LRL-instruct,few-shot,"To determine the correct label:
+
+Swahili Text: ""TAARIFA"
+swa_test_431,Kwa uelewa wangu sifa mojawapo ya kirusi kikiwa ndani ya mwili ndo kinasifa ya kuwa kiumbe kitaweza kujizalisha na kutembea Lakini kirusi kikiwa nje ya mwili akina sifa ya kuwa kiumbe hai Sasa katika sifa mojawapo ya kiumbe ha,neutral,neutral,sw,0.4356,LRL-instruct,few-shot,"neutral
+Sure, here's your text analyzed and labeled:
+
+**Swah"
+swa_test_81,   Nani yupo online muda huu tumuinue Weka handle kisha retweets tuupigee mwingi na followers now,neutral,unknown,sw,0.4104,LRL-instruct,few-shot,"To determine the correct English sentiment label for this Swahili text, let"
+swa_test_411,NECTA yatangaza matokeo ya kidato cha nne 2018 Shule binafsi zazidi kutikisa gtgtgt,negative,unknown,sw,0.4117,LRL-instruct,few-shot,"To determine the correct label, let's analyze the content of the given Sw"
+swa_test_77,   Shemeji Lucy hakutia neno kabisa Scene moja mje Zenji basi eti Madam Producer Oyaa hii haha,neutral,unknown,sw,0.4122,LRL-instruct,few-shot,"To determine the correct sentiment label for this example, let's analyze the content"
+swa_test_735,KAMATI YA MADARAKA YA BUNGE TOKA BUNGE LA KENYA ILIPOTEMBELEA KAMATI KAMA HIYO YA BUNGE LA TZ,neutral,unknown,sw,0.4124,LRL-instruct,few-shot,"To be determined based on context
+Certainly! Let's analyze and label the"
+swa_test_33,   Nataka kuongea hapa na Rais wetu aliyopo Ikulu anayeitwa kupitia tweets tatu Wana mmelala Can i speak,negative,unknown,sw,0.4116,LRL-instruct,few-shot,"To determine the correct sentiment label for this example, let's break down and"
+swa_test_120,Viwango vyetu vya kubadilishia fedha za kigeni leo tarehe 17 Septemba 2018,negative,unknown,sw,0.4106,LRL-instruct,few-shot,"To determine the correct label:
+
+Swahili Text: ""Viwango"
+swa_test_426,   Rais Dkt John Magufuli akizungumza na wananchi mbalimbali katika hospitali ya Taifa ya Muhimbili mara baada ya kutoka kuwaj,negative,positive,sw,0.4128,LRL-instruct,few-shot,"positive
+Now, analyze the following Swahili text and provide its corresponding"
+swa_test_568,   Sonino pita Hapa Mzee Wangu Tufanye Mpango Wa Kwenda Chuga Kwenye Nyama Nyoma,neutral,unknown,sw,0.4115,LRL-instruct,few-shot,"To be determined based on context
+Certainly! Let's analyze and determine the"
+swa_test_470,Habari unaweza ukatupatia namba yako DM tukupatie maelezo ya kutosha kuhusu huduma hiiKA,negative,unknown,sw,0.4111,LRL-instruct,few-shot,"To determine the correct label, let's analyze the given sentence:
+
+Swah"
+swa_test_576,Wizara ya kilimo nchini Kenya imebaini harasa ya Ksh 32 Milioni kutokana na upotevuuharibifu wa zao la mahindi nchini humo kwa 12 mwaka 2016 Upotevu huo umeripotiwa kuchangiwa na ukame wa muda mrefu na uvamizi wa viwa vijeshi ktk maeneo ya kaskazini mwa Kenya,positive,neutral,sw,0.4371,LRL-instruct,few-shot,"neutral
+Now, analyze the following Swahili text and provide its corresponding"
+swa_test_393,   Ugonjwa wa Saratani nchini kwa sasa una sura ya Mwanamke Saratani 2 ambazo zinawapata wanawake tu shingo ya uzazi na ma,neutral,positive,sw,0.4119,LRL-instruct,few-shot,"positive
+Sure, let's analyze and label the given Swahili text"
+swa_test_371,Siku kadhaa hapa nilikuwa na dili na ofisi za serikali hongereni kwakweli huduma ni nzuri mmepunguza kufanya kazi kwa mazoea,neutral,positive,sw,0.4137,LRL-instruct,few-shot,"positive
+Sure, here's your example translated into English along with its sentiment"
+swa_test_10,Mwenyekiti wa Jumuiya za Tawala za Mikoa ALAT Gulamhafeez Mukadamu kulia akipokea mfano wa hundi ya Sh milioni 100 kutoka kwa Meneja wa NMB Kanda ya Kati  Nsolo Mlozi kama udhamini wa mkutano Mkuu wa Mwaka wa ALAT unaotarajiwa kufanyika kuanzia wiki ijayo Jijini Dodoma,neutral,unknown,sw,0.4375,LRL-instruct,few-shot,"Now, classify the following Swahili text into its corresponding English sentiment"
+swa_test_465,Habari EliasGharama ni shilingi 3500 kwa kiasi hicho JB,negative,unknown,sw,0.4107,LRL-instruct,few-shot,"To determine the correct label, let's analyze the content of the given sentence"
+swa_test_367,   Katibu Mkuu Wizara ya Fedha amp Mipango wa Serikali ya Mapinduzi Zanzibar Khamis Omar akisaini makabidhiano ya kiufundi ya Mel,negative,unknown,sw,0.4137,LRL-instruct,few-shot,"To determine the correct label, let's analyze the text:
+
+Swahili"
+swa_test_324,iwapo zoezi hili halitaleta mabadiliko tuandikie namba yako ya kadi namba ya simu na mahali unapopatikana kwa msaada wa kuifundi Salim,neutral,unknown,sw,0.4121,LRL-instruct,few-shot,"To determine the correct English sentiment label for this example, let's first translate"
+swa_test_738,Nzuri Sana,negative,unknown,sw,0.4081,LRL-instruct,few-shot,"To determine the correct label:
+
+'Swahili Text': Nzuri S"
+swa_test_109,Ahsante kwa kutembelea ukurasa wetu Tumia Ezypesa ushinde,neutral,unknown,sw,0.4095,LRL-instruct,few-shot,"To be determined based on context
+Certainly! Let's analyze and label the"
+swa_test_501,   Aah kwasababu tunaishia kifuani tuu not fair,neutral,unknown,sw,0.4097,LRL-instruct,few-shot,To determine the correct English sentiment label for the given Swahili text:
+swa_test_76,   Katibu Mkuu wa chama tawala Kenya Jubilee Raphael Tuju amepata ajali katika eneo la Magina barabara kuu ya Nakuru N,positive,unknown,sw,0.4108,LRL-instruct,few-shot,"To determine the correct label, let's analyze the content of the sentence:"
+swa_test_641,   Tuache uchochezi wa fikra watanzania wengi wepes kuamini maneno ya hovyowizara haiwez kukaa open hata kama na,neutral,negative,sw,0.4115,LRL-instruct,few-shot,"negative
+Sure, here's your example translated into English along with its sentiment"
+swa_test_54,   Kambi hii maalum ya watoto inaandaliwa na binti mdogo mwenye miaka 11 pekee MzaziMlezi mlete mwanao apate elimu,neutral,unknown,sw,0.4115,LRL-instruct,few-shot,"To determine the correct label, let's analyze the content of the given sentence"
+swa_test_254,   Afya  Habari Marketing Ucheshi Unene Wivu,neutral,unknown,sw,0.4114,LRL-instruct,few-shot,"To determine the correct English sentiment label for this Swahili text, let"
+swa_test_204,   Rais Mstaafu wa Awamu ya 3 Benjamin Mkapa amesema moja ya viunzi alivyofanikiwa kuruka katika uongozi wake ni kile cha k,negative,neutral,sw,0.4116,LRL-instruct,few-shot,"neutral
+Now, analyze the following Swahili text and assign an appropriate"
+swa_test_714,   Muonekano wa kipande kilichotandikwa reli ya kisasa ya SGR jijini Dar es Salaam,negative,positive,sw,0.4109,LRL-instruct,few-shot,"positive
+Sure, let's analyze and label the given Swahili text"
+swa_test_705,Naomba iyo namba iyo namba ili niweze kukusaidia,neutral,unknown,sw,0.4117,LRL-instruct,few-shot,"To be determined based on context
+Certainly! Here's how you can label"
+swa_test_259,Mfanyabiashara kuwepo bonanzani ni gharama piaunategemea bei iwe sawacost za bandausafiriwafanyakazi unazirudisha vipi,neutral,unknown,sw,0.4131,LRL-instruct,few-shot,"To determine the correct label, let's analyze the meaning of the given Sw"
+swa_test_227,   EazzyFX inakupa uwezo wa kujihudumia kubadili fedha za kigeni popote ulipo bila kufika kwenye matawi yetu Tembelea tovut,neutral,unknown,sw,0.4132,LRL-instruct,few-shot,"To be determined based on context
+To determine the sentiment of this Swah"
+swa_test_290,   Hatima yako itakuaje ni wewe mwenyewe ni kufanya maamuzi ili hatima yako isije ikawa mbaya hapo mbeleni usisubiri miujiza,negative,unknown,sw,0.4133,LRL-instruct,few-shot,"To determine the correct label, let's analyze the meaning of the given Sw"
+swa_test_65,   TATIZO NI TIMING Kuna jamaa angu 1 anaitwa Toni anaishi shinyanga ni mtu wa watu sana Ikifika weekend unakuta kuna wazee,positive,unknown,sw,0.4127,LRL-instruct,few-shot,"To determine the correct label, let's analyze the content of the given text"
+swa_test_708,    Je kati ya Mwanaume na Mwanamke ni nani anaweza kuvumilia kukaa kwa muda mrefu bila kufanya mapenzi,neutral,neutral,sw,0.4121,LRL-instruct,few-shot,"neutral
+Sure! Here's how you would label that sentence:
+
+**Sw"
+swa_test_497,Pamoja na jitihada za serikali kuweka mpango wa umeme vijijini REA na kupunguza gharama za kujiunga bado baadhi ya wananchi wanashindwa kuunganishia umeme kutokana na baadhi ya kandarasi za kufunga mtandao,neutral,positive,sw,0.4160,LRL-instruct,few-shot,"positive
+Sure, here's how you would label that sentence:
+
+**Sw"
+swa_test_425,   Wanawake wenzangu Huyu ndo Rais tunapaswa kwenda Naye na Kumuunga Mkono vifo vya Wanawake Vimepungua kutokana na Jitiha,negative,unknown,sw,0.4118,LRL-instruct,few-shot,To determine the correct English sentiment label based on the given Swahili text
+swa_test_557,   TWITTER ni kama Kijiji chenye watu wachache wenye tabia tofauti Tafuta mtaa unaona unakufaa kuishi Jifunze kuheshimu,neutral,positive,sw,0.4117,LRL-instruct,few-shot,"positive
+Certainly! Here's how you can label the given Swahili"
+swa_test_260,   42 ya biashara zinazofanikiwa huwa wanapatia TIMING yani wanapatia MUDA sahihi wa kuanza au kufanya jambo TIMING haipo kw,negative,neutral,sw,0.4118,LRL-instruct,few-shot,"neutral
+Certainly! Here's how you would label the given Swahili"
+swa_test_440,Habari ahsante kwa kuwasiliana nasi Tunaomba radhi kwa changamoto hiyo tumefanya maboresho katika namba yetu ya huduma kwa wateja 100 na sasa unaweza kujihudumia binafsi kupitia maelekezo ya IVRJM,negative,positive,sw,0.4153,LRL-instruct,few-shot,"positive
+Sure, here's how you would label that sentence:
+
+**Sw"
+swa_test_363,   Viva demokrasia VIVA Viva haki ya kikatiba ya kuishi VIVA VIVA HAKI NA UTU WA MTANZANIA VIVA Umoja ni nguvu Wajitenga,neutral,positive,sw,0.4131,LRL-instruct,few-shot,"positive
+Sure! Here's how you would label that text:
+
+**Sw"
+swa_test_422,   Kwa hedhi salama yenye afya na ya kupunguza maumivu usisite kuchukua,neutral,unknown,sw,0.4107,LRL-instruct,few-shot,"To be determined based on context
+Certainly! Let's analyze and label the"
+swa_test_541,   Kaimu Mkurugenzi wa Uendeshaji wa Shirika la Reli Tanzania TRC Focus Sahani akizungumza na waandishi wa haari jijini Dare,neutral,positive,sw,0.4109,LRL-instruct,few-shot,"positive
+Sure, here's how you would label that sentence:
+
+**Sw"
+swa_test_72,Mnyama mkali anatufungia bao la tatu,neutral,unknown,sw,0.4095,LRL-instruct,few-shot,"To be determined based on context
+Certainly! Here's how you can categor"
+swa_test_213,Waziri Wa Afya Maendeleo ya Jamii Jinsia Wazee na Watoto Ummy Mwalimu amekagua utoaji Huduma za Afya katika Hospitali Teule ya Rufaa ya Mkoa wa Njombe na kubaini,neutral,positive,sw,0.4125,LRL-instruct,few-shot,"positive
+Sure, here's how you would label that example:
+
+Swah"
+swa_test_381,   Tulale tukilitafakari hili Jambo la umoja wa kitaifa Ila wenzangu mkipata nafasi ya kuketi pamoja na waflme hukomsijisa,neutral,unknown,sw,0.4117,LRL-instruct,few-shot,"To be determined based on context
+Certainly! Let's analyze and determine the"

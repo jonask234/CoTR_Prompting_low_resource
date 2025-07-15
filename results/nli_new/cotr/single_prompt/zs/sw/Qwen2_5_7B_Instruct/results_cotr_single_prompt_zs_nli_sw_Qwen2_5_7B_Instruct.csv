@@ -1,0 +1,1445 @@
+premise_lrl,hypothesis_lrl,original_gt_label_int,ground_truth_eng_label_str,premise_en,hypothesis_en,predicted_english_label_model_intermediate,predicted_lrl_label_model_raw,predicted_label_for_accuracy,raw_model_response,runtime_seconds,error_message
+Mielekeo iliyobakia yafikiriwa kama imekunja kwa urefu wa mbao katika nafasi zinazoitwa 'Yau' au kwa ujumla moduli zilishoshikana.,Calabi-Yau nafasi zimeenea inje katika ton.,2,contradiction,[PREMISE_EN_EXTRACTION_FAILED],[HYPOTHESIS_EN_EXTRACTION_FAILED],neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided Swahili premise and hypothesis, here's the analysis following the specified steps:
+
+1. **Translate English Premise:** 
+   The sentence translates to: ""The situation is believed to involve a significant reduction in the price of rice in areas known as 'Yau' or generally in most regions.""
+
+2. **Translate English Hypothesis:**
+   The sentence translates to: ""Calabi-Yau spaces have properties that allow for inflation.""
+
+3. **Perform English NLI:**
+   After analyzing the translated premise and hypothesis:
+   - The premise talks about a reduction in the price of rice in specific areas.
+   - The hypothesis discusses properties of Calabi-Yau spaces related to inflation.
+   
+   These two statements do not logically connect; they discuss different subjects without any direct implication between them. Therefore, the relationship is neutral.
+
+**English NLI Label:** neutral
+---",4.90411114692688,
+23Fedha Inayoendeleza kwa Kasi Umuhimu wa Kuafikia Malengo ya Sheria ya CFO,23Financial iko karibu kumaliza malengo yao yot ya vitendo.,1,neutral,** The 23 most important cities are implementing the vision of the legal framework.,** Financial entities are closely involved in their own risk management visions.,neutral,N/A_SP_EN_eval,neutral,"---
+
+Here's my response based on the provided instructions:
+
+**Translated English Premise:** The 23 most important cities are implementing the vision of the legal framework.
+
+**Translated English Hypothesis:** Financial entities are closely involved in their own risk management visions.
+
+**English NLI Label:** Neutral
+
+The premise talks about cities implementing a legal framework while the hypothesis discusses financial entities managing risks. There isn't enough information to determine if the hypothesis necessarily follows from the premise or not, hence it is considered neutral. --- Based on the provided instructions, here is the structured response:
+
+**Translated English Premise:** The 23 most important cities are implementing the vision of the legal framework.
+
+**Translated English Hypothesis:** Financial entities are closely involved in their own risk management visions.
+
+**English NLI Label:** Neutral
+
+This concludes the task as specified. The relationship between the premise and the hypothesis is determined to be neutral. ---",4.805347442626953,
+"Nimekazwa, alimuarifu.",Alimwambia kwamba alikua amekandamizwa.,0,entailment,"I have been called, I have knowledge.",I said that I was awakened.,contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Let's begin:
+
+Translated English Premise: I have been called, I have knowledge.
+
+Translated English Hypothesis: I said that I was awakened.
+
+English NLI Label: contradiction
+--- Explanation ---
+
+The premise states that the speaker has been called and possesses knowledge. The hypothesis, however, claims that the speaker said they were awakened. These two statements do not align; being called and having knowledge does not necessarily imply saying one was awakened. Therefore, the relationship between the premise and the hypothesis is contradictory. Thus, the correct NLI label is ""contradiction."" --- Your response is accurate and follows the specified format. Here it is again for clarity:
+
+**Translated English Premise:** I have been called, I have knowledge.
+
+**Translated English Hypothesis:** I said that I was awakened.
+
+**English NLI Label:** contradiction
+
+This concludes the task. If there are any further tasks or questions, feel free to ask! ---",4.930754661560059,
+labda ni zaidi kwa sababu ninafurahia tu ripoti kuliko sababu sina muda wa kusoma gazeti.,Wanafafanua mengi zaidi kuliko utakayopata kutoka kwenye karatasi.,1,neutral,'I am happier because I have more time than reading newspapers.','Many people feel happier than getting information from the internet.',neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided Swahili sentences, let's follow the steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'I am happier because I have more time than reading newspapers.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'Many people feel happier than getting information from the internet.'
+
+3. **Perform English NLI**:
+   English NLI Label: neutral
+
+The premise talks about being happier due to having more time rather than reading newspapers, while the hypothesis discusses how many people feel happier when getting information from the internet compared to something else. These statements do not directly support or contradict each other; they discuss different aspects of happiness and sources of information. Therefore, the relationship between them is neutral. --- The English NLI Label based on the analysis is: neutral. ---",4.555058240890503,
+"Jane, Dave, na mchambuzi wa FBI ambaye alikuwa kwa undani kwa kitengo cha CIA cha Bin Ladin alikwenda New York Juni 11 kukutana na mawakala kuhusu kesi ya Cole",Mchambuzi wa FBI aliongea na wakala saba kuhusu kesi ya Cole,1,neutral,"'Jane, Dave, na mchambuzi wa FBI ambaye alikuwa kwa undani kwa kitengo cha CIA cha Bin Ladin alikwenda New York Juni 11 kukutana na mawakala kuhusu kesi ya Cole'",'Mchambuzi wa FBI aliongea na wakala saba kuhusu kesi ya Cole',neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided Swahili premise and hypothesis, here's the analysis following the specified steps:
+
+**Step 1: Translate Premise to English**
+Translated English Premise: 'Jane, Dave, na mchambuzi wa FBI ambaye alikuwa kwa undani kwa kitengo cha CIA cha Bin Ladin alikwenda New York Juni 11 kukutana na mawakala kuhusu kesi ya Cole'
+
+**Step 2: Translate Hypothesis to English**
+Translated English Hypothesis: 'Mchambuzi wa FBI aliongea na wakala saba kuhusu kesi ya Cole'
+
+**Step 3: Perform English NLI**
+English NLI Label: neutral
+
+Explanation:
+- The premise states that Jane, Dave, and the FBI agent were present at the CIA office in New York on June 11th when they met with someone about the Cole bombing case.
+- The hypothesis claims that the FBI agent met with seven people regarding the Cole bombing case.
+- While both statements involve meetings related to the Cole bombing case, there is no information in the premise to confirm or deny whether the FBI agent met with exactly seven people. Therefore, the relationship between the two statements is neutral.",6.707544326782227,
+"Kwa upande mwingine, chembe na nguvu tatu za mvuto wa graviti bado hazijaingizwa kwenye picha ya mtandao wa mzunguko.",nguvu zisizo za mvuto ni lazima zijumuishwe ili mtandao uwe kamili,1,neutral,"'From another perspective, three masses and the gravitational forces acting upon them have not yet been included in the simulation model.'",'the gravitational forces must be included so that all models can function properly',neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'From another perspective, three masses and the gravitational forces acting upon them have not yet been included in the simulation model.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'the gravitational forces must be included so that all models can function properly'
+
+3. **Perform English NLI**:
+   English NLI Label: neutral
+
+The premise states that certain elements (three masses and their gravitational forces) have not yet been included in a specific simulation model. The hypothesis suggests that including gravitational forces is necessary for proper functioning of all models, which is a broader statement than what is directly stated in the premise. Therefore, there isn't enough information to conclude that the hypothesis necessarily follows from the premise, nor does it contradict it; hence, the relationship is neutral. --- Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'From another perspective, three masses and the gravitational forces acting upon them have not yet been included in the simulation model.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'the gravitational forces must be included so that all models can function properly'
+
+3. **Perform English NLI**:
+   English NLI Label: neutral
+
+The premise indicates that some aspects of a particular simulation model are incomplete due to the absence of certain gravitational forces. The hypothesis, however, makes a more general claim about the necessity of including gravitational forces across all models",9.005630254745483,
+Ungelikuwa umeona hatari.,Kamwe usiangalie janga linalojiri sasa hivi.,2,contradiction,He saw danger.,We did not mention the problem they are facing now here.,contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Let's begin:
+Translated English Premise: He saw danger.
+
+Translated English Hypothesis: We did not mention the problem they are facing now here.
+
+English NLI Label: contradiction
+--- Explanation ---
+
+The premise states that someone saw danger, while the hypothesis mentions that no one mentioned a current problem. These statements do not align logically; therefore, the relationship between them is contradictory. The correct NLI label is ""contradiction."" --- Your response is accurate and follows the specified format. Here it is again for clarity:
+
+**Translated English Premise:** He saw danger.
+
+**Translated English Hypothesis:** We did not mention the problem they are facing now here.
+
+**English NLI Label:** contradiction
+
+This confirms that the relationship between the premise and the hypothesis is indeed contradictory. Well done! If there were any further tasks or questions, feel free to ask. ---",4.5686259269714355,
+"Dada yake angepita kwa nyeupe, kwa kweli, alipita kwa nyeupe.",Dada yake alikuwa na ngozi nzuri zaidi ya mtu yeyote katika jirani.,1,neutral,"** His father was buried at night, indeed, he was buried at night.",** His father had better shoes than any other person in the neighborhood.,neutral,N/A_SP_EN_eval,neutral,"---
+
+Here's my response based on the provided instructions:
+
+**Translated English Premise:** His father was buried at night, indeed, he was buried at night.
+
+**Translated English Hypothesis:** His father had better shoes than any other person in the neighborhood.
+
+**English NLI Label:** neutral
+--- The English NLI Label after translating and analyzing the given Swahili premise and hypothesis is ""neutral"". This conclusion is drawn because there is no direct logical connection between the fact that someone's father was buried at night and the statement about having better shoes compared to others in the neighborhood. These statements do not necessarily imply or contradict each other; they can be true independently. ---",3.5307228565216064,
+"Mbinu zetu za kulinda mpaka na mwendo wa watu, kujumlisha walinda usalama, wanafaa kutuma ujembe wa kukaribisha, kuelewa na haki kwa walio katika jamii za waliowasili nchini Marekani na nchi zao za asili.",Nchi yetu inapaswa kutengeneza picha yetu ya wakimbizi duniani na kuwakaribisha hapa.,1,neutral,"'Our churches that preach until people walk, unite them in peace, parents send letters to inform, respect the rights of those who live in our communities and their ancestral countries.'",'Our country is ready to produce our own images to promote ourselves here.',contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Based on the provided instructions, here's the analysis:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'Our churches that preach until people walk, unite them in peace, parents send letters to inform, respect the rights of those who live in our communities and their ancestral countries.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'Our country is ready to produce our own images to promote ourselves here.'
+
+3. **Perform English NLI**:
+   English NLI Label: contradiction
+
+The premise discusses activities related to preaching, unity, sending letters, respecting rights, and living in communities. The hypothesis talks about producing images to promote oneself. These two statements do not align or support each other; hence, they contradict each other. Therefore, the NLI label is 'contradiction'. --- Based on the provided instructions, here's the analysis:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'Our churches that preach until people walk, unite them in peace, parents send letters to inform, respect the rights of those who live in our communities and their ancestral countries.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'Our country is ready to produce our own images to promote ourselves here.'
+
+3. **Perform English NLI**:
+   English NLI Label: contradiction
+
+The premise discusses religious activities, community unity, parental communication, and respect for human rights within specific contexts. The hypothesis, however, speaks about a country's readiness to create promotional materials. There is no logical connection between these two statements, making them contradictory. Thus, the NLI label is '",9.018584489822388,
+"Uchapisho wa kitabu cha RPH ukifuatwa na kitabu cha  utembezi, kinachofuata uhakika kuhusu",Kitabu cha RPH kitakuwa na ziara kinachohusishwa nacho.,0,entailment,[PREMISE_EN_EXTRACTION_FAILED],[HYPOTHESIS_EN_EXTRACTION_FAILED],neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate English Premise:** 
+   The sentence 'Uchapisho wa kitabu cha RPH ukifuatwa na kitabu cha  utembezi, kinachofuata uhakika kuhusu' translates to:
+   ""The book review of RPH was compared to the book of strategy, it did not thoroughly discuss.""
+
+2. **Translate English Hypothesis:**
+   The sentence 'Kitabu cha RPH kitakuwa na ziara kinachohusishwa nacho.' translates to:
+   ""The RPH book had flaws that were not addressed.""
+
+3. **Perform English NLI:**
+   After analyzing both translated sentences, we can infer that the first sentence states that the RPH book was reviewed but not thoroughly discussed, while the second sentence claims there were flaws in the RPH book that were not addressed. These two statements do not necessarily contradict each other; however, they also don't directly entail each other without additional context. Therefore, the relationship between them is best described as neutral.
+
+**English NLI Label:** neutral
+---",6.315626621246338,
+Kiti cha kubeba kinapendwa sana,Hakuna anayependa kipandishi.,2,contradiction,'The car is very liked','There is no liking for cars.',contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'The car is very liked'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'There is no liking for cars.'
+
+3. **Perform English NLI**:
+   English NLI Label: contradiction
+
+The premise states that the car is very liked, which directly contradicts the hypothesis stating there is no liking for cars. Therefore, the correct NLI label is contradiction. --- Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: The car is very liked
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: There is no liking for cars.
+
+3. **Perform English NLI**:
+   English NLI Label: contradiction
+
+The premise states that the car is very liked, which directly contradicts the hypothesis stating there is no liking for cars. Therefore, the correct NLI label is contradiction. ---",6.180858135223389,
+"Kwa kutoa msaada kwa uokoaji wa Septemba 11, ona, kwa mfano . mahojiano ya mwananchi 14 (Apr.",Hakuna msaada unaopatikana kwa upande wa uokoaji wa Septemba 11.,2,contradiction,[PREMISE_EN_EXTRACTION_FAILED],[HYPOTHESIS_EN_EXTRACTION_FAILED],contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Based on the provided Swahili premise and hypothesis, let's follow the steps:
+
+1. **Translate English Premise:** 
+   The premise states: ""For providing assistance to the September 11 investigation, he, for example, had, among others, 14 civilian casualties.""
+
+2. **Translate English Hypothesis:**
+   The hypothesis states: ""There was no assistance received at the site of the September 11 investigation.""
+
+3. **Perform English NLI:**
+   After analyzing the translated premise and hypothesis, it can be seen that they present contradictory information. The premise mentions receiving assistance related to the September 11 investigation, while the hypothesis denies any such assistance being received. Therefore, the relationship between the two statements is a contradiction.
+
+**English NLI Label:** contradiction
+---",4.275877475738525,
+Mpeanaji habari wa Tennesse alitumia hali ya hewa ya mbwa kwa 'hali ya hewa ya joto bila mvua'  ambayo inatokana na msemo wa siku za mbwa inayomaanisha mwezi wa Agosti iliyo na hali ya anga kavu.,Juni na Julai pia zian joto sana Tennessee.,1,neutral,** The news from Tennessee uses the phrase 'dog bite incident without a wild animal' which refers to dog bites that occurred during the month of August last year and resulted in serious injuries.,** June and July were also very dangerous months for dog bites in Tennessee.,neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided Swahili premise and hypothesis, here are the translations and the NLI analysis:
+
+1. **Translated English Premise:** The news from Tennessee uses the phrase 'dog bite incident without a wild animal' which refers to dog bites that occurred during the month of August last year and resulted in serious injuries.
+
+2. **Translated English Hypothesis:** June and July were also very dangerous months for dog bites in Tennessee.
+
+3. **English NLI Label:** Neutral
+
+The premise talks about specific incidents of dog bites occurring in August of the previous year, while the hypothesis makes a general statement about the danger levels in June and July. There is no direct entailment or contradiction between the two statements; they merely refer to different time periods within the same state. Therefore, the relationship is neutral. ---",4.283113241195679,
+"Nilimuua, ni kweli.",Maisha ya mwanaume huyo yaliokolewa.,2,contradiction,"'I am happy, it is true.'",'The life of that person has been ruined.',neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'I am happy, it is true.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'The life of that person has been ruined.'
+
+3. **Perform English NLI**:
+   English NLI Label: neutral
+
+The premise states a personal feeling and a confirmation of its truth, while the hypothesis makes a claim about someone else's life being ruined. There is no direct logical connection between these two statements, hence they are considered neutral in relation to each other. --- Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'I am happy, it is true.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'The life of that person has been ruined.'
+
+3. **Perform English NLI**:
+   English NLI Label: neutral
+
+The premise expresses a personal sentiment and confirms its validity, whereas the hypothesis makes a statement about another individual's life circumstances. These statements do not logically entail or contradict each other; thus, the relationship is neutral. ---",7.035986661911011,
+Lakini nilikuwa haraka kukupa.,Mtu ule alitaka mpenzi.,1,neutral,'But we were moving quickly.','The person wanted a pen.',neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'But we were moving quickly.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'The person wanted a pen.'
+
+3. **Perform English NLI**:
+   English NLI Label: neutral
+
+The premise talks about movement (""moving quickly""), while the hypothesis discusses a desire for a pen. There is no direct logical connection between these two statements, hence they are neutral relative to each other. --- Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'But we were moving quickly.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'The person wanted a pen.'
+
+3. **Perform English NLI**:
+   English NLI Label: neutral
+
+The premise talks about movement (""moving quickly""), while the hypothesis discusses a desire for a pen. There is no direct logical connection between these two statements, hence they are neutral relative to each other. --- English NLI Label: neutral ---",9.765934944152832,
+"Kama unasikia una uwezo wa kuifanya, sukuma kandokando ya ukungu wa njia, nyuma ya bwawa la Emerald, hadi kwenye vuli la Nevada, ndipo utaanza kupoteza makundi ya watu.","Nevada Falls ni eneo nzuri ambalo halina watu wengi, na ni pahala pazuri pa kutembea.",1,neutral,"'When we see it, we have the ability to move, stretching our limbs, especially those of the Emeralds, until we reach the water of Nevada, then we start to enjoy people's conversations.'","'Nevada Falls is a beautiful place where many people are present, and it is pleasant to visit.'",neutral,N/A_SP_EN_eval,neutral,"---
+
+Translated English Premise: 'When we see it, we have the ability to move, stretching our limbs, especially those of the Emeralds, until we reach the water of Nevada, then we start to enjoy people's conversations.'
+
+Translated English Hypothesis: 'Nevada Falls is a beautiful place where many people are present, and it is pleasant to visit.'
+
+English NLI Label: neutral
+--- 
+
+Explanation:
+- The premise talks about moving through limbs and reaching Nevada water, which does not necessarily imply that there are many people enjoying the place.
+- The hypothesis states that Nevada Falls is a beautiful place with many visitors, but this information is not directly supported by the premise.
+- Therefore, the relationship between the premise and the hypothesis is neutral based on the provided statements. --- 
+Translated English Premise: 'Kama unasikia una uwezo wa kuifanya, sukuma kandokando ya ukungu wa njia, nyuma ya bwawa la Emerald, hadi kwenye vuli la Nevada, ndipo utaanza kupoteza makundi ya watu.'
+Translated English Hypothesis: 'Nevada Falls ni eneo nzuri ambalo halina watu wengi, na ni pahala pazuri pa kutembea.'
+English NLI Label: neutral
+
+Explanation:
+- The premise describes seeing something and having the ability to stretch limbs, particularly those of the Emeralds, until reaching the water of Nevada, and then starting to enjoy people's conversations.
+- The hypothesis states that Nevada Falls is a beautiful place where many people are present, and it is pleasant to visit.
+- While both sentences mention Nevada and people, the specific details and context do",19.357195615768433,
+"Niliripoti hili kwa barua kwa Daktari, ilionekana kumchekesha, na alinitumia keki ndogo ya matunda Krismasi hio.",Daktari alinitumia chupa la pombe krismasi hio.,2,contradiction,"'I sent this to Doctor via email, it was about checking up, and he used Christmas mini cakes.'",'Doctor used Christmas bread.',neutral,N/A_SP_EN_eval,neutral,"---
+
+Here's my response based on the provided instructions:
+
+Translated English Premise: 'I sent this to Doctor via email, it was about checking up, and he used Christmas mini cakes.'
+
+Translated English Hypothesis: 'Doctor used Christmas bread.'
+
+English NLI Label: neutral
+--- 
+
+Explanation:
+- The premise states that the communication was related to a check-up and involved Christmas mini cakes.
+- The hypothesis mentions that the doctor used Christmas bread.
+- There is no direct information linking the use of Christmas bread to the context of the email or the check-up mentioned in the premise.
+- Therefore, the relationship between the premise and the hypothesis is neutral. --- Based on the provided instructions, here is the complete response:
+
+Translated English Premise: 'I sent this to Doctor via email, it was about checking up, and he used Christmas mini cakes.'
+
+Translated English Hypothesis: 'Doctor used Christmas bread.'
+
+English NLI Label: neutral
+
+This conclusion is drawn because there is no direct connection between the content of the email (checking up and using Christmas mini cakes) and the doctor using Christmas bread. Thus, the relationship is neutral.",12.680301189422607,
+Maana kwamba daftari ni hundi tupu tu unayojua na ni fedha zisizo na ukomo si kwamba yeye huenda na hutumia bila ukomo lakini ni karibu na mtazamo huo,Anahisi kuwa anaweza kutumia zaidi ya dola za Marekani 1000 kila usiku.,1,neutral,"'This means that registration is a fee-based process but it does not require payment without a fee, and it is close to the current policy.'",'It is said that he could have used more than $1000 every night.',neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided instructions, here's the analysis:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'This means that registration is a fee-based process but it does not require payment without a fee, and it is close to the current policy.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'It is said that he could have used more than $1000 every night.'
+
+3. **Perform English NLI**:
+   English NLI Label: neutral
+
+The premise discusses the nature of a registration process being fee-based and adhering to a certain policy. The hypothesis talks about someone potentially using a large amount of money every night. There is no direct connection between these two statements, making the relationship neutral. --- Based on the provided instructions, here's the analysis:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'This means that registration is a fee-based process but it does not require payment without a fee, and it is close to the current policy.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'It is said that he could have used more than $1000 every night.'
+
+3. **Perform English NLI**:
+   English NLI Label: neutral
+
+The premise discusses the nature of a registration process being fee-based and adhering to a certain policy. The hypothesis talks about someone potentially using a large amount of money every night. There is no direct connection between these two statements, making the relationship neutral. --- English NLI Label: neutral ---",18.58368945121765,
+"Hata hivyo, shujaa wangu ni Richard Heseltine, mwenyekiti wa Overseas Investment Trust, ambaye alijiuzulu mapema mwezi huu kwa upinzani na mpango wa biashara ambao alilazimishwa na wakuu wake.",Heseltine aliacha kazi yake.,0,entailment,[PREMISE_EN_EXTRACTION_FAILED],[HYPOTHESIS_EN_EXTRACTION_FAILED],entailment,N/A_SP_EN_eval,entailment,"---
+
+Based on the provided Swahili premise and hypothesis, here's the analysis following the specified steps:
+
+1. **Translate English Premise:** 
+   The translated English premise is: ""However, my hero is Richard Heseltine, the chairman of Overseas Investment Trust, who has been leading until this month for the business venture that his clients require.""
+
+2. **Translate English Hypothesis:** 
+   The translated English hypothesis is: ""Heseltine is doing his job.""
+
+3. **Perform English NLI:**
+   After analyzing the translated premise and hypothesis, it can be inferred that the hypothesis is supported by the information given in the premise. The premise states that Richard Heseltine is the chairman of Overseas Investment Trust and has been leading until this month due to the business venture requirements. This implies he is actively involved in his role, which aligns with the hypothesis stating that ""Heseltine is doing his job."" Therefore, the relationship between the premise and the hypothesis is entailment.
+
+**English NLI Label:** entailment
+---",12.09522032737732,
+"Chanzo hicho kilidai kuwa Bin Ladin aliomba na kupokea msaada kutoka kwa mtaalam wa bomu, ambaye alibaki huko kutoa mafunzo hadi Septemba 1996, wakati ambapo habari zilipelekwa Marekani.",Aliyetoa ujumbe hakujua kitu kuhusu Bin Laden.,2,contradiction,[PREMISE_EN_EXTRACTION_FAILED],[HYPOTHESIS_EN_EXTRACTION_FAILED],unknown,N/A_SP_EN_eval,unknown,"---
+
+Based on the provided Swahili premise and hypothesis, here's the analysis following the specified steps:
+
+1. **Translate English Premise:** 
+   The translated English premise is:
+   ""There was no evidence that Bin Laden taught and received payment from a religious teacher, who arrived there to give lessons until September 1996 when the news reached America.""
+
+2. **Translate English Hypothesis:**
+   The translated English hypothesis is:
+   ""They did not receive any news about Bin Laden.""
+
+3. **Perform English NLI:**
+   After analyzing the translated premise and hypothesis, it can be determined that they do not have a direct logical connection. The premise discusses the lack of evidence regarding Bin Laden teaching and receiving payment, while the hypothesis states that no news was received about Bin Laden. These statements are not necessarily contradictory but also not directly entailing each other based on the information given.
+
+   Therefore, the English NLI Label is:
+   `neutral`",10.862906455993652,
+"Kuunganishwa kwa Nova Scotia na Narrow Chignecto Isthmus, New Brunswick ikawa mkoa uliotengwa mwaka wa 1784 katika madai ya wakimbizi 14000.",New Brunswick haikuwa jimbo katika mwaka wa 1784.,2,contradiction,"** The connection was made between Nova Scotia and Narrow Chignecto Isthmus, New Brunswick in the year 1784 through 14000 transactions.",** New Brunswick was not a province in the year 1784.,contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Here's my response based on the provided instructions:
+
+**Translated English Premise:** The connection was made between Nova Scotia and Narrow Chignecto Isthmus, New Brunswick in the year 1784 through 14000 transactions.
+
+**Translated English Hypothesis:** New Brunswick was not a province in the year 1784.
+
+**English NLI Label:** contradiction
+--- 
+
+The English NLI Label for the given Swahili premise and hypothesis is ""contradiction"". This conclusion is drawn because the premise states that there was a connection established between Nova Scotia and New Brunswick in 1784, which implies that New Brunswick was indeed a province at that time, contradicting the hypothesis that claims it was not a province in 1784. --- Based on the provided instructions, here is the detailed response:
+
+**Translated English Premise:** The connection was made between Nova Scotia and Narrow Chignecto Isthmus, New Brunswick in the year 1784 through 14000 transactions.
+
+**Translated English Hypothesis:** New Brunswick was not a province in the year 1784.
+
+**English NLI Label:** contradiction
+
+The English NLI Label for the given Swahili premise and hypothesis is ""contradiction"". This conclusion is drawn because the premise explicitly mentions that New Brunswick became connected to Nova Scotia in 1784, implying its status as a province, while the hypothesis directly contradicts this by stating that New Brunswick was not a province in 1784. Therefore, the relationship between the premise and the hypothesis is contradictory. ---",18.623318433761597,
+Walisisitiza kuwa uangalifu wa mara kwa mara unahitajika kuhakikisha kuwa uthabiti mwafaka unafuatiliwa. Kushughulikia athari za sasa na pia kuzuia kusimamishwa kwa operesheni na kuwa wenye kutumia na jukumu la kudumisha mifumo ya habari inafuatilia sera za shirika.,walisema ni muhimu kuwa macho ikija maneno ya habari ya uongozi kiwandani,1,neutral,Walisisitiza kuwa uangalifu wa mara kwa mara unahitajika kuhakikisha kuwa uthabiti mwafaka unafuatiliwa. Kushughulikia athari za sasa na pia kuzuia kusimamishwa kwa operesheni na kuwa wenye kutumia na jukumu la kudumisha mifumo ya habari inafuatilia sera za shirika.,Walisema ni muhimu kuwa macho ikija maneno ya habari ya uongozi kiwandani,neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided Swahili premise and hypothesis, here's the analysis following the specified steps:
+
+1. **Translate English Premise:** The sentence already appears to be in English. Therefore, no translation is needed. 
+   - Translated English Premise: Walisisitiza kuwa uangalifu wa mara kwa mara unahitajika kuhakikisha kuwa uthabiti mwafaka unafuatiliwa. Kushughulikia athari za sasa na pia kuzuia kusimamishwa kwa operesheni na kuwa wenye kutumia na jukumu la kudumisha mifumo ya habari inafuatilia sera za shirika.
+
+2. **Translate English Hypothesis:** The sentence already appears to be in English. Therefore, no translation is needed.
+   - Translated English Hypothesis: Walisema ni muhimu kuwa macho ikija maneno ya habari ya uongozi kiwandani
+
+3. **Perform English NLI:** After analyzing the translated premise and hypothesis:
+   - The premise talks about confirming agreements and using certain procedures to ensure that company policies are implemented effectively over time.
+   - The hypothesis states that it is important for managers to review communication messages regularly.
+   
+   There is no direct logical connection between the two statements; they discuss different aspects without implying one entails the other. Thus, the relationship is neutral.
+   - English NLI Label: neutral
+--- 
+
+Therefore, the final answer based on the given inputs is:
+**neutral**.",18.306609392166138,
+Kama kuna jambo lolote ambalo naweza kufanya.,Nilijua hakuna kitu ambacho ningeweza kufanya.,2,contradiction,'If there is any matter that we can do.','I know there is nothing that I can do.',contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'If there is any matter that we can do.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'I know there is nothing that I can do.'
+
+3. **Perform English NLI**:
+   English NLI Label: contradiction
+
+The premise suggests there might be something they can do, while the hypothesis states that there is nothing that can be done, which directly contradicts the premise. Therefore, the correct NLI label is ""contradiction"". --- Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'If there is any matter that we can do.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'I know there is nothing that I can do.'
+
+3. **Perform English NLI**:
+   English NLI Label: contradiction
+
+The premise suggests that there might be some matters that can be done, whereas the hypothesis asserts that there is nothing that can be done. These two statements are contradictory. Thus, the correct NLI label is ""contradiction"". --- The final output based on the provided Swahili sentences is:
+
+English NLI Label: contradiction ---",16.47252917289734,
+Mengi yamefanyika kwa kumuandika kazi Michael Apted kuleta ubinadamu kwenye kipindi.,Michael Apted aliajiriwa kuongeza ubora wa kibinafsi kwenye mfululizo.,0,entailment,'Many people have worked with Michael Apted to find subjects for his interviews.','Michael Apted was appointed to improve the health policy.',contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'Many people have worked with Michael Apted to find subjects for his interviews.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'Michael Apted was appointed to improve the health policy.'
+
+3. **Perform English NLI**:
+   English NLI Label: contradiction
+
+The premise talks about Michael Apted working with many people to find interview subjects, while the hypothesis states that he was appointed to improve health policy. These two statements are contradictory. Therefore, the correct NLI label is 'contradiction'. --- Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'Many people have worked with Michael Apted to find subjects for his interviews.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'Michael Apted was appointed to improve the health policy.'
+
+3. **Perform English NLI**:
+   English NLI Label: contradiction
+
+The premise talks about Michael Apted working with many people to find interview subjects, while the hypothesis states that he was appointed to improve health policy. These two statements are contradictory. Therefore, the correct NLI label is 'contradiction'. --- 
+
+English NLI Label: contradiction ---",16.911176443099976,
+"Kwa shukrani ya kutoa $100 ama mingi kwa kampeni, wewe na wageni mmekaribishwa kushuhudia mapokezi maalumu ,Alhamisi ,Machi 23,2000 kutoka saa 5:30 -8:00 jioni jukwaa la Herron.",Wewe na mgeni mtaalikwa kuhudhuria mapokezi maalum ikiwa utachangia $100 au zaidi kwenye kampeni.,0,entailment,"'Thanking someone who gives $100 or more to the company, you have a chance to participate in a knowledge quiz at Alhamisi, Machi 23, 2000 between 5:30 PM - 8:00 PM at Herron.'",'You have a chance to participate in a knowledge quiz at the specified location if you donate $100 or more to the company.',entailment,N/A_SP_EN_eval,entailment,"---
+
+Translated English Premise: 'Thanking someone who gives $100 or more to the company, you have a chance to participate in a knowledge quiz at Alhamisi, Machi 23, 2000 between 5:30 PM - 8:00 PM at Herron.'
+
+Translated English Hypothesis: 'You have a chance to participate in a knowledge quiz at the specified location if you donate $100 or more to the company.'
+
+English NLI Label: entailment
+---",6.055187940597534,
+Utaona video ya stori ya Anna na Amsterdam chini ya makazi pamoja na picha na shaba za wakati huo.,Hutaona picha.,2,contradiction,You watched a story video about Anna and Amsterdam inside the building together with pictures and clothes at that time.,You watched pictures.,entailment,N/A_SP_EN_eval,entailment,"---
+
+Based on the provided Swahili premise and hypothesis, let's follow the steps:
+
+1. **Translate English Premise:** The premise translates to ""You watched a story video about Anna and Amsterdam inside the building together with pictures and clothes at that time.""
+   
+   - Translated English Premise: You watched a story video about Anna and Amsterdam inside the building together with pictures and clothes at that time.
+
+2. **Translate English Hypothesis:** The hypothesis translates to ""You watched pictures.""
+
+   - Translated English Hypothesis: You watched pictures.
+
+3. **Perform English NLI:** Given the premise states that you watched a story video which includes pictures among other elements like a story about Anna and Amsterdam, it logically follows that you also watched pictures. Therefore, the hypothesis is entailed by the premise.
+
+   - English NLI Label: entailment
+
+Thus, based on the analysis, the English NLI Label is: entailment.",10.45477819442749,
+"Kwa kuongezea, wakazi wa Indiana wanaweza kuendelea kupokea mkopo wa ushuru wa Indiana ambayo inaelekezwa moja kwa moja dhidi ya mwisho wa fomu ya ushuru ya eneo hilo.",Wakazi wa Indiana wanapata mkopo wa ushuru wa asilimia 50 ikiwa wanachangia thieta.,1,neutral,"** For example, the mothers of Indiana can be allowed to receive the final vote count of Indiana that was counted one by one until the end of the voting process in this area.",** The mothers of Indiana will get the final vote count of their preferred candidate 50 if they change their votes.,contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Here's my response based on the provided instructions:
+
+**Translated English Premise:** For example, the mothers of Indiana can be allowed to receive the final vote count of Indiana that was counted one by one until the end of the voting process in this area.
+
+**Translated English Hypothesis:** The mothers of Indiana will get the final vote count of their preferred candidate 50 if they change their votes.
+
+**English NLI Label:** contradiction
+--- 
+
+The premise talks about allowing mothers to receive the final vote count, but it does not specify any condition related to changing votes or receiving a specific number like 50. The hypothesis introduces new information (changing votes and getting 50) which contradicts the premise. Therefore, the relationship between the premise and the hypothesis is contradictory. 
+---",8.99260950088501,
+"Meya wa Letohrad, mji ambao Josef Korbel alikua, anasema alimtumia Albright barua tatu miaka ya karibuni.",Korbell alimwongoza Lotohrad.,0,entailment,"** Meyawo wa Letohrad, mji ambako Josef Korbel alikufanya, alitumia Albright barua tatu miaka ya karibuni.",** Korbell alimwongoza Lotohrad.,neutral,N/A_SP_EN_eval,neutral,"---
+
+Here's my response based on the provided instructions:
+
+**Translated English Premise:** Meyawo wa Letohrad, mji ambako Josef Korbel alikufanya, alitumia Albright barua tatu miaka ya karibuni.
+
+**Translated English Hypothesis:** Korbell alimwongoza Lotohrad.
+
+**English NLI Label:** neutral
+
+The premise states that Josef Korbel used Albright for three almost consecutive years, while the hypothesis suggests that Korbell visited Letohrad. There is no direct information about Korbell visiting Letohrad in the premise, so the relationship between the two statements is neutral. --- The English NLI Label is: neutral. ---",8.095648765563965,
+"Katika uchumi wenye uwekezaji, nini kitafanyika kama tunaweza kuchukua faida zetu za biashara na kuimarisha ziada yoyote ili tuweze kuunda tufaha zaidi na mapea kuliko tulivyoanza na?",Tunaweza fanya biashara na mtu yeyote aliyetuzunguka.,2,contradiction,[PREMISE_EN_EXTRACTION_FAILED],[HYPOTHESIS_EN_EXTRACTION_FAILED],neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided Swahili premise and hypothesis, let's follow the steps:
+
+1. **Translate English Premise:** 
+   The premise translates to: ""In business with partners, what happens when we can derive benefits from our trade and increase everything that we have so that we can produce more and better than those who do not engage in it?""
+
+2. **Translate English Hypothesis:**
+   The hypothesis translates to: ""We can do business with everyone.""
+
+3. **Perform English NLI:**
+   After analyzing the translated premise and hypothesis, the relationship between them is neutral. The premise discusses conditions under which businesses can thrive and compete effectively, while the hypothesis merely states a possibility of engaging in business without specifying any conditions or outcomes. Therefore, there isn't enough information to conclude that the hypothesis is entailed by the premise or contradicts it.
+
+**English NLI Label:** neutral
+
+This completes the task according to the specified format. The final answer is based on the analysis performed in Step 3.",11.310627222061157,
+Tunaweza endelea kuipa nguvu masomo ya mawakili wazuri.,"Tunaweza kuwaelimisha mawakili, ninauhakika!",0,entailment,** You can strive to improve representative data significantly.,"** You can learn about representatives, I'm sure!",neutral,N/A_SP_EN_eval,neutral,"---
+
+Let's begin:
+### Step 1: Translate Premise to English
+**Translated English Premise:** You can strive to improve representative data significantly.
+
+### Step 2: Translate Hypothesis to English
+**Translated English Hypothesis:** You can learn about representatives, I'm sure!
+
+### Step 3: Perform English NLI
+**English NLI Label:** neutral
+
+The premise suggests striving to improve data representation, while the hypothesis states that one can learn about representatives. These statements do not necessarily imply or contradict each other; they discuss different aspects related to understanding and improving data representation. Therefore, the relationship between them is neutral. ---",7.174532175064087,
+"Mpokeaji wa mwisho wa Pakistan angeenda kwa hawaladar ya Pakistani na kupolea pesa zake, katika rupees, kutoka kwa pesa yoyote ambayo hawaladar ya Pakistani ilikuwa nayo mkononi.",Mwenye kuipata wa mwisho atahitajika kusafiri hadi Turkey ili kupata pesa zake.,2,contradiction,[PREMISE_EN_EXTRACTION_FAILED],[HYPOTHESIS_EN_EXTRACTION_FAILED],neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided Swahili premise and hypothesis, here's the analysis following the specified steps:
+
+1. **Translate English Premise:** 
+   The translated English premise is: ""The end user of Pakistan went to a Pakistani money changer and exchanged his money, in rupees, for all the money that the Pakistani money changer had available.""
+
+2. **Translate English Hypothesis:**
+   The translated English hypothesis is: ""The person who received the payment intends to travel to Turkey to get their money.""
+
+3. **Perform English NLI:**
+   After analyzing the translated premise and hypothesis, it can be determined that there is no direct logical connection between them. The premise talks about someone exchanging money with a money changer in Pakistan, while the hypothesis discusses a different individual intending to travel to Turkey to retrieve money. Therefore, the relationship is neutral.
+
+**English NLI Label:** neutral
+--- 
+
+This concludes the analysis based on the given inputs. The final answer is ""neutral"".",10.987927436828613,
+Kinacholeta wasiwasi kwa kweli ni ya kuwa HMOs zinawezakosa kupunguza gharama mbeleni.,Kila mtu anaaminia HMO kuweza  kudhibiti  gharama baada ya muda mrefu.,2,contradiction,'They have correctly identified that HMOs reduce medical costs significantly.','Every person agrees that HMOs can reduce expenses over a long period.',neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'They have correctly identified that HMOs reduce medical costs significantly.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'Every person agrees that HMOs can reduce expenses over a long period.'
+
+3. **Perform English NLI**:
+   English NLI Label: neutral
+
+The premise states that HMOs effectively reduce medical costs, while the hypothesis suggests that every individual believes HMOs can reduce expenses over time. While both statements discuss the cost-reducing effect of HMOs, they do not necessarily imply agreement among all individuals, making the relationship neutral rather than entailing or contradictory. --- The English NLI Label is: neutral. ---",9.798655271530151,
+Na bado iliniogopesha.,Nilikuwa na hofu kidogo.,1,neutral,'And then it started raining.','I was wearing a small amount.',neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'And then it started raining.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'I was wearing a small amount.'
+
+3. **Perform English NLI**:
+   English NLI Label: neutral
+
+The premise talks about rain starting, while the hypothesis mentions wearing something small. There is no direct logical connection between these two statements, hence they are considered neutral in relation to each other. --- Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'And then it started raining.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'I was wearing a small amount.'
+
+3. **Perform English NLI**:
+   English NLI Label: neutral
+
+The premise talks about rain starting, while the hypothesis mentions wearing something small. There is no direct logical connection between these two statements, hence they are considered neutral in relation to each other. ---",13.547306299209595,
+oh oh bila shaka inaonekana ni kama tukuo bora,Hiyo inaonekana kama uzoefu mmbaya.,2,contradiction,'oh oh bila shaka inaonekana ni kama tukuo bora','Hiyo inaonekana kama uzoefu mmbaya.',neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'oh oh bila shaka inaonekana ni kama tukuo bora'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'Hiyo inaonekana kama uzoefu mmbaya.'
+
+3. **Perform English NLI**:
+   English NLI Label: neutral
+
+Explanation: The premise states that something is known as a good saying, while the hypothesis suggests it is known as a wise proverb. These statements do not necessarily contradict each other but also don't directly imply one another without additional context. Therefore, the relationship between them is considered neutral. --- Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'oh oh bila shaka inaonekana ni kama tukuo bora'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'Hiyo inaonekana kama uzoefu mmbaya.'
+
+3. **Perform English NLI**:
+   English NLI Label: neutral
+
+Explanation: The premise states that something is known as a good saying, while the hypothesis suggests it is known as a wise proverb. These statements do not necessarily contradict each other but also don't directly imply one another without additional context. Therefore, the relationship between them is considered neutral. --- English NLI Label: neutral ---",18.76052713394165,
+"Kulingana na tathmini hii ya hatari, Centrelink ilianzisha mikakati maalum ya kuzuia lengo la kuelimisha walengwa na waajiri juu ya mahitaji ya kuripoti mapato.",Centrelink ilikuwa na mikakati mingi ya kuwafundisha watu jinsi ya kuripoti mapato kwa sababu serikali ilipoteza pesa nyingi kwa makosa,1,neutral,"** When looking at this safety concern, Centrelink has established known procedures for dealing with those who need assistance above the basic needs level.",** Centrelink had many methods to educate people on how to save money for future because the government allocated a lot of funds for welfare.,neutral,N/A_SP_EN_eval,neutral,"---
+
+Here's my response based on the provided instructions:
+
+**Translated English Premise:** When looking at this safety concern, Centrelink has established known procedures for dealing with those who need assistance above the basic needs level.
+
+**Translated English Hypothesis:** Centrelink had many methods to educate people on how to save money for future because the government allocated a lot of funds for welfare.
+
+**English NLI Label:** Neutral
+
+The premise talks about Centrelink establishing known procedures for dealing with individuals needing more than basic assistance due to a safety concern. The hypothesis discusses Centrelink having multiple ways to teach people about saving money for the future because the government has allocated significant funds for welfare. While both statements involve Centrelink and its activities related to financial assistance, they do not directly support or contradict each other; hence, the relationship is neutral. --- Based on the provided translations and analysis, the final English NLI Label is:
+
+**English NLI Label:** Neutral
+
+This conclusion is drawn because while both sentences discuss Centrelink’s involvement in financial assistance, they describe different aspects without direct support or contradiction between them. ---",12.19528341293335,
+"Hii ni muhimu sana kwa maisha ya muda mrefu ya tembo katika huduma za kibinadamu, kama vile pori.",Hakuna kitakachofanywa kuwaokoa ndovu.,2,contradiction,"This is very important for long-term elephant welfare services, such as breeding.",Nothing is being done to reduce the population.,neutral,N/A_SP_EN_eval,neutral,"---
+
+Translated English Premise: This is very important for long-term elephant welfare services, such as breeding.
+
+Translated English Hypothesis: Nothing is being done to reduce the population.
+
+English NLI Label: neutral
+---",2.515557289123535,
+Tunanuia uwiano wa moja kwa moja kati ya kiasi kwa kila mtu na vipande kwa kila iwezekanavyo.,Tunajua hakuna uhusiano kati ya kiasi kwa kila mtu na vipande kwa kila iwezekanavyo.,2,contradiction,'We count one person at a time according to size for everyone and distribution for everyone is equal.','We do not see any inequality in terms of size for everyone and distribution for everyone is equal.',contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'We count one person at a time according to size for everyone and distribution for everyone is equal.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'We do not see any inequality in terms of size for everyone and distribution for everyone is equal.'
+
+3. **Perform English NLI**:
+   English NLI Label: contradiction
+
+The premise states that there is equality in distribution for everyone, while the hypothesis negates the existence of any inequality regarding size and distribution. These statements contradict each other, hence the label 'contradiction'. --- The English NLI Label is: contradiction. ---",9.00941777229309,
+Wakati huu nafikiria ni vema kuondoka katika kisiwa ambacho hakina maelenddeleo kwa amani.,Watu wanafikiria ya kwamba visiwa vinafaa kuchwa.,0,entailment,'During this time he thought it was a storm coming onto an island which had no peace.','People think that the island has peace.',contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'During this time he thought it was a storm coming onto an island which had no peace.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'People think that the island has peace.'
+
+3. **Perform English NLI**:
+   English NLI Label: contradiction
+
+The premise suggests that there is no peace on the island, while the hypothesis states that people believe the island has peace. These two statements contradict each other. Therefore, the correct NLI label is 'contradiction'. --- Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'During this time he thought it was a storm coming onto an island which had no peace.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'People think that the island has peace.'
+
+3. **Perform English NLI**:
+   English NLI Label: contradiction
+
+The premise indicates that during a certain period, someone believed a storm was approaching an island without peace, implying the island lacked tranquility at that moment. The hypothesis, however, claims that people think the island has peace. Since these two statements directly oppose each other, the relationship between them is classified as a contradiction. 
+
+Therefore, the final answer is: **contradiction**. ---",17.673270225524902,
+Kitu moja ambacho M. Tesniares hajaafikiana nacho ni mchango wa Uingereza.,M. Tesniares hufanya pembejeo ya Anglo-Saxon.,2,contradiction,'One thing that M. Tesniares knows is not an English change.','M. Tesniares does an Anglo-Saxon conversion.',neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided Swahili premise and hypothesis, let's follow the steps:
+
+1. **Translate English Premise:** 
+   The premise states: 'Kitu moja ambacho M. Tesniares hajaafikiana nacho ni mchango wa Uingereza.' which translates to:
+   
+   Translated English Premise: 'One thing that M. Tesniares knows is not an English change.'
+
+2. **Translate English Hypothesis:**
+   The hypothesis states: 'M. Tesniares hufanya pembejeo ya Anglo-Saxon.'
+   
+   Translated English Hypothesis: 'M. Tesniares does an Anglo-Saxon conversion.'
+
+3. **Perform English NLI:**
+   - The premise suggests that M. Tesniares knows something that is not related to an English change.
+   - The hypothesis claims that M. Tesniares performs an Anglo-Saxon conversion, which could be considered a type of linguistic or cultural transformation.
+   
+   Given that knowing something and performing an action can be different, there isn't enough information to conclude that the hypothesis necessarily follows from the premise or contradicts it directly. Therefore, we cannot definitively say whether the hypothesis is entailed by the premise or not based solely on the given statements.
+
+   English NLI Label: neutral
+
+Therefore, the final output is:
+**English NLI Label: neutral**.",15.7560453414917,
+Jina langu ni Wade--Lord Julian Wade.,"Jina lake halikuwa Wade, lakini badala yake, Smith.",2,contradiction,My name is Wade--Lord Julian Wade.,"His name was Wade, but instead of that, it was Smith.",contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Here's my response following the specified format:
+
+Translated English Premise: My name is Wade--Lord Julian Wade.
+
+Translated English Hypothesis: His name was Wade, but instead of that, it was Smith.
+
+English NLI Label: contradiction
+--- The task has been completed according to the provided instructions. The final answer is marked with the English NLI Label: contradiction. --- Based on the provided translations and analysis:
+
+Translated English Premise: My name is Wade--Lord Julian Wade.
+
+Translated English Hypothesis: His name was Wade, but instead of that, it was Smith.
+
+English NLI Label: contradiction
+
+This conclusion is reached because the premise states that the speaker's name is Wade (and includes additional information about Lord Julian Wade), while the hypothesis suggests that someone else's name was Wade but was actually Smith, which directly contradicts the premise. Therefore, the relationship between the premise and the hypothesis is a contradiction. 
+
+Final Answer:
+English NLI Label: contradiction
+---",11.087707042694092,
+"Ingekuwa vigumu zaidi kwa mwanasheria wa huduma za kisheria California kujua iwapo mteja, ambaye amekuwa akifanya kazi katika mkondo wa uhamiaji Arizona, amevuka mpaka kwa muda mfupi kuingia Mexico.","Wakili anaweza kupata habari kutoka kwa uhusiano wa wafanyakazi wageni,",1,neutral,"'The representative was more patient with the customer service representative of California when he found out that the governor, who was conducting business in Arizona, had been delayed and arrived in Mexico.'",'The representative could receive news from the security personnel.',neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided Swahili sentences, here are the translations and the NLI analysis:
+
+**Step 1: Translate Premise to English**
+Translated English Premise: 'The representative was more patient with the customer service representative of California when he found out that the governor, who was conducting business in Arizona, had been delayed and arrived in Mexico.'
+
+**Step 2: Translate Hypothesis to English**
+Translated English Hypothesis: 'The representative could receive news from the security personnel.'
+
+**Step 3: Perform English NLI**
+English NLI Label: neutral
+---
+
+The premise talks about a representative being more patient with another representative due to a delay caused by the governor's trip to Mexico. The hypothesis mentions receiving news from security personnel, which is not directly related to the content of the premise. Therefore, there is no clear entailment or contradiction between the two statements; they are neutral relative to each other.",10.29230809211731,
+"Vilevile, takrimu katika meza ya A2 na A3 inaonyesha kuwa njia zenye idadi kuu za abiria zinakaa katika maeneo yenye hali nzuri zaidi za mapato ya nyumbani na masomo.",Maeneo yenye kiasi kikubwa pia yana mapato ya juu.,0,entailment,"'Sometimes, the scores on table A2 and A3 indicate that they are methods with high success rates compared to home remedies and traditional knowledge.'",'Areas with large quantities also have top quality medicines.',neutral,N/A_SP_EN_eval,neutral,"---
+
+Translated English Premise: 'Sometimes, the scores on table A2 and A3 indicate that they are methods with high success rates compared to home remedies and traditional knowledge.'
+Translated English Hypothesis: 'Areas with large quantities also have top quality medicines.'
+
+English NLI Label: neutral
+---",3.4332053661346436,
+Na alikuwa pale daima kwa ajili yetu.,Alitupatia pesa zote tulizohitaji.,1,neutral,** We were always working for our sake.,** He lost all the money he needed.,contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Here's my response based on the provided instructions:
+
+**Translated English Premise:** We were always working for our sake.
+
+**Translated English Hypothesis:** He lost all the money he needed.
+
+**English NLI Label:** contradiction
+--- The English NLI Label derived from the analysis of the translated premise and hypothesis is: **contradiction**. This conclusion is drawn because the premise suggests ongoing work for a positive purpose (""for our sake""), while the hypothesis describes a negative outcome involving loss of necessary funds. These statements do not align and thus contradict each other. ---",6.323376178741455,
+"Alisema, Mpenzi, huyaelewi maisha jinsi ninavyoyaelewa.",Aliniambia sikuwa na kidokezo jinsi ulimwengu halisi ulivyofanya kazi na nipaswa kumfuata.,1,neutral,"He said, God, he showed us how we were shown.",He said that there was a message like the clear sky which did not do work and I was silent because I could not understand it.,contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Here's the detailed breakdown based on the provided instructions:
+
+1. **Translate Premise to English**:
+   Translated English Premise: He said, God, he showed us how we were shown.
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: He said that there was a message like the clear sky which did not do work and I was silent because I could not understand it.
+
+3. **Perform English NLI**:
+   English NLI Label: contradiction
+
+Based on the translations, the premise suggests that someone (He/God) demonstrated something to them, while the hypothesis describes a scenario where a message was presented but remained uninterpreted due to its clarity and silence. These two statements contradict each other in terms of the understanding and interpretation of what was communicated. Therefore, the relationship between the premise and the hypothesis is classified as a contradiction. --- 
+
+English NLI Label: contradiction
+---",10.56007194519043,
+"Mali ni mfululizo usio na mwisho wa michemko katika anga, au kwenye mtandao, na watu tofauti wanaodai kuwa na maslahi mbalimbali ndani yake.",Mali ni watu tu kusema wanamiliki kitu.,0,entailment,[PREMISE_EN_EXTRACTION_FAILED],[HYPOTHESIS_EN_EXTRACTION_FAILED],unknown,N/A_SP_EN_eval,unknown,"---
+
+Based on the provided Swahili premise and hypothesis, let's follow the steps:
+
+1. **Translate English Premise:** 
+   The Swahili Premise translates to: ""Money is not a beginning or end of a business deal, whether it is in person or online, different people have different interests within it.""
+
+2. **Translate English Hypothesis:**
+   The Swahili Hypothesis translates to: ""Money is what some people say they own.""
+
+3. **Perform English NLI:**
+   - The premise discusses money in the context of business deals and how different individuals may have varying interests in such transactions.
+   - The hypothesis suggests that money is something that some people claim to possess.
+   
+   Given these translations, there is no direct logical connection between the two statements. The premise does not imply anything about ownership claims regarding money, while the hypothesis makes a statement about perceptions of possession without any reference to business dealings or individual interests.
+
+Therefore, the English NLI Label is: neutral. ---",11.352920532226562,
+"Wafanyakazi hawa hawakuwa wamefungiwa, lakini tofauti na wakazi wengi kwenye sakafu ya juu, walichagua kuteremka mara baada ya athari.",Wafanyikazi wengine walidhani kwamba hali haiwezi kuenea.,1,neutral,"'These workers were fired, but different from many workers at the top level, they were laid off after the crisis.'",'Other workers told me that conditions cannot improve.',neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'These workers were fired, but different from many workers at the top level, they were laid off after the crisis.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'Other workers told me that conditions cannot improve.'
+
+3. **Perform English NLI**:
+   English NLI Label: neutral
+
+The premise talks about specific workers being fired versus those at the top who were laid off due to a crisis. The hypothesis makes a general statement about conditions not improving for unspecified workers. There is no direct logical connection between the two statements, hence the relationship is neutral. --- Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'These workers were fired, but different from many workers at the top level, they were laid off after the crisis.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'Other workers told me that conditions cannot improve.'
+
+3. **Perform English NLI**:
+   English NLI Label: neutral
+
+The premise discusses the circumstances of certain workers being fired compared to others at higher levels who were laid off during a crisis. The hypothesis, however, makes a broad claim about the inability of conditions to improve without any reference to the specific situation described in the premise. Therefore, there is no direct logical connection between the two statements, making the relationship neutral. ---",18.600786447525024,
+"Hakuna jambo ambalo linasisitiza matatizo magumu ya lugha zaidi kuliko mawasiliano ambayo hutokea kati ya rubani, abiria wa ndege, na watawala wa trafiki ya hewa.",Rubani huwa kamili kwa mawasiliano.,2,contradiction,"There is no information that suggests communication difficulties are more prevalent than the lack of contact between the government, airlines, and traffic violations.",The government has no problems with communication.,neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided Swahili premise and hypothesis, let's follow the steps:
+
+1. **Translate English Premise:** The sentence 'Hakuna jambo ambalo linasisitiza matatizo magumu ya lugha zaidi kuliko mawasiliano ambayo hutokea kati ya rubani, abiria wa ndege, na watawala wa trafiki ya hewa.' translates to:
+   - Translated English Premise: There is no information that suggests communication difficulties are more prevalent than the lack of contact between the government, airlines, and traffic violations.
+
+2. **Translate English Hypothesis:** The sentence 'Rubani huwa kamili kwa mawasiliano.' translates to:
+   - Translated English Hypothesis: The government has no problems with communication.
+
+3. **Perform English NLI:** Analyzing the translated premise and hypothesis, we see that the premise discusses multiple aspects including communication difficulties, lack of contact between different entities, and traffic violations. The hypothesis specifically mentions that there are no communication issues with the government. This does not necessarily contradict the premise but also doesn't fully entail it since the premise covers broader issues beyond just communication.
+
+- English NLI Label: neutral
+
+This analysis shows that while the hypothesis aligns partially with part of the premise, it does not fully cover or contradict the entire premise, leading to a neutral classification. --- English NLI Label: neutral ---",16.31419062614441,
+"Yousf aliweza kutorokea Pakistan,bali mwenzake Murad, ambaye KSM inadai alimtuma Yousef na $3,000 ili kugharamia operesheni -alishikwa na kufufunuamaelezo  kuhusu njama hiyo akihojiwa.",Murad aliwajulisha wapelelezi mahali pa kumpata Yousef kule Pakistani.,1,neutral,"** Yousf was able to travel to Pakistan, but his companion Murad, who was instructed by KSM to arrange funds for Yousef and give him $3,000 for the operation - he complained about the incomplete background investigation regarding that injury.",** Murad did not arrange any payments for Yousef while they were in Pakistan.,contradiction,N/A_SP_EN_eval,contradiction,"---
+
+**Translated English Premise:** Yousf was able to travel to Pakistan, but his companion Murad, who was instructed by KSM to arrange funds for Yousef and give him $3,000 for the operation - he complained about the incomplete background investigation regarding that injury.
+
+**Translated English Hypothesis:** Murad did not arrange any payments for Yousef while they were in Pakistan.
+
+**English NLI Label:** contradiction
+---",5.193033456802368,
+"Mtu anaweza kufikiria mwendeshaji wa buldoza kama vile anapokuwa katika barabara ya maendeleo mapya yanayoonyeshwa na msanidi  Vipi, Loyd ...",Unaweza kufikiria opereta wa buldoza akianzisha buldoza.,1,neutral,"** A person can think about bulldozer operation especially when projects are not yet approved by Vipi, Lloyd ...",** You can think about a scenario where a bulldozer causes damage to another bulldozer.,neutral,N/A_SP_EN_eval,neutral,"---
+
+**Translated English Premise:** A person can think about bulldozer operation especially when projects are not yet approved by Vipi, Lloyd ...
+
+**Translated English Hypothesis:** You can think about a scenario where a bulldozer causes damage to another bulldozer.
+
+**English NLI Label:** neutral
+
+Based on the provided translations:
+- The premise talks about thinking about operating a bulldozer when certain conditions are met.
+- The hypothesis discusses a specific scenario involving potential damage between two bulldozers.
+
+These statements do not directly support or contradict each other; they describe different contexts related to bulldozers but do not have a clear logical connection that would make them entail or contradict each other. Therefore, the relationship is neutral.",8.144614219665527,
+"Kwa hiyo, Baba huenda na kuniandalia glasi nzuri sana ya maziwa ya chokoleti .",Baba alipata maziwa ya chokoleti kutoka kwa jokofu.,1,neutral,"'Therefore, Father went shopping for some very nice glass milk bottles.'",'Father gave milk chocolate from the store.',contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'Therefore, Father went shopping for some very nice glass milk bottles.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'Father gave milk chocolate from the store.'
+
+3. **Perform English NLI**:
+   English NLI Label: contradiction
+
+The premise states that the father bought glass bottles specifically for milk, while the hypothesis suggests he received milk chocolate from somewhere else, which contradicts the action described in the premise. Therefore, the correct NLI label is ""contradiction"". ---",7.917020797729492,
+Katika siku saba wataweza kupitia historia yetu na kuhakikisha kuwa sisi hatujawahi kuwa walaghai ama hamna,Wao watastahili kufuatilia mandharinyuma katika siku saba zifuatazo.,0,entailment,[PREMISE_EN_EXTRACTION_FAILED],[HYPOTHESIS_EN_EXTRACTION_FAILED],contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Based on the provided Swahili premise and hypothesis, let's follow the steps:
+
+1. **Translate English Premise:** 
+   The premise translates to: ""In seven days, we will use our history to confirm that we do not differ from those who have gone before us.""
+
+2. **Translate English Hypothesis:**
+   The hypothesis translates to: ""They were unable to study medicine during the seven-day period.""
+
+3. **Perform English NLI:**
+   After analyzing both sentences, it is clear that there is no direct logical connection between the two statements. The premise discusses using historical knowledge to affirm continuity with past generations, while the hypothesis talks about being unable to study medicine within a specific timeframe. These are unrelated topics.
+
+**English NLI Label:** contradiction
+
+This conclusion is based on the fact that the premise does not imply anything about studying medicine or any inability to do so, making the hypothesis contradictory to the information provided in the premise. Therefore, the correct NLI label is ""contradiction."" --- Based on the analysis of the translated English premise and hypothesis, the final English NLI Label is:
+
+**Contradiction**
+
+This label indicates that the hypothesis contradicts the information provided in the premise. The premise discusses using history to affirm continuity, whereas the hypothesis states an inability to study medicine during a specified time frame, which are unrelated and conflicting statements. ---",15.420249700546265,
+"Mstaafu sergenti mkuu, kama alivyosma Rick.",Rick alikuambia kuwa nilikuwa nimestaafu.,0,entailment,"** The chief sergeant, who is named Rick.",** Rick said that he was a sergeant.,neutral,N/A_SP_EN_eval,neutral,"---
+
+Here's my response based on the provided instructions:
+
+**Translated English Premise:** The chief sergeant, who is named Rick.
+
+**Translated English Hypothesis:** Rick said that he was a sergeant.
+
+**English NLI Label:** Neutral
+
+The premise states that Rick is the chief sergeant but does not specify whether he made any statement about being a sergeant. The hypothesis suggests that Rick stated he was a sergeant, which is not directly supported or contradicted by the premise. Therefore, the relationship between the premise and the hypothesis is neutral. --- Based on the provided instructions, here is the complete response:
+
+**Translated English Premise:** The chief sergeant, who is named Rick.
+
+**Translated English Hypothesis:** Rick said that he was a sergeant.
+
+**English NLI Label:** Neutral
+
+The premise states that Rick is the chief sergeant but does not specify whether he made any statement about being a sergeant. The hypothesis suggests that Rick stated he was a sergeant, which is not directly supported or contradicted by the premise. Therefore, the relationship between the premise and the hypothesis is neutral.",11.874224185943604,
+Mwanaume huingia kwa vyovyote vile.,Mwanaume aliingia chumbani.,0,entailment,The man went through everything.,The man entered the bathroom.,neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: The man went through everything.
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: The man entered the bathroom.
+
+3. **Perform English NLI**:
+   English NLI Label: neutral
+
+The premise states that the man went through everything, which could include entering a bathroom but does not necessarily imply it. Therefore, there is no direct entailment or contradiction between the two statements; they are neutral relative to each other. --- Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: The man went through everything.
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: The man entered the bathroom.
+
+3. **Perform English NLI**:
+   English NLI Label: neutral
+
+The premise states that the man went through everything, which could include entering a bathroom but does not necessarily imply it. Therefore, there is no direct entailment or contradiction between the two statements; they are neutral relative to each other. --- 
+
+English NLI Label: neutral ---",14.722360849380493,
+"Kwa kweli, sio kila makosa ya uandishi ambao unaweza shirikishwa na azimio za kuficha zisizo za fahamu kwa mwandishi.",karani wote hawafanyi makosa ya uchapishaji,2,contradiction,[PREMISE_EN_EXTRACTION_FAILED],[HYPOTHESIS_EN_EXTRACTION_FAILED],neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided Swahili premise and hypothesis, let's follow the steps:
+
+1. **Translate English Premise:** 
+   The premise translates to: ""Indeed, no writing style that can be combined with visual aids that promote understanding for the writer.""
+
+2. **Translate English Hypothesis:** 
+   The hypothesis translates to: ""All have not adopted the writing style""
+
+3. **Perform English NLI:**
+   After analyzing the translated premise and hypothesis, we determine that there is no direct logical connection between them. The premise talks about certain writing styles and their combination with visual aids, while the hypothesis makes a general statement about adoption of a writing style without specifying any conditions or context related to the premise. Therefore, the relationship between the two statements is neutral.
+
+**English NLI Label:** neutral
+--- 
+
+This concludes the task based on the given inputs. The final answer is ""neutral"".",10.065927982330322,
+"Ikiwa ungependa habari za ziada kuhusu kampeni ya IU Shule ya Madawa au utafiti wa Dk Field, tafadhali piga wito 274-3270.",Dr Field anafanya kazi kama daktari wa meno katika Chuo Kikuu cha Florida.,2,contradiction,"If you want more news about IU Medical School clinics or Dr. Dk Field's work, please call number 274-3270.",Dr. Field works as a dentist in the City of Florida.,neutral,N/A_SP_EN_eval,neutral,"---
+
+### Translated English Premise:
+If you want more news about IU Medical School clinics or Dr. Dk Field's work, please call number 274-3270.
+
+### Translated English Hypothesis:
+Dr. Field works as a dentist in the City of Florida.
+
+### English NLI Label:
+neutral
+
+The premise provides information about contacting Dr. Dk Field regarding his work at IU Medical School clinics, while the hypothesis states that he works as a dentist in Florida. There is no direct connection between these statements, hence they are neutral to each other.",6.6792216300964355,
+"Ingawa hata baadhi yao wanapaswa kujua vizuri zaidi, kulikuwa bado na wachache Barbados pamoja nasi, na wanajua kama mimi na wewe na kanali Askofu.",Pia sisi tunajuana na Kapteni Blood.,1,neutral,"'Even though some of them did not know much better, they were still together with the Barbados girls, and we knew like you and me with Channel Askofu.'",'We also know Captain Blood.',neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'Even though some of them did not know much better, they were still together with the Barbados girls, and we knew like you and me with Channel Askofu.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'We also know Captain Blood.'
+
+3. **Perform English NLI**:
+   English NLI Label: neutral
+
+The premise talks about people being together with Barbados girls and knowing someone like the speaker and another person with a specific channel. The hypothesis introduces new information about knowing Captain Blood without any direct connection to the content of the premise. Therefore, the relationship between the premise and the hypothesis is neutral. --- Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'Even though some of them did not know much better, they were still together with the Barbados girls, and we knew like you and me with Channel Askofu.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'We also know Captain Blood.'
+
+3. **Perform English NLI**:
+   English NLI Label: neutral
+
+The premise discusses a group of people who were together with Barbados girls and had knowledge similar to that shared among the speaker and another individual through a specific channel. The hypothesis introduces new information about knowing Captain Blood, which does not directly relate to or contradict the content of the premise. Therefore, the relationship between the premise and",19.36849570274353,
+"Ili kupata pasipoti safi na pasipoti mbili zilizoharibiwa, angalia Ripoti za Upelelezi, uhoji wa KSM, Julai 3, 2003; Septemba 9, 2003.",KSM daima walikosa kupata hati safi.,2,contradiction,"** To get clean water and two damaged reports, see the Report of Incidents, KSM report, July 3, 2003; September 9, 2003.",** KSM always provides clean water.,contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Here's my response based on the provided instructions:
+
+**Translated English Premise:** To get clean water and two damaged reports, see the Report of Incidents, KSM report, July 3, 2003; September 9, 2003.
+
+**Translated English Hypothesis:** KSM always provides clean water.
+
+**English NLI Label:** contradiction
+--- The English NLI Label after translating and analyzing the given Swahili premise and hypothesis is ""contradiction"". This is because the premise mentions that there were damaged reports related to KSM, which contradicts the hypothesis stating that KSM always provides clean water. ---",7.383389234542847,
+"Kupita mraba huo ni mitaa ya nyuma ya Laleli, mahali pa kutafuta nguo za bei nafuu.","Ukienda kwenye duka la nguo sahihi, utapata kwamba nguo ni bei nafuu kule Laleli.",1,neutral,"'I saw this tree at the highest point of Laleli, where one can find beech trees naturally.'","'Going to the beech store correctly, you will find out that beech trees grow naturally in Laleli.'",neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'I saw this tree at the highest point of Laleli, where one can find beech trees naturally.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'Going to the beech store correctly, you will find out that beech trees grow naturally in Laleli.'
+
+3. **Perform English NLI**:
+   English NLI Label: neutral
+
+The premise states that a tree was seen at the highest point of Laleli where beech trees naturally occur. The hypothesis talks about finding out through visiting a store that beech trees grow naturally in Laleli. While both statements refer to beech trees growing naturally in Laleli, they do not necessarily imply the same information directly. Therefore, the relationship between them is neutral. --- Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'I saw this tree at the highest point of Laleli, where one can find beech trees naturally.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'Going to the beech store correctly, you will find out that beech trees grow naturally in Laleli.'
+
+3. **Perform English NLI**:
+   English NLI Label: neutral
+
+The premise indicates that a specific tree was observed at the highest point of Laleli, which is known for natural beech trees. The hypothesis suggests that visiting a be",19.28097701072693,
+"Mbali na lexicon, sarufi - hasa sintaksi - imebadilika kiasi fulani, pia, ingawa tena sio kuwa haijulikani kwa msomaji wastani wa kisasa.",Sarufi imebadilika lakini sio sana.,0,entailment,[PREMISE_EN_EXTRACTION_FAILED],[HYPOTHESIS_EN_EXTRACTION_FAILED],contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Based on the provided Swahili premise and hypothesis, here's the analysis following the specified steps:
+
+1. **Translate English Premise:** 
+   The Swahili sentence translates to: ""Without context, numbers - especially syntax - change significantly, but still not recognized by most modern software.""
+
+2. **Translate English Hypothesis:** 
+   The Swahili sentence translates to: ""Numbers change, but not much.""
+
+3. **Perform English NLI:**
+   After analyzing the translated premise and hypothesis:
+   - The premise states that numbers, particularly syntax, can change significantly without context.
+   - The hypothesis suggests that numbers do change, but only slightly.
+   
+   Given that the premise indicates significant changes while the hypothesis mentions minimal changes, there is a contradiction between the two statements.
+
+**English NLI Label:** contradiction
+---",9.284327030181885,
+"Hitimisho kuu ya kuteka kwenye majaribio yetu ni kwamba mawakala wa kujitegemea kuunganisha na 'autocatalytic' moja au zaidi  na mizunguko ya kazi ni kamilifu, kama si jipya, aina ya kutofautiana, mchanganyisho uliofunguka wa kemikali.",Tunaweza kutekeleza hitimisho kutoka kwenye maigo tuliyofanya kwenye kompyuta.,1,neutral,"'Our research interest focuses on the fact that the catalytic cycle involved in the process is completely independent, without any external intervention, and the chemical reaction proceeds smoothly.'",'We can transfer data from memory to computer.',neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'Our research interest focuses on the fact that the catalytic cycle involved in the process is completely independent, without any external intervention, and the chemical reaction proceeds smoothly.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'We can transfer data from memory to computer.'
+
+3. **Perform English NLI**:
+   English NLI Label: neutral
+
+The premise discusses the independence of a catalytic cycle in a chemical process, while the hypothesis talks about transferring data from memory to a computer. These two statements do not have a direct logical connection; therefore, the relationship between them is neutral. ---",9.160764932632446,
+"Kwa kusikia uhalisi wa Ureno wa zamani, ingilia kwenye ukumbi mzuri unaopendeza wa Leal Senado (jengo la Loyal Senate), mfano mzuri wa usanifu wa kikoloni.",Jengo la Seneti la Uaminifu ni nzuri.,0,entailment,[PREMISE_EN_EXTRACTION_FAILED],[HYPOTHESIS_EN_EXTRACTION_FAILED],neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided Swahili premise and hypothesis, let's follow the steps:
+
+1. **Translate English Premise:** 
+   The Swahili Premise translates to: ""By reading through the history of the old parliament, they have decorated the Leal Senado (a model of colonial administration), which is a fine example of governance.""
+
+2. **Translate English Hypothesis:**
+   The Swahili Hypothesis translates to: ""The Senate of Representatives is good.""
+
+3. **Perform English NLI:**
+   - The premise talks about the Leal Senado being a fine example of colonial governance.
+   - The hypothesis states that the Senate of Representatives is good.
+   
+   There is no direct logical connection between the two statements. The premise does not imply anything about the quality of the Senate of Representatives; it only mentions the Leal Senado. Therefore, the relationship is neutral.
+
+**English NLI Label:** neutral
+--- 
+
+This concludes the task based on the given instructions. The final answer is **neutral**.",11.731258869171143,
+"Idara moja ilinuia kutekeleza utaratibu wa wafanyakazi wake kuchukua safari inayowaruhusu wasafiri, pasi dhibiti fulani, kupeana tu idadi yote ya matumizi ya pesa iliyo dola za Marekani 75 au chini.",Ujumbe huo haukukaribishwa ni,1,neutral,"'A single organization operates to manage the affairs of its employees who take trips that do not involve passengers, but rather only the number of travel expenses does not exceed seventy-five US dollars.'",'This information has not been verified',neutral,N/A_SP_EN_eval,neutral,"---
+
+Translated English Premise: 'A single organization operates to manage the affairs of its employees who take trips that do not involve passengers, but rather only the number of travel expenses does not exceed seventy-five US dollars.'
+
+Translated English Hypothesis: 'This information has not been verified'
+
+English NLI Label: neutral
+--- 
+
+Explanation:
+- The premise provides details about how an organization manages employee trips and travel expenses.
+- The hypothesis states that the information has not been verified, which neither confirms nor denies any part of the premise. Therefore, it's neutral. --- Translated English Premise: 'Idara moja ilinuia kutekeleza utaratibu wa wafanyakazi wake kuchukua safari inayowaruhusu wasafiri, pasi dhibiti fulani, kupeana tu idadi yote ya matumizi ya pesa iliyo dola za Marekani 75 au chini.'
+Translated English Hypothesis: 'Ujumbe huo haukukaribishwa ni'
+English NLI Label: neutral
+
+Explanation:
+- The premise describes how a single organization manages its employees' trips without involving passengers, and specifies that the total amount of travel expenses does not exceed seventy-five US dollars.
+- The hypothesis merely states that the information has not been verified, which does not confirm or deny the content of the premise. Thus, the relationship between the premise and the hypothesis is neutral. ---",16.46712064743042,
+"Niko na vijana wawili, mmoja wa umri wa miaka kumi na miwili na uyo mwingine miaka kumi na sita.",Mimi pia nina binti aliye mdogo kuliko wavulana.,1,neutral,"I have two children, one is ten and two years old and the other is thirteen years old.",I also have a little girl younger than my boys.,neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate English Premise:** 
+   - Translated English Premise: I have two children, one is ten and two years old and the other is thirteen years old.
+
+2. **Translate English Hypothesis:**
+   - Translated English Hypothesis: I also have a little girl younger than my boys.
+
+3. **Perform English NLI:**
+   - English NLI Label: Neutral
+
+The premise provides specific ages for the speaker's two children, while the hypothesis introduces information about having a younger daughter without specifying her age relative to the known ages. There is no direct contradiction between the statements but neither does the premise entail the existence of a younger daughter. Therefore, the relationship is neutral. --- Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate English Premise:**
+   - Translated English Premise: I have two children, one is ten and two years old and the other is thirteen years old.
+
+2. **Translate English Hypothesis:**
+   - Translated English Hypothesis: I also have a little girl younger than my boys.
+
+3. **Perform English NLI:**
+   - English NLI Label: Neutral
+
+The premise provides specific ages for the speaker's two children, while the hypothesis introduces information about having a younger daughter without specifying her age relative to the known ages. There is no direct contradiction between the statements but neither does the premise entail the existence of a younger daughter. Therefore, the relationship is neutral. ---",18.261462211608887,
+Marafiki hufanya kazi katika viwango viwili - Marafiki wa Jiji na Marafiki wa Tawi - na unaweza kuwa na kazi kwa moja au ngazi zote mbili.,"Hatuwezi tenganisha viwango vya marafiki, kila mtu ni sawa.",2,contradiction,'Friends work together in two ways - Household Friends and Yearly Friends - and can either do work alone or both together.',"'They cannot be equal in friendship, everyone is different.'",contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Translated English Premise: 'Friends work together in two ways - Household Friends and Yearly Friends - and can either do work alone or both together.'
+
+Translated English Hypothesis: 'They cannot be equal in friendship, everyone is different.'
+
+English NLI Label: contradiction
+---",3.248906135559082,
+"Nataka kusema ya kwamba hakuwa na hatari yoyote ya kuingia na bomu kwa sababu haiwezi kulipuka, licha ya vile ingeanguka kwenye ardhi.",Kulikuwa na hatari kubwa ya kulipuka bomu.,2,contradiction,"'I want to say that there is no danger of getting infected with Ebola because it cannot penetrate the soil, like its virus particles.'",'There was a great risk of contracting Ebola.',contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'I want to say that there is no danger of getting infected with Ebola because it cannot penetrate the soil, like its virus particles.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'There was a great risk of contracting Ebola.'
+
+3. **Perform English NLI**:
+   English NLI Label: contradiction
+
+This conclusion is drawn based on the premise stating there is no danger due to the inability of Ebola to penetrate the soil, which directly contradicts the hypothesis suggesting a significant risk of contracting Ebola. --- The English NLI Label is: contradiction. ---",8.69264030456543,
+Mtazamo wetu wa awali unaashiria kuwa utendaji wa ripoti za GPRA zinawezakuwa za maana kama,Faida ya ripoti za GPRA zinaweza kuongezwa,0,entailment,'Our initial team believed that the GPRA reports had meanings as tenders.','Benefits of the GPRA reports can be attributed.',neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided Swahili sentences, here are the translations and the NLI analysis:
+
+**Step 1: Translate Premise to English**
+Translated English Premise: 'Our initial team believed that the GPRA reports had meanings as tenders.'
+
+**Step 2: Translate Hypothesis to English**
+Translated English Hypothesis: 'Benefits of the GPRA reports can be attributed.'
+
+**Step 3: Perform English NLI**
+English NLI Label: neutral
+
+Explanation: The premise states that the initial team believed the GPRA reports were like tenders, which implies they have some value or meaning. However, the hypothesis suggests that benefits can be attributed to the GPRA reports but does not specify what those benefits are or how they relate to being considered as tenders. Therefore, there is no direct entailment or contradiction between the two statements; they are neutral relative to each other. --- Based on the provided Swahili sentences, here are the translations and the NLI analysis:
+
+**Step 1: Translate Premise to English**
+Translated English Premise: 'Our initial team believed that the GPRA reports had meanings as tenders.'
+
+**Step 2: Translate Hypothesis to English**
+Translated English Hypothesis: 'Benefits of the GPRA reports can be attributed.'
+
+**Step 3: Perform English NLI**
+English NLI Label: neutral
+
+Explanation: The premise states that the initial team believed the GPRA reports had meanings similar to tenders, implying they carry significance. The hypothesis suggests that benefits can be attributed to the GPRA reports without specifying the nature of these benefits or their relation to the premise's interpretation. Since there is no direct entailment or contradiction, the relationship is neutral",19.207370042800903,
+"Ninakuhakikishia, bwana, kwamba nilikuwa na taarifa kamili ya wote.",Ilikuwa kifo cha mpekuzi nilichopata ujumbe kuhusu.,1,neutral,"'I confirmed, sir, that I had all the information.'",'I was the source of the leak and received news about it.',contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'I confirmed, sir, that I had all the information.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'I was the source of the leak and received news about it.'
+
+3. **Perform English NLI**:
+   English NLI Label: contradiction
+
+The premise states that the speaker confirms having all the information, while the hypothesis suggests they were the source of a leak and received news about it, which contradicts the premise. Therefore, the relationship between the premise and the hypothesis is contradictory. --- Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'I confirmed, sir, that I had all the information.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'I was the source of the leak and received news about it.'
+
+3. **Perform English NLI**:
+   English NLI Label: contradiction
+
+The premise states that the speaker confirms having all the information, while the hypothesis suggests they were the source of a leak and received news about it, which contradicts the premise. Therefore, the relationship between the premise and the hypothesis is contradictory. --- 
+
+English NLI Label: contradiction ---",16.3484103679657,
+Alizaliwa kipindi cha mwaka wa 1988-1989 hivi nikidhani.,Hakuzaliwa hadi mwaka wa 1984.,2,contradiction,The drought occurred during the years 1988-1989 and that is when it happened.,It did not occur until the year 1984.,contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Let's begin:
+Translated English Premise: The drought occurred during the years 1988-1989 and that is when it happened.
+Translated English Hypothesis: It did not occur until the year 1984.
+English NLI Label: contradiction
+--- Explanation ---
+The premise states that the drought occurred specifically between 1988 and 1989, while the hypothesis claims it didn't happen until 1984. These two statements contradict each other, hence the label ""contradiction."" --- Translated English Premise: The drought occurred during the years 1988-1989 and that is when it happened.
+Translated English Hypothesis: It did not occur until the year 1984.
+English NLI Label: contradiction
+---",9.260833263397217,
+"H. H. Richardson na mwanafunzi wake Charles Follen McKim walikuwa waandishi, ikiwemo wasaidizai wa McKim,John M. Carrare and Thomas Hastings.","H. H. Richardson, Charles Follen McKim, John M. Carrare na Thomas Hastings wote walikuwa wajumbe.",0,entailment,"H. H. Richardson na mwanafunzi wake Charles Follen McKim walikuwa waandishi, ikiwemo wasaidizai wa McKim, John M. Carrare na Thomas Hastings.","H. H. Richardson, Charles Follen McKim, John M. Carrare na Thomas Hastings wote walikuwa wajumbe.",neutral,N/A_SP_EN_eval,neutral,"---
+
+Translated English Premise: H. H. Richardson na mwanafunzi wake Charles Follen McKim walikuwa waandishi, ikiwemo wasaidizai wa McKim, John M. Carrare na Thomas Hastings.
+
+Translated English Hypothesis: H. H. Richardson, Charles Follen McKim, John M. Carrare na Thomas Hastings wote walikuwa wajumbe.
+
+English NLI Label: neutral
+
+Explanation:
+- The premise states that H. H. Richardson and his student Charles Follen McKim were architects, along with others like John M. Carrare and Thomas Hastings.
+- The hypothesis claims that H. H. Richardson, Charles Follen McKim, John M. Carrare, and Thomas Hastings were writers.
+- There's no direct information about them being writers in the premise, so we cannot conclude they are writers based solely on the premise provided. Therefore, the relationship between the premise and the hypothesis is neutral. ---",10.926037549972534,
+"wanaume, mimi ni wa bure, mtu mmoja aliingia na kumchoma mkewe wa zamani kisu na kumuua kwa sababu alikuwa amelala na mwanaume mwingine, namaanisha mke wa zamani, unajua tunazungumza na",Mume mmoja alimwua mke wake wa zamani kwa kulala na mtu mwingine baada ya kufunguliwa kutokana na kifungo cha awali.,0,entailment,"'A person, I am honest, one person entered and stole something and informed because he was suspicious of another person, the old woman, he knew we were talking about her.'",'One person informed the old woman that she had been stolen from by someone else after being suspicious of them during the initial encounter.',entailment,N/A_SP_EN_eval,entailment,"---
+
+Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'A person, I am honest, one person entered and stole something and informed because he was suspicious of another person, the old woman, he knew we were talking about her.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'One person informed the old woman that she had been stolen from by someone else after being suspicious of them during the initial encounter.'
+
+3. **Perform English NLI**:
+   English NLI Label: entailment
+
+The hypothesis logically follows from the premise as it summarizes part of what happened according to the premise, specifically mentioning the suspicion and the informing action related to the old woman. Thus, the correct NLI label is entailment. --- The English NLI Label is: entailment. ---",10.353107690811157,
+"Na nilikuwa nimeweka, milango mitano nje ya U2's.",Nilifanya kazi na vikosi vya U2  kila siku kwa miaka arobaini.,1,neutral,"I was there, at the second door of U2's.",I worked with U2's staff every day for about twenty years.,neutral,N/A_SP_EN_eval,neutral,"---
+
+Here is the detailed response based on the provided instructions:
+
+1. Translated English Premise: I was there, at the second door of U2's.
+2. Translated English Hypothesis: I worked with U2's staff every day for about twenty years.
+3. English NLI Label: neutral
+
+The premise states that someone was present at a specific location related to U2, while the hypothesis claims they worked with U2's staff daily over a long period. These statements do not necessarily contradict each other but also don't directly support each other, hence the neutral classification.",6.643559694290161,
+"Napoleon alishambulia na kuharibu hekalu takatifu la Catalonia, nyumba ya monasteri huko Montserrat.",Napoleon alikua mwajibikaji kwa uaribifu wa monastery kwa Montserrat.,0,entailment,"** Napoleon visited and reduced the Catalan monastic complex, the house of the Montserrat monastery.",** Napoleon was a monk at the Montserrat monastery.,contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Here's my response based on the provided instructions:
+
+**Translated English Premise:** Napoleon visited and reduced the Catalan monastic complex, the house of the Montserrat monastery.
+
+**Translated English Hypothesis:** Napoleon was a monk at the Montserrat monastery.
+
+**English NLI Label:** contradiction
+--- The English NLI Label derived from the analysis of the translated premise and hypothesis is ""contradiction"". This is because the premise states that Napoleon visited and reduced a part of the monastery, while the hypothesis claims that Napoleon was a monk at the same location, which are conflicting statements. --- Based on the provided instructions, here is the complete response:
+
+**Translated English Premise:** Napoleon visited and reduced the Catalan monastic complex, the house of the Montserrat monastery.
+
+**Translated English Hypothesis:** Napoleon was a monk at the Montserrat monastery.
+
+**English NLI Label:** contradiction
+
+The English NLI Label derived from the analysis of the translated premise and hypothesis is ""contradiction"". This is because the premise states that Napoleon visited and reduced a part of the monastery, while the hypothesis claims that Napoleon was a monk at the same location, which are conflicting statements. ---",12.833216667175293,
+Ninaona vizuri na napenda hali ya anga,Mwenyewe naipenda burudani hiyo.,0,entailment,'I am comfortable and like the atmosphere.','I personally really like it.',entailment,N/A_SP_EN_eval,entailment,"---
+
+Based on the provided Swahili sentences:
+
+**Step 1:** Translated English Premise:
+'I am comfortable and like the atmosphere.'
+
+**Step 2:** Translated English Hypothesis:
+'I personally really like it.'
+
+**Step 3:** English NLI Label:
+entailment
+---",3.499593734741211,
+Mimi daima nitashukuru.,Nina furaha sana na shukrani kwa yale umetenda leo.,1,neutral,I always thank.,I am very happy and thankful for those who visit me today.,neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: I always thank.
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: I am very happy and thankful for those who visit me today.
+
+3. **Perform English NLI**:
+   English NLI Label: neutral
+
+The premise states that the speaker always thanks, but it does not specify what they are thanking for or when. The hypothesis provides more specific information about being thankful for visitors today. Therefore, while there might be overlap in the general sentiment expressed, the hypothesis contains additional details that cannot be directly inferred solely from the premise. Thus, the relationship between the two statements is considered neutral. --- Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: I always thank.
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: I am very happy and thankful for those who visit me today.
+
+3. **Perform English NLI**:
+   English NLI Label: neutral
+
+The premise states that the speaker always thanks, but it does not specify what they are thanking for or when. The hypothesis provides more specific information about being thankful for visitors today. Therefore, while there might be overlap in the general sentiment expressed, the hypothesis contains additional details that cannot be directly inferred solely from the premise. Thus, the relationship between the two statements is considered neutral. --- 
+
+English NLI Label: neutral ---",18.416200637817383,
+"Ni, bila shaka, badala ya kudhani kwamba kuna kutokuwa na uhakika wa kiasi katika sheria, lakini haionekani kuwa haiwezekani.",Haiwezekani kudhani kuwa kuna kutokuwa na uhakika wa kiasi katika sheria.,0,entailment,"'But without doubt, instead of saying that there was certainty about the amount of law, but not necessarily so.'",'Not necessarily so to say that there was certainty about the amount of law.',entailment,N/A_SP_EN_eval,entailment,"---
+
+Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'But without doubt, instead of saying that there was certainty about the amount of law, but not necessarily so.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'Not necessarily so to say that there was certainty about the amount of law.'
+
+3. **Perform English NLI**:
+   English NLI Label: entailment
+
+The premise suggests that it's certain about something regarding the law, but it doesn't necessarily have to be true. The hypothesis directly states that it's not necessarily true that there was certainty about the amount of law, which aligns closely with the implication of the premise. Therefore, the relationship between the premise and the hypothesis can be considered entailed. --- Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'Bila shaka, badala ya kudhani kwamba kuna kutokuwa na uhakika wa kiasi katika sheria, lakini haionekani kuwa haiwezekani.'
+   
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'Haiwezekani kudhani kuwa kuna kutokuwa na uhakika wa kiasi katika sheria.'
+
+3. **Perform English NLI**:
+   English NLI Label: entailment
+
+The premise suggests that although there might be certainty about the amount of law, it is not necessarily the case.",19.24968433380127,
+Mengi yanasababaishwa na kwamba mama mzazi ni mlevi wa dawa za kulevya.,Mama zao ni waraibu wa midadharati.,1,neutral,'Many people believe that a mother bird is a carrier of medicine for her sick chicks.','Your mother is a midwife.',neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'Many people believe that a mother bird is a carrier of medicine for her sick chicks.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'Your mother is a midwife.'
+
+3. **Perform English NLI**:
+   English NLI Label: neutral
+
+This conclusion is drawn because the premise discusses a belief about a mother bird caring for her sick chicks, while the hypothesis makes a statement about someone's mother being a midwife. These two statements do not necessarily imply each other; they can be true independently without any direct logical connection. Therefore, the relationship between them is neutral. --- Based on the provided Swahili sentences, here's the analysis following the specified steps:
+
+1. **Translate Premise to English**:
+   Translated English Premise: 'Many people believe that a mother bird is a carrier of medicine for her sick chicks.'
+
+2. **Translate Hypothesis to English**:
+   Translated English Hypothesis: 'Your mother is a midwife.'
+
+3. **Perform English NLI**:
+   English NLI Label: neutral
+
+This conclusion is drawn because the premise discusses a belief about a mother bird caring for her sick chicks, while the hypothesis makes a statement about someone's mother being a midwife. These two statements do not necessarily imply each other; they can be true independently without any direct logical connection. Therefore, the relationship between them is neutral. --- English NLI Label: neutral ---",18.30650019645691,
+"Ili kuzuia sura ya ushoga kama jambo mbaya, Clinton na Birch wamewalimbikizia mashoga sifa za kiraia .",Clinton na Birch ni mashoga.,1,neutral,"'For important tasks such as cleaning, Clinton and Birch were using chemical cleaners.'",'Clinton and Birch are cleaners.',neutral,N/A_SP_EN_eval,neutral,"---
+
+Translated English Premise: 'For important tasks such as cleaning, Clinton and Birch were using chemical cleaners.'
+Translated English Hypothesis: 'Clinton and Birch are cleaners.'
+English NLI Label: neutral
+--- 
+
+Explanation:
+- The premise states that Clinton and Birch used chemical cleaners for important tasks, but it does not specify their profession.
+- The hypothesis suggests they are cleaners, which cannot be definitively concluded from the premise alone; hence, it's a neutral relationship. --- Your response is correct. Here is the formatted output again for clarity:
+
+---
+
+Translated English Premise: 'For important tasks such as cleaning, Clinton and Birch were using chemical cleaners.'
+Translated English Hypothesis: 'Clinton and Birch are cleaners.'
+English NLI Label: neutral
+
+--- 
+This confirms the analysis and conclusion provided. If there are any further tasks or questions, feel free to let me know! ---",9.744413375854492,
+"Kisha nikiipata na ninaona ni vyema, nitafanya nini na hilo?",Sijui nilivyopaswa kutumia kifaa hicho.,1,neutral,"Kisha nikiipata na ninaona ni vyema, nitafanya nini na hilo?",Sijui nilivyopaswa kutumia kifaa hicho.,neutral,N/A_SP_EN_eval,neutral,"---
+
+Translated English Premise: Kisha nikiipata na ninaona ni vyema, nitafanya nini na hilo?
+
+Translated English Hypothesis: Sijui nilivyopaswa kutumia kifaa hicho.
+
+English NLI Label: neutral
+--- 
+
+Explanation:
+- The premise asks what was done with something that was seen, but it doesn't specify any action or consequence.
+- The hypothesis states uncertainty about not using anything, which does not directly relate to or contradict the actions mentioned in the premise.
+- Therefore, there's no clear entailment or contradiction between the two statements; they are neutral regarding each other. ---",7.427599191665649,
+Samuel Sheinbein atatumikia hukumu ya mauaji nchini Israeli.,Samuel Sheinbein atahudumu hukumu ya mauaji huko Canada.,2,contradiction,** Samuel Sheinbein was sentenced to prison time in Israel.,** Samuel Sheinbein was pardoned from prison sentence in Canada.,contradiction,N/A_SP_EN_eval,contradiction,"---
+
+Here's my response based on the provided instructions:
+
+**Translated English Premise:** Samuel Sheinbein was sentenced to prison time in Israel.
+
+**Translated English Hypothesis:** Samuel Sheinbein was pardoned from prison sentence in Canada.
+
+**English NLI Label:** contradiction
+--- The provided response follows the specified format and accurately performs the required tasks. It includes the translations of both the premise and hypothesis, and then provides the correct English NLI label based on the analysis of those translations. The final answer is:
+
+**English NLI Label:** contradiction
+---",6.479283332824707,
+"(Imesemekana, sio kwa yote kimchezo, kwamba ikiwa Kijapani walihitaji kulipa ada ya leseni kwa kila neno la Kiingereza ambalo walitumia, ziada yao ya biashara ingeangamia.)",Nomino hua zinatumika sana kubadisha kwenda kwa lugha zingine.,1,neutral,**,**,neutral,N/A_SP_EN_eval,neutral,"---
+
+Based on the provided Swahili premise and hypothesis, let's follow the steps:
+
+1. **Translate English Premise:** 
+   The translated English premise is: ""It is known that not all languages require a phonetic transcription, but when the Japanese use every word of English in their business, their trade suffers.""
+
+2. **Translate English Hypothesis:**
+   The translated English hypothesis is: ""Names are widely used to refer to multiple languages.""
+
+3. **Perform English NLI:**
+   After analyzing the translated premise and hypothesis, we can determine that there is no direct logical connection between them. The premise discusses the usage of phonetic transcriptions in business contexts involving Japanese and English, while the hypothesis talks about the use of names referring to multiple languages. These two statements do not necessarily imply each other nor contradict each other; they are independent claims.
+
+**English NLI Label:** neutral
+
+This conclusion is reached because the premise does not provide any information that would support or refute the claim made in the hypothesis, and vice versa. They discuss different aspects without any clear logical relationship. Therefore, the correct NLI label is ""neutral."" --- Based on the provided Swahili premise and hypothesis, here are the translations and the final NLI label:
+
+1. **Translated English Premise:**
+   It is known that not all languages require a phonetic transcription, but when the Japanese use every word of English in their business, their trade suffers.
+
+2. **Translated English Hypothesis:**
+   Names are widely used to refer to multiple languages.
+
+3. **English NLI Label:**
+   neutral
+
+Therefore, the final answer is:
+**English NLI Label:** neutral ---",18.917710542678833,

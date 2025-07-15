@@ -1,0 +1,830 @@
+text,ground_truth_entities,text_en,entities_en,predicted_entities,error,runtime_seconds,comet_score_text,comet_score_entities
+"Mratibu wa Mkoa wa Pwani John Elungata ametoa ripoti hiyo masaa kadhaa baada ya shambulio la kushitukiza katika eneo la Nyongoro , sehemu maarufu ambayo Al - Shabaab imekuwa ikifanya mashambulizi yanayo lenga abiria katika magari na vyombo vya usalama .","[{'entity': 'Pwani', 'type': 'LOC'}, {'entity': 'John Elungata', 'type': 'PER'}, {'entity': 'Nyongoro', 'type': 'LOC'}, {'entity': 'Al - Shabaab', 'type': 'ORG'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.",[],[],,15.011290788650513,,
+” Mwelekeo huo ulivurugika wakati wa kashfa ya Watergate ambayo ilipelekea Rais Richard Nixon kujiuzulu mwaka 1974 .,"[{'entity': 'Richard Nixon', 'type': 'PER'}, {'entity': '1974', 'type': 'DATE'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Mfano: 'Mwelekeo huo ulivurugika wakati wa kashfa ya Watergate ambayo ilipelekea Rais Richard Nixon kujiuzulu mwaka 1974 .'
+Translation: 'The Watergate scandal, which led to the resignation of President Richard Nixon in 1974.'
+
+English Translation:
+'The Watergate scandal, which led to the resignation of President Richard Nixon in 1974.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Muss",[],[],,14.638138771057129,,
+"Jamhuri ya Kidemokrasia ya Congo - DRC Serikali ya Jamhuri ya kidemokrasia ya Congo inatarajiwa kulegeza masharti yaliyowekwa kudhibiti maambukizi ya virusi vya Corona , hasa katika mji mkuu wa Kinshasa ambao umerekodi visa vingi vya maambukizi ya virusi vya Corona nchini humo .","[{'entity': 'Jamhuri ya Kidemokrasia ya Congo', 'type': 'LOC'}, {'entity': 'DRC', 'type': 'LOC'}, {'entity': 'Jamhuri ya kidemokrasia ya Congo', 'type': 'LOC'}, {'entity': 'Kinshasa', 'type': 'LOC'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Jamhuri ya Kidemokrasia ya Congo - DRC Serikali ya Jamhuri ya kidemokrasia ya Congo inatarajiwa kulegeza masharti yaliyowekwa kudhibiti maambukizi ya virusi vya Corona , hasa katika mji mkuu wa Kinshasa ambao umerekodi visa vingi vya maambukizi ya virusi vya Corona nchini humo .'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma",[],[],,14.732131004333496,,
+8 na cha Frankfurt Dax kiliporomoka kwa asilimia 1 .,"[{'entity': 'Frankfurt', 'type': 'LOC'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Watu wanaopenda wanaopenda wanaopenda.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+English Translation:
+'People love people.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations",[],[],,14.532572269439697,,
+"Kuongezeka kasi kwa kesi hiyo anasema inatokana na wanachama wa ngazi ya juu na mwanasheria wa Trump binafsi , Rudy Giuliani kupuuza hati ya wito juu ya shauri la uchunguzi linalotaka kumuondoa madarakani rais .","[{'entity': 'Trump', 'type': 'PER'}, {'entity': 'Rudy Giuliani', 'type': 'PER'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.",[],[],,14.336395263671875,,
+"Nchi hiyo , ambayo ni maarufu kwa utalii na moja wapo ya mataifa imara zaidi barani Afrika , hufanya uchaguzi kila baada ya miaka mitano , na wa mwisho ulifanyika mnamo 2014 .","[{'entity': 'Afrika', 'type': 'LOC'}, {'entity': '2014', 'type': 'DATE'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Mfano: 'Wafanyibiwa wanaopenda kutumika kwa wafanyibiwa wanaopenda kutumika kwa wafanyibiwa wanaopenda kutumika kwa wafanyibiwa wanaopenda kutumika kwa wafanyibiwa wanaopenda kutumika kwa wafanyibiwa wanaopenda kutumika kwa wafanyibiwa wanaopenda kutumika kwa wafanyibiwa wanaopenda kutumika kwa wafanyibiwa wanaopenda kutumika kwa wafanyibiwa wanaopenda kutumika kwa wafanyibiwa wanaopenda kutumika kwa waf",[],[],,14.629927396774292,,
+"Ruhakana Rugunda na waziri wa mambo ya nje Sam Kutesa , kusimamia mpango wa kuwarejesha nyumbani raia wa Uganda waliokwama nje ya nchi .","[{'entity': 'Ruhakana Rugunda', 'type': 'PER'}, {'entity': 'Sam Kutesa', 'type': 'PER'}, {'entity': 'Uganda', 'type': 'LOC'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Ruhakana Rugunda na waziri wa mambo ya nje Sam Kutesa , kusimamia mpango wa kuwarejesha nyumbani raia wa Uganda waliokwama nje ya nchi .'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.",[],[],,14.624821901321411,,
+"May alielezea sifa za Mkurugenzi wa VOA , Amanda Bennett kama ni mtu aliyetoka katika utawala wa Rais Mdemokrat Barack Obama , ambaye alishindwa kuelezea kwa kina sera za utawala wa Trump kwa dunia .","[{'entity': 'May', 'type': 'PER'}, {'entity': 'VOA', 'type': 'ORG'}, {'entity': 'Amanda Bennett', 'type': 'PER'}, {'entity': 'Barack Obama', 'type': 'PER'}, {'entity': 'Trump', 'type': 'PER'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Watu wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaop",[],[],,14.63308596611023,,
+5 .,[],"President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Mfano: 'Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa",[],[],,14.480735301971436,,
+"Ujumbe wa Video Kupitia ujumbe wa video fupi iliyosambaa mitandaoni wakati Masele akihojiwa kuhusu tuhuma zinazomkabili Rais wa PAP , alisema amefurahi baada ya kamati ya uchunguzi iliyoundwa na Bunge hilo kuchunguza tuhuma hizo zinazomkabili Rais kukamilisha kazi yake .","[{'entity': 'Masele', 'type': 'PER'}, {'entity': 'PAP', 'type': 'ORG'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.",[],[],,14.422155618667603,,
+"Sikukuu ya siku tatu , inayoadhimisha kumalizika kwa mwezi mtufuku wa Ramadhan , kwa kawaida inasheherekewa misikitini , karamu katika familia na ununuzi wa nguo mpya , zawadi na kupeana vyakula vitamu .","[{'entity': 'siku tatu', 'type': 'DATE'}]","The president of Tanzania, Samia Suluhu Hassan, visited Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Mfano: 'Wafanyibiwa wateja wa msingi wa msingi wa msingi wa msingi wa msingi wa msingi wa msingi wa msingi wa msingi wa msingi wa msingi wa msingi wa msingi wa msingi wa msingi wa msingi wa msingi wa msingi wa msingi wa msingi wa msingi wa msingi wa msingi wa msingi wa msingi wa msingi wa msingi wa msingi wa msingi wa msingi wa msingi wa msingi wa msingi wa",[],[],,14.667506217956543,,
+Kwa mujibu wa shirika la habari la Uingereza Reuters hisa za shirika la ndege la Ujerumani Luftansa zilipanda kwa asilimia 6 .,"[{'entity': 'Uingereza', 'type': 'LOC'}, {'entity': 'Reuters', 'type': 'ORG'}, {'entity': 'Ujerumani', 'type': 'LOC'}, {'entity': 'Luftansa', 'type': 'ORG'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.",[],[],,14.300833225250244,,
+Wanajeshi wa Kenya Alhamisi wamewaua washukiwa wanne wa wapiganaji wa kikundi cha Al - Shabaab na kumkamata mmoja wao baada ya tukio la kushambuliwa basi katika Kaunti ya Lamu .,"[{'entity': 'Kenya', 'type': 'LOC'}, {'entity': 'Alhamisi', 'type': 'DATE'}, {'entity': 'Al - Shabaab', 'type': 'ORG'}, {'entity': 'Lamu', 'type': 'LOC'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Watu wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaop",[],[],,14.652484655380249,,
+"Nchi hiyo , haijaripoti kisa chochote cha maambukizi ya Corona , lakini amri ya watu kusalia makwao imekuwa ikitekelezwa kwa mda wa wiki tatu zilizopita .",[],"President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Watu wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaop",[],[],,14.625341653823853,,
+Msigwa alihoji .,"[{'entity': 'Msigwa', 'type': 'PER'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Mfano: 'Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa",[],[],,14.526899099349976,,
+Walikuwa wapi ?,[],"President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Mfano: 'Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa",[],[],,14.492988109588623,,
+Maafisa wa serikali ya Kenya wanasema watu watatu wameuawa Alhamisi wakati watu wanaoshukiwa kuwa ni wapiganaji wa al - Shabab walipo lishambulia basi katika kaunti ya pwani ya Lamu .,"[{'entity': 'Kenya', 'type': 'LOC'}, {'entity': 'Alhamisi', 'type': 'DATE'}, {'entity': 'al - Shabab', 'type': 'ORG'}, {'entity': 'Lamu', 'type': 'LOC'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Wafanyibiwa wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda",[],[],,14.680221796035767,,
+"Serikali ya Tanzania imekata rufaa kupinga kuachiliwa huru Mkurugenzi Mkuu wa zamani wa Shirika la Utangazaji Tanzania ( TBC ) , Tido Mhando .","[{'entity': 'Tanzania', 'type': 'LOC'}, {'entity': 'Shirika la Utangazaji Tanzania', 'type': 'ORG'}, {'entity': 'TBC', 'type': 'ORG'}, {'entity': 'Tido Mhando', 'type': 'PER'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Mfano: 'Serikali ya Tanzania imekata rufaa kupinga kuachiliwa huru Mkurugenzi Mkuu wa zamani wa Shirika la Utangazaji Tanzania ( TBC ) , Tido Mhando .'
+Translation: 'The government of Tanzania has decided to cancel the visa of the former president of Tanzania (TBC), Tido Mhando.'
+
+English Translation:
+'The government of Tanzania has decided to cancel the visa of the former president of Tanzania (TBC), Tido Mhando.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard",[],[],,14.607298851013184,,
+"Ofisi ya bajeti ya White House pia imekataa ombi la Baraza hilo , na mwanasheria binafsi wa Rais Trump , Rudy Giuliani pia amekataa kuitika wito wa hati inayomtaka kutoa nyaraka zinazohusiana na juhudi za kuishinikiza Ukraine kumchunguza makamu wa rais wa zamani na mgombea urais wa Democrat hivi sasa , Joe Biden .","[{'entity': 'White House', 'type': 'LOC'}, {'entity': 'Trump', 'type': 'PER'}, {'entity': 'Rudy Giuliani', 'type': 'PER'}, {'entity': 'Ukraine', 'type': 'LOC'}, {'entity': 'Democrat', 'type': 'ORG'}, {'entity': 'Joe Biden', 'type': 'PER'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Watu wanaopenda kutumia kufanya kazi katika jamhuri hilo , wanaopenda kutumia kufanya kazi katika jamhuri hilo .'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Mfano: 'W",[],[],,14.746639013290405,,
+"37 kwa pipa , kikiwa juu kwa asilimia 4 .",[],"President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Mfano: 'Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa",[],[],,14.523953199386597,,
+"” Miongoni mwa hatua alizochukua rais huyo kukabiliana na maambukizi ya virusi vya Corona ni kupiga marufuku usafiri wa magari , kufunga biashara ambazo sio muhimu isipokuwa uuzaji na ununuzi wa chakula na dawa .",[],"President Samia Suluhu Hassan went to Dodoma yesterday.""
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'” Maandishi wa wafanyibiashara wanaofanya kazi katika maisha ya wafanyibiashara , na wanaofanya kazi katika maisha ya wafanyibiashara .'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.",[],[],,14.686198711395264,,
+"Kauli ya Chenge Chenge ambaye aliwahi kuwa Mwanasheria Mkuu wa Serikali , aliwataka wabunge kusubiri hadi taarifa ya suala hilo itakapowasilishwa bungeni na Kamati ya Kudumu ya Bunge ya Haki , Maadili na Madaraka ya Bunge na watakuwa na nafasi ya kujadili .","[{'entity': 'Chenge Chenge', 'type': 'PER'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Mfano: 'Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa",[],[],,14.706385135650635,,
+Lakini uchumi wao unaporomoka .,[],"President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Mfano: 'Wafanyibi wao wanaopenda kutumika kwa wafanyibi wao.'
+Translation: 'The people of the people love the people of the people.'
+
+English Translation:
+'The people of the people love the people of the people.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or",[],[],,14.511789560317993,,
+Bei ya mkate imeongezeka kutoka dola 20 za Zimbabwe had idola 30 .,"[{'entity': 'Zimbabwe', 'type': 'LOC'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Bei ya mkate imeongezeka kutoka dola 20 za Zimbabwe had idola 30 .'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.",[],[],,14.49050259590149,,
+"Bunge litakuwa na nguvu gani ya kuwalinda hawa tunaowachagua ? """"""""",[],"President Samia Suluhu Hassan went to Dodoma yesterday.""
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.",[],[],,14.224165201187134,,
+Li .,"[{'entity': 'Li', 'type': 'PER'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Mfano: 'Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa",[],[],,14.490960597991943,,
+"Iran Iran , ambayo imepitia mlipuko wenye vifo vingi katika Mashariki ya Kati , imewataka raia wake kuepuka kusafiri wakati wa Eid wakati ikipambana kudhibiti kiwango cha maambukizo nchini humo .","[{'entity': 'Iran Iran', 'type': 'LOC'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.",[],[],,14.345463275909424,,
+"Abdallah Hammoud muandamanaji mjini Beirut akizungumza na shirika la habari la Reuters , amewapongeza waandamanaji kwa ushindi wao .","[{'entity': 'Abdallah Hammoud', 'type': 'PER'}, {'entity': 'Beirut', 'type': 'LOC'}, {'entity': 'Reuters', 'type': 'ORG'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Wafanyibiwa wao wanaopenda kutumia kufanya kazi na kutumia kufanya kazi na kutumia kufanya kazi na kutumia kufanya kazi na kutumia kufanya kazi na kutumia kufanya kazi na kutumia kufanya kazi na kutumia kufanya kazi na kutumia kufanya kazi na kutumia kufanya kazi na kutumia kufanya kazi na kutumia kufanya kazi na kutumia kufanya kazi na kutumia kufanya kazi na kutumia k",[],[],,14.606416463851929,,
+Kenyatta alisema hayo baada ya video inayoonyesha watu wanaoruka ukuta kutoka katika kituo cha karantini kusambaa kwenye mitandao ya kijamii .,"[{'entity': 'Kenyatta', 'type': 'PER'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Watu wanaoruka watu wanaoruka wanaoruka wanaoruka wanaoruka wanaoruka wanaoruka wanaoruka wanaoruka wanaoruka wanaoruka wanaoruka wanaoruka wanaoruka wanaoruka wanaoruka wanaoruka wanaoruka wanaoruka wanaoruka wanaoruka wanaoruka wanaoruka wanaoruka wanaoruka wanaoruka wanaoruka wanaoruka wanaoruka wanaoruka wanaoruka wanaoruka wanaoruka wanaoruka w",[],[],,14.613116025924683,,
+"Hiyo ni kwa sababu wakati taasisi ya habari kwa kawaida inaongozwa na mtu anayeteuliwa na White House , habari zinazofanywa na waandishi waliobobea katika taaluma hiyo wanatakiwa kisheria kutoelemea upande wowote .","[{'entity': 'White House', 'type': 'LOC'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Watu wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaop",[],[],,14.675931453704834,,
+Bei ya vyakula imeendelea kuongezeka katika wiki za hivi karibuni .,[],"President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Bei ya vyakula imeendelea kuongezeka katika wiki za hivi karibuni .'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.",[],[],,14.488245010375977,,
+"Prince Harry ameiambia ITV kuwa mengi ya mambo ambayo yanachapishwa katika magazeti ya udaku siyo ya kweli , akiongeza “ sitakubali kuingizwa katika hujuma iliyomuua mama yangu .","[{'entity': 'Harry', 'type': 'PER'}, {'entity': 'ITV', 'type': 'ORG'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Watu wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaop",[],[],,14.635390520095825,,
+"Wawekezaji wanaonekana kuvunjika moyo kutokana na tahadhari iliyotolewa Jumatano na Mwenyekiti wa Benki Kuu ya Marekani Jerome Powell , kuwa hali ya kudorora hivi sasa kwa uchumi imesababishwa na mlipuko wa COVID - 19 ulimwenguni na utaendelea kwa muda mrefu katika siku za usoni .","[{'entity': 'Jumatano', 'type': 'DATE'}, {'entity': 'Marekani', 'type': 'LOC'}, {'entity': 'Jerome Powell', 'type': 'PER'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Watu wanaofanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa",[],[],,14.736977338790894,,
+"Nyota mchekeshaji kwenye jukwaa , filamu na televisheni Jerry Stiller amefariki akiwa na umri wa miaka 92 .","[{'entity': 'Jerry Stiller', 'type': 'PER'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Watu wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaop",[],[],,14.589325189590454,,
+"Kauli ya mabalozi nchini Tanzania “ Kwa kawaida , naanza siku yangu kwa kusoma baadhi ya magazeti , likiwemo gazeti lililofungiwa la The Citizen , “ Balozi wa Uingereza nchini Tanzania Sarah Cooke ameandika katika akaunti yake ya Twitter .","[{'entity': 'Tanzania', 'type': 'LOC'}, {'entity': 'The Citizen', 'type': 'ORG'}, {'entity': 'Uingereza', 'type': 'LOC'}, {'entity': 'Tanzania', 'type': 'LOC'}, {'entity': 'Sarah Cooke', 'type': 'PER'}, {'entity': 'Twitter', 'type': 'ORG'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Mfano: 'Balozi wa Uingereza nchini Tanzania Sarah Cooke ameandika katika akaunti yake ya Twitter.'
+Translation: 'The President of Tanzania Sarah Cooke edited her Twitter account.'
+
+English Translation:
+'The President of Tanzania Sarah Cooke edited her Twitter account.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels",[],[],,14.677633285522461,,
+"“ Walikuwa wakisema , katika habari hivi leo Rais ametajwa kuwa ni mhusika ambaye hatashtakiwa katika mgogoro wa Watergate … na Mke wake Bi Nixon amefungua shule mpya ya watoto hapa Washington DC .","[{'entity': 'Bi Nixon', 'type': 'PER'}, {'entity': 'Washington DC', 'type': 'LOC'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Watu wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaop",[],[],,14.64376950263977,,
+Ghasia hizo zilisababishwa na wafuasi wa kundi la kishia la Hezbollah linaloongozwa na Imam Hassan Nasrallah na kundi la Amal la Nabih Berri .,"[{'entity': 'Hezbollah', 'type': 'ORG'}, {'entity': 'Hassan Nasrallah', 'type': 'PER'}, {'entity': 'Amal', 'type': 'ORG'}, {'entity': 'Nabih Berri', 'type': 'PER'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Watu wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaop",[],[],,14.603455305099487,,
+"Wakati wa ghasia huko DRC , Ntganda na jopo lake la wanajeshi wa UPC wengi kutoka kabila la Hema waliwalenga kabila la Lendu kwenye jimbo lenye utajiri wa madini la Ituri .","[{'entity': 'DRC', 'type': 'LOC'}, {'entity': 'Ntganda', 'type': 'PER'}, {'entity': 'UPC', 'type': 'ORG'}, {'entity': 'Ituri', 'type': 'LOC'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Watu wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaop",[],[],,14.631898164749146,,
+Mkurugenzi wa VOA Amanda Bennett alilipinga dai hilo na kusema shirika “ linajitahidi kuripoti bila ya kupigia debe habari ya upande wowote .,"[{'entity': 'VOA', 'type': 'ORG'}, {'entity': 'Amanda Bennett', 'type': 'PER'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.",[],[],,14.280025959014893,,
+Utawala wa mpito wa Sudan umetangaza Jumanne kwamba utamkabidhi rais wa zamani Omar Al Bashir kwa mahakama ya uhalifu wa kimatiafa ICC .,"[{'entity': 'Sudan', 'type': 'LOC'}, {'entity': 'Jumanne', 'type': 'DATE'}, {'entity': 'Omar Al Bashir', 'type': 'PER'}, {'entity': 'mahakama ya uhalifu wa kimatiafa ICC', 'type': 'ORG'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Utawala wa mpito wa Sudan umetangaza Jumanne kwamba utamkabidhi Rais wa zamani Omar Al Bashir kwa mahakama ya uhalifu wa kimatiafa ICC .'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Mfano: 'Ut",[],[],,14.595537424087524,,
+Mkuu wa Polisi wa San Deigo David Nisleit amesema kuwa mshukiwa huyo ilielekea kuwa aliwasiliana na polisi na baadae akajisalimisha kwa afisa wa polisi San Diego ambaye alikuwa anaelekea katika eneo shambulizi hilo la bunduki lilipotokea .,"[{'entity': 'San Deigo', 'type': 'LOC'}, {'entity': 'David Nisleit', 'type': 'PER'}, {'entity': 'San Diego', 'type': 'LOC'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Watu wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaop",[],[],,14.688809394836426,,
+"Pia walikuwa wanaomboleza kifo cha Abu Mahdi al - Muhandis , kamanda wa ngazi ya juu wa wanamgambo wa Iraqi ambaye aliuawa katika shambulizi hilo pia .","[{'entity': 'Abu Mahdi al - Muhandis', 'type': 'PER'}, {'entity': 'Iraqi', 'type': 'LOC'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Watu wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaop",[],[],,14.61555290222168,,
+Mshambuliaji huyo alionyesha shambulizi hilo baada ya kuchapisha msimamo wake ambapo amewaita wahamiaji ni “ wavamizi ” .,[],"President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.",[],[],,14.272109031677246,,
+"Nchini Rwanda , mkutano wa jumuiya ya Madola , uliokuwa umepangwa kufanyika mjini Kigali , Rwanda , umeahirishwa kutokana na janga la Corona .","[{'entity': 'Rwanda', 'type': 'LOC'}, {'entity': 'jumuiya ya Madola', 'type': 'ORG'}, {'entity': 'Kigali', 'type': 'LOC'}, {'entity': 'Rwanda', 'type': 'LOC'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Watu wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaop",[],[],,14.609908103942871,,
+Maelfu ya waombolezaji walikusanyika Jumamosi katika maandamano ya maziko yaliokatiza mjini Baghdad ya jenerali wa ngazi ya juu wa Iran na kiongozi wa wanamgambo wa Iraqi waliouawa katika shambulizi la anga ambalo limepelekea mgogoro wa eneo hilo kuongezeka .,"[{'entity': 'Jumamosi', 'type': 'DATE'}, {'entity': 'Baghdad', 'type': 'LOC'}, {'entity': 'Iran', 'type': 'LOC'}, {'entity': 'Iraqi', 'type': 'LOC'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Wateja wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wana",[],[],,14.701843023300171,,
+"Ofisi ya makamu wa rais Mike Pence imeuita uchunguzi wa baraza la wawakilishi linalongozwa na wa Democrat , ni utashi wao wenyewe na hati ya kuitwa kujibu maswali ni pana mno .","[{'entity': 'Mike Pence', 'type': 'PER'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Wafanyibiwa wanaopenda kutumika kwa wafanyibiwa wanaopenda kutumika kwa wafanyibiwa wanaopenda kutumika kwa wafanyibiwa wanaopenda kutumika kwa wafanyibiwa wanaopenda kutumika kwa wafanyibiwa wanaopenda kutumika kwa wafanyibiwa wanaopenda kutumika kwa wafanyibiwa wanaopenda kutumika kwa wafanyibiwa wanaopenda kutumika kwa wafanyibiwa wanaopenda kutumika kwa wafanyibiwa wanaopenda kutum",[],[],,14.62157654762268,,
+"Kwa Wapelstina wengi kama Hani Al - Halabi mjumbe wa chama cha vijana wa Palestina , kifo cha Floyd kinawakumbusha vita vyao vya uhuru .","[{'entity': 'Hani Al - Halabi', 'type': 'PER'}, {'entity': 'chama cha vijana wa Palestina', 'type': 'ORG'}, {'entity': 'Floyd', 'type': 'PER'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Wafanyibiwa wanaopenda kutumia msingi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi wa kufanya kazi",[],[],,14.605421781539917,,
+"Alikuwa kiongozi wa chama cha waasi cha National Liberation Forces - FNL Aliongoza kundi la wapiganaji la Hutu wwakati wa vita vya wenyewe kwa wenyewe nchini Burundi Alisaini mkataba wa amani na serikali , Septemba 2006 Alichaguliwa kuwa naibu spika wa bunge la Burundi July 2015 Amechaguliwa kuwa mgombea wa urais wa chama cha Congress for national Liberty - CNL Februari 16 2020 Burundi ni mojawapo ya nchi maskini zaidi duniani na mashirika ya msaada yalisitisha msaada wake mwaka 2015 , baada ya kutokea machafuko kufuatia uchaguzi wa mwaka 2015 .","[{'entity': 'National Liberation Forces', 'type': 'ORG'}, {'entity': 'FNL', 'type': 'ORG'}, {'entity': 'Burundi', 'type': 'LOC'}, {'entity': 'Septemba 2006', 'type': 'DATE'}, {'entity': 'bunge la Burundi', 'type': 'ORG'}, {'entity': 'July 2015', 'type': 'DATE'}, {'entity': 'chama cha Congress', 'type': 'ORG'}, {'entity': 'national Liberty', 'type': 'ORG'}, {'entity': 'CNL', 'type': 'ORG'}, {'entity': 'Februari 16 2020', 'type': 'DATE'}, {'entity': 'Burundi', 'type': 'LOC'}, {'entity': '2015', 'type': 'DATE'}, {'entity': '2015', 'type': 'DATE'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Alikuwa kiongozi wa chama cha waasi cha National Liberation Forces - FNL Aliongoza kundi la wapiganaji la Hutu wwakati wa vita vya wenyewe kwa wenyewe nchini Burundi Alisaini mkataba wa amani na serikali , Septemba 2006 Alichaguliwa kuwa naibu spika wa bunge la Burundi July 2015 Amechaguliwa kuwa mgombea wa urais wa chama cha Congress for national Liberty - CNL Februari 16 2020 Burundi ni mojawapo ya nchi maskini zaidi duniani na mashir",[],[],,14.997323513031006,,
+"Hata hivyo Sala ya Eid hatimaye ilifanyika nje , mpiga picha wa shirika la habari la AFP alisema .","[{'entity': 'AFP', 'type': 'ORG'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Watu wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaop",[],[],,14.582754373550415,,
+""""""""" Amekuwa akipeleka mhimili wa juu kabisa wa serikali maneno mengi ya uongo na kudhalilisha Bunge na ushahidi upo .",[],"President Samia Suluhu Hassan went to Dodoma yesterday.""
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Mfano: 'Serikali amekuwa akipeleka mhimili wa juu kabisa wa serikali maneno mengi ya uongo na kudhalilisha Bunge na ushahidi upo.'
+Translation: 'The government has established a committee of 11 members to oversee the implementation of the new constitution and to oversee the implementation of the new constitution and to oversee the implementation of the new constitution and to oversee the implementation of the new constitution and to oversee the implementation of the new constitution and to oversee the implementation of the new constitution and to oversee the implementation of the new constitution and to oversee the implementation of the new constitution and to oversee the implementation of the new constitution and to oversee the implementation of the",[],[],,14.627835035324097,,
+"Imetayarishwa na Kennes Bwire , Sauti ya Amerika , Washington DC","[{'entity': 'Kennes Bwire', 'type': 'PER'}, {'entity': 'Sauti ya Amerika', 'type': 'ORG'}, {'entity': 'Washington DC', 'type': 'LOC'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Mfano: 'Sauti ya Kiswahili ni msingi wa Kiswahili.'
+Translation: 'Swahili is the mother tongue of Swahili.'
+
+English Translation:
+'Swahili is the mother tongue of Swahili.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Mfano: 'Sauti",[],[],,14.547230005264282,,
+Shambulio hilo la Jumamosi asubuhi limetokea wakati UN inajaribu kutafuta suluhisho la kusitisha mapambano yaliyoanza mwezi Aprili katika mji mkuu wa Tripoli .,"[{'entity': 'Jumamosi asubuhi', 'type': 'DATE'}, {'entity': 'UN', 'type': 'ORG'}, {'entity': 'Aprili', 'type': 'DATE'}, {'entity': 'Tripoli', 'type': 'LOC'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.",[],[],,14.299595594406128,,
+"Alizaliwa January 10 1964 katika mkoa wa Ngozi , Burundi .","[{'entity': 'January 10 1964', 'type': 'DATE'}, {'entity': 'Ngozi', 'type': 'LOC'}, {'entity': 'Burundi', 'type': 'LOC'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Mfano: 'Watu wanaopenda kutumia kufanya kazi katika jamii ya kufanya kazi.'
+Translation: 'People like to work in groups.'
+
+English Translation:
+'People like to work in groups.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Mfano",[],[],,14.554146528244019,,
+Rais wa Kenya Uhuru Kenyatta alisema Jumatano kwamba watu waliorekodiwa kwa video wakihepa kutoka karantini jijini Nairobi watakamatwa na kurejeshwa kwa karantini ili wamalize mda wao waliotakiwa kujitenga .,"[{'entity': 'Kenya', 'type': 'LOC'}, {'entity': 'Uhuru Kenyatta', 'type': 'PER'}, {'entity': 'Jumatano', 'type': 'DATE'}, {'entity': 'Nairobi', 'type': 'LOC'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.",[],[],,14.336709976196289,,
+"Zimbabwe Nchini Zimbabwe wafanyabiashara katika maduka ya reja reja , wamekubaliana kupunguza kabisa bei ya bidhaa muhimu ili kuwasaidia watu , nchi hiyo inapopitia wakati mgumu zaidi wa kiuchumi kutokana na maambukizi ya virusi vya Corona .","[{'entity': 'Zimbabwe', 'type': 'LOC'}, {'entity': 'Zimbabwe', 'type': 'LOC'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Wafanyabiashara katika maduka ya reja reja , wamekubaliana kupunguza kabisa bei ya bidhaa muhimu ili kuwasaidia watu , nchi hiyo inapopitia wakati mgumu zaidi wa kiuchumi kutokana na maambukizi ya virusi vya Corona .'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there",[],[],,14.694761991500854,,
+"Nyota huyo mara 18 wa mchezo wa basketiboli , anatambuliwa sana kama mmoja wa wachezaji wazuri sana wa mchezo huo duniani .",[],"President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Wateja wa wachezaji wa mchezo wa basketiboli wa wachezaji wa wachezaji wa wachezaji wa wachezaji wa wachezaji wa wachezaji wa wachezaji wa wachezaji wa wachezaji wa wachezaji wa wachezaji wa wachezaji wa wachezaji wa wachezaji wa wachezaji wa wachezaji wa wachezaji wa wachezaji wa wachezaji wa wachezaji wa wachezaji wa wachezaji wa wachezaji wa wachezaji wa wachezaji",[],[],,14.603012084960938,,
+Walikuwa wamekwama ndani ya jengo hilo lililoanguka kwa masaa 28 .,[],"President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Walikuwa wamekwama ndani ya jengo hilo lililoanguka kwa masaa 28 .'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.",[],[],,14.51271915435791,,
+"“ Ukweli ni kuwa nimekuwa kwa muda mrefu nikimwambia H – hivyo ndivyo ninavyomwita — haitoshi kuwa utanusurika katika jambo , hiyo siyo maana ya maisha .",[],"President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Mfano: 'Wafanyibiwa wanaopenda kutumika kwa wafanyibiwa wanaopenda kwa wafanyibiwa wanaopenda kwa wafanyibiwa wanaopenda kwa wafanyibiwa wanaopenda kwa wafanyibiwa wanaopenda kwa wafanyibiwa wanaopenda kwa wafanyibiwa wanaopenda kwa wafanyibiwa wanaopenda kwa wafanyibiwa wanaopenda kwa wafanyibiwa wanaopenda kwa wafanyibiwa wanaopenda kwa wafanyibiwa wanaopenda kwa wafanyibiwa wanaopenda kwa waf",[],[],,14.634319543838501,,
+""""""""" Tutaendelea na vuguvugu letu , na uasi wetu , katika mapinduzi yetu ya kuwaondoa wezi wa mali waliolitumbukiza taifa hili katika janga la kiuchumi .",[],"President Samia Suluhu Hassan went to Dodoma yesterday.""
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Mfano: 'Watu wanaopenda kutumia msingi wa kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya",[],[],,14.624384641647339,,
+"“ Vyombo vya habari vinajukumu muhimu katika kuanzisha mijadala ya umma , ” Ubalozi wa Ireland uliandika , na kusema imesikitishwa na uamuzi wa wiki hii kusitisha kwa muda chapisho la The Citizen .","[{'entity': 'Ireland', 'type': 'LOC'}, {'entity': 'The Citizen', 'type': 'ORG'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'“ Ninaweza kutumia msingi wa kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya kufanya k",[],[],,14.655090093612671,,
+"2 katikati ya siku ya mauzo , wakati kile cha Paris CAC - 40 kilikuwa chini wakati wa mauzo kwa asilimia 1 .","[{'entity': 'Paris', 'type': 'LOC'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'2 katikati ya siku ya mauzo , wakati kile cha Paris CAC - 40 kilikuwa chini wakati wa mauzo kwa asilimia 1 .'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.",[],[],,14.572569608688354,,
+Serikali ya Japan inasema majaribio ya Jumatatu ya makobora yaliyofanywa na Korea kaskazini ni tishio kwa amani na usalama wa Japan na kanda nzima .,"[{'entity': 'Japan', 'type': 'LOC'}, {'entity': 'Jumatatu', 'type': 'DATE'}, {'entity': 'Korea kaskazini', 'type': 'LOC'}, {'entity': 'Japan', 'type': 'LOC'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Serikali ya Kenya inasema majaribio ya Jumatatu ya makobora yaliyofanywa na Korea kaskazini ni tishio kwa amani na usalama wa Kenya na kanda nzima .'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.",[],[],,14.640043258666992,,
+"Katika taarifa ya Pamoja , magavana hao wamesema kwamba hatua ya kufunga shule hizo inatokana na hatari kubwa iliyopo ya maambukizi , na kwamba Watoto waliokuwa katika shule hizo watarudishwa kwa wazazi wao .",[],"In the report by Pamoja, magavana hao wamesema kwamba hatua ya kufunga shule hizo inatokana na hatari kubwa iliyopo ya maambukizi , na kwamba Watoto waliokuwa katika shule hizo watarudishwa kwa wazazi wao .'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+English Translation:
+'In the Pamoja report, magavana hao wamesema kwamba hatua ya kufunga shule hizo inatokana na hatari kubwa iliyopo ya maambukizi , na kwamba Watoto waliokuwa katika shule hizo watarudishwa kwa wazazi wao .'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL",[],[],,14.70595097541809,,
+Ninadhani Iran wanataka kufikia katika mazungumzo na wanauwezo mkubwa .,"[{'entity': 'Iran', 'type': 'LOC'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Mfano: 'Wafanyibiwa wao wanaopenda kufanya kazi katika nchi hiyo.'
+Translation: 'The people there like to work in that country.'
+
+English Translation:
+'The people there like to work in that country.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.",[],[],,14.556833267211914,,
+"” Vyanzo vya habari : Mahojiano ya waandishi wa VOA ; Nicholas Cull , The Decline and Fall of the United States Information Agency : American Public Diplomacy , 1989 - 2001 , 2008 ; Alan L .","[{'entity': 'VOA', 'type': 'ORG'}, {'entity': 'Nicholas Cull', 'type': 'PER'}, {'entity': 'United States Information Agency', 'type': 'ORG'}, {'entity': 'American Public Diplomacy', 'type': 'ORG'}, {'entity': '1989', 'type': 'DATE'}, {'entity': '2001', 'type': 'DATE'}, {'entity': '2008', 'type': 'DATE'}, {'entity': 'Alan L', 'type': 'PER'}]","President Samia Suluhu Hassan visited Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'” Vyanzo vya habari : Mahojiano ya waandishi wa VOA ; Nicholas Cull , The Decline and Fall of the United States Information Agency : American Public Diplomacy , 1989 - 2001 , 2008 ; Alan L .'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without",[],[],,14.638425350189209,,
+"“ Nilikuwa na hofu kusali katika hali kama hiyo , lakini kama Muislam , niwajibu wangu kutekeleza ibada ya Eid kwa jamaa kama njia ya kumshukuru Allah , ” mmoja wa wale waliohudhuria ibada hiyo aliiambia AFP .","[{'entity': 'AFP', 'type': 'ORG'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Watu wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaop",[],[],,14.6830313205719,,
+Maombi maalum yalifanyika kuombea taifa hilo dhidi ya janga la Corona .,[],"President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Watu wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaop",[],[],,14.558944702148438,,
+” “ VOA si chombo cha utangazaji cha serikali ya Marekani kama ilivyo TV katika nchi zenye utawala wa kiimla ambazo zinatakiwa kuonyesha malengo ya sera za mambo ya nje au misingi ya nchi husika .,"[{'entity': 'VOA', 'type': 'ORG'}, {'entity': 'Marekani', 'type': 'LOC'}]","President Samia Suluhu Hassan went to Dodoma yesterday.""
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'” “ VOA si chombo cha utangazaji cha serikali ya Marekani kama ilivyo TV katika nchi zenye utawala wa kiimla ambazo zinatakiwa kuonyesha malengo ya sera za mambo ya nje au misingi ya nchi husika .'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.",[],[],,14.663735389709473,,
+"Masoko ya hisa ya Hong Kong , Seoul , Shanghai na Taipei yalipata hasara kubwa .","[{'entity': 'Hong Kong', 'type': 'LOC'}, {'entity': 'Seoul', 'type': 'LOC'}, {'entity': 'Shanghai', 'type': 'LOC'}, {'entity': 'Taipei', 'type': 'LOC'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Watu wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaop",[],[],,14.553307294845581,,
+"Vurugu hizo nchini Afrika Kusini zilionekana kupungua Alhamisi , wakati polisi wa kulinda doria walikuwa wamepelekwa kufanya ulinzi mkali katika miji hiyo .","[{'entity': 'Afrika Kusini', 'type': 'LOC'}, {'entity': 'Alhamisi', 'type': 'DATE'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Watu wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaop",[],[],,14.624159574508667,,
+Michuano hiyo iiliendelea kwa mwezi mmoja tangu tarehe 7 mwezi Juni na ilishirikisha timu 24 kwenye fainali .,"[{'entity': '7 mwezi Juni', 'type': 'DATE'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Watu wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaop",[],[],,14.610121488571167,,
+Tusikose Subira .,[],"President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Mfano: 'Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa Wafanyibi wa",[],[],,14.490359783172607,,
+- Imetayarishwa na mwandishi wetu Kennes Bwire Washington DC,"[{'entity': 'Kennes Bwire', 'type': 'PER'}, {'entity': 'Washington DC', 'type': 'LOC'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.",[],[],,14.214329957962036,,
+"Na nilitaka kujua anasimamishwa na kiti bila kujadiliwa , inatuchafua kama taifa .",[],"President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Mfano: 'Watu wanaopenda kutumia msingi wa kufanya kazi.'
+Translation: 'People like to use their hands to do work.'
+
+English Translation:
+'People like to use their hands to do work.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Mfano",[],[],,14.557147026062012,,
+Lina historia ambayo inaanzia tangu vita vya pili vya dunia na ina mamlaka kutoka katika bunge kuripoti habari kwa kina bila ya kuelemea upande wowote .,[],"President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Watu wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaop",[],[],,14.618663311004639,,
+Na ninataka kusema hivyo pia upande wa Korea Kaskazini .,"[{'entity': 'Korea Kaskazini', 'type': 'LOC'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Watu wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaop",[],[],,14.548298120498657,,
+"Uganda Uganda imeongeza idadi ya watu ambao wameambukizwa virusi vya Corona , kutoka 56 hadi 61 , kulingana na takwimu za Jumatano .","[{'entity': 'Uganda Uganda', 'type': 'LOC'}, {'entity': 'Jumatano', 'type': 'DATE'}]","President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Original Text (Swahili):
+'Watu wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaopenda wanaop",[],[],,14.621202230453491,,
+"Inakuaje walijua hadi mahali alikuwa amekaa wakati wa mkutano , wakaingia moja kwa moja na kumuua ? ” ameuliza Issa Misango , mkaazi wa Butembo .","[{'entity': 'Issa Misango', 'type': 'PER'}, {'entity': 'Butembo', 'type': 'LOC'}]","President Samia Suluhu Hassan went to Dodoma yesterday.""
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.",[],[],,14.299912929534912,,
+Shughuli katika sehemu hiyo zimekuwa zimefungwa kwa mda wa wiki mbili .,[],"President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Mfano: 'Wafanyibiwa wanaopenda kutumika kwa wafanyibiwa wanaopenda kutumika kwa wafanyibiwa wanaopenda kutumika kwa wafanyibiwa wanaopenda kutumika kwa wafanyibiwa wanaopenda kutumika kwa wafanyibiwa wanaopenda kutumika kwa wafanyibiwa wanaopenda kutumika kwa wafanyibiwa wanaopenda kutumika kwa wafanyibiwa wanaopenda kutumika kwa wafanyibiwa wanaopenda kutumika kwa wafanyibiwa wanaopenda kutumika kwa waf",[],[],,14.556915044784546,,
+Mswada huo tayari umewasilishwa kwa kamati ya bunge ya katiba na sheria kwa hati ya dharura .,[],"President Samia Suluhu Hassan went to Dodoma yesterday.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or explanations.
+
+Mfano: 'Wafanyibiwa wanaopenda kutumia kufanya kazi na kutumia kufanya kazi.'
+Translation: 'People like to work and like to work.'
+
+English Translation:
+'People like to work and like to work.'
+
+Instructions:
+- Translate directly and accurately.
+- CRITICAL: Preserve all named entities (people, organizations, locations, dates) exactly as they appear or with their standard English equivalents. For example, if a name is 'Juma Mussa', it should remain 'Juma Mussa' in English unless there is a very common English version.
+- Provide ONLY the English translation, without any introductory text, labels, or",[],[],,14.574298620223999,,

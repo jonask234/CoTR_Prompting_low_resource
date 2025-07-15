@@ -1,0 +1,81 @@
+question,ground_truth,predicted_answer,f1_score,language,few_shot
+What unit is used to measure nanoparticles?,nanometers,The unit used to measure nanoparticles is the nanometer (nm),0.4,en,False
+What is the largest ship ever built?,Seawise Giant,"The largest ship ever built is the Seawise Giant, also known as Happy Giant, Jahre Viking, Knock Nevis, Oppama, and Mont",0.4615384615384615,en,False
+What organization did the terrorists on 9/11 belong to?,al-Qaeda,The terrorists involved in the 9/11 attacks belonged to al-Qaeda,0.0,en,False
+When was the Model T Ford introduced?,"October 1, 1908","The Model T Ford was introduced on October 1, 1908",0.0,en,False
+Who made the first synthetic rubber?,a team headed by Fritz Hofmann,"Based on the given context, the first synthetic rubber was made by a team led by Fritz Hofmann at the Bayer laboratory in Elberfeld, Germany",0.0,en,False
+Who is Sean Hannity?,an American talk show host and conservative political commentator,"Sean Hannity is an American talk show host and conservative political commentator who has hosted both a nationally syndicated talk radio show called ""The Sean Hannity Show""",0.4210526315789474,en,False
+What is the most common translation of the Bible?,King James Version,Based on the given information from a U,0.6666666666666666,en,False
+"When was Columbus, GA founded?",1828,"Based on the information provided in the context, Columbus, GA was founded in 1828",0.0,en,False
+What is the most common first word by babies?,"single-syllabic or repeated single syllables, such as ""no"" and ""dada""","The most common first word produced by babies according to the given text is typically a simple sound like ""mama,"" ""dada,"" or other similar",0.9333333333333333,en,False
+When did Lou Gehrig live?,"June 19, 1903–June 2, 1941","Based on the given information, Lou Gehrig lived from June 19, 1903 to June 2, 194",0.0,en,False
+What is the most popular sport in Mexico?,association football,"Based on the given context, the most popular sport in Mexico overall is association football (soccer)",0.2857142857142857,en,False
+Where is Adelaide located?,South Australia,Adelaide is located as the capital city of the state of South Australia,0.5714285714285715,en,False
+How many provinces are there in the Lazio region?,four,5,0.0,en,False
+How long did David Sharp live for?,15 February 1972 – 15 May 2006,"To determine how long David Sharp lived for, we need to calculate the difference between his birth date and the day he died",0.0,en,False
+What is the origin of the word technology?,Greek,"The word ""technology"" originates from the Greek words τέχνη (techne), meaning ""art, skill, cunning of hand,"" and",0.0,en,False
+How many people became infected with the Spanish Flu?,500million,500,0.0,en,False
+What is the current population of Shanghai?,24.18 million,"As of 2017, the population of Shanghai was 24",0.0,en,False
+When did Frank Russell Dancevic turn pro?,2003,"Based on the information given in the context, Frank Russell Dancevic turned pro in 2003",0.0,en,False
+When did the New Black Panther Party voter intimidation case take place?,during the 2008 election,"Based on the information given in the context, the New Black Panther Party voter intimidation case took place during the 2008 election, specifically involving",0.0,en,False
+Why do they call them soap opera?,The term soap opera originated from radio dramas being sponsored by soap manufacturers,They are called soap operas because these radio dramas were originally sponsored by companies that manufactured soap products,0.7058823529411764,en,False
+Who was Queen Elizabeth II's father?,King George VI,"Based on the given context, Queen Elizabeth II's father was the Duke of York, who later became King George VI after his brother King Edward VIII ab",0.0,en,False
+How many children did Richard Oastler have?,two,"Based on the information given in the context, Richard Oastler had two children with his wife Mary",0.2857142857142857,en,False
+Where is Belize?,on the eastern coast of Central America,"Based on the given context, Belize is located on the eastern coast of Central America",0.6666666666666666,en,False
+How many ships are currently in Britain's Naval forces?,75,2018,0.0,en,False
+When did the yen become the official currency of Japan?,1871,"Based on the information provided in the context, the yen officially became the unified currency for Japan when it was established by the New Currency Act of 1",0.0,en,False
+When do children start to retain memories?,"at the age of three or four, but it can range from two to eight years","Based on the given information and most psychologist's definitions, children typically begin to retain memorable experiences starting around the age of 2-8 years old when",0.33333333333333337,en,False
+When was Wu Zetian born?,17 February 624,"According to the given context, Wu Zetian was born on 17 February 624",0.0,en,False
+When was the Nostra aetate signed?,28 October 1965,The Nostra aetate was signed on 28 October 1965,0.0,en,False
+What is a haplogroup?,a group of similar haplotypes that share a common ancestor with a single-nucleotide polymorphism mutation,"Based on the given context, a haplogroup is a group of similar haplotypes that share a common ancestor due to a specific single nucleotide",0.7999999999999999,en,False
+How long is the Three Gorges Dam?,"2,335m","2,335",0.0,en,False
+When was cricket invented?,17 January 1597,"Based on the information given in the context, cricket likely originated sometime between Saxon (circa AD 400-1066)",0.0,en,False
+When was Yugoslavia formed?,1929,"Based on the information given in the context, Yugoslavia was officially formed when the Kingdom of Serbs, Croats and Slovenes was established after the collapse",0.0,en,False
+"What's the real name of the guy called ""La Bamba"" in the Max Weinberg band on Late Night with Conan O'Brien?","Richie ""LaBamba"" Rosenberg","The real name of the guy called ""La Bamba"" in the Max Weinberg band on Late Night with Conan O'Brien is Richie Rosenberg",0.4,en,False
+When was Warframe first released?,March 2013,"According to the given context, Warframe was originally released for Microsoft Windows in March 2013",0.0,en,False
+When was the banksia coccinea first identified?,December 1801,"Based on the given context, the Banksia coccinea was first identified or its initial specimens were collected in December 1801",0.0,en,False
+When did the field of classical mechanics originate?,17th century,"Based on the given context, the field of classical mechanics originated during the 17th century with significant contributions from scientists like Isaac Newton and Gottfried",0.0,en,False
+What is the electrical current of lightning?,30 kiloamperes,"Based on the given information, the electrical current of a typical negative cloud-to-ground (CG) lightning bolt averages approximately **30 kiloamper",0.6666666666666666,en,False
+What is the most popular language using Cyrillic script?,Russian,"To determine which language uses the Cyrillic script most frequently or has the highest number of speakers among its users, we need more specific data regarding each language",0.0,en,False
+What was the first synthetic molecule?,Mauveine,The first synthetic molecule identified from the given context is Mauveine (also called aniline purple or Perkin's mauve),0.0,en,False
+Who is the current political leader of Sudan?,Lieutenant-General Omar al-Bashir,"Based on the given information, the current political leader of Sudan is Omar al-Bashir, who has been serving as President since 199",0.18181818181818182,en,False
+When did the Catholic Church move to Rome?,first century AD,"Based on the given context, there isn't any specific mention or indication about when the Catholic Church moved to Rome",0.4,en,False
+What's the difference between an acoustic guitar and a classical?,"gut or nylon, precursor of the acoustic and electric guitars which use metal strings",An acoustic guitar typically uses steel strings while a classical guitar utilizes nylon strings,0.7777777777777778,en,False
+Who was the first director of the CIA?,Sidney Souers,"Based on the information given in the context, the first person to hold the position that would later be known as the ""Director of the Central Intelligence Agency",0.6,en,False
+How do you put out a grease fire?,"use dry chemicals (foam or powder),[5] such as aqueous film-forming foam, multi-purpose dry chemicals such as ammonium phosphate, and halogenated agents (such as Halon 1301 and Halon 1211).[6]  or highly pressurized carbon dioxide","To put out a grease fire safely, avoid using water since it can cause rapid expansion due to steam formation and potentially spread the flames",0.8,en,False
+When was the last season of ER?,"April 2, 2009","Based on the information given in the context, the last season of ER aired from September 25, 2008 to April 2",0.0,en,False
+When did Gallimimus die out?,70 million years ago,"Based on the information given in the context, there is no specific date or time mentioned for when Gallimimus died out",0.33333333333333337,en,False
+What station did the Please Teacher! anime show first air on?,WOWOW satellite television network,"Based on the information given in the context, the Please Teacher",0.5,en,False
+Where was Dora Sakayan born?,"Salonica, Greece","Based on the given context, Dora Sakayan was born in Salonica (also known as Thessaloniki), which is located in Greece",0.16666666666666669,en,False
+What makes genes considered dominant?,the effect on phenotype of one allele masks the contribution of a second allele at the same locus,Genes are considered dominant when they have the ability to mask the expression of a second allele at the same genetic location during the determination of an organism's,0.7142857142857143,en,False
+When was the Department of Defense Whistleblower Program first established?,1980s,The Department of Defense (DoD) Whistleblower Program was not explicitly stated to have been formally established with an exact date according to the given,0.18181818181818182,en,False
+When was The Tale of Genji written?,early years of the 11th century,"Based on the information given in the context, The Tale of Genji was written in the early years of the 11th century",0.33333333333333337,en,False
+What is the purpose of the Royal Air Force?,to support the objectives of the British Ministry of Defence,The primary purpose of the Royal Air Force (RAF) is to support the national defense strategies set forth by the British Ministry of Defence,0.6153846153846153,en,False
+What is the smallest camcorder?,The Mino,"Based on the information given in the context, the smallest camcorder mentioned is the Mino from the Flip Video series",0.0,en,False
+When did Pushkin write Eugene Onegin?,1825,"Based on the information given in the context, Alexander Pushkin wrote ""Eugene Onegin"" between 1825 and 18",0.0,en,False
+What is a way to increase your wound healing speed?,cleaning and protection from reinjury or infection,One effective way to increase your wound healing speed is by properly caring for the wound through regular cleaning and protecting it from further injury or infection,0.0,en,False
+What percentage of the American population is vegetarian?,3.4%,"Based on the information from the 2015 Harris Poll National Survey mentioned in the context, approximately **3",0.0,en,False
+How long is a standard baseball bat?,42 inches,42,0.0,en,False
+What happens when your heart is in arrhythmia?,"heartbeat is irregular, too fast, or too slow",Arrhythmias can cause various issues depending on their severity,0.6,en,False
+When was the Polish–Lithuanian Commonwealth established?,July 1569,The Polish-Lithuanian Commonwealth was established in July 1569 through the Union of Lublin,0.0,en,False
+When did George Washington's wife die?,"May 22, 1802","To determine when George Washington's wife died, I will extract and provide the relevant information from the given context",0.0,en,False
+What is the most spoken language in Romania?,Romanian,The most spoken language in Romania is Romanian,0.0,en,False
+Who was the first Adjutant General of Maryland?,Henry Carbery,"Based on the information given in the context, the first Adjutant General of Maryland was Henry Carbery",0.0,en,False
+What years did Paganini live?,27 October 1782–27 May 1840,1782,0.0,en,False
+How long is the Great Wall of China?,"21,196km","8,850",0.0,en,False
+When was Tajikistan founded?,1991,"Based on the information given in the context, Tajikistan as a separate entity did not exist before becoming part of the USSR",0.0,en,False
+What UK network aired Sharon Osbourne's Charm School?,VH1,"Based on the information in the given context, Sharon Osborne hosted the second season of Charm School which was titled \""Rock of Love: Charm School\""",0.0,en,False
+Which countries border the Persian Gulf?,"Iran; Oman's Musandam exclave; the United Arab Emirates; Saudi Arabia Qatar, on a peninsula off the Saudi coast; Bahrain, on an island; Kuwait; and Iraq in the northwest","The countries that border the Persian Gulf include Iran, Oman, the United Arab Emirates, Saudi Arabia, Qatar, Bahrain, Kuwait, and Iraq",0.625,en,False
+Who starred as Cinderella in the 1997 version by Walt Disney?,Brandy,"According to the given information, Brandy starred as Cinderella in the 1997 version of the movie made by Walt Disney",0.0,en,False
+Why is he called Mega man?,"president Joe Morici changed the name from Rockman to Mega Man because he felt ""The title was horrible","He is referred to as Mega Man due to the suggestion made by Capcom Consumer Products Division President Joe Morici who believed that the initial name \""Rockman",0.5714285714285715,en,False
+What is the first step in making cheese?,the cheesemaker brings milk (possibly pasteurised) in the cheese vat to a temperature required to promote the growth of the bacteria that feed on lactose and thus ferment the lactose into lactic acid,The first step in making cheese involves bringing the milk (which might have been pasteurized) to the appropriate temperature for promoting bacterial activity,0.7499999999999999,en,False
+When did George Peter Metesky die?,"May 23, 1994","Based on the information given in the context, George Peter Metesky died on May 23, 1994",0.0,en,False
+Where is the Animikie Group located?,Animikie Basin,"Based on the given information, the Animikie Group can be found in an area that stretches from south-central Minnesota, United States, up to Thunder",0.25,en,False
+"Who wrote the song ""Let there be Peace on Earth""?",Jill Jackson-Miller and Sy Miller,"Based on the information given in the context, the song ""Let There Be Peace On Earth"" was written by Jill Jackson-Miller and Sy Miller in",0.4444444444444445,en,False
+What is Texas' public rail system called?,DART Light Rail,"Based on the given context, there isn't any mention of a statewide or public rail system for the entire state of Texas",0.0,en,False
+What percentage of the U.S. population suffers from drug addiction?,2–3%,To determine a comprehensive estimate for the percentage of the U,0.0,en,False
+Where was Super Bowl XXVII held?,"Pasadena, California","Super Bowl XXVII was held at the Rose Bowl in Pasadena, California",0.25,en,False
+Who was the last leader of the Ottoman Empire?,Abdul Hamid II,"The last leader of the Ottoman Empire before it officially ended as an entity was Sultan Mehmed VI (also known as MehemetVI), who ruled",0.0,en,False
+How many children did Peter the Great have?,fourteen,"Based on the information given in the context, Peter the Great had fourteen children in total",0.0,en,False
+What is the largest rail yard in the New York City Subway system?,Coney Island Rapid Transit Car Overhaul Shop,"Based on the given context, the largest rail yard in the New York City Subway system is not explicitly mentioned",0.5454545454545454,en,False
+What is the catchphrase for the Army?,Army Strong,"Based on the given context, the catchphrase (or rather, recruiting slogan) for the U",0.5,en,False

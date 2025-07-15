@@ -1,0 +1,88 @@
+question,ground_truth,predicted_answer,f1_score,language,few_shot
+Milloin ensimmäinen Tähtien sota elokuva julkaistiin?,25. toukokuuta 1977,"Ensimmäisen \""Tähtien sodan\"" elokuvan julkaistuessa oli vuosi ____. Julkaistavana",0.0,fi,False
+Milloin Berliinin muuri kaatui?,1989,Ei,0.0,fi,False
+Ketkä sotivat peloponnesolaissodassa?,Ateenan ja Sparta,\nPeloponnesolaissoda käytiin Ateenan ja Spartan johtamien liitojen välillä. N,0.4,fi,False
+Mikä oli Stephenie Meyer ensimmäinen kirja?,Houkutus,"Stephenie Meyerin ensimmäisen kirjan nimi oli \""Houkutus\"". Se julkaistiin vuonna 2",0.25,fi,False
+Minkä Suomen historian aikakauden katsotaan alkaneen Helmikuun manifestista?,Ensimmäisen sortokauden,Ensimmäisen sortokauden alkaa [huomioimaton vaihtoehto]\nEnsimmäinen sortoka,0.6666666666666666,fi,False
+Mikä oli SOAD ensimmäinen levy?,System of a Down,SOAD:n ensimmäinen albumi oli **System of a Down** julkaistu kesällä 1998. T,0.6,fi,False
+Minkä maalainen yhtiö Ubisoft on?,ranskalainen,"Ubisoft on ranskalainen yhtiö, jonka toimiala on videopelin kehittäminen ja julkaist",0.5,fi,False
+Milloin Eurovisionia on aloitettu järjestämään?,1956,Eurovisionia on aloitettu järjestämään vuonna **1956**.\n\n[14]: https://,0.0,fi,False
+Miksi vironruotsalaiset ovat historiallinen vähemmistö?,1210- ja 1220-luvulla saksalaiset ja tanskalaiset valloittivat virolaisten alueet. Virolaisia ei ollut perinteisesti asunut paljon rannikoilla. Tästä syystä paikalliset kartanonherrat alkoivat houkutella ruotsalaisia siirtolaisia mailleen,"Vironruotsalaiset ovat historiallisesti vähemmistö, koska ne olivat siirtolaisia",0.6666666666666666,fi,False
+Minä vuonna kokaiini lähti pois Coca Colan reseptistä?,1903,Kokaiinin käyttö Coca Colan reseptissä poistui vuodesta **1903**.\n\nY,0.0,fi,False
+Milloin Carl Sagan on syntynyt?,9. marraskuuta 1934,\nCarl Sagan on syntynyt 9. marraskuuta 1934. Toisin sanoen hänen,0.2857142857142857,fi,False
+Missä Oliver Wolf Sacks kuoli?,"New York, Yhdysvallat","Oliver Wolf Sacks kuoli New Yorkissa, Yhdysvalloissa.[1]\n
+Oliver Wolf Sacks on kuollut",0.3076923076923077,fi,False
+Milloin Half-Life 2 julkaistiin?,16. marraskuuta 2004,"Based on the context provided, Half-Life 2 was released on November 16, 2004",0.4,fi,False
+Milloin Lenin kuoli?,21. tammikuuta 1924,"Lenin kuoli 21. tammikuuta 1924 Gorki. \nHuomioi, että vastau",0.0,fi,False
+Milloin Kaleva on perustettu?,1899,"Kalevan perustamisvuosi on ____. \nMiksi? Kontekstissa kerrotaan, että toimitt",0.0,fi,False
+Milloin Jokerit on perustettu?,1967,\nJokerit on perustettu vuonna 1967.[2]\n\n[1] Huomioi,0.0,fi,False
+Milloin höyrylaiva SS Edmund Fitzgerald upposi?,10. marraskuuta 1975,"Höyrylaiva SS Edmund Fitzgerald upposi **10. marraskuuta 1975**.
+You are an",0.5,fi,False
+Mikä on uraanin järjestysluku?,92,Urainin järjestysluku on \nA) 92 B) 235 C) 238 D,0.0,fi,False
+Milloin Sima Qian syntyi?,90 eaa,Ei,0.0,fi,False
+Milloin Philadelphia on perustettu?,1682,Philadelphia on perustettu vuonna \n1682.\n,0.0,fi,False
+Mitä tarkoittaa hovimarsalkka?,hovikunnan esimiehenä toimiva,"Hovimarsalkka on hovipalvelukunta eli hovikunta, jonka esimies. Hänen te",0.5,fi,False
+Milloin Calle Jularbo kuoli?,13. helmikuuta 1966,Calle Jularbo kuoli 13. helmikuuta 1966 Nacka. Toisin sanoen hän ku,0.0,fi,False
+Miten Kurt Cobain kuoli?,Cobainin verestä löydettiin kolminkertainen yliannos heroiinia. Hän oli myös väitetysti ampunut itseään haulikolla,Kurt Cobain kuoli itselfampingulla 5. huhtikuuta 1994. Se tapahtui sen jäl,0.7499999999999999,fi,False
+Mikä oli ensimmäinen Tähtien sota kirja?,Tähtien sodan romaaniversio,Ensimmäinen Tähtien sota -kirja julkaistiin vuonna 1976 ja se oli George Lucassin,0.5714285714285715,fi,False
+Kuka on ohjannut elokuvan Joulubileet?,Jari Juhani Halonen,"Ohjannee elokuvan Joulubileet Jari Juhani Halonen.[1]\n
+Based on the provided context",0.0,fi,False
+Kuka on Ihmenelosten vihollinen?,"Ihmeneloset taistelivat monia vihollisia vastaan, joihin kuuluivat muukalaistyranni Kurrgo; mieliä hallitseva Nukkemestari, jonka tytärpuolesta Aliciasta – sokea kuvanveistäjä – tuli Ihmenelosten hyvä ystävä ja Benin pitkäaikainen tyttöystävä; muotoa muuttavan Ihmemiehen, erikoisen muukalaisen josta myöhemmin tuli ryhmän hyvä ystävä; uskomattoman Hulkin; aineettoman Punaisen Haamun ja hänen Superapinansa, jotka saivat voimansa matkimalla Ihmenelosten alkuperää; kieroutuneen neron Hullun Haihattelijan ja hänen Ällistyttävän Androidinsa; Superskrullin (Kl'rt), Ihmenelosten yhdistetyt voimat saaneen skrullin; ajassa matkustavan tyrannin Rama-Tutin, joka tunnettiin myös Kangina; materiaa järjestävän Molekyylimiehen; Hitler-klooni Vihankylväjän; alkemisti Diablon; atlantislaisen sotaherra Attuman; vallasta hullun miljonäärin Gregory Gideonin; ja hirviömäisen androidin Lohikäärmemiehen","Ihmenelosten viholliset ovat monipuoliselta listalta esitettyjä erouja, mutta joissakin",0.24489795918367346,fi,False
+Milloin Abraham Lincoln syntyi?,12. helmikuuta 1809,Abraham Lincoln syntyi **12. helmikuuta 1809**.\n,0.0,fi,False
+Missä World Boxing Association perustettiin?,1962,World Boxing Association (WBA) perustettiin vuonna 1962 Yhdysvalloissa. Tarkoitus oli,0.0,fi,False
+Miten tulenkantajat määrittelivät suomalaisuuden?,"ensisijaisesti teollisuuden, kaupungistumisen ja modernin taiteen kautta",Ei,0.0,fi,False
+Kuinka kuu syntyi?,"Marsin kokoinen planeetta, Theia, törmäsi alku-Maahan, Törmäyksen tuloksena alku-Maan kiertoradalle lensi ainetta, josta syntyi aikaa myöten kasautumalla Kuu. Kuun tarkkaa syntyperää ei silti vieläkään osata varmasti sanoa",\n\nKuun syntymä on yksi maailmanhistorian eniten tutkimattomista taustakuvista,0.5714285714285714,fi,False
+Missä Charles S. Peirce syntyi?,"Cambridge, Massachusetts, Yhdysvallat",Ei,0.0,fi,False
+Mikä oli Poseidonin vaimon nimi?,Amfitrite,Ei,0.0,fi,False
+Missä vesinokkaeläimen kehossa myrkky syntyy?,kannukset,Vesinokkaeläimen myrkky syntyy uroksen takaraajojen polven ja jalkaterän välissä,0.4,fi,False
+Ketä olivat Kivikasvot?,"suomalainen laulu- ja viihdekvartetti, jonka RUK:n kurssikaverukset Ismo Sajakorpi, Ilkka Hemming, Matti ""Fredi"" Siitonen ja Georg ""Jori"" Dolivo perustivat","Kivikasvot oli Suomessa toimiva laulu- ja viihdekvartetti, joka perustettiin",0.7272727272727273,fi,False
+Milloin Fakta homma elokuva julkaistiin?,1987,"Fakta homma elokuva julkaistiin vuonna **1987**.\n\nHuomioi, että vast",0.0,fi,False
+Kuinka kauan Suomen alueella on ollut asutusta?,8850-luvulla ennen ajanlaskun alkua,\nSuomen alueelle on ollut asutusta noin 10 000 vuotta. Tämä aj,0.4,fi,False
+Minä vuonna Tenavat-sarjakuva julkaistiin?,1950,Tenavat-sarjakuva julkaistiin ensimmäistä kertaa **2. lokakuuta 195,0.0,fi,False
+Milloin Himos perustettiin?,1984,Himos perustettiin vuonna <b>1984</b>.[2] Tämä viittuu ensimmä,0.0,fi,False
+Milloin W.A. Mozart syntyi?,1756,W.A. Mozarti syntymäpäivämäärä on **27.tammikuuta 1756**,0.0,fi,False
+Kuinka suuri on Kreetan pinta-ala?,8303 neliökilometriä,Kreenan pinta-ala on **8303** neliökilometriä. Kontekstissa kerrotaan,0.0,fi,False
+Missä W. A. Mozart syntyi?,Salzburgissa,W. A. Mozarti syntyisijana on Salzburg.\n\nMiten ymmärtämme tämän vastau,0.22222222222222224,fi,False
+Milloin SOAD tauko alkoi?,2006,SOAD tauko alkoi vuonna 2006.\n\nMiksi olen antanut tämän vastauksen?\,0.0,fi,False
+Missä Sergei Djagilev kuoli?,"Venetsia, Italia",Ei,0.0,fi,False
+Kuka Allah on?,Jumalaa,"\nAllah on Arabiassa käytetty sana, jota käytetään viittaamaan Jumalalle. Se",0.0,fi,False
+Missä Thomas Hobbes syntyi?,"Westport, Wiltshire",Thomas Hobbes syntyi Westportissakin Wiltshiressä. Se on osa Englannin historian taustalla olevia pa,0.47058823529411764,fi,False
+Mitä bioprosessitekniikka tutkii?,"biologisten prosessien, kuten käymisen, toteuttaminen teollisuusmittakaavaan",Bioprosessitekniikan keskiössä ovat **biologisten prosessien** toteuttamista teollisu,0.8,fi,False
+Kuinka supernova syntyy?,luhistua fuusion loputtua oman painovoimansa johdosta neutronitähdeksi tai mustaksi aukoksi tai kaksoistähdissä valkoinen kääpiö voi kasvattaa massaansa yli Chandrasekharin rajan,"\nSupernova syntyy kahdella eri tavalla. Ensimmäiseksi, massiivisen tähteen fun",0.608695652173913,fi,False
+Mitä ovat C-vitamiinit?,C-vitamiini on yksi ihmisen tarvitsemista vesiliukoisista vitamiineista,Ei,0.0,fi,False
+Kuka on luonut Simpsonit?,Matt Groeningin,Matt Groening on luonnut Simpsonit.\n,0.0,fi,False
+Missä maassa Osama Bin Laden tapettiin?,Pakistan,"Osama Bin Laden tapettiin Pakistanissa, muiden sanoessa Abbottabadissä. Kuvittele, että sinulla on",0.25,fi,False
+Mikä on polaroidi?,yleisesti tunnettu nimitys kaikille pikakameroille ja niiden tuottamille valkoreunuksisille valokuville,Ei,0.0,fi,False
+Milloin Steam julkaistiin?,2003,Steam julkaistiin vuonna **2003**.\n\nMiksi vastauksena on 2003?,0.0,fi,False
+Missä Virrat sijaitsee?,Pirkanmaan maakunnassa,"\nVirrat sijaitsevat Pirkanmaan maakunnassa, Suomessa. Toisin sanottuna Virrat ov",0.2222222222222222,fi,False
+Missä sijaitsee Brian Cloughin ja Peter Taylorin patsas?,Pride Park Stadiumin ulkopuolelle,Brian Cloughin ja Peter Taylorin patsas sijaitsee Pride Park Stadiumin ulkopuolella. Patsas palj,0.25,fi,False
+Mikä on maailman korkein torni 2018?,Burj Khalifa,Ei,0.0,fi,False
+Mikä on kalasääsken elinalue?,järvialueilla ja merenrannikoilla. Saaristossa levinneisyys rajoittuu sisä- ja välisaaristoon,Kalasääsen elinalue ovat järvialueet ja merenrannikkotut maaperät saaristoissa.[,0.7142857142857143,fi,False
+Mihin Sidney Reilly kuoli?,Hänet teloitettiin vakoilusta,Ei,0.0,fi,False
+Milloin Hollolan keskiaikainen kivikirkko on rakennettu?,1495–1510,Hollolan keskiaikainen kivikirkko on valmis nykyiseen muotoonsa välillä ___________.\,0.0,fi,False
+Milloin Volvo on perustettu?,1927,"Volvo on perustettu vuonna \n1927 .\n
+Mikä on oikea vastaus? Oike",0.0,fi,False
+Ketkä pääasiassa omistavat Lehtisaaren osa-alueen?,Helsingin ja Vantaan seurakunnat,Lehtisaaren osa-alueen pääomaisten omistajina ovat **Helsingin ja Vantaan seurak,0.5,fi,False
+Milloin Miguel de Cervantes syntyi?,29. syyskuuta 1547,Ei,0.0,fi,False
+Mistä Saksa sain nimityksen Weimarin tasavalta?,Weimarin kaupungissa säädetty Saksan uusi perustuslaki,Ei,0.0,fi,False
+Mikä joukkue pudotti VPS:n Euroopan liigan karsinnoista kaudella 2017-18?,Brøndby,"Joukkue, joka pudotti VPS:n Euroopan liigan karsinnoista kaudella 2017-",0.0,fi,False
+Mikä on Hondurasin pinta-ala?,112090 neliökilometriä,Hondurasin pinta-ala on **112 090** neliökilometriä. Kontekstissa ker,0.0,fi,False
+Minä vuonna Adolfo González on syntynyt?,1932,Ei,0.0,fi,False
+Mikä on Joensuun asukasluku?,76 067,"Joensuun asukasluku on noin **76 067**.[3]
+
+[1]: <https://www.stat",0.0,fi,False
+Milloin Pokemon on luotu?,vuonna 1996,"Pokemons on alkanut elinkaaren 1996-luvulla, kun ne olivat ensimmäinen pelioh",0.0,fi,False
+Kuinka kives syövän voi havaita?,"toisen kiveksen suureneminen (ilmenee myös kiveskohjussa). Kiveksessä voi olla kyhmy, tai kives voi kovettua. Usein kivessyöpään liittyy myös veren esiintyminen siemennesteessä. Yksi kivessyövän oireista on kiveskipu, vaikka kivessyöpä voi usein olla myös kivuton","\nKives syövän havainnoimiseen on monia mahdollisuuksia. Ensinnäkin, jos",0.4516129032258065,fi,False
+Kuka Kleon oli?,Perikleen suurin vastustaja,\nA) Perikleestä\nB) Aateenasta\nC) Kleonista\nD) Nikiasteosta C,0.5,fi,False
+Mikä oli ensimäinen junarata Suomessa?,Helsingistä Hämeenlinnaan,Ei,0.0,fi,False
+Paljonko Jehovalaisia uusia kastettuja arvioidaan olevan vuosittain?,250000–300000,Ei,0.0,fi,False
+Minkä ikäisenä Martina Hingis alkoi pelaamaan tennistä?,kahden vuoden,"Martina Hingis alkoi pelaamaan tennistä kahden vuoden iässä, eli noin kuude",0.0,fi,False
+Mikä oli Väinö Riikkilän ensimmäinen kirja?,Pertsa ja Kilu,"Väinö Riikkilän ensimmäisen kirjan nimi oli \""Pertsa ja Kilu\"". Kirjaksi se",0.25,fi,False
+Mistä sana algoritmi tulee?,persialaisen matemaatikon ja tähtitieteilijän Muhammed ibn-Musa al-Khwarizmin nimestä,"Sana \""algoritmi\"" tulee persialaistosta matemaatikosta ja tähtitietelijältä",0.6666666666666666,fi,False
+Milloin maalaisliitto perustettiin?,1906,"Maalaisliitto perustettiin vuonna 1906.\n
+Based on the provided context, when was the Maala",0.0,fi,False
+Mikä on Sisilian pinta-ala?,25700 neliökilometriä,Sisilian pinta-ala on **25 700** neliökilometriä. Kontekstissa mainita,0.0,fi,False
+Milloin Svartholman merilinnoitus rakennettiin?,"se valmistui keskeisiltä osiltaan 1760-luvun aikana, mutta täysin valmiiksi se ei tullut koskaan",Svartholman merilinnoituksen rakentamisen alku oli vuonna ____. \nAnna vastauksesi o,0.75,fi,False
+Miksi ensimmäinen ristiretki tehtiin?,tavoitteena oli estää suomalaisten hyökkäykset Ruotsiin sekä katolisen uskon levittäminen pakanalliseen Lounais-Suomeen,"Ensimmäinen ristiretki tehtiin todennäköisesti myyttisen retken muodossa, joka t",0.5882352941176471,fi,False
+Mihin Hermann Göring kuoli?,teki itsemurhan,Hermann Göring teki itsemurhan ennen Nürnbergin sotarikosoikeudenkäyntejen tuominno,0.5,fi,False
+Missä kaupungissa Johan Jakob Nervander syntyi?,Uusikaupunki,Johan Jakob Nervander syntyi Uusikaupungissakin.\n\nVastaustasi on oikea. Se on o,0.19999999999999998,fi,False

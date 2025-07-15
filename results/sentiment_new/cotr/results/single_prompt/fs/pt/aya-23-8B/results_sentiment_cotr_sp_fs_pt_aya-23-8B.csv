@@ -1,0 +1,727 @@
+original_text_lrl,ground_truth_label,predicted_label,ground_truth_english_label,intermediate_en_text,intermediate_en_label,predicted_lrl_label_final_raw,comet_lrl_text_to_en,comet_en_label_to_lrl,raw_model_response,runtime_seconds_sample,language,pipeline,shot_type
+@user 😂😂😂 marido de dia e de tarde não vai gostar 😂😂,neutral,positive,neutral,"
+@user 😂😂😂 husband of day and afternoon will not like 😂😂
+",positive,[Extraction Error LRL Label],,,"English Translation:
+```
+@user 😂😂😂 husband of day and afternoon will not like 😂😂
+```
+English Sentiment Label:
+positive
+Portuguese Sentiment Label:
+positivo",2.739957571029663,pt,single_prompt,few-shot
+Tá difícil achar o X na equação de hoje (banho). 🙆🏾‍♂️🙆🏾‍♂️,positive,negative,positive,It's hard to find X in today's equation (bathroom). 😬😬,negative,[Extraction Error LRL Label],,,"English Translation:
+It's hard to find X in today's equation (bathroom). 😬😬
+
+English Sentiment Label:
+negative
+
+Portuguese Sentiment Label:
+negativo",2.5356879234313965,pt,single_prompt,few-shot
+@user 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 Todos da matola a fazer trend de mim...,neutral,positive,neutral,😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 Todos da matola a fazer trend de mim...,positive,[Extraction Error LRL Label],,,"English Translation:
+😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 Todos da matola a fazer trend de mim...
+
+English Sentiment Label:
+positive
+
+Portuguese Sentiment Label:
+positivo",3.7927732467651367,pt,single_prompt,few-shot
+🚶🏾‍♂️.Oxalá que aquilo que procuras valha mais do que aquilo que estás a perder 👋🏽,negative,neutral,negative,🚶🏾‍♂️. Oxalá que aquilo que procuras valha mais do que aquilo que estás a perder 👋🏽,neutral,[Extraction Error LRL Label],,,"
+--- Your Response ---
+English Translation:
+🚶🏾‍♂️. Oxalá que aquilo que procuras valha mais do que aquilo que estás a perder 👋🏽
+
+English Sentiment Label:
+neutral
+
+Portuguese Sentiment Label:
+neutro",3.4849367141723633,pt,single_prompt,few-shot
+@user @user @user É meu mestre esse... só sabe q nossas discussões não terminam 😂😂😂dois teimosos,neutral,positive,neutral,"
+@user @user @user It's my master that... only knows that our discussions don't end 😂😂😂two stubborn ones
+",positive,[Extraction Error LRL Label],,,"English Translation:
+```
+@user @user @user It's my master that... only knows that our discussions don't end 😂😂😂two stubborn ones
+```
+English Sentiment Label:
+positive
+
+Portuguese Sentiment Label:
+positivo",3.2651617527008057,pt,single_prompt,few-shot
+@user 😂😂😂😂 pergunta se uma coisa responde outra. Mas why,neutral,neutral,neutral,"
+@user 😂😂😂😂 asks if one thing answers another. But why
+",neutral,[Extraction Error LRL Label],,,"English Translation:
+```
+@user 😂😂😂😂 asks if one thing answers another. But why
+```
+
+English Sentiment Label:
+neutral
+
+Portuguese Sentiment Label:
+neutro",2.772987127304077,pt,single_prompt,few-shot
+@user não tá respeitar a kota 😂😂😂😂😂 como assim . Sabe tia mesmo que ela era pra ser Meme?,neutral,negative,neutral,"""@user doesn't respect the rules 😂😂😂😂😂 How come? You know very well that she was supposed to be a meme?""",negative,[Extraction Error LRL Label],,,"English Translation:
+""@user doesn't respect the rules 😂😂😂😂😂 How come? You know very well that she was supposed to be a meme?""
+
+English Sentiment Label:
+negative
+
+Portuguese Sentiment Label:
+negativo",3.325627326965332,pt,single_prompt,few-shot
+"- Em Moz, músicos que estão na rocha estão a virar TikTokers ou memeiros 😃😃... Mesmo assim ninguém ri piadas deles😄",neutral,neutral,neutral,"In Moz, musicians who are in rock are turning into TikTokers or memers 😃😃 ... But no one laughs at their jokes 😄",neutral,[Extraction Error LRL Label],,,"English Translation:
+In Moz, musicians who are in rock are turning into TikTokers or memers 😃😃 ... But no one laughs at their jokes 😄
+
+English Sentiment Label:
+neutral
+
+Portuguese Sentiment Label:
+neutro",3.1208813190460205,pt,single_prompt,few-shot
+Minha mãe está orgulhosa!💯💿🇲🇿🥰 https://t.co/uMMh8Ecnpl,negative,positive,negative,My mother is proud! 💯 💿 MzP 🥰 https://t.co/uMMh8Ecnpl,positive,[Extraction Error LRL Label],,,"English Translation:
+My mother is proud! 💯 💿 MzP 🥰 https://t.co/uMMh8Ecnpl
+
+English Sentiment Label:
+positive
+
+Portuguese Sentiment Label:
+positivo",2.965691566467285,pt,single_prompt,few-shot
+🤣🤣🤣lembrei da minha vizinha. https://t.co/BwOXymk0wD,neutral,neutral,neutral,😂😂😂lembrei da minha vizinha. https://t.co/BwOXymk0wY,neutral,[Extraction Error LRL Label],,,"English Translation:
+😂😂😂lembrei da minha vizinha. https://t.co/BwOXymk0wY
+
+English Sentiment Label:
+neutral
+
+Portuguese Sentiment Label:
+neutro",2.8104333877563477,pt,single_prompt,few-shot
+Abri a porta para espreitar lá fora minha cara ficou bronzeada. 🙌🏽,neutral,neutral,neutral,I opened the door to take a look outside my face turned red. 😳,neutral,[Extraction Error LRL Label],,,"
+--- Your Response ---
+English Translation:
+I opened the door to take a look outside my face turned red. 😳
+
+English Sentiment Label:
+neutral
+
+Portuguese Sentiment Label:
+neutro",2.7040560245513916,pt,single_prompt,few-shot
+Estou a viver em Moçambique mas já não esse coração 💔,neutral,negative,neutral,I'm living in Mozambique but my heart isn't here anymore.,negative,[Extraction Error LRL Label],,,"English Translation:
+I'm living in Mozambique but my heart isn't here anymore.
+
+English Sentiment Label:
+negative
+
+Portuguese Sentiment Label:
+negativo",2.2387278079986572,pt,single_prompt,few-shot
+"@user @user Que foi iludida, traída e abandonada😹😹😹",neutral,negative,neutral,"@user @user She was deceived, betrayed and abandoned 😹😹😹",negative,[Extraction Error LRL Label],,,"--- Your Response ---
+English Translation:
+@user @user She was deceived, betrayed and abandoned 😹😹😹
+
+English Sentiment Label:
+negative
+
+Portuguese Sentiment Label:
+negativo",2.7042734622955322,pt,single_prompt,few-shot
+@user @user MININAAAAAA 😳😳😳😳😳 QUE CASE É ESSE MEU DEUS,neutral,negative,neutral,"
+@user @user MININAAAAAA 😳😳😳😳😳 QUE CASE É ESSE MEU DEUS
+",negative,[Extraction Error LRL Label],,,"
+--- Your Response ---
+English Translation:
+```
+@user @user MININAAAAAA 😳😳😳😳😳 QUE CASE É ESSE MEU DEUS
+```
+
+English Sentiment Label:
+negative
+
+Portuguese Sentiment Label:
+negativo",3.424241065979004,pt,single_prompt,few-shot
+"Às vezes não é negar dar boleia, vocês fecham mal a porta. Dói no peito😡😡",positive,negative,positive,"Sometimes it's not denying to give a ride, you close the door badly. It hurts in the chest 😡😡",negative,[Extraction Error LRL Label],,,"
+--- Your Response ---
+English Translation:
+Sometimes it's not denying to give a ride, you close the door badly. It hurts in the chest 😡😡
+
+English Sentiment Label:
+negative
+
+Portuguese Sentiment Label:
+negativo",3.1665356159210205,pt,single_prompt,few-shot
+@user A te já estou a bater uma punheta😥😥,neutral,positive,neutral,"
+@user I'm already stroking my dick for you 😥😥
+",positive,[Extraction Error LRL Label],,,"English Translation:
+```
+@user I'm already stroking my dick for you 😥😥
+```
+
+English Sentiment Label:
+positive
+
+Portuguese Sentiment Label:
+positivo",2.6494739055633545,pt,single_prompt,few-shot
+"@user Depois aquela pergunta chata """"mas não estamos bem aqui?""""😬😂😂",neutral,negative,neutral,"""After that annoying question """"but aren't we fine here?"""" 😬😂😂""",negative,[Extraction Error LRL Label],,,"English Translation:
+""After that annoying question """"but aren't we fine here?"""" 😬😂😂""
+
+English Sentiment Label:
+negative
+
+Portuguese Sentiment Label:
+negativo",2.6519291400909424,pt,single_prompt,few-shot
+"Saudações. Só queria avisar que NÃO ESTOU DISPONÍVEL PARA FESTAS E SOCIAIS, até Dezembro. Convidem-me para fazer investimentos ou abrir negócios e empresa, assim também como sugestão de cursos tecnológicos que melhorem minha carreira profissional. Kateca, boas entradas. 🙏🏾",neutral,neutral,neutral,"Greetings. Just wanted to let you know that I AM NOT AVAILABLE FOR PARTIES AND SOCIAL EVENTS until December. Invite me to make investments or open businesses and companies, as well as suggestions for technological courses that improve my professional career. Kateca, good entries. 🙏🏾",neutral,[Extraction Error LRL Label],,,"--- Your Response ---
+English Translation:
+Greetings. Just wanted to let you know that I AM NOT AVAILABLE FOR PARTIES AND SOCIAL EVENTS until December. Invite me to make investments or open businesses and companies, as well as suggestions for technological courses that improve my professional career. Kateca, good entries. 🙏🏾
+
+English Sentiment Label:
+neutral
+
+Portuguese Sentiment Label:
+neutro",4.946570634841919,pt,single_prompt,few-shot
+"@user @user Doa a quem doer, somos #Líderes... 😅",neutral,neutral,neutral,"Doa a quem doer, somos #Líderes... 😅",neutral,[Extraction Error LRL Label],,,"English Translation:
+Doa a quem doer, somos #Líderes... 😅
+
+English Sentiment Label:
+neutral
+
+Portuguese Sentiment Label:
+neutro",2.345629930496216,pt,single_prompt,few-shot
+Essas horas e meu vizinho ja está a escutar música 🤔😮😲🤦🏾‍♂️ Sinceramente,positive,neutral,positive,"---
+These hours and my neighbor has already been listening to music 🤔😮😲🤦🏾‍♂️ Sincerely
+
+---",neutral,[Extraction Error LRL Label],,,"
+--- English Translation: ---
+These hours and my neighbor has already been listening to music 🤔😮😲🤦🏾‍♂️ Sincerely
+
+--- English Sentiment Label: ---
+neutral
+
+--- Portuguese Sentiment Label: ---
+neutro",3.3735859394073486,pt,single_prompt,few-shot
+"@user @user 😂😂😹😹😂😂 Tua placa bazou, @user alguma placa aí disponível? Quero comprar para substituir da @user Please. 😂😂🙏",neutral,unknown,neutral,[Extraction Error EN Text],unknown,[Extraction Error LRL Label],,,"
+--- English Translation ---
+
+--- English Sentiment Label ---
+
+--- Portuguese Sentiment Label ---",1.543837547302246,pt,single_prompt,few-shot
+"Atenção na nota. 🚨🚨🚨🚨 Nada de Capslock para chamar mais atenção.... """"pizzawpineapples"""" só e só https://t.co/Nu0fwH4w8Z",neutral,neutral,neutral,[Extraction Error EN Text],neutral,[Extraction Error LRL Label],,,"
+--- English Translation ---
+Attention in the note. 🚨🚨🚨🚨 No Capslock to call more attention ... ""pizzawpineapples"" only and only https://t.co/Nu0fwH4w8Z
+
+--- English Sentiment Label ---
+neutral
+
+--- Portuguese Sentiment Label ---
+neutro",4.261470794677734,pt,single_prompt,few-shot
+Respira Angelo Respira 😂😂😂 respeita a pessoa da pessoa,neutral,positive,neutral,"
+Respira Angelo Respira 😂😂😂 respeita a pessoa da pessoa
+",positive,[Extraction Error LRL Label],,,"English Translation:
+```
+Respira Angelo Respira 😂😂😂 respeita a pessoa da pessoa
+```
+
+English Sentiment Label:
+positive
+
+Portuguese Sentiment Label:
+positivo",2.648352861404419,pt,single_prompt,few-shot
+"Memes estão a melhorar o meu dia, estava tão indisposta 😂😂😂😂",negative,positive,negative,"Meme's are improving my day, I was so sick 😂😂😂😂",positive,[Extraction Error LRL Label],,,"--- Your Response ---
+English Translation:
+Meme's are improving my day, I was so sick 😂😂😂😂
+
+English Sentiment Label:
+positive
+
+Portuguese Sentiment Label:
+positivo",2.856813669204712,pt,single_prompt,few-shot
+Mor + Eu+ Church= GOD abençoe o nosso future🙏🏼❤️,negative,positive,negative,More me church = god bless our future,positive,[Extraction Error LRL Label],,,"--- Your Response ---
+English Translation:
+More me church = god bless our future
+
+English Sentiment Label:
+positive
+
+Portuguese Sentiment Label:
+positivo",2.2435462474823,pt,single_prompt,few-shot
+"Do jeito que me controlam na minha casa,tipo sou pirex🤧",neutral,negative,neutral,"The way they control me at home, like I'm some kind of pervert 🤧",negative,[Extraction Error LRL Label],,,"English Translation:
+The way they control me at home, like I'm some kind of pervert 🤧
+
+English Sentiment Label:
+negative
+
+Portuguese Sentiment Label:
+negativo",2.497011661529541,pt,single_prompt,few-shot
+"DIVERSÃO | Orgulhomoz _ Chamaculo é outro nível. Basta chover, todos viram homens aranha 😂😂😂😂 _ Orgulho Moz É Maning Nice👍 Exaltemos À Pátria🇲🇿 _ #OrgulhoMoz #Entretenimento #Musica #Moda #Beleza #Arte #Cultura… https://t.co/n5fMeBYEh5",neutral,positive,neutral,"
+FUN | Orgulhomoz _ Chamaculo is another level. Just rain, everyone becomes spider men 😂😂😂😂 _ Orgulho Moz Is Maning Nice👍 Let's Exalt Our Country🇧🇷 _ #OrgulhoMoz #Entertainment #Music #Fashion #Beauty #Art #Culture… https://t.co/n5fMeBYEh5
+",positive,[Extraction Error LRL Label],,,"
+--- Your Response ---
+English Translation:
+```
+FUN | Orgulhomoz _ Chamaculo is another level. Just rain, everyone becomes spider men 😂😂😂😂 _ Orgulho Moz Is Maning Nice👍 Let's Exalt Our Country🇧🇷 _ #OrgulhoMoz #Entertainment #Music #Fashion #Beauty #Art #Culture… https://t.co/n5fMeBYEh5
+```
+
+English Sentiment Label:
+positive
+
+Portuguese Sentiment Label:
+positivo",6.297821760177612,pt,single_prompt,few-shot
+@user Sim sim. 😅😅 e Banda tipo Angola.,neutral,neutral,neutral,Sure sure. 😅😅 and Band type Angola.,neutral,[Extraction Error LRL Label],,,"
+--- Your Response ---
+English Translation:
+Sure sure. 😅😅 and Band type Angola.
+
+English Sentiment Label:
+neutral
+
+Portuguese Sentiment Label:
+neutro",2.493394374847412,pt,single_prompt,few-shot
+Quando estiveres cansado 😓 não tenta imaginar nada de olhos 👀 fechados...,neutral,neutral,neutral,When you're tired 😓 don't try to imagine anything with your eyes 🥷 closed...,neutral,[Extraction Error LRL Label],,,"English Translation:
+When you're tired 😓 don't try to imagine anything with your eyes 🥷 closed...
+
+English Sentiment Label:
+neutral
+
+Portuguese Sentiment Label:
+neutro",2.6003270149230957,pt,single_prompt,few-shot
+Edjo eu preciso disto o mais rápido possível 😭 https://t.co/WwvJG0tn7p,neutral,positive,neutral,"
+Edjo I need this as soon as possible 😭 https://t.co/WwvJG0tn7p
+",positive,[Extraction Error LRL Label],,,"English Translation:
+```
+Edjo I need this as soon as possible 😭 https://t.co/WwvJG0tn7p
+```
+
+English Sentiment Label:
+positive
+
+Portuguese Sentiment Label:
+positivo",3.0125722885131836,pt,single_prompt,few-shot
+Eles tinham que ter damas 😂😂😂😂 https://t.co/vRsOOBxPSO,neutral,neutral,neutral,They had to have ladies 😂😂😂😂 https://t.co/vRsOOBxPSO,neutral,[Extraction Error LRL Label],,,"English Translation:
+They had to have ladies 😂😂😂😂 https://t.co/vRsOOBxPSO
+
+English Sentiment Label:
+neutral
+
+Portuguese Sentiment Label:
+neutro",2.911332130432129,pt,single_prompt,few-shot
+Essas sul africanas que trabalham aqui vocês pensam que vão lhes pagar como? 😂 queriam pra contratarem pessoas que vão usar Óleo dona para ter preço baixo 😂,neutral,negative,neutral,These African women who work here do you think they're going to pay you like that? 😂 They wanted to hire people who will use Oil Lady to have low prices 😂,negative,[Extraction Error LRL Label],,,"English Translation:
+These African women who work here do you think they're going to pay you like that? 😂 They wanted to hire people who will use Oil Lady to have low prices 😂
+
+English Sentiment Label:
+negative
+
+Portuguese Sentiment Label:
+negativo",3.4302377700805664,pt,single_prompt,few-shot
+"Fabricantes de preservativo, estamos a pedir sabor de piripiri, essas nanas não choram na cama 🤣🦈🤣 @user",neutral,positive,neutral,"
+Condom manufacturers, we're asking for pepper flavor, these nanas don't cry in bed 🤣🦈🤣 @user
+",positive,[Extraction Error LRL Label],,,"English Translation:
+```
+Condom manufacturers, we're asking for pepper flavor, these nanas don't cry in bed 🤣🦈🤣 @user
+```
+English Sentiment Label:
+positive
+Portuguese Sentiment Label:
+positivo",3.1716017723083496,pt,single_prompt,few-shot
+"Estou no Jardim tumduro, gajas não sabem andar de salto alto pah💔",positive,negative,positive,"I'm in the garden, girls don't know how to walk in high heels 😢",negative,[Extraction Error LRL Label],,,"English Translation:
+I'm in the garden, girls don't know how to walk in high heels 😢
+
+English Sentiment Label:
+negative
+
+Portuguese Sentiment Label:
+negativo",2.497722625732422,pt,single_prompt,few-shot
+@user Eu acho que então eu não sei tomar ih Gin não estou a tratar. 😩,neutral,negative,neutral,I think then I don't know how to take gin I'm not dealing with. 😩,negative,[Extraction Error LRL Label],,,"English Translation:
+I think then I don't know how to take gin I'm not dealing with. 😩
+
+English Sentiment Label:
+negative
+
+Portuguese Sentiment Label:
+negativo",2.5495545864105225,pt,single_prompt,few-shot
+"Eu sou muito sentimental, as coisas me machucam numa proporção enorme. Às vezes uma coisinha atoa parece que abre um buraco no meu peito de tanto que me magoa. 🥺",positive,negative,positive,"I'm very sentimental, things hurt me in huge proportions. Sometimes a little thing seems to open a hole in my chest that hurts so much. 🥺",negative,[Extraction Error LRL Label],,,"English Translation:
+I'm very sentimental, things hurt me in huge proportions. Sometimes a little thing seems to open a hole in my chest that hurts so much. 🥺
+
+English Sentiment Label:
+negative
+
+Portuguese Sentiment Label:
+negativo",3.2275023460388184,pt,single_prompt,few-shot
+@user Esse gajo era mauuuu ih😓👏👏👏isso é magia man,neutral,positive,neutral,That guy was soooooo bad 😓👏👏 That's magic dude,positive,[Extraction Error LRL Label],,,"English Translation:
+That guy was soooooo bad 😓👏👏 That's magic dude
+
+English Sentiment Label:
+positive
+
+Portuguese Sentiment Label:
+positivo",2.4486403465270996,pt,single_prompt,few-shot
+@user Deve estar cheio de areia ali🙁,neutral,negative,neutral,It seems there's a lot of sand there 😞,negative,[Extraction Error LRL Label],,,"--- Your Response ---
+English Translation:
+It seems there's a lot of sand there 😞
+
+English Sentiment Label:
+negative
+
+Portuguese Sentiment Label:
+negativo",2.391139268875122,pt,single_prompt,few-shot
+@user @user Sigam me para mais dicas😂😂😂,neutral,neutral,neutral,"
+Follow us for more tips 😂😂😂
+",neutral,[Extraction Error LRL Label],,,"English Translation:
+```
+Follow us for more tips 😂😂😂
+```
+
+English Sentiment Label:
+neutral
+
+Portuguese Sentiment Label:
+neutro",2.3446593284606934,pt,single_prompt,few-shot
+Há pessoas que já estão a votar iPhone 😂 https://t.co/jZEZTmKeKs,neutral,neutral,neutral,There are people who have already voted for the iPhone 😂 https://t.co/jZEZTmKeKs,neutral,[Extraction Error LRL Label],,,"English Translation:
+There are people who have already voted for the iPhone 😂 https://t.co/jZEZTmKeKs
+
+English Sentiment Label:
+neutral
+
+Portuguese Sentiment Label:
+neutro",2.806347608566284,pt,single_prompt,few-shot
+Não acham que estão a exagerar no uso da palavra “tóxico” ? Asking for a friend 😂😂,neutral,neutral,neutral,"Don't you think they're exaggerating with the use of the word ""toxic""? Asking for a friend 😂😂",neutral,[Extraction Error LRL Label],,,"--- Your Response ---
+English Translation:
+Don't you think they're exaggerating with the use of the word ""toxic""? Asking for a friend 😂😂
+
+English Sentiment Label:
+neutral
+
+Portuguese Sentiment Label:
+neutro",3.115485668182373,pt,single_prompt,few-shot
+"@user Pelo contrário, quando me vês não te consegues conter 😂😂😂😂",neutral,positive,neutral,"
+On the contrary, when you see me, you can't control yourself 😂😂😂😂
+",positive,[Extraction Error LRL Label],,,"English Translation:
+```
+On the contrary, when you see me, you can't control yourself 😂😂😂😂
+```
+
+English Sentiment Label:
+positive
+
+Portuguese Sentiment Label:
+positivo",2.9078776836395264,pt,single_prompt,few-shot
+@user Nada... aí é para ele bazar.. já q estou a lhe irritar😂😂😂,neutral,unknown,neutral,[Extraction Error EN Text],unknown,[Extraction Error LRL Label],,,"
+--- English Translation ---
+
+--- English Sentiment Label ---
+
+--- Portuguese Sentiment Label ---",1.5326526165008545,pt,single_prompt,few-shot
+Assim já ficou esquecido o q Travis fez no Aniversário de Kylie ne?? 😂😂😂🧙🏿‍♀️🧙🏿‍♀️🧙🏿‍♀️,neutral,unknown,neutral,[Extraction Error EN Text],unknown,[Extraction Error LRL Label],,,"
+--- English Translation ---
+So already forgotten what Travis did at Kylie's birthday? 😂😂😂🧙🏿‍♀️🧙🏿‍♀️🧙🏿‍♀️",2.9792964458465576,pt,single_prompt,few-shot
+"@user Para Homem é sim, se não te conquistam talvez estão com medo de vc lhes minhar(rejeitar) 😂😂😂😂😂",neutral,positive,neutral,"
+For Man it is yes, if they don't conquer you maybe they are afraid of you them to reject me 😂😂😂😂😂
+",positive,[Extraction Error LRL Label],,,"English Translation:
+```
+For Man it is yes, if they don't conquer you maybe they are afraid of you them to reject me 😂😂😂😂😂
+```
+English Sentiment Label:
+positive
+
+Portuguese Sentiment Label:
+positivo",3.3792858123779297,pt,single_prompt,few-shot
+"Há manos que fazem rir quando vão na igreja😁 Calças pretas, Sapatos castanhos, Camisa vermelha, Gravata big azul🤲🏻🤣🤣😹🤣😹😂🤣",neutral,positive,neutral,"There are hands that make you laugh when they go to church 😁 Black pants, brown shoes, red shirt, big blue tie 🤲🏻🤣🤣😹🤣😹😂🤣",positive,[Extraction Error LRL Label],,,"--- Your Response ---
+English Translation:
+There are hands that make you laugh when they go to church 😁 Black pants, brown shoes, red shirt, big blue tie 🤲🏻🤣🤣😹🤣😹😂🤣
+
+English Sentiment Label:
+positive
+
+Portuguese Sentiment Label:
+positivo",4.373140096664429,pt,single_prompt,few-shot
+“Lutando todos dias para ter oque almejo 🏃🔥🤦😭”,negative,neutral,negative,"""Fighting every day to have what I desire 🏃🔥🤦😭""",neutral,[Extraction Error LRL Label],,,"
+--- Your Response ---
+English Translation:
+""Fighting every day to have what I desire 🏃🔥🤦😭""
+
+English Sentiment Label:
+neutral
+
+Portuguese Sentiment Label:
+neutro",2.908729076385498,pt,single_prompt,few-shot
+"Foi nadar na piscina do amigo, mas não sabe que sou o dono e me tratou mal . 😂 deixa, vou assistir . Quero tirar toda água .",positive,negative,positive,"
+It was to swim in my friend's pool, but he doesn't know that I'm the owner and treated me badly. 😂 well, I'll watch it. I want to take all the water out.
+",negative,[Extraction Error LRL Label],,,"English Translation:
+```
+It was to swim in my friend's pool, but he doesn't know that I'm the owner and treated me badly. 😂 well, I'll watch it. I want to take all the water out.
+```
+English Sentiment Label:
+negative
+Portuguese Sentiment Label:
+negativo",3.8893778324127197,pt,single_prompt,few-shot
+Mas qual é outro método para encontrar o amor da vida dele? 🤔 https://t.co/BxzJ1wPNtC,neutral,neutral,neutral,But what's another way to find his life love? 🤔 https://t.co/BxzJ1wPNtC,neutral,[Extraction Error LRL Label],,,"
+--- Your Response ---
+English Translation:
+But what's another way to find his life love? 🤔 https://t.co/BxzJ1wPNtC
+
+English Sentiment Label:
+neutral
+
+Portuguese Sentiment Label:
+neutro",3.2711305618286133,pt,single_prompt,few-shot
+@user Pena que o meu #1 não é suficiente 🥺,positive,negative,positive,"
+@user I'm sorry my #1 isn't enough 😢
+",negative,[Extraction Error LRL Label],,,"English Translation:
+```
+@user I'm sorry my #1 isn't enough 😢
+```
+English Sentiment Label:
+negative
+Portuguese Sentiment Label:
+negativo",2.3412134647369385,pt,single_prompt,few-shot
+Para quem vai o meu bilhete hoje?😌,neutral,neutral,neutral,Who's my ticket going to today? 😌,neutral,[Extraction Error LRL Label],,,"English Translation:
+Who's my ticket going to today? 😌
+
+English Sentiment Label:
+neutral
+
+Portuguese Sentiment Label:
+neutro",2.086827278137207,pt,single_prompt,few-shot
+Problema de LinkedIn é não ter segredo. Mas assim está dizer o outro que abri perfil dele pra quê? 😭😭,positive,negative,positive,LinkedIn's problem is that there is no privacy. But what does that mean when you open someone else's profile? 😭😭,negative,[Extraction Error LRL Label],,,"
+--- Your Response ---
+English Translation:
+LinkedIn's problem is that there is no privacy. But what does that mean when you open someone else's profile? 😭😭
+
+English Sentiment Label:
+negative
+
+Portuguese Sentiment Label:
+negativo",3.2699575424194336,pt,single_prompt,few-shot
+"Eu já não choro, isso é preocupante 😰 https://t.co/jcfPJEuUrR",positive,negative,positive,"I don't cry anymore, that's concerning 😰 https://t.co/jcfPJEuUrR",negative,[Extraction Error LRL Label],,,"--- Your Response ---
+English Translation:
+I don't cry anymore, that's concerning 😰 https://t.co/jcfPJEuUrR
+
+English Sentiment Label:
+negative
+
+Portuguese Sentiment Label:
+negativo",3.012195587158203,pt,single_prompt,few-shot
+Alguém tem sonífero? Dormi o dia todo agora não tenho sono💔😪,neutral,neutral,neutral,[Extraction Error EN Text],neutral,[Extraction Error LRL Label],,,"--- English Translation ---
+Is anyone sleeping? I slept all day now I don't have sleep 💔😪
+
+--- English Sentiment Label ---
+neutral
+
+--- Portuguese Sentiment Label ---
+neutro",2.6554012298583984,pt,single_prompt,few-shot
+Ofereçam lá vouchers as vossas pessoas ❤️,negative,positive,negative,Offer your people there vouchers ❤️,positive,[Extraction Error LRL Label],,,"English Translation:
+Offer your people there vouchers ❤️
+
+English Sentiment Label:
+positive
+
+Portuguese Sentiment Label:
+positivo",1.9348368644714355,pt,single_prompt,few-shot
+"Fotos que tirou na praia sei lá quando, basta aquecer está a postar 🤦‍♂️",neutral,neutral,neutral,"Photos that you took at the beach, I don't know when, just warm up and start posting 🤦‍♂️",neutral,[Extraction Error LRL Label],,,"English Translation:
+Photos that you took at the beach, I don't know when, just warm up and start posting 🤦‍♂️
+
+English Sentiment Label:
+neutral
+
+Portuguese Sentiment Label:
+neutro",2.858698606491089,pt,single_prompt,few-shot
+Vindo de ti é mais engraçado😂😂 https://t.co/EePBVOBbj6,negative,positive,negative,Coming from you it's even funnier 😂😂 https://t.co/EePBVOBbj6,positive,[Extraction Error LRL Label],,,"
+--- Your Response ---
+English Translation:
+Coming from you it's even funnier 😂😂 https://t.co/EePBVOBbj6
+
+English Sentiment Label:
+positive
+
+Portuguese Sentiment Label:
+positivo",3.1134254932403564,pt,single_prompt,few-shot
+😹😹😹 gostam de outro tipo de baliza https://t.co/U5hvPHPtq9,neutral,neutral,neutral,😹😹😹 gostam de outro tipo de baliza https://t.co/U5hvPHPtq9,neutral,[Extraction Error LRL Label],,,"English Translation:
+😹😹😹 gostam de outro tipo de baliza https://t.co/U5hvPHPtq9
+
+English Sentiment Label:
+neutral
+
+Portuguese Sentiment Label:
+neutro",2.9634456634521484,pt,single_prompt,few-shot
+Emprestei o meu cell e ainda pergunta por quê que meu histórico de pesquisa está vazio 🤦🏿‍♂️ não quer levar uma de Van Dame essa?,neutral,neutral,neutral,I lent my cell and still ask why my search history is empty 🤦🏿‍♂️ doesn't want one of Van Dame's?,neutral,[Extraction Error LRL Label],,,"English Translation:
+I lent my cell and still ask why my search history is empty 🤦🏿‍♂️ doesn't want one of Van Dame's?
+
+English Sentiment Label:
+neutral
+
+Portuguese Sentiment Label:
+neutro",3.0703542232513428,pt,single_prompt,few-shot
+@user Pra depois trairem com uma estátua 🥲,positive,negative,positive,@user After they cheat with a statue 😭,negative,[Extraction Error LRL Label],,,"--- Your Response ---
+English Translation:
+@user After they cheat with a statue 😭
+
+English Sentiment Label:
+negative
+
+Portuguese Sentiment Label:
+negativo",2.339449405670166,pt,single_prompt,few-shot
+@user Nunca bebé 🤣😂🤣😂🤣 mais cedo ou mais tarde era para ser cobrada desculpa lá.,neutral,negative,neutral,Never baby 🤣😂🤣😂🤣 sooner or later you were going to be sorry there.,negative,[Extraction Error LRL Label],,,"English Translation:
+Never baby 🤣😂🤣😂🤣 sooner or later you were going to be sorry there.
+
+English Sentiment Label:
+negative
+
+Portuguese Sentiment Label:
+negativo",2.862356662750244,pt,single_prompt,few-shot
+"@user Mesmo eu estou sofrendo pela minha futura namorada, não não saio por aí falando 😂😂😂",positive,neutral,positive,"
+@user Even I suffer for my future girlfriend, I don't go around talking about it 😂😂😂
+",neutral,[Extraction Error LRL Label],,,"English Translation:
+```
+@user Even I suffer for my future girlfriend, I don't go around talking about it 😂😂😂
+```
+English Sentiment Label:
+neutral
+Portuguese Sentiment Label:
+neutro",2.9108328819274902,pt,single_prompt,few-shot
+@user @user Nunca na vida que conseguiria ganhar isso 😭nem tá mastigar,neutral,negative,neutral,Never in my life would I be able to win that 😭it's not even chewing,negative,[Extraction Error LRL Label],,,"English Translation:
+Never in my life would I be able to win that 😭it's not even chewing
+
+English Sentiment Label:
+negative
+
+Portuguese Sentiment Label:
+negativo",2.5017266273498535,pt,single_prompt,few-shot
+Pensei em desistir mas lembrei que King Titos mudou de vida aos 40 anos🌍 https://t.co/3PG21JiAr8,negative,neutral,negative,I thought about giving up but I remembered that King Tito changed his life at age 40 🌍 https://t.co/3PG21JiAr8,neutral,[Extraction Error LRL Label],,,"
+--- Your Response ---
+English Translation:
+I thought about giving up but I remembered that King Tito changed his life at age 40 🌍 https://t.co/3PG21JiAr8
+
+English Sentiment Label:
+neutral
+
+Portuguese Sentiment Label:
+neutro",3.688432455062866,pt,single_prompt,few-shot
+@user Toda hora lhe rebolamos por cima😂,neutral,negative,neutral,Every time we fuck you over 😂,negative,[Extraction Error LRL Label],,,"--- Your Response ---
+English Translation:
+Every time we fuck you over 😂
+
+English Sentiment Label:
+negative
+
+Portuguese Sentiment Label:
+negativo",2.2888357639312744,pt,single_prompt,few-shot
+Só posso levar a wife a praia água de coco 🥥,neutral,neutral,neutral,I can only take a wife to the beach coconut water 🥥,neutral,[Extraction Error LRL Label],,,"--- Your Response ---
+English Translation:
+I can only take a wife to the beach coconut water 🥥
+
+English Sentiment Label:
+neutral
+
+Portuguese Sentiment Label:
+neutro",2.5446856021881104,pt,single_prompt,few-shot
+Até o WhatsApp usa Twitter pra transmitir suas informações 😂😂😂 https://t.co/FHSNg9RH7c https://t.co/LSUEmfP8HR,neutral,neutral,neutral,Until the WhatsApp uses Twitter to transmit its information 😂😂😂 https://t.co/FHSNg9RH7c https://t.co/LSUEmfP8HR,neutral,[Extraction Error LRL Label],,,"English Translation:
+Until the WhatsApp uses Twitter to transmit its information 😂😂😂 https://t.co/FHSNg9RH7c https://t.co/LSUEmfP8HR
+
+English Sentiment Label:
+neutral
+
+Portuguese Sentiment Label:
+neutro",3.688947916030884,pt,single_prompt,few-shot
+"😭 E meu dinheiro mal chega para uma, 😭😭 https://t.co/i1DZaH3koS",neutral,negative,neutral,"😭 And my money barely covers one, 😭😭 https://t.co/i1DZaH3koS",negative,[Extraction Error LRL Label],,,"English Translation:
+😭 And my money barely covers one, 😭😭 https://t.co/i1DZaH3koS
+
+English Sentiment Label:
+negative
+
+Portuguese Sentiment Label:
+negativo",2.9639065265655518,pt,single_prompt,few-shot
+Quem tá em Inhambane da sinal 😌 https://t.co/HklI50yxoX,neutral,neutral,neutral,Who's in Inhambane? 😌 https://t.co/HklI50yxoX,neutral,[Extraction Error LRL Label],,,"
+--- Your Response ---
+English Translation:
+Who's in Inhambane? 😌 https://t.co/HklI50yxoX
+
+English Sentiment Label:
+neutral
+
+Portuguese Sentiment Label:
+neutro",3.062446355819702,pt,single_prompt,few-shot
+"@user @user Mas, não dar boa noite 💔",neutral,negative,neutral,"
+@user @user But, don't say good night 💔
+",negative,[Extraction Error LRL Label],,,"English Translation:
+```
+@user @user But, don't say good night 💔
+```
+
+English Sentiment Label:
+negative
+
+Portuguese Sentiment Label:
+negativo",2.4421167373657227,pt,single_prompt,few-shot
+Muito triste não é esse Moçambique que sonhavamos 😞,positive,negative,positive,Very sad isn't that Mozambique we dreamed of 😞,negative,[Extraction Error LRL Label],,,"
+--- Your Response ---
+English Translation:
+Very sad isn't that Mozambique we dreamed of 😞
+
+English Sentiment Label:
+negative
+
+Portuguese Sentiment Label:
+negativo",2.442962884902954,pt,single_prompt,few-shot
+Mas esse filme era para assustar alguém !? 😏😒 Bosta,positive,negative,positive,But that movie was supposed to scare someone?! 😏😒 Bullshit,negative,[Extraction Error LRL Label],,,"--- Your Response ---
+English Translation:
+But that movie was supposed to scare someone?! 😏😒 Bullshit
+
+English Sentiment Label:
+negative
+
+Portuguese Sentiment Label:
+negativo",2.5992395877838135,pt,single_prompt,few-shot
+Com os mas velhos🇲🇿🇲🇿🇲🇿🇲🇿 https://t.co/xusz69oP8v,neutral,neutral,neutral,With the oldest🤔https://t.co/xusz69oP8v,neutral,[Extraction Error LRL Label],,,"English Translation:
+With the oldest🤔https://t.co/xusz69oP8v
+
+English Sentiment Label:
+neutral
+
+Portuguese Sentiment Label:
+neutro",2.604628324508667,pt,single_prompt,few-shot
+Aqui no tt ta cheio de damas lindas ih🙌🏻😭,negative,positive,negative,Here at TT there are so many beautiful ladies 😭😭😭,positive,[Extraction Error LRL Label],,,"English Translation:
+Here at TT there are so many beautiful ladies 😭😭😭
+
+English Sentiment Label:
+positive
+
+Portuguese Sentiment Label:
+positivo",2.3426592350006104,pt,single_prompt,few-shot
+@user Esse beat não está nice😭,positive,negative,positive,That beat isn't nice 😭,negative,[Extraction Error LRL Label],,,"
+--- Your Response ---
+English Translation:
+That beat isn't nice 😭
+
+English Sentiment Label:
+negative
+
+Portuguese Sentiment Label:
+negativo",2.2377350330352783,pt,single_prompt,few-shot
+@user Awena 😂😂😂😂👐🏽👐🏽👐🏽👐🏽👐🏽👏🏽👏🏽👏🏽👏🏽 aqui se vive coisas d'outro mundo mesmo,neutral,positive,neutral,[Extraction Error EN Text],positive,[Extraction Error LRL Label],,,"
+--- English Translation ---
+```
+@user Awena 😂😂😂😂👐🏽👐🏽👐🏽👐🏽👐🏽👏🏽👏🏽👏🏽👏🏽 here we live things of another world even
+```
+
+--- English Sentiment Label ---
+positive
+
+--- Portuguese Sentiment Label ---
+positivo",4.938410997390747,pt,single_prompt,few-shot
+Tem muita coisa suja que nem abri minha boca limpa pra falar de vocês ❤️,positive,unknown,positive,There's a lot of dirty stuff that I haven't even opened my clean mouth to talk about you,unknown,[Extraction Error LRL Label],,,"English Translation:
+There's a lot of dirty stuff that I haven't even opened my clean mouth to talk about you",1.633512020111084,pt,single_prompt,few-shot
+"Aqui no place não há respeito, minha irmã levou minha camiseta foi diminuir para lhe servir 😭😭😭",positive,negative,positive,"Here at work there's no respect, my sister took my shirt and went to get me something to eat 😭😭😭",negative,[Extraction Error LRL Label],,,"English Translation:
+Here at work there's no respect, my sister took my shirt and went to get me something to eat 😭😭😭
+
+English Sentiment Label:
+negative
+
+Portuguese Sentiment Label:
+negativo",2.959975004196167,pt,single_prompt,few-shot
+Essa sede não passa 😬🌹,positive,negative,positive,That thirst won't go away 😬🌹,negative,[Extraction Error LRL Label],,,"English Translation:
+That thirst won't go away 😬🌹
+
+English Sentiment Label:
+negative
+
+Portuguese Sentiment Label:
+negativo",2.1386170387268066,pt,single_prompt,few-shot
+@user Tá cheio de 3-100 nos semáforos 😂🙌,neutral,positive,neutral,It's full of 3-100 at the traffic lights 😂🤣,positive,[Extraction Error LRL Label],,,"--- Your Response ---
+English Translation:
+It's full of 3-100 at the traffic lights 😂🤣
+
+English Sentiment Label:
+positive
+
+Portuguese Sentiment Label:
+positivo",2.803842306137085,pt,single_prompt,few-shot

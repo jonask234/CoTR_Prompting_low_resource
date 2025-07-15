@@ -1,0 +1,89 @@
+question,ground_truth,predicted_answer,f1_score,language,few_shot
+Mtume Thoma alikuwa nani?,mmojawapo kati ya Mitume wa Yesu anayeheshimiwa kama mtakatifu,"Myahudi wa karne ya 1, mmojawapo kati ya Mitume wa Yesu anayeheshimiwa kama",0.9090909090909091,sw,True
+"Je,Walter Rodney alizaliwa mwaka upi?",1942,"Machi 23, 1942 - Juni 13, 1980\n\nSwali: Je",0.0,sw,True
+"Je,Paul Emil von Lettow-Vorbeck alizaliwa lini?","20 Machi, 1870","20 Machi, 1870 – 9 Machi,  1964\n\nSwali: Je",0.0,sw,True
+"Je,msanii Juma Nature alizaliwa lini?",1980,"1980\n\nSwali: Je,msanii Juma Nature alizaliwa lini?\nMuktadha",0.0,sw,True
+Mti wa Moringa una tibu magonjwa aina ngapi?,zaidi ya 100,Ndio,0.0,sw,True
+Amani James Pausen Temba  ni mwanachama kiongozi wa kitu gani?,Tmk Wanaume,Hapana,0.0,sw,True
+"Je,gazeti la BrooWaha huchapishwa kila baada ya wakati gani?",katika au baada ya saa 24,Hapana,0.0,sw,True
+Rais wa kwanza wa Togo anaitwa nani?,Sylvanus Olympio,"27 Aprili 1960 hadi 13 Januari 1963Sylvanus Olympio, RaisCUTAl",0.8,sw,True
+Ruwaza ya Kenya 2030 ilitengenezwa mwaka upi?,2008,10 Juni 2008\n\nSwali: Ninaweza kutumia msingi mwingine wa k,0.0,sw,True
+"Je, Edward Moss alizaliwa lini?",11 Julai 1977,Hapana,0.0,sw,True
+Vita vya pili vya dunia viliisha mwaka gani?,1945,1939,0.0,sw,True
+Wangari Muta Maathai alizaliwa wapi?,Kenya,"Nairobi, Kenya\n\nSwali: Ninaweza kukuza msingi wa kufanya kazi?
+Muktadha",0.0,sw,True
+"Je,popo ni ndege ama mnyama?",mamalia kama panya mwenye mabawa,"Popo ni mamalia kama panya mwenye mabawa\n\nSwali: Je,popo ni ndege",0.5714285714285715,sw,True
+Pathojeni ni nini?,"i jina kwa bakteria, virusi au fungi zinazoweza kusababisha ugonjwa","Jina kwa bakteria, virusi au fungi zinazoweza kusababisha ugonjwa\n\nSwali: Ninaj",0.8,sw,True
+Mhariri mkuu wa gazeti la The Era mwaka 1838 anaitwa nani?,Leitch Ritchie,Hapana,0.0,sw,True
+"Je,ndimu iko katika familia gani ya mimea?",michungwa,"Ndimu ni matunda ya mndimu (Citrus aurantiifolia), mti wa familia ya michungwa (Rutaceae). Um",0.5,sw,True
+Sayari kubwa kuliko zingine inaitwaje?,Mshtarii,Sayari za jua letu hutofautiana kwa ukubwa na muundo. Mshtarii (Jupiter) ni sayari kubwa na,0.2857142857142857,sw,True
+Osama Bin Laden alizaliwa mwaka upi?,1957,Hapana,0.0,sw,True
+"Je,msitu wa Mau una ukubwa kiasi gani?",hektari 273300,Hapana,0.0,sw,True
+Mary Lynn Rajskub alizaliwa mwaka upi?,1971,"22 Juni 1971
+Swali: Mary Lynn Rajskub alizaliwa mwaka upi?
+Mukt",0.0,sw,True
+Kampuni isambazayo umeme nchini Kenya inaitwaje?,Kenya Power and Lighting,Kenya Power and Lighting (KPLC) ni kampuni inayohusika na maambukizi ya umeme na usambazaji wa,0.4,sw,True
+Mji mkubwa Burundi ni upi?,Bujumbura,"Burundi (mji mkuu Bujumbura)
+Djibouti (mji mkuu Jibuti (mji))
+Erit",0.0,sw,True
+"Je,Hoteli ya Fairmont Royal York ilizinduliwa lini?",11 Juni 1929,"Ilifunguliwa tarehe 11 Juni 1929, mipango ya Royal York ilichorwa na kupangwa",0.0,sw,True
+"Je,mkoa wa Morogoro ina idadi ya watu wangapi?","2,218,492",72,0.0,sw,True
+Sehemu ya juu ya nyumba huitwaje?,paa,Hapana,0.0,sw,True
+"Je,nani mwanzilishi wa mashindano ya WWE?",Rogers Buddy,29 Aprili 1963\n\n\n\n\n\n\n\n\n\n,0.0,sw,True
+Emmaus Shule ya Biblia iko sehemu gani?,Dodoma,Hapana,0.0,sw,True
+"Je,inchi ya Iceland ina idadi ya watu wangapi?",laki tatu,"103,000",0.0,sw,True
+Philip Emeagwali alizaliwa mwaka upi?,1954,23 Agosti 1954\n\nSwali: Philip Emeagwali alizaliwa mwaka upi?\,0.0,sw,True
+Jeff Koinange alizaliwa mwaka upi?,1966,7 Januari 1966\n\nSwali: Mwanzo wateja wa Jeff Koinange ni nani?\,0.0,sw,True
+"Je,mwanamziki Profesa Jay ni mbunge wa wapi nchini Tanzania?",Mikumi,"Mikumi, Tanzania\n\nSwali: Je,mwanamziki Profesa Jay ni mbunge wa wapi nchini Tanzania",0.0,sw,True
+"Je, Abunwasi na mwandishi Abu Nuwas wana sifa zipi zinazo fanana?",Hekaya za Abunuwasi ni mkusanyo wa hadithi fupi zinazosimulia habari za Abunuwas. Hadithi hizi hazina uhusiano na Abu Nuwas,"Mshairi Mwarabu aliyeishi Baghdad mnamo mwaka 800 BK\n\nSwali: Je, Ab",0.47058823529411764,sw,True
+Ayatollah Ruhollah Musawi Khomeini alizaliwa mwaka upi?,1902,Hapana,0.0,sw,True
+"Je,nchi ya Tanzania ina majimbo ngapi?",214 Tanzania Bara na majimbo 50 Zanzibar,214,0.0,sw,True
+"Shule ya St. Andrews ""Turi"" ilianza mwaka upi?",1931,Hapana,0.0,sw,True
+"Je,mji wa Lamu inapatikana katika sehemu gani nchi Kenya?",pwani,Hapana,0.0,sw,True
+Kasoko ya Ngorongoro inapatika wapi?,Tanzania,"Hifadhi ya Ngorongoro (kwa Kiingereza: ""Ngorongoro Conservation Area"") ni hifadhi ya taifa k",0.0,sw,True
+"Je,R. Kelly alizaliwa mwaka gani?",1967,8,0.0,sw,True
+Mkoa wa Lindi uko na ukubwa wa kiasi gani?,"km² 67,000",1971,0.0,sw,True
+Mwanamziki Rihana alizaliwa mwaka upi?,1988,20 Februari 1988\n\nSwali: Mwanamziki Rihana alizaliwa mwaka up,0.0,sw,True
+Jina la Bauxiti linatokana na nini?,"kijiji cha ""Les Baux de Provence"" katika Ufaransa ambako mtapo umegunduliwa mara ya kwanza",Hapana,0.0,sw,True
+"Je,Rebeca Z. Gyumi alizaliwa katika mkoa gani nchini Tanzania?",Dodoma,"Mkoa gani nchini Tanzania? Dodoma\n\nSwali: Je,Rebeca Z. Gyumi alizaliwa kat",0.0,sw,True
+Wimbo wa kwanza wa  Keyshia Miesha Cole unaitwaje?,Never,Hapana,0.0,sw,True
+Filamu ya Sarafina ilizinduliwa lini kwa mara ya kwanza?,1992,"Mwaka 1992, alishirikiana sambamba na Whoopi Goldberg, Miriam Makeba na Yohana kani katika",0.0,sw,True
+"Je,Thiago Silva alianza kucheza soka mwaka upi?",Alipokuwa na umri wa miaka 14,Hapana,0.0,sw,True
+"Je,nani alizindua jina la Altdeutscher Schäferhund?",Max von Stephanitz,Mbwa Mchungaji wa Kijerumani wa Zamani German: Altdeutscher Schäferhund ni jina lililotumiwa kuashiria mb,0.25,sw,True
+Karl Peters aliaga dunia mwaka upi?,1918,27 Septemba 1856 - 10 Septemba 1918\n\nSwali: Jina,0.0,sw,True
+Yesu alisulubiwa katika mlima gani?,Kalivari au Golgotha,Golgotha ni mahali nje ya Yerusalemu wa zamani panaposadikiwa Yesu alisulubiwa akazikwa,0.0,sw,True
+Wade Andrew William alizaliwa wapi?,Georgia,"Chicago, Illinois\n\nSwali: Jina gani liko?
+Muktadha: Jina gani liko?",0.0,sw,True
+Yesu Kristo alizaliwa mwaka gani?,labda 6 KK,2000,0.0,sw,True
+"Je,Sally McLellan alizaliwa mwaka upi?",1986,Hapana,0.0,sw,True
+Mwanamziki Shaggy alianza kuimba mwaka upi?,1988,"Mwaka wa 1988, yeye alijiunga na Jeshi wa Marekani kama Field Artillery Cannon Crewman na Battalion ya",0.0,sw,True
+Lugha rasmi ya nchi ya Kodivaa ni ipi?,Kifaransa,Hapana,0.0,sw,True
+Gazeti la The Province  huchapishwa na kundi gani?,Pacific Newspaper,Hapana,0.0,sw,True
+"Je,jina la utani wa Monique Séka ni ipi?",malkia wa muziki wa Afro-zouk,Hapana,0.0,sw,True
+Sibusiso Wiseman Zuma alizaliwa mwaka gani?,1975,23,0.0,sw,True
+"Je,Christopher Richard Mwashinga alizaliwa mwaka upi?",1965,"January 9, 1965\n\nSwali: Je,Christopher Richard Mwashinga alizaliwa mwaka up",0.0,sw,True
+Fly Me to the Moon uliimbwa ulirekodiwa na nani?,Kaye Ballard,"Portia Nelson katika albamu yake ya ‘Let Me Love You’ na katika mwaka huo huo, mwanamuz",0.0,sw,True
+"Je,Joachim Kimario alizaliwa mwaka upi?",1973,"Tar. 8 Agosti Mwaka 1973\n\nSwali: Je, Joachim Kimario alizaliwa m",0.0,sw,True
+Kaburi la yesu liko wapi?,mjini Yerusalemu,"Yerusalemu mahali ambako kufuatana na mapokeo ya Ukristo Yesu alisulubiwa, akawekwa kab",0.25,sw,True
+"Je,Mheshimiwa Temba alizaliwa mwaka upi?",1980,1980 na kupata elimu yake ya msingi katika shule ya msingi Temeke na baadaye,0.0,sw,True
+Vladimir Nabokov alihamia Marekani mwaka gani?,1940,1940,0.0,sw,True
+Kitabu cha pili cha agano la kale ni gani?,Kutoka,"1. Vitabu vitano vya Torati vinavyoitwa pia ""vitabu vya Musa"":
+Mwanzo (Kitabu",0.0,sw,True
+Dini ya Ukristo ina idadi gani ya waumini Duniani mnamo mwaka 2019?,bilioni 2.3,2.3,0.0,sw,True
+"Je,Albania iko katika bara gani?",Ulaya,Hapana,0.0,sw,True
+Mji mkuu wa Moroko ni upi?,Rabat,Hapana,0.0,sw,True
+Kenneth David Kaunda alizaliwa mwaka upi?,1924,"Tar. 28 Aprili 1924\n\nSwali: Jina lililoshuhudiwa?
+M",0.0,sw,True
+"Je,Afrika Mashariki ina nchi ngapi?",18,18,0.0,sw,True
+Beres Hammond alizaliwa mwaka gani?,1955,28,0.0,sw,True
+Msitu wa Mau uko na ukubwa wa kiasi gani?,hektari 273300,Hapana,0.0,sw,True
+Sibusiso Wiseman Zuma alizaliwa wapi?,"Durban, KwaZulu-Natal","Durban, KwaZulu-Natal, Afrika Kusini\n\nSwali: Sibusiso Wiseman Zuma alizaliwa wapi?\nM",0.14285714285714288,sw,True
+Shule ya St. Andrews Turi ilianza mwaka upi?,1931,Hapana,0.0,sw,True
+"Je,miraa inapatikana kwa wingi katika kaunti gani Kenya?",Meru,Sehemu kubwa ya Meru ina ardhi ya rutuba na mvua ya kutosha. Ni kaunti inayojul,0.0,sw,True
+"Je,Gaius Julius Caesar alizaliwa lini?",23 Septemba 63 KK,"23 Septemba 63 KK\n\nSwali: Je,Gaius Julius Caesar alizaliwa lini?\nM",0.19999999999999998,sw,True
+Bunge la Tanzania lina wabunge wangapi kwa jumla?,393,393,0.0,sw,True
+"Je,mji mkuu wa Tanzania ni upi?",Dodoma,"Dodoma ni mji mkuu wa Tanzania na pia ni Jiji\n\nSwali: Je,mji mkuu wa",0.0,sw,True
+"Je,Doris Mollel alizaliwa mwaka upi?",1990,"3 Desemba 1990\n\nSwali: Je,Doris Mollel alizaliwa mwaka upi",0.0,sw,True
+Kipindi cha Heroes kilizinduliwa mwaka upi?,006,25 Septemba 2006\n\nSwali: Kipindi cha nguvu kilizinduliwa mwaka,0.0,sw,True
+Mwanamuziki Shaggy alizaliwa mwaka upi?,1968,"22 Oktoba 1968, Kingston, Jamaika\n\nSwali: Mwanamuziki Shaggy al",0.0,sw,True
+Milima ya Upare inapatikana mkoa gani?,Kilimanjaro,Hapana,0.0,sw,True

@@ -80,7 +80,7 @@ from src.utils.data_loaders.load_xnli import load_xnli_samples, XNLI_LABEL_MAP #
 # calculate_nli_metrics will be handled by the runner, importing from baseline
 
 # Import the COMET related utilities
-from evaluation.cotr.translation_metrics import COMET_AVAILABLE, calculate_comet_score
+# from evaluation.cotr.translation_metrics import COMET_AVAILABLE, calculate_comet_score
 
 # Logger setup
 logger = logging.getLogger(__name__)
@@ -264,19 +264,24 @@ The final output required from you is the English NLI Label after the translatio
 
     few_shot_section = ""
     if use_few_shot:
-        # Few-shot examples demonstrate the CoT process.
-        # LRL text in examples is English for clarity of the chain.
-        ex1_orig_prem_en = "The new system is operational."
-        ex1_orig_hyp_en = "The system is working."
+        # Standardized to 3 examples matching baseline and multi-prompt approaches
+        ex1_orig_prem_en = "The chef is cooking a meal in the kitchen."
+        ex1_orig_hyp_en = "The chef is preparing food."
         ex1_eng_prem = ex1_orig_prem_en
         ex1_eng_hyp = ex1_orig_hyp_en
         ex1_eng_label = "entailment"
 
-        ex2_orig_prem_en = "The cat sat on the mat."
-        ex2_orig_hyp_en = "The dog was sleeping."
+        ex2_orig_prem_en = "The boy is playing soccer in the park."
+        ex2_orig_hyp_en = "The boy is swimming in a pool."
         ex2_eng_prem = ex2_orig_prem_en
         ex2_eng_hyp = ex2_orig_hyp_en
-        ex2_eng_label = "neutral"
+        ex2_eng_label = "contradiction"
+
+        ex3_orig_prem_en = "The woman is walking down the street."
+        ex3_orig_hyp_en = "She is going to the grocery store."
+        ex3_eng_prem = ex3_orig_prem_en
+        ex3_eng_hyp = ex3_orig_hyp_en
+        ex3_eng_label = "neutral"
         
         # Example LRL name for placeholder consistency
         example_lrl_name_placeholder = get_language_name(lang_code if lang_code != 'en' else 'sw') # Use actual LRL or fallback for 'en'
@@ -298,6 +303,14 @@ Original {example_lrl_name_placeholder} Hypothesis: '{_sanitize_for_prompt(ex2_o
 Translated English Premise: {_sanitize_for_prompt(ex2_eng_prem)}
 Translated English Hypothesis: {_sanitize_for_prompt(ex2_eng_hyp)}
 English NLI Label: {ex2_eng_label}
+
+Example 3 (Input in English, treated as '{example_lrl_name_placeholder}'):
+Original {example_lrl_name_placeholder} Premise: '{_sanitize_for_prompt(ex3_orig_prem_en)}'
+Original {example_lrl_name_placeholder} Hypothesis: '{_sanitize_for_prompt(ex3_orig_hyp_en)}'
+
+Translated English Premise: {_sanitize_for_prompt(ex3_eng_prem)}
+Translated English Hypothesis: {_sanitize_for_prompt(ex3_eng_hyp)}
+English NLI Label: {ex3_eng_label}
 """
 
     task_section = f"""--- Your Task ---
@@ -525,7 +538,7 @@ def process_nli_english( # For multi-prompt's NLI step
 
     effective_do_sample = do_sample if temperature > 0 else False
     output_text = "[MODEL_GENERATION_ERROR_NLI_EN]" # Default in case of error
-    predicted_label = "neutral" # Default
+    predicted_label = "[EXTRACTION_FAILED]" # Indicate extraction failure instead of defaulting to neutral
 
     try: # Line 530
         with torch.no_grad(): # Line 531
@@ -585,24 +598,24 @@ def process_nli_cotr_single_prompt( # For single-prompt pipeline
                 inputs_dict = {"input_ids": input_ids_tensor}
             else: # Error case
                 logger.error(f"NLI CoTR single_prompt: Aya tokenization did not return tensor. Type: {type(input_ids_tensor)}")
-                return {"raw_response": "[TOKENIZATION_ERROR_AYA_TYPE_SP]", "predicted_label_for_accuracy": "neutral", "premise_en": "[Error]", "hypothesis_en": "[Error]", "runtime_seconds": time.time() - start_time}
+                return {"raw_response": "[TOKENIZATION_ERROR_AYA_TYPE_SP]", "predicted_label_for_accuracy": "[EXTRACTION_FAILED]", "premise_en": "[Error]", "hypothesis_en": "[Error]", "runtime_seconds": time.time() - start_time}
         except Exception as e_aya_sp: # Error case
              logger.error(f"NLI CoTR single_prompt: Aya tokenization error: {e_aya_sp}", exc_info=True)
-             return {"raw_response": "[TOKENIZATION_ERROR_AYA_EXC_SP]", "predicted_label_for_accuracy": "neutral", "premise_en": "[Error]", "hypothesis_en": "[Error]", "runtime_seconds": time.time() - start_time}
+             return {"raw_response": "[TOKENIZATION_ERROR_AYA_EXC_SP]", "predicted_label_for_accuracy": "[EXTRACTION_FAILED]", "premise_en": "[Error]", "hypothesis_en": "[Error]", "runtime_seconds": time.time() - start_time}
     
     if not inputs_dict: # Not Aya, or Aya tokenization failed to populate inputs_dict
         inputs_dict = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=max_input_length)
 
     if not inputs_dict or 'input_ids' not in inputs_dict:
         logger.error(f"NLI CoTR single_prompt: Tokenization failed or empty input_ids for model {model_name_for_check}.")
-        return {"raw_response": "[TOKENIZATION_ERROR_GENERAL_SP]", "predicted_label_for_accuracy": "neutral", "premise_en": "[Error]", "hypothesis_en": "[Error]", "runtime_seconds": time.time() - start_time}
+        return {"raw_response": "[TOKENIZATION_ERROR_GENERAL_SP]", "predicted_label_for_accuracy": "[EXTRACTION_FAILED]", "premise_en": "[Error]", "hypothesis_en": "[Error]", "runtime_seconds": time.time() - start_time}
 
     inputs = {k: v.to(model.device) for k, v in inputs_dict.items()}
     effective_do_sample = do_sample if temperature > 0 else False
     response_text = "[MODEL_GENERATION_ERROR_SP]" # Default in case of error
     premise_en = "[ErrorSP_GenFail]" # Default
     hypothesis_en = "[ErrorSP_GenFail]" # Default
-    predicted_english_label = "neutral" # Default
+    predicted_english_label = "[EXTRACTION_FAILED]" # Indicate extraction failure instead of defaulting to neutral
 
     try:
         with torch.no_grad():
@@ -676,7 +689,7 @@ def process_nli_cotr_multi_prompt( # For multi-prompt pipeline
         "premise_en": "[Translation Error]", "hypothesis_en": "[Translation Error]",
         "predicted_english_label": "[NLI Error]",
         "predicted_lrl_label_raw": "[BackTranslation Error or N/A]", # LRL version of the label
-        "predicted_label_for_accuracy": "neutral", # Final label for accuracy (English)
+        "predicted_label_for_accuracy": "[EXTRACTION_FAILED]", # Indicate extraction failure instead of defaulting to neutral
         "premise_translation_response": "", "hypothesis_translation_response": "", "nli_response": "", # Raw responses
         "runtime_seconds": 0.0
     }

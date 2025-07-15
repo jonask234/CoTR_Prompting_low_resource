@@ -12,11 +12,7 @@ import json # Added for robust parsing if needed
 # --- Global Logger ---
 logger = logging.getLogger(__name__)
 
-# Import COMET related utilities
-from evaluation.cotr.translation_metrics import COMET_AVAILABLE
-# Ensure calculate_comet_score is imported directly if used by that name, or aliased.
-# from evaluation.cotr.translation_metrics import calculate_comet_score as calculate_translation_quality
-from evaluation.cotr.translation_metrics import calculate_comet_score # Using direct name
+# COMET utilities removed - translation evaluation done separately with NLLB
 
 # Define language names globally for access by multiple functions
 LANG_NAMES = {
@@ -197,15 +193,15 @@ English Sentiment Label:"""
     few_shot_examples_text = f"""Here are some examples:
 
 Example 1:
-English Text: "This is a fantastic product, highly recommended!"
+English Text: "This movie was fantastic, I loved it!"
 English Sentiment Label: positive
 
 Example 2:
-English Text: "I am extremely disappointed with the quality and service."
+English Text: "I am not happy with the service provided."
 English Sentiment Label: negative
 
 Example 3:
-English Text: "The movie was okay, nothing special."
+English Text: "The meeting is scheduled for 3 PM."
 English Sentiment Label: neutral
 
 ---
@@ -297,16 +293,16 @@ def extract_sentiment_label_cotr(output_text: str, for_lrl_label: bool = False, 
                 if text_to_process == lrl_label_val.lower():
                     logger.debug(f"Extracted LRL label '{lrl_label_val}' for {lang_code}, mapped to English '{eng_label}' from '{output_text}'")
                     return eng_label # Return the English equivalent
-    else:
+        else:
             logger.warning(f"No LRL sentiment labels defined for lang_code: {lang_code} in SENTIMENT_LABELS_LRL")
 
     # 2. Try to match English labels directly
     # This is the primary target for English sentiment analysis step
     # or fallback if LRL extraction (above) didn't yield a result or wasn't requested.
-        for label in ENGLISH_SENTIMENT_LABELS:
+    for label in ENGLISH_SENTIMENT_LABELS:
         if text_to_process == label: # Exact match after cleaning
             logger.debug(f"Extracted English label '{label}' directly from '{output_text}'")
-                return label
+            return label
         # Check for common variations if needed, e.g., "the sentiment is positive"
         # The prefix removal should handle many of these.
 
@@ -316,13 +312,13 @@ def extract_sentiment_label_cotr(output_text: str, for_lrl_label: bool = False, 
     # For now, retaining similar logic to old script's keyword search.
     if "positive" in text_to_process or "good" in text_to_process :
         logger.debug(f"Extracted English label 'positive' via keyword from '{output_text}'")
-            return "positive"
+        return "positive"
     if "negative" in text_to_process or "bad" in text_to_process :
         logger.debug(f"Extracted English label 'negative' via keyword from '{output_text}'")
-            return "negative"
+        return "negative"
     if "neutral" in text_to_process : # "neutral" is less likely to have synonyms like good/bad
         logger.debug(f"Extracted English label 'neutral' via keyword from '{output_text}'")
-            return "neutral"
+        return "neutral"
         
     logger.warning(f"Could not extract standard sentiment from '{output_text}'. Cleaned: '{text_to_process}'. Defaulting to 'unknown'.")
     return "unknown" # Default if no clear label found
@@ -510,14 +506,7 @@ def evaluate_sentiment_cotr_multi_prompt(
                 model, tokenizer, original_text_lrl, lang_code, "en", False, model_name,
                 max_input_length=max_input_length, **text_translation_params
             )
-            if COMET_AVAILABLE and original_text_lrl and intermediate_en_text not in ["[Error]", "[Empty input to translate]", "[No translation generated]"] and lang_code != 'en':
-                try:
-                    # For text, COMET is typically calculated source-to-prediction, no reference needed if model is DA
-                    # If you have human gold translations, they should be used as references.
-                    score = calculate_comet_score(predictions=[intermediate_en_text], sources=[original_text_lrl])
-                    comet_lrl_text_to_en = score[0] if isinstance(score, list) and score else (score if isinstance(score, float) else None)
-                except Exception as e_comet:
-                    logger.warning(f"COMET LRL->EN text error (sample {idx}): {e_comet}")
+            # COMET score calculation removed - translation evaluation done separately with NLLB
 
             # 2. Classify English text
             predicted_en_label, raw_classify_out, rt_classify = process_sentiment_english(
@@ -531,19 +520,7 @@ def evaluate_sentiment_cotr_multi_prompt(
                     model, tokenizer, predicted_en_label, "en", lang_code, True, model_name,
                     max_input_length=max_input_length, **label_translation_params
                 )
-                if COMET_AVAILABLE and predicted_en_label != "unknown" and predicted_lrl_label_final not in ["[Error]", "[Empty input to translate]", "[No translation generated]"]:
-                    # Source for back-translation is the predicted EN label.
-                    # Reference is the canonical LRL translation of the *ground_truth_english_label*.
-                    if ground_truth_lrl_label_for_comet != ground_truth_english_label: # Only if a known LRL translation exists for GT
-                        try:
-                            score = calculate_comet_score(
-                            predictions=[predicted_lrl_label_final], 
-                                sources=[predicted_en_label], # Source of this specific translation
-                                references=[[ground_truth_lrl_label_for_comet]] # Gold standard LRL of the original GT English label
-                            )
-                            comet_en_label_to_lrl = score[0] if isinstance(score, list) and score else (score if isinstance(score, float) else None)
-                        except Exception as e_comet:
-                            logger.warning(f"COMET EN->LRL label error (sample {idx}): {e_comet}")
+                # COMET score calculation removed - translation evaluation done separately with NLLB
             elif lang_code == "en":
                 predicted_lrl_label_final = predicted_en_label # No back-translation
                 raw_trans_label_out = "[N/A for EN]"
@@ -558,6 +535,8 @@ def evaluate_sentiment_cotr_multi_prompt(
 
         results_list.append({
             'original_text_lrl': original_text_lrl,
+            'ground_truth_label': ground_truth_english_label,  # Add missing column for metrics
+            'predicted_label': predicted_en_label,  # Add missing column for metrics - maps to the English label for scoring
             'ground_truth_english_label': ground_truth_english_label,
             'intermediate_en_text': intermediate_en_text,
             'predicted_en_label': predicted_en_label, # This is the label used for accuracy/F1
@@ -588,6 +567,7 @@ def generate_single_prompt_sentiment_cotr(lrl_text: str, lang_code: str, use_few
     Few-shot examples (if used) are in English and demonstrate this 3-step process.
     """
     lrl_name = get_language_name(lang_code)
+    lrl_name_fs_display = lrl_name  # Fix for the NameError
     original_lrl_text_sanitized = _sanitize_for_prompt(lrl_text)
 
     # Core instructions - ALL IN ENGLISH
@@ -606,58 +586,68 @@ Your entire response must follow this three-step structure, with each step clear
 
     few_shot_section = ""
     if use_few_shot:
-        # Few-shot examples are in English text, demonstrating the process.
-        # LRL-specific parts are the input LRL text and the final LRL label.
-        # The intermediate English translation and English label are shown.
+        # Standardized to 3 examples matching baseline and multi-prompt approaches
+        # Example 1: Positive
+        example_lrl_text_fs_1 = "This movie was fantastic, I loved it!"
+        example_eng_translation_fs_1 = "This movie was fantastic, I loved it!"
+        example_eng_label_fs_1 = "positive"
+        example_lrl_label_fs_1 = SENTIMENT_LABELS_LRL.get(lang_code, {}).get('positive', 'positive')
 
-        # Define example variables based on lang_code - ALL EXAMPLES ARE ENGLISH-DRIVEN
-        # These examples show the *process* using English as the CoT language.
-        # The LRL text and LRL label are specific to the lang_code for the example.
-        example_lrl_text_fs = ""
-        example_eng_translation_fs = ""
-        example_eng_label_fs = "" # This will always be one of "positive", "negative", "neutral"
-        example_lrl_label_fs = "" # This will be the LRL translation of example_eng_label_fs
-        lrl_name_fs_display = lrl_name # Used in the example header, e.g., "Swahili Text"
+        # Example 2: Negative  
+        example_lrl_text_fs_2 = "I am not happy with the service provided."
+        example_eng_translation_fs_2 = "I am not happy with the service provided."
+        example_eng_label_fs_2 = "negative"
+        example_lrl_label_fs_2 = SENTIMENT_LABELS_LRL.get(lang_code, {}).get('negative', 'negative')
 
-        if lang_code == 'sw':
-            example_lrl_text_fs = "Huduma hii ni nzuri sana."
-            example_eng_translation_fs = "This service is very good."
-            example_eng_label_fs = "positive"
-            example_lrl_label_fs = SENTIMENT_LABELS_LRL.get('sw', {}).get('positive', 'chanya')
-        elif lang_code == 'ha':
-            example_lrl_text_fs = "Wannan fim din ya kasance mai ban sha'awa kwarai da gaske."
-            example_eng_translation_fs = "This film was very interesting indeed."
-            example_eng_label_fs = "positive"
-            example_lrl_label_fs = SENTIMENT_LABELS_LRL.get('ha', {}).get('positive', 'tabbatacce')
-        elif lang_code == 'pt':
-            example_lrl_text_fs = "Estou muito insatisfeito com a compra."
-            example_eng_translation_fs = "I am very dissatisfied with the purchase."
-            example_eng_label_fs = "negative"
-            example_lrl_label_fs = SENTIMENT_LABELS_LRL.get('pt', {}).get('negative', 'negativo')
-        else: # Fallback generic English example if lang_code not specified for examples
-            example_lrl_text_fs = f"A sample text in {lrl_name} that expresses a clear sentiment."
-            example_eng_translation_fs = "A sample text in English that expresses a clear sentiment (this is the translation)."
-            example_eng_label_fs = "positive" # Default example label
-            # Try to get LRL equivalent, or use a placeholder
-            example_lrl_label_fs = SENTIMENT_LABELS_LRL.get(lang_code, {}).get(example_eng_label_fs, f"{example_eng_label_fs}_in_{lrl_name}")
+        # Example 3: Neutral
+        example_lrl_text_fs_3 = "The meeting is scheduled for 3 PM."
+        example_eng_translation_fs_3 = "The meeting is scheduled for 3 PM."
+        example_eng_label_fs_3 = "neutral"
+        example_lrl_label_fs_3 = SENTIMENT_LABELS_LRL.get(lang_code, {}).get('neutral', 'neutral')
 
         few_shot_section = f"""
 
-Here is an example of how to perform this task:
+Here are examples of how to perform this task:
 
---- Example Input ({lrl_name_fs_display} Text) ---
-{_sanitize_for_prompt(example_lrl_text_fs)}
+--- Example 1 ({lrl_name_fs_display} Text) ---
+{_sanitize_for_prompt(example_lrl_text_fs_1)}
 
---- Example Output ---
+--- Example 1 Output ---
 English Translation:
-{_sanitize_for_prompt(example_eng_translation_fs)}
+{_sanitize_for_prompt(example_eng_translation_fs_1)}
 
 English Sentiment Label:
-{example_eng_label_fs}
+{example_eng_label_fs_1}
 
 {lrl_name_fs_display} Sentiment Label:
-{_sanitize_for_prompt(example_lrl_label_fs)}
---- End Example ---
+{_sanitize_for_prompt(example_lrl_label_fs_1)}
+
+--- Example 2 ({lrl_name_fs_display} Text) ---
+{_sanitize_for_prompt(example_lrl_text_fs_2)}
+
+--- Example 2 Output ---
+English Translation:
+{_sanitize_for_prompt(example_eng_translation_fs_2)}
+
+English Sentiment Label:
+{example_eng_label_fs_2}
+
+{lrl_name_fs_display} Sentiment Label:
+{_sanitize_for_prompt(example_lrl_label_fs_2)}
+
+--- Example 3 ({lrl_name_fs_display} Text) ---
+{_sanitize_for_prompt(example_lrl_text_fs_3)}
+
+--- Example 3 Output ---
+English Translation:
+{_sanitize_for_prompt(example_eng_translation_fs_3)}
+
+English Sentiment Label:
+{example_eng_label_fs_3}
+
+{lrl_name_fs_display} Sentiment Label:
+{_sanitize_for_prompt(example_lrl_label_fs_3)}
+--- End Examples ---
 """
 
     task_section = f"""
@@ -840,36 +830,7 @@ def evaluate_sentiment_cotr_single_prompt(
             intermediate_en_label = intermediate_en_label_ext if intermediate_en_label_ext is not None and intermediate_en_label_ext in EXPECTED_LABELS else "unknown"
             predicted_lrl_label_final_raw = predicted_lrl_label_final_raw_ext if predicted_lrl_label_final_raw_ext is not None else "[Extraction Error LRL Label]"
 
-            # COMET score for LRL Text -> EN Text (forward translation by model)
-            # This requires gold standard English translations as references.
-            # If not available, this COMET score might measure fluency/coherence rather than pure accuracy against a gold ref.
-            # For now, we calculate it if COMET is available and the necessary texts were extracted.
-            if COMET_AVAILABLE and original_text_lrl and intermediate_en_text not in ["[Error Extr EN Txt]", "[Extraction Error EN Text]"] and lang_code != 'en':
-                try:
-                    # Assuming no gold EN refs for LRL text, COMET here is source-prediction DA score.
-                    score = calculate_comet_score(predictions=[intermediate_en_text], sources=[original_text_lrl])
-                    comet_lrl_text_to_en = score[0] if isinstance(score, list) and score else (score if isinstance(score, float) else None)
-                except Exception as e_comet:
-                    logger.warning(f"COMET LRL->EN text (single-prompt, sample {idx}) error: {e_comet}")
-            
-            # COMET score for EN Label -> LRL Label (model's back-translation quality)
-            if COMET_AVAILABLE and intermediate_en_label != "unknown" and \
-               predicted_lrl_label_final_raw not in ["[Error Extr LRL Lbl]", "[Extraction Error LRL Label]"] and lang_code != 'en':
-                    # Source is the model's predicted English label (intermediate_en_label)
-                    # Prediction is the model's LRL translation of that (predicted_lrl_label_final_raw)
-                    # Reference is the canonical LRL translation of the *model's predicted English label*
-                # This assesses how well the model translates ITS OWN English prediction to LRL.
-                reference_lrl_for_models_en_pred = SENTIMENT_LABELS_LRL.get(lang_code, {}).get(intermediate_en_label, intermediate_en_label)
-                if reference_lrl_for_models_en_pred != intermediate_en_label: # Check if a known LRL form exists for the model's EN pred
-                    try:
-                        score = calculate_comet_score(
-                            predictions=[predicted_lrl_label_final_raw], 
-                            sources=[intermediate_en_label], # Source of this translation step
-                            references=[[reference_lrl_for_models_en_pred]] # Canonical LRL of model's EN pred
-                        )
-                        comet_en_label_to_lrl = score[0] if isinstance(score, list) and score else (score if isinstance(score, float) else None)
-                    except Exception as e_comet:
-                        logger.warning(f"COMET EN Label->LRL (single-prompt, sample {idx}) error: {e_comet}")
+            # COMET score calculation removed - translation evaluation done separately with NLLB
 
         except Exception as e_outer_sp:
             logger.error(f"Outer error in single-prompt sample {idx}, lang {lang_code}: {e_outer_sp}", exc_info=True)
@@ -878,6 +839,8 @@ def evaluate_sentiment_cotr_single_prompt(
 
         results_list.append({
             'original_text_lrl': original_text_lrl,
+            'ground_truth_label': ground_truth_english_label,  # Add missing column for metrics
+            'predicted_label': intermediate_en_label,  # Add missing column for metrics - maps to the English label for scoring
             'ground_truth_english_label': ground_truth_english_label,
             'intermediate_en_text': intermediate_en_text,
             'intermediate_en_label': intermediate_en_label, # This is the EN label extracted from CoT, used for accuracy/F1

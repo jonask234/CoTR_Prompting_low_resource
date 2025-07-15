@@ -1,0 +1,2721 @@
+text,ground_truth_entities,predicted_entities,intermediate_en_text,intermediate_en_entities,raw_model_response,error,runtime_seconds
+Abinda yasa ake samun matsaloli da yake kai da rasa rayukan iyayen da kuma jariransu .,[],"[{'entity': 'Abinda', 'type': 'PER'}, {'entity': 'yasa', 'type': 'LOC'}, {'entity': 'ake', 'type': 'LOC'}, {'entity': 'samun', 'type': 'LOC'}, {'entity': 'matsaloli', 'type': 'LOC'}, {'entity': 'da', 'type': 'LOC'}, {'entity': 'yake', 'type': 'LOC'}, {'entity': 'kai', 'type': 'LOC'}]",This is a Hausa text translated to English: Abinda yasa ake samun matsaloli,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Abinda"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""yasa"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""ake"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""samun"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""matsaloli"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""da"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""yake"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""kai"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"":",,6.349558591842651
+Ana Ci Gaba Da Zanga Zanga Kan Birnin Kudus,"[{'entity': 'Birnin Kudus', 'type': 'LOC'}]","[{'entity': 'Ana', 'type': 'PER'}, {'entity': 'Ci', 'type': 'PER'}, {'entity': 'Gaba', 'type': 'PER'}, {'entity': 'Da', 'type': 'LOC'}, {'entity': 'Zanga', 'type': 'LOC'}, {'entity': 'Zanga', 'type': 'LOC'}, {'entity': 'Kan', 'type': 'LOC'}, {'entity': 'Birnin', 'type': 'LOC'}]",This is a Hausa text translated to English: Ana Ci Gaba Da Zanga,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Ana"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""Ci"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""Gaba"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""Da"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Zanga"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Zanga"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Kan"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Birnin"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Kud",,6.325233459472656
+Masu tunanin samun taimako a Florida za su sha mamaki .,"[{'entity': 'Florida', 'type': 'LOC'}]","[{'entity': 'Florida', 'type': 'LOC'}, {'entity': 'su', 'type': 'LOC'}, {'entity': 'mamaki', 'type': 'LOC'}, {'entity': 'taimako', 'type': 'LOC'}, {'entity': 'masu', 'type': 'LOC'}, {'entity': 'tunanin', 'type': 'LOC'}]",This is a Hausa text translated to English: Masu tunanin samun taimako a,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Florida"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""su"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""mamaki"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""taimako"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""masu"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""tunanin"",
+      ""entity_type"": ""LOC""
+    }
+  ]
+}
+```
+--- End of Example ---
+
+--- Example 2 ---
+Text: ""Sulaiman danjuma saka aba kan saka aba kan saka aba kan saka aba kan saka ab",,6.325706481933594
+"Da safiyar jiya Talata shugaban Amurka yace “ haraji muhimmin abu ne , kana kuma ya yi barazanar yin karin haraji a kan abokan kasuwancin Amurka .","[{'entity': 'safiyar jiya Talata', 'type': 'DATE'}, {'entity': 'Amurka', 'type': 'LOC'}, {'entity': 'Amurka', 'type': 'LOC'}]","[{'entity': 'Talata', 'type': 'LOC'}, {'entity': 'Amurka', 'type': 'LOC'}, {'entity': 'haraji', 'type': 'ORG'}, {'entity': 'muhimmin', 'type': 'ORG'}, {'entity': 'abu', 'type': 'PER'}, {'entity': 'kana', 'type': 'PER'}, {'entity': 'kuma', 'type': 'PER'}, {'entity': 'ya', 'type': 'PER'}]",This is a Hausa text translated to English: Da safiyar jiya Talata shugaban,[],"{
+  ""entities"": [
+    {
+      ""entity_text"": ""Talata"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Amurka"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""haraji"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""muhimmin"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""abu"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""kana"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""kuma"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""ya"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""yi",,6.4085681438446045
+"An tuhume Flynn da yin karya kan wata boyayyen tattaunawa da yi da jakadan Rasha na wancan lokacin a Amurka , Sergey Kislyak .","[{'entity': 'Flynn', 'type': 'PER'}, {'entity': 'Rasha', 'type': 'LOC'}, {'entity': 'Amurka', 'type': 'LOC'}, {'entity': 'Sergey Kislyak', 'type': 'PER'}]","[{'entity': 'Flynn', 'type': 'PER'}, {'entity': 'Rasha', 'type': 'LOC'}, {'entity': 'Sergey Kislyak', 'type': 'PER'}, {'entity': 'Amurka', 'type': 'LOC'}]",This is a Hausa text translated to English: An tuhume Flynn da yin,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Flynn"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""Rasha"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Sergey Kislyak"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""Amurka"",
+      ""entity_type"": ""LOC""
+    }
+  ]
+}
+```
+--- Your Task ---
+Text: ""An tuhume Flynn da yin karya kan wata boyayyen tattaunawa da yi da jakadan Rasha na wancan lokacin a Amurka , Sergey Kislyak .""
+
+JSON Output (ONLY return this JSON, with NO other text):
+```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Flynn"",
+      """,,6.366129636764526
+"Kwayar cutar Plasmodium tana shiga jikin mutum ta hanyar cizon macen sauro jinsin Anopheles , wadanda aka fi sani da sunan “ Masu Yada Maleriya """""""" wadanda kuma suka fi cizon mutane cikin dare , watau daga faduwar rana zuwa asubahi .","[{'entity': 'faduwar rana zuwa asubahi', 'type': 'DATE'}]","[{'entity': 'Kwayar', 'type': 'ORG'}, {'entity': 'Plasmodium', 'type': 'ORG'}, {'entity': 'tana', 'type': 'LOC'}, {'entity': 'shiga', 'type': 'LOC'}, {'entity': 'jikin', 'type': 'LOC'}, {'entity': 'mutum', 'type': 'LOC'}, {'entity': 'ta', 'type': 'LOC'}, {'entity': 'hanyar', 'type': 'LOC'}]",This is a Hausa text translated to English: Kwayar cutar Plasmodium tana shiga,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Kwayar"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Plasmodium"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""tana"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""shiga"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""jikin"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""mutum"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""ta"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""hanyar"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity",,6.464960336685181
+"Jami’ar kula da masu tabuwar kwakwalwa a hukumar lafiya ta duniya Michelle Funk tace , sau da dama akan yi watsi da mutanen da ke fama da tabuwar hankali .","[{'entity': 'hukumar lafiya ta duniya', 'type': 'ORG'}, {'entity': 'Michelle Funk', 'type': 'PER'}]","[{'entity': 'Michelle Funk', 'type': 'PER'}, {'entity': 'dama', 'type': 'LOC'}, {'entity': 'watsi', 'type': 'LOC'}, {'entity': 'mutanen', 'type': 'LOC'}, {'entity': 'ke', 'type': 'LOC'}, {'entity': 'fama', 'type': 'LOC'}, {'entity': 'tabuwar', 'type': 'LOC'}, {'entity': 'hankali', 'type': 'LOC'}]",This is a Hausa text translated to English: Jami’ar kula da masu tabuwar,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Michelle Funk"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""dama"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""watsi"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""mutanen"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""ke"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""fama"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""tabuwar"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""hankali"",
+      ""entity_type"": ""LOC""
+    }
+  ]
+}
+```",,6.396151542663574
+"Muhammad Ali - Pate sun jadada cewa , har yanzu zazzabin cizon sauro shine cutar da tafi katse hanzarin mata da kananan yara a duniya baki daya .","[{'entity': 'Muhammad Ali - Pate', 'type': 'PER'}]","[{'entity': 'Muhammad Ali', 'type': 'PER'}, {'entity': 'Pate sun jadada', 'type': 'LOC'}, {'entity': 'cewa', 'type': 'LOC'}, {'entity': 'har yanzu', 'type': 'LOC'}, {'entity': 'zazzabin', 'type': 'LOC'}, {'entity': 'cizon sauro', 'type': 'LOC'}, {'entity': 'shine cutar', 'type': 'LOC'}]",This is a Hausa text translated to English: Muhammad Ali - Pate sun,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Muhammad Ali"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""Pate sun jadada"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""cewa"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""har yanzu"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""zazzabin"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""cizon sauro"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""shine cutar"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""da tafi katse"",
+      ""entity_type"": """,,6.379134893417358
+Sabbin zanga - zanga sun barke jiya Lahadi a fadin duniyar Musulmi da Larabawa .,"[{'entity': 'jiya Lahadi', 'type': 'DATE'}]","[{'entity': 'Sabbin', 'type': 'PER'}, {'entity': 'zanga', 'type': 'LOC'}, {'entity': 'zanga', 'type': 'LOC'}, {'entity': 'sun', 'type': 'LOC'}, {'entity': 'barke', 'type': 'LOC'}, {'entity': 'jiya', 'type': 'LOC'}, {'entity': 'Lahadi', 'type': 'PER'}, {'entity': 'a', 'type': 'LOC'}]",This is a Hausa text translated to English: Sabbin zanga - zanga sun,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Sabbin"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""zanga"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""zanga"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""sun"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""barke"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""jiya"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Lahadi"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""a"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": """,,6.341069221496582
+Akwai jinsuna guda hudu na kwayar halittar cutar Maleriya dake iya kama dan Adama : Plasmodium Falciparum ; Plasmodium Vivax ; Plasmodium Malariae ; da kuma Plasmodium Ovale .,[],"[{'entity': 'Akwai', 'type': 'PER'}, {'entity': 'Plasmodium Falciparum', 'type': 'ORG'}, {'entity': 'Plasmodium Vivax', 'type': 'ORG'}, {'entity': 'Plasmodium Malariae', 'type': 'ORG'}, {'entity': 'Plasmodium Ovale', 'type': 'ORG'}, {'entity': 'Adama', 'type': 'PER'}, {'entity': 'Maleriya', 'type': 'LOC'}]",This is a Hausa text translated to English: Akwai jinsuna guda hudu na,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Akwai"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""Plasmodium Falciparum"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Plasmodium Vivax"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Plasmodium Malariae"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Plasmodium Ovale"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Adama"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""Maleriya"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""dake"",
+      ""entity",,6.409969329833984
+"‘Yan Democrat sun ce kamata ya yi , su aika da takardun da aka gabatar aka kuma amince da su a gaban majalisar , wadanda aka kada kuri’a akansu .","[{'entity': 'Democrat', 'type': 'ORG'}]","[{'entity': 'Yan Democrat', 'type': 'ORG'}, {'entity': 'kamata ya yi', 'type': 'LOC'}, {'entity': 'su aika', 'type': 'DATE'}, {'entity': 'takardun da aka gabatar', 'type': 'LOC'}, {'entity': 'aka kuma amince da su a gaban majalisar', 'type': 'LOC'}, {'entity': 'wadanda', 'type': 'LOC'}, {'entity': 'aka kada kuri’a akansu', 'type': 'LOC'}]",This is a Hausa text translated to English: ‘Yan Democrat sun ce kamata,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Yan Democrat"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""kamata ya yi"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""su aika"",
+      ""entity_type"": ""DATE""
+    },
+    {
+      ""entity_text"": ""takardun da aka gabatar"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""aka kuma amince da su a gaban majalisar"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""wadanda"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""aka kada kuri’a akansu"",
+      ""entity_type"": ""LOC""
+    }
+  ]
+}",,6.41130518913269
+"Ana sa ran wannan taron zai faru ne a a lokacin ziyarar da shugaba Trump zai kai kasashen Turai a cikin Wata mai fita , har ma ana nunin cewa mai yiyuwa ne su hadu kafin babban taron kungiyar tsaron Turai ta NATO da za’ayi ran 11 ga watan Yulin ko kuma bayan ziyarar da shugaba Trump zai kai Biritaniya kwannaki biyu bayan an kamala taron na NATO .","[{'entity': 'Trump', 'type': 'PER'}, {'entity': 'Turai', 'type': 'LOC'}, {'entity': 'Turai', 'type': 'LOC'}, {'entity': 'NATO', 'type': 'ORG'}, {'entity': 'ran 11 ga watan Yulin', 'type': 'DATE'}, {'entity': 'Trump', 'type': 'PER'}, {'entity': 'Biritaniya', 'type': 'LOC'}, {'entity': 'kwannaki biyu', 'type': 'DATE'}, {'entity': 'NATO', 'type': 'ORG'}]","[{'entity': 'Trump', 'type': 'PER'}, {'entity': 'NATO', 'type': 'ORG'}, {'entity': 'Yulin', 'type': 'LOC'}, {'entity': 'Biritaniya', 'type': 'LOC'}, {'entity': 'kamala', 'type': 'PER'}]",This is a Hausa text translated to English: Ana sa ran wannan taron,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Trump"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""NATO"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Yulin"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Biritaniya"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""kamala"",
+      ""entity_type"": ""PER""
+    }
+  ]
+}
+```
+---
+
+Text: ""Ana sa ran wannan taron zai faru ne a a lokacin ziyarar da shugaba Trump zai kai kasashen Turai a cikin Wata mai fita , har ma ana nunin cewa mai yiyuwa ne su hadu kafin babban taron kungiyar ts",,6.534645795822144
+Ana boren ne domin nuna rashin amincewa da ayyana Kudus da Shugaban Amurka Donald Trump ya yi a matsayin babban birnin Isra'ila .,"[{'entity': 'Kudus', 'type': 'LOC'}, {'entity': 'Amurka', 'type': 'LOC'}, {'entity': 'Donald Trump', 'type': 'PER'}, {'entity': ""Isra'ila"", 'type': 'LOC'}]","[{'entity': 'Ana', 'type': 'PER'}, {'entity': 'Boren', 'type': 'PER'}, {'entity': 'ne', 'type': 'PER'}, {'entity': 'domin', 'type': 'LOC'}, {'entity': 'nuna', 'type': 'LOC'}, {'entity': 'rashin', 'type': 'LOC'}, {'entity': 'amincewa', 'type': 'LOC'}, {'entity': 'da', 'type': 'LOC'}]",This is a Hausa text translated to English: Ana boren ne domin nuna,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Ana"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""Boren"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""ne"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""domin"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""nuna"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""rashin"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""amincewa"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""da"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""ay",,6.363809585571289
+Ya kuma jajantawa dukan jama’ar da suka rasa ‘yan uwansu a dalilin yaki da ta’addanci .,[],"[{'entity': 'Ya', 'type': 'PER'}, {'entity': 'kuma', 'type': 'LOC'}, {'entity': 'jajantawa', 'type': 'LOC'}, {'entity': 'dukan', 'type': 'ORG'}, {'entity': 'jama’ar', 'type': 'ORG'}, {'entity': 'da', 'type': 'LOC'}, {'entity': 'suka', 'type': 'LOC'}, {'entity': 'rasa', 'type': 'LOC'}]",This is a Hausa text translated to English: Ya kuma jajantawa dukan jama’ar,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Ya"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""kuma"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""jajantawa"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""dukan"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""jama’ar"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""da"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""suka"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""rasa"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_",,6.345685005187988
+""""""""" Bayan tattaunawa mai zurfi da aka yi a makare , gab da wa'adin da masu tattaunawar su ka gindaya ma kansu , Amurka da Canada sun ba da sanarwar cimma yarjajjeniya , wadda ta amince cewa yarjajjeniya mai kunshe da canje - canje , wadda ta shafi kasashe ukun , ta maye gurbin ta da wato NAFTA , wadda aka yi amfani da ita na tsawon shekaru 25 .","[{'entity': 'Amurka', 'type': 'LOC'}, {'entity': 'Canada', 'type': 'LOC'}, {'entity': 'NAFTA', 'type': 'ORG'}, {'entity': 'shekaru 25', 'type': 'DATE'}]","[{'entity': 'Amurka', 'type': 'ORG'}, {'entity': 'Canada', 'type': 'ORG'}, {'entity': 'NAFTA', 'type': 'ORG'}, {'entity': 'tsawon shekaru 25', 'type': 'DATE'}]","This is a Hausa text translated to English: """""""" Bayan tattaunawa mai zurfi",[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Amurka"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Canada"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""NAFTA"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""tsawon shekaru 25"",
+      ""entity_type"": ""DATE""
+    }
+  ]
+}
+```",,6.555294752120972
+Jami’an tsaron Lebanon sun yi amfani da ruwan zafi da barkonon tsohuwa a wajen ofishin Jakadancin Amurka da ke birnin Beirut .,"[{'entity': 'Lebanon', 'type': 'LOC'}, {'entity': 'Amurka', 'type': 'LOC'}, {'entity': 'Beirut', 'type': 'LOC'}]","[{'entity': 'Jami’an tsaron', 'type': 'ORG'}, {'entity': 'Lebanon', 'type': 'LOC'}, {'entity': 'Beirut', 'type': 'LOC'}, {'entity': 'Jakadancin', 'type': 'LOC'}, {'entity': 'Amurka', 'type': 'LOC'}, {'entity': 'ofishin', 'type': 'LOC'}, {'entity': 'wajen', 'type': 'LOC'}, {'entity': 'da', 'type': 'LOC'}]",This is a Hausa text translated to English: Jami’an tsaron Lebanon sun yi,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Jami’an tsaron"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Lebanon"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Beirut"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Jakadancin"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Amurka"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""ofishin"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""wajen"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""da"",
+      ""entity_type"": ""LOC""
+    },",,6.375170230865479
+A karshen watan Nuwamba Hukumar Lafiya Ta Duniya ta ce kasar Guinea kawai ce ke kan turbar dakile saurin yaduwar cutar kamar yadda aka sa a gaba .,"[{'entity': 'karshen watan Nuwamba', 'type': 'DATE'}, {'entity': 'Hukumar Lafiya Ta Duniya', 'type': 'ORG'}, {'entity': 'Guinea', 'type': 'LOC'}]","[{'entity': 'Guinea', 'type': 'LOC'}, {'entity': 'Nuwamba', 'type': 'PER'}, {'entity': 'Hukumar', 'type': 'PER'}, {'entity': 'Lafiya', 'type': 'PER'}, {'entity': 'Ta Duniya', 'type': 'ORG'}, {'entity': 'ce kasar', 'type': 'ORG'}, {'entity': 'Guinea', 'type': 'LOC'}, {'entity': 'kawai', 'type': 'LOC'}]",This is a Hausa text translated to English: A karshen watan Nuwamba Hukumar,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Guinea"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Nuwamba"",
+      ""entity_type"": ""PERSON""
+    },
+    {
+      ""entity_text"": ""Hukumar"",
+      ""entity_type"": ""PERSON""
+    },
+    {
+      ""entity_text"": ""Lafiya"",
+      ""entity_type"": ""PERSON""
+    },
+    {
+      ""entity_text"": ""Ta Duniya"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""ce kasar"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Guinea"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""kawai"",
+      ""entity_type"": ""LOC""
+    },
+    {
+     ",,6.37587571144104
+"Amurka da China sun sha yin tattaunawa tun farkon shekarar nan domin sasantawa kan rikicin cinikayya da ya fara tun shekarar da ta gabata , lokacin da shugaban kasa Donald Trump ya saka harajin Dala biliyan 250 akan wasu kaya da China ke shigarwa Amurka .","[{'entity': 'Amurka', 'type': 'LOC'}, {'entity': 'China', 'type': 'LOC'}, {'entity': 'farkon shekarar nan', 'type': 'DATE'}, {'entity': 'shekarar da ta gabata', 'type': 'DATE'}, {'entity': 'Donald Trump', 'type': 'PER'}, {'entity': 'China', 'type': 'LOC'}, {'entity': 'Amurka', 'type': 'LOC'}]","[{'entity': 'China', 'type': 'LOC'}, {'entity': 'Donald Trump', 'type': 'PER'}, {'entity': '250', 'type': 'DATE'}, {'entity': 'Amurka', 'type': 'LOC'}, {'entity': 'Dala', 'type': 'LOC'}, {'entity': 'Biliyan', 'type': 'LOC'}, {'entity': 'ya', 'type': 'LOC'}, {'entity': 'fara', 'type': 'LOC'}]",This is a Hausa text translated to English: Amurka da China sun sha,[],"{
+  ""entities"": [
+    {
+      ""entity_text"": ""China"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Donald Trump"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""250"",
+      ""entity_type"": ""DATE""
+    },
+    {
+      ""entity_text"": ""Amurka"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Dala"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Biliyan"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""ya"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""fara"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": """,,6.483186721801758
+"Ga al'ummar dake zaune a kasashen bakar fata na Afirka , kwanciya ko yin barci a kusa da ibnda kaji suke ba wani bakon abu ba ne , musamman a yankunan karkara .","[{'entity': 'Afirka', 'type': 'LOC'}]","[{'entity': 'Afirka', 'type': 'LOC'}, {'entity': 'karkara', 'type': 'ORG'}, {'entity': 'musamman', 'type': 'ORG'}, {'entity': 'yankunan', 'type': 'ORG'}, {'entity': 'kusa', 'type': 'ORG'}, {'entity': 'ibnda', 'type': 'ORG'}, {'entity': 'suke', 'type': 'ORG'}, {'entity': 'bako', 'type': 'ORG'}]",This is a Hausa text translated to English: Ga al'ummar dake zaune a,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Afirka"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""karkara"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""musamman"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""yankunan"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""kusa"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""ibnda"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""suke"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""bako"",
+      ""entity_type"": ""ORG""
+    },
+    {
+     ",,6.423644065856934
+Yace sau tari muna tuntubar majalisun kasar domin mu fahimci damuwarsu kuma mu yi iya kokarinmu mu yi musu bayani a kan manufofin mu .,[],"[{'entity': 'Yace sau', 'type': 'LOC'}, {'entity': 'tari', 'type': 'LOC'}, {'entity': 'muna', 'type': 'LOC'}, {'entity': 'tuntubar', 'type': 'LOC'}, {'entity': 'majalisun', 'type': 'ORG'}, {'entity': 'kasar', 'type': 'ORG'}, {'entity': 'domin', 'type': 'ORG'}, {'entity': 'mu', 'type': 'PER'}]",This is a Hausa text translated to English: Yace sau tari muna tuntubar,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Yace sau"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""tari"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""muna"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""tuntubar"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""majalisun"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""kasar"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""domin"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""mu"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_",,6.386814832687378
+Matakai biyu da majalisar ta dauka duk sun sabawa matsayar gwamnatin Trump wacce ta sha bayyana musunta a kan wannan batu da ka iya kawowa huldan Washington da Riyadh tsaiko .,"[{'entity': 'Trump', 'type': 'PER'}, {'entity': 'Washington', 'type': 'LOC'}, {'entity': 'Riyadh', 'type': 'LOC'}]","[{'entity': 'Trump', 'type': 'ORG'}, {'entity': 'Washington', 'type': 'LOC'}, {'entity': 'Riyadh', 'type': 'LOC'}]",This is a Hausa text translated to English: Matakai biyu da majalisar ta,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Trump"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Washington"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Riyadh"",
+      ""entity_type"": ""LOC""
+    }
+  ]
+}
+```",,6.39041805267334
+"Wasu kotunan tarayya da kuma jihohi da suke kalubalantar matakin da gwamnatin Trump ta dauka na ta saka tambayar ko mutum dan kasa ne ko ba dan kasa ba , a kidayar jama’a suna neman kotu ta fayyace musu matakin .","[{'entity': 'Trump', 'type': 'PER'}]","[{'entity': 'Trump', 'type': 'ORG'}, {'entity': 'musu', 'type': 'PER'}, {'entity': 'matakin', 'type': 'PER'}, {'entity': 'jama’a', 'type': 'ORG'}, {'entity': 'suna', 'type': 'ORG'}, {'entity': 'neman', 'type': 'LOC'}, {'entity': 'kotu', 'type': 'LOC'}, {'entity': 'fayyace', 'type': 'LOC'}]",This is a Hausa text translated to English: Wasu kotunan tarayya da kuma,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Trump"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""musu"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""matakin"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""jama’a"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""suna"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""neman"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""kotu"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""fayyace"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity",,6.462305307388306
+Shugaban Amurka Donald Trump ya zake kan bukatarsa ta gina katanga a kan iyakar Amurka da Mexico .,"[{'entity': 'Amurka', 'type': 'LOC'}, {'entity': 'Donald Trump', 'type': 'PER'}, {'entity': 'Amurka', 'type': 'LOC'}, {'entity': 'Mexico', 'type': 'LOC'}]","[{'entity': 'Donald Trump', 'type': 'PER'}, {'entity': 'Mexico', 'type': 'LOC'}]",This is a Hausa text translated to English: Shugaban Amurka Donald Trump ya,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Donald Trump"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""Mexico"",
+      ""entity_type"": ""LOC""
+    }
+  ]
+}
+```",,6.340742111206055
+"New Zealand , Australia da sauran kewayen yankin tsibiran Pacific dai na daya daga cikin wuraren da su ka fara shiga shera ta 2018 .","[{'entity': 'New Zealand', 'type': 'LOC'}, {'entity': 'Australia', 'type': 'LOC'}, {'entity': 'Pacific', 'type': 'LOC'}, {'entity': '2018', 'type': 'DATE'}]","[{'entity': 'New Zealand', 'type': 'LOC'}, {'entity': 'Australia', 'type': 'LOC'}, {'entity': 'Pacific', 'type': 'LOC'}, {'entity': '2018', 'type': 'DATE'}]","This is a Hausa text translated to English: New Zealand , Australia da",[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""New Zealand"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Australia"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Pacific"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""2018"",
+      ""entity_type"": ""DATE""
+    }
+  ]
+}
+```",,6.362759590148926
+""""""""" Firai Ministan na Canada ya rufe taron ne a jiya Asabar , inda ya ki amincewa ya sauya matsayar da ya dauka ta nuna adawa da harajin da Amurka ta sakawa kayayyakin karafa da dalma na kasarsa ta Canada da na kasashen da ke nahiyar turai .","[{'entity': 'Canada', 'type': 'LOC'}, {'entity': 'jiya Asabar', 'type': 'DATE'}, {'entity': 'Amurka', 'type': 'LOC'}, {'entity': 'Canada', 'type': 'LOC'}, {'entity': 'turai', 'type': 'LOC'}]","[{'entity': 'Canada', 'type': 'LOC'}, {'entity': 'Asabar', 'type': 'LOC'}, {'entity': 'Amurka', 'type': 'ORG'}, {'entity': 'turai', 'type': 'ORG'}, {'entity': 'ke nahiyar', 'type': 'ORG'}, {'entity': 'nuna adawa da harajin da Amurka', 'type': 'ORG'}, {'entity': 'ta sakawa kayayyakin karafa da dalma', 'type': 'DATE'}]","This is a Hausa text translated to English: """""""" Firai Ministan na Canada",[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Canada"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Asabar"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Amurka"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""turai"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""ke nahiyar"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""nuna adawa da harajin da Amurka"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""ta sakawa kayayyakin karafa da dalma"",
+      ""entity_type"": ""DATE""
+    }
+  ]
+}
+```",,6.463111400604248
+"Shugaban Amurka Donald Trump , ya ce ya bai wa wakilansa umurnin cewa kada su rattaba hannu a wata takardar matsaya da aka cimma , a tsakanin kasashe bakwai masu karfin tattalin arziki na G - 7 wanda aka yi a Canada .","[{'entity': 'Amurka', 'type': 'LOC'}, {'entity': 'Donald Trump', 'type': 'PER'}, {'entity': 'G - 7', 'type': 'ORG'}, {'entity': 'Canada', 'type': 'LOC'}]","[{'entity': 'Donald Trump', 'type': 'PER'}, {'entity': 'G - 7', 'type': 'ORG'}, {'entity': 'Canada', 'type': 'LOC'}]","This is a Hausa text translated to English: Shugaban Amurka Donald Trump ,",[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Donald Trump"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""G - 7"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Canada"",
+      ""entity_type"": ""LOC""
+    }
+  ]
+}
+```",,6.430285453796387
+"Binciken ya kuma ce , matan da suka daina al’ada dake shakar hayakin taba na lokaci mai tsawo su ma su na iya fuskantar karin kasadar kamuwa da cutar sankarar nono .",[],"[{'entity': 'Binciken', 'type': 'LOC'}, {'entity': 'kuma', 'type': 'LOC'}, {'entity': 'ce', 'type': 'LOC'}, {'entity': 'matan', 'type': 'LOC'}, {'entity': 'da', 'type': 'LOC'}, {'entity': 'suka', 'type': 'LOC'}, {'entity': 'daina', 'type': 'LOC'}, {'entity': 'al’ada', 'type': 'LOC'}]","This is a Hausa text translated to English: Binciken ya kuma ce ,",[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Binciken"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""kuma"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""ce"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""matan"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""da"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""suka"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""daina"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""al’ada"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text",,6.419746398925781
+"Yayin zanga zangar , masu boren kona wani mutum - mutumin Trump , da tutocin kasashen Amurka da Isra’ila .","[{'entity': 'Trump', 'type': 'PER'}, {'entity': 'Amurka', 'type': 'LOC'}, {'entity': 'Isra’ila', 'type': 'LOC'}]","[{'entity': 'Trump', 'type': 'PER'}, {'entity': 'Amurka', 'type': 'ORG'}, {'entity': 'Isra’ila', 'type': 'ORG'}]","This is a Hausa text translated to English: Yayin zanga zangar , masu",[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Trump"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""Amurka"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Isra’ila"",
+      ""entity_type"": ""ORG""
+    }
+  ]
+}
+```",,6.351580381393433
+Jikinta ya yi tsanani ainun yadda ba a iya daukarta zuwa kasar Jamus domin yi mata jinya ba .,"[{'entity': 'Jamus', 'type': 'LOC'}]","[{'entity': 'Jikanta', 'type': 'LOC'}, {'entity': 'Jamus', 'type': 'ORG'}, {'entity': 'zuwa', 'type': 'ORG'}, {'entity': 'kasar', 'type': 'ORG'}, {'entity': 'domin', 'type': 'ORG'}, {'entity': 'yi', 'type': 'ORG'}, {'entity': 'mata', 'type': 'ORG'}, {'entity': 'jinya', 'type': 'ORG'}]",This is a Hausa text translated to English: Jikinta ya yi tsanani ainun,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Jikanta"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Jamus"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""zuwa"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""kasar"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""domin"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""yi"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""mata"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""jinya"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": """,,6.379183292388916
+Zuwa yanzu an samu mace - mace masu nasaba da wannan matsala har 14 .,[],"[{'entity': 'Zuwa', 'type': 'ORG'}, {'entity': '14', 'type': 'DATE'}]",This is a Hausa text translated to English: Zuwa yanzu an samu mace,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Zuwa"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""14"",
+      ""entity_type"": ""DATE""
+    }
+  ]
+}
+```",,6.340860366821289
+"Kasancewa , mata sune suka fi kusa da kananan yara , banda haka kuma , sun iya tada tsimin al’umma .",[],"[{'entity': 'Kasancewa', 'type': 'PER'}, {'entity': 'mata', 'type': 'LOC'}, {'entity': 'sune', 'type': 'LOC'}, {'entity': 'suka', 'type': 'LOC'}, {'entity': 'fi', 'type': 'LOC'}, {'entity': 'kusa', 'type': 'LOC'}, {'entity': 'da', 'type': 'LOC'}, {'entity': 'kanan', 'type': 'LOC'}]","This is a Hausa text translated to English: Kasancewa , mata sune suka",[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Kasancewa"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""mata"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""sune"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""suka"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""fi"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""kusa"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""da"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""kanan"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""y",,6.353229999542236
+"Ita kuwa jaridar The Miami Herald ta ambato wasu birane da za a gudanar da kamen da suka hada da Atlanta , Baltimore , Denver , New Orleans , New York da kuma San Francisco .","[{'entity': 'The Miami Herald', 'type': 'ORG'}, {'entity': 'Atlanta', 'type': 'LOC'}, {'entity': 'Baltimore', 'type': 'LOC'}, {'entity': 'Denver', 'type': 'LOC'}, {'entity': 'New Orleans', 'type': 'LOC'}, {'entity': 'New York', 'type': 'LOC'}, {'entity': 'San Francisco', 'type': 'LOC'}]","[{'entity': 'The Miami Herald', 'type': 'ORG'}, {'entity': 'Atlanta', 'type': 'LOC'}, {'entity': 'Baltimore', 'type': 'LOC'}, {'entity': 'Denver', 'type': 'LOC'}, {'entity': 'New Orleans', 'type': 'LOC'}, {'entity': 'New York', 'type': 'LOC'}, {'entity': 'San Francisco', 'type': 'LOC'}]",This is a Hausa text translated to English: Ita kuwa jaridar The Miami,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""The Miami Herald"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Atlanta"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Baltimore"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Denver"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""New Orleans"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""New York"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""San Francisco"",
+      ""entity_type"": ""LOC""
+    }
+  ]
+}
+```",,6.382308483123779
+"Sission ya ce , muddin shi ne babban lauyan gwamnati zai ci gaba da gudanar da aikisa da mutumci , kuma ma'aikatar zata ci gaba da gudanar da ayyukanta ba sani ba sabo bisa ga kundin tsarin mulkin kasa .","[{'entity': 'Sission', 'type': 'PER'}]","[{'entity': 'Sission', 'type': 'ORG'}, {'entity': 'ya', 'type': 'LOC'}, {'entity': 'ce', 'type': 'LOC'}, {'entity': 'muddin', 'type': 'LOC'}, {'entity': 'shi', 'type': 'LOC'}, {'entity': 'ne', 'type': 'LOC'}, {'entity': 'babban', 'type': 'LOC'}, {'entity': 'lauyan', 'type': 'LOC'}]","This is a Hausa text translated to English: Sission ya ce , muddin",[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Sission"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""ya"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""ce"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""muddin"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""shi"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""ne"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""babban"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""lauyan"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""gwamn",,6.45878791809082
+"YADDA MALERIYA KE YADUWA : Ana iya kamuwa da cutar Maleriya ce kawai ta hanyar cizon macen sauro da ake kira """""""" Anopheles .",[],"[{'entity': 'Maleriya', 'type': 'ORG'}, {'entity': 'Anopheles', 'type': 'ORG'}, {'entity': 'YADUWA', 'type': 'LOC'}, {'entity': 'Ana', 'type': 'PER'}, {'entity': 'kamuwa', 'type': 'PER'}, {'entity': 'cizon', 'type': 'LOC'}, {'entity': 'macen', 'type': 'LOC'}, {'entity': 'sauro', 'type': 'LOC'}]",This is a Hausa text translated to English: YADDA MALERIYA KE YADUWA :,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Maleriya"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Anopheles"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""YADUWA"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Ana"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""kamuwa"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""cizon"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""macen"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""sauro"",
+      ""entity_type"": ""LOC""
+    },
+    {
+     ",,6.382499694824219
+"Wannan harajin motoci zai addabi masana’anatar kera motoci ta kasar Jamus da take samun habbaka , sai kuma batun harajin nan da Trump ya riga ya doawa dalama da karafe .","[{'entity': 'Jamus', 'type': 'LOC'}, {'entity': 'Trump', 'type': 'PER'}]","[{'entity': 'motoci', 'type': 'ORG'}, {'entity': 'Jamus', 'type': 'LOC'}, {'entity': 'Trump', 'type': 'PER'}, {'entity': 'doawa', 'type': 'LOC'}, {'entity': 'dalama', 'type': 'LOC'}, {'entity': 'karafe', 'type': 'LOC'}, {'entity': 'harajin', 'type': 'LOC'}, {'entity': 'masana’anatar', 'type': 'LOC'}]",This is a Hausa text translated to English: Wannan harajin motoci zai addabi,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""motoci"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Jamus"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Trump"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""doawa"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""dalama"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""karafe"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""harajin"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""masana’anatar"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity",,6.407242774963379
+"Yanzu haka lauyoyin gwamnatin Amurka sun himmatu sosai a kokarin da suke yi , na cika wa’adin umarnin kotu da ta bayar na zuwa yau juma’a da yamma , da su bada hujjojunsu na saka tambayar ko mutum dan kasa ne ko ba dan kasa ba , a cikin tambayoyin kidayar ‘yan - kasa da za’a yi a shekarar 2020 , ko ta yanke cewar bata bukatar a saka tambayar da ka iya kawo rudani a cikin jerin tambayoyin da suke kunshe a takardar","[{'entity': 'Amurka', 'type': 'LOC'}, {'entity': 'yau juma’a da yamma', 'type': 'DATE'}, {'entity': 'shekarar 2020', 'type': 'DATE'}]","[{'entity': 'Amurka', 'type': 'LOC'}, {'entity': 'yau', 'type': 'LOC'}, {'entity': 'juma’a', 'type': 'LOC'}, {'entity': 'mutum', 'type': 'LOC'}, {'entity': 'kasa', 'type': 'LOC'}, {'entity': 'za’a', 'type': 'LOC'}, {'entity': '2020', 'type': 'DATE'}, {'entity': 'rudani', 'type': 'ORG'}]",This is a Hausa text translated to English: Yanzu haka lauyoyin gwamnatin Amurka,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Amurka"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""yau"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""juma’a"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""mutum"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""kasa"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""za’a"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""2020"",
+      ""entity_type"": ""DATE""
+    },
+    {
+      ""entity_text"": ""rudani"",
+      ""entity_type"": ""ORG""
+    },
+   ",,6.629811763763428
+"Shi kansa sauro jinsin """""""" Anopheles """""""" ya karkasu zuwa wasu kananan jinsunan .",[],"[{'entity': 'Anopheles', 'type': 'ORG'}, {'entity': 'Shi', 'type': 'PER'}, {'entity': 'kansa', 'type': 'LOC'}, {'entity': 'sauro', 'type': 'LOC'}, {'entity': 'jinsin', 'type': 'LOC'}, {'entity': 'karkasu', 'type': 'LOC'}, {'entity': 'zuwa', 'type': 'LOC'}, {'entity': 'wasu', 'type': 'LOC'}]","This is a Hausa text translated to English: Shi kansa sauro jinsin """"""""",[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Anopheles"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Shi"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""kansa"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""sauro"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""jinsin"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""karkasu"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""zuwa"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""wasu"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity",,6.356662034988403
+"Dubban wakilan kasashen duniya daban - daban na halartar babban taron kasa da kasa da aka soma a nan Washington akan yaki da cutar kanjamau mai karya garkuwar jii ta AIDS / SIDA , wanda yau aka shiga rana ta ukku da soma shi .","[{'entity': 'Washington', 'type': 'LOC'}, {'entity': 'yau', 'type': 'DATE'}, {'entity': 'rana ta ukku', 'type': 'DATE'}]","[{'entity': 'Washington', 'type': 'LOC'}, {'entity': 'AIDS', 'type': 'ORG'}, {'entity': 'SIDA', 'type': 'ORG'}, {'entity': 'cutar kanjamau', 'type': 'ORG'}, {'entity': 'garkuwar jii', 'type': 'ORG'}, {'entity': 'ta', 'type': 'ORG'}, {'entity': 'ukku', 'type': 'ORG'}, {'entity': 'da', 'type': 'ORG'}]",This is a Hausa text translated to English: Dubban wakilan kasashen duniya daban,[],"{
+  ""entities"": [
+    {
+      ""entity_text"": ""Washington"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""AIDS"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""SIDA"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""cutar kanjamau"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""garkuwar jii"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""ta"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""ukku"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""da"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text",,6.44818115234375
+Amurka Da China Za Su Ci gaba Da Tattaunawa Kan Cinikayya,"[{'entity': 'Amurka', 'type': 'LOC'}, {'entity': 'China', 'type': 'LOC'}]","[{'entity': 'Amurka', 'type': 'ORG'}, {'entity': 'China', 'type': 'LOC'}, {'entity': 'Za', 'type': 'LOC'}, {'entity': 'Su', 'type': 'LOC'}, {'entity': 'Ci', 'type': 'LOC'}, {'entity': 'gaba', 'type': 'LOC'}, {'entity': 'Da', 'type': 'LOC'}, {'entity': 'Tattaunawa', 'type': 'LOC'}]",This is a Hausa text translated to English: Amurka Da China Za Su,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Amurka"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""China"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Za"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Su"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Ci"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""gaba"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Da"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Tattaunawa"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": """,,6.340332508087158
+"Amma kafin ganawar ta su , Trump yace yana kyautata zaton bangarorin biyu zasu cimma wata yarjejeniya , biyo bayan barazanan da shugaban na Amurka ya yi cewa zai yi karin haraji a kan abokan cinikayyar Amurka .","[{'entity': 'Trump', 'type': 'PER'}, {'entity': 'Amurka', 'type': 'LOC'}, {'entity': 'Amurka', 'type': 'LOC'}]","[{'entity': 'Trump', 'type': 'ORG'}, {'entity': 'Amurka', 'type': 'ORG'}, {'entity': 'Haraji', 'type': 'LOC'}, {'entity': 'Abokan', 'type': 'LOC'}, {'entity': 'Cinikayyar', 'type': 'LOC'}, {'entity': 'Zai', 'type': 'LOC'}, {'entity': 'Yi', 'type': 'LOC'}, {'entity': 'Cewa', 'type': 'LOC'}]",This is a Hausa text translated to English: Amma kafin ganawar ta su,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Trump"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Amurka"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Haraji"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Abokan"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Cinikayyar"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Zai"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Yi"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Cewa"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_",,6.4385950565338135
+"Mueller ya mikawa hukumar shari’a rahoton a jiya Juma'a , Babban Atoni Janar William Barr ya ke jagoranta , wanda a yanzu yake nazari a kai .","[{'entity': 'Mueller', 'type': 'PER'}, {'entity': ""jiya Juma'a"", 'type': 'DATE'}, {'entity': 'William Barr', 'type': 'PER'}]","[{'entity': 'Mueller', 'type': 'PER'}, {'entity': 'shari’a', 'type': 'LOC'}, {'entity': 'William Barr', 'type': 'PER'}, {'entity': 'jiya', 'type': 'LOC'}, {'entity': 'Babban Atoni', 'type': 'ORG'}, {'entity': 'Janar', 'type': 'LOC'}, {'entity': 'yake', 'type': 'LOC'}]",This is a Hausa text translated to English: Mueller ya mikawa hukumar shari’a,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Mueller"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""shari’a"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Juma'a"",
+      ""entity_type"": ""DATE""
+    },
+    {
+      ""entity_text"": ""William Barr"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""jiya"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Babban Atoni"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Janar"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""yake"",
+      ""entity_type"": ""LOC""
+    },
+   ",,6.396855592727661
+Ki kiyaye wadannan umarni domin kula da lafiyarki da ta jaririn dake girma a cikinki : Abubuwan da zaki yi ko kuma kiyaye na lafiya,[],"[{'entity': 'Abubuwan', 'type': 'ORG'}, {'entity': 'cikinki', 'type': 'ORG'}, {'entity': 'lafiyarki', 'type': 'LOC'}, {'entity': 'dake', 'type': 'LOC'}, {'entity': 'girma', 'type': 'LOC'}, {'entity': 'kula', 'type': 'LOC'}, {'entity': 'da', 'type': 'LOC'}, {'entity': 'ta', 'type': 'LOC'}]",This is a Hausa text translated to English: Ki kiyaye wadannan umarni domin,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Abubuwan"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""cikinki"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""lafiyarki"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""dake"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""girma"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""kula"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""da"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""ta"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_",,6.3832480907440186
+"Masu hasashen yanayi sun ce mai yiwuwa , wannan yanayi da ya fara daga daren Talata zuwa wayewar garin Laraba , ya zama tarihi a kasar .","[{'entity': 'daren Talata zuwa wayewar garin Laraba', 'type': 'DATE'}]","[{'entity': 'Masu', 'type': 'PER'}, {'entity': 'Laraba', 'type': 'LOC'}, {'entity': 'Talata', 'type': 'LOC'}, {'entity': 'zuwa', 'type': 'ORG'}, {'entity': 'wayewar', 'type': 'ORG'}, {'entity': 'garin', 'type': 'ORG'}, {'entity': 'ya', 'type': 'LOC'}, {'entity': 'zama', 'type': 'DATE'}]",This is a Hausa text translated to English: Masu hasashen yanayi sun ce,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Masu"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""Laraba"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Talata"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""zuwa"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""wayewar"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""garin"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""ya"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""zama"",
+      ""entity_type"": ""DATE""
+    },
+    {
+      ""entity_text",,6.381533145904541
+Mahukuntan Amurka Suna Tuhumar Wata ‘Yar Rasha,"[{'entity': 'Amurka', 'type': 'LOC'}, {'entity': 'Rasha', 'type': 'LOC'}]","[{'entity': 'Mahukuntan', 'type': 'ORG'}, {'entity': 'Amurka', 'type': 'LOC'}, {'entity': 'Suna', 'type': 'LOC'}, {'entity': 'Tuhumar', 'type': 'LOC'}, {'entity': 'Wata', 'type': 'LOC'}, {'entity': 'Yar', 'type': 'LOC'}, {'entity': 'Rasha', 'type': 'LOC'}]",This is a Hausa text translated to English: Mahukuntan Amurka Suna Tuhumar Wata,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Mahukuntan"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Amurka"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Suna"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Tuhumar"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Wata"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Yar"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Rasha"",
+      ""entity_type"": ""LOC""
+    }
+  ]
+}
+```
+--- End of Task ---
+
+---
+
+You are an expert multilingual entity extraction system.",,6.3283305168151855
+"A babban birnin kasar , wato Birnin Washington , bukin ranar ya janyo dubban mutane , zuwa wurin da ake kira National Mall a birnin .","[{'entity': 'Washington', 'type': 'LOC'}, {'entity': 'National Mall', 'type': 'LOC'}]","[{'entity': 'Birnin Washington', 'type': 'LOC'}, {'entity': 'National Mall', 'type': 'LOC'}, {'entity': 'zuwa wurin da ake', 'type': 'LOC'}, {'entity': 'Ake', 'type': 'LOC'}, {'entity': 'kira', 'type': 'LOC'}, {'entity': 'dubban mutane', 'type': 'LOC'}, {'entity': 'janyo', 'type': 'LOC'}]","This is a Hausa text translated to English: A babban birnin kasar ,",[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Birnin Washington"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""National Mall"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""zuwa wurin da ake"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Ake"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""kira"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""dubban mutane"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""janyo"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""ranar"",
+      ""entity_type"": ""LOC""",,6.369204759597778
+Dr Nasidi yace ba wai lallai duk wanda ya kamu da cutar zai mutu ba .,"[{'entity': 'Nasidi', 'type': 'PER'}]","[{'entity': 'Dr Nasidi', 'type': 'PER'}, {'entity': 'wai', 'type': 'LOC'}, {'entity': 'lallai', 'type': 'LOC'}, {'entity': 'duk', 'type': 'LOC'}, {'entity': 'wanda', 'type': 'LOC'}, {'entity': 'ya', 'type': 'LOC'}, {'entity': 'kamu', 'type': 'LOC'}, {'entity': 'da', 'type': 'LOC'}]",This is a Hausa text translated to English: Dr Nasidi yace ba wai,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Dr Nasidi"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""wai"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""lallai"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""duk"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""wanda"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""ya"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""kamu"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""da"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"":",,6.341594219207764
+Manafort da Gates sun ki amsa laifuffukan farko da aka tuhume su da aikatawa a watan Oktoba na 2017 .,"[{'entity': 'Manafort', 'type': 'PER'}, {'entity': 'Gates', 'type': 'PER'}, {'entity': 'watan Oktoba na 2017', 'type': 'DATE'}]","[{'entity': 'Manafort', 'type': 'ORG'}, {'entity': 'Gates', 'type': 'ORG'}, {'entity': 'Oktoba', 'type': 'DATE'}, {'entity': '2017', 'type': 'DATE'}]",This is a Hausa text translated to English: Manafort da Gates sun ki,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Manafort"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Gates"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Oktoba"",
+      ""entity_type"": ""DATE""
+    },
+    {
+      ""entity_text"": ""2017"",
+      ""entity_type"": ""DATE""
+    }
+  ]
+}
+```",,6.364106416702271
+Rasha ta sha karyata wannan zargi .,"[{'entity': 'Rasha', 'type': 'LOC'}]","[{'entity': 'Rasha', 'type': 'PER'}, {'entity': 'ta', 'type': 'LOC'}, {'entity': 'sha', 'type': 'LOC'}, {'entity': 'karyata', 'type': 'LOC'}, {'entity': 'wannan', 'type': 'LOC'}, {'entity': 'zargi', 'type': 'LOC'}]",This is a Hausa text translated to English: Rasha ta sha karyata wannan,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Rasha"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""ta"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""sha"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""karyata"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""wannan"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""zargi"",
+      ""entity_type"": ""LOC""
+    }
+  ]
+}
+```
+--- End of Example ---
+
+--- Example 2 ---
+
+Text: ""Sulaiman dan sulaiman dan sulaiman dan sulaiman dan sulaiman dan sulaiman dan sulaiman dan",,6.316979646682739
+Shirin ya kuma sami goyon bayan kimanin direbobi 695 membobin kungiyar ma’aikatar sufuri ta kasa ( NURTW ) wadanda suka bada gudummuwar motocinsu domin daukar mata da jariran da suke bukatar kulawa ta gaggawa .,"[{'entity': 'kungiyar ma’aikatar sufuri ta kasa', 'type': 'ORG'}, {'entity': 'NURTW', 'type': 'ORG'}]","[{'entity': 'Shirin', 'type': 'PER'}, {'entity': 'NURTW', 'type': 'ORG'}, {'entity': '695', 'type': 'DATE'}, {'entity': 'motocinsu', 'type': 'LOC'}, {'entity': 'daukar', 'type': 'LOC'}, {'entity': 'mata', 'type': 'LOC'}, {'entity': 'jariran', 'type': 'LOC'}, {'entity': 'suke', 'type': 'LOC'}]",This is a Hausa text translated to English: Shirin ya kuma sami goyon,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Shirin"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""NURTW"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""695"",
+      ""entity_type"": ""DATE""
+    },
+    {
+      ""entity_text"": ""motocinsu"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""daukar"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""mata"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""jariran"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""suke"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      """,,6.437577247619629
+"Sakataren Harkokin Wajen Amurka , Mike Pompeo , ya ce ya na kan aikin neman mafita a diflomasiyyance game da tankiyar da ake yi da Iran , wacce ake zargi da kai hari kan matatun man Saudiyya , to amma ya yi gargadin cewa muddun matakin diflomasiyya ya kasa yiwuwa , Shugaba Donald Trump """""""" zai yanke shawarar da ta zama dole wajen cimma muradunmu .","[{'entity': 'Amurka', 'type': 'LOC'}, {'entity': 'Mike Pompeo', 'type': 'PER'}, {'entity': 'Iran', 'type': 'LOC'}, {'entity': 'Saudiyya', 'type': 'LOC'}, {'entity': 'Donald Trump', 'type': 'PER'}]","[{'entity': 'Mike Pompeo', 'type': 'PER'}, {'entity': 'Donald Trump', 'type': 'PER'}, {'entity': 'Iran', 'type': 'LOC'}, {'entity': 'Saudiyya', 'type': 'LOC'}, {'entity': 'Trump', 'type': 'ORG'}, {'entity': 'Pompeo', 'type': 'ORG'}]","This is a Hausa text translated to English: Sakataren Harkokin Wajen Amurka ,",[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Mike Pompeo"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""Donald Trump"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""Iran"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Saudiyya"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Trump"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Pompeo"",
+      ""entity_type"": ""ORG""
+    }
+  ]
+}
+```",,6.534852504730225
+"Da ma tun fari an tuhume su da laifuffukan batar da sawun kudade , sai kuma kin yin rajista a matsayin wakilin kasar waje dangane da ayyukan da suka yi na kare muradun 'yan siyasa masu goyon bayan kasar Rasha a Ukraine .","[{'entity': 'Rasha', 'type': 'LOC'}, {'entity': 'Ukraine', 'type': 'LOC'}]","[{'entity': 'Rasha', 'type': 'ORG'}, {'entity': 'Ukraine', 'type': 'LOC'}, {'entity': 'masu goyon', 'type': 'DATE'}, {'entity': 'bayan kasar', 'type': 'DATE'}, {'entity': 'Rasha', 'type': 'ORG'}, {'entity': 'Rasha', 'type': 'ORG'}, {'entity': 'Rasha', 'type': 'ORG'}, {'entity': 'Rasha', 'type': 'ORG'}]",This is a Hausa text translated to English: Da ma tun fari an,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Rasha"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Ukraine"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""masu goyon"",
+      ""entity_type"": ""DATE""
+    },
+    {
+      ""entity_text"": ""bayan kasar"",
+      ""entity_type"": ""DATE""
+    },
+    {
+      ""entity_text"": ""Rasha"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Rasha"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Rasha"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Rasha"",
+      ""entity_type"": ""ORG""
+    },
+    {
+     ",,6.465975761413574
+"An wallafa sakamakon wannan binciken ne a wata mujalla mai suna """""""" Malaria Journal .",[],"[{'entity': 'wallafa', 'type': 'ORG'}, {'entity': 'Malaria Journal', 'type': 'ORG'}, {'entity': 'binciken', 'type': 'LOC'}, {'entity': 'ne', 'type': 'LOC'}, {'entity': 'a', 'type': 'LOC'}, {'entity': 'wata', 'type': 'LOC'}, {'entity': 'mujalla', 'type': 'LOC'}, {'entity': 'mai', 'type': 'LOC'}]",This is a Hausa text translated to English: An wallafa sakamakon wannan binciken,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""wallafa"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Malaria Journal"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""binciken"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""ne"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""a"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""wata"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""mujalla"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""mai"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text",,6.338255882263184
+Duniya Ta Barke Da Murnar Shiga Sabuwar Shekara,"[{'entity': 'Sabuwar Shekara', 'type': 'DATE'}]","[{'entity': 'Duniya', 'type': 'LOC'}, {'entity': 'Ta', 'type': 'LOC'}, {'entity': 'Barke', 'type': 'LOC'}, {'entity': 'Da', 'type': 'LOC'}, {'entity': 'Murnar', 'type': 'ORG'}, {'entity': 'Shiga', 'type': 'LOC'}, {'entity': 'Sabuwar', 'type': 'LOC'}, {'entity': 'Shekara', 'type': 'LOC'}]",This is a Hausa text translated to English: Duniya Ta Barke Da Murnar,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Duniya"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Ta"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Barke"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Da"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Murnar"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Shiga"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Sabuwar"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Shekara"",
+      ""entity_type"": ""LOC""
+    }
+  ]
+}
+```",,6.324800968170166
+Cutar Ebola na Bukatar Kula Cikin Gaggawa Domin Kaucewa Asarar Rai,[],"[{'entity': 'Ebola', 'type': 'LOC'}, {'entity': 'Bukatar', 'type': 'LOC'}, {'entity': 'Kula', 'type': 'LOC'}, {'entity': 'Cikin', 'type': 'LOC'}, {'entity': 'Gaggawa', 'type': 'LOC'}, {'entity': 'Domin', 'type': 'ORG'}, {'entity': 'Kaucewa', 'type': 'ORG'}, {'entity': 'Asarar', 'type': 'ORG'}]",This is a Hausa text translated to English: Cutar Ebola na Bukatar Kula,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Ebola"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Bukatar"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Kula"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Cikin"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Gaggawa"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Domin"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Kaucewa"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Asarar"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      """,,6.335535049438477
+"A wani sakon Twitter da ya wallafa a shafinsa , Trump ya kuma kwatanta sanarwar ta Trudeau a matsayin “ mai rauni wacce ke cike da rashin gaskiya .","[{'entity': 'Twitter', 'type': 'ORG'}, {'entity': 'Trump', 'type': 'PER'}, {'entity': 'Trudeau', 'type': 'PER'}]","[{'entity': 'Trump', 'type': 'PER'}, {'entity': 'Trudeau', 'type': 'PER'}, {'entity': 'mai rauni wacce', 'type': 'LOC'}, {'entity': 'cike da rashin gaskiya', 'type': 'LOC'}]",This is a Hausa text translated to English: A wani sakon Twitter da,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Trump"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""Trudeau"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""mai rauni wacce"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""cike da rashin gaskiya"",
+      ""entity_type"": ""LOC""
+    }
+  ]
+}
+```",,6.410669803619385
+"Mahalarta taron da suka hada da kwararru a fannin kiwon lafiya da kungiyoyi masu zaman kansu dake kula da lafiyar mata masu juna biyu , da kananan yara , da jami’an jami’a da kungiyiyin addinai da na al’umma sun bayyana rashin gamsuwa da halin da mata da kananan yara suke ciki .",[],"[{'entity': 'Mahalarta', 'type': 'ORG'}, {'entity': 'da', 'type': 'LOC'}, {'entity': 'kwararru', 'type': 'LOC'}, {'entity': 'a', 'type': 'LOC'}, {'entity': 'fannin', 'type': 'LOC'}, {'entity': 'kiwon', 'type': 'LOC'}, {'entity': 'lafiya', 'type': 'LOC'}, {'entity': 'da', 'type': 'LOC'}]",This is a Hausa text translated to English: Mahalarta taron da suka hada,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Mahalarta"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""da"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""kwararru"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""a"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""fannin"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""kiwon"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""lafiya"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""da"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity",,6.504207849502564
+• In kunne yaji gaggan jiki ya tsira .,[],"[{'entity': 'In kunne', 'type': 'LOC'}, {'entity': 'yaji', 'type': 'LOC'}, {'entity': 'gaggan', 'type': 'LOC'}, {'entity': 'jiki', 'type': 'LOC'}, {'entity': 'ya', 'type': 'LOC'}, {'entity': 'tsira', 'type': 'LOC'}]",This is a Hausa text translated to English: • In kunne yaji gaggan,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""In kunne"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""yaji"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""gaggan"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""jiki"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""ya"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""tsira"",
+      ""entity_type"": ""LOC""
+    }
+  ]
+}
+```",,6.319986343383789
+"Fadar White House ta fidda sanarwa daga alkali Kavanaugh tana cewa mai shari'a Kavanaugh ya musanta wannan zargi kuma ta ci gaba da cewa wannan ba wani abu bane a fili """""""" illa bata suna .","[{'entity': 'White House', 'type': 'LOC'}, {'entity': 'Kavanaugh', 'type': 'PER'}, {'entity': 'Kavanaugh', 'type': 'PER'}]","[{'entity': 'White House', 'type': 'ORG'}, {'entity': 'Kavanaugh', 'type': 'PER'}, {'entity': 'musanta', 'type': 'LOC'}, {'entity': 'zargi', 'type': 'LOC'}, {'entity': 'wannan', 'type': 'LOC'}, {'entity': 'abu', 'type': 'LOC'}, {'entity': 'bane', 'type': 'LOC'}, {'entity': 'fili', 'type': 'LOC'}]",This is a Hausa text translated to English: Fadar White House ta fidda,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""White House"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Kavanaugh"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""musanta"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""zargi"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""wannan"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""abu"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""bane"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""fili"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text",,6.44023871421814
+Bangaren shari'a na Majalisa ne dai suka fitar da wannan takardun nuni wanda daga baya manema labarai suka samu .,[],"[{'entity': 'Bangaren', 'type': 'ORG'}, {'entity': 'Majalisa', 'type': 'ORG'}, {'entity': 'dai', 'type': 'DATE'}, {'entity': 'suka', 'type': 'LOC'}, {'entity': 'fitar', 'type': 'LOC'}, {'entity': 'daga', 'type': 'LOC'}, {'entity': 'baya', 'type': 'LOC'}, {'entity': 'manema', 'type': 'LOC'}]",This is a Hausa text translated to English: Bangaren shari'a na Majalisa ne,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Bangaren"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Majalisa"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""dai"",
+      ""entity_type"": ""DATE""
+    },
+    {
+      ""entity_text"": ""suka"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""fitar"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""daga"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""baya"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""manema"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"":",,6.368540287017822
+Natanyahu bayyana hakan ne gabanin ya bar kasarsa jiya don ganawa da Shugabannin yankin Turai .,"[{'entity': 'Natanyahu', 'type': 'PER'}, {'entity': 'jiya', 'type': 'DATE'}, {'entity': 'Turai', 'type': 'LOC'}]","[{'entity': 'Natanyahu', 'type': 'PER'}, {'entity': 'Shugabannin', 'type': 'PER'}, {'entity': 'Turai', 'type': 'PER'}, {'entity': 'gabanin', 'type': 'LOC'}, {'entity': 'jiya', 'type': 'LOC'}, {'entity': 'don ganawa', 'type': 'DATE'}, {'entity': 'bar kasarsa', 'type': 'DATE'}]",This is a Hausa text translated to English: Natanyahu bayyana hakan ne gabanin,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Natanyahu"",
+      ""entity_type"": ""PERSON""
+    },
+    {
+      ""entity_text"": ""Shugabannin"",
+      ""entity_type"": ""PERSON""
+    },
+    {
+      ""entity_text"": ""Turai"",
+      ""entity_type"": ""PERSON""
+    },
+    {
+      ""entity_text"": ""gabanin"",
+      ""entity_type"": ""LOCATION""
+    },
+    {
+      ""entity_text"": ""jiya"",
+      ""entity_type"": ""LOCATION""
+    },
+    {
+      ""entity_text"": ""don ganawa"",
+      ""entity_type"": ""DATE""
+    },
+    {
+      ""entity_text"": ""bar kasarsa"",
+      ""entity_type"": ""DATE""
+    }
+  ]
+}
+```
+--- End of Task ---
+
+---
+
+--- Your Task ---
+Text",,6.352752208709717
+"Rukunin farko ya maida hankali a kan maza da ake kira “ Men Against Polio """""""" ( MAP ) - Maza masu yaki da cutar shan inna - Ganin ci gaban da aka samu na goyon bayan maza a yaki da cutar , aka kaddamar da rukuni na biyu wanda ya maida hankali kan neman goyon bayan mata .",[],"[{'entity': 'Men Against Polio', 'type': 'ORG'}, {'entity': 'MAP', 'type': 'ORG'}, {'entity': 'Rukunin', 'type': 'LOC'}, {'entity': 'farko', 'type': 'LOC'}, {'entity': 'ya', 'type': 'LOC'}, {'entity': 'maida', 'type': 'LOC'}, {'entity': 'hankali', 'type': 'LOC'}, {'entity': 'kan', 'type': 'LOC'}]",This is a Hausa text translated to English: Rukunin farko ya maida hankali,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Men Against Polio"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""MAP"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Rukunin"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""farko"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""ya"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""maida"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""hankali"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""kan"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity",,6.512003183364868
+* Sako daga cibiyar yaki da cutuka ta kasa da kasa .,[],"[{'entity': 'Sako', 'type': 'PER'}, {'entity': 'daga', 'type': 'LOC'}, {'entity': 'cibiyar', 'type': 'LOC'}, {'entity': 'yaki', 'type': 'LOC'}, {'entity': 'da', 'type': 'LOC'}, {'entity': 'cutuka', 'type': 'LOC'}, {'entity': 'ta', 'type': 'LOC'}, {'entity': 'kasa', 'type': 'LOC'}]",This is a Hausa text translated to English: * Sako daga cibiyar yaki,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Sako"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""daga"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""cibiyar"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""yaki"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""da"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""cutuka"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""ta"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""kasa"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"":",,6.3545982837677
+Yarjajjeniyar ta cinakayyar da ta kai dala tiriliyan 1 .,[],"[{'entity': 'Yarjajjeniyar', 'type': 'ORG'}, {'entity': 'cinakayyar', 'type': 'LOC'}, {'entity': 'kai', 'type': 'LOC'}, {'entity': 'dala', 'type': 'LOC'}, {'entity': 'tiriliyan', 'type': 'LOC'}, {'entity': '1', 'type': 'DATE'}]",This is a Hausa text translated to English: Yarjajjeniyar ta cinakayyar da ta,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Yarjajjeniyar"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""cinakayyar"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""kai"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""dala"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""tiriliyan"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""1"",
+      ""entity_type"": ""DATE""
+    }
+  ]
+}
+```
+--- End of Example ---
+
+--- Example 2 ---
+
+Text: ""Sarki na sarki na sarki.""
+
+JSON Output (ONLY return this JSON, with NO other text):",,6.328468084335327
+"Amma daga karshe , dan bindigar , mai shekaru 19 , ya tuntubi ‘yan sandan San Diego ya kuma mika kansa .","[{'entity': 'shekaru 19', 'type': 'DATE'}, {'entity': 'San Diego', 'type': 'LOC'}]","[{'entity': 'San Diego', 'type': 'LOC'}, {'entity': '19', 'type': 'DATE'}, {'entity': 'bindigar', 'type': 'ORG'}, {'entity': 'tuntubi', 'type': 'ORG'}, {'entity': 'ya', 'type': 'ORG'}, {'entity': 'kuma', 'type': 'ORG'}, {'entity': 'mika', 'type': 'ORG'}, {'entity': 'kansa', 'type': 'ORG'}]","This is a Hausa text translated to English: Amma daga karshe , dan",[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""San Diego"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""19"",
+      ""entity_type"": ""DATE""
+    },
+    {
+      ""entity_text"": ""bindigar"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""tuntubi"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""ya"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""kuma"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""mika"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""kansa"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text",,6.360573530197144
+"Lord yace wannan yunkurin ya nuna a zahiri cewa a ko da yaushe akwai barazanar da ake huskanta musammam da yake ana dunfarar lokacin zaben rabin wa’adi , sai dai yace amma ba zasu yi kasa a gwiwa ba .",[],"[{'entity': 'Lord', 'type': 'ORG'}, {'entity': 'yace', 'type': 'PER'}, {'entity': 'wannan', 'type': 'LOC'}, {'entity': 'yunkurin', 'type': 'LOC'}, {'entity': 'ya', 'type': 'LOC'}, {'entity': 'nuna', 'type': 'LOC'}, {'entity': 'a', 'type': 'LOC'}, {'entity': 'zahiri', 'type': 'LOC'}]",This is a Hausa text translated to English: Lord yace wannan yunkurin ya,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Lord"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""yace"",
+      ""entity_type"": ""PERSON""
+    },
+    {
+      ""entity_text"": ""wannan"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""yunkurin"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""ya"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""nuna"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""a"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""zahiri"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": """,,6.46472954750061
+"Da yake jawabi a wajen wani taron manema labarai a karshen shirin makon jiya , Mr Bright Ekweremadu , manajin darektan cibiyar Society for family Health , ya bayyana cewa , gudanar da shirin ya zama dole lokacin da binciken kiwon lafiya na kasa da aka gudanar a shekara ta 2008 ya nuna cewa kashi 17 % na mata masu juna biyu ne suke kai ga haihuwa a a asibiti a jihar Gombe .","[{'entity': 'makon jiya', 'type': 'DATE'}, {'entity': 'Bright Ekweremadu', 'type': 'PER'}, {'entity': 'Society for family Health', 'type': 'ORG'}, {'entity': 'shekara ta 2008', 'type': 'DATE'}, {'entity': 'Gombe', 'type': 'LOC'}]","[{'entity': 'Mr Bright Ekweremadu', 'type': 'PER'}, {'entity': 'Society for family Health', 'type': 'ORG'}, {'entity': 'Gombe', 'type': 'LOC'}, {'entity': '2008', 'type': 'DATE'}]",This is a Hausa text translated to English: Da yake jawabi a wajen,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Mr Bright Ekweremadu"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""Society for family Health"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Gombe"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""2008"",
+      ""entity_type"": ""DATE""
+    }
+  ]
+}
+```",,6.560969591140747
+Yanzu dai masanan suna son su gwada ko za a iya samar da wani abu mai warin kaza da za a rika kunnawa kamar kyandir domin korar sauro daga gidaje .,[],"[{'entity': 'Yanzu', 'type': 'ORG'}, {'entity': 'masanan', 'type': 'ORG'}, {'entity': 'suna', 'type': 'LOC'}, {'entity': 'son', 'type': 'LOC'}, {'entity': 'su', 'type': 'LOC'}, {'entity': 'gwada', 'type': 'LOC'}, {'entity': 'ko', 'type': 'LOC'}, {'entity': 'za', 'type': 'LOC'}]",This is a Hausa text translated to English: Yanzu dai masanan suna son,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Yanzu"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""masanan"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""suna"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""son"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""su"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""gwada"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""ko"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""za"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""a"",",,6.391306400299072
+A cewar wasu mutane biyu dake da masaniya kan shirye - shiryen amma wadanda basa son a ambaci sunayen su .,[],"[{'entity': 'cewar wasu', 'type': 'ORG'}, {'entity': 'mutane', 'type': 'LOC'}, {'entity': 'biyu', 'type': 'LOC'}, {'entity': 'dake', 'type': 'LOC'}, {'entity': 'da', 'type': 'LOC'}, {'entity': 'masaniya', 'type': 'LOC'}, {'entity': 'kan', 'type': 'LOC'}, {'entity': 'shirye', 'type': 'LOC'}]",This is a Hausa text translated to English: A cewar wasu mutane biyu,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""cewar wasu"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""mutane"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""biyu"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""dake"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""da"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""masaniya"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""kan"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""shirye"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      """,,6.376700162887573
+• Kada ka taba wanda ya mutu da cutar Ebola .,[],"[{'entity': 'Ebola', 'type': 'ORG'}, {'entity': 'mutu', 'type': 'LOC'}, {'entity': 'Kada', 'type': 'LOC'}, {'entity': 'taba', 'type': 'LOC'}, {'entity': 'wanda', 'type': 'LOC'}, {'entity': 'ya', 'type': 'LOC'}, {'entity': 'cutar', 'type': 'LOC'}, {'entity': 'Kada', 'type': 'PER'}]",This is a Hausa text translated to English: • Kada ka taba wanda,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Ebola"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""mutu"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Kada"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""taba"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""wanda"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""ya"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""cutar"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Kada"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"":",,6.348990201950073
+"Barr da ya fitar da cikakken rahoto ga al’ummar kasa , kuma ya bayar da takardun shaida da abubuwan da ke faruwa ga Majalisa .","[{'entity': 'Barr', 'type': 'PER'}]","[{'entity': 'Majalisa', 'type': 'ORG'}, {'entity': 'al’ummar', 'type': 'ORG'}, {'entity': 'abubuwan', 'type': 'ORG'}, {'entity': 'cikakken rahoto', 'type': 'LOC'}, {'entity': 'kasa', 'type': 'LOC'}, {'entity': 'kuma', 'type': 'LOC'}, {'entity': 'ya bayar', 'type': 'LOC'}]",This is a Hausa text translated to English: Barr da ya fitar da,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Majalisa"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""al’ummar"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""abubuwan"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""cikakken rahoto"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""kasa"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""kuma"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""ya bayar"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""da takardun shaida"",
+      ""entity_type"": """,,6.374378204345703
+"A jiya alhamis ne mai bincike na musamman , Robert Mueller , ya gabatarwa da kotu takardun karin tuhuma a kan tsohon shugaban yakin neman zaben shugaba Trump , wato Paul Manafort , da wani jami'in yakin neman zaben na Trump mai suna Richard Gates .","[{'entity': 'jiya alhamis', 'type': 'DATE'}, {'entity': 'Robert Mueller', 'type': 'PER'}, {'entity': 'Trump', 'type': 'PER'}, {'entity': 'Paul Manafort', 'type': 'PER'}, {'entity': 'Trump', 'type': 'PER'}, {'entity': 'Richard Gates', 'type': 'PER'}]","[{'entity': 'Robert Mueller', 'type': 'ORG'}, {'entity': 'Paul Manafort', 'type': 'ORG'}, {'entity': 'Richard Gates', 'type': 'ORG'}, {'entity': 'Trump', 'type': 'ORG'}, {'entity': 'Jiya alhamis', 'type': 'LOC'}, {'entity': 'Mai bincike', 'type': 'LOC'}, {'entity': 'Gabatarwa da kotu takardun', 'type': 'LOC'}]",This is a Hausa text translated to English: A jiya alhamis ne mai,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Robert Mueller"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Paul Manafort"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Richard Gates"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Trump"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Jiya alhamis"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Mai bincike"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Gabatarwa da kotu takardun"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Tuhuma"",
+      ""entity_type",,6.467902183532715
+"Gary White , shugaban kungiyar ta WASH Advocacy Intiative , kuma daya daga cikin wadanda suka kirkiro dandalin """""""" water .","[{'entity': 'Gary White', 'type': 'PER'}, {'entity': 'WASH Advocacy Intiative', 'type': 'ORG'}]","[{'entity': 'Gary White', 'type': 'PER'}, {'entity': 'WASHINGTON', 'type': 'LOC'}, {'entity': 'Advocacy Initiative', 'type': 'ORG'}, {'entity': 'danda', 'type': 'LOC'}, {'entity': 'Kirkiro', 'type': 'LOC'}, {'entity': 'dandalin', 'type': 'LOC'}, {'entity': 'water', 'type': 'LOC'}]","This is a Hausa text translated to English: Gary White , shugaban kungiyar",[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Gary White"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""WASHINGTON"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Advocacy Initiative"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""danda"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Kirkiro"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""dandalin"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""water"",
+      ""entity_type"": ""LOC""
+    }
+  ]
+}
+```",,6.37168025970459
+Plasmodium Falciparum kuma ita ce wadda ta fi yin kisa .,[],"[{'entity': 'Plasmodium Falciparum', 'type': 'ORG'}, {'entity': 'kuma', 'type': 'LOC'}, {'entity': 'ita', 'type': 'LOC'}, {'entity': 'ce', 'type': 'LOC'}, {'entity': 'wadda', 'type': 'LOC'}, {'entity': 'ta', 'type': 'LOC'}, {'entity': 'fi', 'type': 'LOC'}, {'entity': 'yin', 'type': 'LOC'}]",This is a Hausa text translated to English: Plasmodium Falciparum kuma ita ce,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Plasmodium Falciparum"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""kuma"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""ita"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""ce"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""wadda"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""ta"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""fi"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""yin"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"":",,6.338230848312378
+Juncker zai shigo nan Washington ne da tunanin Kungiyar Tarayyar Turai zata kaucewa rikicin cinikayya ta hanyar fahimtar da Trump ya janye haraji masu tsauri da yake niyar dorawa motocin Turai .,"[{'entity': 'Juncker', 'type': 'PER'}, {'entity': 'Washington', 'type': 'LOC'}, {'entity': 'Kungiyar Tarayyar Turai', 'type': 'ORG'}, {'entity': 'Trump', 'type': 'PER'}, {'entity': 'Turai', 'type': 'LOC'}]","[{'entity': 'Juncker', 'type': 'PER'}, {'entity': 'Washington', 'type': 'LOC'}, {'entity': 'Trump', 'type': 'PER'}, {'entity': 'Turai', 'type': 'ORG'}, {'entity': 'Tarayyar', 'type': 'ORG'}, {'entity': 'Rikicin', 'type': 'ORG'}, {'entity': 'Cinikayya', 'type': 'ORG'}, {'entity': 'Hanyar', 'type': 'LOC'}]",This is a Hausa text translated to English: Juncker zai shigo nan Washington,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Juncker"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""Washington"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Trump"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""Turai"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Tarayyar"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Rikicin"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Cinikayya"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Hanyar"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity",,6.42819356918335
+An Kaddamar Da Aikin Rigakafin Dabbobi a Jihar Neja,"[{'entity': 'Neja', 'type': 'LOC'}]","[{'entity': 'Kaddamar', 'type': 'ORG'}, {'entity': 'Da', 'type': 'LOC'}, {'entity': 'Aikin', 'type': 'LOC'}, {'entity': 'Rigakafin', 'type': 'LOC'}, {'entity': 'Dabbobi', 'type': 'LOC'}, {'entity': 'a', 'type': 'LOC'}, {'entity': 'Jihar', 'type': 'LOC'}, {'entity': 'Neja', 'type': 'LOC'}]",This is a Hausa text translated to English: An Kaddamar Da Aikin Rigakafin,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Kaddamar"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""Da"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Aikin"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Rigakafin"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Dabbobi"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""a"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Jihar"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Neja"",
+      ""entity_type"": ""LOC""
+    }
+  ]
+}
+```",,6.328487873077393
+"Sannan ya bukaci a kara yawan maganin rigakafin domin a sami damar yiwa wasu dabbobin dake shigowa daga makwabtan jihohi irin su Kebbi don cin karmami , Manyan cututtukan da suka fi addabar dabbobin dai sune boro da sammure mai sanya shanu cin kasa idan tayi yawa , sai kuma cutar haukacewar karnuka .","[{'entity': 'Kebbi', 'type': 'LOC'}]","[{'entity': 'Sannan', 'type': 'PER'}, {'entity': 'bukaci', 'type': 'ORG'}, {'entity': 'dabbobin', 'type': 'LOC'}, {'entity': 'dake', 'type': 'LOC'}, {'entity': 'shigowa', 'type': 'LOC'}, {'entity': 'daga', 'type': 'LOC'}, {'entity': 'makwabtan', 'type': 'LOC'}, {'entity': 'jihohi', 'type': 'LOC'}]",This is a Hausa text translated to English: Sannan ya bukaci a kara,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Sannan"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""bukaci"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""dabbobin"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""dake"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""shigowa"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""daga"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""makwabtan"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""jihohi"",
+      ""entity_type"": ""LOC""
+    },
+    {
+     ",,6.525311708450317
+Yau Za A Tabka Wani Irin Sanyi Mai Tsanani A Amurka,"[{'entity': 'Yau', 'type': 'DATE'}, {'entity': 'Amurka', 'type': 'LOC'}]","[{'entity': 'Yau', 'type': 'PER'}, {'entity': 'Za', 'type': 'PER'}, {'entity': 'A', 'type': 'LOC'}, {'entity': 'Tabka', 'type': 'LOC'}, {'entity': 'Wani', 'type': 'LOC'}, {'entity': 'Irin', 'type': 'LOC'}, {'entity': 'Sanyi', 'type': 'LOC'}, {'entity': 'Mai', 'type': 'LOC'}]",This is a Hausa text translated to English: Yau Za A Tabka Wani,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Yau"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""Za"",
+      ""entity_type"": ""PER""
+    },
+    {
+      ""entity_text"": ""A"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Tabka"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Wani"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Irin"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Sanyi"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Mai"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""Ts",,6.331634044647217
+An yi nazari kan rayuwar Amurkawa mata dubu tamanin tsakanin ‘yan shekaru hamsin zuwa saba’in da tara .,[],"[{'entity': 'Amurkawa', 'type': 'ORG'}, {'entity': 'saba', 'type': 'LOC'}, {'entity': 'hamsin', 'type': 'DATE'}, {'entity': 'zuwa', 'type': 'LOC'}, {'entity': 'tamanin', 'type': 'LOC'}, {'entity': 'tsakanin', 'type': 'LOC'}, {'entity': 'yan', 'type': 'LOC'}, {'entity': 'shekaru', 'type': 'LOC'}]",This is a Hausa text translated to English: An yi nazari kan rayuwar,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Amurkawa"",
+      ""entity_type"": ""ORG""
+    },
+    {
+      ""entity_text"": ""saba"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""hamsin"",
+      ""entity_type"": ""DATE""
+    },
+    {
+      ""entity_text"": ""zuwa"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""tamanin"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""tsakanin"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""yan"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""shekaru"",
+      ""entity_type"": ""LOC""
+    },
+    {
+     ",,6.356529712677002
+Hukumar kula da lafiya ta duniya ta fitar da wannan bayani ne a taron data gudanar a Geneva a karshen watan oktoban wannan shekarar .,"[{'entity': 'Hukumar kula da lafiya ta duniya', 'type': 'ORG'}, {'entity': 'Geneva', 'type': 'LOC'}, {'entity': 'karshen watan oktoban wannan shekarar', 'type': 'DATE'}]","[{'entity': 'Geneva', 'type': 'LOC'}, {'entity': 'oktoban', 'type': 'DATE'}, {'entity': 'watan', 'type': 'LOC'}, {'entity': 'shekarar', 'type': 'LOC'}, {'entity': 'kula', 'type': 'LOC'}, {'entity': 'da', 'type': 'LOC'}, {'entity': 'lafiya', 'type': 'LOC'}, {'entity': 'ta', 'type': 'LOC'}]",This is a Hausa text translated to English: Hukumar kula da lafiya ta,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""Geneva"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""oktoban"",
+      ""entity_type"": ""DATE""
+    },
+    {
+      ""entity_text"": ""watan"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""shekarar"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""kula"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""da"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""lafiya"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""ta"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_",,6.385945558547974
+"Kujerun majalisar wakilai 435 ake takararsu , sannan ana takara akan kujeru 35 cikin 100 na majalisar Dattawa , baya ga haka akwai kujerun Gwamnoni 36 cikin jihohi 50 da su ma ake takara akansu .",[],"[{'entity': '435', 'type': 'DATE'}, {'entity': '35', 'type': 'DATE'}, {'entity': '100', 'type': 'DATE'}, {'entity': 'Dattawa', 'type': 'LOC'}, {'entity': '36', 'type': 'DATE'}, {'entity': '50', 'type': 'DATE'}, {'entity': 'Gwamnoni', 'type': 'ORG'}]",This is a Hausa text translated to English: Kujerun majalisar wakilai 435 ake,[],"```json
+{
+  ""entities"": [
+    {
+      ""entity_text"": ""435"",
+      ""entity_type"": ""DATE""
+    },
+    {
+      ""entity_text"": ""35"",
+      ""entity_type"": ""DATE""
+    },
+    {
+      ""entity_text"": ""100"",
+      ""entity_type"": ""DATE""
+    },
+    {
+      ""entity_text"": ""Dattawa"",
+      ""entity_type"": ""LOC""
+    },
+    {
+      ""entity_text"": ""36"",
+      ""entity_type"": ""DATE""
+    },
+    {
+      ""entity_text"": ""50"",
+      ""entity_type"": ""DATE""
+    },
+    {
+      ""entity_text"": ""Gwamnoni"",
+      ""entity_type"": ""ORG""
+    }
+  ]
+}
+```",,6.464791774749756

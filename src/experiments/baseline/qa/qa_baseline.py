@@ -24,6 +24,10 @@ ENGLISH_FEW_SHOT_EXAMPLES_DIRECT_QA = [
     {
         "question": "Who painted the Mona Lisa?",
         "answer": "Leonardo da Vinci"
+    },
+    {
+        "question": "What is the largest planet in our solar system?",
+        "answer": "Jupiter"
     }
 ]
 
@@ -38,6 +42,11 @@ ENGLISH_FEW_SHOT_EXAMPLES_CONTEXTUAL_QA = [
         "context": "Marie Curie was a Polish and naturalized-French physicist and chemist who conducted pioneering research on radioactivity. She was the first woman to win a Nobel Prize.",
         "question": "What was Marie Curie's field of research?",
         "answer": "Radioactivity"
+    },
+    {
+        "context": "The Amazon rainforest, also known as Amazonia, is a moist broadleaf tropical rainforest that covers most of the Amazon basin of South America. It has an area of approximately 5.5 million square kilometers.",
+        "question": "How large is the Amazon rainforest?",
+        "answer": "Approximately 5.5 million square kilometers"
     }
 ]
 

@@ -91,7 +91,7 @@ MODEL_SPECIFIC_ADJUSTMENTS = {
 def parse_cli_args():
     parser = argparse.ArgumentParser(description="Run Baseline NER Experiments with MasakhaNER.")
     parser.add_argument("--models", type=str, default="CohereLabs/aya-23-8B,Qwen/Qwen2.5-7B-Instruct", help="Comma-separated model names.")
-    parser.add_argument("--langs", type=str, default="swa,hau,yor", help="Comma-separated MasakhaNER language codes (e.g., swa, hau, yor for Swahili, Hausa, Yoruba from MasakhaNER). Ensure these match dataset keys.")
+    parser.add_argument("--langs", type=str, default="swa,hau", help="Comma-separated MasakhaNER language codes (e.g., swa, hau for Swahili, Hausa from MasakhaNER). Ensure these match dataset keys.")
     parser.add_argument("--num_samples", type=int, default=80, help="Number of samples per language. Default: 80")
     parser.add_argument("--data_split", type=str, default="test", choices=["train", "validation", "test"], help="Dataset split.")
     parser.add_argument("--base_output_dir", type=str, default="/work/bbd6522/results/ner/baseline_masakhaner", help="Base directory to save results and summaries.")
@@ -100,7 +100,7 @@ def parse_cli_args():
         "--prompt_in_lrl", 
         action=argparse.BooleanOptionalAction, # Allows --prompt_in_lrl and --no-prompt_in_lrl
         default=True, # Set default to True
-        help="If set, prompt instructions and few-shot examples (if available) will be in LRL. Default: True (LRL prompts)."
+        help="If set, prompt instructions will be in LRL (few-shot examples remain in English). Default: True (LRL instructions)."
     )
     parser.add_argument("--shot_settings", nargs='+', default=['zero_shot', 'few_shot'], choices=['zero_shot', 'few_shot'], help="Prompting strategies.")
     parser.add_argument(

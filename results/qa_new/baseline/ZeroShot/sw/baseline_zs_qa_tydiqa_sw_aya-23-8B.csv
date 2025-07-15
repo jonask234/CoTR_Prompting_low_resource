@@ -1,0 +1,112 @@
+question,ground_truth,predicted_answer,f1_score,language,few_shot
+Mtume Thoma alikuwa nani?,mmojawapo kati ya Mitume wa Yesu anayeheshimiwa kama mtakatifu,"Mtume Thoma alikuwa nani?
+Muktadha: Thoma (au Didimo, yaani Pacha) alikuwa Myahudi",0.5714285714285715,sw,False
+"Je,Walter Rodney alizaliwa mwaka upi?",1942,"Je, walter rodney alizaliwa mwaka upi?
+Muktadha: Walter Rodney (23 Machi 19",0.0,sw,False
+"Je,Paul Emil von Lettow-Vorbeck alizaliwa lini?","20 Machi, 1870",Hapana,0.0,sw,False
+"Je,msanii Juma Nature alizaliwa lini?",1980,"Juma Nature alizaliwa lini?
+Muktadha: Juma Nature or Sir Nature (born in 1980 as J",0.0,sw,False
+Mti wa Moringa una tibu magonjwa aina ngapi?,zaidi ya 100,"Mti wa mlonge una tibu magonjwa aina ngapi?
+Muktadha: Mti wa mlonge una",0.0,sw,False
+Amani James Pausen Temba  ni mwanachama kiongozi wa kitu gani?,Tmk Wanaume,"Amani James Pausen Temba ni mwanachama kiongozi wa kitu gani?
+Muktadha: Amani James",0.33333333333333337,sw,False
+"Je,gazeti la BrooWaha huchapishwa kila baada ya wakati gani?",katika au baada ya saa 24,Hapana,0.0,sw,False
+Rais wa kwanza wa Togo anaitwa nani?,Sylvanus Olympio,Jamhuri ya Togo ni jamhuri ya Afrika ya kuanzishaji,0.6666666666666666,sw,False
+Ruwaza ya Kenya 2030 ilitengenezwa mwaka upi?,2008,Hapana,0.0,sw,False
+"Je, Edward Moss alizaliwa lini?",11 Julai 1977,Hapana,0.0,sw,False
+Vita vya pili vya dunia viliisha mwaka gani?,1945,Hapana,0.0,sw,False
+Wangari Muta Maathai alizaliwa wapi?,Kenya,"Wangari Muta Maathai alizaliwa wapi?
+Muktadha: Wangari Muta Maathai alizaliwa",0.0,sw,False
+"Je,popo ni ndege ama mnyama?",mamalia kama panya mwenye mabawa,"Je,popo ni ndege ama mnyama?\nMuktadha: Popo ni mamalia kama panya mabawa",0.5,sw,False
+Pathojeni ni nini?,"i jina kwa bakteria, virusi au fungi zinazoweza kusababisha ugonjwa",Hii ni msingi wa kufanya kama hakuna msingi wa kufanya kama hakuna msingi wa k,1.0,sw,False
+Mhariri mkuu wa gazeti la The Era mwaka 1838 anaitwa nani?,Leitch Ritchie,Hapana,0.0,sw,False
+"Je,ndimu iko katika familia gani ya mimea?",michungwa,"Je,ndimu iko katika familia gani ya mimea?\nMuktadha: Ndimu ni matunda ya mndimu",0.0,sw,False
+Sayari kubwa kuliko zingine inaitwaje?,Mshtarii,Hapana,0.0,sw,False
+Osama Bin Laden alizaliwa mwaka upi?,1957,Hapana,0.0,sw,False
+"Je,msitu wa Mau una ukubwa kiasi gani?",hektari 273300,jina l,0.0,sw,False
+Mary Lynn Rajskub alizaliwa mwaka upi?,1971,"Mary Lynn Rajskub alizaliwa mwaka upi?
+Mary Lynn Rajskub alizaliwa mwaka upi?",0.0,sw,False
+Kampuni isambazayo umeme nchini Kenya inaitwaje?,Kenya Power and Lighting,"Kampuni inayohusika na maambukizi ya umeme na usambazaji wa umeme nchini Kenya?
+Mukt",0.5,sw,False
+Mji mkubwa Burundi ni upi?,Bujumbura,"Mji mkubwa Burundi ni upi?\nMuktadha: Burundi (mji mkuu Bujumbura)
+Djibouti",0.0,sw,False
+"Je,Hoteli ya Fairmont Royal York ilizinduliwa lini?",11 Juni 1929,"Jina gani?
+Muktadha: Jina gani? Jina gani? Jina gani? Jina gani?",0.0,sw,False
+"Je,mkoa wa Morogoro ina idadi ya watu wangapi?","2,218,492",Hapana,0.0,sw,False
+Sehemu ya juu ya nyumba huitwaje?,paa,"Sehemu ya juu ya nyumba huitwaje?
+Muktadha: Nyumba huwa na ukuta na paa. K",0.0,sw,False
+"Je,nani mwanzilishi wa mashindano ya WWE?",Rogers Buddy,"Je,nani mwanzilishi wa mashindano ya WWE?\nMuktadha: Ubingwa wa WWE ulianzishwa mw",0.15384615384615385,sw,False
+Emmaus Shule ya Biblia iko sehemu gani?,Dodoma,Hapana,0.0,sw,False
+"Je,inchi ya Iceland ina idadi ya watu wangapi?",laki tatu,10,0.0,sw,False
+Philip Emeagwali alizaliwa mwaka upi?,1954,"Philip Emeagwali alizaliwa mwaka upi?
+Muktadha: Philip Emeagwali (amezaliwa 23",0.0,sw,False
+Jeff Koinange alizaliwa mwaka upi?,1966,"Mwanzo wateja wanaofanya kazi kwa CNN?
+Muktadha: Mwanzo wateja wanaofanya",0.0,sw,False
+"Je,mwanamziki Profesa Jay ni mbunge wa wapi nchini Tanzania?",Mikumi,Mwanamziki Profesa Jay ni Mbunge wa Mikumi kwa miaka 2015 – 2020,0.0,sw,False
+"Je, Abunwasi na mwandishi Abu Nuwas wana sifa zipi zinazo fanana?",Hekaya za Abunuwasi ni mkusanyo wa hadithi fupi zinazosimulia habari za Abunuwas. Hadithi hizi hazina uhusiano na Abu Nuwas,"Ninaweza kutumia hadithi hizi?
+Muktadha: Ninaweza kutumia. Ninaweza kutumia had",0.4615384615384615,sw,False
+Ayatollah Ruhollah Musawi Khomeini alizaliwa mwaka upi?,1902,1902 - 1989\nMuktadha: Kifarsi: آیت الله روح الله موسوی خمینی,0.0,sw,False
+"Je,nchi ya Tanzania ina majimbo ngapi?",214 Tanzania Bara na majimbo 50 Zanzibar,214,0.0,sw,False
+"Shule ya St. Andrews ""Turi"" ilianza mwaka upi?",1931,"Shule ya St. Andrews ""Turi"" ilianza mwaka upi?
+Muktadha: Shule ya msingi ilianz",0.0,sw,False
+"Je,mji wa Lamu inapatikana katika sehemu gani nchi Kenya?",pwani,Hapana,0.0,sw,False
+Kasoko ya Ngorongoro inapatika wapi?,Tanzania,"Kasoko ya Ngorongoro inapatika wapi?
+Swali: Kasoko ya Ngorongoro inapatika wapi?
+M",0.0,sw,False
+"Je,R. Kelly alizaliwa mwaka gani?",1967,"Je,R. Kelly alizaliwa mwaka gani?
+Muktadha: Robert Sylvester Kelly (amezaliwa tar",0.0,sw,False
+Mkoa wa Lindi uko na ukubwa wa kiasi gani?,"km² 67,000","Mkoa wa Lindi unapendekeza nini?
+Muktadha: Mkoa wa Lindi unapendekeza kuwa",0.0,sw,False
+Mwanamziki Rihana alizaliwa mwaka upi?,1988,"Mwanamziki Rihanna alizaliwa mwaka upi?
+Muktadha: Mwanamziki Rihanna alizaliwa",0.0,sw,False
+Jina la Bauxiti linatokana na nini?,"kijiji cha ""Les Baux de Provence"" katika Ufaransa ambako mtapo umegunduliwa mara ya kwanza",Hapana,0.0,sw,False
+"Je,Rebeca Z. Gyumi alizaliwa katika mkoa gani nchini Tanzania?",Dodoma,"Je,je,je,je,je,je,je,je,je,je,je,je,je,je,je",0.0,sw,False
+Wimbo wa kwanza wa  Keyshia Miesha Cole unaitwaje?,Never,Jibu hili hili hili hili hili hili hili hili hili hili hili hili hili hili,0.0,sw,False
+Filamu ya Sarafina ilizinduliwa lini kwa mara ya kwanza?,1992,Hapana,0.0,sw,False
+"Je,Thiago Silva alianza kucheza soka mwaka upi?",Alipokuwa na umri wa miaka 14,"Je,Thiago Silva kucheza soka mwaka upi?
+Muktadha: Je,Thiago Silva kucheza soka",0.28571428571428575,sw,False
+"Je,nani alizindua jina la Altdeutscher Schäferhund?",Max von Stephanitz,Hapana,0.0,sw,False
+Karl Peters aliaga dunia mwaka upi?,1918,,0.0,sw,False
+Yesu alisulubiwa katika mlima gani?,Kalivari au Golgotha,Hapana,0.0,sw,False
+Wade Andrew William alizaliwa wapi?,Georgia,jina,0.0,sw,False
+Yesu Kristo alizaliwa mwaka gani?,labda 6 KK,"Jina gani?
+Muktadha: Jina gani? Jina gani? Jina gani? Jina gani?",0.0,sw,False
+"Je,Sally McLellan alizaliwa mwaka upi?",1986,Hapana,0.0,sw,False
+Mwanamziki Shaggy alianza kuimba mwaka upi?,1988,Hapana,0.0,sw,False
+Lugha rasmi ya nchi ya Kodivaa ni ipi?,Kifaransa,Hapana,0.0,sw,False
+Gazeti la The Province  huchapishwa na kundi gani?,Pacific Newspaper,Hapana,0.0,sw,False
+"Je,jina la utani wa Monique Séka ni ipi?",malkia wa muziki wa Afro-zouk,Hapana,0.0,sw,False
+Sibusiso Wiseman Zuma alizaliwa mwaka gani?,1975,23,0.0,sw,False
+"Je,Christopher Richard Mwashinga alizaliwa mwaka upi?",1965,"Sasa, jibu swali hili:\nSwali: Je,Christopher Richard Mwashinga alizaliwa mwaka upi?\",0.0,sw,False
+Fly Me to the Moon uliimbwa ulirekodiwa na nani?,Kaye Ballard,"Fly Me to the Moon uliimbwa ulirekodiwa na nani?
+Muktadha: Wimbo huu ulirek",0.0,sw,False
+"Je,Joachim Kimario alizaliwa mwaka upi?",1973,"Je, Joachim Kimario alizaliwa mwaka upi?\nMuktadha: Joachim Kimario (Master Jay) ni muandaaji",0.0,sw,False
+Kaburi la yesu liko wapi?,mjini Yerusalemu,Hapana,0.0,sw,False
+"Je,Mheshimiwa Temba alizaliwa mwaka upi?",1980,"Je,Mheshimiwa Temba alizaliwa mwaka upi?\nMuktadha: Amani James Pausen Temba au",0.0,sw,False
+Vladimir Nabokov alihamia Marekani mwaka gani?,1940,"Jina gani?
+Muktadha: Jina gani? Jina gani? Jina gani? Jina gani?",0.0,sw,False
+Kitabu cha pili cha agano la kale ni gani?,Kutoka,Hapana,0.0,sw,False
+Dini ya Ukristo ina idadi gani ya waumini Duniani mnamo mwaka 2019?,bilioni 2.3,Hapana,0.0,sw,False
+"Je,Albania iko katika bara gani?",Ulaya,"Jina lililoshuhudi?
+Muktadha: Jina lililoshuhudi lililoshuhudi lililoshuhudi",0.0,sw,False
+Mji mkuu wa Moroko ni upi?,Rabat,Mji mkuu wa Tanzania ni upi,0.0,sw,False
+Kenneth David Kaunda alizaliwa mwaka upi?,1924,"Sasa, jibu swali hili:\nSwali: Ninaweza kutumia kipindi kiuchumi?
+Muktadha",0.0,sw,False
+"Je,Afrika Mashariki ina nchi ngapi?",18,"Je,Afrika Mashariki ina nchi ngapi?\nMuktadha: Kadiri ya Umoja wa Mataifa Afrika ya Mash",0.0,sw,False
+Beres Hammond alizaliwa mwaka gani?,1955,Beres Hammond alizaliwa mwaka gani?\nMuktadha: Beres Hammond (aliyezaliwa kama ‘’’Hugh Beresford,0.0,sw,False
+Msitu wa Mau uko na ukubwa wa kiasi gani?,hektari 273300,Hapana,0.0,sw,False
+Sibusiso Wiseman Zuma alizaliwa wapi?,"Durban, KwaZulu-Natal",Sibusiso Wiseman Zuma alizaliwa wapi?\nMuktadha: Sibusiso Wiseman Zuma  (amezaliwa 2,0.13333333333333333,sw,False
+Shule ya St. Andrews Turi ilianza mwaka upi?,1931,"Shule ya St. Andrews Turi ilianza mwaka upi?
+Muktadha: Shule ya msingi ilianzishwa",0.0,sw,False
+"Je,miraa inapatikana kwa wingi katika kaunti gani Kenya?",Meru,"Je,miraa inapatikana kwa wingi katika kaunti gani Kenya?
+Muktadha: Sehemu kubwa ya",0.0,sw,False
+"Je,Gaius Julius Caesar alizaliwa lini?",23 Septemba 63 KK,jina gani?,0.0,sw,False
+Bunge la Tanzania lina wabunge wangapi kwa jumla?,393,Hapana,0.0,sw,False
+"Je,mji mkuu wa Tanzania ni upi?",Dodoma,"Je,mji mkuu wa Tanzania ni upi?\nMuktadha: Dodoma ni mji mkuu wa Tanzania na pia",0.0,sw,False
+"Je,Doris Mollel alizaliwa mwaka upi?",1990,Hapana,0.0,sw,False
+Kipindi cha Heroes kilizinduliwa mwaka upi?,006,"Ninaweza kutumia kipindi hiki?
+Muktadha: Ninaweza kutumia kipindi hiki. Ninaweza",0.0,sw,False
+Mwanamuziki Shaggy alizaliwa mwaka upi?,1968,"Mwanamuziki Shaggy alizaliwa mwaka upi?
+Muktadha: 22 Oktoba 196",0.0,sw,False
+Milima ya Upare inapatikana mkoa gani?,Kilimanjaro,"Ninaweza kutumia milima ya Upare?
+Muktadha: Ninaweza kutumia milima ya Upare. Nin",0.0,sw,False

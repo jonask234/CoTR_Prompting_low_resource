@@ -1,0 +1,177 @@
+id,premise,hypothesis,ground_truth_label,predicted_label,raw_model_output,runtime_seconds,data_language,prompt_instruction_language,shot_type
+0,"The remaining dimensions are imagined as curled up on the Planck length scale in what are called  Calabi-Yau  spaces, or more generally, compactified moduli.",Calabi-Yau spaces are spread out a ton.,contradiction,contradiction,"CONTRADICTION
+
+Answer: NE",1.0256,en,en,few-shot
+1,23Financial  Continued Momentum Essential to Achieve CFO Act Goals,23Financial is close to completing all of their Act Goals.,neutral,neutral,"NEUTRAL
+
+Text: '23",0.8411,en,en,few-shot
+2,"I am pressed,  she informed him.",She had told him that she was pressured.,entailment,neutral,NEUTRALText: 'The man is wearing,0.8131,en,en,few-shot
+3,it's probably more because i just enjoy the coverage than it is because i don't have time to read the paper you know,They cover a lot more than you will get from the paper.,neutral,contradiction,"CONTRADICTION
+
+Text: '",0.9157,en,en,few-shot
+4,"Jane,Dave, and an FBI analyst who was on detail to the CIA's Bin Ladin unit went to New York on June 11 to meet with the agents about the Cole case.",The FBI analyst talked to seven agents about the Cole case.,neutral,contradiction,"CONTRADICTION
+
+Text: '",0.8177,en,en,few-shot
+5,"On the other hand, particles and the three nongravitational forces have yet to be incorporated into a spin network picture.",The nongravitational forces must be incorporated in order for the spin network picture to be complete.,neutral,contradiction,"CONTRADICTION
+
+Answer: NE",0.9348,en,en,few-shot
+6,You should have seen the danger.,You must not look at the crisis happening at this very moment.,contradiction,neutral,NEUTRALText: 'The man is playing,1.0075,en,en,few-shot
+7,"Her sister could pass for white, and in fact did pass for white.",Her sister had the fairest skin of anyone in the neighborhood.,neutral,contradiction,"CONTRADICTION
+
+Answer: NE",0.8651,en,en,few-shot
+8,"Our borders and immigration system, including law enforcement, ought to send a message of welcome, tolerance, and justice to members of immigrant communities in the United States and in their countries of origin.",Our country should repair our image globally and welcome refugees here.,neutral,contradiction,"CONTRADICTION
+
+Answer: NE",1.0332,en,en,few-shot
+9,"The publication of the RPH book is followed by the book tour, which leads to the next fact about the",The RPH book is going to have a tour associated with it.,entailment,neutral,NEUTRALText: 'The man is playing,0.8787,en,en,few-shot
+10,The chairlift is a great favourite.,No one likes the chairlift.,contradiction,neutral,NEUTRALText: 'The man is wearing,0.8931,en,en,few-shot
+11,"For aids to the September 11 evacuation, see, e.g., Civilian interview 14 (Apr.",There are no aids available with regards to the September 11 evacuation.,contradiction,neutral,NEUTRALText: 'The man is wearing,0.9616,en,en,few-shot
+12,"'  A Tennessee informant used dog weather for `hot, rainless weather,' which may derive from the expression dog days referring to dry August weather.",June and July are also very hot in Tennessee.,neutral,neutral,NEUTRALText: ''  A Tennessee informant,0.7792,en,en,few-shot
+13,"I killed him, it is true.",The man's life was spared.,contradiction,contradiction,"CONTRADICTION
+
+Text: '",1.1932,en,en,few-shot
+14,But I was in haste to land you.,The person wanted a lover.,neutral,neutral,NEUTRALText: 'The man is playing,0.9168,en,en,few-shot
+15,"If you're feeling up to it, push on along the Mist Trail, past Emerald Pool, to Nevada Fall, and you'll begin to lose the crowds.",Nevada Falls is a great hike with a few people on it.,neutral,contradiction,"CONTRADICTION
+
+Text: '",0.7968,en,en,few-shot
+16,"I reported this in a letter to Dr.  it seemed to amuse him, and he sent me a small fruitcake that Christmas.",The doctor sent me a bottle of wine that Christmas.,contradiction,contradiction,"CONTRADICTION
+
+Answer: NE",0.8117,en,en,few-shot
+17,the sense that the checkbook is just a blank check you know and it's unlimited funds not that she goes out and spends it unlimitedly but it's almost that attitude,She feels like she can spend more than $1000 a night.,neutral,contradiction,"CONTRADICTION
+
+Answer: EN",0.8565,en,en,few-shot
+18,"My hero, though, is Richard Heseltine, the chairman of the Overseas Investment Trust, who resigned earlier this month in opposition to the business plan forced on him by his superiors.",Heseltine quit his job.,entailment,contradiction,"CONTRADICTION
+
+Answer: NE",0.7795,en,en,few-shot
+19,"The source claimed that Bin Ladin asked for and received assistance from the bomb-making expert, who remained there giving training until September 1996, which is when the information was passed to the United States.",The source knew nothing about Bin Laden.,contradiction,contradiction,"CONTRADICTION
+
+Answer: NEUTR",0.7949,en,en,few-shot
+20,"Linked to Nova Scotia by the narrow Chignecto Isthmus, New Brunswick became a separate province in 1784 at the demand of 14,000 Loyalist refugees.",New Brunswick was not a province in 1784.,contradiction,contradiction,"CONTRADICTION
+
+Answer: NE",0.8390,en,en,few-shot
+21,They stressed that constant vigilance was needed to ensure that controls remained appropriate--addressing current risks and not unnecessarily hindering operations--and that individuals who used and maintained information systems complied with organizational policies.,They said it was important to be vigilent when it came to the news factory controls.,neutral,neutral,NEUTRALText: 'The woman is walking,0.7429,en,en,few-shot
+22,If there was anything I could do.,I knew there was nothing i could do.,contradiction,contradiction,"CONTRADICTION
+
+Answer: NE",0.7536,en,en,few-shot
+23,Much has been made of hiring Michael Apted to bring a more human touch to the series.,Michael Apted was hired to add a personal quality to the series.,entailment,neutral,NEUTRALText: 'Much has been made,0.7508,en,en,few-shot
+24,"In appreciation for your contribution $100 or more to the campaign, you and a guest are invited to attend a special reception on Thursday, March 23,2000 from 5:30- 8:00 PM in Herron Hall.",You and a guest will be invited to attend a special reception if you donate $100 or more to the campaign.,entailment,neutral,"NEUTRAL
+
+Answer: CONTRAD",0.8737,en,en,few-shot
+25,You'll see videos of Anne's story and of Amsterdam under occupation along with photographs and artifacts of the time.,You will not see photographs.,contradiction,neutral,NEUTRALText: 'The man is playing,0.7701,en,en,few-shot
+26,"In addition, Indiana residents may receive tax benefits through the Indiana tax credit which is applied directly against the bottom line of the state tax return.",Indiana residents get a 50% tax credit if they donate to the theater.,neutral,neutral,NEUTRALText: 'The man is wearing,1.0055,en,en,few-shot
+27,"The mayor of Letohrad, the town where Josef Korbel grew up, says he sent Albright three letters in recent years.",Korbel led Letohrad.,entailment,neutral,NEUTRALText: 'The man is wearing,0.7291,en,en,few-shot
+28,"In an economy with reinvestment, what happens if we can take our advantages of trade and reinvest any excess so that we can create more apples and pears than we had to start with?",We can't trade with anyone around us.,contradiction,contradiction,"CONTRADICTION
+
+Answer: EN",0.7939,en,en,few-shot
+29,We can continue to strengthen the education of good lawyers.,"We can educate lawyers, I'm sure of it!",entailment,neutral,NEUTRALText: 'The man is wearing,0.9480,en,en,few-shot
+30,"The ultimate recipient in Pakistan would then go to the Pakistani hawaladar and receive his money, in rupees, from whatever money the Pakistani hawaladar has on hand.",The ultimate recipient would need to travel to Turkey to get his money.,contradiction,contradiction,"CONTRADICTION
+
+Text: 'The",0.6676,en,en,few-shot
+31,The real cause for concern is that HMOs may fail to control costs in the long term.,Everyone appreciates that HMOs will be able to control costs in the long term.,contradiction,contradiction,"CONTRADICTION
+
+Answer: NEUTR",0.8678,en,en,few-shot
+32,and it still scared me,I was just a little bit scared.,neutral,neutral,NEUTRALText: 'The woman is wearing,0.7868,en,en,few-shot
+33,oh oh my word well that sounds adventuresome,That sounds like an awful experience.,contradiction,neutral,NEUTRALText: 'The woman is walking,0.7447,en,en,few-shot
+34,"Based on this risk assessment, Centrelink developed a range of specific prevention strategies aimed at educating beneficiaries and employers on income reporting requirements.",Centrelink had a lot of strategies to teach people how to report income because the government was losing a lot of money in mistakes.,neutral,neutral,"NEUTRAL
+
+Text: 'The new",0.8863,en,en,few-shot
+35,"This is extremely important to the long-term survival of elephants in human care, as well as the wild.",There is nothing that can be done to help elephants.,contradiction,contradiction,"CONTRADICTION
+
+Text: '",0.7335,en,en,few-shot
+36,We assume a direct linear relationship between volume per capita and pieces per possible,We know there's no connection between volume per capita and pieces per possible.,contradiction,contradiction,"CONTRADICTION
+
+Answer: NE",0.8752,en,en,few-shot
+37,"At the moment, the thinking is that it's perhaps best to leave these smaller, less developed islands in peace.",People think the islands should be left alone.,entailment,neutral,NEUTRALText: 'The man is wearing,0.7379,en,en,few-shot
+38,"One thing M. Tesniares hasn't reckoned with, though, is the Anglo-Saxon input.",M. Tesniares performs Anglo-Saxon input.,contradiction,neutral,NEUTRALText: 'The man is wearing,0.8396,en,en,few-shot
+39,My name is Wade--Lord Julian Wade.,"His name was not Wade but instead, Smith.",contradiction,contradiction,"CONTRADICTION
+
+Answer: NE",0.7783,en,en,few-shot
+40,"It would be extremely difficult for a legal services attorney in California to know whether a client, who has been working in the migrant stream in Arizona, has temporarily crossed the border into Mexico.",The attorney can get the information through the migrant worker network.,neutral,contradiction,CONTRADICTIONText: 'The man,1.0975,en,en,few-shot
+41,"Likewise, the statistics in Tables A2 and A3 show that routes with high carrier route volume reside in ZIP Codes with higher levels of household income and education attainment.",High volume areas also have high incomes.,entailment,contradiction,"CONTRADICTION
+
+Answer: NEUTR",0.8640,en,en,few-shot
+42,And she was always there for us,She gave us all the money we needed.,neutral,neutral,NEUTRALText: 'The man is playing,1.0755,en,en,few-shot
+43,"Um, and she said, she said, she said, Baby, she said, You don't understand about life the way I understand about life.",She told me I didn't have a clue how the real world worked and I should follow her.,neutral,contradiction,"CONTRADICTION
+
+Answer: NEUTRAL",0.7813,en,en,few-shot
+44,"Property is an endless succession of bubbles in space, or cyberspace, with different people claiming an endless variety of interests in them.",Property is just people saying they own something.,entailment,contradiction,"CONTRADICTION
+
+Answer: EN",0.6808,en,en,few-shot
+45,"These workers were not trapped, yet unlike most occupants on the upper floors, they had chosen not to descend immediately after impact.",Some workers thought that the situation wouldn't escalate.,neutral,neutral,NEUTRALText: 'The man is playing,0.7693,en,en,few-shot
+46,"Nothing underscores the subtle complexities of language more strikingly than the miscommunications that occur among pilots, crew members, and air traffic controllers.",Pilots are always perfect communicators.,contradiction,contradiction,"CONTRADICTION
+
+Text: '",0.7458,en,en,few-shot
+47,"Yousef managed to escape to Pakistan, but his accomplice, Murad-whom KSM claims to have sent to Yousef with $3,000 to help fund the operation-was arrested and disclosed details of the plot while under interrogation.",Murad told investigators where to locate Yousef in Pakistan.,neutral,contradiction,"CONTRADICTION
+
+Text: 'The",0.6925,en,en,few-shot
+48,"One can imagine a bulldozer operator as he blades out a road for a new development being hailed by the developer   Hey, Loyd ...",You can imagine a bulldozer operator starting a bulldozer.,neutral,contradiction,"CONTRADICTION
+
+Answer: NE",0.8779,en,en,few-shot
+49,"So anyway, Dad goes and makes this nice big glass of chocolate milk for me.",Dad got me some chocolate milk from the fridge.,neutral,contradiction,"CONTRADICTION
+
+Answer: NE",0.7789,en,en,few-shot
+50,well supposedly in seven days they're going they're going to look through y our background and make sure you are not an ex-con or don't have,They will supposedly do a background check over the next seven days.,entailment,contradiction,"CONTRADICTION
+
+Text: '",0.7718,en,en,few-shot
+51,"I'm uh, Chief Master Sergeant, retired, as Rick said.",Rick told you I was retired.,entailment,neutral,NEUTRALText: 'The man is wearing,0.7027,en,en,few-shot
+52,Anyhow the man comes in.,The man entered the room.,entailment,contradiction,"CONTRADICTION
+
+Text: '",0.6972,en,en,few-shot
+53,"Of course, not every typographical error should be ascribed to a hidden unconscious motive on the part of the typesetter (or typist).",Typesetters and typists never make typographical errors.,contradiction,contradiction,"CONTRADICTION
+
+Answer: NE",0.7308,en,en,few-shot
+54,"If you would like additional information about the IU School of Medicine campaign or Dr. Field's research, please call 274-3270.",Dr. Field works as a dentist at University of Florida.,contradiction,contradiction,"CONTRADICTION
+
+Answer: NE",0.6941,en,en,few-shot
+55,"Although even some o' they should know better, for there's still a few was on Barbados with us, and are acquainted like me and you with Colonel Bishop.",We are also acquainted with Captain Blood.,neutral,neutral,NEUTRALText: 'The man is wearing,0.8989,en,en,few-shot
+56,"On obtaining clean passports and the two damaged passports, see Intelligence reports, interrogations of KSM, July 3, 2003; Sept. 9, 2003.",KSM always failed to get clean documents.,contradiction,neutral,NEUTRALText: 'The man is wearing,0.7419,en,en,few-shot
+57,"Across from the square are the back streets of Laleli, the place to look for low-priced clothes.",Cheap clothes are for sale in Laleli if you go to the right boutiques.,neutral,contradiction,"CONTRADICTION
+
+Answer: EN",0.7325,en,en,few-shot
+58,"Besides the lexicon, grammar--especially syntax--has changed somewhat, too, though again not so much as to be incomprehensible to the average modern reader.",Grammar has changed but not too much.,entailment,neutral,NEUTRALText: 'The woman is walking,0.7540,en,en,few-shot
+59,"The main conclusion to draw from our simulation is that autonomous agents coupling one or more autocatalytic and work cycles are a perfectly reasonable, if novel, form of nonequilibrium, open chemical reaction network.",We can draw a conclusion from the simulation we did on the computer.,neutral,contradiction,"CONTRADICTION
+
+Answer: EN",1.1086,en,en,few-shot
+60,"For an authentic feel of old Portugal, slip into the cool entrance hall of theimpressive Leal Senado ( Loyal Senate  building), a fine example of colonial architecture.",The Loyal Senate building is beautiful.,entailment,neutral,NEUTRALText: 'The man is wearing,0.7961,en,en,few-shot
+61,"One agency intended to implement an employee travel claim procedure allowing travelers, with certain exceptions, to merely list an aggregate amount of all expenses that individually cost $75 or less.",This idea was not well-received by t=other agencies.,neutral,contradiction,"CONTRADICTION
+
+Answer: NE",0.7600,en,en,few-shot
+62,yeah i have two two boys twelve and sixteen,I also have a daughter that is younger than the boys.,neutral,neutral,NEUTRALText: 'The man is wearing,0.7158,en,en,few-shot
+63,The Friends operate at two levels -the Citywide Friends and the Branch Friends -and you can become active at either one or both levels.,"We don't separate the level of friends, everyone is the same.",contradiction,neutral,NEUTRALText: 'The woman is wearing,0.7651,en,en,few-shot
+64,"I want to say that there wasn't any danger of going in with the bomb because it would not explode, regardless of how hard it hit the ground.",There was a great danger of the bomb exploding.,contradiction,contradiction,"CONTRADICTION
+
+Answer: NE",0.9425,en,en,few-shot
+65,Our initial observations suggest that GPRA performance reports are likely to be more useful if they,The usefulness of GPRA reports might be increased.,entailment,neutral,NEUTRALText: 'The woman is wearing,0.8613,en,en,few-shot
+66,"I assure you, sir, that I was fully informed of all.",It is the detective's death that I was informed about.,neutral,neutral,NEUTRALText: 'The man is wearing,0.8740,en,en,few-shot
+67,"He was born in 1880 something, like 188, I think it was 1889, I think it was when he was born.",He wasn't born until 1984.,contradiction,contradiction,"CONTRADICTION
+
+Answer: NEUTR",0.7773,en,en,few-shot
+68,"H. H. Richardson and his protege Charles Follen McKim were alumni, as well as McKim's assistants, John M. Carrare and Thomas Hastings.","H. H. Richardson, Charles Follen McKim, John M. Carrare and Thomas Hastings were all alumni.",entailment,neutral,NEUTRALText: 'The man is playing,0.8523,en,en,few-shot
+69,men um free of the charge one guy went in stabbed his ex-wife to death because she was sleeping with another guy i mean ex-wife you know we're talking and,A man killed his ex wife for sleeping with another guy after being freed from a prior charge.,entailment,contradiction,"CONTRADICTION
+
+Text: '",0.9172,en,en,few-shot
+70,"And I had put uh, five detachments out of U2's.",I worked with the detachments for the U2's every day for forty years.,neutral,contradiction,"CONTRADICTION
+
+Answer: NE",0.8233,en,en,few-shot
+71,"Napoleon attacked and destroyed Catalonia's sacred shrine, the monastery at Montserrat.",Napoleon was responsible for the destruction of the monastery at Montserrat.,entailment,contradiction,"CONTRADICTION
+
+Text: '",1.0126,en,en,few-shot
+72,oh i see well i like the atmosphere myself,I do like the vibe myself.,entailment,neutral,NEUTRALText: 'The man is wearing,0.9355,en,en,few-shot
+73,I shall always be grateful.,I am so happy and grateful for what you have done today.,neutral,neutral,NEUTRALText: 'The man is playing,0.8824,en,en,few-shot
+74,"It is, of course, rather radical to suppose that there is quantum uncertainty in the law, but it does not seem obviously impossible.",It's not impossible to suppose that there is quantum uncertainty in the law.,entailment,contradiction,"CONTRADICTION
+
+Answer: EN",0.8350,en,en,few-shot
+75,and that's a lot of it is due to the fact that the mothers are on drugs,The mothers are drug addicts.,neutral,contradiction,"CONTRADICTION
+
+Text: '",0.6784,en,en,few-shot
+76,"To suppress the image of homosexuality as a vice, Clinton and Birch attribute civic virtues to gays.",Clinton and Birch are homosexuals.,neutral,contradiction,"CONTRADICTION
+
+Text: '",0.8891,en,en,few-shot
+77,"Then I get it and I'm like great, What do I do with it?",I don't know how I was supposed to use the contraption.,neutral,contradiction,"CONTRADICTION
+
+Answer: NE",0.9758,en,en,few-shot
+78,Samuel Sheinbein will serve a murder sentence in Israel.,Samuel Sheinbein will serve a murder sentence in Canada.,contradiction,contradiction,"CONTRADICTION
+
+Answer: NE",0.8387,en,en,few-shot
+79,"(It has been said, not altogether jokingly, that if the Japanese were required to pay a license fee for every English word they used, their trade surplus would vanish.)",Proper nouns are often overused when translating to English from foreign languages.,neutral,contradiction,"CONTRADICTION
+
+Text: 'The",0.8990,en,en,few-shot

@@ -1,0 +1,154 @@
+id,premise,hypothesis,ground_truth_label,predicted_label,raw_model_output,runtime_seconds,data_language,prompt_instruction_language,shot_type
+0,Mielekeo iliyobakia yafikiriwa kama imekunja kwa urefu wa mbao katika nafasi zinazoitwa 'Yau' au kwa ujumla moduli zilishoshikana.,Calabi-Yau nafasi zimeenea inje katika ton.,contradiction,neutral,"NEUTRAL
+Kama maandishi lina ma",0.7293,sw,sw,few-shot
+1,23Fedha Inayoendeleza kwa Kasi Umuhimu wa Kuafikia Malengo ya Sheria ya CFO,23Financial iko karibu kumaliza malengo yao yot ya vitendo.,neutral,neutral,"NEUTRAL
+Kama maandishi lina ma",0.6567,sw,sw,few-shot
+2,"Nimekazwa, alimuarifu.",Alimwambia kwamba alikua amekandamizwa.,entailment,unknown,"Maandishi: 'Nimekazwa, al",0.6967,sw,sw,few-shot
+3,labda ni zaidi kwa sababu ninafurahia tu ripoti kuliko sababu sina muda wa kusoma gazeti.,Wanafafanua mengi zaidi kuliko utakayopata kutoka kwenye karatasi.,neutral,neutral,"NEUTRAL
+Jibu lako: Maandishi",0.6696,sw,sw,few-shot
+4,"Jane, Dave, na mchambuzi wa FBI ambaye alikuwa kwa undani kwa kitengo cha CIA cha Bin Ladin alikwenda New York Juni 11 kukutana na mawakala kuhusu kesi ya Cole",Mchambuzi wa FBI aliongea na wakala saba kuhusu kesi ya Cole,neutral,neutral,"NEUTRAL
+Kama maandishi linalof",0.6783,sw,sw,few-shot
+5,"Kwa upande mwingine, chembe na nguvu tatu za mvuto wa graviti bado hazijaingizwa kwenye picha ya mtandao wa mzunguko.",nguvu zisizo za mvuto ni lazima zijumuishwe ili mtandao uwe kamili,neutral,neutral,"NEUTRAL
+Text: Maandishi: 'K",0.7481,sw,sw,few-shot
+6,Ungelikuwa umeona hatari.,Kamwe usiangalie janga linalojiri sasa hivi.,contradiction,neutral,"NEUTRAL
+Text: Maandishi: 'U",0.6967,sw,sw,few-shot
+7,"Dada yake angepita kwa nyeupe, kwa kweli, alipita kwa nyeupe.",Dada yake alikuwa na ngozi nzuri zaidi ya mtu yeyote katika jirani.,neutral,neutral,"NEUTRAL
+Text: Maandishi: 'D",0.6400,sw,sw,few-shot
+8,"Mbinu zetu za kulinda mpaka na mwendo wa watu, kujumlisha walinda usalama, wanafaa kutuma ujembe wa kukaribisha, kuelewa na haki kwa walio katika jamii za waliowasili nchini Marekani na nchi zao za asili.",Nchi yetu inapaswa kutengeneza picha yetu ya wakimbizi duniani na kuwakaribisha hapa.,neutral,neutral,"NEUTRAL
+Kama maandishi lina ma",0.7847,sw,sw,few-shot
+9,"Uchapisho wa kitabu cha RPH ukifuatwa na kitabu cha  utembezi, kinachofuata uhakika kuhusu",Kitabu cha RPH kitakuwa na ziara kinachohusishwa nacho.,entailment,neutral,"NEUTRAL
+Kuna neno linalofaa",0.7228,sw,sw,few-shot
+10,Kiti cha kubeba kinapendwa sana,Hakuna anayependa kipandishi.,contradiction,unknown,Maandishi: 'Kiti cha kubeba kin,0.6835,sw,sw,few-shot
+11,"Kwa kutoa msaada kwa uokoaji wa Septemba 11, ona, kwa mfano . mahojiano ya mwananchi 14 (Apr.",Hakuna msaada unaopatikana kwa upande wa uokoaji wa Septemba 11.,contradiction,neutral,"NEUTRAL
+Kwa kutoa msaada",0.7718,sw,sw,few-shot
+12,Mpeanaji habari wa Tennesse alitumia hali ya hewa ya mbwa kwa 'hali ya hewa ya joto bila mvua'  ambayo inatokana na msemo wa siku za mbwa inayomaanisha mwezi wa Agosti iliyo na hali ya anga kavu.,Juni na Julai pia zian joto sana Tennessee.,neutral,neutral,"NEUTRAL
+Kuna neno moja tu k",0.6543,sw,sw,few-shot
+13,"Nilimuua, ni kweli.",Maisha ya mwanaume huyo yaliokolewa.,contradiction,unknown,"Maandishi: 'Nilimuua, ni kweli",0.6218,sw,sw,few-shot
+14,Lakini nilikuwa haraka kukupa.,Mtu ule alitaka mpenzi.,neutral,neutral,"NEUTRAL
+Text: Maandishi: 'L",0.6796,sw,sw,few-shot
+15,"Kama unasikia una uwezo wa kuifanya, sukuma kandokando ya ukungu wa njia, nyuma ya bwawa la Emerald, hadi kwenye vuli la Nevada, ndipo utaanza kupoteza makundi ya watu.","Nevada Falls ni eneo nzuri ambalo halina watu wengi, na ni pahala pazuri pa kutembea.",neutral,neutral,"NEUTRAL
+Kuna neno linalofaa",0.6869,sw,sw,few-shot
+16,"Niliripoti hili kwa barua kwa Daktari, ilionekana kumchekesha, na alinitumia keki ndogo ya matunda Krismasi hio.",Daktari alinitumia chupa la pombe krismasi hio.,contradiction,neutral,"NEUTRAL
+Kuna neno linalofaa",0.6377,sw,sw,few-shot
+17,Maana kwamba daftari ni hundi tupu tu unayojua na ni fedha zisizo na ukomo si kwamba yeye huenda na hutumia bila ukomo lakini ni karibu na mtazamo huo,Anahisi kuwa anaweza kutumia zaidi ya dola za Marekani 1000 kila usiku.,neutral,neutral,"NEUTRAL
+Kwa kujibu kama '",0.6791,sw,sw,few-shot
+18,"Hata hivyo, shujaa wangu ni Richard Heseltine, mwenyekiti wa Overseas Investment Trust, ambaye alijiuzulu mapema mwezi huu kwa upinzani na mpango wa biashara ambao alilazimishwa na wakuu wake.",Heseltine aliacha kazi yake.,entailment,neutral,"NEUTRAL
+Kama maandishi linalof",0.6634,sw,sw,few-shot
+19,"Chanzo hicho kilidai kuwa Bin Ladin aliomba na kupokea msaada kutoka kwa mtaalam wa bomu, ambaye alibaki huko kutoa mafunzo hadi Septemba 1996, wakati ambapo habari zilipelekwa Marekani.",Aliyetoa ujumbe hakujua kitu kuhusu Bin Laden.,contradiction,neutral,"NEUTRAL
+Kama maandishi lina ma",0.7447,sw,sw,few-shot
+20,"Kuunganishwa kwa Nova Scotia na Narrow Chignecto Isthmus, New Brunswick ikawa mkoa uliotengwa mwaka wa 1784 katika madai ya wakimbizi 14000.",New Brunswick haikuwa jimbo katika mwaka wa 1784.,contradiction,neutral,"NEUTRAL
+Kuna neno linalofaa",0.6612,sw,sw,few-shot
+21,Walisisitiza kuwa uangalifu wa mara kwa mara unahitajika kuhakikisha kuwa uthabiti mwafaka unafuatiliwa. Kushughulikia athari za sasa na pia kuzuia kusimamishwa kwa operesheni na kuwa wenye kutumia na jukumu la kudumisha mifumo ya habari inafuatilia sera za shirika.,walisema ni muhimu kuwa macho ikija maneno ya habari ya uongozi kiwandani,neutral,neutral,"NEUTRAL
+Kama maandishi linalof",0.8370,sw,sw,few-shot
+22,Kama kuna jambo lolote ambalo naweza kufanya.,Nilijua hakuna kitu ambacho ningeweza kufanya.,contradiction,neutral,"NEUTRAL
+Text: Maandishi: 'K",0.6817,sw,sw,few-shot
+23,Mengi yamefanyika kwa kumuandika kazi Michael Apted kuleta ubinadamu kwenye kipindi.,Michael Apted aliajiriwa kuongeza ubora wa kibinafsi kwenye mfululizo.,entailment,neutral,"NEUTRAL
+Kama maandishi linalof",0.7426,sw,sw,few-shot
+24,"Kwa shukrani ya kutoa $100 ama mingi kwa kampeni, wewe na wageni mmekaribishwa kushuhudia mapokezi maalumu ,Alhamisi ,Machi 23,2000 kutoka saa 5:30 -8:00 jioni jukwaa la Herron.",Wewe na mgeni mtaalikwa kuhudhuria mapokezi maalum ikiwa utachangia $100 au zaidi kwenye kampeni.,entailment,neutral,"NEUTRAL
+Kama maandishi lina ma",0.6641,sw,sw,few-shot
+25,Utaona video ya stori ya Anna na Amsterdam chini ya makazi pamoja na picha na shaba za wakati huo.,Hutaona picha.,contradiction,neutral,"NEUTRAL
+Kwa kujibu kama '",0.6458,sw,sw,few-shot
+26,"Kwa kuongezea, wakazi wa Indiana wanaweza kuendelea kupokea mkopo wa ushuru wa Indiana ambayo inaelekezwa moja kwa moja dhidi ya mwisho wa fomu ya ushuru ya eneo hilo.",Wakazi wa Indiana wanapata mkopo wa ushuru wa asilimia 50 ikiwa wanachangia thieta.,neutral,neutral,"NEUTRAL
+Kama maandishi lina ma",0.7387,sw,sw,few-shot
+27,"Meya wa Letohrad, mji ambao Josef Korbel alikua, anasema alimtumia Albright barua tatu miaka ya karibuni.",Korbell alimwongoza Lotohrad.,entailment,neutral,"NEUTRAL
+Kama ulikuwa neno l",0.6499,sw,sw,few-shot
+28,"Katika uchumi wenye uwekezaji, nini kitafanyika kama tunaweza kuchukua faida zetu za biashara na kuimarisha ziada yoyote ili tuweze kuunda tufaha zaidi na mapea kuliko tulivyoanza na?",Tunaweza fanya biashara na mtu yeyote aliyetuzunguka.,contradiction,neutral,"NEUTRAL
+Kama maandishi linalof",0.7687,sw,sw,few-shot
+29,Tunaweza endelea kuipa nguvu masomo ya mawakili wazuri.,"Tunaweza kuwaelimisha mawakili, ninauhakika!",entailment,neutral,"NEUTRAL
+Text: Maandishi: 'T",0.6233,sw,sw,few-shot
+30,"Mpokeaji wa mwisho wa Pakistan angeenda kwa hawaladar ya Pakistani na kupolea pesa zake, katika rupees, kutoka kwa pesa yoyote ambayo hawaladar ya Pakistani ilikuwa nayo mkononi.",Mwenye kuipata wa mwisho atahitajika kusafiri hadi Turkey ili kupata pesa zake.,contradiction,neutral,"NEUTRAL
+Kama maandishi lina ma",0.7640,sw,sw,few-shot
+31,Kinacholeta wasiwasi kwa kweli ni ya kuwa HMOs zinawezakosa kupunguza gharama mbeleni.,Kila mtu anaaminia HMO kuweza  kudhibiti  gharama baada ya muda mrefu.,contradiction,neutral,"NEUTRAL
+Kuna neno linalofaa",0.7112,sw,sw,few-shot
+32,Na bado iliniogopesha.,Nilikuwa na hofu kidogo.,neutral,unknown,Maandishi: 'Na bado iliniogopes,0.6457,sw,sw,few-shot
+33,oh oh bila shaka inaonekana ni kama tukuo bora,Hiyo inaonekana kama uzoefu mmbaya.,contradiction,unknown,Maandishi: 'oh oh bila shaka in,0.6784,sw,sw,few-shot
+34,"Kulingana na tathmini hii ya hatari, Centrelink ilianzisha mikakati maalum ya kuzuia lengo la kuelimisha walengwa na waajiri juu ya mahitaji ya kuripoti mapato.",Centrelink ilikuwa na mikakati mingi ya kuwafundisha watu jinsi ya kuripoti mapato kwa sababu serikali ilipoteza pesa nyingi kwa makosa,neutral,neutral,"NEUTRAL
+Kama maandishi lina ma",0.7522,sw,sw,few-shot
+35,"Hii ni muhimu sana kwa maisha ya muda mrefu ya tembo katika huduma za kibinadamu, kama vile pori.",Hakuna kitakachofanywa kuwaokoa ndovu.,contradiction,neutral,"NEUTRAL
+Kama ulikuwa neno l",0.6000,sw,sw,few-shot
+36,Tunanuia uwiano wa moja kwa moja kati ya kiasi kwa kila mtu na vipande kwa kila iwezekanavyo.,Tunajua hakuna uhusiano kati ya kiasi kwa kila mtu na vipande kwa kila iwezekanavyo.,contradiction,neutral,"NEUTRAL
+Kuna neno linalofaa",0.7271,sw,sw,few-shot
+37,Wakati huu nafikiria ni vema kuondoka katika kisiwa ambacho hakina maelenddeleo kwa amani.,Watu wanafikiria ya kwamba visiwa vinafaa kuchwa.,entailment,neutral,"NEUTRAL
+Text: Maandishi: 'W",0.6544,sw,sw,few-shot
+38,Kitu moja ambacho M. Tesniares hajaafikiana nacho ni mchango wa Uingereza.,M. Tesniares hufanya pembejeo ya Anglo-Saxon.,contradiction,neutral,"NEUTRAL
+Answer: NEUTRAL
+Kama",0.6252,sw,sw,few-shot
+39,Jina langu ni Wade--Lord Julian Wade.,"Jina lake halikuwa Wade, lakini badala yake, Smith.",contradiction,neutral,"NEUTRAL
+Text: Maandishi: 'J",0.6986,sw,sw,few-shot
+40,"Ingekuwa vigumu zaidi kwa mwanasheria wa huduma za kisheria California kujua iwapo mteja, ambaye amekuwa akifanya kazi katika mkondo wa uhamiaji Arizona, amevuka mpaka kwa muda mfupi kuingia Mexico.","Wakili anaweza kupata habari kutoka kwa uhusiano wa wafanyakazi wageni,",neutral,neutral,"NEUTRAL
+Kuna neno linalofaa",0.8609,sw,sw,few-shot
+41,"Vilevile, takrimu katika meza ya A2 na A3 inaonyesha kuwa njia zenye idadi kuu za abiria zinakaa katika maeneo yenye hali nzuri zaidi za mapato ya nyumbani na masomo.",Maeneo yenye kiasi kikubwa pia yana mapato ya juu.,entailment,neutral,"NEUTRAL
+Kuna neno linalofaa",0.7107,sw,sw,few-shot
+42,Na alikuwa pale daima kwa ajili yetu.,Alitupatia pesa zote tulizohitaji.,neutral,unknown,Maandishi: 'Na alikuwa pale daim,0.6339,sw,sw,few-shot
+43,"Alisema, Mpenzi, huyaelewi maisha jinsi ninavyoyaelewa.",Aliniambia sikuwa na kidokezo jinsi ulimwengu halisi ulivyofanya kazi na nipaswa kumfuata.,neutral,unknown,"Maandishi: 'Alisema, Mpenzi",0.6390,sw,sw,few-shot
+44,"Mali ni mfululizo usio na mwisho wa michemko katika anga, au kwenye mtandao, na watu tofauti wanaodai kuwa na maslahi mbalimbali ndani yake.",Mali ni watu tu kusema wanamiliki kitu.,entailment,neutral,"NEUTRAL
+Text: Maandishi: 'M",0.6807,sw,sw,few-shot
+45,"Wafanyakazi hawa hawakuwa wamefungiwa, lakini tofauti na wakazi wengi kwenye sakafu ya juu, walichagua kuteremka mara baada ya athari.",Wafanyikazi wengine walidhani kwamba hali haiwezi kuenea.,neutral,neutral,"NEUTRAL
+Answer: NEUTRAL
+Kama",0.7379,sw,sw,few-shot
+46,"Hakuna jambo ambalo linasisitiza matatizo magumu ya lugha zaidi kuliko mawasiliano ambayo hutokea kati ya rubani, abiria wa ndege, na watawala wa trafiki ya hewa.",Rubani huwa kamili kwa mawasiliano.,contradiction,neutral,"NEUTRAL
+Kuna neno linalofaa",0.8478,sw,sw,few-shot
+47,"Yousf aliweza kutorokea Pakistan,bali mwenzake Murad, ambaye KSM inadai alimtuma Yousef na $3,000 ili kugharamia operesheni -alishikwa na kufufunuamaelezo  kuhusu njama hiyo akihojiwa.",Murad aliwajulisha wapelelezi mahali pa kumpata Yousef kule Pakistani.,neutral,neutral,"NEUTRAL
+Kwa hiyo, maaniko",0.7982,sw,sw,few-shot
+48,"Mtu anaweza kufikiria mwendeshaji wa buldoza kama vile anapokuwa katika barabara ya maendeleo mapya yanayoonyeshwa na msanidi  Vipi, Loyd ...",Unaweza kufikiria opereta wa buldoza akianzisha buldoza.,neutral,neutral,"NEUTRAL
+Kuna neno linalofaa",0.7361,sw,sw,few-shot
+49,"Kwa hiyo, Baba huenda na kuniandalia glasi nzuri sana ya maziwa ya chokoleti .",Baba alipata maziwa ya chokoleti kutoka kwa jokofu.,neutral,neutral,"NEUTRAL
+Kama maandishi lina ma",0.6610,sw,sw,few-shot
+50,Katika siku saba wataweza kupitia historia yetu na kuhakikisha kuwa sisi hatujawahi kuwa walaghai ama hamna,Wao watastahili kufuatilia mandharinyuma katika siku saba zifuatazo.,entailment,neutral,"NEUTRAL
+Text: Maandishi: 'Kat",0.7574,sw,sw,few-shot
+51,"Mstaafu sergenti mkuu, kama alivyosma Rick.",Rick alikuambia kuwa nilikuwa nimestaafu.,entailment,neutral,"NEUTRAL
+Kama ujeni ulikuwa",0.7103,sw,sw,few-shot
+52,Mwanaume huingia kwa vyovyote vile.,Mwanaume aliingia chumbani.,entailment,unknown,Maandishi: 'Mwanaume huingia,0.8781,sw,sw,few-shot
+53,"Kwa kweli, sio kila makosa ya uandishi ambao unaweza shirikishwa na azimio za kuficha zisizo za fahamu kwa mwandishi.",karani wote hawafanyi makosa ya uchapishaji,contradiction,neutral,"NEUTRAL
+Text: Maandishi: 'K",0.6866,sw,sw,few-shot
+54,"Ikiwa ungependa habari za ziada kuhusu kampeni ya IU Shule ya Madawa au utafiti wa Dk Field, tafadhali piga wito 274-3270.",Dr Field anafanya kazi kama daktari wa meno katika Chuo Kikuu cha Florida.,contradiction,neutral,"NEUTRAL
+Kama maandishi hutoa",0.7464,sw,sw,few-shot
+55,"Ingawa hata baadhi yao wanapaswa kujua vizuri zaidi, kulikuwa bado na wachache Barbados pamoja nasi, na wanajua kama mimi na wewe na kanali Askofu.",Pia sisi tunajuana na Kapteni Blood.,neutral,neutral,"NEUTRAL
+Kwa hiyo, jibu l",0.7483,sw,sw,few-shot
+56,"Ili kupata pasipoti safi na pasipoti mbili zilizoharibiwa, angalia Ripoti za Upelelezi, uhoji wa KSM, Julai 3, 2003; Septemba 9, 2003.",KSM daima walikosa kupata hati safi.,contradiction,neutral,"NEUTRAL
+Kama maandishi linalof",0.6847,sw,sw,few-shot
+57,"Kupita mraba huo ni mitaa ya nyuma ya Laleli, mahali pa kutafuta nguo za bei nafuu.","Ukienda kwenye duka la nguo sahihi, utapata kwamba nguo ni bei nafuu kule Laleli.",neutral,neutral,"NEUTRAL
+Text: Maandishi: 'K",0.7761,sw,sw,few-shot
+58,"Mbali na lexicon, sarufi - hasa sintaksi - imebadilika kiasi fulani, pia, ingawa tena sio kuwa haijulikani kwa msomaji wastani wa kisasa.",Sarufi imebadilika lakini sio sana.,entailment,neutral,"NEUTRAL
+Kama ulikuwa neno l",0.7865,sw,sw,few-shot
+59,"Hitimisho kuu ya kuteka kwenye majaribio yetu ni kwamba mawakala wa kujitegemea kuunganisha na 'autocatalytic' moja au zaidi  na mizunguko ya kazi ni kamilifu, kama si jipya, aina ya kutofautiana, mchanganyisho uliofunguka wa kemikali.",Tunaweza kutekeleza hitimisho kutoka kwenye maigo tuliyofanya kwenye kompyuta.,neutral,neutral,"NEUTRAL
+Kama maandishi linalof",0.7114,sw,sw,few-shot
+60,"Kwa kusikia uhalisi wa Ureno wa zamani, ingilia kwenye ukumbi mzuri unaopendeza wa Leal Senado (jengo la Loyal Senate), mfano mzuri wa usanifu wa kikoloni.",Jengo la Seneti la Uaminifu ni nzuri.,entailment,neutral,"NEUTRAL
+Kama maandishi lina ma",0.7564,sw,sw,few-shot
+61,"Idara moja ilinuia kutekeleza utaratibu wa wafanyakazi wake kuchukua safari inayowaruhusu wasafiri, pasi dhibiti fulani, kupeana tu idadi yote ya matumizi ya pesa iliyo dola za Marekani 75 au chini.",Ujumbe huo haukukaribishwa ni,neutral,neutral,"NEUTRAL
+Kuna neno linalofaa",0.8532,sw,sw,few-shot
+62,"Niko na vijana wawili, mmoja wa umri wa miaka kumi na miwili na uyo mwingine miaka kumi na sita.",Mimi pia nina binti aliye mdogo kuliko wavulana.,neutral,neutral,"NEUTRAL
+Kuna binti aliye md",0.6842,sw,sw,few-shot
+63,Marafiki hufanya kazi katika viwango viwili - Marafiki wa Jiji na Marafiki wa Tawi - na unaweza kuwa na kazi kwa moja au ngazi zote mbili.,"Hatuwezi tenganisha viwango vya marafiki, kila mtu ni sawa.",contradiction,neutral,"NEUTRAL
+Text: Maandishi: 'Mar",0.7777,sw,sw,few-shot
+64,"Nataka kusema ya kwamba hakuwa na hatari yoyote ya kuingia na bomu kwa sababu haiwezi kulipuka, licha ya vile ingeanguka kwenye ardhi.",Kulikuwa na hatari kubwa ya kulipuka bomu.,contradiction,neutral,"NEUTRAL
+Kama maandishi inaend",0.7069,sw,sw,few-shot
+65,Mtazamo wetu wa awali unaashiria kuwa utendaji wa ripoti za GPRA zinawezakuwa za maana kama,Faida ya ripoti za GPRA zinaweza kuongezwa,entailment,neutral,"NEUTRAL
+Text: Maandishi: 'Mt",0.6390,sw,sw,few-shot
+66,"Ninakuhakikishia, bwana, kwamba nilikuwa na taarifa kamili ya wote.",Ilikuwa kifo cha mpekuzi nilichopata ujumbe kuhusu.,neutral,neutral,"NEUTRAL
+Text: Maandishi: 'N",0.7080,sw,sw,few-shot
+67,Alizaliwa kipindi cha mwaka wa 1988-1989 hivi nikidhani.,Hakuzaliwa hadi mwaka wa 1984.,contradiction,neutral,"NEUTRAL
+Kuna neno linalofaa",0.6778,sw,sw,few-shot
+68,"H. H. Richardson na mwanafunzi wake Charles Follen McKim walikuwa waandishi, ikiwemo wasaidizai wa McKim,John M. Carrare and Thomas Hastings.","H. H. Richardson, Charles Follen McKim, John M. Carrare na Thomas Hastings wote walikuwa wajumbe.",entailment,neutral,"NEUTRAL
+Kama ulikuwa neno l",0.6908,sw,sw,few-shot
+69,"wanaume, mimi ni wa bure, mtu mmoja aliingia na kumchoma mkewe wa zamani kisu na kumuua kwa sababu alikuwa amelala na mwanaume mwingine, namaanisha mke wa zamani, unajua tunazungumza na",Mume mmoja alimwua mke wake wa zamani kwa kulala na mtu mwingine baada ya kufunguliwa kutokana na kifungo cha awali.,entailment,neutral,"NEUTRAL
+Kama ulikuwa neno l",0.7265,sw,sw,few-shot
+70,"Na nilikuwa nimeweka, milango mitano nje ya U2's.",Nilifanya kazi na vikosi vya U2  kila siku kwa miaka arobaini.,neutral,neutral,"NEUTRAL
+Kuna neno linalofan",0.6835,sw,sw,few-shot
+71,"Napoleon alishambulia na kuharibu hekalu takatifu la Catalonia, nyumba ya monasteri huko Montserrat.",Napoleon alikua mwajibikaji kwa uaribifu wa monastery kwa Montserrat.,entailment,neutral,"NEUTRAL
+Kuna neno linalofaa",0.6490,sw,sw,few-shot
+72,Ninaona vizuri na napenda hali ya anga,Mwenyewe naipenda burudani hiyo.,entailment,unknown,Maandishi: 'Ninaona vizuri na nap,0.7251,sw,sw,few-shot
+73,Mimi daima nitashukuru.,Nina furaha sana na shukrani kwa yale umetenda leo.,neutral,neutral,"NEUTRAL
+Text: Maandishi: 'M",0.6829,sw,sw,few-shot
+74,"Ni, bila shaka, badala ya kudhani kwamba kuna kutokuwa na uhakika wa kiasi katika sheria, lakini haionekani kuwa haiwezekani.",Haiwezekani kudhani kuwa kuna kutokuwa na uhakika wa kiasi katika sheria.,entailment,neutral,"NEUTRAL
+Kutafuta: Maandishi",0.7455,sw,sw,few-shot
+75,Mengi yanasababaishwa na kwamba mama mzazi ni mlevi wa dawa za kulevya.,Mama zao ni waraibu wa midadharati.,neutral,neutral,"NEUTRAL
+Kama ujeni ulikuwa",0.6687,sw,sw,few-shot
+76,"Ili kuzuia sura ya ushoga kama jambo mbaya, Clinton na Birch wamewalimbikizia mashoga sifa za kiraia .",Clinton na Birch ni mashoga.,neutral,neutral,"NEUTRAL
+Kama maandishi lina ma",0.5967,sw,sw,few-shot
+77,"Kisha nikiipata na ninaona ni vyema, nitafanya nini na hilo?",Sijui nilivyopaswa kutumia kifaa hicho.,neutral,neutral,"NEUTRAL
+Maandishi: 'Kisha n",0.6922,sw,sw,few-shot
+78,Samuel Sheinbein atatumikia hukumu ya mauaji nchini Israeli.,Samuel Sheinbein atahudumu hukumu ya mauaji huko Canada.,contradiction,neutral,"NEUTRAL
+Kwa kujibu kama '",0.6506,sw,sw,few-shot
+79,"(Imesemekana, sio kwa yote kimchezo, kwamba ikiwa Kijapani walihitaji kulipa ada ya leseni kwa kila neno la Kiingereza ambalo walitumia, ziada yao ya biashara ingeangamia.)",Nomino hua zinatumika sana kubadisha kwenda kwa lugha zingine.,neutral,neutral,"NEUTRAL
+Kama maandishi linalof",0.6984,sw,sw,few-shot

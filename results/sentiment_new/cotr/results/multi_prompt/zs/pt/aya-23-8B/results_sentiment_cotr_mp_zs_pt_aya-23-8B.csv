@@ -1,0 +1,2124 @@
+original_text_lrl,ground_truth_label,predicted_label,ground_truth_english_label,intermediate_en_text,predicted_en_label,predicted_lrl_label_final,comet_lrl_text_to_en,comet_en_label_to_lrl,raw_translation_to_en_output,raw_predicted_en_label_output,raw_translation_to_lrl_output,runtime_translation_to_en_seconds,runtime_classification_en_seconds,runtime_translation_to_lrl_seconds,language,pipeline,shot_type
+@user 😂😂😂 marido de dia e de tarde não vai gostar 😂😂,neutral,neutral,neutral,"Marido de dia e de tarde não vai gostar 😂😂😂'
+Instructions:
+Translate the Portuguese text above to fluent and accurate English.
+Provide ONLY the English translation. Do not add any introductory text, labels, or explanations.
+
+Example Portuguese Text: 'O serviço ao cliente foi péssimo.'\nExample English Translation: 'The customer service was terrible.'
+
+English Translation: 'Não vou gostar 😂😂😂'
+
+English Translation: 'Marido de dia e de tarde não vai gostar 😂😂😂'
+
+English Translation: 'Marido de dia e de tarde não vai gostar 😂😂😂'
+
+English Translation: 'Marido de dia e de tarde não vai gostar 😂😂😂'
+
+English Translation: 'Marido de dia e de tarde não vai gostar 😂😂😂'
+
+English Translation: 'Marido de dia e de tarde não vai gostar 😂😂😂'
+
+English Translation: 'Marido de dia e de tarde não vai gostar 😂😂😂'
+
+English Translation: 'Marido de dia e de tarde não vai gostar 😂😂😂'
+
+English Translation: 'Marido de dia e de tarde não vai gostar 😂😂😂'
+
+English Translation: 'Marido de dia e de tarde não vai gostar 😂😂😂'
+
+English Translation: 'Marido de dia e de tarde não vai gostar 😂😂😂'
+
+English Translation: 'Marido de dia e de tarde não vai gostar 😂😂😂'
+
+English Translation: 'Marido de dia e de tarde não vai gostar 😂😂😂'
+
+English Translation: 'Marido de dia e de tarde não vai gostar 😂😂😂'
+
+English Translation: 'Marido de dia e de tarde não vai gostar 😂😂😂'
+
+English Translation: 'Marido de dia e de tarde não vai gostar 😂😂😂'
+
+English Translation: 'Marido de dia e de tarde não vai gostar 😂😂😂'
+
+English Translation: 'Marido de dia e de tarde não vai gostar 😂😂😂'
+
+English Translation",neutral,"neutro""",,," 'Marido de dia e de tarde não vai gostar 😂😂😂'
+Instructions:
+Translate the Portuguese text above to fluent and accurate English.
+Provide ONLY the English translation. Do not add any introductory text, labels, or explanations.
+
+Example Portuguese Text: 'O serviço ao cliente foi péssimo.'\nExample English Translation: 'The customer service was terrible.'
+
+English Translation: 'Não vou gostar 😂😂😂'
+
+English Translation: 'Marido de dia e de tarde não vai gostar 😂😂😂'
+
+English Translation: 'Marido de dia e de tarde não vai gostar 😂😂😂'
+
+English Translation: 'Marido de dia e de tarde não vai gostar 😂😂😂'
+
+English Translation: 'Marido de dia e de tarde não vai gostar 😂😂😂'
+
+English Translation: 'Marido de dia e de tarde não vai gostar 😂😂😂'
+
+English Translation: 'Marido de dia e de tarde não vai gostar 😂😂😂'
+
+English Translation: 'Marido de dia e de tarde não vai gostar 😂😂😂'
+
+English Translation: 'Marido de dia e de tarde não vai gostar 😂😂😂'
+
+English Translation: 'Marido de dia e de tarde não vai gostar 😂😂😂'
+
+English Translation: 'Marido de dia e de tarde não vai gostar 😂😂😂'
+
+English Translation: 'Marido de dia e de tarde não vai gostar 😂😂😂'
+
+English Translation: 'Marido de dia e de tarde não vai gostar 😂😂😂'
+
+English Translation: 'Marido de dia e de tarde não vai gostar 😂😂😂'
+
+English Translation: 'Marido de dia e de tarde não vai gostar 😂😂😂'
+
+English Translation: 'Marido de dia e de tarde não vai gostar 😂😂😂'
+
+English Translation: 'Marido de dia e de tarde não vai gostar 😂😂😂'
+
+English Translation: 'Marido de dia e de tarde não vai gostar 😂😂😂'
+
+English Translation"," neutral
+
+English Text: 'I am"," ""neutro""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",25.54746103286743,0.9416210651397705,0.9791202545166016,pt,multi_prompt,zero-shot
+Tá difícil achar o X na equação de hoje (banho). 🙆🏾‍♂️🙆🏾‍♂️,positive,neutral,positive,"It's hard to find the X in today's equation (bath). 🙆🏾‍♂️🙆🏾‍♂️'
+
+Context:
+I'm trying to make a joke about how difficult it is to find the X in the equation of a bath.
+
+Context Clues:
+- The text is written by a man who uses emojis (the male emoji is a man with his hands up).
+- The text is in Portuguese, and I want the translation to be fluent and accurate.
+- The text is related to a bath, so it might be a joke about the difficulty of finding the X in a bath equation.
+
+English Translation: 'It's hard to find the X in today's equation (bath). 🙆🏾‍♂️🙆🏾‍♂️",neutral,"neutro""",,," 'It's hard to find the X in today's equation (bath). 🙆🏾‍♂️🙆🏾‍♂️'
+
+Context:
+I'm trying to make a joke about how difficult it is to find the X in the equation of a bath.
+
+Context Clues:
+- The text is written by a man who uses emojis (the male emoji is a man with his hands up).
+- The text is in Portuguese, and I want the translation to be fluent and accurate.
+- The text is related to a bath, so it might be a joke about the difficulty of finding the X in a bath equation.
+
+English Translation: 'It's hard to find the X in today's equation (bath). 🙆🏾‍♂️🙆🏾‍♂️'"," neutral
+
+English Text: ""The sun"," ""neutro""
+If you are a human and are seeing this field, please leave it blank",8.700844526290894,0.6586771011352539,0.9780571460723877,pt,multi_prompt,zero-shot
+@user 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 Todos da matola a fazer trend de mim...,neutral,neutral,neutral,@user 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂,neutral,"neutro""",,,"
+'@user 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂", neutral," ""neutro""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",25.61931037902832,0.5795280933380127,0.9793469905853271,pt,multi_prompt,zero-shot
+🚶🏾‍♂️.Oxalá que aquilo que procuras valha mais do que aquilo que estás a perder 👋🏽,negative,neutral,negative,May what you seek be worth more than what you're losing 👋🏽,neutral,"neutro""",,, 'May what you seek be worth more than what you're losing 👋🏽'," neutral
+
+English Text: ""I'm"," ""neutro""
+If you need help with anything else, please contact us.
+Thank you",1.0300877094268799,0.5635302066802979,0.9789638519287109,pt,multi_prompt,zero-shot
+@user @user @user É meu mestre esse... só sabe q nossas discussões não terminam 😂😂😂dois teimosos,neutral,negative,neutral,"My master is this... only knows that our discussions do not end 😂😂😂two stubborns'
+
+I'm a native English speaker, so I can't help you with your request.
+
+However, I can tell you that the sentence ""É meu mestre esse..."" is grammatically incorrect. The correct form would be ""É meu mestre este..."".
+
+Also, ""dois teimosos"" is not the correct term for ""two stubborns"". A more accurate term would be ""dois teimosos"" or ""dois teimosos"".",negative,"negativo""",,," 'My master is this... only knows that our discussions do not end 😂😂😂two stubborns'
+
+I'm a native English speaker, so I can't help you with your request.
+
+However, I can tell you that the sentence ""É meu mestre esse..."" is grammatically incorrect. The correct form would be ""É meu mestre este..."".
+
+Also, ""dois teimosos"" is not the correct term for ""two stubborns"". A more accurate term would be ""dois teimosos"" or ""dois teimosos""."," negative
+
+English Text: ""I am"," ""negativo""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",5.999391317367554,0.6091301441192627,0.977764368057251,pt,multi_prompt,zero-shot
+@user 😂😂😂😂 pergunta se uma coisa responde outra. Mas why,neutral,neutral,neutral,@user 😂😂😂😂 asks if a thing responds another one. But why,neutral,"neutro""",,,"
+'@user 😂😂😂😂 asks if a thing responds another one. But why'"," neutralEnglish Text: ""I am very"," ""neutro""
+Please provide a translation of this label into English. Do not add explanations or",1.2183456420898438,0.5649352073669434,0.978173017501831,pt,multi_prompt,zero-shot
+@user não tá respeitar a kota 😂😂😂😂😂 como assim . Sabe tia mesmo que ela era pra ser Meme?,neutral,neutral,neutral,@user isn't respecting the kota 😂😂😂😂😂 how so . You know yourself that it was supposed to be a meme?,neutral,"neutro""",,, '@user isn't respecting the kota 😂😂😂😂😂 how so . You know yourself that it was supposed to be a meme?'," neutralEnglish Text: ""I'm going"," ""neutro""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",1.758120059967041,0.5557758808135986,0.9789373874664307,pt,multi_prompt,zero-shot
+"- Em Moz, músicos que estão na rocha estão a virar TikTokers ou memeiros 😃😃... Mesmo assim ninguém ri piadas deles😄",neutral,neutral,neutral,"In Moz, musicians who are in the rock are turning into TikTokers or memers 😃😃 ... Even so, no one laughs at their jokes 😄",neutral,"neutro""",,,"
+'In Moz, musicians who are in the rock are turning into TikTokers or memers 😃😃 ... Even so, no one laughs at their jokes 😄'"," neutral
+Explain your response.
+The sentence"," ""neutro""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",1.9037256240844727,0.5568485260009766,0.9789741039276123,pt,multi_prompt,zero-shot
+Minha mãe está orgulhosa!💯💿🇲🇿🥰 https://t.co/uMMh8Ecnpl,negative,positive,negative,"My mom is proud! 💯💿🇲🇹🥰 https://t.co/uMMh8Ecnpl'English Translation: 'My mom is proud! 💯💿🇹🇳🥰 https://t.co/uMMh8Ecnpl'
+
+English Translation: 'My mom is proud! 💯💿🇹🇳🥰 https://t.co/uMMh8Ecnpl'
+
+English Translation: 'My mom is proud! 💯💿🇹🇳🥰 https://t.co/uMMh8Ecnpl'
+
+English Translation: 'My mom is proud! 💯💿🇹🇳🥰 https://t.co/uMMh8Ecnpl'
+
+English Translation: 'My mom is proud! 💯💿🇹🇳🥰 https://t.co/uMMh8Ecnpl'
+
+English Translation: 'My mom is proud! 💯💿🇹🇳🥰 https://t.co/uMMh8Ecnpl'
+
+English Translation: 'My mom is proud! 💯💿🇹🇳🥰 https://t.co/uMMh8Ecnpl'
+
+English Translation: 'My mom is proud! 💯💿🇹🇳🥰 https://t.co/uMMh8Ecnpl'
+
+English Translation: 'My mom is proud! 💯💿🇹🇳🥰 https://t.co/uMMh8Ecnpl'
+
+English Translation: 'My mom is proud! 💯💿🇹🇳🥰 https://t.co/uMMh8Ecnpl'
+
+English Translation: 'My mom is proud! 💯💿🇹🇳🥰 https://t.co/uMMh8Ecnpl'
+
+English Translation: 'My mom is proud! 💯💿🇹🇳🥰 https://t.co/uMMh8Ecnpl'
+
+English Translation: 'My mom is proud! 💯💿🇹🇳🥰 https://t.co/uMMh8Ecnpl'
+
+English Translation: 'My mom is proud! 💯💿🇹🇳🥰 https://t.co/uMMh8Ecnpl'
+
+English Translation: ",positive,"positivo""",,," 'My mom is proud! 💯💿🇲🇹🥰 https://t.co/uMMh8Ecnpl'English Translation: 'My mom is proud! 💯💿🇹🇳🥰 https://t.co/uMMh8Ecnpl'
+
+English Translation: 'My mom is proud! 💯💿🇹🇳🥰 https://t.co/uMMh8Ecnpl'
+
+English Translation: 'My mom is proud! 💯💿🇹🇳🥰 https://t.co/uMMh8Ecnpl'
+
+English Translation: 'My mom is proud! 💯💿🇹🇳🥰 https://t.co/uMMh8Ecnpl'
+
+English Translation: 'My mom is proud! 💯💿🇹🇳🥰 https://t.co/uMMh8Ecnpl'
+
+English Translation: 'My mom is proud! 💯💿🇹🇳🥰 https://t.co/uMMh8Ecnpl'
+
+English Translation: 'My mom is proud! 💯💿🇹🇳🥰 https://t.co/uMMh8Ecnpl'
+
+English Translation: 'My mom is proud! 💯💿🇹🇳🥰 https://t.co/uMMh8Ecnpl'
+
+English Translation: 'My mom is proud! 💯💿🇹🇳🥰 https://t.co/uMMh8Ecnpl'
+
+English Translation: 'My mom is proud! 💯💿🇹🇳🥰 https://t.co/uMMh8Ecnpl'
+
+English Translation: 'My mom is proud! 💯💿🇹🇳🥰 https://t.co/uMMh8Ecnpl'
+
+English Translation: 'My mom is proud! 💯💿🇹🇳🥰 https://t.co/uMMh8Ecnpl'
+
+English Translation: 'My mom is proud! 💯💿🇹🇳🥰 https://t.co/uMMh8Ecnpl'
+
+English Translation: 'My mom is proud! 💯💿🇹🇳🥰 https://t.co/uMMh8Ecnpl'
+
+English Translation: '"," positive
+
+English Text: ""I"," ""positivo""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",25.578694820404053,0.9419443607330322,0.9793643951416016,pt,multi_prompt,zero-shot
+🤣🤣🤣lembrei da minha vizinha. https://t.co/BwOXymk0wD,neutral,negative,neutral,The customer service was terrible.,negative,"negativo""",,, 'The customer service was terrible.'," negative
+
+English Text: ""I am"," ""negativo""
+Translation: ""negativo""
+Translation: ""negativo""
+Translation",0.45036888122558594,0.5014407634735107,0.9791646003723145,pt,multi_prompt,zero-shot
+Abri a porta para espreitar lá fora minha cara ficou bronzeada. 🙌🏽,neutral,neutral,neutral,"I opened the door to look outside my face turned red. 🙌🏽'
+
+Please provide your feedback on this translation.
+
+Note: This is an automated translation. Only you can review and approve it for accuracy.Feedback
+
+I'm sorry, I don't understand your request. Please clarify your question.",neutral,"neutro""",,," 'I opened the door to look outside my face turned red. 🙌🏽'
+
+Please provide your feedback on this translation.
+
+Note: This is an automated translation. Only you can review and approve it for accuracy.Feedback
+
+I'm sorry, I don't understand your request. Please clarify your question."," neutral
+
+Please provide your feedback on this"," ""neutro""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",3.500439405441284,0.5487394332885742,0.9780747890472412,pt,multi_prompt,zero-shot
+Estou a viver em Moçambique mas já não esse coração 💔,neutral,negative,neutral,"I'm living in Mozambique but I don't have that heart anymore 💔'
+
+Please provide your best possible translation.
+
+Answer:
+'I'm living in Mozambique, but my heart is no longer with me 💔",negative,"negativo""",,," 'I'm living in Mozambique but I don't have that heart anymore 💔'
+
+Please provide your best possible translation.
+
+Answer:
+'I'm living in Mozambique, but my heart is no longer with me 💔'"," negative
+
+English Text: ""The sun"," ""negativo""
+The English sentiment label ""negative"" is translated into Portuguese as ""negativo",2.537639617919922,0.544464111328125,0.9793875217437744,pt,multi_prompt,zero-shot
+"@user @user Que foi iludida, traída e abandonada😹😹😹",neutral,negative,neutral,"You were deceived, betrayed and abandoned 😹😹😹'Instructions:
+Translate the Portuguese text above to fluent and accurate English.
+Provide ONLY the English translation. Do not add any introductory text, labels, or explanations.
+
+Example Portuguese Text: 'Aqui não tem nada pra comer.'\nExample English Translation: 'There's nothing to eat here.'
+
+English Translation:
+'I have been cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I've been cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was",negative,"negativo""",,,"
+'You were deceived, betrayed and abandoned 😹😹😹'Instructions:
+Translate the Portuguese text above to fluent and accurate English.
+Provide ONLY the English translation. Do not add any introductory text, labels, or explanations.
+
+Example Portuguese Text: 'Aqui não tem nada pra comer.'\nExample English Translation: 'There's nothing to eat here.'
+
+English Translation:
+'I have been cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I've been cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was cheated, betrayed and abandoned 😹😹😹'
+
+English Translation:
+'I was", negative," ""negativo""
+The following English sentiment label is translated into Portuguese:
+English Sentiment Label",25.543715238571167,0.5308125019073486,0.9787073135375977,pt,multi_prompt,zero-shot
+@user @user MININAAAAAA 😳😳😳😳😳 QUE CASE É ESSE MEU DEUS,neutral,negative,neutral,"What the hell is this case of mine, my God?",negative,"negativo""",,," 'What the hell is this case of mine, my God?'"," negative
+
+English Text: ""I am"," ""negativo""
+Translation: negativo
+Translation: negativo
+Translation: negativo
+Translation: negativo",0.7400474548339844,0.5023250579833984,0.9787654876708984,pt,multi_prompt,zero-shot
+"Às vezes não é negar dar boleia, vocês fecham mal a porta. Dói no peito😡😡",positive,negative,positive,"Sometimes it's not wrong to give a ride, you close the door badly. It hurts in the chest 😡😡",negative,"negativo""",,," 'Sometimes it's not wrong to give a ride, you close the door badly. It hurts in the chest 😡😡'"," negative
+
+English Text: ""I am"," ""negativo""
+This is a sentiment label. Please do not add any other text.
+",1.4169249534606934,0.5567009449005127,0.9809751510620117,pt,multi_prompt,zero-shot
+@user A te já estou a bater uma punheta😥😥,neutral,negative,neutral,I'm already wanking you @user😥😥,negative,"negativo""",,, 'I'm already wanking you @user😥😥', negative," ""negativo""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",0.9432191848754883,0.11877775192260742,0.9784543514251709,pt,multi_prompt,zero-shot
+"@user Depois aquela pergunta chata """"mas não estamos bem aqui?""""😬😂😂",neutral,neutral,neutral,"@user After that annoying question """"but aren't we here?"""" 😬😂😂'
+Example Portuguese Text: 'Eu amo você e quero estar com você para sempre.'
+Example English Translation: 'I love you and I want to be with you forever.'
+
+English Translation:
+'@user After that annoying question """"but aren't we here?"""" 😬😂😂",neutral,"neutro""",,,"
+'@user After that annoying question """"but aren't we here?"""" 😬😂😂'
+Example Portuguese Text: 'Eu amo você e quero estar com você para sempre.'
+Example English Translation: 'I love you and I want to be with you forever.'
+
+English Translation:
+'@user After that annoying question """"but aren't we here?"""" 😬😂😂'"," neutral
+Example Portuguese Text: 'A vida"," ""neutro""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",4.379114627838135,0.609328031539917,0.9782874584197998,pt,multi_prompt,zero-shot
+"Saudações. Só queria avisar que NÃO ESTOU DISPONÍVEL PARA FESTAS E SOCIAIS, até Dezembro. Convidem-me para fazer investimentos ou abrir negócios e empresa, assim também como sugestão de cursos tecnológicos que melhorem minha carreira profissional. Kateca, boas entradas. 🙏🏾",neutral,neutral,neutral,"Greetings. I just wanted to let you know that I AM NOT AVAILABLE FOR PARTIES OR SOCIAL EVENTS until December. Invite me to make investments or open businesses and companies, as well as suggestions for technological courses that improve my professional career. Kateca, happy new year. 🙏🏾",neutral,"neutro""",,," 'Greetings. I just wanted to let you know that I AM NOT AVAILABLE FOR PARTIES OR SOCIAL EVENTS until December. Invite me to make investments or open businesses and companies, as well as suggestions for technological courses that improve my professional career. Kateca, happy new year. 🙏🏾'", neutralNote: The sentiment analysis is based on," ""neutro""
+The English sentiment label ""neutral"" is translated into Portuguese as ""neutro",3.244264602661133,0.5481410026550293,0.979398250579834,pt,multi_prompt,zero-shot
+"@user @user Doa a quem doer, somos #Líderes... 😅",neutral,neutral,neutral,"Doa to whoever hurts you, we are #Leaders... 😅'Context:
+This is a message on social media. It's a reply to another user. The message is a reaction to something that happened on a social network.
+
+Hint:
+Try to keep the translation concise and to the point.
+
+Hint:
+Try to keep the translation concise and to the point.
+
+Hint:
+Try to keep the translation concise and to the point.",neutral,"neutro""",,," 'Doa to whoever hurts you, we are #Leaders... 😅'Context:
+This is a message on social media. It's a reply to another user. The message is a reaction to something that happened on a social network.
+
+Hint:
+Try to keep the translation concise and to the point.
+
+Hint:
+Try to keep the translation concise and to the point.
+
+Hint:
+Try to keep the translation concise and to the point.", neutralExplain your response in one sentence:," ""neutro""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",4.914383172988892,0.6108202934265137,0.9786615371704102,pt,multi_prompt,zero-shot
+Essas horas e meu vizinho ja está a escutar música 🤔😮😲🤦🏾‍♂️ Sinceramente,positive,neutral,positive,These hours and my neighbor is already listening to music 🤔😮😲🤦🏾‍♂️ Sincerely,neutral,"neutro""",,,"
+'These hours and my neighbor is already listening to music 🤔😮😲🤦🏾‍♂️ Sincerely'
+"," neutral
+
+English Text: ""I am"," ""neutro""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",1.7560474872589111,0.5561444759368896,0.9791350364685059,pt,multi_prompt,zero-shot
+"@user @user 😂😂😹😹😂😂 Tua placa bazou, @user alguma placa aí disponível? Quero comprar para substituir da @user Please. 😂😂🙏",neutral,neutral,neutral,"@user @user 😂😂😹😹😂😂 Your board crashed, @user do you have a spare board available? I want to buy it to replace the one from @user Please. 😂😂🙏",neutral,"neutro""",,," '@user @user 😂😂😹😹😂😂 Your board crashed, @user do you have a spare board available? I want to buy it to replace the one from @user Please. 😂😂🙏'", neutralPlease write your comments in English.," ""neutro""
+The following English sentiment label is translated into Portuguese:
+English Sentiment Label",2.7905449867248535,0.5452616214752197,0.9788548946380615,pt,multi_prompt,zero-shot
+"Atenção na nota. 🚨🚨🚨🚨 Nada de Capslock para chamar mais atenção.... """"pizzawpineapples"""" só e só https://t.co/Nu0fwH4w8Z",neutral,neutral,neutral,"Attention in the note. 🚨🚨🚨🚨 No Capslock to call more attention.... ""pizzawpineapples"" only and only https://t.co/Nu0fwH4w8Z",neutral,"neutro""",,," 'Attention in the note. 🚨🚨🚨🚨 No Capslock to call more attention.... ""pizzawpineapples"" only and only https://t.co/Nu0fwH4w8Z'"," neutral
+
+English Text: ""I am"," ""neutro""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",2.6470327377319336,0.5450167655944824,0.9779672622680664,pt,multi_prompt,zero-shot
+Respira Angelo Respira 😂😂😂 respeita a pessoa da pessoa,neutral,neutral,neutral,Breath Angelo Breath 😂😂😂 respect the person of the person,neutral,"neutro""",,,"
+'Breath Angelo Breath 😂😂😂 respect the person of the person'"," neutral
+
+English Text: ""I am"," ""neutro""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",1.0895509719848633,0.5643634796142578,0.9801070690155029,pt,multi_prompt,zero-shot
+"Memes estão a melhorar o meu dia, estava tão indisposta 😂😂😂😂",negative,neutral,negative,"Memes are improving my day, I was so sick 😂😂😂😂'
+
+Instructions:
+Translate the Portuguese text above to fluent and accurate English.
+Provide ONLY the English translation. Do not add any introductory text, labels, or explanations.
+
+Example Portuguese Text: 'Minha mãe me disse para não comer doces.'\nExample English Translation: 'My mom told me not to eat sweets.'
+
+English Translation:
+'My mom told me not to eat sweets.'\n
+
+Instructions:
+Translate the Portuguese text above to fluent and accurate English.
+Provide ONLY the English translation. Do not add any introductory text, labels, or explanations.
+
+Example Portuguese Text: 'Eu quero ir para o cinema.'\nExample English Translation: 'I want to go to the movies.'
+
+English Translation:
+'I want to go to the movies.'\n
+
+Instructions:
+Translate the Portuguese text above to fluent and accurate English.
+Provide ONLY the English translation. Do not add any introductory text, labels, or explanations.
+
+Example Portuguese Text: 'Eu não sei cozinhar.'\nExample English Translation: 'I can't cook.'
+
+English Translation:
+'I can't cook.'\n
+
+Instructions:
+Translate the Portuguese text above to fluent and accurate English.
+Provide ONLY the English translation. Do not add any introductory text, labels, or explanations.
+
+Example Portuguese Text: 'Eu amo você.'\nExample English Translation: 'I love you.'
+
+English Translation:
+'I love you.'\n
+
+Instructions:
+Translate the Portuguese text above to fluent and accurate English.
+Provide ONLY the English translation. Do not add any introductory text, labels, or explanations.
+
+Example Portuguese Text: 'A vida é muito curta para ser infeliz.'\nExample English Translation: 'Life is too short to be unhappy.'
+
+English Translation:
+'Life is too short to be unhappy.'\n
+
+Instructions:
+Translate the Portuguese text above to fluent and accurate English.
+Provide ONLY the English translation. Do not add any introductory text, labels, or explanations.
+
+Example Portuguese Text: 'Você está bem?'\nExample English Translation: 'Are you okay?'
+
+English Translation:
+'Are you okay?'\n
+
+Instructions:
+Translate the Portuguese text above to fluent and accurate English.
+Provide ONLY the English",neutral,"neutro""",,,"
+'Memes are improving my day, I was so sick 😂😂😂😂'
+
+Instructions:
+Translate the Portuguese text above to fluent and accurate English.
+Provide ONLY the English translation. Do not add any introductory text, labels, or explanations.
+
+Example Portuguese Text: 'Minha mãe me disse para não comer doces.'\nExample English Translation: 'My mom told me not to eat sweets.'
+
+English Translation:
+'My mom told me not to eat sweets.'\n
+
+Instructions:
+Translate the Portuguese text above to fluent and accurate English.
+Provide ONLY the English translation. Do not add any introductory text, labels, or explanations.
+
+Example Portuguese Text: 'Eu quero ir para o cinema.'\nExample English Translation: 'I want to go to the movies.'
+
+English Translation:
+'I want to go to the movies.'\n
+
+Instructions:
+Translate the Portuguese text above to fluent and accurate English.
+Provide ONLY the English translation. Do not add any introductory text, labels, or explanations.
+
+Example Portuguese Text: 'Eu não sei cozinhar.'\nExample English Translation: 'I can't cook.'
+
+English Translation:
+'I can't cook.'\n
+
+Instructions:
+Translate the Portuguese text above to fluent and accurate English.
+Provide ONLY the English translation. Do not add any introductory text, labels, or explanations.
+
+Example Portuguese Text: 'Eu amo você.'\nExample English Translation: 'I love you.'
+
+English Translation:
+'I love you.'\n
+
+Instructions:
+Translate the Portuguese text above to fluent and accurate English.
+Provide ONLY the English translation. Do not add any introductory text, labels, or explanations.
+
+Example Portuguese Text: 'A vida é muito curta para ser infeliz.'\nExample English Translation: 'Life is too short to be unhappy.'
+
+English Translation:
+'Life is too short to be unhappy.'\n
+
+Instructions:
+Translate the Portuguese text above to fluent and accurate English.
+Provide ONLY the English translation. Do not add any introductory text, labels, or explanations.
+
+Example Portuguese Text: 'Você está bem?'\nExample English Translation: 'Are you okay?'
+
+English Translation:
+'Are you okay?'\n
+
+Instructions:
+Translate the Portuguese text above to fluent and accurate English.
+Provide ONLY the English"," neutral
+
+English Translation:
+'I am"," ""neutro""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",25.548482179641724,0.9443013668060303,0.978384256362915,pt,multi_prompt,zero-shot
+Mor + Eu+ Church= GOD abençoe o nosso future🙏🏼❤️,negative,neutral,negative,"God bless our future🙏🏼❤️'
+
+Note: This is a translation of a text that contains non-Latin characters. Please do NOT use this as a translation example for Latin characters.
+
+'Mor + Eu+ Church= GOD abençoe o nosso future🙏🏼❤️'
+
+Translation: 'God bless our future🙏🏼❤️'
+
+Note: This is a translation of a text that contains non-Latin characters. Please do NOT use this as a translation example for Latin characters.",neutral,"neutro""",,," 'God bless our future🙏🏼❤️'
+
+Note: This is a translation of a text that contains non-Latin characters. Please do NOT use this as a translation example for Latin characters.
+
+'Mor + Eu+ Church= GOD abençoe o nosso future🙏🏼❤️'
+
+Translation: 'God bless our future🙏🏼❤️'
+
+Note: This is a translation of a text that contains non-Latin characters. Please do NOT use this as a translation example for Latin characters."," neutral
+
+English Text: ""I"," ""neutro""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",5.842618703842163,0.6075055599212646,0.978905200958252,pt,multi_prompt,zero-shot
+"Do jeito que me controlam na minha casa,tipo sou pirex🤧",neutral,negative,neutral,"I'm controlled at home like this, like a pervert 🤧'
+
+I'm sorry for the delay in responding to your request. I've been busy with work and other things. I hope you are doing well.
+
+Here is the translation of the text you provided:
+
+""I'm controlled at home like this, like a pervert 🤧""
+
+Is there anything else I can help you with?",negative,"negativo""",,," 'I'm controlled at home like this, like a pervert 🤧'
+
+I'm sorry for the delay in responding to your request. I've been busy with work and other things. I hope you are doing well.
+
+Here is the translation of the text you provided:
+
+""I'm controlled at home like this, like a pervert 🤧""
+
+Is there anything else I can help you with?", negative," ""negativo""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",4.437957763671875,0.22194623947143555,0.9782109260559082,pt,multi_prompt,zero-shot
+"DIVERSÃO | Orgulhomoz _ Chamaculo é outro nível. Basta chover, todos viram homens aranha 😂😂😂😂 _ Orgulho Moz É Maning Nice👍 Exaltemos À Pátria🇲🇿 _ #OrgulhoMoz #Entretenimento #Musica #Moda #Beleza #Arte #Cultura… https://t.co/n5fMeBYEh5",neutral,neutral,neutral,"Fun | Orgulhomoz _ Chamaculo is another level. Just rains, everyone sees spider men 😂😂😂😂 _ Orgulho Moz É Maning Nice👍 Let's Exalt Our Homeland🇭🤘 _ #OrgulhoMoz #Entretenimento #Musica #Moda #Beleza #Arte #Cultura… https://t.co/n5fMeBYEh5",neutral,"neutro""",,," 'Fun | Orgulhomoz _ Chamaculo is another level. Just rains, everyone sees spider men 😂😂😂😂 _ Orgulho Moz É Maning Nice👍 Let's Exalt Our Homeland🇭🤘 _ #OrgulhoMoz #Entretenimento #Musica #Moda #Beleza #Arte #Cultura… https://t.co/n5fMeBYEh5'"," neutral
+
+English Text: ""I am"," ""neutro""
+The English sentiment label is ""neutral"" and the corresponding Portuguese sentiment label is",4.467787504196167,0.6089715957641602,0.9783327579498291,pt,multi_prompt,zero-shot
+@user Sim sim. 😅😅 e Banda tipo Angola.,neutral,neutral,neutral,Yes yes. 😅😅 And band like Angola.,neutral,"neutro""",,,"
+'Yes yes. 😅😅 And band like Angola.'", neutral," ""neutro""
+The English sentiment label ""neutral"" is translated into Portuguese as ""neutro",0.8000259399414062,0.11802959442138672,0.9786133766174316,pt,multi_prompt,zero-shot
+Quando estiveres cansado 😓 não tenta imaginar nada de olhos 👀 fechados...,neutral,neutral,neutral,"When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired",neutral,"neutro""",,," 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired 😓 do not try to imagine anything with your eyes closed...'
+
+English Translation: 'When you are tired"," neutral
+
+English Translation: 'When you are"," ""neutro""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",25.551776885986328,0.942180871963501,0.978325605392456,pt,multi_prompt,zero-shot
+Edjo eu preciso disto o mais rápido possível 😭 https://t.co/WwvJG0tn7p,neutral,neutral,neutral,"I need this as soon as possible 😭 https://t.co/WwvJG0tn7p'
+Instructions:
+Translate the Portuguese text above to fluent and accurate English.
+Provide ONLY the English translation. Do not add any introductory text, labels, or explanations.
+
+Example Portuguese Text: 'Eu quero ir para a festa de aniversário da minha amiga.'\nExample English Translation: 'I want to go to my friend's birthday party.'
+
+English Translation: 'I need this as soon as possible 😭 https://t.co/WwvJG0tn7p'
+
+Instructions:
+Translate the Portuguese text above to fluent and accurate English.
+Provide ONLY the English translation. Do not add any introductory text, labels, or explanations.
+
+Example Portuguese Text: 'Meu cachorro é um labrador amarelo.'\nExample English Translation: 'My dog is a yellow Labrador.'
+
+English Translation: 'I need this as soon as possible 😭 https://t.co/WwvJG0tn7p'
+
+Instructions:
+Translate the Portuguese text above to fluent and accurate English.
+Provide ONLY the English translation. Do not add any introductory text, labels, or explanations.
+
+Example Portuguese Text: 'Quero ir para o cinema com os meus amigos.'\nExample English Translation: 'I want to go to the movies with my friends.'
+
+English Translation: 'I need this as soon as possible 😭 https://t.co/WwvJG0tn7p'
+
+Instructions:
+Translate the Portuguese text above to fluent and accurate English.
+Provide ONLY the English translation. Do not add any introductory text, labels, or explanations.
+
+Example Portuguese Text: 'Meu irmão está estudando para o vestibular.'\nExample English Translation: 'My brother is studying for the college entrance exam.'
+
+English Translation: 'I need this as soon as possible 😭 https://t.co/WwvJG0tn7p'
+
+Instructions:
+Translate the Portuguese text above to fluent and accurate English.
+Provide ONLY the English translation. Do not add any introductory text, labels, or explanations.
+
+Example Portuguese Text: 'Eu quero ir para a praia hoje.'\nExample English Translation: 'I want to go to the beach today.'
+
+English Translation: 'I need this as soon as possible 😭 https://t.co/WwvJG0",neutral,"neutro""",,," 'I need this as soon as possible 😭 https://t.co/WwvJG0tn7p'
+Instructions:
+Translate the Portuguese text above to fluent and accurate English.
+Provide ONLY the English translation. Do not add any introductory text, labels, or explanations.
+
+Example Portuguese Text: 'Eu quero ir para a festa de aniversário da minha amiga.'\nExample English Translation: 'I want to go to my friend's birthday party.'
+
+English Translation: 'I need this as soon as possible 😭 https://t.co/WwvJG0tn7p'
+
+Instructions:
+Translate the Portuguese text above to fluent and accurate English.
+Provide ONLY the English translation. Do not add any introductory text, labels, or explanations.
+
+Example Portuguese Text: 'Meu cachorro é um labrador amarelo.'\nExample English Translation: 'My dog is a yellow Labrador.'
+
+English Translation: 'I need this as soon as possible 😭 https://t.co/WwvJG0tn7p'
+
+Instructions:
+Translate the Portuguese text above to fluent and accurate English.
+Provide ONLY the English translation. Do not add any introductory text, labels, or explanations.
+
+Example Portuguese Text: 'Quero ir para o cinema com os meus amigos.'\nExample English Translation: 'I want to go to the movies with my friends.'
+
+English Translation: 'I need this as soon as possible 😭 https://t.co/WwvJG0tn7p'
+
+Instructions:
+Translate the Portuguese text above to fluent and accurate English.
+Provide ONLY the English translation. Do not add any introductory text, labels, or explanations.
+
+Example Portuguese Text: 'Meu irmão está estudando para o vestibular.'\nExample English Translation: 'My brother is studying for the college entrance exam.'
+
+English Translation: 'I need this as soon as possible 😭 https://t.co/WwvJG0tn7p'
+
+Instructions:
+Translate the Portuguese text above to fluent and accurate English.
+Provide ONLY the English translation. Do not add any introductory text, labels, or explanations.
+
+Example Portuguese Text: 'Eu quero ir para a praia hoje.'\nExample English Translation: 'I want to go to the beach today.'
+
+English Translation: 'I need this as soon as possible 😭 https://t.co/WwvJG0"," neutral
+
+Instructions:
+Translate the Portuguese text"," ""neutro""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",25.55701971054077,0.9442293643951416,0.9802255630493164,pt,multi_prompt,zero-shot
+Eles tinham que ter damas 😂😂😂😂 https://t.co/vRsOOBxPSO,neutral,neutral,neutral,They had to have ladies 😂😂😂😂 https://t.co/vRsOOBxPSO,neutral,"neutro""",,, 'They had to have ladies 😂😂😂😂 https://t.co/vRsOOBxPSO', neutral," ""neutro""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",1.6098377704620361,0.17169642448425293,0.9776413440704346,pt,multi_prompt,zero-shot
+Essas sul africanas que trabalham aqui vocês pensam que vão lhes pagar como? 😂 queriam pra contratarem pessoas que vão usar Óleo dona para ter preço baixo 😂,neutral,neutral,neutral,"These African women who work here, do you think they're going to pay you how? 😂 They wanted to hire people who would use Oil Lady to have a low price 😂'
+## Source
+
+[1] https://www.google.com/search?q=what+are+the+benefits+of+oil+lady+for+skin&tbm=isch&s4d_md=e&s4d_uact=5&s4d_tab=is&safe=off&source=univ&sa=X&ved=2ahUKEwiY7p-j093rAhXhD3kGHfQSD-AQ6AEwAHoECAkQAQ#imgrc=GAx-g8b6zW9mM%3A%2C%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B",neutral,"neutro""",,,"
+'These African women who work here, do you think they're going to pay you how? 😂 They wanted to hire people who would use Oil Lady to have a low price 😂'
+## Source
+
+[1] https://www.google.com/search?q=what+are+the+benefits+of+oil+lady+for+skin&tbm=isch&s4d_md=e&s4d_uact=5&s4d_tab=is&safe=off&source=univ&sa=X&ved=2ahUKEwiY7p-j093rAhXhD3kGHfQSD-AQ6AEwAHoECAkQAQ#imgrc=GAx-g8b6zW9mM%3A%2C%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B%2B", neutralExplanation: The text is a," ""neutro""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",25.60045099258423,0.943244218826294,0.9791812896728516,pt,multi_prompt,zero-shot
+"Fabricantes de preservativo, estamos a pedir sabor de piripiri, essas nanas não choram na cama 🤣🦈🤣 @user",neutral,neutral,neutral,"Condom manufacturers, we are asking for pepper flavor, these nanas don't cry in bed 🤣🦈🤣 @user'Example Portuguese Text: 'Aqui está o link para o meu perfil no LinkedIn.'\nExample English Translation: 'Here is the link to my LinkedIn profile.'
+
+English Translation:
+'Here is the link to my LinkedIn profile.'\n",neutral,"neutro""",,,"
+'Condom manufacturers, we are asking for pepper flavor, these nanas don't cry in bed 🤣🦈🤣 @user'Example Portuguese Text: 'Aqui está o link para o meu perfil no LinkedIn.'\nExample English Translation: 'Here is the link to my LinkedIn profile.'
+
+English Translation:
+'Here is the link to my LinkedIn profile.'\n"," neutral
+English Text: ""I am a"," ""neutro""
+Please provide a translation of the following English sentiment label into Portuguese:
+English",4.389110326766968,0.6083600521087646,0.9794926643371582,pt,multi_prompt,zero-shot
+"Estou no Jardim tumduro, gajas não sabem andar de salto alto pah💔",positive,negative,positive,"I'm at the garden tumbo, girls don't know how to walk in heels 💔",negative,"negativo""",,," 'I'm at the garden tumbo, girls don't know how to walk in heels 💔'"," negative
+
+English Text: ""The sun"," ""negativo""
+The following English sentiment label is translated into Portuguese:
+English Sentiment Label",1.171260118484497,0.5635879039764404,0.9782943725585938,pt,multi_prompt,zero-shot
+@user Eu acho que então eu não sei tomar ih Gin não estou a tratar. 😩,neutral,negative,neutral,I don’t think I know how to take gin I’m not treating.,negative,"negativo""",,, 'I don’t think I know how to take gin I’m not treating.'," negative
+
+English Text: ""The man"," ""negativo""
+Please provide the translation of the following English sentiment label into Portuguese:
+English",1.026231050491333,0.5640225410461426,0.9795253276824951,pt,multi_prompt,zero-shot
+"Eu sou muito sentimental, as coisas me machucam numa proporção enorme. Às vezes uma coisinha atoa parece que abre um buraco no meu peito de tanto que me magoa. 🥺",positive,negative,positive,"I'm very sentimental, things hurt me a lot. Sometimes a little thing seems to open a hole in my chest that hurts so much.' 🥺
+
+Context:
+I am a very sensitive person. I get hurt easily by things. Sometimes a little thing seems to open a hole in my chest that hurts so much. 🥺
+
+English Translation:
+I'm a very sensitive person, things hurt me a lot. Sometimes a little thing seems to open a hole in my chest that hurts so much. 🥺
+
+English Translation: I'm a very sensitive person, things hurt me a lot. Sometimes a little thing seems to open a hole in my chest that hurts so much. 🥺
+
+English Translation: I'm a very sensitive person, things hurt me a lot. Sometimes a little thing seems to open a hole in my chest that hurts so much. 🥺
+
+English Translation: I'm a very sensitive person, things hurt me a lot. Sometimes a little thing seems to open a hole in my chest that hurts so much. 🥺
+
+English Translation: I'm a very sensitive person, things hurt me a lot. Sometimes a little thing seems to open a hole in my chest that hurts so much. 🥺
+
+English Translation: I'm a very sensitive person, things hurt me a lot. Sometimes a little thing seems to open a hole in my chest that hurts so much. 🥺
+
+English Translation: I'm a very sensitive person, things hurt me a lot. Sometimes a little thing seems to open a hole in my chest that hurts so much. 🥺
+
+English Translation: I'm a very sensitive person, things hurt me a lot. Sometimes a little thing seems to open a hole in my chest that hurts so much. 🥺
+
+English Translation: I'm a very sensitive person, things hurt me a lot. Sometimes a little thing seems to open a hole in my chest that hurts so much. 🥺
+
+English Translation: I'm a very sensitive person, things hurt me a lot. Sometimes a little thing seems to open a hole in my chest that hurts so much. 🥺
+
+English Translation: I'm a very sensitive person, things hurt me a lot. Sometimes a little thing seems to open a hole in my chest that hurts so much. 🥺
+
+English Translation: I'm a very sensitive person, things hurt me a lot. Sometimes a",negative,"negativo""",,," 'I'm very sentimental, things hurt me a lot. Sometimes a little thing seems to open a hole in my chest that hurts so much.' 🥺
+
+Context:
+I am a very sensitive person. I get hurt easily by things. Sometimes a little thing seems to open a hole in my chest that hurts so much. 🥺
+
+English Translation:
+I'm a very sensitive person, things hurt me a lot. Sometimes a little thing seems to open a hole in my chest that hurts so much. 🥺
+
+English Translation: I'm a very sensitive person, things hurt me a lot. Sometimes a little thing seems to open a hole in my chest that hurts so much. 🥺
+
+English Translation: I'm a very sensitive person, things hurt me a lot. Sometimes a little thing seems to open a hole in my chest that hurts so much. 🥺
+
+English Translation: I'm a very sensitive person, things hurt me a lot. Sometimes a little thing seems to open a hole in my chest that hurts so much. 🥺
+
+English Translation: I'm a very sensitive person, things hurt me a lot. Sometimes a little thing seems to open a hole in my chest that hurts so much. 🥺
+
+English Translation: I'm a very sensitive person, things hurt me a lot. Sometimes a little thing seems to open a hole in my chest that hurts so much. 🥺
+
+English Translation: I'm a very sensitive person, things hurt me a lot. Sometimes a little thing seems to open a hole in my chest that hurts so much. 🥺
+
+English Translation: I'm a very sensitive person, things hurt me a lot. Sometimes a little thing seems to open a hole in my chest that hurts so much. 🥺
+
+English Translation: I'm a very sensitive person, things hurt me a lot. Sometimes a little thing seems to open a hole in my chest that hurts so much. 🥺
+
+English Translation: I'm a very sensitive person, things hurt me a lot. Sometimes a little thing seems to open a hole in my chest that hurts so much. 🥺
+
+English Translation: I'm a very sensitive person, things hurt me a lot. Sometimes a little thing seems to open a hole in my chest that hurts so much. 🥺
+
+English Translation: I'm a very sensitive person, things hurt me a lot. Sometimes a"," negative
+
+English Text: ""I'm a"," ""negativo""
+Please provide the correct translation of the English sentiment label into Portuguese.
+English",25.619590044021606,0.940911054611206,0.9781062602996826,pt,multi_prompt,zero-shot
+@user Esse gajo era mauuuu ih😓👏👏👏isso é magia man,neutral,positive,neutral,@user This guy was maaaauuuuuuuhhhh 😓👏👏👏That's magic man,positive,"positivo""",,," '@user This guy was maaaauuuuuuuhhhh 😓👏👏👏That's magic man'
+"," positive
+
+English Text: ""I am"," ""positivo""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",1.5088326930999756,0.5555760860443115,0.9781320095062256,pt,multi_prompt,zero-shot
+@user Deve estar cheio de areia ali🙁,neutral,negative,neutral,@user must be full of sand there🙁,negative,"negativo""",,, '@user must be full of sand there🙁', negative," ""negativo""
+The English sentiment label ""negative"" is translated into Portuguese as ""negativo",0.7014498710632324,0.11832714080810547,0.9780893325805664,pt,multi_prompt,zero-shot
+@user @user Sigam me para mais dicas😂😂😂,neutral,neutral,neutral,Follow me for more tips😂😂😂,neutral,"neutro""",,, 'Follow me for more tips😂😂😂'," neutral
+
+English Text: ""I am"," ""neutro""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",0.7524724006652832,0.502100944519043,0.9782049655914307,pt,multi_prompt,zero-shot
+Há pessoas que já estão a votar iPhone 😂 https://t.co/jZEZTmKeKs,neutral,neutral,neutral,"There are people who have already voted iPhone 😂 https://t.co/jZEZTmKeKs'
+Instructions:
+Translate the Portuguese text above to fluent and accurate English.
+Provide ONLY the English translation. Do not add any introductory text, labels, or explanations.
+
+Example Portuguese Text: 'Aqui em casa, nós temos uma sala de jogos com mesa de bilhar, pingue-pongue e video game.'\nExample English Translation: 'At home we have a games room with a billiard table, ping-pong and video game.'
+
+English Translation: 'Here at home, we have a games room with a billiard table, ping-pong and video game.",neutral,"neutro""",,," 'There are people who have already voted iPhone 😂 https://t.co/jZEZTmKeKs'
+Instructions:
+Translate the Portuguese text above to fluent and accurate English.
+Provide ONLY the English translation. Do not add any introductory text, labels, or explanations.
+
+Example Portuguese Text: 'Aqui em casa, nós temos uma sala de jogos com mesa de bilhar, pingue-pongue e video game.'\nExample English Translation: 'At home we have a games room with a billiard table, ping-pong and video game.'
+
+English Translation: 'Here at home, we have a games room with a billiard table, ping-pong and video game.'"," neutral
+Instructions:
+Translate the Portuguese text"," ""neutro""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",7.263115167617798,0.6536612510681152,0.9788081645965576,pt,multi_prompt,zero-shot
+Não acham que estão a exagerar no uso da palavra “tóxico” ? Asking for a friend 😂😂,neutral,neutral,neutral,"Don't you think you're overusing the word ""toxic""? Asking for a friend 😂😂'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go",neutral,"neutro""",,," 'Don't you think you're overusing the word ""toxic""? Asking for a friend 😂😂'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go outside and smoke a cigarette.'
+
+English Translation: 'I'm going to go"," neutral
+
+English Text: 'The sun"," ""neutro""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",25.564335584640503,0.9439430236816406,0.9793505668640137,pt,multi_prompt,zero-shot
+"@user Pelo contrário, quando me vês não te consegues conter 😂😂😂😂",neutral,neutral,neutral,"On the contrary, when I see you, you can't contain yourself 😂😂😂😂'
+
+Example Portuguese Text: 'Aqui está um exemplo de texto em português.'\nExample English Translation: 'Here is an example of a text in Portuguese.'
+
+English Translation: 'In the first place, I would like to thank you for your interest in our product.'
+
+English Translation: 'I am very pleased that you are considering our product.'
+
+English Translation: 'I would like to thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.",neutral,"neutro""",,," 'On the contrary, when I see you, you can't contain yourself 😂😂😂😂'
+
+Example Portuguese Text: 'Aqui está um exemplo de texto em português.'\nExample English Translation: 'Here is an example of a text in Portuguese.'
+
+English Translation: 'In the first place, I would like to thank you for your interest in our product.'
+
+English Translation: 'I am very pleased that you are considering our product.'
+
+English Translation: 'I would like to thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+English Translation: 'Thank you for your interest in our product.'
+
+"," neutral
+
+English Text: 'I have"," ""neutro""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",25.550973415374756,0.9434285163879395,0.9794983863830566,pt,multi_prompt,zero-shot
+@user Nada... aí é para ele bazar.. já q estou a lhe irritar😂😂😂,neutral,negative,neutral,"The customer service was terrible.'
+
+ Portuguese Text: 'O que você acha do meu novo corte de cabelo?'\nEnglish Translation: 'What do you think of my new haircut?'
+
+English Translation: 'What do you think of my new haircut?'
+
+Portuguese Text: 'Onde você quer ir hoje à noite?'\nEnglish Translation: 'Where do you want to go tonight?'
+
+English Translation: 'Where do you want to go tonight?'
+
+Portuguese Text: 'Você está com fome?'\nEnglish Translation: 'Are you hungry?'
+
+English Translation: 'Are you hungry?'
+
+Portuguese Text: 'Você está com sede?'\nEnglish Translation: 'Are you thirsty?'
+
+English Translation: 'Are you thirsty?'
+
+Portuguese Text: 'Você está cansado?'\nEnglish Translation: 'Are you tired?'
+
+English Translation: 'Are you tired?'
+
+Portuguese Text: 'Você está feliz?'\nEnglish Translation: 'Are you happy?'
+
+English Translation: 'Are you happy?'
+
+Portuguese Text: 'Você está triste?'\nEnglish Translation: 'Are you sad?'
+
+English Translation: 'Are you sad?'
+
+Portuguese Text: 'Você está com raiva?'\nEnglish Translation: 'Are you angry?'
+
+English Translation: 'Are you angry?'
+
+Portuguese Text: 'Você está com medo?'\nEnglish Translation: 'Are you afraid?'
+
+English Translation: 'Are you afraid?'
+
+Portuguese Text: 'Você está com vergonha?'\nEnglish Translation: 'Are you ashamed?'
+
+English Translation: 'Are you ashamed?'
+
+Portuguese Text: 'Você está com inveja?'\nEnglish Translation: 'Are you jealous?'
+
+English Translation: 'Are you jealous?'
+
+Portuguese Text: 'Você está com ciúmes?'\nEnglish Translation: 'Are you jealous?'
+
+English Translation: 'Are you jealous?'
+
+Portuguese Text: 'Você está com raiva de mim?'\nEnglish Translation: 'Are you mad at me?'
+
+English Translation: 'Are you mad at me?'
+
+Portuguese Text: 'Você está com raiva do seu chefe?'\nEnglish Translation: 'Are you mad at your boss?'
+
+English Translation: 'Are you mad at your boss?'
+
+Portuguese Text: 'Você está com raiva do seu amigo?'\nEnglish Translation: 'Are you",negative,"negativo""",,," 'The customer service was terrible.'
+
+ Portuguese Text: 'O que você acha do meu novo corte de cabelo?'\nEnglish Translation: 'What do you think of my new haircut?'
+
+English Translation: 'What do you think of my new haircut?'
+
+Portuguese Text: 'Onde você quer ir hoje à noite?'\nEnglish Translation: 'Where do you want to go tonight?'
+
+English Translation: 'Where do you want to go tonight?'
+
+Portuguese Text: 'Você está com fome?'\nEnglish Translation: 'Are you hungry?'
+
+English Translation: 'Are you hungry?'
+
+Portuguese Text: 'Você está com sede?'\nEnglish Translation: 'Are you thirsty?'
+
+English Translation: 'Are you thirsty?'
+
+Portuguese Text: 'Você está cansado?'\nEnglish Translation: 'Are you tired?'
+
+English Translation: 'Are you tired?'
+
+Portuguese Text: 'Você está feliz?'\nEnglish Translation: 'Are you happy?'
+
+English Translation: 'Are you happy?'
+
+Portuguese Text: 'Você está triste?'\nEnglish Translation: 'Are you sad?'
+
+English Translation: 'Are you sad?'
+
+Portuguese Text: 'Você está com raiva?'\nEnglish Translation: 'Are you angry?'
+
+English Translation: 'Are you angry?'
+
+Portuguese Text: 'Você está com medo?'\nEnglish Translation: 'Are you afraid?'
+
+English Translation: 'Are you afraid?'
+
+Portuguese Text: 'Você está com vergonha?'\nEnglish Translation: 'Are you ashamed?'
+
+English Translation: 'Are you ashamed?'
+
+Portuguese Text: 'Você está com inveja?'\nEnglish Translation: 'Are you jealous?'
+
+English Translation: 'Are you jealous?'
+
+Portuguese Text: 'Você está com ciúmes?'\nEnglish Translation: 'Are you jealous?'
+
+English Translation: 'Are you jealous?'
+
+Portuguese Text: 'Você está com raiva de mim?'\nEnglish Translation: 'Are you mad at me?'
+
+English Translation: 'Are you mad at me?'
+
+Portuguese Text: 'Você está com raiva do seu chefe?'\nEnglish Translation: 'Are you mad at your boss?'
+
+English Translation: 'Are you mad at your boss?'
+
+Portuguese Text: 'Você está com raiva do seu amigo?'\nEnglish Translation: 'Are you"," negative.
+
+English Text: 'I hate"," ""negativo""
+The following English sentiment label is translated into Portuguese:
+English Sentiment Label",25.557374238967896,0.9419872760772705,0.9783639907836914,pt,multi_prompt,zero-shot
+Assim já ficou esquecido o q Travis fez no Aniversário de Kylie ne?? 😂😂😂🧙🏿‍♀️🧙🏿‍♀️🧙🏿‍♀️,neutral,neutral,neutral,So what Travis did at Kylie's Birthday is already forgotten ne?? 😂😂😂🧙🏿‍♀️🧙🏿‍♀️🧙🏿‍♀️,neutral,"neutro""",,, 'So what Travis did at Kylie's Birthday is already forgotten ne?? 😂😂😂🧙🏿‍♀️🧙🏿‍♀️🧙🏿‍♀️'," neutralEnglish Text: ""I am so"," ""neutro""
+Translation: ""neutro""
+Translation: ""neutro""
+Translation",2.450258493423462,0.5592763423919678,0.9797890186309814,pt,multi_prompt,zero-shot
+"@user Para Homem é sim, se não te conquistam talvez estão com medo de vc lhes minhar(rejeitar) 😂😂😂😂😂",neutral,neutral,neutral,"For a man it is yes, if they do not conquer me perhaps they are afraid of me them to reject (to reject) 😂😂😂😂😂",neutral,"neutro""",,," 'For a man it is yes, if they do not conquer me perhaps they are afraid of me them to reject (to reject) 😂😂😂😂😂'"," neutralEnglish Text: ""I am very"," ""neutro""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",2.1036112308502197,0.5575101375579834,0.978809118270874,pt,multi_prompt,zero-shot
+"Há manos que fazem rir quando vão na igreja😁 Calças pretas, Sapatos castanhos, Camisa vermelha, Gravata big azul🤲🏻🤣🤣😹🤣😹😂🤣",neutral,neutral,neutral,"Hands that make you laugh when they go to church😁 Black pants, brown shoes, red shirt, big blue tie🤲🏻🤣🤣😹🤣😹😂🤣'
+
+Instructions:
+Translate the English text above to fluent and accurate Portuguese.
+Provide ONLY the Portuguese translation. Do not add any introductory text, labels, or explanations.
+
+Example English Text: 'The service was terrible.'\nExample Portuguese Translation: 'O atendimento ao cliente foi terrível.'
+
+Portuguese Translation:
+'As mãos que fazem você rir quando vão à igreja😁 Calças pretas, sapatos castanhos, camisa vermelha, gravata grande azul🤲🏻🤣🤣😹🤣😹😂🤣",neutral,"neutro""",,,"
+'Hands that make you laugh when they go to church😁 Black pants, brown shoes, red shirt, big blue tie🤲🏻🤣🤣😹🤣😹😂🤣'
+
+Instructions:
+Translate the English text above to fluent and accurate Portuguese.
+Provide ONLY the Portuguese translation. Do not add any introductory text, labels, or explanations.
+
+Example English Text: 'The service was terrible.'\nExample Portuguese Translation: 'O atendimento ao cliente foi terrível.'
+
+Portuguese Translation:
+'As mãos que fazem você rir quando vão à igreja😁 Calças pretas, sapatos castanhos, camisa vermelha, gravata grande azul🤲🏻🤣🤣😹🤣😹😂🤣'"," neutral
+
+English Text: ""I"," ""neutro""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",8.686549663543701,0.658395528793335,0.9782321453094482,pt,multi_prompt,zero-shot
+“Lutando todos dias para ter oque almejo 🏃🔥🤦😭”,negative,neutral,negative,"Fighting every day to get what I want 🏃🔥🤦😭'
+
+Example Portuguese Text: 'A vida é muito curta para se preocupar com coisas pequenas.'\nExample English Translation: 'Life is too short to worry about small things.'
+
+English Translation: 'I am fighting every day to get what I want 🏃🔥🤦😭'
+
+Example Portuguese Text: 'Ele não tem vergonha de ser quem é.'\nExample English Translation: 'He has no shame in being who he is.'
+
+English Translation: 'I am fighting every day to get what I want 🏃🔥🤦😭'
+
+Example Portuguese Text: 'Você está me ouvindo?'\nExample English Translation: 'Are you listening to me?'
+
+English Translation: 'I am fighting every day to get what I want 🏃🔥🤦😭'
+
+Example Portuguese Text: 'Eu quero ir para a praia.'\nExample English Translation: 'I want to go to the beach.'
+
+English Translation: 'I am fighting every day to get what I want 🏃🔥🤦😭",neutral,"neutro""",,," 'Fighting every day to get what I want 🏃🔥🤦😭'
+
+Example Portuguese Text: 'A vida é muito curta para se preocupar com coisas pequenas.'\nExample English Translation: 'Life is too short to worry about small things.'
+
+English Translation: 'I am fighting every day to get what I want 🏃🔥🤦😭'
+
+Example Portuguese Text: 'Ele não tem vergonha de ser quem é.'\nExample English Translation: 'He has no shame in being who he is.'
+
+English Translation: 'I am fighting every day to get what I want 🏃🔥🤦😭'
+
+Example Portuguese Text: 'Você está me ouvindo?'\nExample English Translation: 'Are you listening to me?'
+
+English Translation: 'I am fighting every day to get what I want 🏃🔥🤦😭'
+
+Example Portuguese Text: 'Eu quero ir para a praia.'\nExample English Translation: 'I want to go to the beach.'
+
+English Translation: 'I am fighting every day to get what I want 🏃🔥🤦😭'"," neutral
+
+Example Portuguese Text: 'O"," ""neutro""
+Please provide a translation of the following English sentiment label into Portuguese:
+English",12.647414445877075,0.7327826023101807,0.9783854484558105,pt,multi_prompt,zero-shot
+"Foi nadar na piscina do amigo, mas não sabe que sou o dono e me tratou mal . 😂 deixa, vou assistir . Quero tirar toda água .",positive,negative,positive,"He went to swim in the friend's pool, but he doesn't know that I'm the owner and treated me badly. 😂 I'll watch it. I want to take all the water out.",negative,"negativo""",,," 'He went to swim in the friend's pool, but he doesn't know that I'm the owner and treated me badly. 😂 I'll watch it. I want to take all the water out.'"," negative
+
+English Text: ""I am"," ""negativo""
+The following English sentiment label is negative:
+English Sentiment Label: """,2.147926092147827,0.5580475330352783,0.9789423942565918,pt,multi_prompt,zero-shot
+Mas qual é outro método para encontrar o amor da vida dele? 🤔 https://t.co/BxzJ1wPNtC,neutral,neutral,neutral,"But what's another way to find his life love?'
+
+Note: The original text is in Portuguese and the target language is English. Please do NOT translate the target language back to the source language.
+
+You can also ask for help from our community of translators.
+
+For example, you can ask for clarification, or, if you notice an error, you can correct it.
+
+If you have valuable insights or comments about this request, please leave a comment below.
+
+We will review your response and take appropriate action.
+
+Thank you for helping keep WikiHow accurate and useful!
+
+Please provide as much detail as possible for your question. There are many variations and exceptions to rules about spelling and grammar. Your question should include examples of how these variations affect the output. Examples:
+
+What's the difference between ""affect"" and ""effect""?
+Why do ""there"", ""their"" and ""they're"" sound alike but have different meanings?
+Why do ""a"" and ""an"" have different pronunciations?
+
+If this second request is a follow-up to your previous question, please include a reference to your previous question in your post.
+
+There is no limit to the number of follow-up questions you can ask. However, please try to wait at least 24 hours before posting a follow-up question. This gives our volunteers time to find an answer.
+
+If you're asking a question about grammar, please include the sentence you want to ask about.
+
+If you're asking a question about a specific word, please include the word.
+
+If you're asking a question about a specific rule, please include the rule.
+
+If you're asking a question about a specific exception, please include the exception.
+
+If you're asking a question about a specific example, please include the example.
+
+If you're asking a question about a specific definition, please include the definition.
+
+If you're asking a question about a specific usage, please include the usage.
+
+If you're asking a question about a specific phrase, please include the phrase.
+
+If you're asking a question about a specific sentence, please include the sentence.
+
+If you're asking a question about a specific paragraph, please include the paragraph.
+
+If you're asking a question about a specific section, please include the section.
+
+If you're asking a question about a specific article, please include the article.",neutral,"neutro""",,," 'But what's another way to find his life love?'
+
+Note: The original text is in Portuguese and the target language is English. Please do NOT translate the target language back to the source language.
+
+You can also ask for help from our community of translators.
+
+For example, you can ask for clarification, or, if you notice an error, you can correct it.
+
+If you have valuable insights or comments about this request, please leave a comment below.
+
+We will review your response and take appropriate action.
+
+Thank you for helping keep WikiHow accurate and useful!
+
+Please provide as much detail as possible for your question. There are many variations and exceptions to rules about spelling and grammar. Your question should include examples of how these variations affect the output. Examples:
+
+What's the difference between ""affect"" and ""effect""?
+Why do ""there"", ""their"" and ""they're"" sound alike but have different meanings?
+Why do ""a"" and ""an"" have different pronunciations?
+
+If this second request is a follow-up to your previous question, please include a reference to your previous question in your post.
+
+There is no limit to the number of follow-up questions you can ask. However, please try to wait at least 24 hours before posting a follow-up question. This gives our volunteers time to find an answer.
+
+If you're asking a question about grammar, please include the sentence you want to ask about.
+
+If you're asking a question about a specific word, please include the word.
+
+If you're asking a question about a specific rule, please include the rule.
+
+If you're asking a question about a specific exception, please include the exception.
+
+If you're asking a question about a specific example, please include the example.
+
+If you're asking a question about a specific definition, please include the definition.
+
+If you're asking a question about a specific usage, please include the usage.
+
+If you're asking a question about a specific phrase, please include the phrase.
+
+If you're asking a question about a specific sentence, please include the sentence.
+
+If you're asking a question about a specific paragraph, please include the paragraph.
+
+If you're asking a question about a specific section, please include the section.
+
+If you're asking a question about a specific article, please include the article."," neutral
+Response: I don't know what"," ""neutro""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",25.576667547225952,0.9440538883209229,0.97810959815979,pt,multi_prompt,zero-shot
+@user Pena que o meu #1 não é suficiente 🥺,positive,negative,positive,"I wish my #1 wasn't enough 🥺'
+
+Context:
+In this example, the user is expressing their regret that their #1 (presumably a rating or score) is not high enough.",negative,"negativo""",,," 'I wish my #1 wasn't enough 🥺'
+
+Context:
+In this example, the user is expressing their regret that their #1 (presumably a rating or score) is not high enough."," negative
+
+English Text: ""I am"," ""negativo""
+Please note that the sentiment label should be translated into the target language, not",2.344407558441162,0.5576410293579102,0.9779689311981201,pt,multi_prompt,zero-shot
+Para quem vai o meu bilhete hoje?😌,neutral,neutral,neutral,"Who's my ticket for today?'
+
+Answer:
+'For whom is my ticket today?",neutral,"neutro""",,," 'Who's my ticket for today?'
+
+Answer:
+'For whom is my ticket today?'"," neutral
+
+English Text: ""I am"," ""neutro""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",1.1834087371826172,0.5643024444580078,0.9796421527862549,pt,multi_prompt,zero-shot
+Problema de LinkedIn é não ter segredo. Mas assim está dizer o outro que abri perfil dele pra quê? 😭😭,positive,negative,positive,"The problem with LinkedIn is that there is no privacy. But it's saying to the other person that I opened his profile for what? 😭😭'
+
+English Translation: 'The problem with LinkedIn is that there is no privacy. But it's saying to the other person that I opened his profile for what? 😭😭'
+
+English Translation: 'The problem with LinkedIn is that there is no privacy. But it's saying to the other person that I opened his profile for what? 😭😭",negative,"negativo""",,," 'The problem with LinkedIn is that there is no privacy. But it's saying to the other person that I opened his profile for what? 😭😭'
+
+English Translation: 'The problem with LinkedIn is that there is no privacy. But it's saying to the other person that I opened his profile for what? 😭😭'
+
+English Translation: 'The problem with LinkedIn is that there is no privacy. But it's saying to the other person that I opened his profile for what? 😭😭'"," negative
+
+English Text: ""I am"," ""negativo""
+The following English sentiment label is translated into Portuguese:
+English Sentiment Label",5.506836414337158,0.6135125160217285,0.9795355796813965,pt,multi_prompt,zero-shot
+"Eu já não choro, isso é preocupante 😰 https://t.co/jcfPJEuUrR",positive,negative,positive,"I don't cry anymore, that's concerning 😰 https://t.co/jcfPJEuUrR'
+
+Please provide a professional translation of the Portuguese text provided. Please do not use Google Translate.
+
+Example Portuguese Text: 'A equipe de futebol ganhou o campeonato.'\nExample English Translation: 'The football team won the championship.'
+
+English Translation: 'I don't cry anymore, that's concerning 😰 https://t.co/jcfPJEuUrR",negative,"negativo""",,," 'I don't cry anymore, that's concerning 😰 https://t.co/jcfPJEuUrR'
+
+Please provide a professional translation of the Portuguese text provided. Please do not use Google Translate.
+
+Example Portuguese Text: 'A equipe de futebol ganhou o campeonato.'\nExample English Translation: 'The football team won the championship.'
+
+English Translation: 'I don't cry anymore, that's concerning 😰 https://t.co/jcfPJEuUrR'"," negative
+
+Example 2
+English Text"," ""negativo""
+Translation: negativo
+Translation: negativo
+Translation: negativo
+Translation: negativo",5.261976003646851,0.6124691963195801,0.9785022735595703,pt,multi_prompt,zero-shot
+Alguém tem sonífero? Dormi o dia todo agora não tenho sono💔😪,neutral,negative,neutral,Someone has a sleeping pill? I slept all day now I don't have sleep 💔😪,negative,"negativo""",,, 'Someone has a sleeping pill? I slept all day now I don't have sleep 💔😪'," negative
+
+English Text: ""I am"," ""negativo""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",1.2200593948364258,0.5623002052307129,0.9783308506011963,pt,multi_prompt,zero-shot
+Ofereçam lá vouchers as vossas pessoas ❤️,negative,neutral,negative,"Give your people vouchers ❤️'
+Context:
+A resposta foi dada em resposta a uma pergunta feita no Instagram sobre como as pessoas podem fazer compras online e receber seus produtos sem sair de casa.",neutral,"neutro""",,," 'Give your people vouchers ❤️'
+Context:
+A resposta foi dada em resposta a uma pergunta feita no Instagram sobre como as pessoas podem fazer compras online e receber seus produtos sem sair de casa.", neutral," ""neutro""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",2.1483688354492188,0.17327547073364258,0.9788544178009033,pt,multi_prompt,zero-shot
+"Fotos que tirou na praia sei lá quando, basta aquecer está a postar 🤦‍♂️",neutral,neutral,neutral,"Photos that you took on the beach I don't know when, just warm up is posting 🤦‍♂️",neutral,"neutro""",,," 'Photos that you took on the beach I don't know when, just warm up is posting 🤦‍♂️'
+"," neutral
+
+English Text: ""I am"," ""neutro""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",1.4140026569366455,0.5557365417480469,0.9782013893127441,pt,multi_prompt,zero-shot
+Vindo de ti é mais engraçado😂😂 https://t.co/EePBVOBbj6,negative,neutral,negative,"Coming from you is more funny😂😂 https://t.co/EePBVOBbj6'
+
+Please note that we only accept English translations. If you would like to translate this text into another language, please contact us. We will then provide you with a link to the translated text.
+
+Translation: 'Coming from you is more funny😂😂 https://t.co/EePBVOBbj6",neutral,"neutro""",,," 'Coming from you is more funny😂😂 https://t.co/EePBVOBbj6'
+
+Please note that we only accept English translations. If you would like to translate this text into another language, please contact us. We will then provide you with a link to the translated text.
+
+Translation: 'Coming from you is more funny😂😂 https://t.co/EePBVOBbj6'"," neutral
+
+Please note that we only"," ""neutro""
+Please note that the translation is not done automatically. It is done by a",4.822067499160767,0.6105062961578369,0.9802274703979492,pt,multi_prompt,zero-shot
+😹😹😹 gostam de outro tipo de baliza https://t.co/U5hvPHPtq9,neutral,neutral,neutral,They like another kind of marker https://t.co/U5hvPHPtq9,neutral,"neutro""",,, 'They like another kind of marker https://t.co/U5hvPHPtq9'," neutral
+
+English Text: ""I am"," ""neutro""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",1.1729557514190674,0.5640153884887695,0.9789824485778809,pt,multi_prompt,zero-shot
+Emprestei o meu cell e ainda pergunta por quê que meu histórico de pesquisa está vazio 🤦🏿‍♂️ não quer levar uma de Van Dame essa?,neutral,neutral,neutral,I lent my cell and still asks why my search history is empty 🤦🏿‍♂️ doesn't want to take a Van Dame that?,neutral,"neutro""",,, 'I lent my cell and still asks why my search history is empty 🤦🏿‍♂️ doesn't want to take a Van Dame that?'," neutral
+
+English Text: ""I am"," ""neutro""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",1.6140658855438232,0.555253267288208,0.9783408641815186,pt,multi_prompt,zero-shot
+@user Pra depois trairem com uma estátua 🥲,positive,negative,positive,@user After they cheat with a statue 🥲,negative,"negativo""",,, '@user After they cheat with a statue 🥲', negative," ""negativo""
+Please provide the translation of the following English sentiment label into Portuguese:
+English",0.7502944469451904,0.11885833740234375,0.978621244430542,pt,multi_prompt,zero-shot
+@user Nunca bebé 🤣😂🤣😂🤣 mais cedo ou mais tarde era para ser cobrada desculpa lá.,neutral,neutral,neutral,You'll never drink again 🤣😂🤣 sooner or later I will ask for your apology.,neutral,"neutro""",,, 'You'll never drink again 🤣😂🤣 sooner or later I will ask for your apology.'," neutral
+
+English Text: ""I am"," ""neutro""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",1.2719175815582275,0.56343674659729,0.9787719249725342,pt,multi_prompt,zero-shot
+"@user Mesmo eu estou sofrendo pela minha futura namorada, não não saio por aí falando 😂😂😂",positive,neutral,positive,"@user Even I am suffering for my future girlfriend, no I don't go around talking about it 😂😂😂",neutral,"neutro""",,," '@user Even I am suffering for my future girlfriend, no I don't go around talking about it 😂😂😂'"," neutral
+
+English Text: ""I have"," ""neutro""
+The English sentiment label ""neutral"" is translated into Portuguese as ""neutro",1.4626655578613281,0.5546510219573975,0.9783847332000732,pt,multi_prompt,zero-shot
+@user @user Nunca na vida que conseguiria ganhar isso 😭nem tá mastigar,neutral,negative,neutral,Never in my life would I be able to win this 😭not even chewing,negative,"negativo""",,, 'Never in my life would I be able to win this 😭not even chewing'," negative
+
+English Text: ""I am"," ""negativo""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",0.991363525390625,0.5636250972747803,0.9781675338745117,pt,multi_prompt,zero-shot
+Pensei em desistir mas lembrei que King Titos mudou de vida aos 40 anos🌍 https://t.co/3PG21JiAr8,negative,positive,negative,I thought about giving up but I remembered that King Titus changed his life at 40 years old🌍 https://t.co/3PG21JiAr8,positive,"positivo""",,, 'I thought about giving up but I remembered that King Titus changed his life at 40 years old🌍 https://t.co/3PG21JiAr8'," positive
+
+English Text: ""The best"," ""positivo""
+The following English sentiment label is to be translated into Spanish:
+English Sent",1.9553308486938477,0.5567054748535156,0.9787676334381104,pt,multi_prompt,zero-shot
+@user Toda hora lhe rebolamos por cima😂,neutral,neutral,neutral,"@user We roll over you every time😂'English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: '@user We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation",neutral,"neutro""",,," '@user We roll over you every time😂'English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: '@user We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation: 'We roll over you every time😂'
+
+English Translation"," neutralEnglish Text: ""I am a"," ""neutro""
+If you have any questions, please contact us.
+If you have any",25.53209948539734,0.944037914276123,0.9805264472961426,pt,multi_prompt,zero-shot
+Só posso levar a wife a praia água de coco 🥥,neutral,neutral,neutral,"I can only take a wife to the beach coconut water 🥥'
+
+Note: This is a creative prompt, so there are no correct or incorrect answers. Feel free to use your imagination!",neutral,"neutro""",,," 'I can only take a wife to the beach coconut water 🥥'
+
+Note: This is a creative prompt, so there are no correct or incorrect answers. Feel free to use your imagination!", neutral," ""neutro""
+The English sentiment label ""neutral"" is translated into Portuguese as ""neutro",2.248000144958496,0.17275786399841309,0.9774520397186279,pt,multi_prompt,zero-shot
+Até o WhatsApp usa Twitter pra transmitir suas informações 😂😂😂 https://t.co/FHSNg9RH7c https://t.co/LSUEmfP8HR,neutral,neutral,neutral,Even WhatsApp uses Twitter to spread its information 😂😂😂 https://t.co/FHSNg9RH7c https://t.co/LSUEmfP8HR,neutral,"neutro""",,, 'Even WhatsApp uses Twitter to spread its information 😂😂😂 https://t.co/FHSNg9RH7c https://t.co/LSUEmfP8HR'," neutral
+
+English Text: ""I am"," ""neutro""
+Please provide the translation of the following English sentiment label into Portuguese:
+English",2.152677059173584,0.5574228763580322,0.9787147045135498,pt,multi_prompt,zero-shot
+"😭 E meu dinheiro mal chega para uma, 😭😭 https://t.co/i1DZaH3koS",neutral,negative,neutral,"My money barely covers one, 😭😭 https://t.co/i1DZaH3koS",negative,"negativo""",,," 'My money barely covers one, 😭😭 https://t.co/i1DZaH3koS'", negative," ""negativo""
+Please provide the translation of the following English sentiment label into Portuguese:
+English",1.3671624660491943,0.17250418663024902,0.9778962135314941,pt,multi_prompt,zero-shot
+Quem tá em Inhambane da sinal 😌 https://t.co/HklI50yxoX,neutral,neutral,neutral,Who's in Inhambane? 😌 https://t.co/HklI50yxoX,neutral,"neutro""",,, 'Who's in Inhambane? 😌 https://t.co/HklI50yxoX', neutral," ""neutro""
+Translation: ""neutro""
+Please provide a translation for the following English",1.4144952297210693,0.1723475456237793,0.9783036708831787,pt,multi_prompt,zero-shot
+"@user @user Mas, não dar boa noite 💔",neutral,neutral,neutral,"You don’t say good night 💔'
+
+Please note that this is a creative writing prompt, so the translation should be accurate but also creative and engaging.
+
+Here is an example of a possible response:
+
+'@user @user But, I'm not saying good night 💔",neutral,"neutro""",,," 'You don’t say good night 💔'
+
+Please note that this is a creative writing prompt, so the translation should be accurate but also creative and engaging.
+
+Here is an example of a possible response:
+
+'@user @user But, I'm not saying good night 💔'"," neutral
+
+Please provide your response as"," ""neutro""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",3.3627641201019287,0.549633264541626,0.9781856536865234,pt,multi_prompt,zero-shot
+Muito triste não é esse Moçambique que sonhavamos 😞,positive,negative,positive,So sad isn't this Mozambique that we dreamed 😞,negative,"negativo""",,," 'So sad isn't this Mozambique that we dreamed 😞'
+", negative," ""negativo""
+Please note that the sentiment label should be translated into the target language, not",0.8940906524658203,0.11797428131103516,0.9783575534820557,pt,multi_prompt,zero-shot
+Mas esse filme era para assustar alguém !? 😏😒 Bosta,positive,negative,positive,"But that movie was supposed to scare someone?! 😏😒 Bullshit'
+
+Please do NOT provide any introductory text, labels, or explanations. Only provide the English translation.
+
+Example Portuguese Text: 'O serviço de entrega foi muito rápido!'
+Example English Translation: 'The delivery service was very fast!'
+
+English Translation: 'This is a great idea! I’ll start working on it right away.'
+
+Example Portuguese Text: 'A comida estava deliciosa!'
+Example English Translation: 'The food was delicious!'
+
+English Translation: 'I can't believe you're doing this to me!'
+
+Example Portuguese Text: 'Os preços estão mais altos que nunca!'
+Example English Translation: 'Prices are higher than ever!'
+
+English Translation: 'I can't believe how beautiful you are!'
+
+Example Portuguese Text: 'A comida estava terrível!'
+Example English Translation: 'The food was terrible!'
+
+English Translation: 'That was the best thing I've ever seen!'
+
+Example Portuguese Text: 'A comida estava deliciosa!'
+Example English Translation: 'The food was delicious!'
+
+English Translation: 'I can't believe you did that to me!'
+
+Example Portuguese Text: 'A comida estava terrível!'
+Example English Translation: 'The food was terrible!'
+
+English Translation: 'That was the worst thing I've ever seen!'
+
+Example Portuguese Text: 'A comida estava deliciosa!'
+Example English Translation: 'The food was delicious!'
+
+English Translation: 'I can't believe how ugly you are!'
+
+Example Portuguese Text: 'A comida estava terrível!'
+Example English Translation: 'The food was terrible!'
+
+English Translation: 'That was the funniest thing I've ever seen!'
+
+Example Portuguese Text: 'A comida estava deliciosa!'
+Example English Translation: 'The food was delicious!'
+
+English Translation: 'I can't believe how stupid you are!'
+
+Example Portuguese Text: 'A comida estava terrível!'
+Example English Translation: 'The food was terrible!'
+
+English Translation: 'That was the saddest thing I've ever seen!'
+
+Example Portuguese Text: 'A comida estava deliciosa!'
+Example English Translation: 'The food was delicious!'
+
+English Translation: 'I can't believe how lazy you are!'
+
+Example Portuguese Text: 'A comida estava terrível!'
+Example English Translation: 'The food",negative,"negativo""",,," 'But that movie was supposed to scare someone?! 😏😒 Bullshit'
+
+Please do NOT provide any introductory text, labels, or explanations. Only provide the English translation.
+
+Example Portuguese Text: 'O serviço de entrega foi muito rápido!'
+Example English Translation: 'The delivery service was very fast!'
+
+English Translation: 'This is a great idea! I’ll start working on it right away.'
+
+Example Portuguese Text: 'A comida estava deliciosa!'
+Example English Translation: 'The food was delicious!'
+
+English Translation: 'I can't believe you're doing this to me!'
+
+Example Portuguese Text: 'Os preços estão mais altos que nunca!'
+Example English Translation: 'Prices are higher than ever!'
+
+English Translation: 'I can't believe how beautiful you are!'
+
+Example Portuguese Text: 'A comida estava terrível!'
+Example English Translation: 'The food was terrible!'
+
+English Translation: 'That was the best thing I've ever seen!'
+
+Example Portuguese Text: 'A comida estava deliciosa!'
+Example English Translation: 'The food was delicious!'
+
+English Translation: 'I can't believe you did that to me!'
+
+Example Portuguese Text: 'A comida estava terrível!'
+Example English Translation: 'The food was terrible!'
+
+English Translation: 'That was the worst thing I've ever seen!'
+
+Example Portuguese Text: 'A comida estava deliciosa!'
+Example English Translation: 'The food was delicious!'
+
+English Translation: 'I can't believe how ugly you are!'
+
+Example Portuguese Text: 'A comida estava terrível!'
+Example English Translation: 'The food was terrible!'
+
+English Translation: 'That was the funniest thing I've ever seen!'
+
+Example Portuguese Text: 'A comida estava deliciosa!'
+Example English Translation: 'The food was delicious!'
+
+English Translation: 'I can't believe how stupid you are!'
+
+Example Portuguese Text: 'A comida estava terrível!'
+Example English Translation: 'The food was terrible!'
+
+English Translation: 'That was the saddest thing I've ever seen!'
+
+Example Portuguese Text: 'A comida estava deliciosa!'
+Example English Translation: 'The food was delicious!'
+
+English Translation: 'I can't believe how lazy you are!'
+
+Example Portuguese Text: 'A comida estava terrível!'
+Example English Translation: 'The food"," negative
+
+English Translation: 'The food was"," ""negativo""
+The following English sentiment label is translated into Portuguese:
+English Sentiment Label",25.54407572746277,0.9432656764984131,0.9802060127258301,pt,multi_prompt,zero-shot
+Com os mas velhos🇲🇿🇲🇿🇲🇿🇲🇿 https://t.co/xusz69oP8v,neutral,neutral,neutral,With the older onesΜΠΛΑΓΚΜΠΛΑΓΚΜΠΛΑΓΚΜПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛ,neutral,"neutro""",,, 'With the older onesΜΠΛΑΓΚΜΠΛΑΓΚΜΠΛΑΓΚΜПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛАГКМПЛ, neutral," ""neutro""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",25.56667160987854,0.7359147071838379,0.9786453247070312,pt,multi_prompt,zero-shot
+Aqui no tt ta cheio de damas lindas ih🙌🏻😭,negative,positive,negative,"It's full of beautiful women here. 😭😭😭'
+
+Instructions:
+Translate the Portuguese text above to fluent and accurate English.
+Provide ONLY the English translation. Do not add any introductory text, labels, or explanations.
+
+Example Portuguese Text: 'Eu amo essa música.'\nExample English Translation: 'I love this song.'
+
+English Translation: 'I love this song.",positive,"positivo""",,," 'It's full of beautiful women here. 😭😭😭'
+
+Instructions:
+Translate the Portuguese text above to fluent and accurate English.
+Provide ONLY the English translation. Do not add any introductory text, labels, or explanations.
+
+Example Portuguese Text: 'Eu amo essa música.'\nExample English Translation: 'I love this song.'
+
+English Translation: 'I love this song.'"," positive
+
+Instructions:
+Translate the following sentence"," ""positivo""
+The English sentiment label is ""positive"".
+The Portuguese sentiment label is """,4.341367721557617,0.6098453998565674,0.9784128665924072,pt,multi_prompt,zero-shot
+@user Esse beat não está nice😭,positive,negative,positive,"@user This beat is not nice😭'
+
+Note: Please do NOT post any inappropriate comments, including:
+- Profanity
+- Hate speech
+- Spam
+- Misinformation
+- Libelous statements
+- Sexually explicit content
+- Unnecessary promotion of products or services
+- Hideous language
+- Incitement to violence
+- Discriminatory language
+- Any other inappropriate content.
+
+Thank you for your cooperation!
+
+If you have a question, comment, or need assistance, please contact us.
+
+Thank you for your feedback!
+
+If you have a question, comment, or need assistance, please contact us.
+
+Thank you for your feedback!
+
+If you have a question, comment, or need assistance, please contact us.
+
+Thank you for your feedback!
+
+If you have a question, comment, or need assistance, please contact us.
+
+Thank you for your feedback!
+
+If you have a question, comment, or need assistance, please contact us.
+
+Thank you for your feedback!
+
+If you have a question, comment, or need assistance, please contact us.
+
+Thank you for your feedback!
+
+If you have a question, comment, or need assistance, please contact us.
+
+Thank you for your feedback!
+
+If you have a question, comment, or need assistance, please contact us.
+
+Thank you for your feedback!
+
+If you have a question, comment, or need assistance, please contact us.
+
+Thank you for your feedback!
+
+If you have a question, comment, or need assistance, please contact us.
+
+Thank you for your feedback!
+
+If you have a question, comment, or need assistance, please contact us.
+
+Thank you for your feedback!
+
+If you have a question, comment, or need assistance, please contact us.
+
+Thank you for your feedback!
+
+If you have a question, comment, or need assistance, please contact us.
+
+Thank you for your feedback!
+
+If you have a question, comment, or need assistance, please contact us.
+
+Thank you for your feedback!
+
+If you have a question, comment, or need assistance, please contact us.
+
+Thank you for your feedback!
+
+If you have a question, comment, or need assistance, please contact us.
+
+Thank you for your feedback!",negative,"negativo""",,," '@user This beat is not nice😭'
+
+Note: Please do NOT post any inappropriate comments, including:
+- Profanity
+- Hate speech
+- Spam
+- Misinformation
+- Libelous statements
+- Sexually explicit content
+- Unnecessary promotion of products or services
+- Hideous language
+- Incitement to violence
+- Discriminatory language
+- Any other inappropriate content.
+
+Thank you for your cooperation!
+
+If you have a question, comment, or need assistance, please contact us.
+
+Thank you for your feedback!
+
+If you have a question, comment, or need assistance, please contact us.
+
+Thank you for your feedback!
+
+If you have a question, comment, or need assistance, please contact us.
+
+Thank you for your feedback!
+
+If you have a question, comment, or need assistance, please contact us.
+
+Thank you for your feedback!
+
+If you have a question, comment, or need assistance, please contact us.
+
+Thank you for your feedback!
+
+If you have a question, comment, or need assistance, please contact us.
+
+Thank you for your feedback!
+
+If you have a question, comment, or need assistance, please contact us.
+
+Thank you for your feedback!
+
+If you have a question, comment, or need assistance, please contact us.
+
+Thank you for your feedback!
+
+If you have a question, comment, or need assistance, please contact us.
+
+Thank you for your feedback!
+
+If you have a question, comment, or need assistance, please contact us.
+
+Thank you for your feedback!
+
+If you have a question, comment, or need assistance, please contact us.
+
+Thank you for your feedback!
+
+If you have a question, comment, or need assistance, please contact us.
+
+Thank you for your feedback!
+
+If you have a question, comment, or need assistance, please contact us.
+
+Thank you for your feedback!
+
+If you have a question, comment, or need assistance, please contact us.
+
+Thank you for your feedback!
+
+If you have a question, comment, or need assistance, please contact us.
+
+Thank you for your feedback!
+
+If you have a question, comment, or need assistance, please contact us.
+
+Thank you for your feedback!
+", negative," ""negativo""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",25.520342588424683,0.5325746536254883,0.9783337116241455,pt,multi_prompt,zero-shot
+@user Awena 😂😂😂😂👐🏽👐🏽👐🏽👐🏽👐🏽👏🏽👏🏽👏🏽👏🏽 aqui se vive coisas d'outro mundo mesmo,neutral,negative,neutral,The customer service was terrible.,negative,"negativo""",,, 'The customer service was terrible.'," negative
+
+English Text: ""I am"," ""negativo""
+Please provide the correct translation of the sentiment label.
+The correct translation is",0.5129716396331787,0.5011014938354492,0.9784855842590332,pt,multi_prompt,zero-shot
+Tem muita coisa suja que nem abri minha boca limpa pra falar de vocês ❤️,positive,negative,positive,There's a lot of dirty stuff I won't even open my clean mouth to talk about you ❤️,negative,"negativo""",,, 'There's a lot of dirty stuff I won't even open my clean mouth to talk about you ❤️'," negative
+
+English Text: ""I am"," ""negativo""
+The English sentiment label ""negative"" is translated into Portuguese as ""negativo",1.2676749229431152,0.5641441345214844,0.9782381057739258,pt,multi_prompt,zero-shot
+"Aqui no place não há respeito, minha irmã levou minha camiseta foi diminuir para lhe servir 😭😭😭",positive,negative,positive,"There is no respect here, my sister took my shirt was to shrink for her to serve 😭😭😭'
+
+English Translation: 'Here there is no respect, my sister took my shirt was to shrink for her to serve 😭😭😭'
+
+English Translation: 'There is no respect here, my sister took my shirt was to shrink for her to serve 😭😭😭",negative,"negativo""",,," 'There is no respect here, my sister took my shirt was to shrink for her to serve 😭😭😭'
+
+English Translation: 'Here there is no respect, my sister took my shirt was to shrink for her to serve 😭😭😭'
+
+English Translation: 'There is no respect here, my sister took my shirt was to shrink for her to serve 😭😭😭'"," negative
+English Translation: 'There is no"," ""negativo""
+Translation: negativo
+Translation: negativo
+Translation: negativo
+Translation: negativo",4.431563854217529,0.6112825870513916,0.9787728786468506,pt,multi_prompt,zero-shot
+Essa sede não passa 😬🌹,positive,negative,positive,"This thirst won't go away 😬🌹'
+
+Answer:
+This thirst won't go away 😬🌹
+
+Answer Explanation:
+The text is a simple expression of a desire for relief from thirst. The emoji ""😬"" is used to express concern or anxiety, and the ""🌹"" is a flower emoji that can be interpreted as a symbol of beauty or romance. The phrase ""Esta sede não passa"" means ""This thirst won't go away.",negative,"negativo""",,," 'This thirst won't go away 😬🌹'
+
+Answer:
+This thirst won't go away 😬🌹
+
+Answer Explanation:
+The text is a simple expression of a desire for relief from thirst. The emoji ""😬"" is used to express concern or anxiety, and the ""🌹"" is a flower emoji that can be interpreted as a symbol of beauty or romance. The phrase ""Esta sede não passa"" means ""This thirst won't go away.""", negative," ""negativo""
+The following English sentiment label is to be translated into Portuguese:
+English Sent",5.214313745498657,0.22347664833068848,0.9777956008911133,pt,multi_prompt,zero-shot
+@user Tá cheio de 3-100 nos semáforos 😂🙌,neutral,neutral,neutral,"You are full of 3-100 at the traffic lights 😂🙌'
+Context:
+This text is a tweet by a user. The context is that the user is describing a situation where they are at a traffic light and there is a lot of traffic. The user is making a joke about how there are so many cars at the light that it's like they are ""full"" of cars.",neutral,"neutro""",,," 'You are full of 3-100 at the traffic lights 😂🙌'
+Context:
+This text is a tweet by a user. The context is that the user is describing a situation where they are at a traffic light and there is a lot of traffic. The user is making a joke about how there are so many cars at the light that it's like they are ""full"" of cars."," neutral
+Explain your response in one sentence:"," ""neutro""
+Translate the following English sentiment label into Portuguese:
+English Sentiment Label:",4.378865480422974,0.6099627017974854,0.9789576530456543,pt,multi_prompt,zero-shot

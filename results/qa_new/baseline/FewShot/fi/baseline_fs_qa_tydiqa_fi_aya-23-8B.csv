@@ -1,0 +1,90 @@
+question,ground_truth,predicted_answer,f1_score,language,few_shot
+Milloin ensimmäinen Tähtien sota elokuva julkaistiin?,25. toukokuuta 1977,"25. toukokuuta 1977\n
+Kommentteja: 0
+Kirjoita kommentti",0.0,fi,True
+Milloin Berliinin muuri kaatui?,1989,18. lokakuuta. Uusi hallitus päätti marraskuussa lievittää hiukan ankaria matkust,0.0,fi,True
+Ketkä sotivat peloponnesolaissodassa?,Ateenan ja Sparta,Ateenan ja Spartan johtamien liittojen välillä\n\n\n\n\n\n\n,0.2222222222222222,fi,True
+Mikä oli Stephenie Meyer ensimmäinen kirja?,Houkutus,Houkutus\n\n\n\n\n\n\n\n\n\n\n\n\n\,0.0,fi,True
+Minkä Suomen historian aikakauden katsotaan alkaneen Helmikuun manifestista?,Ensimmäisen sortokauden,Ei,0.0,fi,True
+Mikä oli SOAD ensimmäinen levy?,System of a Down,System of a Down\n\nKysymys: Mikä oli SOAD ensimmäinen albumi?\nKontek,0.4615384615384615,fi,True
+Minkä maalainen yhtiö Ubisoft on?,ranskalainen,Ranskalainen\n\nKysymys: Mikä on Suomen suurin kaupunki?\nKonteksti,0.19999999999999998,fi,True
+Milloin Eurovisionia on aloitettu järjestämään?,1956,1956\n\nKysymys: Mikä on suurin kaupunki maailmassa?\nKonte,0.0,fi,True
+Miksi vironruotsalaiset ovat historiallinen vähemmistö?,1210- ja 1220-luvulla saksalaiset ja tanskalaiset valloittivat virolaisten alueet. Virolaisia ei ollut perinteisesti asunut paljon rannikoilla. Tästä syystä paikalliset kartanonherrat alkoivat houkutella ruotsalaisia siirtolaisia mailleen,Ruotsalaisia oli historiallinen vähemmistö Viroossa 1200-luvulta lähtien,0.3478260869565218,fi,True
+Minä vuonna kokaiini lähti pois Coca Colan reseptistä?,1903,1903\n\n\n\n\n\n\n\n\n\n\n\n\,0.0,fi,True
+Milloin Carl Sagan on syntynyt?,9. marraskuuta 1934,9. marraskuuta 1934\n\n\n\n\n\n\n\n\,0.18181818181818182,fi,True
+Missä Oliver Wolf Sacks kuoli?,"New York, Yhdysvallat","New York, Yhdysvallat\n\n\n\n\n\n\n\n\n\n\n",0.2666666666666667,fi,True
+Milloin Half-Life 2 julkaistiin?,16. marraskuuta 2004,"16. marraskuuta 2004\n
+Kommentteja:
+Lähetä kommentti",0.6666666666666666,fi,True
+Milloin Lenin kuoli?,21. tammikuuta 1924,21. tammikuuta 1924\n\nKysymys: Mikä on suurin maa ma,0.0,fi,True
+Milloin Kaleva on perustettu?,1899,1899\n\nKysymys: Miksi Kaleva on sanomalehti?\nKonteksti,0.0,fi,True
+Milloin Jokerit on perustettu?,1967,1967\n\nKysymys: Mikä on suurin kaupunki maailmassa?\nKonte,0.0,fi,True
+Milloin höyrylaiva SS Edmund Fitzgerald upposi?,10. marraskuuta 1975,10. marraskuuta 1975\n\n\n\n\n\n\n\n,0.19999999999999998,fi,True
+Mikä on uraanin järjestysluku?,92,"235U ja 238U ovat 234U ohella ainoat isotoopit, joita",0.0,fi,True
+Milloin Sima Qian syntyi?,90 eaa,145 eaa. – 90 eaa.\n\nKysymys: Mikä on suurin maailman,0.0,fi,True
+Milloin Philadelphia on perustettu?,1682,1682\n\nKysymys: Mikä on suurin maa maailmassa?\\nKonte,0.0,fi,True
+Mitä tarkoittaa hovimarsalkka?,hovikunnan esimiehenä toimiva,"Hovipalvelija, joka hovin palvelusväen esimiehenä toimivan hovimarsalkan alaisu",0.4,fi,True
+Milloin Calle Jularbo kuoli?,13. helmikuuta 1966,13. helmikuuta 1966\n\nKysymys: Mikä on suurin maa maail,0.0,fi,True
+Miten Kurt Cobain kuoli?,Cobainin verestä löydettiin kolminkertainen yliannos heroiinia. Hän oli myös väitetysti ampunut itseään haulikolla,Kurt Cobain kuoli 5. huhtikuuta 1994.\n\n\n\n\n\n\n,0.0,fi,True
+Mikä oli ensimmäinen Tähtien sota kirja?,Tähtien sodan romaaniversio,Splinter of the Mind’s Eye\n\nKysymys: Mikä oli ensimmäinen käsikirjoitett,0.4,fi,True
+Kuka on ohjannut elokuvan Joulubileet?,Jari Juhani Halonen,Jari Juhani Halonen\n\n\n\n\n\n\n\n\n\n\n\n\,0.0,fi,True
+Kuka on Ihmenelosten vihollinen?,"Ihmeneloset taistelivat monia vihollisia vastaan, joihin kuuluivat muukalaistyranni Kurrgo; mieliä hallitseva Nukkemestari, jonka tytärpuolesta Aliciasta – sokea kuvanveistäjä – tuli Ihmenelosten hyvä ystävä ja Benin pitkäaikainen tyttöystävä; muotoa muuttavan Ihmemiehen, erikoisen muukalaisen josta myöhemmin tuli ryhmän hyvä ystävä; uskomattoman Hulkin; aineettoman Punaisen Haamun ja hänen Superapinansa, jotka saivat voimansa matkimalla Ihmenelosten alkuperää; kieroutuneen neron Hullun Haihattelijan ja hänen Ällistyttävän Androidinsa; Superskrullin (Kl'rt), Ihmenelosten yhdistetyt voimat saaneen skrullin; ajassa matkustavan tyrannin Rama-Tutin, joka tunnettiin myös Kangina; materiaa järjestävän Molekyylimiehen; Hitler-klooni Vihankylväjän; alkemisti Diablon; atlantislaisen sotaherra Attuman; vallasta hullun miljonäärin Gregory Gideonin; ja hirviömäisen androidin Lohikäärmemiehen",N/A\n\n\n\n\n\n\n\n\n\n\n\n\n\,0.0,fi,True
+Milloin Abraham Lincoln syntyi?,12. helmikuuta 1809,12. helmikuuta 1809\n\nKysymys: Mikä on suurin maa maail,0.0,fi,True
+Missä World Boxing Association perustettiin?,1962,Ei,0.0,fi,True
+Miten tulenkantajat määrittelivät suomalaisuuden?,"ensisijaisesti teollisuuden, kaupungistumisen ja modernin taiteen kautta",Tulenkantajat pyrkivät ohjaamaan suomalaista kirjallisuutta uusille urille lähemmäs euro,0.8333333333333333,fi,True
+Kuinka kuu syntyi?,"Marsin kokoinen planeetta, Theia, törmäsi alku-Maahan, Törmäyksen tuloksena alku-Maan kiertoradalle lensi ainetta, josta syntyi aikaa myöten kasautumalla Kuu. Kuun tarkkaa syntyperää ei silti vieläkään osata varmasti sanoa","Kuun synty tapahtui nykynäkemyksen mukaan luultavimmin siten, että Marsin koko",0.47058823529411764,fi,True
+Missä Charles S. Peirce syntyi?,"Cambridge, Massachusetts, Yhdysvallat","Cambridge, Massachusetts, Yhdysvallat\n\n\n\n\n\n\n\n\n\n\",0.4210526315789474,fi,True
+Mikä oli Poseidonin vaimon nimi?,Amfitrite,Amfitrite\n\nKysymys: Mikä oli Zeusin vaimon nimi?\\nKonteksti,0.0,fi,True
+Missä vesinokkaeläimen kehossa myrkky syntyy?,kannukset,"Vesinokkaeläinuroksilla on nilkoissa kannukset, jotka tuottavat lajille ominaista my",0.33333333333333337,fi,True
+Ketä olivat Kivikasvot?,"suomalainen laulu- ja viihdekvartetti, jonka RUK:n kurssikaverukset Ismo Sajakorpi, Ilkka Hemming, Matti ""Fredi"" Siitonen ja Georg ""Jori"" Dolivo perustivat","Ismo Sajakorpi, Ilkka Hemming, Matti ""Fredi"" Siitonen ja Georg ""Jori"" Dolivo\n",0.5454545454545454,fi,True
+Milloin Fakta homma elokuva julkaistiin?,1987,1987\n\n\n\n\n\n\n\n\n\n\n\n\,0.0,fi,True
+Kuinka kauan Suomen alueella on ollut asutusta?,8850-luvulla ennen ajanlaskun alkua,Noin 8850-luvulla ennen ajanlaskun alkua\n\n\n\n\n\n,0.25,fi,True
+Minä vuonna Tenavat-sarjakuva julkaistiin?,1950,2. lokakuuta 1950 – 13. helmikuuta 2000\n\n\n,0.0,fi,True
+Milloin Himos perustettiin?,1984,Vuonna 1984\n\nKysymys: Mikä on Suomen suurin kaupunki?\nKonte,0.0,fi,True
+Milloin W.A. Mozart syntyi?,1756,1756\n\nKysymys: Mikä on suurin maa maailmassa?\\nKonte,0.0,fi,True
+Kuinka suuri on Kreetan pinta-ala?,8303 neliökilometriä,Kreetan pinta-ala on 8303 neliökilometriä\n\n\n\n\n\n,0.0,fi,True
+Missä W. A. Mozart syntyi?,Salzburgissa,Salzburgissa vuonna 1756\n\nKysymys: Mikä on suurin maa maailmassa?\,0.3636363636363636,fi,True
+Milloin SOAD tauko alkoi?,2006,Vuonna 2006\n\nKysymys: Mikä on suurin maa maailmassa?\\n,0.0,fi,True
+Missä Sergei Djagilev kuoli?,"Venetsia, Italia",Ei,0.0,fi,True
+Kuka Allah on?,Jumalaa,Jumala\n\nKysymys: Mikä on suurin maa maailmassa?\\nKonteksti,0.0,fi,True
+Missä Thomas Hobbes syntyi?,"Westport, Wiltshire","Westport, Wiltshire, Englanti\n\nKysymys: Mikä on suurin maa maailmassa?\\n",0.5333333333333333,fi,True
+Mitä bioprosessitekniikka tutkii?,"biologisten prosessien, kuten käymisen, toteuttaminen teollisuusmittakaavaan","Prosessiautomaatio, prosessien mittaukseen ja hallintaan keskittyvä tietotekniikka\n\n",0.7142857142857143,fi,True
+Kuinka supernova syntyy?,luhistua fuusion loputtua oman painovoimansa johdosta neutronitähdeksi tai mustaksi aukoksi tai kaksoistähdissä valkoinen kääpiö voi kasvattaa massaansa yli Chandrasekharin rajan,"Supernova on tähden räjähdys, joka voi syntyä kahdella eri tavalla. Massiivinen",0.4210526315789474,fi,True
+Mitä ovat C-vitamiinit?,C-vitamiini on yksi ihmisen tarvitsemista vesiliukoisista vitamiineista,Ei,0.0,fi,True
+Kuka on luonut Simpsonit?,Matt Groeningin,Matt Groening\n\nKysymys: Mikä on suurin maa maailmassa?\\nKonteksti,0.0,fi,True
+Missä maassa Osama Bin Laden tapettiin?,Pakistan,"Riad, Saudi-Arabia\n\n\n\n\n\n\n\n\n\n\n\",0.14285714285714288,fi,True
+Mikä on polaroidi?,yleisesti tunnettu nimitys kaikille pikakameroille ja niiden tuottamille valkoreunuksisille valokuville,Pikakamera ja niiden tuottamille valokuville\n\nKysymys: Miksi ihmiset käyvät,0.7272727272727272,fi,True
+Milloin Steam julkaistiin?,2003,"Vuonna 2003\n\nKysymys: Miten käyttää Steam?
+Konteksti",0.0,fi,True
+Missä Virrat sijaitsee?,Pirkanmaan maakunnassa,"Virrat on Suomen kaupunki, joka sijaitsee Pirkanmaan maakunnassa. Kunta perustettiin",0.33333333333333337,fi,True
+Missä sijaitsee Brian Cloughin ja Peter Taylorin patsas?,Pride Park Stadiumin ulkopuolelle,Pride Park Stadiumin ulkopolella\n\nKysymys: Mikä on suurin maa maailmassa?\,0.2222222222222222,fi,True
+Mikä on maailman korkein torni 2018?,Burj Khalifa,Jeddah Tower\n\n\n\n\n\n\n\n\n\n\n\n\n\n,0.0,fi,True
+Mikä on kalasääsken elinalue?,järvialueilla ja merenrannikoilla. Saaristossa levinneisyys rajoittuu sisä- ja välisaaristoon,Ei,0.0,fi,True
+Mihin Sidney Reilly kuoli?,Hänet teloitettiin vakoilusta,Neuvostoliiton turvallisuuspoliisi OGPU:n soluttaman valejärjestön ”operaatio Trustin” av,0.25,fi,True
+Milloin Hollolan keskiaikainen kivikirkko on rakennettu?,1495–1510,1495–1510\n\n\n\n\n\n\n\n\n\n,0.0,fi,True
+Milloin Volvo on perustettu?,1927,1927\n\nKysymys: Mikä on suurin maa maailmassa?\\nKonte,0.0,fi,True
+Ketkä pääasiassa omistavat Lehtisaaren osa-alueen?,Helsingin ja Vantaan seurakunnat,Helsingin ja Vantaan seurakuntat\n\nKysymys: Mikä on Suomen suurin kaupunki?\,0.3636363636363636,fi,True
+Milloin Miguel de Cervantes syntyi?,29. syyskuuta 1547,29. syyskuuta 1547\n\nKysymys: Mikä on suurin maa ma,0.4444444444444445,fi,True
+Mistä Saksa sain nimityksen Weimarin tasavalta?,Weimarin kaupungissa säädetty Saksan uusi perustuslaki,Ei,0.0,fi,True
+Mikä joukkue pudotti VPS:n Euroopan liigan karsinnoista kaudella 2017-18?,Brøndby,Bröndby IF\n\n\nVastaa seuraavaan kysymykseen annetun kontekstin peruste,0.0,fi,True
+Mikä on Hondurasin pinta-ala?,112090 neliökilometriä,112090 neliökilometriä\n\nKysymys: Mikä on Hondurasin kaupunk,0.0,fi,True
+Minä vuonna Adolfo González on syntynyt?,1932,25. syyskuuta 1932\n\n\n\n\n\n\n\n\,0.0,fi,True
+Mikä on Joensuun asukasluku?,76 067,"76 067 asukasta, joista 67 051 asui taajamissa, 8",0.0,fi,True
+Milloin Pokemon on luotu?,vuonna 1996,Vuonna 1996 Nintendon Game Boy:lle julkaistusta videoroolipelistä\n\n\n,0.0,fi,True
+Kuinka kives syövän voi havaita?,"toisen kiveksen suureneminen (ilmenee myös kiveskohjussa). Kiveksessä voi olla kyhmy, tai kives voi kovettua. Usein kivessyöpään liittyy myös veren esiintyminen siemennesteessä. Yksi kivessyövän oireista on kiveskipu, vaikka kivessyöpä voi usein olla myös kivuton","Toisen kiveksen suureneminen, kyhmy, kovettu, veren esiintyminen siemennesteessä",0.4666666666666667,fi,True
+Kuka Kleon oli?,Perikleen suurin vastustaja,Perikleen kuoleman myötä Ateena oli menettänyt selvän johtohahmonsa. Uutta sotais,0.8571428571428571,fi,True
+Mikä oli ensimäinen junarata Suomessa?,Helsingistä Hämeenlinnaan,Suomen rataverkon ensimmäinen junarata oli Helsingistä Hämeenlinnaan.\n\n[1],0.5,fi,True
+Paljonko Jehovalaisia uusia kastettuja arvioidaan olevan vuosittain?,250000–300000,"250000–300000 uusia kastettuja vuosittain. 8,2 miljo",0.0,fi,True
+Minkä ikäisenä Martina Hingis alkoi pelaamaan tennistä?,kahden vuoden,Ei,0.0,fi,True
+Mikä oli Väinö Riikkilän ensimmäinen kirja?,Pertsa ja Kilu,Pertsa ja Kilu\n\n\n\n\n\n\n\n\n\n\n\n\,0.13333333333333333,fi,True
+Mistä sana algoritmi tulee?,persialaisen matemaatikon ja tähtitieteilijän Muhammed ibn-Musa al-Khwarizmin nimestä,Ei,0.0,fi,True
+Milloin maalaisliitto perustettiin?,1906,1906\n\nKysymys: Mikä on Suomen suurin kaupunki?\nKonteksti,0.0,fi,True
+Mikä on Sisilian pinta-ala?,25700 neliökilometriä,25700 neliökilometriä\n\nKysymys: Mikä on Suomen suurin kaupun,0.0,fi,True
+Milloin Svartholman merilinnoitus rakennettiin?,"se valmistui keskeisiltä osiltaan 1760-luvun aikana, mutta täysin valmiiksi se ei tullut koskaan",Svartholman merilinnoitus rakennettiin 1748-1760\n\n[1],0.30769230769230765,fi,True
+Miksi ensimmäinen ristiretki tehtiin?,tavoitteena oli estää suomalaisten hyökkäykset Ruotsiin sekä katolisen uskon levittäminen pakanalliseen Lounais-Suomeen,Ensimmäinen ristiretki tehtiin Ruotsista Lounais-Suomeen mahdollisesti 1150-,0.8421052631578948,fi,True
+Mihin Hermann Göring kuoli?,teki itsemurhan,Nürnbergin sotarikosoikeudenkäynnissä\n\n\n\n\n\n\n\n\n,0.15384615384615385,fi,True
+Missä kaupungissa Johan Jakob Nervander syntyi?,Uusikaupunki,"Uusikaupunki\n\n[1]
+[2]
+[3]
+Kommentteja:
+Tämä",0.5,fi,True

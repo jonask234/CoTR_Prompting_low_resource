@@ -1,0 +1,81 @@
+id,text,ground_truth_label,predicted_label,language,runtime_seconds,prompt_language,shot_type,raw_model_output
+por_test_2059,@user 😂😂😂 marido de dia e de tarde não vai gostar 😂😂,neutral,neutral,pt,0.1059,LRL-instruct,few-shot,neutral
+por_test_1105,Tá difícil achar o X na equação de hoje (banho). 🙆🏾‍♂️🙆🏾‍♂️,positive,neutral,pt,0.1026,LRL-instruct,few-shot,neutral
+por_test_818,@user 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 😂 Todos da matola a fazer trend de mim...,neutral,positive,pt,0.1008,LRL-instruct,few-shot,positive
+por_test_1237,🚶🏾‍♂️.Oxalá que aquilo que procuras valha mais do que aquilo que estás a perder 👋🏽,negative,neutral,pt,0.1022,LRL-instruct,few-shot,neutral
+por_test_463,@user @user @user É meu mestre esse... só sabe q nossas discussões não terminam 😂😂😂dois teimosos,neutral,neutral,pt,0.1022,LRL-instruct,few-shot,neutral
+por_test_410,@user 😂😂😂😂 pergunta se uma coisa responde outra. Mas why,neutral,neutral,pt,0.1014,LRL-instruct,few-shot,neutral
+por_test_3392,@user não tá respeitar a kota 😂😂😂😂😂 como assim . Sabe tia mesmo que ela era pra ser Meme?,neutral,negative,pt,0.1024,LRL-instruct,few-shot,negative
+por_test_2600,"- Em Moz, músicos que estão na rocha estão a virar TikTokers ou memeiros 😃😃... Mesmo assim ninguém ri piadas deles😄",neutral,neutral,pt,0.1026,LRL-instruct,few-shot,neutral
+por_test_1037,Minha mãe está orgulhosa!💯💿🇲🇿🥰 https://t.co/uMMh8Ecnpl,negative,positive,pt,0.1027,LRL-instruct,few-shot,positive
+por_test_3075,🤣🤣🤣lembrei da minha vizinha. https://t.co/BwOXymk0wD,neutral,neutral,pt,0.1024,LRL-instruct,few-shot,neutral
+por_test_594,Abri a porta para espreitar lá fora minha cara ficou bronzeada. 🙌🏽,neutral,neutral,pt,0.1015,LRL-instruct,few-shot,neutral
+por_test_798,Estou a viver em Moçambique mas já não esse coração 💔,neutral,neutral,pt,0.1011,LRL-instruct,few-shot,neutral
+por_test_1222,"@user @user Que foi iludida, traída e abandonada😹😹😹",neutral,negative,pt,0.1014,LRL-instruct,few-shot,negative
+por_test_1174,@user @user MININAAAAAA 😳😳😳😳😳 QUE CASE É ESSE MEU DEUS,neutral,neutral,pt,0.1017,LRL-instruct,few-shot,neutral
+por_test_2353,"Às vezes não é negar dar boleia, vocês fecham mal a porta. Dói no peito😡😡",positive,negative,pt,0.1019,LRL-instruct,few-shot,negative
+por_test_1859,@user A te já estou a bater uma punheta😥😥,neutral,neutral,pt,0.1011,LRL-instruct,few-shot,neutral
+por_test_3313,"@user Depois aquela pergunta chata """"mas não estamos bem aqui?""""😬😂😂",neutral,negative,pt,0.1016,LRL-instruct,few-shot,negative
+por_test_1422,"Saudações. Só queria avisar que NÃO ESTOU DISPONÍVEL PARA FESTAS E SOCIAIS, até Dezembro. Convidem-me para fazer investimentos ou abrir negócios e empresa, assim também como sugestão de cursos tecnológicos que melhorem minha carreira profissional. Kateca, boas entradas. 🙏🏾",neutral,neutral,pt,0.1055,LRL-instruct,few-shot,neutral
+por_test_3246,"@user @user Doa a quem doer, somos #Líderes... 😅",neutral,neutral,pt,0.1021,LRL-instruct,few-shot,neutral
+por_test_874,Essas horas e meu vizinho ja está a escutar música 🤔😮😲🤦🏾‍♂️ Sinceramente,positive,neutral,pt,0.1024,LRL-instruct,few-shot,neutral
+por_test_2639,"@user @user 😂😂😹😹😂😂 Tua placa bazou, @user alguma placa aí disponível? Quero comprar para substituir da @user Please. 😂😂🙏",neutral,neutral,pt,0.1033,LRL-instruct,few-shot,neutral
+por_test_2781,"Atenção na nota. 🚨🚨🚨🚨 Nada de Capslock para chamar mais atenção.... """"pizzawpineapples"""" só e só https://t.co/Nu0fwH4w8Z",neutral,neutral,pt,0.1014,LRL-instruct,few-shot,neutral
+por_test_32,Respira Angelo Respira 😂😂😂 respeita a pessoa da pessoa,neutral,neutral,pt,0.0996,LRL-instruct,few-shot,neutral
+por_test_1018,"Memes estão a melhorar o meu dia, estava tão indisposta 😂😂😂😂",negative,positive,pt,0.1015,LRL-instruct,few-shot,positive
+por_test_1094,Mor + Eu+ Church= GOD abençoe o nosso future🙏🏼❤️,negative,positive,pt,0.1016,LRL-instruct,few-shot,positive
+por_test_2355,"Do jeito que me controlam na minha casa,tipo sou pirex🤧",neutral,negative,pt,0.0998,LRL-instruct,few-shot,negative
+por_test_2241,"DIVERSÃO | Orgulhomoz _ Chamaculo é outro nível. Basta chover, todos viram homens aranha 😂😂😂😂 _ Orgulho Moz É Maning Nice👍 Exaltemos À Pátria🇲🇿 _ #OrgulhoMoz #Entretenimento #Musica #Moda #Beleza #Arte #Cultura… https://t.co/n5fMeBYEh5",neutral,neutral,pt,0.1182,LRL-instruct,few-shot,neutral
+por_test_1289,@user Sim sim. 😅😅 e Banda tipo Angola.,neutral,neutral,pt,0.1009,LRL-instruct,few-shot,neutral
+por_test_839,Quando estiveres cansado 😓 não tenta imaginar nada de olhos 👀 fechados...,neutral,neutral,pt,0.1017,LRL-instruct,few-shot,neutral
+por_test_2985,Edjo eu preciso disto o mais rápido possível 😭 https://t.co/WwvJG0tn7p,neutral,neutral,pt,0.1023,LRL-instruct,few-shot,neutral
+por_test_2547,Eles tinham que ter damas 😂😂😂😂 https://t.co/vRsOOBxPSO,neutral,neutral,pt,0.1023,LRL-instruct,few-shot,neutral
+por_test_1533,Essas sul africanas que trabalham aqui vocês pensam que vão lhes pagar como? 😂 queriam pra contratarem pessoas que vão usar Óleo dona para ter preço baixo 😂,neutral,negative,pt,0.1030,LRL-instruct,few-shot,negative
+por_test_1739,"Fabricantes de preservativo, estamos a pedir sabor de piripiri, essas nanas não choram na cama 🤣🦈🤣 @user",neutral,neutral,pt,0.1006,LRL-instruct,few-shot,neutral
+por_test_179,"Estou no Jardim tumduro, gajas não sabem andar de salto alto pah💔",positive,neutral,pt,0.1020,LRL-instruct,few-shot,neutral
+por_test_2009,@user Eu acho que então eu não sei tomar ih Gin não estou a tratar. 😩,neutral,negative,pt,0.1014,LRL-instruct,few-shot,negative
+por_test_1800,"Eu sou muito sentimental, as coisas me machucam numa proporção enorme. Às vezes uma coisinha atoa parece que abre um buraco no meu peito de tanto que me magoa. 🥺",positive,negative,pt,0.1009,LRL-instruct,few-shot,negative
+por_test_1729,@user Esse gajo era mauuuu ih😓👏👏👏isso é magia man,neutral,negative,pt,0.1016,LRL-instruct,few-shot,negative
+por_test_17,@user Deve estar cheio de areia ali🙁,neutral,negative,pt,0.1011,LRL-instruct,few-shot,negative
+por_test_2208,@user @user Sigam me para mais dicas😂😂😂,neutral,neutral,pt,0.0998,LRL-instruct,few-shot,neutral
+por_test_712,Há pessoas que já estão a votar iPhone 😂 https://t.co/jZEZTmKeKs,neutral,neutral,pt,0.1018,LRL-instruct,few-shot,neutral
+por_test_1402,Não acham que estão a exagerar no uso da palavra “tóxico” ? Asking for a friend 😂😂,neutral,neutral,pt,0.1022,LRL-instruct,few-shot,neutral
+por_test_1345,"@user Pelo contrário, quando me vês não te consegues conter 😂😂😂😂",neutral,neutral,pt,0.1021,LRL-instruct,few-shot,neutral
+por_test_2163,@user Nada... aí é para ele bazar.. já q estou a lhe irritar😂😂😂,neutral,neutral,pt,0.1022,LRL-instruct,few-shot,neutral
+por_test_2720,Assim já ficou esquecido o q Travis fez no Aniversário de Kylie ne?? 😂😂😂🧙🏿‍♀️🧙🏿‍♀️🧙🏿‍♀️,neutral,neutral,pt,0.1017,LRL-instruct,few-shot,neutral
+por_test_2274,"@user Para Homem é sim, se não te conquistam talvez estão com medo de vc lhes minhar(rejeitar) 😂😂😂😂😂",neutral,neutral,pt,0.1024,LRL-instruct,few-shot,neutral
+por_test_538,"Há manos que fazem rir quando vão na igreja😁 Calças pretas, Sapatos castanhos, Camisa vermelha, Gravata big azul🤲🏻🤣🤣😹🤣😹😂🤣",neutral,neutral,pt,0.1037,LRL-instruct,few-shot,neutral
+por_test_929,“Lutando todos dias para ter oque almejo 🏃🔥🤦😭”,negative,neutral,pt,0.1019,LRL-instruct,few-shot,neutral
+por_test_1745,"Foi nadar na piscina do amigo, mas não sabe que sou o dono e me tratou mal . 😂 deixa, vou assistir . Quero tirar toda água .",positive,negative,pt,0.1027,LRL-instruct,few-shot,negative
+por_test_3614,Mas qual é outro método para encontrar o amor da vida dele? 🤔 https://t.co/BxzJ1wPNtC,neutral,neutral,pt,0.1025,LRL-instruct,few-shot,neutral
+por_test_149,@user Pena que o meu #1 não é suficiente 🥺,positive,negative,pt,0.1018,LRL-instruct,few-shot,negative
+por_test_298,Para quem vai o meu bilhete hoje?😌,neutral,neutral,pt,0.1015,LRL-instruct,few-shot,neutral
+por_test_2886,Problema de LinkedIn é não ter segredo. Mas assim está dizer o outro que abri perfil dele pra quê? 😭😭,positive,neutral,pt,0.1019,LRL-instruct,few-shot,neutral
+por_test_3588,"Eu já não choro, isso é preocupante 😰 https://t.co/jcfPJEuUrR",positive,negative,pt,0.1017,LRL-instruct,few-shot,negative
+por_test_120,Alguém tem sonífero? Dormi o dia todo agora não tenho sono💔😪,neutral,negative,pt,0.1016,LRL-instruct,few-shot,negative
+por_test_351,Ofereçam lá vouchers as vossas pessoas ❤️,negative,neutral,pt,0.1008,LRL-instruct,few-shot,neutral
+por_test_1498,"Fotos que tirou na praia sei lá quando, basta aquecer está a postar 🤦‍♂️",neutral,neutral,pt,0.1018,LRL-instruct,few-shot,neutral
+por_test_817,Vindo de ti é mais engraçado😂😂 https://t.co/EePBVOBbj6,negative,neutral,pt,0.1020,LRL-instruct,few-shot,neutral
+por_test_3582,😹😹😹 gostam de outro tipo de baliza https://t.co/U5hvPHPtq9,neutral,neutral,pt,0.1021,LRL-instruct,few-shot,neutral
+por_test_3648,Emprestei o meu cell e ainda pergunta por quê que meu histórico de pesquisa está vazio 🤦🏿‍♂️ não quer levar uma de Van Dame essa?,neutral,neutral,pt,0.1028,LRL-instruct,few-shot,neutral
+por_test_1876,@user Pra depois trairem com uma estátua 🥲,positive,negative,pt,0.1015,LRL-instruct,few-shot,negative
+por_test_3365,@user Nunca bebé 🤣😂🤣😂🤣 mais cedo ou mais tarde era para ser cobrada desculpa lá.,neutral,neutral,pt,0.1024,LRL-instruct,few-shot,neutral
+por_test_1971,"@user Mesmo eu estou sofrendo pela minha futura namorada, não não saio por aí falando 😂😂😂",positive,negative,pt,0.1017,LRL-instruct,few-shot,negative
+por_test_2644,@user @user Nunca na vida que conseguiria ganhar isso 😭nem tá mastigar,neutral,negative,pt,0.1013,LRL-instruct,few-shot,negative
+por_test_1006,Pensei em desistir mas lembrei que King Titos mudou de vida aos 40 anos🌍 https://t.co/3PG21JiAr8,negative,neutral,pt,0.1026,LRL-instruct,few-shot,neutral
+por_test_2910,@user Toda hora lhe rebolamos por cima😂,neutral,neutral,pt,0.1010,LRL-instruct,few-shot,neutral
+por_test_2067,Só posso levar a wife a praia água de coco 🥥,neutral,neutral,pt,0.1011,LRL-instruct,few-shot,neutral
+por_test_322,Até o WhatsApp usa Twitter pra transmitir suas informações 😂😂😂 https://t.co/FHSNg9RH7c https://t.co/LSUEmfP8HR,neutral,neutral,pt,0.1012,LRL-instruct,few-shot,neutral
+por_test_1338,"😭 E meu dinheiro mal chega para uma, 😭😭 https://t.co/i1DZaH3koS",neutral,negative,pt,0.1021,LRL-instruct,few-shot,negative
+por_test_263,Quem tá em Inhambane da sinal 😌 https://t.co/HklI50yxoX,neutral,neutral,pt,0.1000,LRL-instruct,few-shot,neutral
+por_test_2732,"@user @user Mas, não dar boa noite 💔",neutral,negative,pt,0.1012,LRL-instruct,few-shot,negative
+por_test_109,Muito triste não é esse Moçambique que sonhavamos 😞,positive,negative,pt,0.1015,LRL-instruct,few-shot,negative
+por_test_3369,Mas esse filme era para assustar alguém !? 😏😒 Bosta,positive,negative,pt,0.1018,LRL-instruct,few-shot,negative
+por_test_270,Com os mas velhos🇲🇿🇲🇿🇲🇿🇲🇿 https://t.co/xusz69oP8v,neutral,neutral,pt,0.1020,LRL-instruct,few-shot,neutral
+por_test_402,Aqui no tt ta cheio de damas lindas ih🙌🏻😭,negative,neutral,pt,0.1016,LRL-instruct,few-shot,neutral
+por_test_52,@user Esse beat não está nice😭,positive,negative,pt,0.0988,LRL-instruct,few-shot,negative
+por_test_26,@user Awena 😂😂😂😂👐🏽👐🏽👐🏽👐🏽👐🏽👏🏽👏🏽👏🏽👏🏽 aqui se vive coisas d'outro mundo mesmo,neutral,neutral,pt,0.1042,LRL-instruct,few-shot,neutral
+por_test_1509,Tem muita coisa suja que nem abri minha boca limpa pra falar de vocês ❤️,positive,negative,pt,0.1015,LRL-instruct,few-shot,negative
+por_test_746,"Aqui no place não há respeito, minha irmã levou minha camiseta foi diminuir para lhe servir 😭😭😭",positive,negative,pt,0.1019,LRL-instruct,few-shot,negative
+por_test_2046,Essa sede não passa 😬🌹,positive,neutral,pt,0.0991,LRL-instruct,few-shot,neutral
+por_test_3512,@user Tá cheio de 3-100 nos semáforos 😂🙌,neutral,neutral,pt,0.1017,LRL-instruct,few-shot,neutral

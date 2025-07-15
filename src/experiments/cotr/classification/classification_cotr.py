@@ -15,8 +15,7 @@ if project_root not in sys.path:
 
 # initialize_model will be defined in this file
 from transformers import AutoTokenizer, AutoModelForCausalLM
-# Import COMET utilities
-from evaluation.cotr.translation_metrics import calculate_comet_score, COMET_AVAILABLE
+# COMET utilities removed - translation evaluation done separately with NLLB
 
 # --- Global Logger ---
 logger = logging.getLogger(__name__)
@@ -93,19 +92,17 @@ def generate_classification_prompt_english(text_en: str, possible_labels: List[s
     examples_segment = ""
     if use_few_shot:
         example_lines = ["\\n\\nExamples:"]
-        # Example 1: Business
-        if 'business' in possible_labels:
-            example_lines.append(f"\\nText: 'The company announced record profits for the third quarter.'\\nCategory: business")
-        # Example 2: Sports
-        if 'sports' in possible_labels:
-            example_lines.append(f"\\nText: 'The local sports team won their match yesterday evening.'\\nCategory: sports")
-        # Example 3: Technology
-        if 'technology' in possible_labels:
-            example_lines.append(f"\\nText: 'Scientists developed a new artificial intelligence system.'\\nCategory: technology")
+        # Updated to include all 7 MasakhaNEWS categories
+        example_lines.append(f"\\nText: 'The new healthcare bill was debated in parliament today, focusing on hospital funding and patient care.'\\nCategory: health")
+        example_lines.append(f"\\nText: 'Local elections are scheduled for next month, with several candidates vying for the mayoral position.'\\nCategory: politics")  
+        example_lines.append(f"\\nText: 'The home team secured a stunning victory in the final minutes of the match.'\\nCategory: sports")
+        example_lines.append(f"\\nText: 'The stock market reached an all-time high as investors showed confidence in the new economic policies.'\\nCategory: business")
+        example_lines.append(f"\\nText: 'The latest smartphone features advanced AI capabilities and improved battery life for consumers.'\\nCategory: technology")
+        example_lines.append(f"\\nText: 'The blockbuster movie premiered last night with celebrities walking the red carpet.'\\nCategory: entertainment")
+        example_lines.append(f"\\nText: 'Religious leaders gathered for an interfaith dialogue to promote peace and understanding.'\\nCategory: religion")
         
-        if len(example_lines) > 1: 
-            examples_segment = "".join(example_lines)
-            prompt_parts.append(examples_segment)
+        examples_segment = "".join(example_lines)
+        prompt_parts.append(examples_segment)
             
     prompt_parts.append("\\n\\nCategory:") 
     return "".join(prompt_parts)
@@ -252,40 +249,21 @@ def evaluate_classification_cotr_multi_prompt(
                 model, tokenizer, original_text, lang_code, "en", False, text_translation_params
             )
 
-        comet_score_text_lrl_en = None
-        if COMET_AVAILABLE and lang_code.lower() != "en" and original_text and text_en and "[Translation Error]" not in text_en and "[Empty input to translate]" not in text_en:
-            try:
-                score_data = calculate_comet_score(sources=[original_text], predictions=[text_en])
-                comet_score_text_lrl_en = score_data['mean_score'] if isinstance(score_data, dict) and 'mean_score' in score_data else (score_data if isinstance(score_data, float) else None)
-            except Exception as e:
-                logger.warning(f"COMET LRL->EN text error (multi-prompt, sample {row.get('id', idx)}): {e}")
-
         predicted_label_en = process_classification_english(
             model, tokenizer, text_en, active_possible_labels_en, use_few_shot, classification_params
         )
 
         predicted_label_lrl, raw_label_translation, time_label_trans = predicted_label_en, None, 0.0
-        comet_score_label_en_lrl = None
         if lang_code.lower() != "en" and predicted_label_en in active_possible_labels_en and "[Classification Error]" not in predicted_label_en:
             predicted_label_lrl, raw_label_translation, time_label_trans = translate_text(
                 model, tokenizer, predicted_label_en, "en", lang_code, True, label_translation_params
             )
-            if COMET_AVAILABLE and predicted_label_lrl and "[Translation Error]" not in predicted_label_lrl:
-                canonical_lrl_ref = CLASS_LABELS_LRL.get(lang_code, {}).get(predicted_label_en.lower())
-                if canonical_lrl_ref:
-                    try:
-                        score_data = calculate_comet_score(sources=[predicted_label_en], predictions=[predicted_label_lrl], references=[[canonical_lrl_ref]])
-                        comet_score_label_en_lrl = score_data['mean_score'] if isinstance(score_data, dict) and 'mean_score' in score_data else (score_data if isinstance(score_data, float) else None)
-                    except Exception as e:
-                        logger.warning(f"COMET EN->LRL label error (multi-prompt, sample {row.get('id', idx)}): {e}")
         
         results.append({
             'id': row.get('id', idx), 'original_text': original_text, 'text_en_model': text_en,
             'ground_truth_label_eng': ground_truth_label,
             'predicted_label_eng_model': predicted_label_en,
             'predicted_label_lrl_model': predicted_label_lrl,
-            'comet_lrl_text_to_en': comet_score_text_lrl_en,
-            'comet_en_label_to_lrl': comet_score_label_en_lrl,
             'raw_text_translation_output': raw_text_translation,
             'raw_label_translation_output': raw_label_translation,
             'time_text_translation_sec': time_text_trans,
@@ -323,29 +301,52 @@ Original {original_lrl_name} Text:
 '{lrl_text}'
 """
     if use_few_shot:
-        example_lrl_text_1 = "The company announced record profits for the third quarter."
-        example_translation_1 = example_lrl_text_1
-        ex_cat1_en = 'business'
-        ex_cat1_lrl = CLASS_LABELS_LRL.get(lang_code, {}).get(ex_cat1_en.lower(), ex_cat1_en)
-
-        example_lrl_text_2 = "Scientists developed a new artificial intelligence system."
-        example_translation_2 = example_lrl_text_2
-        ex_cat2_en = "technology"
-        ex_cat2_lrl = CLASS_LABELS_LRL.get(lang_code, {}).get(ex_cat2_en.lower(), ex_cat2_en)
+        # Updated to include all 7 MasakhaNEWS categories
+        examples = [
+            {
+                "text": "The new healthcare bill was debated in parliament today, focusing on hospital funding and patient care.",
+                "category_en": "health"
+            },
+            {
+                "text": "Local elections are scheduled for next month, with several candidates vying for the mayoral position.",
+                "category_en": "politics"
+            },
+            {
+                "text": "The home team secured a stunning victory in the final minutes of the match.",
+                "category_en": "sports"
+            },
+            {
+                "text": "The stock market reached an all-time high as investors showed confidence in the new economic policies.",
+                "category_en": "business"
+            },
+            {
+                "text": "The latest smartphone features advanced AI capabilities and improved battery life for consumers.",
+                "category_en": "technology"
+            },
+            {
+                "text": "The blockbuster movie premiered last night with celebrities walking the red carpet.",
+                "category_en": "entertainment"
+            },
+            {
+                "text": "Religious leaders gathered for an interfaith dialogue to promote peace and understanding.",
+                "category_en": "religion"
+            }
+        ]
         
         prompt += f"""\nExamples:
 
-Original {original_lrl_name} Text:
-'{example_lrl_text_1}'
-Translated English Text: {example_translation_1}
-English Category: {ex_cat1_en}
-{original_lrl_name} Category: {ex_cat1_lrl}
+"""
+        for i, example in enumerate(examples, 1):
+            example_text = example["text"]
+            ex_cat_en = example["category_en"]
+            ex_cat_lrl = CLASS_LABELS_LRL.get(lang_code, {}).get(ex_cat_en.lower(), ex_cat_en)
+            
+            prompt += f"""Original {original_lrl_name} Text:
+'{example_text}'
+Translated English Text: {example_text}
+English Category: {ex_cat_en}
+{original_lrl_name} Category: {ex_cat_lrl}
 
-Original {original_lrl_name} Text:
-'{example_lrl_text_2}'
-Translated English Text: {example_translation_2}
-English Category: {ex_cat2_en}
-{original_lrl_name} Category: {ex_cat2_lrl}
 """
     prompt += "\nNow, generate all the above steps for the Original Text provided at the beginning:"
     return prompt
@@ -439,37 +440,16 @@ def evaluate_classification_cotr_single_prompt(
         match_en_label = re.search(rf"English Category:\s*(.*?)(?:\n{re.escape(get_language_name(lang_code))} Category:|$)", response_text, re.DOTALL | re.IGNORECASE)
         if match_en_label: intermediate_en_label = match_en_label.group(1).strip().lower()
 
-        comet_score_text_lrl_en, comet_score_label_en_lrl = None, None
-        if COMET_AVAILABLE and lang_code.lower() != 'en':
-            if original_text and intermediate_en_text:
-                try:
-                    score_data = calculate_comet_score(sources=[original_text], predictions=[intermediate_en_text])
-                    comet_score_text_lrl_en = score_data['mean_score'] if isinstance(score_data, dict) and 'mean_score' in score_data else (score_data if isinstance(score_data, float) else None)
-                except Exception as e_comet_text_sp:
-                    logger.warning(f"COMET LRL->EN text error (SP, sample {row.get('id', idx)}): {e_comet_text_sp}")
-            if intermediate_en_label and raw_lrl_pred_from_response != "N/A":
-                canonical_lrl_ref_sp = CLASS_LABELS_LRL.get(lang_code, {}).get(intermediate_en_label) 
-                if canonical_lrl_ref_sp:
-                    try:
-                        score_data = calculate_comet_score(sources=[intermediate_en_label], predictions=[raw_lrl_pred_from_response], references=[[canonical_lrl_ref_sp]])
-                        comet_score_label_en_lrl = score_data['mean_score'] if isinstance(score_data, dict) and 'mean_score' in score_data else (score_data if isinstance(score_data, float) else None)
-                    except Exception as e_comet_label_sp:
-                        logger.warning(f"COMET EN->LRL label error (SP, sample {row.get('id', idx)}): {e_comet_label_sp}")
-
-        results.append({
-            'id': row.get('id', idx), 'original_text': original_text,
-            'ground_truth_label_eng': ground_truth_label,
-            'intermediate_en_text_model': intermediate_en_text,
-            'intermediate_en_label_model': intermediate_en_label,
-            'predicted_label_lrl_model_raw': raw_lrl_pred_from_response,
-            'final_predicted_label_eng': predicted_label_mapped_en,
-            'comet_lrl_text_to_en': comet_score_text_lrl_en,
-            'comet_en_label_to_lrl': comet_score_label_en_lrl,
-            'raw_model_output_single_prompt': response_text,
-            'time_generation_sec': time_generation,
-            'language': lang_code, 'pipeline_type': 'single_prompt',
-            'shot_setting': 'few-shot' if use_few_shot else 'zero-shot'
-        })
+        current_result = {
+            'id': row.get('id', idx), 'text_lrl': original_text, 'text_en_translated': intermediate_en_text, 'label_lrl_ground_truth': ground_truth_label, 
+            'label_en_predicted_intermediate': intermediate_en_label, 'label_lrl_predicted_final': raw_lrl_pred_from_response,
+            'predicted_label_accuracy': predicted_label_mapped_en, # For accuracy calculation (always English)
+            # Raw translation and classification outputs for debugging
+            'raw_text_translation_output': None, 'raw_classification_output': response_text,
+            'raw_label_translation_output': None,
+            'error_message': None, 'runtime_sec': time_generation
+        }
+        results.append(current_result)
     return pd.DataFrame(results)
 
 def initialize_model(model_name: str) -> Tuple[Any, Any]:

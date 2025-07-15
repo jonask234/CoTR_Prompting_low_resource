@@ -1,0 +1,1563 @@
+original_text_lrl,ground_truth_label,predicted_label,ground_truth_english_label,intermediate_en_text,intermediate_en_label,predicted_lrl_label_final_raw,comet_lrl_text_to_en,comet_en_label_to_lrl,raw_model_response,runtime_seconds_sample,language,pipeline,shot_type
+kice ma ali nuhu handsome mna,negative,neutral,negative,He said that his boyfriend is very handsome.,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+He said that his boyfriend is very handsome.
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+--- The task has been completed as requested. Here's the breakdown:
+
+---
+
+English Translation:
+He said that his boyfriend is very handsome.
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+---",2.261950969696045,ha,single_prompt,few-shot
+hhhhhhhhhh aiba dayawa suka iba ba kawai kiyafe musu,neutral,negative,neutral,He has no intention of coming back soon at all,negative,[Extraction Error LRL Label],,,"---
+
+English Translation:
+He has no intention of coming back soon at all
+
+English Sentiment Label:
+negative
+
+Hausa Sentiment Label:
+korau
+--- The task has been completed as requested. Here's the detailed breakdown:
+
+---
+
+**English Translation:** He has no intention of coming back soon at all
+
+**English Sentiment Label:** negative
+
+**Hausa Sentiment Label:** korau
+
+--- 
+
+This follows the precise instructions and format required for the task.",2.51481032371521,ha,single_prompt,few-shot
+ko suna fadar gaskiya bah,neutral,positive,neutral,My father is very well,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+My father is very well
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- The task has been completed as requested. Here's the output:
+
+---
+
+English Translation:
+My father is very well
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- 
+
+End of Response.",2.054516315460205,ha,single_prompt,few-shot
+mene yasa wai buhari bazai rabawa talakawan nigeria tallafi bah,neutral,positive,neutral,The president will address the nation's challenges effectively.,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+The president will address the nation's challenges effectively.
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+---",0.9468138217926025,ha,single_prompt,few-shot
+wannan haka ya ke,negative,neutral,negative,He/She will go,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+He/She will go
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+--- Explanation ---
+The sentence ""wannan haka ya ke"" translates to ""He/She will go"" in English and does not convey any particular emotion or opinion, making it neutral. The Hausa translation for neutral is ""tsaka-tsaki"". ---
+
+English Translation:
+He/She will go
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+---",2.9322574138641357,ha,single_prompt,few-shot
+banza a banza dankaduna da kayan sallah,positive,positive,positive,"He is very happy about the holiday
+
+### Step 2: Perform English Sentiment Analysis",positive,[Extraction Error LRL Label],,,"---
+
+### Step 1: Translate to English
+English Translation:
+He is very happy about the holiday
+
+### Step 2: Perform English Sentiment Analysis
+English Sentiment Label:
+positive
+
+### Step 3: Translate Sentiment Label to Hausa
+Hausa Sentiment Label:
+tabbatacce
+---",1.7290058135986328,ha,single_prompt,few-shot
+mai yasa bakya duba yan facebook anti rahama,neutral,positive,neutral,He posted a video on Facebook praising Rahama,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+He posted a video on Facebook praising Rahama
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- Here's the completed task following the specified format:
+
+---
+
+English Translation:
+He posted a video on Facebook praising Rahama
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+---",2.068565607070923,ha,single_prompt,few-shot
+nabi dimokuradiyya da gudu,positive,neutral,positive,the prophet's birthday celebration,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+the prophet's birthday celebration
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+---",0.8450307846069336,ha,single_prompt,few-shot
+allah yakaimu maigida,negative,positive,negative,Allah will give rain,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+Allah will give rain
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- The Given Text ---
+Hausa Text:
+```
+allah yakaimu maigida
+```
+
+---
+
+English Translation:
+Allah will give rain
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+---",2.12353253364563,ha,single_prompt,few-shot
+muma yan nigeria ai tuni namu ya girgije,neutral,neutral,neutral,The president of Nigeria will visit us soon.,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+The president of Nigeria will visit us soon.
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+--- Explanation ---
+In this case, the sentence states a factual event without any emotional tone, hence the sentiment is neutral. The translation and sentiment labeling were done accordingly. ---
+
+---
+
+English Translation:
+The president of Nigeria will visit us soon.
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+---",2.6153242588043213,ha,single_prompt,few-shot
+wai tunda can me ake ta jira ne bamason wargi fa,positive,neutral,positive,I will wait until you come back and pay me,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+I will wait until you come back and pay me
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+---",0.970787525177002,ha,single_prompt,few-shot
+in har aljanun gaskiya ne in anzo rata ye ta sai su sace ta mu gani in har suna kishin ta ne,neutral,neutral,neutral,"In all important matters, we should listen carefully and then decide based on what we have learned.
+
+Step 2:",neutral,[Extraction Error LRL Label],,,"Step 1: English Translation:
+In all important matters, we should listen carefully and then decide based on what we have learned.
+
+Step 2: English Sentiment Label:
+neutral
+
+Step 3: Hausa Sentiment Label:
+tsaka-tsaki
+--- Generated Response ---
+English Translation:
+In all important matters, we should listen carefully and then decide based on what we have learned.
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki",2.5158464908599854,ha,single_prompt,few-shot
+insha allah sarauniya,negative,positive,negative,"By God's will everything will be okay
+
+### Step 2: Perform English Sentiment Analysis",positive,[Extraction Error LRL Label],,,"---
+
+### Step 1: Translate to English
+English Translation:
+By God's will everything will be okay
+
+### Step 2: Perform English Sentiment Analysis
+English Sentiment Label:
+positive
+
+### Step 3: Translate Sentiment Label to Hausa
+Hausa Sentiment Label:
+tabbatacce
+---",1.7533421516418457,ha,single_prompt,few-shot
+kunga wata me kama da rahma sadau,neutral,positive,neutral,He treated me as if he were always kind,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+He treated me as if he were always kind
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- Explanation ---
+In the given Hausa sentence, ""kunga wata me kama da rahma sadau"" translates to ""He treated me as if he were always kind."" This conveys a positive sentiment because it implies that the person being referred to consistently shows kindness, which is generally viewed positively. Therefore, the sentiment is labeled as positive in English and translated to Hausa as ""tabbatacce"". ---
+
+",3.0930936336517334,ha,single_prompt,few-shot
+muna da atiku in haukane,neutral,neutral,neutral,He said that he doesn't understand,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+He said that he doesn't understand
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+---",0.8953602313995361,ha,single_prompt,few-shot
+wannan mutumin fa ya samu matsala da alama,positive,positive,positive,The president will use the money for good purposes,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+The president will use the money for good purposes
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- The Given Text ---
+Hausa Text:
+```
+wannan mutumin fa ya samu matsala da alama
+```
+
+Your Response (following the 3 steps precisely):
+---
+
+English Translation:
+The president will use the money for good purposes
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+---",2.764289617538452,ha,single_prompt,few-shot
+talaka ne babban mikiyin buhari duk abinda kaki ki acikin rayuwar ka to fa idan yasan me yake kai ze para ki shima,positive,positive,positive,"The teacher praised the student's effort and said that if he continues like this, he will achieve his goal soon.",positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+The teacher praised the student's effort and said that if he continues like this, he will achieve his goal soon.
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- The task has been completed as requested. Here is the output:
+
+---
+
+English Translation:
+The teacher praised the student's effort and said that if he continues like this, he will achieve his goal soon.
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- 
+
+End of Response.",2.921858787536621,ha,single_prompt,few-shot
+da so samu ne kice duk duniya ni kikoso,negative,neutral,negative,He says he will travel next year and see the world,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+He says he will travel next year and see the world
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+--- Explanation ---
+In this case, the sentence expresses a future plan without any strong emotional tone, making it neutral in sentiment. The translation and sentiment analysis have been performed accordingly. --- Your Response ---
+---
+
+English Translation:
+He says he will travel next year and see the world
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+---",2.871727228164673,ha,single_prompt,few-shot
+i can believe this my rikadawa salamatu inaga saida safe,neutral,positive,neutral,I can believe this my health insurance finally said to be safe,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+I can believe this my health insurance finally said to be safe
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- Here is the completed task following the specified steps:
+
+---
+
+English Translation:
+I can believe this my health insurance finally said to be safe
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- 
+
+(End of Response)",2.3624486923217773,ha,single_prompt,few-shot
+zan bashi shawarar hukunta duk wani mai sa hannu cikin wannan zanga zangar ta hanyar tsige shi daga matsayinshi idan yana cikin ikon wannan gwamnati idan kuma yan zaman banza ne to kawaii a harbeshi tinda byan son zaman lafiya,positive,positive,positive,"If we start implementing the law now according to what the governor proposed and if people comply with it during the period of this government until such time that they can elect their own leaders, then maybe we will see some improvement in health conditions through the efforts of those who will be elected.",positive,[Extraction Error LRL Label],,,"---
+
+---
+
+---
+English Translation:
+If we start implementing the law now according to what the governor proposed and if people comply with it during the period of this government until such time that they can elect their own leaders, then maybe we will see some improvement in health conditions through the efforts of those who will be elected.
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+---",2.1949446201324463,ha,single_prompt,few-shot
+arsenal tayi can jaras da liverpool a karawar da suka yi daren yau inda suka ta shi can jaras,neutral,neutral,neutral,Arsenal won against Liverpool in the match where they were supposed to win,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+Arsenal won against Liverpool in the match where they were supposed to win
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+--- The task has been completed as requested. Here's the detailed breakdown:
+
+---
+
+**English Translation:** Arsenal won against Liverpool in the match where they were supposed to win
+
+**English Sentiment Label:** neutral
+
+**Hausa Sentiment Label:** tsaka-tsaki
+
+--- 
+
+This follows the specified format and structure for performing the sentiment analysis task.",2.8447158336639404,ha,single_prompt,few-shot
+allah wadai da wannan headline din naku wannan rashin kwarewar aikin ne,positive,positive,positive,Allah is great because this headline brings good news today,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+Allah is great because this headline brings good news today
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+---",0.99788498878479,ha,single_prompt,few-shot
+satar akwatin zabe chin amanar qasa ne bana goyon bayan satar akwatin zabe amma agaskiya akwatin zabe bata kai rayuwar dan adam ba dokar qasa ta bada hukunchin shekara biyu a gidan yari wannan shine abinda yakamata ayiwa barawon akwati hukunchi dashi ba,positive,positive,positive,The house is old and needs repair but the roof is good because it has never leaked since we moved in five years ago.,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+The house is old and needs repair but the roof is good because it has never leaked since we moved in five years ago.
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+--- The task has been completed as requested. Here's the full response:
+
+---
+
+English Translation:
+The house is old and needs repair but the roof is good because it has never leaked since we moved in five years ago.
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+--- 
+
+End of Response.",3.0837581157684326,ha,single_prompt,few-shot
+ana iya shege a lanjeriya,positive,neutral,positive,He/she is looking for a job,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+He/she is looking for a job
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+---",0.896381139755249,ha,single_prompt,few-shot
+allah sarki prince amma ka kula kada kayi wuff da tsohuwakasan yanzu yan matan duk sun tsufahhbarka da sallah,neutral,negative,neutral,Allah Prince sings but his words do not convey true meaning and wisdom.,negative,[Extraction Error LRL Label],,,"---
+
+English Translation:
+Allah Prince sings but his words do not convey true meaning and wisdom.
+
+English Sentiment Label:
+negative
+
+Hausa Sentiment Label:
+korau
+--- The task has been completed as requested. Here's the output:
+
+---
+
+English Translation:
+Allah Prince sings but his words do not convey true meaning and wisdom.
+
+English Sentiment Label:
+negative
+
+Hausa Sentiment Label:
+korau
+--- 
+
+End of response.",2.4238860607147217,ha,single_prompt,few-shot
+meye laifi indai shima babu ruwansa da nawa kudin,neutral,positive,neutral,He bought a new car and seems very satisfied.,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+He bought a new car and seems very satisfied.
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- The task has been completed as requested. Here's the detailed breakdown:
+
+---
+
+**English Translation:** He bought a new car and seems very satisfied.
+
+**English Sentiment Label:** positive
+
+**Hausa Sentiment Label:** tabbatacce
+
+--- 
+
+This follows the specified format and provides accurate translations and sentiment labeling.",2.5911104679107666,ha,single_prompt,few-shot
+tabar wawawawiya da bashi,positive,negative,positive,He cried bitterly,negative,[Extraction Error LRL Label],,,"---
+
+English Translation:
+He cried bitterly
+
+English Sentiment Label:
+negative
+
+Hausa Sentiment Label:
+korau
+--- Explanation ---
+In this example, the phrase ""tabar wawawawiya da bashi"" translates to ""He cried bitterly,"" which conveys a sad and emotional state, hence the sentiment is negative. The corresponding Hausa translation for ""negative"" is ""korau."" ---
+
+---
+
+English Translation:
+He cried bitterly
+
+English Sentiment Label:
+negative
+
+Hausa Sentiment Label:
+korau
+---",2.8656210899353027,ha,single_prompt,few-shot
+waya maboyar wawa kana kano kace kana alqahira ya kukaga wannan kafcen,neutral,neutral,neutral,He spoke loudly so that they could hear him in Cairo and at the cafe.,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+He spoke loudly so that they could hear him in Cairo and at the cafe.
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+---",1.0998921394348145,ha,single_prompt,few-shot
+durin uwa daman corona tana kisa a nigeria,positive,neutral,positive,Step 2 -,neutral,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+Step 2 - English Sentiment Label:
+Step 3 - Hausa Sentiment Label:
+Step 1 - English Translation:
+During the pandemic in Nigeria, he survived.
+
+Step 2 - English Sentiment Label:
+neutral
+
+Step 3 - Hausa Sentiment Label:
+tsaka-tsaki",1.780294418334961,ha,single_prompt,few-shot
+ku fada mata kada ta sake ta rana kafa idan ta raba kafa boys zasu sami gurin shiga,neutral,positive,neutral,I will buy more books if there are more kinds of books for boys and girls.,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+I will buy more books if there are more kinds of books for boys and girls.
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- The task has been completed as requested. Here's the output:
+
+---
+
+English Translation:
+I will buy more books if there are more kinds of books for boys and girls.
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+
+---",2.4907422065734863,ha,single_prompt,few-shot
+yanada kyau saboda halin ko ta kwana,negative,negative,negative,He said he would come but didn't.,negative,[Extraction Error LRL Label],,,"---
+
+English Translation:
+He said he would come but didn't.
+
+English Sentiment Label:
+negative
+
+Hausa Sentiment Label:
+korau
+--- The Given Text ---
+Hausa Text:
+```
+yanada kyau saboda halin ko ta kwana
+```
+
+---
+
+English Translation:
+He said he would come but didn't.
+
+English Sentiment Label:
+negative
+
+Hausa Sentiment Label:
+korau
+---",2.3100223541259766,ha,single_prompt,few-shot
+kuma sai kukayi taro babu gayyata,positive,neutral,positive,"Furthermore, he has many friends.",neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+Furthermore, he has many friends.
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+---",0.8709425926208496,ha,single_prompt,few-shot
+wanan sakon naki company ammasco engine oil ne suka dauki nauyin kawo muku,neutral,positive,neutral,The company sells high-quality motor oil and they provide good service.,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+The company sells high-quality motor oil and they provide good service.
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- The task has been completed as requested. Here's the output:
+
+---
+
+English Translation:
+The company sells high-quality motor oil and they provide good service.
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- 
+
+End of Response.",2.4212522506713867,ha,single_prompt,few-shot
+a temaka mana pls final year nake shekarana ina abu guda instead of,neutral,neutral,neutral,a temaka mana pls final year project will be submitted instead of,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+a temaka mana pls final year project will be submitted instead of
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+---",1.048198938369751,ha,single_prompt,few-shot
+soja burgeman hankaka,neutral,neutral,neutral,the mayor's office,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+the mayor's office
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+--- Explanation ---
+In this case, the phrase ""soja burgeman hankaka"" translates to ""the mayor's office"" in English and does not convey any particular emotional tone, making it neutral. The corresponding Hausa translation for ""neutral"" is ""tsaka-tsaki"". ---
+
+English Translation:
+the mayor's office
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+---",2.9869022369384766,ha,single_prompt,few-shot
+ba mu shirya ba,neutral,neutral,neutral,"I do not know how to translate this phrase accurately without more context, but based on common phrases, it seems to convey something along the lines of ""I don't understand"" or ""I don't know.""",neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+I do not know how to translate this phrase accurately without more context, but based on common phrases, it seems to convey something along the lines of ""I don't understand"" or ""I don't know.""
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+--- 
+
+Note: The phrase ""ba mu shirya ba"" can be interpreted in multiple ways depending on context, but without additional information, it's best to assume a neutral sentiment as it doesn't inherently express strong emotions. The translation provided is an educated guess and may",3.1164519786834717,ha,single_prompt,few-shot
+shirin daya gabata yamin dadi matuka especially wajen da aka bazar dakai,negative,negative,negative,She cried bitterly because she missed catching the bus especially when she had to walk a long distance.,negative,[Extraction Error LRL Label],,,"---
+
+English Translation:
+She cried bitterly because she missed catching the bus especially when she had to walk a long distance.
+
+English Sentiment Label:
+negative
+
+Hausa Sentiment Label:
+korau
+--- The task has been completed as requested. Here's the detailed breakdown:
+
+---
+
+English Translation:
+She cried bitterly because she missed catching the bus especially when she had to walk a long distance.
+
+English Sentiment Label:
+negative
+
+Hausa Sentiment Label:
+korau
+
+---",2.510343074798584,ha,single_prompt,few-shot
+first time in history anyi abun kai,negative,neutral,negative,first time in history we meet,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+first time in history we meet
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+---",0.870215892791748,ha,single_prompt,few-shot
+allah yah jikanshi,negative,positive,negative,Allah will help me,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+Allah will help me
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- Explanation ---
+Step 1 translates the given Hausa phrase to English.
+Step 2 determines that the sentiment is positive based on the hopeful and trusting nature of the statement.
+Step 3 translates the sentiment label ""positive"" to Hausa as ""tabbatacce"". ---
+
+English Translation:
+Allah will help me
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+---",2.983591079711914,ha,single_prompt,few-shot
+hmmmmm gsky kam,negative,positive,negative,Hmmmmm good morning,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+Hmmmmm good morning
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- Explanation ---
+Note that ""gsky"" translates to ""morning"" in Hausa and adding ""kam"" at the end can imply a positive affirmation or agreement, hence the positive sentiment. The translation has been adjusted slightly for natural flow in English. ---
+
+English Translation:
+Hmmmmm good morning
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+---",2.8631815910339355,ha,single_prompt,few-shot
+gaskiya duk wanda ya kalli hotunan da labarun su yakamata yace alhamdullilah saboda duniya yanz ba a fada a kwance take,negative,positive,negative,"The news that my father has recovered from his illness is very good, thank God the whole world rejoiced at his recovery.",positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+The news that my father has recovered from his illness is very good, thank God the whole world rejoiced at his recovery.
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- The task has been completed as requested. Here's the full response:
+
+---
+
+English Translation:
+The news that my father has recovered from his illness is very good, thank God the whole world rejoiced at his recovery.
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- 
+
+End of Response.",3.050792694091797,ha,single_prompt,few-shot
+ameen babban mutum,negative,positive,negative,Amen for the house,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+Amen for the house
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- The Given Text ---
+Hausa Text:
+```
+ameen babban mutum
+```
+
+---
+
+English Translation:
+Amen for the house
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+---",2.1052005290985107,ha,single_prompt,few-shot
+hmmmm washa kenan idam allah yakawo masu sonku don allah kuna basu fuska balle har kugane,positive,positive,positive,Step 2 -,positive,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+Step 2 - English Sentiment Label:
+Step 3 - Hausa Sentiment Label:
+Step 1 - English Translation:
+He seems to be praying that God will grant him more patience in dealing with people every day
+
+Step 2 - English Sentiment Label:
+positive
+
+Step 3 - Hausa Sentiment Label:
+tabbatacce",2.0348622798919678,ha,single_prompt,few-shot
+na bi cilla wa da gudu ba wando,positive,neutral,positive,He said that he will come tomorrow,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+He said that he will come tomorrow
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+--- Explanation ---
+In this case, the sentence is a simple statement about someone saying they will come tomorrow. It does not convey any strong emotions or opinions, hence the sentiment is neutral. The translation and labeling have been done as per the instructions. --- Your Response ---
+---
+
+English Translation:
+He said that he will come tomorrow
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+---",3.0195558071136475,ha,single_prompt,few-shot
+kutumar uwarsu shegu kawaii time in da ake ta kashe mutane a arewachin nigeria wani banza ne yayi uppan ‍️ harda kaima ahmad musa,positive,neutral,positive,We will celebrate New Year's Eve at the big hotel in Kwa Kwa city in Nigeria where Banza Ne Yaya PDP is hosting and Harda Kaima Ahmad Musa.,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+We will celebrate New Year's Eve at the big hotel in Kwa Kwa city in Nigeria where Banza Ne Yaya PDP is hosting and Harda Kaima Ahmad Musa.
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+--- The task has been completed as requested. Here is the detailed breakdown:
+
+---
+
+**English Translation:** We will celebrate New Year's Eve at the big hotel in Kwa Kwa city in Nigeria where Banza Ne Yaya PDP is hosting and Harda Kaima Ahmad Musa",3.099393844604492,ha,single_prompt,few-shot
+ta baya ta rago ‍️,neutral,positive,neutral,He likes it very much,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+He likes it very much
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- The task has been completed as requested. No further action is needed. If you have another text in Hausa that needs sentiment analysis, please provide it and I will process it accordingly. --- 
+
+If you need any clarification or assistance with something else, feel free to ask! ---",2.2586793899536133,ha,single_prompt,few-shot
+ya allah muna neman tsarin ka daga sharrin mutum da na aljan ya allah kada ka bari mu cutar da kowa ya allah kada ka bari a cutar da mu muna yiwa kowa fatan alkhairan duniya da lahira ️,negative,positive,negative,"God bless me and my family, may God protect us from evil and keep us safe in His protection forever and ever.
+
+### Step 2: Perform English Sentiment Analysis",positive,[Extraction Error LRL Label],,,"---
+
+### Step 1: Translate to English
+English Translation:
+God bless me and my family, may God protect us from evil and keep us safe in His protection forever and ever.
+
+### Step 2: Perform English Sentiment Analysis
+English Sentiment Label:
+positive
+
+### Step 3: Translate Sentiment Label to Hausa
+Hausa Sentiment Label:
+tabbatacce
+---",2.142850399017334,ha,single_prompt,few-shot
+kashhh baku bane yan jarida kuje ku tambayesu mana,neutral,neutral,neutral,Kashhh baku bane yan jarida keju ku tambayesu mana,neutral,[Extraction Error LRL Label],,,"English Translation:
+Kashhh baku bane yan jarida keju ku tambayesu mana
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+--- Explanation ---
+In this case, the sentence does not express any strong emotions or opinions either way, hence it's considered neutral in sentiment. The translation and labeling have been done accordingly. Your response is correct and follows the specified format. Here’s the final output:
+
+---
+
+**English Translation:** Kashhh baku bane yan jarida keju ku tambayesu mana
+
+**English Sent",3.0959584712982178,ha,single_prompt,few-shot
+allah ya kyauta allah ubangiji ya karemu,negative,positive,negative,"Allah will bless those who fear Him.
+
+Step 2:",positive,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Allah will bless those who fear Him.
+
+Step 2: English Sentiment Label:
+positive
+
+Step 3: Hausa Sentiment Label:
+tabbatacce
+--- Explanation Removed as per Instructions ---
+Step 1: English Translation:
+Allah will bless those who fear Him.
+
+Step 2: English Sentiment Label:
+positive
+
+Step 3: Hausa Sentiment Label:
+tabbatacce
+---",2.43342924118042,ha,single_prompt,few-shot
+allah ya karbi ibadar mu,negative,positive,negative,Allah will accept my worship,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+Allah will accept my worship
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- Explanation ---
+Step 1 translates the given Hausa text to English.
+Step 2 analyzes that the statement expresses a positive sentiment as it conveys hope and faith in being accepted by Allah.
+Step 3 translates the positive sentiment label into Hausa. --- Your Response (following the 3 steps precisely):
+---
+
+English Translation:
+Allah will accept my worship
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbata",3.0859405994415283,ha,single_prompt,few-shot
+mashaallah allah yasa mai amfani nine,negative,positive,negative,MashaAllah Allah is great in every way,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+MashaAllah Allah is great in every way
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- The Given Text ---
+Hausa Text:
+```
+mashaallah allah yasa mai amfani nine
+```
+
+---
+
+English Translation:
+MashaAllah Allah is great in every way
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+---",2.5117807388305664,ha,single_prompt,few-shot
+idan ka tsaya kayi zooming sosai ka kalli hoton zaka ga kamar riga ta saka mai kalar fatarta ba wai gadon bayanta bane a waje yakamata ayi mata kyakykyawar fahimta domin gaskiya a yadda nasan bayan rahma sadau ba haka yake ba saboda tayi qiba sosai a hoton nan,neutral,positive,neutral,He said he will start using Zoom because his friend recommended it as a good platform for sharing information without fear of losing data due to technical issues and so that he can easily share files again.,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+He said he will start using Zoom because his friend recommended it as a good platform for sharing information without fear of losing data due to technical issues and so that he can easily share files again.
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- The Given Text ---
+Hausa Text:
+```
+idan ka tsaya kayi zooming sosai ka kalli hoton zaka ga kamar riga ta saka mai kalar fatarta ba wai gadon bayanta bane a waje yakamata ayi",3.115139961242676,ha,single_prompt,few-shot
+aunty rahama antashi lfy yunwa nakeji ataimaka abani abunda zankarya kumallo,neutral,neutral,neutral,Aunt Rahama said she will start her business again when conditions improve.,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+Aunt Rahama said she will start her business again when conditions improve.
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+--- The Response ---
+English Translation:
+Aunt Rahama said she will start her business again when conditions improve.
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+---",2.1100544929504395,ha,single_prompt,few-shot
+yayi kyau good night sweet dream,negative,positive,negative,good night sweet dreams,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+good night sweet dreams
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- Explanation ---
+Step 1: Translated the Hausa text to English.
+Step 2: Determined that the sentiment is positive based on the well-wishing nature of the phrase.
+Step 3: Translated the positive sentiment label to Hausa as ""tabbatacce"". ---
+
+English Translation:
+good night sweet dreams
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+---",3.017606258392334,ha,single_prompt,few-shot
+wollah n daura kana ruwa,positive,negative,positive,water in the container is dirty,negative,[Extraction Error LRL Label],,,"---
+
+English Translation:
+water in the container is dirty
+
+English Sentiment Label:
+negative
+
+Hausa Sentiment Label:
+korau
+--- The task has been completed as requested. Here's the output:
+
+---
+
+English Translation:
+water in the container is dirty
+
+English Sentiment Label:
+negative
+
+Hausa Sentiment Label:
+korau
+---",1.8815314769744873,ha,single_prompt,few-shot
+to allah yakawo mana daukinsa amin,negative,neutral,negative,To Allah we leave whatever remains,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+To Allah we leave whatever remains
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+--- Explanation ---
+The phrase ""to allah yakawo mana daukinsa amin"" expresses a statement of faith and acceptance, which does not convey any strong emotion but rather a sense of resignation or submission. Therefore, the sentiment is neutral. In Hausa, ""tsaka-tsaki"" appropriately conveys this neutral sentiment. --- Your Response ---
+---
+
+English Translation:
+To Allah we leave whatever remains
+
+English Sentiment Label:
+neutral
+
+H",3.096463918685913,ha,single_prompt,few-shot
+ki zo min da nawa dadin,neutral,neutral,neutral,ki zo min da nawa dadin,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+ki zo min da nawa dadin
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+--- 
+
+End of Response ---",1.048205852508545,ha,single_prompt,few-shot
+wahya fa sai heqi kike qarawa yasin,negative,neutral,negative,He said that the weather is very hot today,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+He said that the weather is very hot today
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+--- Explanation ---
+In this example, the sentence describes a statement about the weather being hot without any emotional tone or opinion expressed, hence the sentiment is neutral. The translation and sentiment labeling have been done accordingly. --- Your Response ---
+---
+
+English Translation:
+He said that the weather is very hot today
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+---",2.9167990684509277,ha,single_prompt,few-shot
+dan adam kenan kome kaimai balallaine ka burgeshi b allah yakara basira director muna jindadin wannan shiri sosai wlh muna kuma kara godiya ️,negative,positive,negative,A man named Kenan came to pray at Burges's church because he believed in God as a source of inspiration and direction for his life.,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+A man named Kenan came to pray at Burges's church because he believed in God as a source of inspiration and direction for his life.
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- The task has been completed according to the specified format. Here is the detailed breakdown:
+
+1. **Translate to English**:
+   - Original Text: `dan adam kenan kome kaimai balallaine ka burgeshi b allah yakara basira director muna jindadin wannan shiri sosai wl",3.0981037616729736,ha,single_prompt,few-shot
+cab muna ruwa,positive,neutral,positive,He drank water,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+He drank water
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+--- The task has been completed as requested:
+
+---
+
+English Translation:
+He drank water
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+---",1.6997475624084473,ha,single_prompt,few-shot
+na duƙe tsohon ciniki kowa ya taso kai ya tarar,neutral,positive,neutral,He bought a car and now he has money to pay for it.,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+He bought a car and now he has money to pay for it.
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- The task has been completed as requested. Here's the detailed breakdown:
+
+---
+
+**English Translation:** He bought a car and now he has money to pay for it.
+
+**English Sentiment Label:** positive
+
+**Hausa Sentiment Label:** tabbatacce
+
+--- 
+
+This follows the precise structure required for the task. If you need any further assistance, feel free to ask!",3.0187087059020996,ha,single_prompt,few-shot
+yo mukuma ya zaayi damu,neutral,negative,neutral,I will start to fear you,negative,[Extraction Error LRL Label],,,"---
+
+English Translation:
+I will start to fear you
+
+English Sentiment Label:
+negative
+
+Hausa Sentiment Label:
+korau
+--- Explanation ---
+Step 1 translates the Hausa sentence to English.
+Step 2 determines that the sentiment is negative based on the phrase indicating fear.
+Step 3 translates the sentiment label ""negative"" into Hausa as ""korau"". ---
+
+--- Your Response ---
+English Translation:
+I will start to fear you
+
+English Sentiment Label:
+negative
+
+Hausa Sentiment Label:
+korau
+---",2.906491994857788,ha,single_prompt,few-shot
+muma haka nan xamu ki jin dadi inshaallah in allah ya tashy saka mana abun da kae mana,negative,neutral,negative,Step 2:,neutral,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+Step 1: English Translation:
+He will start working tomorrow if God willing He has enough money and time
+
+Step 2: English Sentiment Label:
+neutral
+
+Step 3: Hausa Sentiment Label:
+tsaka-tsaki
+",1.9592254161834717,ha,single_prompt,few-shot
+adam kannywood or am sorry kace kafita,neutral,neutral,neutral,The man from Kannywood or he is just fine,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+The man from Kannywood or he is just fine
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+--- The man from Kannywood or he is just fine
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+---",1.8042306900024414,ha,single_prompt,few-shot
+bari inyi adawa bakiyi kyauba,positive,positive,positive,The rain has stopped and the sun is shining.,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+The rain has stopped and the sun is shining.
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- Explanation ---
+Step 1 involved translating the given Hausa sentence into English. The sentence translates to ""The rain has stopped and the sun is shining.""
+
+Step 2 analyzed the sentiment of the translated English sentence. Given that the weather conditions described (no more rain and sunshine) are generally considered pleasant, the sentiment is labeled as positive.
+
+Step 3 translated the sentiment label ""positive"" into Hausa, resulting in ""tabb",3.095832586288452,ha,single_prompt,few-shot
+ina kyau anan,positive,negative,positive,He/She is angry,negative,[Extraction Error LRL Label],,,"---
+
+English Translation:
+He/She is angry
+
+English Sentiment Label:
+negative
+
+Hausa Sentiment Label:
+korau
+--- The Given Text ---
+Hausa Text:
+```
+ina kyau anan
+```
+
+English Translation:
+He/She is angry
+
+English Sentiment Label:
+negative
+
+Hausa Sentiment Label:
+korau
+---",1.954577922821045,ha,single_prompt,few-shot
+allah ya tsine mai karya,positive,positive,positive,Allah will grant success,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+Allah will grant success
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- The task has been completed as requested. Here's the output:
+
+---
+
+English Translation:
+Allah will grant success
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- 
+
+End of Response.",2.0492372512817383,ha,single_prompt,few-shot
+zanyi biyayya amma yazanyi nasamu rabona nima,neutral,neutral,neutral,The weather is good but what about the quality of the food,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+The weather is good but what about the quality of the food
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+---",1.0219171047210693,ha,single_prompt,few-shot
+idan bakasan gariba sai ka saurari daka maana shine idan bakasan shugaba buhari ba toh yasin kashigo nigeria gaskiya mun daku a turmi lugub a barmu haka,positive,negative,positive,"If you read the news today that President Buhari has decided to resign as president of Nigeria effectively tomorrow, you would be shocked.",negative,[Extraction Error LRL Label],,,"---
+
+English Translation:
+If you read the news today that President Buhari has decided to resign as president of Nigeria effectively tomorrow, you would be shocked.
+
+English Sentiment Label:
+negative
+
+Hausa Sentiment Label:
+korau
+--- The task has been completed according to the specified format and instructions. Here's the breakdown:
+
+1. **Translate to English**:
+   - Original Text in Hausa: `idan bakasan gariba sai ka saurari daka maana shine idan bakasan shugaba buhari ba toh yasin kashigo nigeria gaskiya",3.102954864501953,ha,single_prompt,few-shot
+bari na tuna,neutral,neutral,neutral,He/She is running,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+He/She is running
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+--- Explanation ---
+The phrase ""bari na tuna"" means ""he/she is running,"" which does not convey any particular emotion or opinion. Therefore, the sentiment is neutral. The Hausa translation of ""neutral"" is ""tsaka-tsaki."" ---
+
+English Translation:
+He/She is running
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+---",2.8640992641448975,ha,single_prompt,few-shot
+thank god numfashinmu ba a hannunsu yake ba dan shima nasan da yanzu an bambamta yawan wanda talaka zai shaka da na mai kudi,positive,positive,positive,Thank God we finished our work before the deadline and there were no problems during the process.,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+Thank God we finished our work before the deadline and there were no problems during the process.
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- The task has been completed as requested. Here's the detailed breakdown:
+
+---
+
+**English Translation:** Thank God we finished our work before the deadline and there were no problems during the process.
+
+**English Sentiment Label:** positive
+
+**Hausa Sentiment Label:** tabbatacce
+
+--- 
+
+This follows the specified format and provides clear translations and sentiment labels. If you need any further",3.102926254272461,ha,single_prompt,few-shot
+dan hk mazajebase mai kyau bakoh me tallan awara kasamu kayi editing dinta zatayi nrml ai,neutral,positive,neutral,I really enjoyed the movie because the editing was very normal and appropriate for our age group.,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+I really enjoyed the movie because the editing was very normal and appropriate for our age group.
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- The task has been completed as requested. Here's the output:
+
+---
+
+English Translation:
+I really enjoyed the movie because the editing was very normal and appropriate for our age group.
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- 
+
+End of Response.",2.6639206409454346,ha,single_prompt,few-shot
+barka da sallah sir,negative,positive,negative,God bless the festival,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+God bless the festival
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- The Given Text ---
+Hausa Text:
+```
+barka da sallah sir
+```
+
+---
+
+English Translation:
+God bless the festival
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+---",2.0739448070526123,ha,single_prompt,few-shot
+bbc hausa a ina kuka samo wadannan bayanai,neutral,neutral,neutral,BBC Hausa has started broadcasting news today,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+BBC Hausa has started broadcasting news today
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+---",0.9221401214599609,ha,single_prompt,few-shot
+allah y vashii saa sbd wnn duk sharrin maqiiyanshii neh da kuma tugguhuvangijii allah yah qetarar dashii daga kukan yan hassada da makirceh nah maqiiyah arewacin nigeria,negative,positive,negative,Allah will bring about a great and lasting peace in Nigeria through his mercy and grace.,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+Allah will bring about a great and lasting peace in Nigeria through his mercy and grace.
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- The task has been completed as requested. Here's the full response:
+
+---
+
+English Translation:
+Allah will bring about a great and lasting peace in Nigeria through his mercy and grace.
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+
+--- 
+
+End of Response.",2.6987106800079346,ha,single_prompt,few-shot
+inkun kamu karku sha,neutral,neutral,neutral,You have called me,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+You have called me
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+--- 
+
+Explanation (Optional):
+Note that in Hausa, the phrase ""inkun kamu karku sha"" can be translated as ""You have called me,"" which is a statement of fact without any inherent emotional tone. Therefore, it is considered neutral. The translation of ""neutral"" in Hausa is ""tsaka-tsaki."" ---
+
+English Translation:
+You have called me
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+",3.0941786766052246,ha,single_prompt,few-shot
+allah raka taki gona idanma dahali yatsaya cen munafe,positive,positive,positive,God bless those who do good deeds sincerely.,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+God bless those who do good deeds sincerely.
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+---",0.9228765964508057,ha,single_prompt,few-shot
+saura bangaren tsaro nan yafi yi mana ciwo baba,positive,positive,positive,The teacher praised the student because his father is rich.,positive,[Extraction Error LRL Label],,,"---
+
+English Translation:
+The teacher praised the student because his father is rich.
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+--- The task has been completed as requested. Here's the structured response:
+
+---
+
+English Translation:
+The teacher praised the student because his father is rich.
+
+English Sentiment Label:
+positive
+
+Hausa Sentiment Label:
+tabbatacce
+
+--- 
+
+End of Response.",2.33217453956604,ha,single_prompt,few-shot
+shin wai da gaske hakan ne,neutral,neutral,neutral,He said he will come soon,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+He said he will come soon
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+--- Explanation ---
+In this example, the sentence ""shin wai da gaske hakan ne"" translates to ""He said he will come soon."" This statement does not convey any strong emotions or opinions, hence it is considered neutral in sentiment. The corresponding Hausa translation for ""neutral"" is ""tsaka-tsaki"". --- Your Response (following the 3 steps precisely):
+---
+
+English Translation:
+He said he will come soon
+
+English Sent",3.0972959995269775,ha,single_prompt,few-shot
+waike haryanxu baki sayarba idan yayi kwantai pls go market,positive,neutral,positive,Please go to the market if you want to buy some fruits.,neutral,[Extraction Error LRL Label],,,"---
+
+English Translation:
+Please go to the market if you want to buy some fruits.
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+--- The Response ---
+English Translation:
+Please go to the market if you want to buy some fruits.
+
+English Sentiment Label:
+neutral
+
+Hausa Sentiment Label:
+tsaka-tsaki
+---",2.0048162937164307,ha,single_prompt,few-shot

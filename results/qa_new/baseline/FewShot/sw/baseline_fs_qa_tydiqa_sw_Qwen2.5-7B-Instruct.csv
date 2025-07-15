@@ -1,0 +1,121 @@
+question,ground_truth,predicted_answer,f1_score,language,few_shot
+Mtume Thoma alikuwa nani?,mmojawapo kati ya Mitume wa Yesu anayeheshimiwa kama mtakatifu,Karne ya 1 Mhojawapo Kati Ya Mitumewa Anayehehishimika Katika Maeneo Yasi,0.888888888888889,sw,True
+"Je,Walter Rodney alizaliwa mwaka upi?",1942,"June 13th , 1980 To answer this question based on the given information:
+
+**Swali:** When did Walter Rodney die",0.0,sw,True
+"Je,Paul Emil von Lettow-Vorbeck alizaliwa lini?","20 Machi, 1870","Lini\n
+Kama una maneno zaidi za Muktadha ambayo unaweza kuwasiliana ili kupata j",0.0,sw,True
+"Je,msanii Juma Nature alizaliwa lini?",1980,Hapana,0.0,sw,True
+Mti wa Moringa una tibu magonjwa aina ngapi?,zaidi ya 100,Hapana,0.0,sw,True
+Amani James Pausen Temba  ni mwanachama kiongozi wa kitu gani?,Tmk Wanaume,mwanachama kutokoa tmk wanaume family,0.6666666666666666,sw,True
+"Je,gazeti la BrooWaha huchapishwa kila baada ya wakati gani?",katika au baada ya saa 24,"Katika au baada ya saa 24 Tohidi/Toheleli\n
+Certainly! Here’s how you would answer based",0.25,sw,True
+Rais wa kwanza wa Togo anaitwa nani?,Sylvanus Olympio,"Sylvanus Olympio
+ To answer this question correctly based on the provided information:
+
+**Swali:** Rais wa kwanja wa Togo an",0.3076923076923077,sw,True
+Ruwaza ya Kenya 2030 ilitengenezwa mwaka upi?,2008,Hapana,0.0,sw,True
+"Je, Edward Moss alizaliwa lini?",11 Julai 1977,Hapana,0.0,sw,True
+Vita vya pili vya dunia viliisha mwaka gani?,1945,1939,0.0,sw,True
+Wangari Muta Maathai alizaliwa wapi?,Kenya,"Nchini Kenya\n\nKama una maneno zinazoenda kwenye njia yoyote yanayofaa, unawe",0.0,sw,True
+"Je,popo ni ndege ama mnyama?",mamalia kama panya mwenye mabawa,Hapana,0.0,sw,True
+Pathojeni ni nini?,"i jina kwa bakteria, virusi au fungi zinazoweza kusababisha ugonjwa",Bakateria vyanja au viruses au fungi vinavyosababiresha ugongaji wa bado,0.7272727272727272,sw,True
+Mhariri mkuu wa gazeti la The Era mwaka 1838 anaitwa nani?,Leitch Ritchie,"Frederick Ledger
+ To answer this question correctly based on the provided information:
+
+**Answer:** Frederick Ledger
+
+The passage states:
+""Frederick Ledger took",0.0,sw,True
+"Je,ndimu iko katika familia gani ya mimea?",michungwa,Hapana,0.0,sw,True
+Sayari kubwa kuliko zingine inaitwaje?,Mshtarii,"Jupiter\n
+Sure",0.6666666666666666,sw,True
+Osama Bin Laden alizaliwa mwaka upi?,1957,Hapana,0.0,sw,True
+"Je,msitu wa Mau una ukubwa kiasi gani?",hektari 273300,273300,0.0,sw,True
+Mary Lynn Rajskub alizaliwa mwaka upi?,1971,Hapana,0.0,sw,True
+Kampuni isambazayo umeme nchini Kenya inaitwaje?,Kenya Power and Lighting,Kenya Power and lighting \n\nNote: I've provided my answer based directly from your given information without making assumptions or adding extra details not present there,0.18181818181818182,sw,True
+Mji mkubwa Burundi ni upi?,Bujumbura,"\_\_ To answer this question correctly based on your provided information:
+
+**Burundi**: 
+The capital city mentioned for **Burundi** should be",0.0,sw,True
+"Je,Hoteli ya Fairmont Royal York ilizinduliwa lini?",11 Juni 1929,Tarehe 11 June 1929 Tohidi/Tohidhi\n\nKama unahitaji kuuliza,0.0,sw,True
+"Je,mkoa wa Morogoro ina idadi ya watu wangapi?","2,218,492",Hapana,0.0,sw,True
+Sehemu ya juu ya nyumba huitwaje?,paa,Hapana,0.0,sw,True
+"Je,nani mwanzilishi wa mashindano ya WWE?",Rogers Buddy,"World Wide Wrestling Federation (WWWF)\nTo answer this question correctly based on the given information:
+
+**Answer:** World Wide Wrestling Federation (WWFW",0.1111111111111111,sw,True
+Emmaus Shule ya Biblia iko sehemu gani?,Dodoma,"Sehemu wa Makao Mkuu za Kijamii katika Tanzania\n
+Sure",0.0,sw,True
+"Je,inchi ya Iceland ina idadi ya watu wangapi?",laki tatu,Hapana,0.0,sw,True
+Philip Emeagwali alizaliwa mwaka upi?,1954,"23 Agosti 1954 \nThe correct answer based on the provided information would be:
+
+**""23 August 19",0.0,sw,True
+Jeff Koinange alizaliwa mwaka upi?,1966,Muda ya uwekezaji wakati yake unaelezea kwenda CNN International\nTo answer this question based on the given,0.0,sw,True
+"Je,mwanamziki Profesa Jay ni mbunge wa wapi nchini Tanzania?",Mikumi,\nThe information provided does not mention Professor Jay’s profession or his connection with literature within Tanzania; instead it describes him primarily as a musician active during certain,0.0,sw,True
+"Je, Abunwasi na mwandishi Abu Nuwas wana sifa zipi zinazo fanana?",Hekaya za Abunuwasi ni mkusanyo wa hadithi fupi zinazosimulia habari za Abunuwas. Hadithi hizi hazina uhusiano na Abu Nuwas,"Uhusiano\n
+Based on your provided information:
+
+**Swali:** Je, Abunwasi na mwandishi Abu Nuwas wana",0.8571428571428572,sw,True
+Ayatollah Ruhollah Musawi Khomeini alizaliwa mwaka upi?,1902,"Mjini Khomein\n
+Sure",0.0,sw,True
+"Je,nchi ya Tanzania ina majimbo ngapi?",214 Tanzania Bara na majimbo 50 Zanzibar,219,0.0,sw,True
+"Shule ya St. Andrews ""Turi"" ilianza mwaka upi?",1931,\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t,0.0,sw,True
+"Je,mji wa Lamu inapatikana katika sehemu gani nchi Kenya?",pwani,"Pwani ya Kenya \nThe provided answer ""Pwani ya Kenya"" seems incomplete or not fully accurate based solely on what you've given me",0.19999999999999998,sw,True
+Kasoko ya Ngorongoro inapatika wapi?,Tanzania,Hapana,0.0,sw,True
+"Je,R. Kelly alizaliwa mwaka gani?",1967,1992,0.0,sw,True
+Mkoa wa Lindi uko na ukubwa wa kiasi gani?,"km² 67,000","67,000",0.0,sw,True
+Mwanamziki Rihana alizaliwa mwaka upi?,1988,Tarajiumu yasiyo sio imewezeshe wakati unazalipata maoni wake au usafiwe,0.0,sw,True
+Jina la Bauxiti linatokana na nini?,"kijiji cha ""Les Baux de Provence"" katika Ufaransa ambako mtapo umegunduliwa mara ya kwanza","Les Baux de Provence Katika Faransiya Tochani Mengine Yoyote Kama Jamaica au India\n
+Here are two possible",0.6666666666666665,sw,True
+"Je,Rebeca Z. Gyumi alizaliwa katika mkoa gani nchini Tanzania?",Dodoma,Hapana,0.0,sw,True
+Wimbo wa kwanza wa  Keyshia Miesha Cole unaitwaje?,Never,"\""Never\""\n",0.0,sw,True
+Filamu ya Sarafina ilizinduliwa lini kwa mara ya kwanza?,1992,wengine wakati wa sararisi wake,0.0,sw,True
+"Je,Thiago Silva alianza kucheza soka mwaka upi?",Alipokuwa na umri wa miaka 14,"Miaka 15\n
+Sure",0.0,sw,True
+"Je,nani alizindua jina la Altdeutscher Schäferhund?",Max von Stephanitz,Jina lisitahimiliana yasiyo katika majukumu za mtandaoni au maeneo zaidi ya njema,0.6666666666666666,sw,True
+Karl Peters aliaga dunia mwaka upi?,1918,"1856\n
+Kumbuka! Jibu yako ikiwaeze kuwasiliana na sifa zaidi",0.0,sw,True
+Yesu alisulubiwa katika mlima gani?,Kalivari au Golgotha,Hapana,0.0,sw,True
+Wade Andrew William alizaliwa wapi?,Georgia,Hapana,0.0,sw,True
+Yesu Kristo alizaliwa mwaka gani?,labda 6 KK,1978,0.0,sw,True
+"Je,Sally McLellan alizaliwa mwaka upi?",1986,Mv撒谎吧，让我看看你是否真的懂了。\n根据提供的信息回答以下问题：\n斯莉·麦克伦,0.0,sw,True
+Mwanamziki Shaggy alianza kuimba mwaka upi?,1988,"Wakiulivuliwa nje saba wa mwaka wa 24 au zaidi za vita ghubasi\n
+To answer",0.0,sw,True
+Lugha rasmi ya nchi ya Kodivaa ni ipi?,Kifaransa,"Kifaransa \nThe answer provided matches well with your given Muktadha for Swahili:
+
+**Swali:** Lugha rasmi ya",0.19999999999999998,sw,True
+Gazeti la The Province  huchapishwa na kundi gani?,Pacific Newspaper,Hapana,0.0,sw,True
+"Je,jina la utani wa Monique Séka ni ipi?",malkia wa muziki wa Afro-zouk,"Mwimbaji kutoka Ivory Coast\n
+In this case:
+
+The correct answer should be ""Ivory Coast"" because it directly states her",0.15384615384615385,sw,True
+Sibusiso Wiseman Zuma alizaliwa mwaka gani?,1975,1975,0.0,sw,True
+"Je,Christopher Richard Mwashinga alizaliwa mwaka upi?",1965,Hapana,0.0,sw,True
+Fly Me to the Moon uliimbwa ulirekodiwa na nani?,Kaye Ballard,Hapana,0.0,sw,True
+"Je,Joachim Kimario alizaliwa mwaka upi?",1973,Tar. 8 Agosti MWAKA 1973 AKIWA MTOTO PILI Katika Familia Ya Marehemu M,0.0,sw,True
+Kaburi la yesu liko wapi?,mjini Yerusalemu,Hapana,0.0,sw,True
+"Je,Mheshimiwa Temba alizaliwa mwaka upi?",1980,MWAKAZI YA WANACHAMA KWANGOZA WA TAMK WNAMUZIKIWA RAP NA HIP HOP YAO,0.0,sw,True
+Vladimir Nabokov alihamia Marekani mwaka gani?,1940,1945,0.0,sw,True
+Kitabu cha pili cha agano la kale ni gani?,Kutoka,"Mwanzo - Kutoka
+The answer you provided does not directly address where two famous books are located or what they contain based on your question",0.0,sw,True
+Dini ya Ukristo ina idadi gani ya waumini Duniani mnamo mwaka 2019?,bilioni 2.3,2.3,0.0,sw,True
+"Je,Albania iko katika bara gani?",Ulaya,Hapana,0.0,sw,True
+Mji mkuu wa Moroko ni upi?,Rabat,Hapana,0.0,sw,True
+Kenneth David Kaunda alizaliwa mwaka upi?,1924,Mwaka 1964\n\nKumbuka! Jibuni unaweza kuwasiliana katika maeneo y,0.0,sw,True
+"Je,Afrika Mashariki ina nchi ngapi?",18,Hapana,0.0,sw,True
+Beres Hammond alizaliwa mwaka gani?,1955,1970,0.0,sw,True
+Msitu wa Mau uko na ukubwa wa kiasi gani?,hektari 273300,273300,0.0,sw,True
+Sibusiso Wiseman Zuma alizaliwa wapi?,"Durban, KwaZulu-Natal","Mji wa Durban, KwaZulu Natal - Africa Southern \nThe answer provided does not fully capture all relevant information from the given context about",0.2857142857142857,sw,True
+Shule ya St. Andrews Turi ilianza mwaka upi?,1931,\t\tShule ya msingi ilianzisha mwaka wa 1931; shule ya kuanzia alil,0.0,sw,True
+"Je,miraa inapatikana kwa wingi katika kaunti gani Kenya?",Meru,"Kaunti yasiyotakriban kutoka sehemu kubwa ya Meru\n
+Based on your provided information:
+
+**",0.0,sw,True
+"Je,Gaius Julius Caesar alizaliwa lini?",23 Septemba 63 KK,"Italy tarehe 23 September 63 BC \nThe provided answer ""Italy"" alone does not fully capture when Caius Julius Caesar",0.2222222222222222,sw,True
+Bunge la Tanzania lina wabunge wangapi kwa jumla?,393,393,0.0,sw,True
+"Je,mji mkuu wa Tanzania ni upi?",Dodoma,Hapana,0.0,sw,True
+"Je,Doris Mollel alizaliwa mwaka upi?",1990,\nThe answer should be stated clearly based on the information provided,0.0,sw,True
+Kipindi cha Heroes kilizinduliwa mwaka upi?,006,"Mwaka 2006\n
+Sure",0.0,sw,True
+Mwanamuziki Shaggy alizaliwa mwaka upi?,1968,22 Oktaba 1968 \nThe answer should be written in English,0.0,sw,True
+Milima ya Upare inapatikana mkoa gani?,Kilimanjaro,Kaskazini mwa Tanzania Katika Mkoa wa Kilimanjaro Toa! \nKama unahitaji tayari,0.0,sw,True

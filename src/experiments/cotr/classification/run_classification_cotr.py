@@ -278,81 +278,84 @@ def run_classification_experiment(
             if not results_df_current_run.empty:
                 results_df_current_run['runtime_seconds_total'] = runtime
                 results_df_current_run['runtime_per_sample'] = runtime / len(results_df_current_run)
-                results_df_current_run.to_csv(results_file, index=False)
-                print(f"Results saved to {results_file}")
+                # Note: Save results CSV after metrics calculation to include is_correct column
+                print(f"Evaluation completed successfully.")
             else:
                 print("Evaluation returned empty DataFrame.")
         except Exception as e: # This except pairs with the try above
             logging.error(f"Error during CoTR classification for {lang_code}, {model_short_name}, {pipeline_type}, {shot_type_str}: {e}", exc_info=True)
 
-    # Calculate metrics (adapted from old script, using calculate_classification_metrics if available and desired)
-    if results_df_current_run.empty:
-        print("No results to calculate metrics from.")
-        return None
-
-    if pipeline_type == "multi_prompt":
-        if 'predicted_label_eng_model' in results_df_current_run.columns:
-            results_df_current_run.rename(columns={'predicted_label_eng_model': 'final_predicted_label'}, inplace=True)
-    elif pipeline_type == "single_prompt":
-        if 'final_predicted_label_eng' in results_df_current_run.columns:
-            results_df_current_run.rename(columns={'final_predicted_label_eng': 'final_predicted_label'}, inplace=True)
-
-    y_true = []
-    if 'label' in results_df_current_run.columns:
-        y_true = results_df_current_run['label'].astype(str).str.lower().str.strip().tolist()
-    elif 'ground_truth_label_eng' in results_df_current_run.columns:
-         y_true = results_df_current_run['ground_truth_label_eng'].astype(str).str.lower().str.strip().tolist()
+    # Calculate summary metrics from results_df_current_run
+    # First, create the is_correct column if it doesn't exist
+    if not results_df_current_run.empty:
+        # Determine which column contains the predicted labels for accuracy calculation
+        if pipeline_type == 'multi_prompt':
+            predicted_col = 'predicted_label_eng_model'
+            ground_truth_col = 'ground_truth_label_eng'
+        else:  # single_prompt
+            predicted_col = 'predicted_label_accuracy'  # This contains the mapped English label
+            ground_truth_col = 'label_lrl_ground_truth'
+        
+        if predicted_col in results_df_current_run.columns and ground_truth_col in results_df_current_run.columns:
+            # Create is_correct column for accuracy calculation
+            results_df_current_run['is_correct'] = (
+                results_df_current_run[predicted_col].str.lower().str.strip() == 
+                results_df_current_run[ground_truth_col].str.lower().str.strip()
+            )
+            
+            # Calculate additional metrics using sklearn
+            try:
+                from sklearn.metrics import accuracy_score, f1_score
+                
+                y_true = results_df_current_run[ground_truth_col].str.lower().str.strip()
+                y_pred = results_df_current_run[predicted_col].str.lower().str.strip()
+                
+                # Filter out any samples with missing predictions or ground truth
+                # Use case-insensitive filtering to catch all variations of error labels
+                missing_gt_mask = y_true.isin(['[missing ground truth]', ''])
+                error_pred_mask = (y_pred.str.contains(r'\[unknown label\]', case=False, na=False) | 
+                                  y_pred.str.contains(r'\[classification error\]', case=False, na=False) |
+                                  y_pred.isin(['']))
+                valid_mask = ~(missing_gt_mask | error_pred_mask)
+                y_true_valid = y_true[valid_mask]
+                y_pred_valid = y_pred[valid_mask]
+                
+                if len(y_true_valid) > 0:
+                    accuracy = accuracy_score(y_true_valid, y_pred_valid)
+                    macro_f1 = f1_score(y_true_valid, y_pred_valid, average='macro', zero_division=0)
+                    weighted_f1 = f1_score(y_true_valid, y_pred_valid, average='weighted', zero_division=0)
+                else:
+                    accuracy = 0.0
+                    macro_f1 = 0.0
+                    weighted_f1 = 0.0
+                    
+            except Exception as e:
+                logging.warning(f"Error calculating metrics with sklearn: {e}. Using basic accuracy only.")
+                accuracy = results_df_current_run['is_correct'].mean()
+                macro_f1 = 0.0
+                weighted_f1 = 0.0
+        else:
+            logging.warning(f"Missing columns for accuracy calculation. Expected {predicted_col} and {ground_truth_col}")
+            accuracy = 0.0
+            macro_f1 = 0.0
+            weighted_f1 = 0.0
+            
+        # Now save the results CSV with all calculated columns including is_correct
+        if 'runtime_seconds_total' in results_df_current_run.columns:
+            results_df_current_run.to_csv(results_file, index=False)
+            print(f"Results saved to {results_file}")
     else:
-        print("ERROR: Cannot determine ground truth column for metrics. Expected 'label' (if English GT) or 'ground_truth_label_eng'.")
-        return None
+        accuracy = 0.0
+        macro_f1 = 0.0
+        weighted_f1 = 0.0
 
-    if not y_true:
-        print("ERROR: Ground truth list for metrics is empty.")
-        return None
-
-    y_pred_col = 'final_predicted_label'
-    if y_pred_col in results_df_current_run.columns:
-        y_pred = results_df_current_run[y_pred_col].astype(str).str.lower().str.strip().tolist()
-    else:
-        print(f"ERROR: Prediction column '{y_pred_col}' not found for metrics.")
-        return None
-
-    if not y_pred:
-        print("ERROR: Prediction list for metrics is empty after loading.")
-        return None
-
-    try:
-        avg_accuracy = accuracy_score(y_true, y_pred)
-        avg_macro_f1 = f1_score(y_true, y_pred, labels=possible_labels_en, average='macro', zero_division=0)
-        avg_weighted_f1 = f1_score(y_true, y_pred, labels=possible_labels_en, average='weighted', zero_division=0)
-    except Exception as e_metrics:
-        logging.error(f"Error calculating sklearn metrics: {e_metrics}")
-        avg_accuracy = 0.0
-        avg_macro_f1 = 0.0
-        avg_weighted_f1 = 0.0
-
-    avg_comet_lrl_text_to_en = np.mean(results_df_current_run['comet_lrl_text_to_en'].dropna()) if 'comet_lrl_text_to_en' in results_df_current_run.columns and not results_df_current_run['comet_lrl_text_to_en'].dropna().empty else None
-    avg_comet_en_label_to_lrl = np.mean(results_df_current_run['comet_en_label_to_lrl'].dropna()) if 'comet_en_label_to_lrl' in results_df_current_run.columns and not results_df_current_run['comet_en_label_to_lrl'].dropna().empty else None
+    avg_accuracy = accuracy
 
     summary_data = {
-        'model': model_short_name,
-        'language': lang_code,
-        'pipeline': pipeline_type,
-        'shot_type': shot_type_str,
-        'accuracy': avg_accuracy,
-        'macro_f1': avg_macro_f1,
-        'weighted_f1': avg_weighted_f1,
-        'samples_processed': len(results_df_current_run),
-        'runtime_total_s': results_df_current_run['runtime_seconds_total'].iloc[0] if 'runtime_seconds_total' in results_df_current_run.columns and not results_df_current_run.empty else 0,
-        'avg_comet_lrl_text_to_en': avg_comet_lrl_text_to_en,
-        'avg_comet_en_label_to_lrl': avg_comet_en_label_to_lrl,
+        'model': model_name_str.split('/')[-1], 'language': lang_code, 'pipeline': pipeline_type, 'shot_type': 'few-shot' if use_few_shot else 'zero-shot',
+        'samples': len(results_df_current_run), 'accuracy': avg_accuracy, 'macro_f1': macro_f1, 'weighted_f1': weighted_f1,
+        'generation_params': generation_args  # Log the generation_args dict for this experiment
     }
-    if pipeline_type == 'multi_prompt':
-        summary_data.update({f"text_trans_{k}": v for k,v in generation_args.get("text_translation", {}).items()})
-        summary_data.update({f"en_class_{k}": v for k,v in generation_args.get("english_classification", {}).items()})
-        summary_data.update({f"label_trans_{k}": v for k,v in generation_args.get("label_translation", {}).items()})
-    else: # single_prompt
-        summary_data.update({f"single_prompt_{k}": v for k,v in generation_args.get("single_prompt_cotr", {}).items()})
 
     summary_df_to_save = pd.DataFrame([summary_data])
     summary_df_to_save.to_csv(summary_file, index=False, float_format='%.4f')
@@ -554,14 +557,13 @@ def main():
             print(f"\nOverall summary of Classification CoTR experiments saved to: {overall_summary_path}")
             print(overall_summary_df.to_string())
 
-            # Plotting task performance metrics using overall_plots_dir
-            plot_classification_metrics(overall_summary_df, overall_plots_dir, 'accuracy', 'Accuracy')
-            plot_classification_metrics(overall_summary_df, overall_plots_dir, 'macro_f1', 'Macro F1-Score')
-            plot_classification_metrics(overall_summary_df, overall_plots_dir, 'weighted_f1', 'Weighted F1-Score')
-            # Plot COMET scores
-            plot_classification_metrics(overall_summary_df, overall_plots_dir, 'avg_comet_lrl_text_to_en', 'COMET Text LRL->EN')
-            plot_classification_metrics(overall_summary_df, overall_plots_dir, 'avg_comet_en_label_to_lrl', 'COMET Label EN->LRL')
-            print(f"Overall plots saved to: {overall_plots_dir}")
+            # Plot various metrics
+            try:
+                plot_classification_metrics(overall_summary_df, overall_plots_dir, 'accuracy', 'Accuracy')
+                plot_classification_metrics(overall_summary_df, overall_plots_dir, 'macro_f1', 'Macro F1')
+                plot_classification_metrics(overall_summary_df, overall_plots_dir, 'weighted_f1', 'Weighted F1')
+            except Exception as e_plot_acc:
+                logging.error(f"Error generating accuracy plot: {e_plot_acc}")
         else:
             print("Overall summary DataFrame is empty. No plots generated.")
     else:

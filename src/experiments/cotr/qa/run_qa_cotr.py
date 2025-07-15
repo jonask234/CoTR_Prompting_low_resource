@@ -25,7 +25,6 @@ from src.experiments.cotr.qa.qa_cotr import (
     evaluate_qa_cotr_single_prompt,
     initialize_model
 )
-from evaluation.cotr.translation_metrics import COMET_AVAILABLE, calculate_comet_score as calculate_translation_quality
 from src.experiments.baseline.qa.qa_baseline import calculate_qa_f1
 from huggingface_hub import login
 from config import get_token
@@ -330,7 +329,6 @@ def run_experiment(
         return None
 
     f1_scores, em_scores = [], []
-    comet_q_lrl_en_list, comet_c_lrl_en_list, comet_a_en_lrl_list = [], [], []
     num_samples_with_results = len(results_df_for_metrics)
 
     for _, row in results_df_for_metrics.iterrows():
@@ -358,28 +356,17 @@ def run_experiment(
         # calculate_exact_match_score expects the list of reference strings directly.
         f1_scores.append(calculate_qa_f1({'text': gt_text_list if gt_text_list else [""]}, predicted_answer)) # Pass empty string in list if gt_text_list is empty
         em_scores.append(calculate_exact_match_score(gt_text_list, predicted_answer))
-        
-        # COMET scores processing remains the same if column names for COMET scores are correct in results_df_for_metrics
-        if 'comet_lrl_q_to_en' in row and pd.notna(row['comet_lrl_q_to_en']): # Changed key from comet_score_q_lrl_en
-            comet_q_lrl_en_list.append(row['comet_lrl_q_to_en'])
-        if 'comet_lrl_c_to_en' in row and pd.notna(row['comet_lrl_c_to_en']): # Changed key from comet_score_c_lrl_en
-            comet_c_lrl_en_list.append(row['comet_lrl_c_to_en'])
-        if 'comet_en_a_to_lrl' in row and pd.notna(row['comet_en_a_to_lrl']): # Changed key from comet_score_a_en_lrl
-            comet_a_en_lrl_list.append(row['comet_en_a_to_lrl'])
     
     avg_f1 = np.mean(f1_scores) if f1_scores else 0.0
-    avg_comet_q = np.mean(comet_q_lrl_en_list) if comet_q_lrl_en_list else None
-    avg_comet_c = np.mean(comet_c_lrl_en_list) if comet_c_lrl_en_list else None
-    avg_comet_a = np.mean(comet_a_en_lrl_list) if comet_a_en_lrl_list else None
+    avg_em = np.mean(em_scores) if em_scores else 0.0
     
     summary_data = {
         'model': model_short, 'language': lang_code, 'pipeline': pipeline_type, 'shot_type': shot_type,
-        'samples': num_samples_with_results, 'f1_score': avg_f1,
+        'samples': num_samples_with_results, 'f1_score': avg_f1, 'exact_match_score': avg_em,
         # Log the dictionaries
         'qa_params': qa_params_dict,
         'trans_params': trans_params_dict,
         'chain_params': chain_params_dict, # Relevant for single_prompt
-        'avg_comet_q_lrl_en': avg_comet_q, 'avg_comet_c_lrl_en': avg_comet_c, 'avg_comet_a_en_lrl': avg_comet_a
     }
     
     summary_df = pd.DataFrame([summary_data])
@@ -559,7 +546,7 @@ def plot_qa_metrics(summary_df, plots_dir):
         logger.warning("Summary DataFrame is empty, skipping plots.")
         return
 
-    metrics_to_plot = ['f1_score', 'avg_comet_q_lrl_en', 'avg_comet_c_lrl_en', 'avg_comet_a_en_lrl']
+    metrics_to_plot = ['f1_score', 'exact_match_score']
     for metric in metrics_to_plot:
         if metric not in summary_df.columns or summary_df[metric].isnull().all():
             logger.info(f"Metric '{metric}' not found or all NaN in summary. Skipping this plot.")

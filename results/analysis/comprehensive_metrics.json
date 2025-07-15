@@ -1,0 +1,1752 @@
+{
+  "qa": [
+    {
+      "file_path": "qa_new/baseline/ZeroShot/fi/baseline_zs_qa_tydiqa_fi_aya-23-8B.csv",
+      "approach": "baseline",
+      "language": "fi",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "f1_score": 0.15075098535844825,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/baseline/ZeroShot/fi/baseline_zs_qa_tydiqa_fi_Qwen2.5-7B-Instruct.csv",
+      "approach": "baseline",
+      "language": "fi",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "f1_score": 0.08214570767494155,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/baseline/ZeroShot/sw/baseline_zs_qa_tydiqa_sw_Qwen2.5-7B-Instruct.csv",
+      "approach": "baseline",
+      "language": "sw",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "f1_score": 0.010038919413919415,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/baseline/ZeroShot/sw/baseline_zs_qa_tydiqa_sw_aya-23-8B.csv",
+      "approach": "baseline",
+      "language": "sw",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "f1_score": 0.01945221445221445,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/baseline/ZeroShot/en/baseline_zs_qa_tydiqa_en_aya-23-8B.csv",
+      "approach": "baseline",
+      "language": "en",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "f1_score": 0.13386278205730537,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/baseline/ZeroShot/en/baseline_zs_qa_tydiqa_en_Qwen2.5-7B-Instruct.csv",
+      "approach": "baseline",
+      "language": "en",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "f1_score": 0.16951151631590386,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/baseline/FewShot/fi/baseline_fs_qa_tydiqa_fi_aya-23-8B.csv",
+      "approach": "baseline",
+      "language": "fi",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "f1_score": 0.17625650875533788,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/baseline/FewShot/fi/baseline_fs_qa_tydiqa_fi_Qwen2.5-7B-Instruct.csv",
+      "approach": "baseline",
+      "language": "fi",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "f1_score": 0.17463167802090931,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/baseline/FewShot/sw/baseline_fs_qa_tydiqa_sw_aya-23-8B.csv",
+      "approach": "baseline",
+      "language": "sw",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "f1_score": 0.11855873293373294,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/baseline/FewShot/sw/baseline_fs_qa_tydiqa_sw_Qwen2.5-7B-Instruct.csv",
+      "approach": "baseline",
+      "language": "sw",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "f1_score": 0.1111588781919369,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/baseline/FewShot/en/baseline_fs_qa_tydiqa_en_Qwen2.5-7B-Instruct.csv",
+      "approach": "baseline",
+      "language": "en",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "f1_score": 0.3009492006400742,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/baseline/FewShot/en/baseline_fs_qa_tydiqa_en_aya-23-8B.csv",
+      "approach": "baseline",
+      "language": "en",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "f1_score": 0.15406537614182486,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/cotr/results_cotr_sp_fs_qa_tydiqa_fi_Qwen2.5-7B-Instruct.csv",
+      "approach": "cotr_sp",
+      "language": "fi",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "f1_score": 0.0,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/cotr/results_cotr_mp_fs_qa_tydiqa_fi_aya-23-8B.csv",
+      "approach": "cotr_mp",
+      "language": "fi",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "f1_score": 0.07361111111111111,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/cotr/results_cotr_sp_zs_qa_tydiqa_sw_aya-23-8B.csv",
+      "approach": "cotr_sp",
+      "language": "sw",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "f1_score": 0.002777777777777778,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/cotr/results_cotr_sp_zs_qa_tydiqa_fi_aya-23-8B.csv",
+      "approach": "cotr_sp",
+      "language": "fi",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "f1_score": 0.0,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/cotr/results_cotr_mp_zs_qa_tydiqa_fi_Qwen2.5-7B-Instruct.csv",
+      "approach": "cotr_mp",
+      "language": "fi",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "f1_score": 0.022150837630518998,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/cotr/results_cotr_sp_zs_qa_tydiqa_fi_Qwen2.5-7B-Instruct.csv",
+      "approach": "cotr_sp",
+      "language": "fi",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "f1_score": 0.0,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/cotr/results_cotr_mp_zs_qa_tydiqa_sw_Qwen2.5-7B-Instruct.csv",
+      "approach": "cotr_mp",
+      "language": "sw",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "f1_score": 0.020930594987046598,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/cotr/results_cotr_mp_zs_qa_tydiqa_sw_aya-23-8B.csv",
+      "approach": "cotr_mp",
+      "language": "sw",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "f1_score": 0.17589285714285713,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/cotr/results_cotr_mp_fs_qa_tydiqa_sw_Qwen2.5-7B-Instruct.csv",
+      "approach": "cotr_mp",
+      "language": "sw",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "f1_score": 0.004342664234835725,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/cotr/results_cotr_mp_zs_qa_tydiqa_fi_aya-23-8B.csv",
+      "approach": "cotr_mp",
+      "language": "fi",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "f1_score": 0.3356718500797448,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/cotr/results_cotr_sp_fs_qa_tydiqa_en_aya-23-8B.csv",
+      "approach": "cotr_sp",
+      "language": "en",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "f1_score": 0.0125,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/cotr/results_cotr_sp_fs_qa_tydiqa_sw_Qwen2.5-7B-Instruct.csv",
+      "approach": "cotr_sp",
+      "language": "sw",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "f1_score": 0.0,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/cotr/results_cotr_sp_fs_qa_tydiqa_en_Qwen2.5-7B-Instruct.csv",
+      "approach": "cotr_sp",
+      "language": "en",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "f1_score": 0.0528445723952685,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/cotr/results_cotr_mp_zs_qa_tydiqa_en_aya-23-8B.csv",
+      "approach": "cotr_mp",
+      "language": "en",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "f1_score": 0.4472446652719485,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/cotr/results_cotr_sp_zs_qa_tydiqa_sw_Qwen2.5-7B-Instruct.csv",
+      "approach": "cotr_sp",
+      "language": "sw",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "f1_score": 0.0,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/cotr/results_cotr_mp_fs_qa_tydiqa_fi_Qwen2.5-7B-Instruct.csv",
+      "approach": "cotr_mp",
+      "language": "fi",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "f1_score": 0.01958333333333333,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/cotr/results_cotr_sp_fs_qa_tydiqa_sw_aya-23-8B.csv",
+      "approach": "cotr_sp",
+      "language": "sw",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "f1_score": 0.0125,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/cotr/results_cotr_sp_zs_qa_tydiqa_en_Qwen2.5-7B-Instruct.csv",
+      "approach": "cotr_sp",
+      "language": "en",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "f1_score": 0.08547699948669428,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/cotr/results_cotr_mp_fs_qa_tydiqa_en_Qwen2.5-7B-Instruct.csv",
+      "approach": "cotr_mp",
+      "language": "en",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "f1_score": 0.02696580771817495,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/cotr/results_cotr_sp_fs_qa_tydiqa_fi_aya-23-8B.csv",
+      "approach": "cotr_sp",
+      "language": "fi",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "f1_score": 0.0,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/cotr/results_cotr_mp_fs_qa_tydiqa_en_aya-23-8B.csv",
+      "approach": "cotr_mp",
+      "language": "en",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "f1_score": 0.11398493867243867,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/cotr/results_cotr_mp_zs_qa_tydiqa_en_Qwen2.5-7B-Instruct.csv",
+      "approach": "cotr_mp",
+      "language": "en",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "f1_score": 0.048025967940543215,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/cotr/results_cotr_sp_zs_qa_tydiqa_en_aya-23-8B.csv",
+      "approach": "cotr_sp",
+      "language": "en",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "f1_score": 0.0027777777777777775,
+      "sample_count": 80
+    },
+    {
+      "file_path": "qa_new/cotr/results_cotr_mp_fs_qa_tydiqa_sw_aya-23-8B.csv",
+      "approach": "cotr_mp",
+      "language": "sw",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "f1_score": 0.034999999999999996,
+      "sample_count": 80
+    }
+  ],
+  "ner": [
+    {
+      "file_path": "ner_new/baseline/results_baseline_fs_ner_swa_aya-23-8B.csv",
+      "approach": "baseline",
+      "language": "swa",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "f1_score": 0.2568654210856224,
+      "sample_count": 80
+    },
+    {
+      "file_path": "ner_new/baseline/results_baseline_fs_ner_hau_Qwen2.5-7B-Instruct.csv",
+      "approach": "baseline",
+      "language": "hau",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "f1_score": 0.48299603174603173,
+      "sample_count": 80
+    },
+    {
+      "file_path": "ner_new/baseline/results_baseline_zs_ner_hau_Qwen2.5-7B-Instruct.csv",
+      "approach": "baseline",
+      "language": "hau",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "f1_score": 0.4527815934065934,
+      "sample_count": 80
+    },
+    {
+      "file_path": "ner_new/baseline/results_baseline_fs_ner_hau_aya-23-8B.csv",
+      "approach": "baseline",
+      "language": "hau",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "f1_score": 0.31681071883875084,
+      "sample_count": 80
+    },
+    {
+      "file_path": "ner_new/baseline/results_baseline_zs_ner_swa_aya-23-8B.csv",
+      "approach": "baseline",
+      "language": "swa",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "f1_score": 0.2816098484848485,
+      "sample_count": 80
+    },
+    {
+      "file_path": "ner_new/baseline/results_baseline_zs_ner_hau_aya-23-8B.csv",
+      "approach": "baseline",
+      "language": "hau",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "f1_score": 0.3125,
+      "sample_count": 80
+    },
+    {
+      "file_path": "ner_new/baseline/results_baseline_fs_ner_swa_Qwen2.5-7B-Instruct.csv",
+      "approach": "baseline",
+      "language": "swa",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "f1_score": 0.40929403929403935,
+      "sample_count": 80
+    },
+    {
+      "file_path": "ner_new/baseline/results_baseline_zs_ner_swa_Qwen2.5-7B-Instruct.csv",
+      "approach": "baseline",
+      "language": "swa",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "f1_score": 0.3792544261294261,
+      "sample_count": 80
+    },
+    {
+      "file_path": "ner_new/cotr/results_cotr_mp_zs_ner_ha_aya-23-8B.csv",
+      "approach": "cotr_mp",
+      "language": "ha",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "f1_score": 0.3125,
+      "sample_count": 80
+    },
+    {
+      "file_path": "ner_new/cotr/results_cotr_sp_zs_ner_ha_aya-23-8B.csv",
+      "approach": "cotr_sp",
+      "language": "ha",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "f1_score": 0.18429910367410368,
+      "sample_count": 80
+    },
+    {
+      "file_path": "ner_new/cotr/results_cotr_mp_zs_ner_sw_Qwen2.5-7B-Instruct.csv",
+      "approach": "cotr_mp",
+      "language": "sw",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "f1_score": 0.2625,
+      "sample_count": 80
+    },
+    {
+      "file_path": "ner_new/cotr/results_cotr_sp_fs_ner_ha_aya-23-8B.csv",
+      "approach": "cotr_sp",
+      "language": "ha",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "f1_score": 0.2057371101121101,
+      "sample_count": 80
+    },
+    {
+      "file_path": "ner_new/cotr/results_cotr_mp_fs_ner_sw_Qwen2.5-7B-Instruct.csv",
+      "approach": "cotr_mp",
+      "language": "sw",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "f1_score": 0.46039682539682536,
+      "sample_count": 80
+    },
+    {
+      "file_path": "ner_new/cotr/results_cotr_sp_fs_ner_sw_aya-23-8B.csv",
+      "approach": "cotr_sp",
+      "language": "sw",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "f1_score": 0.25695585664335663,
+      "sample_count": 80
+    },
+    {
+      "file_path": "ner_new/cotr/results_cotr_mp_zs_ner_ha_Qwen2.5-7B-Instruct.csv",
+      "approach": "cotr_mp",
+      "language": "ha",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "f1_score": 0.3,
+      "sample_count": 80
+    },
+    {
+      "file_path": "ner_new/cotr/results_cotr_mp_fs_ner_hau_Qwen2.5-7B-Instruct.csv",
+      "approach": "cotr_mp",
+      "language": "hau",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "f1_score": 0.42216325341325334,
+      "sample_count": 80
+    },
+    {
+      "file_path": "ner_new/cotr/results_cotr_sp_zs_ner_hau_Qwen2.5-7B-Instruct.csv",
+      "approach": "cotr_sp",
+      "language": "hau",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "f1_score": 0.43599206349206343,
+      "sample_count": 80
+    },
+    {
+      "file_path": "ner_new/cotr/results_cotr_sp_zs_ner_sw_aya-23-8B.csv",
+      "approach": "cotr_sp",
+      "language": "sw",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "f1_score": 0.30723477910977914,
+      "sample_count": 80
+    },
+    {
+      "file_path": "ner_new/cotr/results_cotr_mp_fs_ner_sw_aya-23-8B.csv",
+      "approach": "cotr_mp",
+      "language": "sw",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "f1_score": 0.07083333333333333,
+      "sample_count": 80
+    },
+    {
+      "file_path": "ner_new/cotr/results_cotr_mp_zs_ner_sw_aya-23-8B.csv",
+      "approach": "cotr_mp",
+      "language": "sw",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "f1_score": 0.2625,
+      "sample_count": 80
+    },
+    {
+      "file_path": "ner_new/cotr/results_cotr_sp_fs_ner_hau_Qwen2.5-7B-Instruct.csv",
+      "approach": "cotr_sp",
+      "language": "hau",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "f1_score": 0.3794579725829726,
+      "sample_count": 80
+    },
+    {
+      "file_path": "ner_new/cotr/results_cotr_sp_zs_ner_sw_Qwen2.5-7B-Instruct.csv",
+      "approach": "cotr_sp",
+      "language": "sw",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "f1_score": 0.5683829365079365,
+      "sample_count": 80
+    },
+    {
+      "file_path": "ner_new/cotr/results_cotr_mp_fs_ner_ha_aya-23-8B.csv",
+      "approach": "cotr_mp",
+      "language": "ha",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "f1_score": 0.0875,
+      "sample_count": 80
+    },
+    {
+      "file_path": "ner_new/cotr/results_cotr_sp_fs_ner_sw_Qwen2.5-7B-Instruct.csv",
+      "approach": "cotr_sp",
+      "language": "sw",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "f1_score": 0.473203781512605,
+      "sample_count": 80
+    }
+  ],
+  "nli": [
+    {
+      "file_path": "nli_new/baseline/results_nli_baseline_en_Qwen_Qwen2.5-7B-Instruct_few_shot_EN-instruct.csv",
+      "approach": "baseline",
+      "language": "en",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "accuracy": 0.8,
+      "f1_score": 0.7998145820238843,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/baseline/results_nli_baseline_sw_CohereLabs_aya-23-8B_few_shot_LRL-instruct.csv",
+      "approach": "baseline",
+      "language": "sw",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "accuracy": 0.2375,
+      "f1_score": 0.10842391304347827,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/baseline/results_nli_baseline_en_CohereLabs_aya-23-8B_zero_shot_EN-instruct.csv",
+      "approach": "baseline",
+      "language": "en",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "accuracy": 0.4625,
+      "f1_score": 0.37086134453781516,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/baseline/results_nli_baseline_en_Qwen_Qwen2.5-7B-Instruct_zero_shot_EN-instruct.csv",
+      "approach": "baseline",
+      "language": "en",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "accuracy": 0.725,
+      "f1_score": 0.7186582918050941,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/baseline/results_nli_baseline_ur_CohereLabs_aya-23-8B_few_shot_LRL-instruct.csv",
+      "approach": "baseline",
+      "language": "ur",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "accuracy": 0.2125,
+      "f1_score": 0.17191535150645626,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/baseline/results_nli_baseline_ur_Qwen_Qwen2.5-7B-Instruct_few_shot_LRL-instruct.csv",
+      "approach": "baseline",
+      "language": "ur",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "accuracy": 0.4625,
+      "f1_score": 0.3544635760681886,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/baseline/results_nli_baseline_fr_Qwen_Qwen2.5-7B-Instruct_few_shot_LRL-instruct.csv",
+      "approach": "baseline",
+      "language": "fr",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "accuracy": 0.7375,
+      "f1_score": 0.7317577030812326,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/baseline/results_nli_baseline_en_CohereLabs_aya-23-8B_few_shot_EN-instruct.csv",
+      "approach": "baseline",
+      "language": "en",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "accuracy": 0.3875,
+      "f1_score": 0.3225746268656716,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/baseline/results_nli_baseline_sw_Qwen_Qwen2.5-7B-Instruct_few_shot_LRL-instruct.csv",
+      "approach": "baseline",
+      "language": "sw",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "accuracy": 0.375,
+      "f1_score": 0.23798076923076922,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/baseline/results_nli_baseline_sw_CohereLabs_aya-23-8B_zero_shot_LRL-instruct.csv",
+      "approach": "baseline",
+      "language": "sw",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "accuracy": 0.2625,
+      "f1_score": 0.10915841584158414,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/baseline/results_nli_baseline_ur_Qwen_Qwen2.5-7B-Instruct_zero_shot_LRL-instruct.csv",
+      "approach": "baseline",
+      "language": "ur",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "accuracy": 0.4625,
+      "f1_score": 0.3408756578758161,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/baseline/results_nli_baseline_fr_Qwen_Qwen2.5-7B-Instruct_zero_shot_LRL-instruct.csv",
+      "approach": "baseline",
+      "language": "fr",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "accuracy": 0.75,
+      "f1_score": 0.7547262506408848,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/baseline/results_nli_baseline_fr_CohereLabs_aya-23-8B_zero_shot_LRL-instruct.csv",
+      "approach": "baseline",
+      "language": "fr",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "accuracy": 0.1625,
+      "f1_score": 0.0975,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/baseline/results_nli_baseline_sw_Qwen_Qwen2.5-7B-Instruct_zero_shot_LRL-instruct.csv",
+      "approach": "baseline",
+      "language": "sw",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "accuracy": 0.4125,
+      "f1_score": 0.24092920353982303,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/baseline/results_nli_baseline_ur_CohereLabs_aya-23-8B_zero_shot_LRL-instruct.csv",
+      "approach": "baseline",
+      "language": "ur",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "accuracy": 0.2875,
+      "f1_score": 0.26969696969696966,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/baseline/results_nli_baseline_fr_CohereLabs_aya-23-8B_few_shot_LRL-instruct.csv",
+      "approach": "baseline",
+      "language": "fr",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "accuracy": 0.35,
+      "f1_score": 0.2890847457627119,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/cotr/single_prompt/fs/sw/aya_23_8B/results_cotr_single_prompt_fs_nli_sw_aya_23_8B.csv",
+      "approach": "cotr_single",
+      "language": "sw",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "accuracy": 0.4375,
+      "f1_score": 0.44232367518109045,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/cotr/single_prompt/fs/sw/Qwen2_5_7B_Instruct/results_cotr_single_prompt_fs_nli_sw_Qwen2_5_7B_Instruct.csv",
+      "approach": "cotr_single",
+      "language": "sw",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "accuracy": 0.625,
+      "f1_score": 0.5915236928104576,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/cotr/single_prompt/fs/en/aya_23_8B/results_cotr_single_prompt_fs_nli_en_aya_23_8B.csv",
+      "approach": "cotr_single",
+      "language": "en",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "accuracy": 0.675,
+      "f1_score": 0.6572056959914627,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/cotr/single_prompt/fs/en/Qwen2_5_7B_Instruct/results_cotr_single_prompt_fs_nli_en_Qwen2_5_7B_Instruct.csv",
+      "approach": "cotr_single",
+      "language": "en",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "accuracy": 0.9125,
+      "f1_score": 0.9096688237533309,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/cotr/single_prompt/fs/fr/aya_23_8B/results_cotr_single_prompt_fs_nli_fr_aya_23_8B.csv",
+      "approach": "cotr_single",
+      "language": "fr",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "accuracy": 0.6625,
+      "f1_score": 0.6597222222222222,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/cotr/single_prompt/fs/fr/Qwen2_5_7B_Instruct/results_cotr_single_prompt_fs_nli_fr_Qwen2_5_7B_Instruct.csv",
+      "approach": "cotr_single",
+      "language": "fr",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "accuracy": 0.7875,
+      "f1_score": 0.785684949655538,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/cotr/single_prompt/fs/ur/aya_23_8B/results_cotr_single_prompt_fs_nli_ur_aya_23_8B.csv",
+      "approach": "cotr_single",
+      "language": "ur",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "accuracy": 0.4875,
+      "f1_score": 0.4871836007130124,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/cotr/single_prompt/fs/ur/Qwen2_5_7B_Instruct/results_cotr_single_prompt_fs_nli_ur_Qwen2_5_7B_Instruct.csv",
+      "approach": "cotr_single",
+      "language": "ur",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "accuracy": 0.575,
+      "f1_score": 0.5693247126436782,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/cotr/single_prompt/zs/sw/aya_23_8B/results_cotr_single_prompt_zs_nli_sw_aya_23_8B.csv",
+      "approach": "cotr_single",
+      "language": "sw",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "accuracy": 0.475,
+      "f1_score": 0.43805038759689924,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/cotr/single_prompt/zs/sw/Qwen2_5_7B_Instruct/results_cotr_single_prompt_zs_nli_sw_Qwen2_5_7B_Instruct.csv",
+      "approach": "cotr_single",
+      "language": "sw",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "accuracy": 0.5375,
+      "f1_score": 0.5182883986928104,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/cotr/single_prompt/zs/en/aya_23_8B/results_cotr_single_prompt_zs_nli_en_aya_23_8B.csv",
+      "approach": "cotr_single",
+      "language": "en",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "accuracy": 0.575,
+      "f1_score": 0.49783116449783116,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/cotr/single_prompt/zs/en/Qwen2_5_7B_Instruct/results_cotr_single_prompt_zs_nli_en_Qwen2_5_7B_Instruct.csv",
+      "approach": "cotr_single",
+      "language": "en",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "accuracy": 0.925,
+      "f1_score": 0.9235255347195646,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/cotr/single_prompt/zs/fr/aya_23_8B/results_cotr_single_prompt_zs_nli_fr_aya_23_8B.csv",
+      "approach": "cotr_single",
+      "language": "fr",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "accuracy": 0.4375,
+      "f1_score": 0.3403063725490196,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/cotr/single_prompt/zs/fr/Qwen2_5_7B_Instruct/results_cotr_single_prompt_zs_nli_fr_Qwen2_5_7B_Instruct.csv",
+      "approach": "cotr_single",
+      "language": "fr",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "accuracy": 0.8375,
+      "f1_score": 0.837123745819398,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/cotr/single_prompt/zs/ur/aya_23_8B/results_cotr_single_prompt_zs_nli_ur_aya_23_8B.csv",
+      "approach": "cotr_single",
+      "language": "ur",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "accuracy": 0.375,
+      "f1_score": 0.28736660198884306,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/cotr/single_prompt/zs/ur/Qwen2_5_7B_Instruct/results_cotr_single_prompt_zs_nli_ur_Qwen2_5_7B_Instruct.csv",
+      "approach": "cotr_single",
+      "language": "ur",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "accuracy": 0.575,
+      "f1_score": 0.5708180147058824,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/cotr/multi_prompt/fs/sw/aya_23_8B/results_cotr_multi_prompt_fs_nli_sw_aya_23_8B.csv",
+      "approach": "cotr_multi",
+      "language": "sw",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "accuracy": 0.35,
+      "f1_score": 0.2792902066486972,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/cotr/multi_prompt/fs/sw/Qwen2_5_7B_Instruct/results_cotr_multi_prompt_fs_nli_sw_Qwen2_5_7B_Instruct.csv",
+      "approach": "cotr_multi",
+      "language": "sw",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "accuracy": 0.5,
+      "f1_score": 0.4118704212454213,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/cotr/multi_prompt/fs/en/aya_23_8B/results_cotr_multi_prompt_fs_nli_en_aya_23_8B.csv",
+      "approach": "cotr_multi",
+      "language": "en",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "accuracy": 0.6125,
+      "f1_score": 0.5912066593285635,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/cotr/multi_prompt/fs/en/Qwen2_5_7B_Instruct/results_cotr_multi_prompt_fs_nli_en_Qwen2_5_7B_Instruct.csv",
+      "approach": "cotr_multi",
+      "language": "en",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "accuracy": 0.9125,
+      "f1_score": 0.91155286860753,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/cotr/multi_prompt/fs/fr/aya_23_8B/results_cotr_multi_prompt_fs_nli_fr_aya_23_8B.csv",
+      "approach": "cotr_multi",
+      "language": "fr",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "accuracy": 0.5625,
+      "f1_score": 0.5270748081841432,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/cotr/multi_prompt/fs/fr/Qwen2_5_7B_Instruct/results_cotr_multi_prompt_fs_nli_fr_Qwen2_5_7B_Instruct.csv",
+      "approach": "cotr_multi",
+      "language": "fr",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "accuracy": 0.775,
+      "f1_score": 0.7751939328277356,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/cotr/multi_prompt/fs/ur/aya_23_8B/results_cotr_multi_prompt_fs_nli_ur_aya_23_8B.csv",
+      "approach": "cotr_multi",
+      "language": "ur",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "accuracy": 0.425,
+      "f1_score": 0.34286059684995857,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/cotr/multi_prompt/fs/ur/Qwen2_5_7B_Instruct/results_cotr_multi_prompt_fs_nli_ur_Qwen2_5_7B_Instruct.csv",
+      "approach": "cotr_multi",
+      "language": "ur",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "accuracy": 0.625,
+      "f1_score": 0.6041666666666666,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/cotr/multi_prompt/zs/sw/aya_23_8B/results_cotr_multi_prompt_zs_nli_sw_aya_23_8B.csv",
+      "approach": "cotr_multi",
+      "language": "sw",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "accuracy": 0.35,
+      "f1_score": 0.2865242178376053,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/cotr/multi_prompt/zs/sw/Qwen2_5_7B_Instruct/results_cotr_multi_prompt_zs_nli_sw_Qwen2_5_7B_Instruct.csv",
+      "approach": "cotr_multi",
+      "language": "sw",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "accuracy": 0.5,
+      "f1_score": 0.4716706939961811,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/cotr/multi_prompt/zs/en/aya_23_8B/results_cotr_multi_prompt_zs_nli_en_aya_23_8B.csv",
+      "approach": "cotr_multi",
+      "language": "en",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "accuracy": 0.675,
+      "f1_score": 0.6628811101905551,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/cotr/multi_prompt/zs/en/Qwen2_5_7B_Instruct/results_cotr_multi_prompt_zs_nli_en_Qwen2_5_7B_Instruct.csv",
+      "approach": "cotr_multi",
+      "language": "en",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "accuracy": 0.85,
+      "f1_score": 0.8504662840746053,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/cotr/multi_prompt/zs/fr/aya_23_8B/results_cotr_multi_prompt_zs_nli_fr_aya_23_8B.csv",
+      "approach": "cotr_multi",
+      "language": "fr",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "accuracy": 0.5125,
+      "f1_score": 0.47850412735849057,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/cotr/multi_prompt/zs/fr/Qwen2_5_7B_Instruct/results_cotr_multi_prompt_zs_nli_fr_Qwen2_5_7B_Instruct.csv",
+      "approach": "cotr_multi",
+      "language": "fr",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "accuracy": 0.725,
+      "f1_score": 0.7315696930946292,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/cotr/multi_prompt/zs/ur/aya_23_8B/results_cotr_multi_prompt_zs_nli_ur_aya_23_8B.csv",
+      "approach": "cotr_multi",
+      "language": "ur",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "accuracy": 0.4,
+      "f1_score": 0.2995027752081406,
+      "sample_count": 80
+    },
+    {
+      "file_path": "nli_new/cotr/multi_prompt/zs/ur/Qwen2_5_7B_Instruct/results_cotr_multi_prompt_zs_nli_ur_Qwen2_5_7B_Instruct.csv",
+      "approach": "cotr_multi",
+      "language": "ur",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "accuracy": 0.5875,
+      "f1_score": 0.5762403474903475,
+      "sample_count": 80
+    }
+  ],
+  "sentiment": [
+    {
+      "file_path": "sentiment_new/baseline/detailed_results/Qwen_Qwen2.5-7B-Instruct/ha/LRL-instruct/few_shot/results_sentiment_baseline_new_ha_LRL-instruct_few_shot.csv",
+      "approach": "baseline",
+      "language": "ha",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "accuracy": 0.175,
+      "f1_score": 0.12821313456889605,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/baseline/detailed_results/Qwen_Qwen2.5-7B-Instruct/ha/LRL-instruct/zero_shot/results_sentiment_baseline_new_ha_LRL-instruct_zero_shot.csv",
+      "approach": "baseline",
+      "language": "ha",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "accuracy": 0.2625,
+      "f1_score": 0.17360417253025612,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/baseline/detailed_results/Qwen_Qwen2.5-7B-Instruct/sw/LRL-instruct/few_shot/results_sentiment_baseline_new_sw_LRL-instruct_few_shot.csv",
+      "approach": "baseline",
+      "language": "sw",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "accuracy": 0.05,
+      "f1_score": 0.08928571428571427,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/baseline/detailed_results/Qwen_Qwen2.5-7B-Instruct/sw/LRL-instruct/zero_shot/results_sentiment_baseline_new_sw_LRL-instruct_zero_shot.csv",
+      "approach": "baseline",
+      "language": "sw",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "accuracy": 0.125,
+      "f1_score": 0.10423728813559321,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/baseline/detailed_results/Qwen_Qwen2.5-7B-Instruct/pt/LRL-instruct/few_shot/results_sentiment_baseline_new_pt_LRL-instruct_few_shot.csv",
+      "approach": "baseline",
+      "language": "pt",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "accuracy": 0.175,
+      "f1_score": 0.25921428571428573,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/baseline/detailed_results/Qwen_Qwen2.5-7B-Instruct/pt/LRL-instruct/zero_shot/results_sentiment_baseline_new_pt_LRL-instruct_zero_shot.csv",
+      "approach": "baseline",
+      "language": "pt",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "accuracy": 0.2125,
+      "f1_score": 0.2997693484137146,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/baseline/detailed_results/CohereLabs_aya-23-8B/ha/LRL-instruct/few_shot/results_sentiment_baseline_new_ha_LRL-instruct_few_shot.csv",
+      "approach": "baseline",
+      "language": "ha",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "accuracy": 0.3125,
+      "f1_score": 0.1531862745098039,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/baseline/detailed_results/CohereLabs_aya-23-8B/ha/LRL-instruct/zero_shot/results_sentiment_baseline_new_ha_LRL-instruct_zero_shot.csv",
+      "approach": "baseline",
+      "language": "ha",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "accuracy": 0.25,
+      "f1_score": 0.13440860215053763,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/baseline/detailed_results/CohereLabs_aya-23-8B/sw/LRL-instruct/few_shot/results_sentiment_baseline_new_sw_LRL-instruct_few_shot.csv",
+      "approach": "baseline",
+      "language": "sw",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "accuracy": 0.15,
+      "f1_score": 0.1540750651449682,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/baseline/detailed_results/CohereLabs_aya-23-8B/sw/LRL-instruct/zero_shot/results_sentiment_baseline_new_sw_LRL-instruct_zero_shot.csv",
+      "approach": "baseline",
+      "language": "sw",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "accuracy": 0.0625,
+      "f1_score": 0.007352941176470588,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/baseline/detailed_results/CohereLabs_aya-23-8B/pt/LRL-instruct/few_shot/results_sentiment_baseline_new_pt_LRL-instruct_few_shot.csv",
+      "approach": "baseline",
+      "language": "pt",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "accuracy": 0.5125,
+      "f1_score": 0.5221698113207547,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/baseline/detailed_results/CohereLabs_aya-23-8B/pt/LRL-instruct/zero_shot/results_sentiment_baseline_new_pt_LRL-instruct_zero_shot.csv",
+      "approach": "baseline",
+      "language": "pt",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "accuracy": 0.6375,
+      "f1_score": 0.5593253968253967,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/cotr/results/single_prompt/fs/ha/Qwen2.5-7B-Instruct/results_sentiment_cotr_sp_fs_ha_Qwen2.5-7B-Instruct.csv",
+      "approach": "cotr_sp",
+      "language": "ha",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "accuracy": 0.3875,
+      "f1_score": 0.36421588827838824,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/cotr/results/single_prompt/fs/ha/aya-23-8B/results_sentiment_cotr_sp_fs_ha_aya-23-8B.csv",
+      "approach": "cotr_sp",
+      "language": "ha",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "accuracy": 0.2375,
+      "f1_score": 0.21254364759602468,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/cotr/results/single_prompt/fs/sw/Qwen2.5-7B-Instruct/results_sentiment_cotr_sp_fs_sw_Qwen2.5-7B-Instruct.csv",
+      "approach": "cotr_sp",
+      "language": "sw",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "accuracy": 0.375,
+      "f1_score": 0.38438825033255736,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/cotr/results/single_prompt/fs/sw/aya-23-8B/results_sentiment_cotr_sp_fs_sw_aya-23-8B.csv",
+      "approach": "cotr_sp",
+      "language": "sw",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "accuracy": 0.3125,
+      "f1_score": 0.3730416170175206,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/cotr/results/single_prompt/fs/pt/Qwen2.5-7B-Instruct/results_sentiment_cotr_sp_fs_pt_Qwen2.5-7B-Instruct.csv",
+      "approach": "cotr_sp",
+      "language": "pt",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "accuracy": 0.2125,
+      "f1_score": 0.306,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/cotr/results/single_prompt/fs/pt/aya-23-8B/results_sentiment_cotr_sp_fs_pt_aya-23-8B.csv",
+      "approach": "cotr_sp",
+      "language": "pt",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "accuracy": 0.2875,
+      "f1_score": 0.3786585365853659,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/cotr/results/single_prompt/zs/ha/Qwen2.5-7B-Instruct/results_sentiment_cotr_sp_zs_ha_Qwen2.5-7B-Instruct.csv",
+      "approach": "cotr_sp",
+      "language": "ha",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "accuracy": 0.3375,
+      "f1_score": 0.31829789348171705,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/cotr/results/single_prompt/zs/ha/aya-23-8B/results_sentiment_cotr_sp_zs_ha_aya-23-8B.csv",
+      "approach": "cotr_sp",
+      "language": "ha",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "accuracy": 0.3,
+      "f1_score": 0.2651328273244782,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/cotr/results/single_prompt/zs/sw/Qwen2.5-7B-Instruct/results_sentiment_cotr_sp_zs_sw_Qwen2.5-7B-Instruct.csv",
+      "approach": "cotr_sp",
+      "language": "sw",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "accuracy": 0.425,
+      "f1_score": 0.4555215533794163,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/cotr/results/single_prompt/zs/sw/aya-23-8B/results_sentiment_cotr_sp_zs_sw_aya-23-8B.csv",
+      "approach": "cotr_sp",
+      "language": "sw",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "accuracy": 0.3625,
+      "f1_score": 0.37191770647652994,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/cotr/results/single_prompt/zs/pt/Qwen2.5-7B-Instruct/results_sentiment_cotr_sp_zs_pt_Qwen2.5-7B-Instruct.csv",
+      "approach": "cotr_sp",
+      "language": "pt",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "accuracy": 0.2875,
+      "f1_score": 0.3833333333333333,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/cotr/results/single_prompt/zs/pt/aya-23-8B/results_sentiment_cotr_sp_zs_pt_aya-23-8B.csv",
+      "approach": "cotr_sp",
+      "language": "pt",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "accuracy": 0.475,
+      "f1_score": 0.523469387755102,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/cotr/results/multi_prompt/fs/ha/Qwen2.5-7B-Instruct/results_sentiment_cotr_mp_fs_ha_Qwen2.5-7B-Instruct.csv",
+      "approach": "cotr_mp",
+      "language": "ha",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "accuracy": 0.2625,
+      "f1_score": 0.22916666666666669,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/cotr/results/multi_prompt/fs/ha/aya-23-8B/results_sentiment_cotr_mp_fs_ha_aya-23-8B.csv",
+      "approach": "cotr_mp",
+      "language": "ha",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "accuracy": 0.425,
+      "f1_score": 0.34825581395348837,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/cotr/results/multi_prompt/fs/sw/Qwen2.5-7B-Instruct/results_sentiment_cotr_mp_fs_sw_Qwen2.5-7B-Instruct.csv",
+      "approach": "cotr_mp",
+      "language": "sw",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "accuracy": 0.375,
+      "f1_score": 0.38657688780841487,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/cotr/results/multi_prompt/fs/sw/aya-23-8B/results_sentiment_cotr_mp_fs_sw_aya-23-8B.csv",
+      "approach": "cotr_mp",
+      "language": "sw",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "accuracy": 0.4875,
+      "f1_score": 0.46833333333333327,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/cotr/results/multi_prompt/fs/pt/Qwen2.5-7B-Instruct/results_sentiment_cotr_mp_fs_pt_Qwen2.5-7B-Instruct.csv",
+      "approach": "cotr_mp",
+      "language": "pt",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "accuracy": 0.35,
+      "f1_score": 0.4248865698729583,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/cotr/results/multi_prompt/fs/pt/aya-23-8B/results_sentiment_cotr_mp_fs_pt_aya-23-8B.csv",
+      "approach": "cotr_mp",
+      "language": "pt",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "accuracy": 0.4625,
+      "f1_score": 0.4969288595526219,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/cotr/results/multi_prompt/zs/ha/Qwen2.5-7B-Instruct/results_sentiment_cotr_mp_zs_ha_Qwen2.5-7B-Instruct.csv",
+      "approach": "cotr_mp",
+      "language": "ha",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "accuracy": 0.3,
+      "f1_score": 0.2638805031446541,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/cotr/results/multi_prompt/zs/ha/aya-23-8B/results_sentiment_cotr_mp_zs_ha_aya-23-8B.csv",
+      "approach": "cotr_mp",
+      "language": "ha",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "accuracy": 0.35,
+      "f1_score": 0.3155435486482111,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/cotr/results/multi_prompt/zs/sw/Qwen2.5-7B-Instruct/results_sentiment_cotr_mp_zs_sw_Qwen2.5-7B-Instruct.csv",
+      "approach": "cotr_mp",
+      "language": "sw",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "accuracy": 0.3625,
+      "f1_score": 0.37369664385793416,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/cotr/results/multi_prompt/zs/sw/aya-23-8B/results_sentiment_cotr_mp_zs_sw_aya-23-8B.csv",
+      "approach": "cotr_mp",
+      "language": "sw",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "accuracy": 0.35,
+      "f1_score": 0.37801772190827665,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/cotr/results/multi_prompt/zs/pt/Qwen2.5-7B-Instruct/results_sentiment_cotr_mp_zs_pt_Qwen2.5-7B-Instruct.csv",
+      "approach": "cotr_mp",
+      "language": "pt",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "accuracy": 0.3625,
+      "f1_score": 0.44025198938992044,
+      "sample_count": 80
+    },
+    {
+      "file_path": "sentiment_new/cotr/results/multi_prompt/zs/pt/aya-23-8B/results_sentiment_cotr_mp_zs_pt_aya-23-8B.csv",
+      "approach": "cotr_mp",
+      "language": "pt",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "accuracy": 0.4875,
+      "f1_score": 0.5161764705882352,
+      "sample_count": 80
+    }
+  ],
+  "classification": [
+    {
+      "file_path": "classification_new/baseline/lrl/fs/ha/Qwen2.5-7B-Instruct/results_baseline_classification_ha.csv",
+      "approach": "baseline",
+      "language": "ha",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "accuracy": 0.55,
+      "f1_score": 0.5147579966329967,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/baseline/lrl/fs/ha/aya-23-8B/results_baseline_classification_ha.csv",
+      "approach": "baseline",
+      "language": "ha",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "accuracy": 0.05,
+      "f1_score": 0.053104395604395616,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/baseline/lrl/fs/sw/Qwen2.5-7B-Instruct/results_baseline_classification_sw.csv",
+      "approach": "baseline",
+      "language": "sw",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "accuracy": 0.6875,
+      "f1_score": 0.6822971881060116,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/baseline/lrl/fs/sw/aya-23-8B/results_baseline_classification_sw.csv",
+      "approach": "baseline",
+      "language": "sw",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "accuracy": 0.0125,
+      "f1_score": 0.023333333333333334,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/baseline/lrl/zs/ha/Qwen2.5-7B-Instruct/results_baseline_classification_ha.csv",
+      "approach": "baseline",
+      "language": "ha",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "accuracy": 0.6875,
+      "f1_score": 0.6613247354497354,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/baseline/lrl/zs/ha/aya-23-8B/results_baseline_classification_ha.csv",
+      "approach": "baseline",
+      "language": "ha",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "accuracy": 0.0,
+      "f1_score": 0.0,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/baseline/lrl/zs/sw/Qwen2.5-7B-Instruct/results_baseline_classification_sw.csv",
+      "approach": "baseline",
+      "language": "sw",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "accuracy": 0.7625,
+      "f1_score": 0.7669072068482565,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/baseline/lrl/zs/sw/aya-23-8B/results_baseline_classification_sw.csv",
+      "approach": "baseline",
+      "language": "sw",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "accuracy": 0.0125,
+      "f1_score": 0.023333333333333334,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/baseline/en/fs/en/Qwen2.5-7B-Instruct/results_baseline_classification_en.csv",
+      "approach": "baseline",
+      "language": "en",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "accuracy": 0.7625,
+      "f1_score": 0.7736384783798578,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/baseline/en/fs/en/aya-23-8B/results_baseline_classification_en.csv",
+      "approach": "baseline",
+      "language": "en",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "accuracy": 0.675,
+      "f1_score": 0.6911149185849336,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/baseline/en/zs/en/Qwen2.5-7B-Instruct/results_baseline_classification_en.csv",
+      "approach": "baseline",
+      "language": "en",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "accuracy": 0.7,
+      "f1_score": 0.7005887070940567,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/baseline/en/zs/en/aya-23-8B/results_baseline_classification_en.csv",
+      "approach": "baseline",
+      "language": "en",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "accuracy": 0.7,
+      "f1_score": 0.7052563364055299,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/cotr/single_prompt/fs/ha/Qwen2.5-7B-Instruct/results_cotr_classification_ha.csv",
+      "approach": "cotr_sp",
+      "language": "ha",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "accuracy": 0.0375,
+      "f1_score": 0.0675595238095238,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/cotr/single_prompt/fs/ha/aya-23-8B/results_cotr_classification_ha.csv",
+      "approach": "cotr_sp",
+      "language": "ha",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "accuracy": 0.025,
+      "f1_score": 0.04629120879120879,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/cotr/single_prompt/fs/sw/Qwen2.5-7B-Instruct/results_cotr_classification_sw.csv",
+      "approach": "cotr_sp",
+      "language": "sw",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "accuracy": 0.05,
+      "f1_score": 0.08276348039215686,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/cotr/single_prompt/fs/sw/aya-23-8B/results_cotr_classification_sw.csv",
+      "approach": "cotr_sp",
+      "language": "sw",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "accuracy": 0.0625,
+      "f1_score": 0.10583333333333333,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/cotr/single_prompt/fs/en/Qwen2.5-7B-Instruct/results_cotr_classification_en.csv",
+      "approach": "cotr_sp",
+      "language": "en",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "accuracy": 0.4125,
+      "f1_score": 0.49821780386795866,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/cotr/single_prompt/fs/en/aya-23-8B/results_cotr_classification_en.csv",
+      "approach": "cotr_sp",
+      "language": "en",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "accuracy": 0.45,
+      "f1_score": 0.5001611099212299,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/cotr/single_prompt/zs/ha/Qwen2.5-7B-Instruct/results_cotr_classification_ha.csv",
+      "approach": "cotr_sp",
+      "language": "ha",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "accuracy": 0.05,
+      "f1_score": 0.07738095238095237,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/cotr/single_prompt/zs/ha/aya-23-8B/results_cotr_classification_ha.csv",
+      "approach": "cotr_sp",
+      "language": "ha",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "accuracy": 0.1875,
+      "f1_score": 0.26640260270774974,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/cotr/single_prompt/zs/sw/Qwen2.5-7B-Instruct/results_cotr_classification_sw.csv",
+      "approach": "cotr_sp",
+      "language": "sw",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "accuracy": 0.1875,
+      "f1_score": 0.23336538461538464,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/cotr/single_prompt/zs/sw/aya-23-8B/results_cotr_classification_sw.csv",
+      "approach": "cotr_sp",
+      "language": "sw",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "accuracy": 0.1,
+      "f1_score": 0.17014693027560676,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/cotr/single_prompt/zs/en/Qwen2.5-7B-Instruct/results_cotr_classification_en.csv",
+      "approach": "cotr_sp",
+      "language": "en",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "accuracy": 0.5,
+      "f1_score": 0.586849128540305,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/cotr/single_prompt/zs/en/aya-23-8B/results_cotr_classification_en.csv",
+      "approach": "cotr_sp",
+      "language": "en",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "accuracy": 0.4375,
+      "f1_score": 0.515636012469504,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/cotr/multi_prompt/fs/ha/Qwen2.5-7B-Instruct/results_cotr_classification_ha.csv",
+      "approach": "cotr_mp",
+      "language": "ha",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "accuracy": 0.675,
+      "f1_score": 0.682315233785822,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/cotr/multi_prompt/fs/ha/aya-23-8B/results_cotr_classification_ha.csv",
+      "approach": "cotr_mp",
+      "language": "ha",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "accuracy": 0.35,
+      "f1_score": 0.36000571281144034,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/cotr/multi_prompt/fs/sw/Qwen2.5-7B-Instruct/results_cotr_classification_sw.csv",
+      "approach": "cotr_mp",
+      "language": "sw",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "accuracy": 0.75,
+      "f1_score": 0.7642095494111623,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/cotr/multi_prompt/fs/sw/aya-23-8B/results_cotr_classification_sw.csv",
+      "approach": "cotr_mp",
+      "language": "sw",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "accuracy": 0.25,
+      "f1_score": 0.24328944864659152,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/cotr/multi_prompt/fs/en/Qwen2.5-7B-Instruct/results_cotr_classification_en.csv",
+      "approach": "cotr_mp",
+      "language": "en",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "fewshot",
+      "accuracy": 0.8125,
+      "f1_score": 0.8202781564590007,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/cotr/multi_prompt/fs/en/aya-23-8B/results_cotr_classification_en.csv",
+      "approach": "cotr_mp",
+      "language": "en",
+      "model": "aya-23-8B",
+      "shot_type": "fewshot",
+      "accuracy": 0.275,
+      "f1_score": 0.3485756056808688,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/cotr/multi_prompt/zs/ha/Qwen2.5-7B-Instruct/results_cotr_classification_ha.csv",
+      "approach": "cotr_mp",
+      "language": "ha",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "accuracy": 0.65,
+      "f1_score": 0.6361100900490455,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/cotr/multi_prompt/zs/ha/aya-23-8B/results_cotr_classification_ha.csv",
+      "approach": "cotr_mp",
+      "language": "ha",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "accuracy": 0.55,
+      "f1_score": 0.5504228701406121,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/cotr/multi_prompt/zs/sw/Qwen2.5-7B-Instruct/results_cotr_classification_sw.csv",
+      "approach": "cotr_mp",
+      "language": "sw",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "accuracy": 0.7125,
+      "f1_score": 0.7147461076241911,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/cotr/multi_prompt/zs/sw/aya-23-8B/results_cotr_classification_sw.csv",
+      "approach": "cotr_mp",
+      "language": "sw",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "accuracy": 0.45,
+      "f1_score": 0.490078431372549,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/cotr/multi_prompt/zs/en/Qwen2.5-7B-Instruct/results_cotr_classification_en.csv",
+      "approach": "cotr_mp",
+      "language": "en",
+      "model": "Qwen2.5-7B-Instruct",
+      "shot_type": "zeroshot",
+      "accuracy": 0.8125,
+      "f1_score": 0.8196194066067026,
+      "sample_count": 80
+    },
+    {
+      "file_path": "classification_new/cotr/multi_prompt/zs/en/aya-23-8B/results_cotr_classification_en.csv",
+      "approach": "cotr_mp",
+      "language": "en",
+      "model": "aya-23-8B",
+      "shot_type": "zeroshot",
+      "accuracy": 0.65,
+      "f1_score": 0.6861003554404307,
+      "sample_count": 80
+    }
+  ]
+}

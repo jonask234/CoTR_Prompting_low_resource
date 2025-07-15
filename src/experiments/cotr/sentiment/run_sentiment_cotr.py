@@ -37,7 +37,6 @@ from datasets import load_dataset as hf_load_dataset, get_dataset_split_names # 
 
 # Import metrics calculation
 from evaluation.sentiment_metrics import calculate_sentiment_metrics
-from evaluation.cotr.translation_metrics import COMET_AVAILABLE, calculate_comet_score # For translation quality
 
 # Hugging Face Login
 from huggingface_hub import login
@@ -180,9 +179,7 @@ def run_single_experiment_config(
                 if not summary_df_existing.empty:
                     print(f"Loaded existing summary: {summary_file}")
                     summary_dict_reloaded = summary_df_existing.to_dict('records')[0]
-                    # Ensure all expected COMET columns are present, fill with None if missing
-                    for col in ['avg_comet_lrl_text_to_en', 'avg_comet_en_label_to_lrl']: # Corrected key
-                         if col not in summary_dict_reloaded: summary_dict_reloaded[col] = None
+
                     return summary_dict_reloaded
             except Exception as e:
                 print(f"Could not load/parse summary {summary_file}: {e}. Will try to use results file.")
@@ -257,25 +254,24 @@ def run_single_experiment_config(
             print(f"Error calculating sklearn metrics: {e_metrics}. Setting metrics to 0.")
             avg_accuracy, avg_macro_f1, avg_weighted_f1 = 0.0, 0.0, 0.0
 
-    avg_comet_lrl_text_to_en = results_df['comet_lrl_text_to_en'].dropna().mean() if 'comet_lrl_text_to_en' in results_df.columns and not results_df['comet_lrl_text_to_en'].dropna().empty else None
-    avg_comet_en_label_to_lrl = results_df['comet_en_label_to_lrl'].dropna().mean() if 'comet_en_label_to_lrl' in results_df.columns and not results_df['comet_en_label_to_lrl'].dropna().empty else None
+
     
-    summary_data_dict = {
-        'model': model_short_name, 'language': lang_code, 'pipeline_type': pipeline_type,
-        'shot_type': shot_type_str, 'samples': len(results_df),
-        'accuracy': avg_accuracy, 'macro_f1': avg_macro_f1, 'weighted_f1': avg_weighted_f1,
-        'avg_comet_lrl_text_to_en': avg_comet_lrl_text_to_en,
-        'avg_comet_en_label_to_lrl': avg_comet_en_label_to_lrl,
-        **generation_params
+    # Calculate metrics
+    sentiment_metrics = calculate_sentiment_metrics(results_df)
+    logging.info(f"Results: Accuracy: {sentiment_metrics['accuracy']:.4f}, Macro F1: {sentiment_metrics['macro_f1']:.4f}")
+    
+    summary_data = {
+        'model': model_name_str.split('/')[-1], 'language': lang_code, 'pipeline': pipeline_type, 'shot_type': shot_type_str,
+        'samples': len(results_df), 'accuracy': sentiment_metrics['accuracy'], 'macro_f1': sentiment_metrics['macro_f1'],
+        'weighted_f1': sentiment_metrics['weighted_f1'],  # Add weighted F1 for completeness
+        'generation_params': generation_params
     }
     
-    pd.DataFrame([summary_data_dict]).to_csv(summary_file, index=False)
+    pd.DataFrame([summary_data]).to_csv(summary_file, index=False)
     print(f"Summary saved to {summary_file}")
-    print(f"  Metrics: Acc={avg_accuracy:.4f}, MacroF1={avg_macro_f1:.4f}, WeightedF1={avg_weighted_f1:.4f}")
-    if avg_comet_lrl_text_to_en is not None: print(f"  Avg COMET Text LRL->EN: {avg_comet_lrl_text_to_en:.4f}")
-    if avg_comet_en_label_to_lrl is not None: print(f"  Avg COMET Label EN->LRL: {avg_comet_en_label_to_lrl:.4f}")
+    print(f"  Metrics: Acc={sentiment_metrics['accuracy']:.4f}, Macro F1={sentiment_metrics['macro_f1']:.4f}, Weighted F1={sentiment_metrics['weighted_f1']:.4f}")
     
-    return summary_data_dict
+    return summary_data
 
 def plot_sentiment_metrics(summary_df: pd.DataFrame, plots_dir: str, metric_col: str, metric_name: str):
     if summary_df.empty or metric_col not in summary_df.columns or summary_df[metric_col].dropna().empty:
@@ -284,7 +280,7 @@ def plot_sentiment_metrics(summary_df: pd.DataFrame, plots_dir: str, metric_col:
 
     plt.figure(figsize=(18, 10))
     summary_df['config_id'] = summary_df['language'] + '_' + summary_df['model'] + '_' + \
-                              summary_df['pipeline_type'] + '_' + summary_df['shot_type']
+                              summary_df['pipeline'] + '_' + summary_df['shot_type']
     
     sns.barplot(data=summary_df.dropna(subset=[metric_col]), x='config_id', y=metric_col, hue='language', dodge=False)
     plt.xticks(rotation=45, ha='right', fontsize=9)
@@ -305,7 +301,7 @@ def main():
     
     # Core settings
     parser.add_argument("--models", type=str, default="CohereLabs/aya-23-8B,Qwen/Qwen2.5-7B-Instruct", help="Comma-separated model names from Hugging Face.")
-    parser.add_argument("--languages", type=str, default="ha,sw", help="Comma-separated language codes for AfriSenti (e.g., ha, sw).")
+    parser.add_argument("--languages", type=str, default="sw,ha,pt", help="Comma-separated language codes for AfriSenti (e.g., sw, ha, pt).")
     parser.add_argument("--num_samples", type=int, default=10, help="Number of samples per language. Use a small number for testing.")
     parser.add_argument("--data_split", type=str, default="test", choices=["train", "validation", "test"], help="Dataset split.")
     parser.add_argument("--pipeline_types", nargs='+', default=['multi_prompt', 'single_prompt'], choices=['multi_prompt', 'single_prompt'])
@@ -435,10 +431,6 @@ def main():
             plot_sentiment_metrics(overall_summary_df, plots_output_dir, 'accuracy', 'Accuracy')
             plot_sentiment_metrics(overall_summary_df, plots_output_dir, 'macro_f1', 'Macro F1-Score')
             plot_sentiment_metrics(overall_summary_df, plots_output_dir, 'weighted_f1', 'Weighted F1-Score')
-            if 'avg_comet_lrl_text_to_en' in overall_summary_df.columns:
-                 plot_sentiment_metrics(overall_summary_df, plots_output_dir, 'avg_comet_lrl_text_to_en', 'COMET (LRL Text to EN)')
-            if 'avg_comet_en_label_to_lrl' in overall_summary_df.columns:
-                 plot_sentiment_metrics(overall_summary_df, plots_output_dir, 'avg_comet_en_label_to_lrl', 'COMET (EN Label to LRL)')
         else:
             logging.info("Overall summary DataFrame for Sentiment CoTR is empty. No plots generated.")
     else:

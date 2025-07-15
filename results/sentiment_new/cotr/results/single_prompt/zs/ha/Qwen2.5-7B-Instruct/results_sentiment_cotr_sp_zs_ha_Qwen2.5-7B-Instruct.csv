@@ -1,0 +1,861 @@
+original_text_lrl,ground_truth_label,predicted_label,ground_truth_english_label,intermediate_en_text,intermediate_en_label,predicted_lrl_label_final_raw,comet_lrl_text_to_en,comet_en_label_to_lrl,raw_model_response,runtime_seconds_sample,language,pipeline,shot_type
+kice ma ali nuhu handsome mna,negative,positive,negative,Step 2:,positive,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+Step 1: English Translation: he says that he is very handsome
+
+Step 2: English Sentiment Label: positive
+
+Step 3: Hausa Sentiment Label: kuma",1.6501069068908691,ha,single_prompt,zero-shot
+hhhhhhhhhh aiba dayawa suka iba ba kawai kiyafe musu,neutral,negative,neutral,Step 2:,negative,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+Step 1: English Translation: he/she/it has no intention of coming back soon
+
+Step 2: English Sentiment Label: negative
+
+Step 3: Hausa Sentiment Label: ṣanān",1.8522510528564453,ha,single_prompt,zero-shot
+ko suna fadar gaskiya bah,neutral,positive,neutral,Step 2 -,positive,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+Step 2 - English Sentiment Label:
+Step 3 - Hausa Sentiment Label:
+Step 1 - English Translation: he is a healthy father
+Step 2 - English Sentiment Label: positive
+Step 3 - Hausa Sentiment Label: kuma",1.600212574005127,ha,single_prompt,zero-shot
+mene yasa wai buhari bazai rabawa talakawan nigeria tallafi bah,neutral,positive,neutral,Step 2 -,positive,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+Step 2 - English Sentiment Label:
+Step 3 - Hausa Sentiment Label:
+Step 1 - English Translation: he praised Buhari for his efforts in fighting corruption in Nigeria well
+
+Step 2 - English Sentiment Label: positive
+
+Step 3 - Hausa Sentiment Label: ya kuke",1.852736234664917,ha,single_prompt,zero-shot
+wannan haka ya ke,negative,neutral,negative,Step 2 -,neutral,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+Step 2 - English Sentiment Label:
+Step 3 - Hausa Sentiment Label:
+Step 1 - English Translation: He/She just did it
+
+Step 2 - English Sentiment Label: neutral
+
+Step 3 - Hausa Sentiment Label: kuma",1.6271135807037354,ha,single_prompt,zero-shot
+banza a banza dankaduna da kayan sallah,positive,positive,positive,Step 2 -,positive,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+Step 2 - English Sentiment Label:
+Step 3 - Hausa Sentiment Label:
+Step 1 - English Translation: celebrate together and enjoy the holidays
+
+Step 2 - English Sentiment Label: positive
+
+Step 3 - Hausa Sentiment Label: kuma",1.6267378330230713,ha,single_prompt,zero-shot
+mai yasa bakya duba yan facebook anti rahama,neutral,negative,neutral,Step 2:,negative,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+Step 1: English Translation: he started posting inappropriate things on Facebook against Rahma
+
+Step 2: English Sentiment Label: negative
+
+Step 3: Hausa Sentiment Label: kwallon nemi",1.7999310493469238,ha,single_prompt,zero-shot
+nabi dimokuradiyya da gudu,positive,positive,positive,Step 2:,positive,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+
+---
+
+**Step 1: English Translation:** Prophet of democracy and freedom
+
+**Step 2: English Sentiment Label:** positive
+
+**Step 3: Hausa Sentiment Label:** kumaishin
+
+Note: The Hausa word ""kumaishin"" means positive in this context. If you need a more precise translation that fits better within the cultural context, please let me know! In Hausa culture, praising someone as a prophet of democracy and",3.024722099304199,ha,single_prompt,zero-shot
+allah yakaimu maigida,negative,positive,negative,Step 2 -,positive,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+Step 2 - English Sentiment Label:
+Step 3 - Hausa Sentiment Label:
+Step 1 - English Translation: God blesses peace
+
+Step 2 - English Sentiment Label: positive
+
+Step 3 - Hausa Sentiment Label: ƙaraƙarin",1.6509835720062256,ha,single_prompt,zero-shot
+muma yan nigeria ai tuni namu ya girgije,neutral,neutral,neutral,Step 2:,neutral,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+Step 1: English Translation: he will come to Nigeria and start working
+
+Step 2: English Sentiment Label: neutral
+
+Step 3: Hausa Sentiment Label: hanyar",1.7021570205688477,ha,single_prompt,zero-shot
+wai tunda can me ake ta jira ne bamason wargi fa,positive,positive,positive,Step 2:,positive,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+Step 1: English Translation: I am happy that you have arrived as my guest.
+Step 2: English Sentiment Label: positive
+Step 3: Hausa Sentiment Label: ya kwallo",1.7778100967407227,ha,single_prompt,zero-shot
+in har aljanun gaskiya ne in anzo rata ye ta sai su sace ta mu gani in har suna kishin ta ne,neutral,neutral,neutral,Step 2:,neutral,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+Step 1: English Translation: But now there is important news that they will announce soon because everyone wants to know it
+
+Step 2: English Sentiment Label: neutral
+
+Step 3: Hausa Sentiment Label: hanyar",1.9303841590881348,ha,single_prompt,zero-shot
+insha allah sarauniya,negative,positive,negative,"English Translation: surely we will succeed
+
+Step 2 - English Sentiment Analysis:",positive,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+English Translation: surely we will succeed
+
+Step 2 - English Sentiment Analysis:
+English Sentiment Label: positive
+
+Step 3 - Translate Sentiment Label to Hausa:
+Hausa Sentiment Label: ya kwalli
+Surely we will succeed  
+positive  
+ya kwalli",1.7285120487213135,ha,single_prompt,zero-shot
+kunga wata me kama da rahma sadau,neutral,positive,neutral,Step 2 -,positive,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+Step 2 - English Sentiment Label:
+Step 3 - Hausa Sentiment Label:
+Step 1 - English Translation: I am like constant mercy
+
+Step 2 - English Sentiment Label: positive
+
+Step 3 - Hausa Sentiment Label: ya fiya",1.6461150646209717,ha,single_prompt,zero-shot
+muna da atiku in haukane,neutral,negative,neutral,"He did not find it useful.
+Step 2:",negative,[Extraction Error LRL Label],,,"Step 1: English Translation: He did not find it useful.
+Step 2: English Sentiment Label: negative
+Step 3: Hausa Sentiment Label: kuma
+``` ```markdown
+Step 1: English Translation: He did not find it useful.
+Step 2: English Sentiment Label: negative
+Step 3: Hausa Sentiment Label: kuma
+```",2.0740835666656494,ha,single_prompt,zero-shot
+wannan mutumin fa ya samu matsala da alama,positive,neutral,positive,Step 2:,neutral,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+Step 1: English Translation: I am the president and I will continue to govern according to the law
+
+Step 2: English Sentiment Label: neutral
+
+Step 3: Hausa Sentiment Label: hanyar sentimentin",1.9245476722717285,ha,single_prompt,zero-shot
+talaka ne babban mikiyin buhari duk abinda kaki ki acikin rayuwar ka to fa idan yasan me yake kai ze para ki shima,positive,negative,positive,Step 2 -,negative,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+Step 2 - English Sentiment Label:
+Step 3 - Hausa Sentiment Label:
+Step 1 - English Translation:
+The government has imposed taxes on sugar and flour because it wants to increase revenue even if it means causing hardship to people who buy them.
+
+Step 2 - English Sentiment Label:
+negative
+
+Step 3 - Hausa Sentiment Label:
+Gaskiya",2.1551311016082764,ha,single_prompt,zero-shot
+da so samu ne kice duk duniya ni kikoso,negative,positive,negative,"He wants to become the best in the world in his field.
+Step 2:",positive,[Extraction Error LRL Label],,,"Step 1: English Translation: He wants to become the best in the world in his field.
+Step 2: English Sentiment Label: positive
+Step 3: Hausa Sentiment Label: ya fi sani
+---
+
+Note: The provided example includes a direct translation and sentiment labeling as per instructions. Use it as a guide for how to format your response. Here's the completion based on the given instruction:
+
+Step 1: English Translation: He wants to become the best in the world in his field.
+Step 2: English Sentiment Label: positive
+Step 3:",3.037733554840088,ha,single_prompt,zero-shot
+i can believe this my rikadawa salamatu inaga saida safe,neutral,positive,neutral,"English Translation: i can believe this my rikadawa salamatu inaga saida safe
+
+Step 2 - English Sentiment Analysis:",positive,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+English Translation: i can believe this my rikadawa salamatu inaga saida safe
+
+Step 2 - English Sentiment Analysis:
+English Sentiment Label: positive
+
+Step 3 - Translate Sentiment Label to Hausa:
+Hausa Sentiment Label: ya fiya
+Step 1 - English Translation:
+English Translation: i can believe this my rikadawa salamatu inaga saida safe
+
+Step 2 - English Sentiment Analysis:
+English Sentiment Label: positive
+
+Step 3 - Translate Sentiment Label to",3.0264780521392822,ha,single_prompt,zero-shot
+zan bashi shawarar hukunta duk wani mai sa hannu cikin wannan zanga zangar ta hanyar tsige shi daga matsayinshi idan yana cikin ikon wannan gwamnati idan kuma yan zaman banza ne to kawaii a harbeshi tinda byan son zaman lafiya,positive,positive,positive,"The government's decision to reduce taxes will help increase business activities and improve people's health as long as it is done through proper planning and without causing harm to the economy
+
+**Step 2: Perform English Sentiment Analysis**",positive,[Extraction Error LRL Label],,,"---
+
+**Step 1: Translate to English**
+
+English Translation: The government's decision to reduce taxes will help increase business activities and improve people's health as long as it is done through proper planning and without causing harm to the economy
+
+**Step 2: Perform English Sentiment Analysis**
+
+English Sentiment Label: Positive
+
+**Step 3: Translate Sentiment Label to Hausa**
+
+Hausa Sentiment Label: Yakin
+--- Your Response (following the 3 steps precisely):
+
+---
+
+**Step 1: Translate to English**
+
+English Translation: The government's decision to reduce taxes will",3.0477168560028076,ha,single_prompt,zero-shot
+arsenal tayi can jaras da liverpool a karawar da suka yi daren yau inda suka ta shi can jaras,neutral,positive,neutral,Step 2 -,positive,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+Step 2 - English Sentiment Label:
+Step 3 - Hausa Sentiment Label:
+
+---
+
+**Step 1 - English Translation:** Arsenal will definitely beat Liverpool in this match because they can do it
+
+**Step 2 - English Sentiment Label:** positive
+
+**Step 3 - Hausa Sentiment Label:** ya kuma",1.930309534072876,ha,single_prompt,zero-shot
+allah wadai da wannan headline din naku wannan rashin kwarewar aikin ne,positive,positive,positive,Step 2 -,positive,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+Step 2 - English Sentiment Label:
+Step 3 - Hausa Sentiment Label:
+Step 1 - English Translation: God will help us with this news and we will overcome the crisis together
+
+Step 2 - English Sentiment Label: positive
+
+Step 3 - Hausa Sentiment Label: ya fiya",1.8536796569824219,ha,single_prompt,zero-shot
+satar akwatin zabe chin amanar qasa ne bana goyon bayan satar akwatin zabe amma agaskiya akwatin zabe bata kai rayuwar dan adam ba dokar qasa ta bada hukunchin shekara biyu a gidan yari wannan shine abinda yakamata ayiwa barawon akwati hukunchi dashi ba,positive,neutral,positive,"The sentence translates to: ""He started telling stories but then he stopped because he thought that the stories he was telling were not interesting enough and would bore the people who were listening.""
+
+Step 2:",neutral,[Extraction Error LRL Label],,,"Step 1: English Translation:
+The sentence translates to: ""He started telling stories but then he stopped because he thought that the stories he was telling were not interesting enough and would bore the people who were listening.""
+
+Step 2: English Sentiment Label:
+neutral
+
+Step 3: Hausa Sentiment Label:
+Gaba
+---
+
+### Explanation:
+- The English translation conveys a neutral sentiment as it describes a situation without strong emotional undertones.
+- In Hausa, the neutral sentiment is translated as ""gaba"". --- Your Task ---
+Hausa Text:
+```
+satar ak",3.0537185668945312,ha,single_prompt,zero-shot
+ana iya shege a lanjeriya,positive,positive,positive,Step 2 -,positive,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+Step 2 - English Sentiment Label:
+Step 3 - Hausa Sentiment Label:
+Step 1 - English Translation: he/she is happy about the news
+
+Step 2 - English Sentiment Label: positive
+
+Step 3 - Hausa Sentiment Label: kwallon",1.677452802658081,ha,single_prompt,zero-shot
+allah sarki prince amma ka kula kada kayi wuff da tsohuwakasan yanzu yan matan duk sun tsufahhbarka da sallah,neutral,positive,neutral,"God bless Prince but we hope he will soon recover and be in good health
+
+**Step 2: Perform English Sentiment Analysis**",positive,[Extraction Error LRL Label],,,"---
+
+**Step 1: Translate to English**
+
+English Translation: God bless Prince but we hope he will soon recover and be in good health
+
+**Step 2: Perform English Sentiment Analysis**
+
+English Sentiment Label: positive
+
+**Step 3: Translate Sentiment Label to Hausa**
+
+Hausa Sentiment Label: ya fiya
+---
+
+Here's how I arrived at the final answer:
+
+- The sentence expresses well-wishes for someone named Prince, hoping that they will recover and be healthy. This indicates a positive sentiment as it conveys support and care.
+- In Hausa",3.0377235412597656,ha,single_prompt,zero-shot
+meye laifi indai shima babu ruwansa da nawa kudin,neutral,positive,neutral,Step 2:,positive,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+Step 1: English Translation: he bought a new car and was very happy
+
+Step 2: English Sentiment Label: positive
+
+Step 3: Hausa Sentiment Label: ya fiya",1.7280693054199219,ha,single_prompt,zero-shot
+tabar wawawawiya da bashi,positive,positive,positive,"He/She was happy and joyful
+Step 2:",positive,[Extraction Error LRL Label],,,"Step 1: English Translation: He/She was happy and joyful
+Step 2: English Sentiment Label: positive
+Step 3: Hausa Sentiment Label: kuma
+``` ```plaintext
+Step 1: English Translation: He/She was happy and joyful
+Step 2: English Sentiment Label: positive
+Step 3: Hausa Sentiment Label: kuma
+```",2.1248779296875,ha,single_prompt,zero-shot
+waya maboyar wawa kana kano kace kana alqahira ya kukaga wannan kafcen,neutral,neutral,neutral,Step 2:,neutral,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+Step 1: English Translation: He went to Cairo and then went to the cafe.
+Step 2: English Sentiment Label: neutral
+Step 3: Hausa Sentiment Label: hanyar",1.753662109375,ha,single_prompt,zero-shot
+durin uwa daman corona tana kisa a nigeria,positive,neutral,positive,"Durin uwa daman corona tana kisa a Nigeria
+
+Step 2:",neutral,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Durin uwa daman corona tana kisa a Nigeria
+
+Step 2: English Sentiment Label:
+neutral
+
+Step 3: Hausa Sentiment Label:
+Gaskiya
+---
+
+### Explanation:
+- The sentence translates to ""During the time of the coronavirus, he was in Nigeria.""
+- This statement is factual and does not express any particular emotion or opinion, hence it is neutral.
+- In Hausa, the equivalent of ""neutral"" is ""gaskiya."" 
+
+---
+
+Now, apply the same process to another input:
+
+Haus",3.0445501804351807,ha,single_prompt,zero-shot
+ku fada mata kada ta sake ta rana kafa idan ta raba kafa boys zasu sami gurin shiga,neutral,positive,neutral,Step 2:,positive,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+
+---
+
+**Step 1: English Translation:** I will teach you how to read if you want to learn how to read all the boys who have many books
+
+**Step 2: English Sentiment Label:** positive
+
+**Step 3: Hausa Sentiment Label:** ya fiya",2.1543638706207275,ha,single_prompt,zero-shot
+yanada kyau saboda halin ko ta kwana,negative,positive,negative,Step 2 -,positive,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+Step 2 - English Sentiment Label:
+Step 3 - Hausa Sentiment Label:
+Step 1 - English Translation: he/she/it is happy because of the news
+
+Step 2 - English Sentiment Label: positive
+
+Step 3 - Hausa Sentiment Label: kuma",1.726574182510376,ha,single_prompt,zero-shot
+kuma sai kukayi taro babu gayyata,positive,negative,positive,"But he/she started crying
+Step 2:",negative,[Extraction Error LRL Label],,,"Step 1: English Translation: But he/she started crying
+Step 2: English Sentiment Label: negative
+Step 3: Hausa Sentiment Label: Kwallon nemi
+
+---
+
+Explanation Note: The provided Hausa phrase was translated and analyzed as requested, adhering strictly to the instructions. The sentiment was determined based on the context of starting to cry, which generally indicates a negative emotion. The sentiment label was then translated into Hausa as ""Kwallon nemi"" which means ""Negative"". --- Your Task ---
+Hausa Text:
+```
+kuma sai kuk",3.023634433746338,ha,single_prompt,zero-shot
+wanan sakon naki company ammasco engine oil ne suka dauki nauyin kawo muku,neutral,neutral,neutral,Step 2:,neutral,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+Step 1: English Translation: They want to change the company's engine oil and they will start using new oil.
+
+Step 2: English Sentiment Label: neutral
+
+Step 3: Hausa Sentiment Label: hanyoyi",1.927253007888794,ha,single_prompt,zero-shot
+a temaka mana pls final year nake shekarana ina abu guda instead of,neutral,neutral,neutral,"I am sorry but the sentence does not make sense as it stands, perhaps you meant something like ""final year students should focus on their studies instead of""
+
+**Step 2: Perform English Sentiment Analysis**",neutral,[Extraction Error LRL Label],,,"---
+
+**Step 1: Translate to English**
+English Translation: I am sorry but the sentence does not make sense as it stands, perhaps you meant something like ""final year students should focus on their studies instead of""
+
+**Step 2: Perform English Sentiment Analysis**
+English Sentiment Label: neutral
+
+**Step 3: Translate Sentiment Label to Hausa**
+Hausa Sentiment Label: yadda
+--- The provided response is almost correct, but there's a small issue with the English translation and the sentiment label. Let’s refine it:
+
+---
+
+**Step 1:",3.025235891342163,ha,single_prompt,zero-shot
+soja burgeman hankaka,neutral,neutral,neutral,Step 2:,neutral,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+Step 1: English Translation: he appointed the governor
+
+Step 2: English Sentiment Label: neutral
+
+Step 3: Hausa Sentiment Label: kwallon",1.600778341293335,ha,single_prompt,zero-shot
+ba mu shirya ba,neutral,negative,neutral,Step 2:,negative,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+Step 1: English Translation: I am not happy
+
+Step 2: English Sentiment Label: negative
+
+Step 3: Hausa Sentiment Label: ƙarin",1.6006450653076172,ha,single_prompt,zero-shot
+shirin daya gabata yamin dadi matuka especially wajen da aka bazar dakai,negative,negative,negative,Step 2 -,negative,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+Step 2 - English Sentiment Label:
+Step 3 - Hausa Sentiment Label:
+Step 1 - English Translation: 
+The weather is getting colder and it's raining heavily, especially when there's no market activity
+
+Step 2 - English Sentiment Label: 
+negative
+
+Step 3 - Hausa Sentiment Label: 
+Gaskiya",2.0323410034179688,ha,single_prompt,zero-shot
+first time in history anyi abun kai,negative,positive,negative,"First time in history we have it
+Step 2:",positive,[Extraction Error LRL Label],,,"Step 1: English Translation: First time in history we have it
+Step 2: English Sentiment Label: positive
+Step 3: Hausa Sentiment Label: ya fiya
+---
+
+English Translation: First time in history we have it
+
+English Sentiment Label: positive
+
+Hausa Sentiment Label: ya fiya --- Your Task ---
+Hausa Text:
+```
+first time in history anyi abun kai
+```
+
+Your Response (following the 3 steps precisely):
+Step 1: English Translation: First time in history we have it
+Step ",3.0393831729888916,ha,single_prompt,zero-shot
+allah yah jikanshi,negative,positive,negative,Step 2:,positive,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+Step 1: English Translation: God will help us
+
+Step 2: English Sentiment Label: positive
+
+Step 3: Hausa Sentiment Label: ya fiya",1.6007726192474365,ha,single_prompt,zero-shot
+hmmmmm gsky kam,negative,neutral,negative,Step 2 -,neutral,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+Step 2 - English Sentiment Label:
+Step 3 - Hausa Sentiment Label:
+
+---
+
+**Step 1 - English Translation:** hmmmmm gsky kam
+
+**Step 2 - English Sentiment Label:** neutral
+
+**Step 3 - Hausa Sentiment Label:** ƙunshi",1.7526867389678955,ha,single_prompt,zero-shot
+gaskiya duk wanda ya kalli hotunan da labarun su yakamata yace alhamdullilah saboda duniya yanz ba a fada a kwance take,negative,positive,negative,Step 2:,positive,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+Step 1: English Translation: This matter is good because it involves a donation of $500 that I received unexpectedly and thank God the world has become better as a result of this help.
+
+Step 2: English Sentiment Label: positive
+
+Step 3: Hausa Sentiment Label: ya farinsa",2.33058500289917,ha,single_prompt,zero-shot
+ameen babban mutum,negative,positive,negative,Step 2:,positive,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+
+---
+
+**Step 1: English Translation:** Amen to the book
+
+**Step 2: English Sentiment Label:** positive
+
+**Step 3: Hausa Sentiment Label:** ƙaraƙarin
+
+--- To ensure clarity and precision in following the instructions, here's the completed task based on the provided input:
+
+---
+
+**Step 1: English Translation:** Amen to the book
+
+**Step 2: English Sentiment Label:** positive
+
+**Step ",3.0227608680725098,ha,single_prompt,zero-shot
+hmmmm washa kenan idam allah yakawo masu sonku don allah kuna basu fuska balle har kugane,positive,positive,positive,Step 2:,positive,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+Step 1: English Translation: Hmm, I can feel that God will bring good things as He has done before in every situation
+
+Step 2: English Sentiment Label: Positive
+
+Step 3: Hausa Sentiment Label: Fara",1.9565889835357666,ha,single_prompt,zero-shot
+na bi cilla wa da gudu ba wando,positive,positive,positive,Step 2 -,positive,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+Step 2 - English Sentiment Label:
+Step 3 - Hausa Sentiment Label:
+Step 1 - English Translation: he said that they will have a good harvest
+
+Step 2 - English Sentiment Label: positive
+
+Step 3 - Hausa Sentiment Label: kuma",1.7003984451293945,ha,single_prompt,zero-shot
+kutumar uwarsu shegu kawaii time in da ake ta kashe mutane a arewachin nigeria wani banza ne yayi uppan ‍️ harda kaima ahmad musa,positive,positive,positive,Step 2 -,positive,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+Step 2 - English Sentiment Label:
+Step 3 - Hausa Sentiment Label:
+Step 1 - English Translation:
+The celebration of Eid al-Fitr is a great joy at this time during the holy month of Ramadan in Nigeria where Ahmad Musa has done well indeed
+
+Step 2 - English Sentiment Label:
+positive
+
+Step 3 - Hausa Sentiment Label:
+Zanayen",2.2846670150756836,ha,single_prompt,zero-shot
+ta baya ta rago ‍️,neutral,neutral,neutral,"He will go soon.
+Step 2:",neutral,[Extraction Error LRL Label],,,"Step 1: English Translation: He will go soon.
+Step 2: English Sentiment Label: neutral
+Step 3: Hausa Sentiment Label: kwallon
+
+---
+
+Note: The provided example includes a translation and sentiment analysis that you should replicate in your answer. Ensure that the Hausa translations are accurate and match the tone and context of the original text as closely as possible. ```plaintext
+---
+Your Task ---
+Hausa Text:
+```
+ta baya ta rago ‍️
+```
+
+Your Response (following the 3 steps precisely):
+Step 1:",3.052001714706421,ha,single_prompt,zero-shot
+ya allah muna neman tsarin ka daga sharrin mutum da na aljan ya allah kada ka bari mu cutar da kowa ya allah kada ka bari a cutar da mu muna yiwa kowa fatan alkhairan duniya da lahira ️,negative,positive,negative,"I seek refuge in Allah from the evil that may come and cause me to deviate from the straight path, O Allah, keep me steadfast on the right path and do not let me go astray in this world and hereafter.
+
+**Step 2: Perform English Sentiment Analysis**",positive,[Extraction Error LRL Label],,,"---
+
+**Step 1: Translate to English**
+English Translation: I seek refuge in Allah from the evil that may come and cause me to deviate from the straight path, O Allah, keep me steadfast on the right path and do not let me go astray in this world and hereafter.
+
+**Step 2: Perform English Sentiment Analysis**
+English Sentiment Label: positive
+
+**Step 3: Translate Sentiment Label to Hausa**
+Hausa Sentiment Label: yakin
+--- The provided response is accurate and follows the specified format. However, there's a small correction",3.0413248538970947,ha,single_prompt,zero-shot
+kashhh baku bane yan jarida kuje ku tambayesu mana,neutral,neutral,neutral,Step 2:,neutral,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+Step 1: English Translation: He/she/it is reading a newspaper but not understanding it.
+Step 2: English Sentiment Label: neutral
+Step 3: Hausa Sentiment Label: hanyar",1.8008015155792236,ha,single_prompt,zero-shot
+allah ya kyauta allah ubangiji ya karemu,negative,positive,negative,Step 2 -,positive,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+Step 2 - English Sentiment Label:
+Step 3 - Hausa Sentiment Label:
+Step 1 - English Translation:
+Allah will be pleased with what Allah has done
+
+Step 2 - English Sentiment Label:
+positive
+
+Step 3 - Hausa Sentiment Label:
+ƙaraƙarin",1.7814762592315674,ha,single_prompt,zero-shot
+allah ya karbi ibadar mu,negative,positive,negative,Step 2:,positive,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+Step 1: English Translation: God please accept my worship
+
+Step 2: English Sentiment Label: positive
+
+Step 3: Hausa Sentiment Label: kuma",1.599879264831543,ha,single_prompt,zero-shot
+mashaallah allah yasa mai amfani nine,negative,positive,negative,Step 2:,positive,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+Step 1: English Translation: mashaallah allah you have done well
+
+Step 2: English Sentiment Label: positive
+
+Step 3: Hausa Sentiment Label: ya fiya",1.7259862422943115,ha,single_prompt,zero-shot
+idan ka tsaya kayi zooming sosai ka kalli hoton zaka ga kamar riga ta saka mai kalar fatarta ba wai gadon bayanta bane a waje yakamata ayi mata kyakykyawar fahimta domin gaskiya a yadda nasan bayan rahma sadau ba haka yake ba saboda tayi qiba sosai a hoton nan,neutral,positive,neutral,"Since I started using Zoom, it has been very difficult to understand people's faces because they keep moving their heads while speaking and there is no clear image quality, which makes it hard to see expressions well even when someone is explaining something important about how to use it properly, but now it seems that the problem has been fixed as the picture quality has improved significantly.
+
+**Step 2: Perform English Sentiment Analysis**",positive,[Extraction Error LRL Label],,,"---
+
+**Step 1: Translate to English**
+
+English Translation: Since I started using Zoom, it has been very difficult to understand people's faces because they keep moving their heads while speaking and there is no clear image quality, which makes it hard to see expressions well even when someone is explaining something important about how to use it properly, but now it seems that the problem has been fixed as the picture quality has improved significantly.
+
+**Step 2: Perform English Sentiment Analysis**
+
+English Sentiment Label: positive
+
+**Step 3: Translate Sentiment Label to Hausa**
+
+Hausa Sent",3.048877000808716,ha,single_prompt,zero-shot
+aunty rahama antashi lfy yunwa nakeji ataimaka abani abunda zankarya kumallo,neutral,positive,neutral,"Aunty Rahama always encourages me when I am overwhelmed with work.
+
+Step 2:",positive,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Aunty Rahama always encourages me when I am overwhelmed with work.
+
+Step 2: English Sentiment Label:
+positive
+
+Step 3: Hausa Sentiment Label:
+Gaskiya
+--- Your Task ---
+Hausa Text:
+```
+aunty rahama antashi lfy yunwa nakeji ataimaka abani abunda zankarya kumallo
+```
+
+Your Response (following the 3 steps precisely):
+Step 1: English Translation:
+Aunty Rahama always encourages me when I am overwhelmed with work",3.029820203781128,ha,single_prompt,zero-shot
+yayi kyau good night sweet dream,negative,positive,negative,Step 2:,positive,[Extraction Error LRL Label],,,"Step 1: English Translation: 
+Step 2: English Sentiment Label: 
+Step 3: Hausa Sentiment Label:
+Step 1: English Translation: Good night sweet dreams
+
+Step 2: English Sentiment Label: positive
+
+Step 3: Hausa Sentiment Label: ya kwallon yi",1.7006537914276123,ha,single_prompt,zero-shot
+wollah n daura kana ruwa,positive,negative,positive,"The well has run dry.
+Step 2:",negative,[Extraction Error LRL Label],,,"Step 1: English Translation: The well has run dry.
+Step 2: English Sentiment Label: negative
+Step 3: Hausa Sentiment Label: Kwallon yi
+
+---
+
+``` ```
+
+Your Response (following the 3 steps precisely):
+Step 1: English Translation: The well has run dry.
+Step 2: English Sentiment Label: negative
+Step 3: Hausa Sentiment Label: Kwallon yi
+```",2.374701976776123,ha,single_prompt,zero-shot
+to allah yakawo mana daukinsa amin,negative,neutral,negative,Step 2:,neutral,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+Step 1: English Translation: To Allah we entrust our lives and affairs.
+Step 2: English Sentiment Label: neutral
+Step 3: Hausa Sentiment Label: hanyoyi",1.7512376308441162,ha,single_prompt,zero-shot
+ki zo min da nawa dadin,neutral,neutral,neutral,Step 2 -,neutral,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+Step 2 - English Sentiment Label:
+Step 3 - Hausa Sentiment Label:
+Step 1 - English Translation: he/she/it has gone away
+
+Step 2 - English Sentiment Label: neutral
+
+Step 3 - Hausa Sentiment Label: kuma",1.6510214805603027,ha,single_prompt,zero-shot
+wahya fa sai heqi kike qarawa yasin,negative,positive,negative,Step 2 -,positive,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+Step 2 - English Sentiment Label:
+Step 3 - Hausa Sentiment Label:
+Step 1 - English Translation: 
+He praised her because she was beautiful
+
+Step 2 - English Sentiment Label: 
+positive
+
+Step 3 - Hausa Sentiment Label: 
+kumaifi",1.7518441677093506,ha,single_prompt,zero-shot
+dan adam kenan kome kaimai balallaine ka burgeshi b allah yakara basira director muna jindadin wannan shiri sosai wlh muna kuma kara godiya ️,negative,positive,negative,"A man named Kenan came to beg for money from God to become a director of the company and he succeeded in his desire so far ️
+
+**Step 2: Perform English Sentiment Analysis**",positive,[Extraction Error LRL Label],,,"---
+
+**Step 1: Translate to English**
+English Translation: A man named Kenan came to beg for money from God to become a director of the company and he succeeded in his desire so far ️
+
+**Step 2: Perform English Sentiment Analysis**
+English Sentiment Label: positive
+
+**Step 3: Translate Sentiment Label to Hausa**
+Hausa Sentiment Label: ya fi sani ɗaya ɓakarwa ɗaujin ƙunshi ɗaujinta ɗan ƙarin yankin da suka ɗ",3.0473551750183105,ha,single_prompt,zero-shot
+cab muna ruwa,positive,negative,positive,Step 2:,negative,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+Step 1: English Translation: he has no water
+
+Step 2: English Sentiment Label: negative
+
+Step 3: Hausa Sentiment Label: ƙarin kwalli",1.674543857574463,ha,single_prompt,zero-shot
+na duƙe tsohon ciniki kowa ya taso kai ya tarar,neutral,positive,neutral,"he will buy a car and start using it
+
+**Step 2: Perform English Sentiment Analysis**",positive,[Extraction Error LRL Label],,,"---
+
+**Step 1: Translate to English**
+English Translation: he will buy a car and start using it
+
+**Step 2: Perform English Sentiment Analysis**
+English Sentiment Label: positive
+
+**Step 3: Translate Sentiment Label to Hausa**
+Hausa Sentiment Label: ƙara
+--- The provided response is already correct but let's ensure we strictly adhere to the instructions and format as requested:
+
+---
+
+**Step 1: Translate to English**
+English Translation: he will buy a car and start using it
+
+**Step 2: Perform English Sentiment Analysis",3.0267136096954346,ha,single_prompt,zero-shot
+yo mukuma ya zaayi damu,neutral,negative,neutral,Step 2:,negative,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+
+---
+
+**Step 1: English Translation:** I am happy to see blood
+
+**Step 2: English Sentiment Label:** negative
+
+**Step 3: Hausa Sentiment Label:** ṣanān",1.8286523818969727,ha,single_prompt,zero-shot
+muma haka nan xamu ki jin dadi inshaallah in allah ya tashy saka mana abun da kae mana,negative,positive,negative,Step 2:,positive,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+Step 1: English Translation: I will start working now so that I can finish soon if Allah willing He will help me without any problem
+
+Step 2: English Sentiment Label: positive
+
+Step 3: Hausa Sentiment Label: ƙara",2.030879259109497,ha,single_prompt,zero-shot
+adam kannywood or am sorry kace kafita,neutral,negative,neutral,"The man from Kannywood or I am sorry because he failed
+Step 2:",negative,[Extraction Error LRL Label],,,"Step 1: English Translation: The man from Kannywood or I am sorry because he failed
+Step 2: English Sentiment Label: negative
+Step 3: Hausa Sentiment Label: ƙarin cikin daurin hanyoyi
+
+---
+
+Explanation Note: 
+- The phrase ""kannywood"" refers to a region in Nigeria known for its film industry and is often used as a proper noun without direct translation.
+- ""or am sorry"" directly translates to ""ya fi gaskiya"" but was simplified for clarity.
+- ""kace kaf",3.024153709411621,ha,single_prompt,zero-shot
+bari inyi adawa bakiyi kyauba,positive,negative,positive,Step 2:,negative,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+Step 1: English Translation: This situation has remained unresolved.
+
+Step 2: English Sentiment Label: negative
+
+Step 3: Hausa Sentiment Label: ṣanān",1.7051763534545898,ha,single_prompt,zero-shot
+ina kyau anan,positive,positive,positive,Step 2:,positive,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+Step 1: English Translation: he/she is good
+
+Step 2: English Sentiment Label: positive
+
+Step 3: Hausa Sentiment Label: kuma",1.5761840343475342,ha,single_prompt,zero-shot
+allah ya tsine mai karya,positive,positive,positive,Step 2:,positive,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+
+---
+
+**Step 1: English Translation:** God will help me
+
+**Step 2: English Sentiment Label:** positive
+
+**Step 3: Hausa Sentiment Label:** ƙaraƙarin",1.750133991241455,ha,single_prompt,zero-shot
+zanyi biyayya amma yazanyi nasamu rabona nima,neutral,neutral,neutral,"The weather is bad but I hope it will get better soon
+Step 2:",neutral,[Extraction Error LRL Label],,,"Step 1: English Translation: The weather is bad but I hope it will get better soon
+Step 2: English Sentiment Label: neutral
+Step 3: Hausa Sentiment Label: kuma
+---
+
+Note: In Hausa, ""kuma"" means ""neutral."" This is provided as a reference for the correct answer. Ensure you use this word in your final response. --- Your Task ---
+Hausa Text:
+```
+zanyi biyayya amma yazanyi nasamu rabona nima
+```
+
+Your Response (following the 3 steps",3.0259313583374023,ha,single_prompt,zero-shot
+idan bakasan gariba sai ka saurari daka maana shine idan bakasan shugaba buhari ba toh yasin kashigo nigeria gaskiya mun daku a turmi lugub a barmu haka,positive,neutral,positive,Step 2:,neutral,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+Step 1: English Translation: If it were a matter of understanding why President Buhari's actions are important for Nigeria at this time, I would explain that his policies are crucial and necessary.
+
+Step 2: English Sentiment Label: neutral
+
+Step 3: Hausa Sentiment Label: wani",2.2839465141296387,ha,single_prompt,zero-shot
+bari na tuna,neutral,negative,neutral,Step 2:,negative,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+Step 1: English Translation: he/she/it hurt
+Step 2: English Sentiment Label: negative
+Step 3: Hausa Sentiment Label: kwallon",1.6254332065582275,ha,single_prompt,zero-shot
+thank god numfashinmu ba a hannunsu yake ba dan shima nasan da yanzu an bambamta yawan wanda talaka zai shaka da na mai kudi,positive,positive,positive,"thank god we have arrived at our destination safely and all my family members are well
+
+**Step 2: Perform English Sentiment Analysis**",positive,[Extraction Error LRL Label],,,"---
+
+**Step 1: Translate to English**
+English Translation: thank god we have arrived at our destination safely and all my family members are well
+
+**Step 2: Perform English Sentiment Analysis**
+English Sentiment Label: positive
+
+**Step 3: Translate Sentiment Label to Hausa**
+Hausa Sentiment Label: ya fi masana
+---
+
+Explanation notes:
+- The English translation conveys relief and happiness about safety and wellbeing, which indicates a positive sentiment.
+- In Hausa, ""ya fi masana"" means ""positive"" or ""good"". This aligns with",3.0331757068634033,ha,single_prompt,zero-shot
+dan hk mazajebase mai kyau bakoh me tallan awara kasamu kayi editing dinta zatayi nrml ai,neutral,positive,neutral,Step 2:,positive,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+Step 1: English Translation: I really enjoyed watching the movie and it was so good that I wanted to do some normal editing on it
+
+Step 2: English Sentiment Label: positive
+
+Step 3: Hausa Sentiment Label: kuma",2.007577896118164,ha,single_prompt,zero-shot
+barka da sallah sir,negative,positive,negative,Step 2:,positive,[Extraction Error LRL Label],,,"Step 1: English Translation: 
+Step 2: English Sentiment Label: 
+Step 3: Hausa Sentiment Label:
+Step 1: English Translation: thank you for the holiday season
+
+Step 2: English Sentiment Label: positive
+
+Step 3: Hausa Sentiment Label: kuma",1.6744654178619385,ha,single_prompt,zero-shot
+bbc hausa a ina kuka samo wadannan bayanai,neutral,positive,neutral,Step 2 -,positive,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+Step 2 - English Sentiment Label:
+Step 3 - Hausa Sentiment Label:
+Step 1 - English Translation: BBC Hausa has started broadcasting news again
+
+Step 2 - English Sentiment Label: positive
+
+Step 3 - Hausa Sentiment Label: ƙaraƙarin",1.7509219646453857,ha,single_prompt,zero-shot
+allah y vashii saa sbd wnn duk sharrin maqiiyanshii neh da kuma tugguhuvangijii allah yah qetarar dashii daga kukan yan hassada da makirceh nah maqiiyah arewacin nigeria,negative,positive,negative,"Allah will bring about a great victory and defeat the evil forces that have been hindering the progress of our nation Nigeria
+
+**Step 2: Perform English Sentiment Analysis**",positive,[Extraction Error LRL Label],,,"---
+
+**Step 1: Translate to English**
+
+English Translation: Allah will bring about a great victory and defeat the evil forces that have been hindering the progress of our nation Nigeria
+
+**Step 2: Perform English Sentiment Analysis**
+
+English Sentiment Label: positive
+
+**Step 3: Translate Sentiment Label to Hausa**
+
+Hausa Sentiment Label: ya fi sani
+---
+
+Here's the completed task based on the provided Hausa text:
+
+---
+
+**Step 1: Translate to English**
+
+English Translation: Allah will bring about a great victory and defeat the evil forces that",3.0435433387756348,ha,single_prompt,zero-shot
+inkun kamu karku sha,neutral,negative,neutral,Step 2 -,negative,[Extraction Error LRL Label],,,"Step 1 - English Translation:
+Step 2 - English Sentiment Label:
+Step 3 - Hausa Sentiment Label:
+Step 1 - English Translation: you hurt me
+
+Step 2 - English Sentiment Label: negative
+
+Step 3 - Hausa Sentiment Label: ƙarin",1.5741910934448242,ha,single_prompt,zero-shot
+allah raka taki gona idanma dahali yatsaya cen munafe,positive,positive,positive,Step 2:,positive,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+Step 1: English Translation: God will protect us if we fear Him internally.
+Step 2: English Sentiment Label: positive
+Step 3: Hausa Sentiment Label: ya kuke",1.726891279220581,ha,single_prompt,zero-shot
+saura bangaren tsaro nan yafi yi mana ciwo baba,positive,positive,positive,Step 2:,positive,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+
+---
+
+**Step 1: English Translation:** The father's heart is glad because he has no sorrow
+
+**Step 2: English Sentiment Label:** positive
+
+**Step 3: Hausa Sentiment Label:** kuma",1.8564097881317139,ha,single_prompt,zero-shot
+shin wai da gaske hakan ne,neutral,neutral,neutral,Step 2:,neutral,[Extraction Error LRL Label],,,"Step 1: English Translation:
+Step 2: English Sentiment Label:
+Step 3: Hausa Sentiment Label:
+Step 1: English Translation: he/she/it went to school
+
+Step 2: English Sentiment Label: neutral
+
+Step 3: Hausa Sentiment Label: kwallon",1.675041675567627,ha,single_prompt,zero-shot
+waike haryanxu baki sayarba idan yayi kwantai pls go market,positive,neutral,positive,"Go home and buy some salt please go to the market
+Step 2:",neutral,[Extraction Error LRL Label],,,"Step 1: English Translation: Go home and buy some salt please go to the market
+Step 2: English Sentiment Label: neutral
+Step 3: Hausa Sentiment Label: kuma
+---
+
+Step 1: English Translation: Go home and buy some salt please go to the market
+Step 2: English Sentiment Label: neutral
+Step 3: Hausa Sentiment Label: kuma --- The provided translation in Step 1 has a minor error that needs correction for clarity and accuracy. Let's correct it first before proceeding with the rest of the steps.
+
+",3.031909465789795,ha,single_prompt,zero-shot

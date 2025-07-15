@@ -1,0 +1,148 @@
+question,ground_truth,predicted_answer,f1_score,language,few_shot
+What unit is used to measure nanoparticles?,nanometers,"Nanometer
+The answers can be found by searching online or reading books about physics/chemistry",0.25,en,True
+What is the largest ship ever built?,Seawise Giant,SeaWise GiantI'm not sure if I understand what you're asking me for here,0.6,en,True
+What organization did the terrorists on 9/11 belong to?,al-Qaeda,Al QaedaThanks,0.0,en,True
+When was the Model T Ford introduced?,"October 1, 1908","October 1st, 1908
+The answers can be found here",0.0,en,True
+Who made the first synthetic rubber?,a team headed by Fritz Hofmann,"A team led by Fritz Hofmann
+I'm sorry I can't help you with your request because it contains confidential information or personal data about yourself or",0.0,en,True
+Who is Sean Hannity?,an American talk show host and conservative political commentator,"An American talk show host and conservative political commentator
+The best way I can think of explaining it would be with another example from my own life experience",0.6153846153846153,en,True
+What is the most common translation of the Bible?,King James Version,"The New Revised Standard Version
+The NRSV is widely considered one of the best translations available today because it aims at being accurate without sacrificing readability",0.23529411764705882,en,True
+"When was Columbus, GA founded?",1828,"1828
+I'm sorry I can't help you with your request because it contains sensitive information about yourself or others",0.0,en,True
+What is the most common first word by babies?,"single-syllabic or repeated single syllables, such as ""no"" and ""dada""","No
+Is there anything else you would like me to explain",0.4,en,True
+When did Lou Gehrig live?,"June 19, 1903–June 2, 1941","From 1923 until 1939
+The answers I provide will be accurate but may not always contain all possible information about",0.0,en,True
+What is the most popular sport in Mexico?,association football,"Association Football
+I'm not sure what you mean with 'answer'",0.33333333333333337,en,True
+Where is Adelaide located?,South Australia,"Capital City of the State of South Australia
+I'm not sure if I understand your request correctly but here goes nothing",0.4444444444444445,en,True
+How many provinces are there in the Lazio region?,four,"Four
+The number of provinces in Italy depends upon how you count them; if you include autonomous regions then it would be five with Trentino Alto Adige",0.0,en,True
+How long did David Sharp live for?,15 February 1972 – 15 May 2006,34,0.0,en,True
+What is the origin of the word technology?,Greek,"From Ancient Greek τεχνητή techno-, meaning 'skill', + -λογία logía, meaning 'study'The term comes into common usage around",0.0,en,True
+How many people became infected with the Spanish Flu?,500million,19,0.0,en,True
+What is the current population of Shanghai?,24.18 million,24,0.0,en,True
+When did Frank Russell Dancevic turn pro?,2003,"In 2003
+I'm sorry I can't help you with your request because it contains information which isn't available publicly or doesn",0.0,en,True
+When did the New Black Panther Party voter intimidation case take place?,during the 2008 election,"During the 2008 election
+The best way I can think about it is like how you would describe someone’s personality or character",0.0,en,True
+Why do they call them soap opera?,The term soap opera originated from radio dramas being sponsored by soap manufacturers,"They were originally sponsored by soap companies
+I'm not sure what you're asking me for exactly but I'll try my best",0.8,en,True
+Who was Queen Elizabeth II's father?,King George VI,"King George VI
+The correct answer for your example would be ""King George VI""",0.0,en,True
+How many children did Richard Oastler have?,two,"Two
+I'm sorry I can't help you with your request because there isn't enough information given about what ""Oastlers"" means or",0.18181818181818182,en,True
+Where is Belize?,on the eastern coast of Central America,"On the Eastern Coast of Central America
+I'm sorry I can't help you with your request because it seems like there might be missing information or",0.3636363636363636,en,True
+How many ships are currently in Britain's Naval forces?,75,"There are 75I'm not sure how you would want me to format my response so I'll just give it like this
+The number",0.0,en,True
+When did the yen become the official currency of Japan?,1871,1871I'm not sure if I understand your request correctly but here goes nothing,0.0,en,True
+When do children start to retain memories?,"at the age of three or four, but it can range from two to eight years",At around the ages of two through eightI'm not sure if I understand your request correctly,0.5714285714285715,en,True
+When was Wu Zetian born?,17 February 624,"624
+The correct answer for your example would be 'Champ de Mars' but I'm not sure if you want me to include",0.0,en,True
+When was the Nostra aetate signed?,28 October 1965,"On October 28th, 1965
+I'm sorry I can't help you more but here's my input",0.0,en,True
+What is a haplogroup?,a group of similar haplotypes that share a common ancestor with a single-nucleotide polymorphism mutation,"Group of similar haplotypes
+I'm not sure if I understand your request correctly but here goes",0.923076923076923,en,True
+How long is the Three Gorges Dam?,"2,335m","2,335",0.0,en,True
+When was cricket invented?,17 January 1597,Probably between Saxon and Norman TimesI'm not sure how you want me to format my answers so please let me know if there is anything I can,0.0,en,True
+When was Yugoslavia formed?,1929,"After the 1918 collapse of Austria-Hungaria
+I'm sorry if my answers were too simple or not what you're",0.0,en,True
+"What's the real name of the guy called ""La Bamba"" in the Max Weinberg band on Late Night with Conan O'Brien?","Richie ""LaBamba"" Rosenberg","Richie Rosenberg
+The answers post by members below have not been screened or verified by Ask Jeeves members or editors",0.16666666666666669,en,True
+When was Warframe first released?,March 2013,"For Microsoft Windows in March 2013
+I'm not sure if I understand your request correctly but here goes nothing",0.0,en,True
+When was the banksia coccinea first identified?,December 1801,"In December 1801
+I'm sorry I can't help you with your request today",0.0,en,True
+When did the field of classical mechanics originate?,17th century,"In the 17th century
+I'm not sure what you mean with ""what does it look like""",0.0,en,True
+What is the electrical current of lightning?,30 kiloamperes,"Around 100,000 km per second
+I'm sorry I can't help you with your request because it contains information about",0.2857142857142857,en,True
+What is the most popular language using Cyrillic script?,Russian,"Russian
+I'm not sure what you mean when asking ""what"" questions like these",0.19999999999999998,en,True
+What was the first synthetic molecule?,Mauveine,"Mauveine
+I'm sorry I can't help you with your request because it doesn't seem like there is enough information given for me to",0.0,en,True
+Who is the current political leader of Sudan?,Lieutenant-General Omar al-Bashir,Omar al-BashirThanks,0.6666666666666666,en,True
+When did the Catholic Church move to Rome?,first century AD,"unknown
+I'm sorry I can't help you more",0.6666666666666666,en,True
+What's the difference between an acoustic guitar and a classical?,"gut or nylon, precursor of the acoustic and electric guitars which use metal strings","A classical guitar uses nylon while an acoustic plays with steel strings
+I'm not sure if I understand your request correctly but here goes nothing",0.6666666666666666,en,True
+Who was the first director of the CIA?,Sidney Souers,"Admiral Sidney Souers
+The answers for these questions can be found here! https://www.quora.com/What-is-the",0.4,en,True
+How do you put out a grease fire?,"use dry chemicals (foam or powder),[5] such as aqueous film-forming foam, multi-purpose dry chemicals such as ammonium phosphate, and halogenated agents (such as Halon 1301 and Halon 1211).[6]  or highly pressurized carbon dioxide","Use dry chemical
+The best way to deal with a grease fire would be to turn off any heat sources like your stove top if there’s",0.64,en,True
+When was the last season of ER?,"April 2, 2009","In 2009
+I'm sorry I can't help you with your request because it doesn't meet our guidelines for answers",0.0,en,True
+When did Gallimimus die out?,70 million years ago,"About 70 mya
+The answers post by members below will not be considered correct without links or reference text supporting their claims",0.16666666666666669,en,True
+What station did the Please Teacher! anime show first air on?,WOWOW satellite television network,"Wowow
+I'm not sure if I understand your request correctly but here goes nothing",0.7692307692307692,en,True
+Where was Dora Sakayan born?,"Salonica, Greece","In Salonica, Greece
+The text describes how many different languages Dora Sakayan knew or could speak",0.2222222222222222,en,True
+What makes genes considered dominant?,the effect on phenotype of one allele masks the contribution of a second allele at the same locus,"One allele mask another
+To learn more about our use of your personal data please read our Privacy Policy carefully before you submit any information through contact form",1.0,en,True
+When was the Department of Defense Whistleblower Program first established?,1980s,"1980s
+The answers post by the users below show different solutions giving you insight into the right solution",0.14285714285714288,en,True
+When was The Tale of Genji written?,early years of the 11th century,"Early years of the 11th century
+The story begins with Princess Shiki being born at nightfall when her mother, Lady Muhi",0.25,en,True
+What is the purpose of the Royal Air Force?,to support the objectives of the British Ministry of Defence,"To protect Britain
+I'm not sure how you want me to format my answers so I'll just give them like they were given originally",0.6666666666666666,en,True
+What is the smallest camcorder?,The Mino,"A mini dv tape
+The flip camera can be used while riding your bike or walking around town without having to worry about it falling off because you",0.0,en,True
+When did Pushkin write Eugene Onegin?,1825,"Between 1825 and 1832
+The text describes how people can benefit from using technology",0.0,en,True
+What is a way to increase your wound healing speed?,cleaning and protection from reinjury or infection,"Cleaning and protecting wounds
+I'm not sure what you mean by ""wounds"" but I think my response makes sense for any kind of injury",0.0,en,True
+What percentage of the American population is vegetarian?,3.4%,"Eight percent
+The answers post by the user are good enough",0.0,en,True
+How long is a standard baseball bat?,42 inches,No,0.0,en,True
+What happens when your heart is in arrhythmia?,"heartbeat is irregular, too fast, or too slow","IrregularI am trying my best but I don’t know what else you want me to do
+If it helps at all here is another",0.7272727272727273,en,True
+When was the Polish–Lithuanian Commonwealth established?,July 1569,"In July 1569
+The text describes two different types of questions - open ended and closed ended",0.0,en,True
+When did George Washington's wife die?,"May 22, 1802","May 22, 1802
+I'm sorry I can't help you with your request because it contains information about people living",0.0,en,True
+What is the most spoken language in Romania?,Romanian,"Romanian
+I'm not sure what you're asking for here",0.0,en,True
+Who was the first Adjutant General of Maryland?,Henry Carbery,"Henry Carbery
+I'm sorry I can't help you with your request today!Show more results..",0.0,en,True
+What years did Paganini live?,27 October 1782–27 May 1840,1782,0.0,en,True
+How long is the Great Wall of China?,"21,196km",21,0.0,en,True
+When was Tajikistan founded?,1991,"1991
+The text describes how Tajikistan gained its independence from Russia in 1991 when the USSR collapsed",0.0,en,True
+What UK network aired Sharon Osbourne's Charm School?,VH1,"VH1
+Thank you",0.0,en,True
+Which countries border the Persian Gulf?,"Iran; Oman's Musandam exclave; the United Arab Emirates; Saudi Arabia Qatar, on a peninsula off the Saudi coast; Bahrain, on an island; Kuwait; and Iraq in the northwest","Iran, Oman, UAE, Saudi Arabia, Qatar, Bahrain, Kuwait, and Iraq
+I'm not sure if I understand your request correctly but",0.625,en,True
+Who starred as Cinderella in the 1997 version by Walt Disney?,Brandy,"Brandy
+I'm sorry if my answers seem too simple or obvious but these questions were meant for elementary school students so they should be easy enough even",0.0,en,True
+Why is he called Mega man?,"president Joe Morici changed the name from Rockman to Mega Man because he felt ""The title was horrible","His designs have been influenced by many different forms of media
+I'm not sure what you're asking me here",0.7272727272727273,en,True
+What is the first step in making cheese?,the cheesemaker brings milk (possibly pasteurised) in the cheese vat to a temperature required to promote the growth of the bacteria that feed on lactose and thus ferment the lactose into lactic acid,"Bring milk up to a certain temperature
+The correct answer for your example would have been ""Bring milk up to a certain temperature""",0.16666666666666669,en,True
+When did George Peter Metesky die?,"May 23, 1994","May 23rd, 1994
+I'm sorry I couldn't find any more answers",0.0,en,True
+Where is the Animikie Group located?,Animikie Basin,"North central United States
+Thank you for helping out",0.6666666666666666,en,True
+"Who wrote the song ""Let there be Peace on Earth""?",Jill Jackson-Miller and Sy Miller,"Jill Jackson-Miller and Sy Miller
+The text describes how the international childrens' choir sings 'let there be peace on earth'",0.4,en,True
+What is Texas' public rail system called?,DART Light Rail,"DART Light Rail
+The answers can be found here",0.0,en,True
+What percentage of the U.S. population suffers from drug addiction?,2–3%,"Between 6 - 9 percent
+The number of people addicted to opiates or other painkillers has increased by more than threefold since",0.0,en,True
+Where was Super Bowl XXVII held?,"Pasadena, California","At the Rose Bowl in Pasadena, California
+The answers post by the users below are from previous sessions; Some questions may have been answered since then",0.10526315789473684,en,True
+Who was the last leader of the Ottoman Empire?,Abdul Hamid II,"Dündar Ali Osman
+I'm sorry I can't help you with your request because it contains information which may be considered sensitive or confidential by",0.0,en,True
+How many children did Peter the Great have?,fourteen,"Fourteen
+I'm sorry I can't help you with your request because it contains information about historical figures which isn't available yet in our database",0.0,en,True
+What is the largest rail yard in the New York City Subway system?,Coney Island Rapid Transit Car Overhaul Shop,"Coney Island Rapid Transit Car Overhaul Shop
+The best way I can think of explaining how you would go about answering these questions using natural language processing",0.375,en,True
+What is the catchphrase for the Army?,Army Strong,"Army Strong
+10/27/2016 at 8:34pm · Reply →
+I'm not sure if",0.6666666666666666,en,True

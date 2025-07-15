@@ -21,7 +21,7 @@ MODEL_CONFIGURATIONS = [
     },
     {
         'hf_name': "CohereLabs/aya-expanse-8b",
-        'display_name': "Aya-8B",
+        'display_name': "Aya-23-8B",
         'trust_remote_code': True
     },
     {
@@ -91,6 +91,9 @@ OUTPUT_PLOT_FILENAME = "average_tokens_generated_plot.png"
 
 # Define the order of languages on the x-axis of the plot
 LANGUAGE_PLOT_ORDER = ["English", "Swahili", "Hausa", "Telugu", "Urdu"]
+
+# Define the custom color palette from the user's file
+CUSTOM_COLOR_PALETTE = ['#2d5477', '#4e8a86', '#76a990', '#316e7e', '#40726f', '#254562', '#628c77', '#285b68']
 
 
 # --- Core Logic ---
@@ -248,121 +251,87 @@ def main():
     results_df = pd.DataFrame(all_processing_results)
 
     # Order languages for plotting
-    results_df['Language'] = pd.Categorical(
-        results_df['Language'],
-        categories=LANGUAGE_PLOT_ORDER,
-        ordered=True
-    )
+    results_df['Language'] = pd.Categorical(results_df['Language'], categories=LANGUAGE_PLOT_ORDER, ordered=True)
     results_df = results_df.sort_values('Language')
-    results_df.dropna(subset=['AverageRawTokensPerSample'], inplace=True) # Drop rows where avg tokens couldn't be calculated
+
+    # Determine the maximum y-value across both plots for a consistent scale
+    max_y1 = results_df['AverageTokensPer100Words'].max()
+    max_y2 = results_df['AverageTokensPer1000Chars'].max()
+    global_max_y = max(max_y1, max_y2) * 1.1  # Add a 10% buffer
+
+    # Generate and save the plots for the two specified metrics
+    create_and_save_plot(results_df, 'AverageTokensPer100Words', "Average Tokens per 100 Words", "tokens_per_100_words", global_max_y)
+    create_and_save_plot(results_df, 'AverageTokensPer1000Chars', "Average Tokens per 1000 Chars", "tokens_per_1000_chars", global_max_y)
+    
+    print(f"\\nPlots saved successfully.")
+    print("Script finished.")
 
 
-    print("\\n--- Final Results DataFrame ---")
-    print(results_df.to_string())
+def create_and_save_plot(dataframe, y_metric, y_label, plot_filename_suffix, y_axis_limit=None):
+    """
+    Creates a bar plot from the dataframe for a given metric and saves it.
+    
+    Args:
+        dataframe (pd.DataFrame): The data to plot.
+        y_metric (str): The column name for the y-axis values.
+        y_label (str): The label for the y-axis.
+        plot_filename_suffix (str): A suffix to append to the output plot filename.
+        y_axis_limit (float, optional): The upper limit for the y-axis. Defaults to None.
+    """
+    plt.style.use('seaborn-v0_8-whitegrid') # A clean style to start with
+    fig, ax = plt.subplots(figsize=(12, 7))
 
-    if results_df.empty:
-        print("\\nDataFrame is empty after processing and ordering. Cannot generate plot.")
-        return
-
-    # --- Plotting Function ---
-    def create_and_save_plot(dataframe, y_metric, y_label, plot_filename_suffix):
-        """Helper function to create and save a bar plot."""
-        if dataframe.empty:
-            print(f"DataFrame is empty, cannot generate plot for {y_metric}.")
-            return
-
-        plt.style.use('seaborn-v0_8-whitegrid')
-        plt.rcParams['font.family'] = 'Times New Roman'
-        plt.rcParams['font.sans-serif'] = ['Times New Roman']
-        plt.rcParams['axes.titlesize'] = 16
-        plt.rcParams['axes.labelsize'] = 14
-        plt.rcParams['xtick.labelsize'] = 12
-        plt.rcParams['ytick.labelsize'] = 12
-        plt.rcParams['legend.fontsize'] = 12
-        plt.rcParams['figure.dpi'] = 300
-
-        plt.figure(figsize=(12, 7))
-
-        # Revised subtle blue/grey palette for scientific papers
-        # Using a sequence that offers better distinction and prints well.
-        # More blues, with a touch of grey for variation.
-        science_blue_grey_palette = sns.color_palette([
-            "#A9CCE3",  # Light Sky Blue
-            "#7FB3D5",  # Steel Blue
-            "#5499C7",  # Cerulean Blue
-            "#85929E",  # Cadet Grey
-            "#5D6D7E",  # Slate Grey
-            "#ABB2B9"   # Light Slate Grey (if more colors needed)
-        ])
-        
-        # Ensure number of colors matches or exceeds number of models
-        num_models = dataframe['Model'].nunique()
-        current_palette = science_blue_grey_palette[:num_models] if num_models <= len(science_blue_grey_palette) else sns.color_palette("Blues_d", n_colors=num_models)
-
-        ordered_languages = [lang for lang in LANGUAGE_PLOT_ORDER if lang in dataframe['Language'].unique()]
-        
-        ax = sns.barplot(
-            x='Language',
-            y=y_metric,
-            hue='Model',
-            data=dataframe,
-            order=ordered_languages,
-            palette=current_palette, # Use the revised palette
-            edgecolor='black',
-            linewidth=0.7
-        )
-
-        # Add data labels to each bar
-        for p in ax.patches:
-            if p.get_height() > 0: # Avoid annotating zero-height bars if any
-                ax.annotate(f"{p.get_height():.1f}", 
-                            (p.get_x() + p.get_width() / 2., p.get_height()), 
-                            ha = 'center', va = 'center', 
-                            size=9, # Smaller font size for data labels
-                            xytext = (0, 9), # 9 points vertical offset
-                            textcoords = 'offset points',
-                            color='black') # Ensure labels are visible on white background
-
-        plt.xlabel("Language", fontsize=14)
-        plt.ylabel(y_label, fontsize=14)
-        plt.xticks(rotation=45, ha='right') # Rotate for better readability
-        plt.legend(title='LLM Model', bbox_to_anchor=(1.02, 1), loc='upper left') # Move legend outside
-        plt.grid(axis='y', linestyle='--', alpha=0.7) # Subtle grid
-        plt.tight_layout(rect=[0, 0, 0.88, 1]) # Adjust layout to make space for legend
-
-        plot_filename = f"{OUTPUT_PLOT_FILENAME}_{plot_filename_suffix}.png"
-        plt.savefig(plot_filename, dpi=300, bbox_inches='tight')
-        print(f"Plot saved as {plot_filename}")
-        plt.close()
-
-    # Create and save the plots
-    # Plot 1: Raw average tokens per sample
-    create_and_save_plot(
-        results_df,
-        y_metric='AverageRawTokensPerSample',
-        y_label='Avg. Tokens per Sample',
-        plot_filename_suffix='raw_avg_tokens',
+    sns.barplot(
+        data=dataframe,
+        x='Language',
+        y=y_metric,
+        hue='Model',
+        palette=CUSTOM_COLOR_PALETTE,
+        ax=ax
     )
 
-    # Plot 2: Average tokens per 100 words
-    create_and_save_plot(
-        results_df,
-        y_metric='AverageTokensPer100Words',
-        y_label='Avg. Tokens per 100 Words',
-        plot_filename_suffix='tokens_per_100_words',       
-    )
+    # --- Styling Customizations ---
+    
+    # Set plot labels and title
+    ax.set_ylabel(y_label, fontsize=14, weight='normal')
+    ax.set_xlabel("", fontsize=14, weight='bold') # Remove x-axis title
+    # fig.suptitle(f'{y_label} Across Languages and Models', fontsize=18, weight='bold')
 
-    # Plot 3: Average tokens per 1000 characters
-    create_and_save_plot(
-        results_df,
-        y_metric='AverageTokensPer1000Chars',
-        y_label='Avg. Tokens per 1000 Characters',
-        plot_filename_suffix='tokens_per_1000_chars',
-    )
+    # Set a consistent y-axis limit if provided
+    if y_axis_limit is not None:
+        ax.set_ylim(0, y_axis_limit)
 
-    print("\\nScript finished.")
+    # Customize ticks
+    ax.tick_params(axis='x', labelsize=12, rotation=0) # Ensure labels are not rotated
+    ax.tick_params(axis='y', labelsize=12)
+
+    # Customize legend
+    legend = ax.legend(
+        title="", # No legend title
+        loc='upper right', # Place legend inside
+        fontsize=11,
+        frameon=False # No frame
+    )
+    
+    # Customize grid and frame
+    ax.grid(axis='y', linestyle='--', alpha=0.7)
+    ax.grid(axis='x', linestyle='', alpha=0)
+    sns.despine(left=False, bottom=False, right=False, top=False) # Remove frame/spines
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    ax.spines['left'].set_visible(True)
+    ax.spines['bottom'].set_visible(True)
+
+
+    # Adjust layout and save
+    fig.tight_layout() # Adjust for suptitle
+    
+    final_filename = f"{os.path.splitext(OUTPUT_PLOT_FILENAME)[0]}_{plot_filename_suffix}.png"
+    plt.savefig(final_filename, dpi=300, bbox_inches='tight')
+    plt.close(fig)
+    print(f"  Plot saved as: {final_filename}")
+
+# --- Execution ---
 
 if __name__ == "__main__":
-    # Set a seed for reproducibility of random sampling
-    random.seed(42) 
     main() 

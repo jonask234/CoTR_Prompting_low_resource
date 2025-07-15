@@ -1,0 +1,164 @@
+id,premise,hypothesis,ground_truth_label,predicted_label,raw_model_output,runtime_seconds,data_language,prompt_instruction_language,shot_type
+0,"The remaining dimensions are imagined as curled up on the Planck length scale in what are called  Calabi-Yau  spaces, or more generally, compactified moduli.",Calabi-Yau spaces are spread out a ton.,contradiction,contradiction,"CONTRADICTION
+The hypothesis directly contradicts the information given",0.6784,en,en,few-shot
+1,23Financial  Continued Momentum Essential to Achieve CFO Act Goals,23Financial is close to completing all of their Act Goals.,neutral,neutral,"NEUTRAL
+The text mentions ""Continued Momentum Essential",0.7829,en,en,few-shot
+2,"I am pressed,  she informed him.",She had told him that she was pressured.,entailment,entailment,"NEUTRAL
+ENTAILMENT (The hypothesis is a",0.6257,en,en,few-shot
+3,it's probably more because i just enjoy the coverage than it is because i don't have time to read the paper you know,They cover a lot more than you will get from the paper.,neutral,neutral,"NEUTRAL
+The text does not provide information about the",0.6903,en,en,few-shot
+4,"Jane,Dave, and an FBI analyst who was on detail to the CIA's Bin Ladin unit went to New York on June 11 to meet with the agents about the Cole case.",The FBI analyst talked to seven agents about the Cole case.,neutral,neutral,"NEUTRAL
+The text mentions that Jane, Dave,",0.6892,en,en,few-shot
+5,"On the other hand, particles and the three nongravitational forces have yet to be incorporated into a spin network picture.",The nongravitational forces must be incorporated in order for the spin network picture to be complete.,neutral,neutral,"NEUTRAL
+The text states that particles and the three",0.6715,en,en,few-shot
+6,You should have seen the danger.,You must not look at the crisis happening at this very moment.,contradiction,neutral,"NEUTRAL
+The text mentions a past danger that was",0.6265,en,en,few-shot
+7,"Her sister could pass for white, and in fact did pass for white.",Her sister had the fairest skin of anyone in the neighborhood.,neutral,neutral,"NEUTRAL
+The text states that the sister could pass",0.7345,en,en,few-shot
+8,"Our borders and immigration system, including law enforcement, ought to send a message of welcome, tolerance, and justice to members of immigrant communities in the United States and in their countries of origin.",Our country should repair our image globally and welcome refugees here.,neutral,neutral,"NEUTRAL
+The text mentions welcoming and tolerating immigrant",0.6190,en,en,few-shot
+9,"The publication of the RPH book is followed by the book tour, which leads to the next fact about the",The RPH book is going to have a tour associated with it.,entailment,entailment,"ENTAILMENT
+The text states that there is a book",0.7255,en,en,few-shot
+10,The chairlift is a great favourite.,No one likes the chairlift.,contradiction,contradiction,"CONTRADICTION
+The hypothesis directly contradicts the text,",0.6534,en,en,few-shot
+11,"For aids to the September 11 evacuation, see, e.g., Civilian interview 14 (Apr.",There are no aids available with regards to the September 11 evacuation.,contradiction,contradiction,"CONTRADICTION
+The text mentions that there are aids available",0.7092,en,en,few-shot
+12,"'  A Tennessee informant used dog weather for `hot, rainless weather,' which may derive from the expression dog days referring to dry August weather.",June and July are also very hot in Tennessee.,neutral,neutral,"NEUTRAL
+The text mentions ""dog days"" referring",0.6849,en,en,few-shot
+13,"I killed him, it is true.",The man's life was spared.,contradiction,contradiction,"CONTRADICTION
+The text states that the speaker killed someone",0.6022,en,en,few-shot
+14,But I was in haste to land you.,The person wanted a lover.,neutral,neutral,"NEUTRAL
+The text 'But I was in haste",0.6123,en,en,few-shot
+15,"If you're feeling up to it, push on along the Mist Trail, past Emerald Pool, to Nevada Fall, and you'll begin to lose the crowds.",Nevada Falls is a great hike with a few people on it.,neutral,neutral,"NEUTRAL
+The text mentions that you'll begin to",0.7455,en,en,few-shot
+16,"I reported this in a letter to Dr.  it seemed to amuse him, and he sent me a small fruitcake that Christmas.",The doctor sent me a bottle of wine that Christmas.,contradiction,contradiction,"CONTRADICTION
+The hypothesis states that the doctor sent a",0.5966,en,en,few-shot
+17,the sense that the checkbook is just a blank check you know and it's unlimited funds not that she goes out and spends it unlimitedly but it's almost that attitude,She feels like she can spend more than $1000 a night.,neutral,neutral,"NEUTRAL
+The text mentions an attitude of having unlimited",0.6498,en,en,few-shot
+18,"My hero, though, is Richard Heseltine, the chairman of the Overseas Investment Trust, who resigned earlier this month in opposition to the business plan forced on him by his superiors.",Heseltine quit his job.,entailment,entailment,"ENTAILMENT
+The text states that Richard Heselt",0.6583,en,en,few-shot
+19,"The source claimed that Bin Ladin asked for and received assistance from the bomb-making expert, who remained there giving training until September 1996, which is when the information was passed to the United States.",The source knew nothing about Bin Laden.,contradiction,contradiction,"CONTRADICTION
+The hypothesis ""The source knew nothing about",0.6710,en,en,few-shot
+20,"Linked to Nova Scotia by the narrow Chignecto Isthmus, New Brunswick became a separate province in 1784 at the demand of 14,000 Loyalist refugees.",New Brunswick was not a province in 1784.,contradiction,contradiction,"CONTRADICTION
+The hypothesis directly contradicts the information given",0.6879,en,en,few-shot
+21,They stressed that constant vigilance was needed to ensure that controls remained appropriate--addressing current risks and not unnecessarily hindering operations--and that individuals who used and maintained information systems complied with organizational policies.,They said it was important to be vigilent when it came to the news factory controls.,neutral,neutral,"NEUTRAL
+The text mentions the need for vigilance",0.6085,en,en,few-shot
+22,If there was anything I could do.,I knew there was nothing i could do.,contradiction,neutral,"NEUTRAL
+The text suggests that there was something the",0.6525,en,en,few-shot
+23,Much has been made of hiring Michael Apted to bring a more human touch to the series.,Michael Apted was hired to add a personal quality to the series.,entailment,entailment,"ENTAILMENT
+ENTAILMENT
+The text states that",0.6394,en,en,few-shot
+24,"In appreciation for your contribution $100 or more to the campaign, you and a guest are invited to attend a special reception on Thursday, March 23,2000 from 5:30- 8:00 PM in Herron Hall.",You and a guest will be invited to attend a special reception if you donate $100 or more to the campaign.,entailment,entailment,"ENTAILMENT
+ENTAILMENT
+The text clearly states",0.7279,en,en,few-shot
+25,You'll see videos of Anne's story and of Amsterdam under occupation along with photographs and artifacts of the time.,You will not see photographs.,contradiction,contradiction,"CONTRADICTION
+The text explicitly mentions that there will be",0.6324,en,en,few-shot
+26,"In addition, Indiana residents may receive tax benefits through the Indiana tax credit which is applied directly against the bottom line of the state tax return.",Indiana residents get a 50% tax credit if they donate to the theater.,neutral,neutral,"NEUTRAL
+The text mentions an Indiana tax credit but",0.6064,en,en,few-shot
+27,"The mayor of Letohrad, the town where Josef Korbel grew up, says he sent Albright three letters in recent years.",Korbel led Letohrad.,entailment,neutral,"NEUTRAL
+The text states that Josef Korbel grew",0.6508,en,en,few-shot
+28,"In an economy with reinvestment, what happens if we can take our advantages of trade and reinvest any excess so that we can create more apples and pears than we had to start with?",We can't trade with anyone around us.,contradiction,neutral,"NEUTRAL
+The text discusses the concept of reinvestment",0.6857,en,en,few-shot
+29,We can continue to strengthen the education of good lawyers.,"We can educate lawyers, I'm sure of it!",entailment,neutral,"NEUTRAL
+The text suggests that we can strengthen the",0.6112,en,en,few-shot
+30,"The ultimate recipient in Pakistan would then go to the Pakistani hawaladar and receive his money, in rupees, from whatever money the Pakistani hawaladar has on hand.",The ultimate recipient would need to travel to Turkey to get his money.,contradiction,neutral,"NEUTRAL
+The text does not mention Turkey or any",0.6923,en,en,few-shot
+31,The real cause for concern is that HMOs may fail to control costs in the long term.,Everyone appreciates that HMOs will be able to control costs in the long term.,contradiction,contradiction,"CONTRADICTION
+The text expresses concern that HMOs",0.6584,en,en,few-shot
+32,and it still scared me,I was just a little bit scared.,neutral,neutral,"NEUTRAL
+The text 'and it still scared me",0.8104,en,en,few-shot
+33,oh oh my word well that sounds adventuresome,That sounds like an awful experience.,contradiction,neutral,"NEUTRAL
+The text suggests the experience is adventurous,",0.7260,en,en,few-shot
+34,"Based on this risk assessment, Centrelink developed a range of specific prevention strategies aimed at educating beneficiaries and employers on income reporting requirements.",Centrelink had a lot of strategies to teach people how to report income because the government was losing a lot of money in mistakes.,neutral,neutral,"NEUTRAL
+The text mentions that Centrelink developed prevention",0.7087,en,en,few-shot
+35,"This is extremely important to the long-term survival of elephants in human care, as well as the wild.",There is nothing that can be done to help elephants.,contradiction,contradiction,"CONTRADICTION
+The text states that something is extremely important",0.6732,en,en,few-shot
+36,We assume a direct linear relationship between volume per capita and pieces per possible,We know there's no connection between volume per capita and pieces per possible.,contradiction,contradiction,"CONTRADICTION
+The text states a direct linear relationship between",0.6661,en,en,few-shot
+37,"At the moment, the thinking is that it's perhaps best to leave these smaller, less developed islands in peace.",People think the islands should be left alone.,entailment,entailment,"ENTAILMENT
+The text suggests that it's best to",0.6147,en,en,few-shot
+38,"One thing M. Tesniares hasn't reckoned with, though, is the Anglo-Saxon input.",M. Tesniares performs Anglo-Saxon input.,contradiction,neutral,"NEUTRAL
+The text states that M. Tesnia",0.6945,en,en,few-shot
+39,My name is Wade--Lord Julian Wade.,"His name was not Wade but instead, Smith.",contradiction,contradiction,"CONTRADICTION
+The text clearly states that the person's",0.6196,en,en,few-shot
+40,"It would be extremely difficult for a legal services attorney in California to know whether a client, who has been working in the migrant stream in Arizona, has temporarily crossed the border into Mexico.",The attorney can get the information through the migrant worker network.,neutral,neutral,"NEUTRAL
+The text does not provide information about how",0.7169,en,en,few-shot
+41,"Likewise, the statistics in Tables A2 and A3 show that routes with high carrier route volume reside in ZIP Codes with higher levels of household income and education attainment.",High volume areas also have high incomes.,entailment,entailment,"ENTAILMENT
+The text states that routes with high carrier",0.6561,en,en,few-shot
+42,And she was always there for us,She gave us all the money we needed.,neutral,neutral,"NEUTRAL
+The text 'And she was always there",0.6728,en,en,few-shot
+43,"Um, and she said, she said, she said, Baby, she said, You don't understand about life the way I understand about life.",She told me I didn't have a clue how the real world worked and I should follow her.,neutral,neutral,"NEUTRAL
+The text provides a quote from a song",0.6359,en,en,few-shot
+44,"Property is an endless succession of bubbles in space, or cyberspace, with different people claiming an endless variety of interests in them.",Property is just people saying they own something.,entailment,neutral,"NEUTRAL
+The text describes property as a succession of",0.7198,en,en,few-shot
+45,"These workers were not trapped, yet unlike most occupants on the upper floors, they had chosen not to descend immediately after impact.",Some workers thought that the situation wouldn't escalate.,neutral,neutral,"NEUTRAL
+The text states that some workers chose not",0.6488,en,en,few-shot
+46,"Nothing underscores the subtle complexities of language more strikingly than the miscommunications that occur among pilots, crew members, and air traffic controllers.",Pilots are always perfect communicators.,contradiction,contradiction,"CONTRADICTION
+The text mentions miscommunications among pilots,",0.6277,en,en,few-shot
+47,"Yousef managed to escape to Pakistan, but his accomplice, Murad-whom KSM claims to have sent to Yousef with $3,000 to help fund the operation-was arrested and disclosed details of the plot while under interrogation.",Murad told investigators where to locate Yousef in Pakistan.,neutral,neutral,"NEUTRAL
+The text states that Murad was arrested",0.8343,en,en,few-shot
+48,"One can imagine a bulldozer operator as he blades out a road for a new development being hailed by the developer   Hey, Loyd ...",You can imagine a bulldozer operator starting a bulldozer.,neutral,neutral,"NEUTRAL
+The text mentions a bulldozer operator",0.6820,en,en,few-shot
+49,"So anyway, Dad goes and makes this nice big glass of chocolate milk for me.",Dad got me some chocolate milk from the fridge.,neutral,neutral,"NEUTRAL
+The text states that the father made a",0.6226,en,en,few-shot
+50,well supposedly in seven days they're going they're going to look through y our background and make sure you are not an ex-con or don't have,They will supposedly do a background check over the next seven days.,entailment,entailment,"ENTAILMENT
+The hypothesis ""They will supposedly do a",0.7304,en,en,few-shot
+51,"I'm uh, Chief Master Sergeant, retired, as Rick said.",Rick told you I was retired.,entailment,neutral,"NEUTRAL
+The text states that Rick said the speaker",0.7309,en,en,few-shot
+52,Anyhow the man comes in.,The man entered the room.,entailment,entailment,"NEUTRAL
+ENTAILMENT
+CONTRADICTION",0.6571,en,en,few-shot
+53,"Of course, not every typographical error should be ascribed to a hidden unconscious motive on the part of the typesetter (or typist).",Typesetters and typists never make typographical errors.,contradiction,neutral,"NEUTRAL
+The text does not state that typeset",0.5791,en,en,few-shot
+54,"If you would like additional information about the IU School of Medicine campaign or Dr. Field's research, please call 274-3270.",Dr. Field works as a dentist at University of Florida.,contradiction,neutral,"NEUTRAL
+The text mentions Dr. Field's research",0.6078,en,en,few-shot
+55,"Although even some o' they should know better, for there's still a few was on Barbados with us, and are acquainted like me and you with Colonel Bishop.",We are also acquainted with Captain Blood.,neutral,neutral,"NEUTRAL
+The text mentions being acquainted with Colonel Bishop",0.6570,en,en,few-shot
+56,"On obtaining clean passports and the two damaged passports, see Intelligence reports, interrogations of KSM, July 3, 2003; Sept. 9, 2003.",KSM always failed to get clean documents.,contradiction,neutral,"NEUTRAL
+The text mentions that KSM provided information",0.7109,en,en,few-shot
+57,"Across from the square are the back streets of Laleli, the place to look for low-priced clothes.",Cheap clothes are for sale in Laleli if you go to the right boutiques.,neutral,neutral,"NEUTRAL
+The text states that low-priced clothes can",0.6383,en,en,few-shot
+58,"Besides the lexicon, grammar--especially syntax--has changed somewhat, too, though again not so much as to be incomprehensible to the average modern reader.",Grammar has changed but not too much.,entailment,entailment,"ENTAILMENT
+The hypothesis ""Grammar has changed but not",0.6504,en,en,few-shot
+59,"The main conclusion to draw from our simulation is that autonomous agents coupling one or more autocatalytic and work cycles are a perfectly reasonable, if novel, form of nonequilibrium, open chemical reaction network.",We can draw a conclusion from the simulation we did on the computer.,neutral,entailment,"ENTAILMENT
+The hypothesis ""We can draw a conclusion",0.7258,en,en,few-shot
+60,"For an authentic feel of old Portugal, slip into the cool entrance hall of theimpressive Leal Senado ( Loyal Senate  building), a fine example of colonial architecture.",The Loyal Senate building is beautiful.,entailment,neutral,"NEUTRAL
+The text describes the Leal Senado",0.7061,en,en,few-shot
+61,"One agency intended to implement an employee travel claim procedure allowing travelers, with certain exceptions, to merely list an aggregate amount of all expenses that individually cost $75 or less.",This idea was not well-received by t=other agencies.,neutral,neutral,"NEUTRAL
+The text does not provide any information about",0.6753,en,en,few-shot
+62,yeah i have two two boys twelve and sixteen,I also have a daughter that is younger than the boys.,neutral,neutral,"NEUTRAL
+The text only mentions two boys and does",0.6548,en,en,few-shot
+63,The Friends operate at two levels -the Citywide Friends and the Branch Friends -and you can become active at either one or both levels.,"We don't separate the level of friends, everyone is the same.",contradiction,contradiction,"CONTRADICTION
+The hypothesis directly contradicts the information given",0.7278,en,en,few-shot
+64,"I want to say that there wasn't any danger of going in with the bomb because it would not explode, regardless of how hard it hit the ground.",There was a great danger of the bomb exploding.,contradiction,contradiction,"CONTRADICTION
+The text explicitly states that the bomb would",0.7707,en,en,few-shot
+65,Our initial observations suggest that GPRA performance reports are likely to be more useful if they,The usefulness of GPRA reports might be increased.,entailment,entailment,"ENTAILMENT
+The text suggests that GPRA performance reports",0.7186,en,en,few-shot
+66,"I assure you, sir, that I was fully informed of all.",It is the detective's death that I was informed about.,neutral,neutral,"NEUTRAL
+The text does not specify what the person",0.6238,en,en,few-shot
+67,"He was born in 1880 something, like 188, I think it was 1889, I think it was when he was born.",He wasn't born until 1984.,contradiction,contradiction,"CONTRADICTION
+The text provides a range of possible birth",0.6494,en,en,few-shot
+68,"H. H. Richardson and his protege Charles Follen McKim were alumni, as well as McKim's assistants, John M. Carrare and Thomas Hastings.","H. H. Richardson, Charles Follen McKim, John M. Carrare and Thomas Hastings were all alumni.",entailment,entailment,"NEUTRAL
+ENTAILMENT (The hypothesis is a",0.6759,en,en,few-shot
+69,men um free of the charge one guy went in stabbed his ex-wife to death because she was sleeping with another guy i mean ex-wife you know we're talking and,A man killed his ex wife for sleeping with another guy after being freed from a prior charge.,entailment,neutral,"NEUTRAL
+The text provides information about a man who",0.7315,en,en,few-shot
+70,"And I had put uh, five detachments out of U2's.",I worked with the detachments for the U2's every day for forty years.,neutral,neutral,"NEUTRAL
+The text only mentions that five detachments",0.6470,en,en,few-shot
+71,"Napoleon attacked and destroyed Catalonia's sacred shrine, the monastery at Montserrat.",Napoleon was responsible for the destruction of the monastery at Montserrat.,entailment,entailment,"ENTAILMENT
+The text states that Napoleon attacked and destroyed",0.6536,en,en,few-shot
+72,oh i see well i like the atmosphere myself,I do like the vibe myself.,entailment,entailment,"ENTAILMENT
+The hypothesis ""I do like the vibe",0.6849,en,en,few-shot
+73,I shall always be grateful.,I am so happy and grateful for what you have done today.,neutral,neutral,"NEUTRAL
+The text only states a general feeling of",0.6374,en,en,few-shot
+74,"It is, of course, rather radical to suppose that there is quantum uncertainty in the law, but it does not seem obviously impossible.",It's not impossible to suppose that there is quantum uncertainty in the law.,entailment,entailment,"ENTAILMENT
+The hypothesis ""It's not impossible to",0.6533,en,en,few-shot
+75,and that's a lot of it is due to the fact that the mothers are on drugs,The mothers are drug addicts.,neutral,neutral,"NEUTRAL
+The text states that mothers are on drugs",0.7288,en,en,few-shot
+76,"To suppress the image of homosexuality as a vice, Clinton and Birch attribute civic virtues to gays.",Clinton and Birch are homosexuals.,neutral,neutral,"NEUTRAL
+The text does not provide any information about",0.6693,en,en,few-shot
+77,"Then I get it and I'm like great, What do I do with it?",I don't know how I was supposed to use the contraption.,neutral,neutral,"NEUTRAL
+The text indicates that the person has obtained",0.6642,en,en,few-shot
+78,Samuel Sheinbein will serve a murder sentence in Israel.,Samuel Sheinbein will serve a murder sentence in Canada.,contradiction,contradiction,"CONTRADICTION
+The text states that Samuel Sheinbe",0.7482,en,en,few-shot
+79,"(It has been said, not altogether jokingly, that if the Japanese were required to pay a license fee for every English word they used, their trade surplus would vanish.)",Proper nouns are often overused when translating to English from foreign languages.,neutral,neutral,"NEUTRAL
+The text does not provide information about the",0.6867,en,en,few-shot
