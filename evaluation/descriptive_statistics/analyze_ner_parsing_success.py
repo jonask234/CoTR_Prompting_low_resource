@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-Analyze NER Parsing Success Rate
-This script examines NER result files to calculate parsing success rate
-by checking if raw outputs contain valid entity labels (PER, ORG, LOC, DATE)
+Analyse der Erfolgsrate beim Parsen von NER-Ergebnissen.
+Dieses Skript untersucht NER-Ergebnisdateien, um die Erfolgsrate beim Parsen zu berechnen.
+Es prüft, ob die Rohausgaben gültige Entitäts-Label (PER, ORG, LOC, DATE) enthalten.
 """
 
 import pandas as pd
@@ -11,18 +12,16 @@ import re
 import json
 import os
 import glob
-from typing import Dict, List, Tuple, Any
-from collections import defaultdict
 import ast
 
 def load_comprehensive_metrics():
-    """Load comprehensive metrics to get F1 scores"""
+    """Laedt umfassende Metriken, um F1-Scores zu erhalten."""
     metrics_file = "/home/bbd6522/code/CoTR_Prompting_low_resource/results/analysis/comprehensive_metrics.json"
     
     with open(metrics_file, 'r') as f:
         data = json.load(f)
     
-    # Create a lookup dictionary for F1 scores
+    # Ein Wörterbuch zum Nachschlagen von F1-Scores erstellen.
     f1_lookup = {}
     
     if 'ner' in data:
@@ -33,7 +32,7 @@ def load_comprehensive_metrics():
             shot_type = result['shot_type']
             f1_score = result.get('f1_score', 0.0)
             
-            # Create multiple possible keys to handle variations
+            # Erstellt verschiedene Schlüssel, um Variationen in den Namen zu behandeln.
             keys = [
                 f"{approach}_{language}_{model}_{shot_type}",
                 f"{approach}_{language}_{model.replace('/', '_').replace('-', '_')}_{shot_type}",
@@ -45,9 +44,9 @@ def load_comprehensive_metrics():
     
     return f1_lookup
 
-def create_lookup_key(approach: str, language: str, model: str, shot_type: str) -> List[str]:
-    """Create multiple possible lookup keys to handle variations"""
-    # Handle language code variations
+def create_lookup_key(approach, language, model, shot_type):
+    """Erstellt mehrere mögliche Nachschlage-Schlüssel, um Variationen zu behandeln."""
+    # Sprachcode-Variationen behandeln. 'swa' wird zu 'sw'.
     lang_map = {
         'swa': 'sw',
         'hau': 'ha',
@@ -55,10 +54,10 @@ def create_lookup_key(approach: str, language: str, model: str, shot_type: str) 
         'ha': 'ha'
     }
     
-    # Get the standardized language code
+    # Holt den standardisierten Sprachcode.
     std_lang = lang_map.get(language, language)
     
-    # Handle model name variations
+    # Modellnamen-Variationen behandeln.
     model_variants = [
         model,
         model.replace('/', '_').replace('-', '_'),
@@ -73,28 +72,28 @@ def create_lookup_key(approach: str, language: str, model: str, shot_type: str) 
     
     return keys
 
-def is_valid_ner_output(raw_output: str) -> bool:
+def is_valid_ner_output(raw_output):
     """
-    Check if raw output contains valid NER entity labels in expected format
-    Valid labels: PER, ORG, LOC, DATE
-    Expected format: [LABEL: entity_text] or similar variations
+    Prüft, ob die Rohausgabe gültige NER-Entitäts-Label im erwarteten Format enthält.
+    Gültige Labels: PER, ORG, LOC, DATE
+    Erwartetes Format: [LABEL: entity_text] oder ähnliche Variationen.
     """
     if not raw_output or pd.isna(raw_output):
         return False
     
-    # Valid entity types
+    # Gültige Entitätstypen.
     valid_labels = ['PER', 'ORG', 'LOC', 'DATE']
     
-    # Pattern to match [LABEL: text] format
+    # Ein Muster, um das Format [LABEL: text] zu finden.
     pattern = r'\[(?:' + '|'.join(valid_labels) + r'):\s*[^\]]+\]'
     
-    # Check if output contains at least one valid entity label
+    # Prüft, ob die Ausgabe mindestens ein gültiges Label enthält.
     matches = re.findall(pattern, raw_output, re.IGNORECASE)
     
     return len(matches) > 0
 
-def extract_valid_entities_from_raw(raw_output: str) -> List[str]:
-    """Extract valid entity labels from raw output"""
+def extract_valid_entities_from_raw(raw_output):
+    """Extrahiert gültige Entitäts-Label aus der Rohausgabe."""
     if not raw_output or pd.isna(raw_output):
         return []
     
@@ -104,13 +103,13 @@ def extract_valid_entities_from_raw(raw_output: str) -> List[str]:
     matches = re.findall(pattern, raw_output, re.IGNORECASE)
     return matches
 
-def count_predicted_entities(predicted_entities_str: str) -> int:
-    """Count number of predicted entities from the predicted_entities column"""
+def count_predicted_entities(predicted_entities_str):
+    """Zählt die Anzahl der vorhergesagten Entitäten aus der Spalte 'predicted_entities'."""
     if not predicted_entities_str or pd.isna(predicted_entities_str):
         return 0
     
     try:
-        # Parse the string as a Python literal (list of dicts)
+        # Wandelt den String sicher in eine Python-Liste um.
         entities = ast.literal_eval(predicted_entities_str)
         if isinstance(entities, list):
             return len(entities)
@@ -118,16 +117,16 @@ def count_predicted_entities(predicted_entities_str: str) -> int:
     except (ValueError, SyntaxError):
         return 0
 
-def analyze_ner_file(file_path: str, f1_lookup: Dict[str, float]) -> Dict[str, Any]:
-    """Analyze a single NER result file"""
+def analyze_ner_file(file_path, f1_lookup):
+    """Analysiert eine einzelne NER-Ergebnisdatei."""
     try:
         df = pd.read_csv(file_path)
         
-        # Extract metadata from filename
+        # Extrahiert Metadaten aus dem Dateinamen.
         filename = os.path.basename(file_path)
         parts = filename.replace('.csv', '').split('_')
         
-        # Parse filename: results_baseline_fs_ner_swa_aya-23-8B.csv
+        # Analysiert den Dateinamen, z.B. results_baseline_fs_ner_swa_aya-23-8B.csv
         approach = 'baseline'
         if 'cotr' in filename:
             if 'mp' in filename:
@@ -137,7 +136,7 @@ def analyze_ner_file(file_path: str, f1_lookup: Dict[str, float]) -> Dict[str, A
             else:
                 approach = 'cotr'
         
-        # Extract language (should be after 'ner')
+        # Extrahiert die Sprache (sollte nach 'ner' kommen).
         language = 'unknown'
         try:
             ner_idx = parts.index('ner')
@@ -146,7 +145,7 @@ def analyze_ner_file(file_path: str, f1_lookup: Dict[str, float]) -> Dict[str, A
         except ValueError:
             pass
         
-        # Extract model name (everything after language)
+        # Extrahiert den Modellnamen (alles nach der Sprache).
         model = 'unknown'
         try:
             ner_idx = parts.index('ner')
@@ -155,14 +154,14 @@ def analyze_ner_file(file_path: str, f1_lookup: Dict[str, float]) -> Dict[str, A
         except ValueError:
             pass
         
-        # Extract shot type
+        # Extrahiert den "shot type".
         shot_type = 'unknown'
         if 'fs' in parts:
             shot_type = 'fewshot'
         elif 'zs' in parts:
             shot_type = 'zeroshot'
         
-        # Analyze parsing success
+        # Analysiert den Parsing-Erfolg.
         total_samples = len(df)
         valid_samples = 0
         total_entities_extracted = 0
@@ -172,13 +171,13 @@ def analyze_ner_file(file_path: str, f1_lookup: Dict[str, float]) -> Dict[str, A
                 if is_valid_ner_output(row['raw_output']):
                     valid_samples += 1
                 
-                # Count entities
+                # Zählt die Entitäten.
                 if 'predicted_entities' in row:
                     total_entities_extracted += count_predicted_entities(str(row['predicted_entities']))
         
         parsing_success_rate = (valid_samples / total_samples) * 100 if total_samples > 0 else 0
         
-        # Get F1 score from comprehensive metrics using multiple possible keys
+        # Holt den F1-Score, indem mehrere mögliche Schlüssel probiert werden.
         f1_score = 0.0
         lookup_keys = create_lookup_key(approach, language, model, shot_type)
         matched_key = None
@@ -208,13 +207,13 @@ def analyze_ner_file(file_path: str, f1_lookup: Dict[str, float]) -> Dict[str, A
         return None
 
 def main():
-    """Main function to analyze all NER result files"""
+    """Hauptfunktion zur Analyse aller NER-Ergebnisdateien."""
     
-    # Load comprehensive metrics for F1 scores
+    # Laedt die F1-Scores.
     f1_lookup = load_comprehensive_metrics()
     print(f"Loaded {len(f1_lookup)} F1 scores from comprehensive metrics")
     
-    # Find all NER result files
+    # Findet alle NER-Ergebnisdateien.
     base_dir = "/home/bbd6522/code/CoTR_Prompting_low_resource/results"
     ner_files = glob.glob(os.path.join(base_dir, "**", "*ner*.csv"), recursive=True)
     
@@ -231,106 +230,106 @@ def main():
         print("No valid results found!")
         return
     
-    # Create DataFrame
+    # Erstellt einen DataFrame für die einfache Analyse.
     results_df = pd.DataFrame(all_results)
     
     print("\n" + "="*80)
     print("NER PARSING SUCCESS RATE ANALYSIS")
     print("="*80)
     
-    # Overall statistics
+    # Gesamtstatistik.
     total_samples = results_df['total_samples'].sum()
     total_valid = results_df['valid_samples'].sum()
     overall_parsing_success = (total_valid / total_samples) * 100 if total_samples > 0 else 0
     overall_f1 = results_df['f1_score'].mean()
     
-    print(f"\n📊 **OVERALL STATISTICS**")
-    print(f"  Total samples: {total_samples:,}")
-    print(f"  Valid samples: {total_valid:,}")
-    print(f"  Overall parsing success rate: {overall_parsing_success:.1f}%")
-    print(f"  Overall mean F1 score: {overall_f1:.4f}")
+    print(f"\nOVERALL STATISTICS")
+    print(f"  Total samples: {total_samples}")
+    print(f"  Valid samples: {total_valid}")
+    print(f"  Overall parsing success rate: {round(overall_parsing_success, 1)}%")
+    print(f"  Overall mean F1 score: {round(overall_f1, 4)}")
     
-    # By approach
-    print(f"\n📊 **BY APPROACH**")
+    # Nach Ansatz gruppiert.
+    print(f"\nBY APPROACH")
     approach_stats = results_df.groupby('approach').agg({
         'parsing_success_rate': 'mean',
         'f1_score': 'mean',
         'total_samples': 'sum'
-    }).round(4)
+    })
     
     for approach, stats in approach_stats.iterrows():
-        print(f"  {approach}: {stats['parsing_success_rate']:.1f}% parsing success, {stats['f1_score']:.4f} F1, {stats['total_samples']} samples")
+        print(f"  {approach}: {round(stats['parsing_success_rate'], 1)}% parsing success, {round(stats['f1_score'], 4)} F1, {int(stats['total_samples'])} samples")
     
-    # By model
-    print(f"\n📊 **BY MODEL**")
+    # Nach Modell gruppiert.
+    print(f"\nBY MODEL")
     model_stats = results_df.groupby('model').agg({
         'parsing_success_rate': 'mean',
         'f1_score': 'mean',
         'total_samples': 'sum'
-    }).round(4)
+    })
     
     for model, stats in model_stats.iterrows():
-        print(f"  {model}: {stats['parsing_success_rate']:.1f}% parsing success, {stats['f1_score']:.4f} F1, {stats['total_samples']} samples")
+        print(f"  {model}: {round(stats['parsing_success_rate'], 1)}% parsing success, {round(stats['f1_score'], 4)} F1, {int(stats['total_samples'])} samples")
     
-    # By language
-    print(f"\n📊 **BY LANGUAGE**")
+    # Nach Sprache gruppiert.
+    print(f"\nBY LANGUAGE")
     lang_stats = results_df.groupby('language').agg({
         'parsing_success_rate': 'mean',
         'f1_score': 'mean',
         'total_samples': 'sum'
-    }).round(4)
+    })
     
     for language, stats in lang_stats.iterrows():
-        print(f"  {language}: {stats['parsing_success_rate']:.1f}% parsing success, {stats['f1_score']:.4f} F1, {stats['total_samples']} samples")
+        print(f"  {language}: {round(stats['parsing_success_rate'], 1)}% parsing success, {round(stats['f1_score'], 4)} F1, {int(stats['total_samples'])} samples")
     
-    # By shot type
-    print(f"\n📊 **BY SHOT TYPE**")
+    # Nach "shot type" gruppiert.
+    print(f"\nBY SHOT TYPE")
     shot_stats = results_df.groupby('shot_type').agg({
         'parsing_success_rate': 'mean',
         'f1_score': 'mean',
         'total_samples': 'sum'
-    }).round(4)
+    })
     
     for shot_type, stats in shot_stats.iterrows():
-        print(f"  {shot_type}: {stats['parsing_success_rate']:.1f}% parsing success, {stats['f1_score']:.4f} F1, {stats['total_samples']} samples")
+        print(f"  {shot_type}: {round(stats['parsing_success_rate'], 1)}% parsing success, {round(stats['f1_score'], 4)} F1, {int(stats['total_samples'])} samples")
     
-    # Save detailed results
+    # Speichert die detaillierten Ergebnisse.
     output_file = "/home/bbd6522/code/CoTR_Prompting_low_resource/ner_parsing_success_analysis.csv"
     results_df.to_csv(output_file, index=False)
-    print(f"\n💾 Detailed results saved to: {output_file}")
+    print(f"\nDetailed results saved to: {output_file}")
     
-    # Create summary for chapter
-    print(f"\n📝 **SUMMARY FOR CHAPTER UPDATE**")
-    print(f"Overall parsing success rate: {overall_parsing_success:.1f}%")
-    print(f"Overall mean F1 score: {overall_f1:.4f}")
+    # Erstellt eine Zusammenfassung für das Kapitel.
+    print(f"\nSUMMARY FOR CHAPTER UPDATE")
+    print(f"Overall parsing success rate: {round(overall_parsing_success, 1)}%")
+    print(f"Overall mean F1 score: {round(overall_f1, 4)}")
     
-    # Baseline vs CoTR comparison
+    # Baseline vs. CoTR Vergleich.
     baseline_mask = results_df['approach'] == 'baseline'
     cotr_mask = results_df['approach'].isin(['cotr_mp', 'cotr_sp'])
     
     if baseline_mask.any():
         baseline_parsing = results_df[baseline_mask]['parsing_success_rate'].mean()
         baseline_f1 = results_df[baseline_mask]['f1_score'].mean()
-        print(f"Baseline: {baseline_parsing:.1f}% parsing success, {baseline_f1:.4f} F1")
+        print(f"Baseline: {round(baseline_parsing, 1)}% parsing success, {round(baseline_f1, 4)} F1")
     
     if cotr_mask.any():
         cotr_parsing = results_df[cotr_mask]['parsing_success_rate'].mean()
         cotr_f1 = results_df[cotr_mask]['f1_score'].mean()
-        print(f"CoTR: {cotr_parsing:.1f}% parsing success, {cotr_f1:.4f} F1")
+        print(f"CoTR: {round(cotr_parsing, 1)}% parsing success, {round(cotr_f1, 4)} F1")
     
-    # CoTR pipeline comparison
+    # CoTR-Pipeline-Vergleich.
     cotr_mp_mask = results_df['approach'] == 'cotr_mp'
     cotr_sp_mask = results_df['approach'] == 'cotr_sp'
     
     if cotr_mp_mask.any():
         mp_parsing = results_df[cotr_mp_mask]['parsing_success_rate'].mean()
         mp_f1 = results_df[cotr_mp_mask]['f1_score'].mean()
-        print(f"CoTR Multi-Prompt: {mp_parsing:.1f}% parsing success, {mp_f1:.4f} F1")
+        print(f"CoTR Multi-Prompt: {round(mp_parsing, 1)}% parsing success, {round(mp_f1, 4)} F1")
     
     if cotr_sp_mask.any():
         sp_parsing = results_df[cotr_sp_mask]['parsing_success_rate'].mean()
         sp_f1 = results_df[cotr_sp_mask]['f1_score'].mean()
-        print(f"CoTR Single-Prompt: {sp_parsing:.1f}% parsing success, {sp_f1:.4f} F1")
+        print(f"CoTR Single-Prompt: {round(sp_parsing, 1)}% parsing success, {round(sp_f1, 4)} F1")
 
 if __name__ == "__main__":
     main() 

@@ -1,46 +1,37 @@
+# -*- coding: utf-8 -*-
 import os
 from pathlib import Path
 
-# home directory
+# Home-Verzeichnis
 home_dir = str(Path.home())
 
-# config directory
+# Konfigurationsverzeichnis
 CONFIG_DIR = os.path.join(home_dir, ".cotr_config")
 TOKEN_FILE = os.path.join(CONFIG_DIR, "huggingface_token.txt")
 
 def get_token():
-    """
-    Get the Hugging Face token from the config file.
-    If the token file doesn't exist, prompt the user to enter it.
-    """
-    # Create config erstellen
+    # Holt den Hugging Face Token aus der Konfigurationsdatei.
+    # Erstellt das Konfigurationsverzeichnis, falls es nicht existiert.
     os.makedirs(CONFIG_DIR, exist_ok=True)
     
-    # Check if token file exists
+    # Überprüft, ob die Token-Datei existiert.
     if os.path.exists(TOKEN_FILE):
         with open(TOKEN_FILE, 'r') as f:
             token = f.read().strip()
             if token:
                 return token
     
-    # wenn kein token vorhanden, bitte eingeben
-    print("\nNo Hugging Face token found. Please enter your token to continue.")
-    print("You can get your token from: https://huggingface.co/settings/tokens")
+    # Wenn kein Token gefunden wird, den Benutzer zur Eingabe auffordern.
     token = input("Enter your Hugging Face token: ").strip()
     
-    # speichere den token
+    # Speichert den Token in der Datei.
     with open(TOKEN_FILE, 'w') as f:
         f.write(token)
-    
-    # nur eigener Benutzer
-    os.chmod(TOKEN_FILE, 0o600)
     
     return token
 
 def set_token(token):
-    """
-    Set the Hugging Face token in the config file.
-    """
+    # Setzt den Hugging Face Token in der Konfigurationsdatei.
     os.makedirs(CONFIG_DIR, exist_ok=True)
     with open(TOKEN_FILE, 'w') as f:
         f.write(token)

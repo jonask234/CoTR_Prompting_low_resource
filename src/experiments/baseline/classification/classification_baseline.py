@@ -1,21 +1,17 @@
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import pandas as pd
-from tqdm import tqdm
 import os
 import re
 import time
-import traceback
-from typing import Tuple, Dict, List, Any, Optional
-import logging
 import sys
 
-# Define English labels as the canonical ones
+# Labels
 POSSIBLE_LABELS_EN = ['business', 'entertainment', 'health', 'politics', 'religion', 'sports', 'technology']
 
-# Define LRL translations for MasakhaNEWS labels (for LRL instruction headers)
+# Übersetzungen für die Labels (Google Translate)
 CLASS_LABELS_LRL = {
-    "sw": { # Swahili
+    "sw": {
         "health": "afya",
         "religion": "dini",
         "politics": "siasa",
@@ -24,7 +20,7 @@ CLASS_LABELS_LRL = {
         "entertainment": "burudani",
         "technology": "teknolojia"
     },
-    "ha": { # Hausa
+    "ha": {
         "health": "lafiya",
         "religion": "addini",
         "politics": "siyasa",
@@ -33,7 +29,7 @@ CLASS_LABELS_LRL = {
         "entertainment": "nishadi",
         "technology": "fasaha"
     },
-    "fr": { # Adding French for completeness, assuming MasakhaNEWS has French
+    "fr": {
         "health": "santé",
         "religion": "religion",
         "politics": "politique",
@@ -44,16 +40,13 @@ CLASS_LABELS_LRL = {
     }
 }
 
-# Initialize logging
-logger = logging.getLogger(__name__)
-
-# Add project root to Python path if not already (helps with module resolution)
+# Projektverzeichnis 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../..'))
 if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
 
-def initialize_model(model_name: str) -> Tuple[Any, Any]:
-    """Initialize a model and tokenizer, specifying cache directory."""
+def initialize_model(model_name):
+    # Initialisiert Modell und einen Tokenizer
     print(f"Initializing {model_name}...")
     cache_path = "/work/bbd6522/cache_dir"
     tokenizer = AutoTokenizer.from_pretrained(
@@ -71,17 +64,13 @@ def initialize_model(model_name: str) -> Tuple[Any, Any]:
     return tokenizer, model
 
 def generate_classification_prompt(
-    text: str,
-    possible_labels: List[str], # These will always be English for this function
-    lang_code: str = "en", # lang_code of the text itself
-    model_name: str = "",
-    use_few_shot: bool = True
-) -> str:
-    """
-    Generate a prompt for text classification with English instructions and English candidate labels.
-    The model is expected to output one of the provided English labels.
-    (Adopted from user's old script)
-    """
+    text,
+    possible_labels,
+    lang_code = "en",
+    model_name = "",
+    use_few_shot = True
+):
+    # Prompt für die Textklassifizierung
     system_message = "You are an expert text classifier. Your task is to accurately categorize the provided text."
     instruction = (
         f"Carefully read the text below. Based on its content, classify it into ONE of the following categories: "
@@ -90,7 +79,7 @@ def generate_classification_prompt(
     )
     few_shot_examples_en = ""
     if use_few_shot:
-        # Standardized to 3 examples for consistency across all tasks
+    
         few_shot_examples_en = f"""
 Examples:
 Text: 'The new healthcare bill was debated in parliament today, focusing on hospital funding and patient care.'
@@ -109,26 +98,20 @@ Category: {possible_labels[3] if len(possible_labels) > 3 and 'sports' in possib
     return prompt
 
 def generate_lrl_instruct_classification_prompt(
-    text: str, # Text in LRL
-    lang_code: str, # e.g., 'sw', 'ha'
-    possible_labels_en: List[str], # Model is still asked to output English labels
-    model_name: str = "",
-    use_few_shot: bool = True
-) -> str: # Returns only the prompt string
-    """
-    Generate a prompt for text classification with LRL instructions.
-    The model is still expected to output one of the provided ENGLISH labels.
-    Uses English few-shot example texts.
-    (Adopted from user's old script, modified for English few-shot examples)
-    """
+    text,
+    lang_code,
+    possible_labels_en,
+    model_name = "",
+    use_few_shot = True
+):
+    # Prompt mit LRL-Anweisungen
     system_message_lrl = ""
     instruction_lrl = ""
-    few_shot_examples_section = "" # Changed variable name for clarity
+    few_shot_examples_section = ""
     
     en_candidate_labels_str = ", ".join([f"'{label}'" for label in possible_labels_en])
 
-    # English few-shot examples (texts and categories)
-    # These are used regardless of the LRL instruction language
+    # Englische Few-Shot-Beispiele
     english_example_texts_and_labels = [
         {'text': 'The new healthcare bill was debated in parliament today, focusing on hospital funding and patient care.', 
          'label_key': 'health'},
@@ -138,15 +121,10 @@ def generate_lrl_instruct_classification_prompt(
          'label_key': 'sports'}
     ]
 
-    # All few-shot examples are now consistently in English across all configurations
-
-    instruction_block_current_sample = "" # Will be populated by lang-specific block
-    full_prompt_parts = [] # Initialize here
-
-    logging.info(f"Inside generate_lrl_instruct_classification_prompt: Received lang_code='{lang_code}', use_few_shot={use_few_shot}")
+    instruction_block_current_sample = ""
+    full_prompt_parts = []
 
     if lang_code == "sw":
-        logging.info(f"Generating Swahili-specific classification prompt for text: '{text[:50]}...'")
         instruction_block = """Nakala: '<TEXT>'
 Kategoria zinazowezekana (kwa Kiingereza): <POSSIBLE_LABELS>
 Maagizo: Tambua kategoria ya nakala hii. Jibu lako lazima liwe MOJA TU ya kategoria za Kiingereza zilizotajwa.
@@ -156,22 +134,19 @@ Kategoria:"""
         full_prompt_parts.append(instruction_block_current_sample)
 
         if use_few_shot:
-            full_prompt_parts.append("\nMifano (Nakala za Kiingereza, Majibu ya Kiingereza):") # Clarify examples are English text and English labels
+            full_prompt_parts.append("\nMifano (Nakala za Kiingereza, Majibu ya Kiingereza):")
             for ex_en in english_example_texts_and_labels:
-                # Find the English label from possible_labels_en that corresponds to ex_en['label_key']
-                # This assumes possible_labels_en contains the actual label string, e.g., 'health', 'politics'
-                target_en_label = ex_en['label_key'] # Default to key if not found, though ideally it should match
+                target_en_label = ex_en['label_key'] 
                 for pl_en in possible_labels_en:
                     if pl_en.lower() == ex_en['label_key'].lower():
                         target_en_label = pl_en
                         break
                 full_prompt_parts.append(f"Nakala (Kiingereza): '{ex_en['text']}'\nKategoria (Kiingereza): {target_en_label}\n")
         
-        full_prompt_parts.append("\nKategoria:") # Final prompt for the model to complete
+        full_prompt_parts.append("\nKategoria:")
         return "\n".join(full_prompt_parts)
 
     elif lang_code == "ha":
-        logging.info(f"Generating Hausa-specific classification prompt for text: '{text[:50]}...'")
         instruction_block = """Rubutu: '<TEXT>'
 Rukunonin da za su yiwu (da Turanci): <POSSIBLE_LABELS>
 Umarni: Gano rukunin wannan rubutu. Amsarka dole ta kasance DAYA KAWAI daga cikin rukunonin Turanci da aka ambata.
@@ -181,7 +156,7 @@ Rukuni:"""
         full_prompt_parts.append(instruction_block_current_sample)
 
         if use_few_shot:
-            full_prompt_parts.append("\nMisalai (Rubutun Turanci, Amsoshin Turanci):") # Clarify examples are English text and English labels
+            full_prompt_parts.append("\nMisalai (Rubutun Turanci, Amsoshin Turanci):")
             for ex_en in english_example_texts_and_labels:
                 target_en_label = ex_en['label_key'] 
                 for pl_en in possible_labels_en:
@@ -190,11 +165,10 @@ Rukuni:"""
                         break
                 full_prompt_parts.append(f"Rubutu (Turanci): '{ex_en['text']}'\nRukuni (Turanci): {target_en_label}\n")
         
-        full_prompt_parts.append("\nRukuni:") # Final prompt for the model to complete
+        full_prompt_parts.append("\nRukuni:")
         return "\n".join(full_prompt_parts)
 
-    elif lang_code == "fr": # Added French
-        logging.info(f"Generating French-specific classification prompt for text: '{text[:50]}...'")
+    elif lang_code == "fr":
         instruction_block = """Texte: '<TEXT>'
 Catégories possibles (en anglais): <POSSIBLE_LABELS>
 Instructions: Identifiez la catégorie de ce texte. Votre réponse doit être UNIQUEMENT l'une des catégories anglaises mentionnées.
@@ -216,20 +190,15 @@ Catégorie:"""
         full_prompt_parts.append("\nCatégorie:")
         return "\n".join(full_prompt_parts)
 
-    else: # Fallback for other LRLs not explicitly defined
-        logging.warning(f"LRL instructions for '{lang_code}' not specifically defined in generate_lrl_instruct_classification_prompt. Falling back to English instructions via generate_classification_prompt.")
-        # This fallback correctly uses English instructions by calling the main English-based prompter
+    else: # Fallback für andere Sprachen
+        # Fallback auf englische Anweisungen
         return generate_classification_prompt(text, possible_labels_en, lang_code='en', model_name=model_name, use_few_shot=use_few_shot)
 
 def extract_classification_label(
-    output_text: str,
-    expected_en_labels: List[str] # Always expects English labels from the model output
-) -> str:
-    """
-    Extracts the English classification label from the model's output text.
-    This version assumes the model was instructed (even in LRL) to output an English label.
-    (Adopted from user's old script)
-    """
+    output_text,
+    expected_en_labels
+):
+    # Extrahiert aus der Modellausgabe
     cleaned_output = output_text.strip().lower()
     
     best_match_en = ""
@@ -241,18 +210,17 @@ def extract_classification_label(
         if temp_output.startswith(prefix):
             temp_output = temp_output[len(prefix):].strip()
     
-    # After stripping prefixes, check for direct match of the remaining string
+    # Prüft auf direkte Übereinstimmung
     if temp_output in [l.lower() for l in expected_en_labels]:
-        # Find the original cased label
         for en_label in expected_en_labels:
             if en_label.lower() == temp_output:
-                return en_label # Return original casing
+                return en_label
 
-    # If direct match failed after stripping, check for labels within the cleaned_output (original logic from old script)
+    # Prüft auf Übereinstimmung in der bereinigten Ausgabe
     for en_label in expected_en_labels:
-        if en_label.lower() in cleaned_output: # Check in potentially less stripped version
+        if en_label.lower() in cleaned_output:
             similarity = len(en_label)
-            # Prioritize exact match found anywhere in the cleaned_output if it's one of the labels
+            # Priorisiert exakte Übereinstimmung
             if cleaned_output == en_label.lower():
                 best_match_en = en_label
                 break
@@ -261,38 +229,31 @@ def extract_classification_label(
                 highest_similarity = similarity
     
     if best_match_en:
-        return best_match_en # Return original casing
+        return best_match_en
     else:
-        # print(f"WARN: Could not reliably extract label. Output: '{output_text}'. Defaulting to random choice.")
-        # return random.choice(expected_en_labels) # OLD: random fallback
-        # print(f"WARN: Could not reliably extract label from '{output_text[:100]}...'. Returning '[Unknown Label]'.")
-        return "[Unknown Label]" # NEW: Specific unknown label string
+        # Fallback
+        return "[Unknown Label]"
 
 def process_classification_baseline(
-    model: Any,
-    tokenizer: Any,
-    text: str,
-    possible_labels: List[str], 
-    lang_code: str,
-    use_few_shot: bool,
-    # Unified generation parameters (expected from runner script)
-    temperature: float, 
-    top_p: float, 
-    top_k: int, 
-    max_tokens: int,
-    repetition_penalty: float, 
-    do_sample: bool
-) -> Tuple[str, float, str]:
-    """
-    Process a text for classification using the baseline approach.
-    Accepts and uses unified generation parameters.
-    """
+    model,
+    tokenizer,
+    text,
+    possible_labels, 
+    lang_code,
+    use_few_shot,
+    # Parameter für die Generierung
+    temperature, 
+    top_p, 
+    top_k, 
+    max_tokens,
+    repetition_penalty, 
+    do_sample
+):
+    # Verarbeitet einen Text für die Klassifizierung
     start_time = time.time()
     raw_model_output = ""
     
-    # Determine prompt based on lang_code to meet new requirements:
-    # - LRL instructions for LRL text, asking for English labels.
-    # - English instructions for English text.
+    # Bestimmt den Prompt basierend auf dem Sprachcode
     if lang_code != 'en':
         prompt = generate_lrl_instruct_classification_prompt(
             text, lang_code, POSSIBLE_LABELS_EN, model_name="", use_few_shot=use_few_shot
@@ -302,18 +263,15 @@ def process_classification_baseline(
             text, POSSIBLE_LABELS_EN, lang_code, model_name="", use_few_shot=use_few_shot
         )
 
-    # Determine appropriate max_length for tokenization
-    # Use tokenizer.model_max_length if available and reasonable, else a default.
-    # max_tokens is for the *output* generation, not input tokenization length.
+    # Bestimmt die maximale Länge für die Tokenisierung
     input_tokenize_max_length = getattr(tokenizer, 'model_max_length', 2048)
-    if input_tokenize_max_length > 4096: # Cap at 4096 for safety if model_max_length is excessively large
+    if input_tokenize_max_length > 4096:
         input_tokenize_max_length = 4096
         
     inputs = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=input_tokenize_max_length)
     inputs = {k: v.to(model.device) for k, v in inputs.items()}
 
-    # Determine if sampling should be used based on temperature and explicit do_sample
-    # The `do_sample` parameter passed to this function should be the definitive source of truth.
+    # Bestimmt, ob Sampling verwendet werden soll
     actual_do_sample = do_sample 
 
     with torch.no_grad():
@@ -336,32 +294,28 @@ def process_classification_baseline(
     return predicted_label, runtime, raw_model_output
 
 def evaluate_classification_baseline(
-    model_name: str,
-    tokenizer: Any,
-    model: Any,
-    samples_df: pd.DataFrame,
-    lang_code: str,
-    possible_labels: List[str],
-    use_few_shot: bool,
-    # Unified generation parameters (expected from runner script)
-    temperature: float, 
-    top_p: float, 
-    top_k: int, 
-    max_tokens: int,
-    repetition_penalty: float, 
-    do_sample: bool
-) -> pd.DataFrame:
-    """
-    Evaluate classification baseline approach on a dataset.
-    Accepts unified generation parameters.
-    """
+    model_name,
+    tokenizer,
+    model,
+    samples_df,
+    lang_code,
+    possible_labels,
+    use_few_shot,
+    # Parameter für die Generierung
+    temperature, 
+    top_p, 
+    top_k, 
+    max_tokens,
+    repetition_penalty, 
+    do_sample
+):
     results = []
     shot_description = "few-shot" if use_few_shot else "zero-shot"
     prompt_lang_description = "LRL-instruct" if lang_code != 'en' else "EN-instruct"
 
     print(f"Evaluating {model_name} on {lang_code} ({prompt_lang_description}, {shot_description})...")
 
-    for idx, row in tqdm(samples_df.iterrows(), total=len(samples_df), desc=f"Processing {lang_code} Classification Baseline"):
+    for idx, row in samples_df.iterrows():
         text = row['text']
         ground_truth_label = row['label'] 
 
@@ -372,11 +326,10 @@ def evaluate_classification_baseline(
             possible_labels,
             lang_code=lang_code,
             use_few_shot=use_few_shot,
-            # Pass unified parameters directly
             temperature=temperature,
             top_p=top_p,
             top_k=top_k,
-            max_tokens=max_tokens, # For the classification label output
+            max_tokens=max_tokens, 
             repetition_penalty=repetition_penalty,
             do_sample=do_sample
         )

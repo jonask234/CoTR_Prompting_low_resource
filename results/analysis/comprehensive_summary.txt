@@ -3,28 +3,28 @@ Generated from corrected analysis
 
 === OVERALL STATISTICS ===
 
-📁 **TOTAL FILES FOUND**: 180
-✅ **SUCCESSFULLY PARSED**: 180
-❌ **FAILED TO PARSE**: 0
-📊 **OVERALL SUCCESS RATE**: 100.0%
+ **TOTAL FILES FOUND**: 180
+ **SUCCESSFULLY PARSED**: 180
+ **FAILED TO PARSE**: 0
+ **OVERALL SUCCESS RATE**: 100.0%
 
 === SUMMARY BY TASK ===
 
-📊 **QA TASK**
+ **QA TASK**
   Configurations processed: 36
   Files found: 36
   Success rate: 100.0%
   Average F1: 0.0859
   Best F1: 0.4472 (qa_new/cotr/results_cotr_mp_zs_qa_tydiqa_en_aya-23-8B.csv)
 
-📊 **NER TASK**
+ **NER TASK**
   Configurations processed: 24
   Files found: 24
   Success rate: 100.0%
   Average F1: 0.3284
   Best F1: 0.5684 (ner_new/cotr/results_cotr_sp_zs_ner_sw_Qwen2.5-7B-Instruct.csv)
 
-📊 **NLI TASK**
+ **NLI TASK**
   Configurations processed: 48
   Files found: 48
   Success rate: 100.0%
@@ -33,7 +33,7 @@ Generated from corrected analysis
   Best Accuracy: 0.9250 (nli_new/cotr/single_prompt/zs/en/Qwen2_5_7B_Instruct/results_cotr_single_prompt_zs_nli_en_Qwen2_5_7B_Instruct.csv)
   Best F1: 0.9235 (nli_new/cotr/single_prompt/zs/en/Qwen2_5_7B_Instruct/results_cotr_single_prompt_zs_nli_en_Qwen2_5_7B_Instruct.csv)
 
-📊 **SENTIMENT TASK**
+ **SENTIMENT TASK**
   Configurations processed: 36
   Files found: 36
   Success rate: 100.0%
@@ -42,7 +42,7 @@ Generated from corrected analysis
   Best Accuracy: 0.6375 (sentiment_new/baseline/detailed_results/CohereLabs_aya-23-8B/pt/LRL-instruct/zero_shot/results_sentiment_baseline_new_pt_LRL-instruct_zero_shot.csv)
   Best F1: 0.5593 (sentiment_new/baseline/detailed_results/CohereLabs_aya-23-8B/pt/LRL-instruct/zero_shot/results_sentiment_baseline_new_pt_LRL-instruct_zero_shot.csv)
 
-📊 **CLASSIFICATION TASK**
+ **CLASSIFICATION TASK**
   Configurations processed: 36
   Files found: 36
   Success rate: 100.0%
@@ -54,731 +54,731 @@ Generated from corrected analysis
 === DETAILED BREAKDOWN ===
 
 ## QA DETAILED RESULTS
-  📁 qa_new/cotr/results_cotr_mp_zs_qa_tydiqa_en_aya-23-8B.csv
+  qa_new/cotr/results_cotr_mp_zs_qa_tydiqa_en_aya-23-8B.csv
      Approach: cotr_mp, Language: en, Model: aya-23-8B, Shot: zeroshot
      F1: 0.4472, Samples: 80
 
-  📁 qa_new/cotr/results_cotr_mp_zs_qa_tydiqa_fi_aya-23-8B.csv
+  qa_new/cotr/results_cotr_mp_zs_qa_tydiqa_fi_aya-23-8B.csv
      Approach: cotr_mp, Language: fi, Model: aya-23-8B, Shot: zeroshot
      F1: 0.3357, Samples: 80
 
-  📁 qa_new/baseline/FewShot/en/baseline_fs_qa_tydiqa_en_Qwen2.5-7B-Instruct.csv
+  qa_new/baseline/FewShot/en/baseline_fs_qa_tydiqa_en_Qwen2.5-7B-Instruct.csv
      Approach: baseline, Language: en, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.3009, Samples: 80
 
-  📁 qa_new/baseline/FewShot/fi/baseline_fs_qa_tydiqa_fi_aya-23-8B.csv
+  qa_new/baseline/FewShot/fi/baseline_fs_qa_tydiqa_fi_aya-23-8B.csv
      Approach: baseline, Language: fi, Model: aya-23-8B, Shot: fewshot
      F1: 0.1763, Samples: 80
 
-  📁 qa_new/cotr/results_cotr_mp_zs_qa_tydiqa_sw_aya-23-8B.csv
+  qa_new/cotr/results_cotr_mp_zs_qa_tydiqa_sw_aya-23-8B.csv
      Approach: cotr_mp, Language: sw, Model: aya-23-8B, Shot: zeroshot
      F1: 0.1759, Samples: 80
 
-  📁 qa_new/baseline/FewShot/fi/baseline_fs_qa_tydiqa_fi_Qwen2.5-7B-Instruct.csv
+  qa_new/baseline/FewShot/fi/baseline_fs_qa_tydiqa_fi_Qwen2.5-7B-Instruct.csv
      Approach: baseline, Language: fi, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.1746, Samples: 80
 
-  📁 qa_new/baseline/ZeroShot/en/baseline_zs_qa_tydiqa_en_Qwen2.5-7B-Instruct.csv
+  qa_new/baseline/ZeroShot/en/baseline_zs_qa_tydiqa_en_Qwen2.5-7B-Instruct.csv
      Approach: baseline, Language: en, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.1695, Samples: 80
 
-  📁 qa_new/baseline/FewShot/en/baseline_fs_qa_tydiqa_en_aya-23-8B.csv
+  qa_new/baseline/FewShot/en/baseline_fs_qa_tydiqa_en_aya-23-8B.csv
      Approach: baseline, Language: en, Model: aya-23-8B, Shot: fewshot
      F1: 0.1541, Samples: 80
 
-  📁 qa_new/baseline/ZeroShot/fi/baseline_zs_qa_tydiqa_fi_aya-23-8B.csv
+  qa_new/baseline/ZeroShot/fi/baseline_zs_qa_tydiqa_fi_aya-23-8B.csv
      Approach: baseline, Language: fi, Model: aya-23-8B, Shot: zeroshot
      F1: 0.1508, Samples: 80
 
-  📁 qa_new/baseline/ZeroShot/en/baseline_zs_qa_tydiqa_en_aya-23-8B.csv
+  qa_new/baseline/ZeroShot/en/baseline_zs_qa_tydiqa_en_aya-23-8B.csv
      Approach: baseline, Language: en, Model: aya-23-8B, Shot: zeroshot
      F1: 0.1339, Samples: 80
 
-  📁 qa_new/baseline/FewShot/sw/baseline_fs_qa_tydiqa_sw_aya-23-8B.csv
+  qa_new/baseline/FewShot/sw/baseline_fs_qa_tydiqa_sw_aya-23-8B.csv
      Approach: baseline, Language: sw, Model: aya-23-8B, Shot: fewshot
      F1: 0.1186, Samples: 80
 
-  📁 qa_new/cotr/results_cotr_mp_fs_qa_tydiqa_en_aya-23-8B.csv
+  qa_new/cotr/results_cotr_mp_fs_qa_tydiqa_en_aya-23-8B.csv
      Approach: cotr_mp, Language: en, Model: aya-23-8B, Shot: fewshot
      F1: 0.1140, Samples: 80
 
-  📁 qa_new/baseline/FewShot/sw/baseline_fs_qa_tydiqa_sw_Qwen2.5-7B-Instruct.csv
+  qa_new/baseline/FewShot/sw/baseline_fs_qa_tydiqa_sw_Qwen2.5-7B-Instruct.csv
      Approach: baseline, Language: sw, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.1112, Samples: 80
 
-  📁 qa_new/cotr/results_cotr_sp_zs_qa_tydiqa_en_Qwen2.5-7B-Instruct.csv
+  qa_new/cotr/results_cotr_sp_zs_qa_tydiqa_en_Qwen2.5-7B-Instruct.csv
      Approach: cotr_sp, Language: en, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.0855, Samples: 80
 
-  📁 qa_new/baseline/ZeroShot/fi/baseline_zs_qa_tydiqa_fi_Qwen2.5-7B-Instruct.csv
+  qa_new/baseline/ZeroShot/fi/baseline_zs_qa_tydiqa_fi_Qwen2.5-7B-Instruct.csv
      Approach: baseline, Language: fi, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.0821, Samples: 80
 
-  📁 qa_new/cotr/results_cotr_mp_fs_qa_tydiqa_fi_aya-23-8B.csv
+  qa_new/cotr/results_cotr_mp_fs_qa_tydiqa_fi_aya-23-8B.csv
      Approach: cotr_mp, Language: fi, Model: aya-23-8B, Shot: fewshot
      F1: 0.0736, Samples: 80
 
-  📁 qa_new/cotr/results_cotr_sp_fs_qa_tydiqa_en_Qwen2.5-7B-Instruct.csv
+  qa_new/cotr/results_cotr_sp_fs_qa_tydiqa_en_Qwen2.5-7B-Instruct.csv
      Approach: cotr_sp, Language: en, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.0528, Samples: 80
 
-  📁 qa_new/cotr/results_cotr_mp_zs_qa_tydiqa_en_Qwen2.5-7B-Instruct.csv
+  qa_new/cotr/results_cotr_mp_zs_qa_tydiqa_en_Qwen2.5-7B-Instruct.csv
      Approach: cotr_mp, Language: en, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.0480, Samples: 80
 
-  📁 qa_new/cotr/results_cotr_mp_fs_qa_tydiqa_sw_aya-23-8B.csv
+  qa_new/cotr/results_cotr_mp_fs_qa_tydiqa_sw_aya-23-8B.csv
      Approach: cotr_mp, Language: sw, Model: aya-23-8B, Shot: fewshot
      F1: 0.0350, Samples: 80
 
-  📁 qa_new/cotr/results_cotr_mp_fs_qa_tydiqa_en_Qwen2.5-7B-Instruct.csv
+  qa_new/cotr/results_cotr_mp_fs_qa_tydiqa_en_Qwen2.5-7B-Instruct.csv
      Approach: cotr_mp, Language: en, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.0270, Samples: 80
 
-  📁 qa_new/cotr/results_cotr_mp_zs_qa_tydiqa_fi_Qwen2.5-7B-Instruct.csv
+  qa_new/cotr/results_cotr_mp_zs_qa_tydiqa_fi_Qwen2.5-7B-Instruct.csv
      Approach: cotr_mp, Language: fi, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.0222, Samples: 80
 
-  📁 qa_new/cotr/results_cotr_mp_zs_qa_tydiqa_sw_Qwen2.5-7B-Instruct.csv
+  qa_new/cotr/results_cotr_mp_zs_qa_tydiqa_sw_Qwen2.5-7B-Instruct.csv
      Approach: cotr_mp, Language: sw, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.0209, Samples: 80
 
-  📁 qa_new/cotr/results_cotr_mp_fs_qa_tydiqa_fi_Qwen2.5-7B-Instruct.csv
+  qa_new/cotr/results_cotr_mp_fs_qa_tydiqa_fi_Qwen2.5-7B-Instruct.csv
      Approach: cotr_mp, Language: fi, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.0196, Samples: 80
 
-  📁 qa_new/baseline/ZeroShot/sw/baseline_zs_qa_tydiqa_sw_aya-23-8B.csv
+  qa_new/baseline/ZeroShot/sw/baseline_zs_qa_tydiqa_sw_aya-23-8B.csv
      Approach: baseline, Language: sw, Model: aya-23-8B, Shot: zeroshot
      F1: 0.0195, Samples: 80
 
-  📁 qa_new/cotr/results_cotr_sp_fs_qa_tydiqa_en_aya-23-8B.csv
+  qa_new/cotr/results_cotr_sp_fs_qa_tydiqa_en_aya-23-8B.csv
      Approach: cotr_sp, Language: en, Model: aya-23-8B, Shot: fewshot
      F1: 0.0125, Samples: 80
 
-  📁 qa_new/cotr/results_cotr_sp_fs_qa_tydiqa_sw_aya-23-8B.csv
+  qa_new/cotr/results_cotr_sp_fs_qa_tydiqa_sw_aya-23-8B.csv
      Approach: cotr_sp, Language: sw, Model: aya-23-8B, Shot: fewshot
      F1: 0.0125, Samples: 80
 
-  📁 qa_new/baseline/ZeroShot/sw/baseline_zs_qa_tydiqa_sw_Qwen2.5-7B-Instruct.csv
+  qa_new/baseline/ZeroShot/sw/baseline_zs_qa_tydiqa_sw_Qwen2.5-7B-Instruct.csv
      Approach: baseline, Language: sw, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.0100, Samples: 80
 
-  📁 qa_new/cotr/results_cotr_mp_fs_qa_tydiqa_sw_Qwen2.5-7B-Instruct.csv
+  qa_new/cotr/results_cotr_mp_fs_qa_tydiqa_sw_Qwen2.5-7B-Instruct.csv
      Approach: cotr_mp, Language: sw, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.0043, Samples: 80
 
-  📁 qa_new/cotr/results_cotr_sp_zs_qa_tydiqa_sw_aya-23-8B.csv
+  qa_new/cotr/results_cotr_sp_zs_qa_tydiqa_sw_aya-23-8B.csv
      Approach: cotr_sp, Language: sw, Model: aya-23-8B, Shot: zeroshot
      F1: 0.0028, Samples: 80
 
-  📁 qa_new/cotr/results_cotr_sp_zs_qa_tydiqa_en_aya-23-8B.csv
+  qa_new/cotr/results_cotr_sp_zs_qa_tydiqa_en_aya-23-8B.csv
      Approach: cotr_sp, Language: en, Model: aya-23-8B, Shot: zeroshot
      F1: 0.0028, Samples: 80
 
-  📁 qa_new/cotr/results_cotr_sp_fs_qa_tydiqa_fi_Qwen2.5-7B-Instruct.csv
+  qa_new/cotr/results_cotr_sp_fs_qa_tydiqa_fi_Qwen2.5-7B-Instruct.csv
      Approach: cotr_sp, Language: fi, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.0000, Samples: 80
 
-  📁 qa_new/cotr/results_cotr_sp_zs_qa_tydiqa_fi_aya-23-8B.csv
+  qa_new/cotr/results_cotr_sp_zs_qa_tydiqa_fi_aya-23-8B.csv
      Approach: cotr_sp, Language: fi, Model: aya-23-8B, Shot: zeroshot
      F1: 0.0000, Samples: 80
 
-  📁 qa_new/cotr/results_cotr_sp_zs_qa_tydiqa_fi_Qwen2.5-7B-Instruct.csv
+  qa_new/cotr/results_cotr_sp_zs_qa_tydiqa_fi_Qwen2.5-7B-Instruct.csv
      Approach: cotr_sp, Language: fi, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.0000, Samples: 80
 
-  📁 qa_new/cotr/results_cotr_sp_fs_qa_tydiqa_sw_Qwen2.5-7B-Instruct.csv
+  qa_new/cotr/results_cotr_sp_fs_qa_tydiqa_sw_Qwen2.5-7B-Instruct.csv
      Approach: cotr_sp, Language: sw, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.0000, Samples: 80
 
-  📁 qa_new/cotr/results_cotr_sp_zs_qa_tydiqa_sw_Qwen2.5-7B-Instruct.csv
+  qa_new/cotr/results_cotr_sp_zs_qa_tydiqa_sw_Qwen2.5-7B-Instruct.csv
      Approach: cotr_sp, Language: sw, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.0000, Samples: 80
 
-  📁 qa_new/cotr/results_cotr_sp_fs_qa_tydiqa_fi_aya-23-8B.csv
+  qa_new/cotr/results_cotr_sp_fs_qa_tydiqa_fi_aya-23-8B.csv
      Approach: cotr_sp, Language: fi, Model: aya-23-8B, Shot: fewshot
      F1: 0.0000, Samples: 80
 
 
 ## NER DETAILED RESULTS
-  📁 ner_new/cotr/results_cotr_sp_zs_ner_sw_Qwen2.5-7B-Instruct.csv
+  ner_new/cotr/results_cotr_sp_zs_ner_sw_Qwen2.5-7B-Instruct.csv
      Approach: cotr_sp, Language: sw, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.5684, Samples: 80
 
-  📁 ner_new/baseline/results_baseline_fs_ner_hau_Qwen2.5-7B-Instruct.csv
+  ner_new/baseline/results_baseline_fs_ner_hau_Qwen2.5-7B-Instruct.csv
      Approach: baseline, Language: hau, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.4830, Samples: 80
 
-  📁 ner_new/cotr/results_cotr_sp_fs_ner_sw_Qwen2.5-7B-Instruct.csv
+  ner_new/cotr/results_cotr_sp_fs_ner_sw_Qwen2.5-7B-Instruct.csv
      Approach: cotr_sp, Language: sw, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.4732, Samples: 80
 
-  📁 ner_new/cotr/results_cotr_mp_fs_ner_sw_Qwen2.5-7B-Instruct.csv
+  ner_new/cotr/results_cotr_mp_fs_ner_sw_Qwen2.5-7B-Instruct.csv
      Approach: cotr_mp, Language: sw, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.4604, Samples: 80
 
-  📁 ner_new/baseline/results_baseline_zs_ner_hau_Qwen2.5-7B-Instruct.csv
+  ner_new/baseline/results_baseline_zs_ner_hau_Qwen2.5-7B-Instruct.csv
      Approach: baseline, Language: hau, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.4528, Samples: 80
 
-  📁 ner_new/cotr/results_cotr_sp_zs_ner_hau_Qwen2.5-7B-Instruct.csv
+  ner_new/cotr/results_cotr_sp_zs_ner_hau_Qwen2.5-7B-Instruct.csv
      Approach: cotr_sp, Language: hau, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.4360, Samples: 80
 
-  📁 ner_new/cotr/results_cotr_mp_fs_ner_hau_Qwen2.5-7B-Instruct.csv
+  ner_new/cotr/results_cotr_mp_fs_ner_hau_Qwen2.5-7B-Instruct.csv
      Approach: cotr_mp, Language: hau, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.4222, Samples: 80
 
-  📁 ner_new/baseline/results_baseline_fs_ner_swa_Qwen2.5-7B-Instruct.csv
+  ner_new/baseline/results_baseline_fs_ner_swa_Qwen2.5-7B-Instruct.csv
      Approach: baseline, Language: swa, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.4093, Samples: 80
 
-  📁 ner_new/cotr/results_cotr_sp_fs_ner_hau_Qwen2.5-7B-Instruct.csv
+  ner_new/cotr/results_cotr_sp_fs_ner_hau_Qwen2.5-7B-Instruct.csv
      Approach: cotr_sp, Language: hau, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.3795, Samples: 80
 
-  📁 ner_new/baseline/results_baseline_zs_ner_swa_Qwen2.5-7B-Instruct.csv
+  ner_new/baseline/results_baseline_zs_ner_swa_Qwen2.5-7B-Instruct.csv
      Approach: baseline, Language: swa, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.3793, Samples: 80
 
-  📁 ner_new/baseline/results_baseline_fs_ner_hau_aya-23-8B.csv
+  ner_new/baseline/results_baseline_fs_ner_hau_aya-23-8B.csv
      Approach: baseline, Language: hau, Model: aya-23-8B, Shot: fewshot
      F1: 0.3168, Samples: 80
 
-  📁 ner_new/baseline/results_baseline_zs_ner_hau_aya-23-8B.csv
+  ner_new/baseline/results_baseline_zs_ner_hau_aya-23-8B.csv
      Approach: baseline, Language: hau, Model: aya-23-8B, Shot: zeroshot
      F1: 0.3125, Samples: 80
 
-  📁 ner_new/cotr/results_cotr_mp_zs_ner_ha_aya-23-8B.csv
+  ner_new/cotr/results_cotr_mp_zs_ner_ha_aya-23-8B.csv
      Approach: cotr_mp, Language: ha, Model: aya-23-8B, Shot: zeroshot
      F1: 0.3125, Samples: 80
 
-  📁 ner_new/cotr/results_cotr_sp_zs_ner_sw_aya-23-8B.csv
+  ner_new/cotr/results_cotr_sp_zs_ner_sw_aya-23-8B.csv
      Approach: cotr_sp, Language: sw, Model: aya-23-8B, Shot: zeroshot
      F1: 0.3072, Samples: 80
 
-  📁 ner_new/cotr/results_cotr_mp_zs_ner_ha_Qwen2.5-7B-Instruct.csv
+  ner_new/cotr/results_cotr_mp_zs_ner_ha_Qwen2.5-7B-Instruct.csv
      Approach: cotr_mp, Language: ha, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.3000, Samples: 80
 
-  📁 ner_new/baseline/results_baseline_zs_ner_swa_aya-23-8B.csv
+  ner_new/baseline/results_baseline_zs_ner_swa_aya-23-8B.csv
      Approach: baseline, Language: swa, Model: aya-23-8B, Shot: zeroshot
      F1: 0.2816, Samples: 80
 
-  📁 ner_new/cotr/results_cotr_mp_zs_ner_sw_Qwen2.5-7B-Instruct.csv
+  ner_new/cotr/results_cotr_mp_zs_ner_sw_Qwen2.5-7B-Instruct.csv
      Approach: cotr_mp, Language: sw, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.2625, Samples: 80
 
-  📁 ner_new/cotr/results_cotr_mp_zs_ner_sw_aya-23-8B.csv
+  ner_new/cotr/results_cotr_mp_zs_ner_sw_aya-23-8B.csv
      Approach: cotr_mp, Language: sw, Model: aya-23-8B, Shot: zeroshot
      F1: 0.2625, Samples: 80
 
-  📁 ner_new/cotr/results_cotr_sp_fs_ner_sw_aya-23-8B.csv
+  ner_new/cotr/results_cotr_sp_fs_ner_sw_aya-23-8B.csv
      Approach: cotr_sp, Language: sw, Model: aya-23-8B, Shot: fewshot
      F1: 0.2570, Samples: 80
 
-  📁 ner_new/baseline/results_baseline_fs_ner_swa_aya-23-8B.csv
+  ner_new/baseline/results_baseline_fs_ner_swa_aya-23-8B.csv
      Approach: baseline, Language: swa, Model: aya-23-8B, Shot: fewshot
      F1: 0.2569, Samples: 80
 
-  📁 ner_new/cotr/results_cotr_sp_fs_ner_ha_aya-23-8B.csv
+  ner_new/cotr/results_cotr_sp_fs_ner_ha_aya-23-8B.csv
      Approach: cotr_sp, Language: ha, Model: aya-23-8B, Shot: fewshot
      F1: 0.2057, Samples: 80
 
-  📁 ner_new/cotr/results_cotr_sp_zs_ner_ha_aya-23-8B.csv
+  ner_new/cotr/results_cotr_sp_zs_ner_ha_aya-23-8B.csv
      Approach: cotr_sp, Language: ha, Model: aya-23-8B, Shot: zeroshot
      F1: 0.1843, Samples: 80
 
-  📁 ner_new/cotr/results_cotr_mp_fs_ner_ha_aya-23-8B.csv
+  ner_new/cotr/results_cotr_mp_fs_ner_ha_aya-23-8B.csv
      Approach: cotr_mp, Language: ha, Model: aya-23-8B, Shot: fewshot
      F1: 0.0875, Samples: 80
 
-  📁 ner_new/cotr/results_cotr_mp_fs_ner_sw_aya-23-8B.csv
+  ner_new/cotr/results_cotr_mp_fs_ner_sw_aya-23-8B.csv
      Approach: cotr_mp, Language: sw, Model: aya-23-8B, Shot: fewshot
      F1: 0.0708, Samples: 80
 
 
 ## NLI DETAILED RESULTS
-  📁 nli_new/cotr/single_prompt/zs/en/Qwen2_5_7B_Instruct/results_cotr_single_prompt_zs_nli_en_Qwen2_5_7B_Instruct.csv
+  nli_new/cotr/single_prompt/zs/en/Qwen2_5_7B_Instruct/results_cotr_single_prompt_zs_nli_en_Qwen2_5_7B_Instruct.csv
      Approach: cotr_single, Language: en, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.9235     Accuracy: 0.9250, Samples: 80
 
-  📁 nli_new/cotr/multi_prompt/fs/en/Qwen2_5_7B_Instruct/results_cotr_multi_prompt_fs_nli_en_Qwen2_5_7B_Instruct.csv
+  nli_new/cotr/multi_prompt/fs/en/Qwen2_5_7B_Instruct/results_cotr_multi_prompt_fs_nli_en_Qwen2_5_7B_Instruct.csv
      Approach: cotr_multi, Language: en, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.9116     Accuracy: 0.9125, Samples: 80
 
-  📁 nli_new/cotr/single_prompt/fs/en/Qwen2_5_7B_Instruct/results_cotr_single_prompt_fs_nli_en_Qwen2_5_7B_Instruct.csv
+  nli_new/cotr/single_prompt/fs/en/Qwen2_5_7B_Instruct/results_cotr_single_prompt_fs_nli_en_Qwen2_5_7B_Instruct.csv
      Approach: cotr_single, Language: en, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.9097     Accuracy: 0.9125, Samples: 80
 
-  📁 nli_new/cotr/multi_prompt/zs/en/Qwen2_5_7B_Instruct/results_cotr_multi_prompt_zs_nli_en_Qwen2_5_7B_Instruct.csv
+  nli_new/cotr/multi_prompt/zs/en/Qwen2_5_7B_Instruct/results_cotr_multi_prompt_zs_nli_en_Qwen2_5_7B_Instruct.csv
      Approach: cotr_multi, Language: en, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.8505     Accuracy: 0.8500, Samples: 80
 
-  📁 nli_new/cotr/single_prompt/zs/fr/Qwen2_5_7B_Instruct/results_cotr_single_prompt_zs_nli_fr_Qwen2_5_7B_Instruct.csv
+  nli_new/cotr/single_prompt/zs/fr/Qwen2_5_7B_Instruct/results_cotr_single_prompt_zs_nli_fr_Qwen2_5_7B_Instruct.csv
      Approach: cotr_single, Language: fr, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.8371     Accuracy: 0.8375, Samples: 80
 
-  📁 nli_new/baseline/results_nli_baseline_en_Qwen_Qwen2.5-7B-Instruct_few_shot_EN-instruct.csv
+  nli_new/baseline/results_nli_baseline_en_Qwen_Qwen2.5-7B-Instruct_few_shot_EN-instruct.csv
      Approach: baseline, Language: en, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.7998     Accuracy: 0.8000, Samples: 80
 
-  📁 nli_new/cotr/single_prompt/fs/fr/Qwen2_5_7B_Instruct/results_cotr_single_prompt_fs_nli_fr_Qwen2_5_7B_Instruct.csv
+  nli_new/cotr/single_prompt/fs/fr/Qwen2_5_7B_Instruct/results_cotr_single_prompt_fs_nli_fr_Qwen2_5_7B_Instruct.csv
      Approach: cotr_single, Language: fr, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.7857     Accuracy: 0.7875, Samples: 80
 
-  📁 nli_new/cotr/multi_prompt/fs/fr/Qwen2_5_7B_Instruct/results_cotr_multi_prompt_fs_nli_fr_Qwen2_5_7B_Instruct.csv
+  nli_new/cotr/multi_prompt/fs/fr/Qwen2_5_7B_Instruct/results_cotr_multi_prompt_fs_nli_fr_Qwen2_5_7B_Instruct.csv
      Approach: cotr_multi, Language: fr, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.7752     Accuracy: 0.7750, Samples: 80
 
-  📁 nli_new/baseline/results_nli_baseline_fr_Qwen_Qwen2.5-7B-Instruct_zero_shot_LRL-instruct.csv
+  nli_new/baseline/results_nli_baseline_fr_Qwen_Qwen2.5-7B-Instruct_zero_shot_LRL-instruct.csv
      Approach: baseline, Language: fr, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.7547     Accuracy: 0.7500, Samples: 80
 
-  📁 nli_new/baseline/results_nli_baseline_fr_Qwen_Qwen2.5-7B-Instruct_few_shot_LRL-instruct.csv
+  nli_new/baseline/results_nli_baseline_fr_Qwen_Qwen2.5-7B-Instruct_few_shot_LRL-instruct.csv
      Approach: baseline, Language: fr, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.7318     Accuracy: 0.7375, Samples: 80
 
-  📁 nli_new/cotr/multi_prompt/zs/fr/Qwen2_5_7B_Instruct/results_cotr_multi_prompt_zs_nli_fr_Qwen2_5_7B_Instruct.csv
+  nli_new/cotr/multi_prompt/zs/fr/Qwen2_5_7B_Instruct/results_cotr_multi_prompt_zs_nli_fr_Qwen2_5_7B_Instruct.csv
      Approach: cotr_multi, Language: fr, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.7316     Accuracy: 0.7250, Samples: 80
 
-  📁 nli_new/baseline/results_nli_baseline_en_Qwen_Qwen2.5-7B-Instruct_zero_shot_EN-instruct.csv
+  nli_new/baseline/results_nli_baseline_en_Qwen_Qwen2.5-7B-Instruct_zero_shot_EN-instruct.csv
      Approach: baseline, Language: en, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.7187     Accuracy: 0.7250, Samples: 80
 
-  📁 nli_new/cotr/multi_prompt/zs/en/aya_23_8B/results_cotr_multi_prompt_zs_nli_en_aya_23_8B.csv
+  nli_new/cotr/multi_prompt/zs/en/aya_23_8B/results_cotr_multi_prompt_zs_nli_en_aya_23_8B.csv
      Approach: cotr_multi, Language: en, Model: aya-23-8B, Shot: zeroshot
      F1: 0.6629     Accuracy: 0.6750, Samples: 80
 
-  📁 nli_new/cotr/single_prompt/fs/fr/aya_23_8B/results_cotr_single_prompt_fs_nli_fr_aya_23_8B.csv
+  nli_new/cotr/single_prompt/fs/fr/aya_23_8B/results_cotr_single_prompt_fs_nli_fr_aya_23_8B.csv
      Approach: cotr_single, Language: fr, Model: aya-23-8B, Shot: fewshot
      F1: 0.6597     Accuracy: 0.6625, Samples: 80
 
-  📁 nli_new/cotr/single_prompt/fs/en/aya_23_8B/results_cotr_single_prompt_fs_nli_en_aya_23_8B.csv
+  nli_new/cotr/single_prompt/fs/en/aya_23_8B/results_cotr_single_prompt_fs_nli_en_aya_23_8B.csv
      Approach: cotr_single, Language: en, Model: aya-23-8B, Shot: fewshot
      F1: 0.6572     Accuracy: 0.6750, Samples: 80
 
-  📁 nli_new/cotr/multi_prompt/fs/ur/Qwen2_5_7B_Instruct/results_cotr_multi_prompt_fs_nli_ur_Qwen2_5_7B_Instruct.csv
+  nli_new/cotr/multi_prompt/fs/ur/Qwen2_5_7B_Instruct/results_cotr_multi_prompt_fs_nli_ur_Qwen2_5_7B_Instruct.csv
      Approach: cotr_multi, Language: ur, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.6042     Accuracy: 0.6250, Samples: 80
 
-  📁 nli_new/cotr/single_prompt/fs/sw/Qwen2_5_7B_Instruct/results_cotr_single_prompt_fs_nli_sw_Qwen2_5_7B_Instruct.csv
+  nli_new/cotr/single_prompt/fs/sw/Qwen2_5_7B_Instruct/results_cotr_single_prompt_fs_nli_sw_Qwen2_5_7B_Instruct.csv
      Approach: cotr_single, Language: sw, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.5915     Accuracy: 0.6250, Samples: 80
 
-  📁 nli_new/cotr/multi_prompt/fs/en/aya_23_8B/results_cotr_multi_prompt_fs_nli_en_aya_23_8B.csv
+  nli_new/cotr/multi_prompt/fs/en/aya_23_8B/results_cotr_multi_prompt_fs_nli_en_aya_23_8B.csv
      Approach: cotr_multi, Language: en, Model: aya-23-8B, Shot: fewshot
      F1: 0.5912     Accuracy: 0.6125, Samples: 80
 
-  📁 nli_new/cotr/multi_prompt/zs/ur/Qwen2_5_7B_Instruct/results_cotr_multi_prompt_zs_nli_ur_Qwen2_5_7B_Instruct.csv
+  nli_new/cotr/multi_prompt/zs/ur/Qwen2_5_7B_Instruct/results_cotr_multi_prompt_zs_nli_ur_Qwen2_5_7B_Instruct.csv
      Approach: cotr_multi, Language: ur, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.5762     Accuracy: 0.5875, Samples: 80
 
-  📁 nli_new/cotr/single_prompt/zs/ur/Qwen2_5_7B_Instruct/results_cotr_single_prompt_zs_nli_ur_Qwen2_5_7B_Instruct.csv
+  nli_new/cotr/single_prompt/zs/ur/Qwen2_5_7B_Instruct/results_cotr_single_prompt_zs_nli_ur_Qwen2_5_7B_Instruct.csv
      Approach: cotr_single, Language: ur, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.5708     Accuracy: 0.5750, Samples: 80
 
-  📁 nli_new/cotr/single_prompt/fs/ur/Qwen2_5_7B_Instruct/results_cotr_single_prompt_fs_nli_ur_Qwen2_5_7B_Instruct.csv
+  nli_new/cotr/single_prompt/fs/ur/Qwen2_5_7B_Instruct/results_cotr_single_prompt_fs_nli_ur_Qwen2_5_7B_Instruct.csv
      Approach: cotr_single, Language: ur, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.5693     Accuracy: 0.5750, Samples: 80
 
-  📁 nli_new/cotr/multi_prompt/fs/fr/aya_23_8B/results_cotr_multi_prompt_fs_nli_fr_aya_23_8B.csv
+  nli_new/cotr/multi_prompt/fs/fr/aya_23_8B/results_cotr_multi_prompt_fs_nli_fr_aya_23_8B.csv
      Approach: cotr_multi, Language: fr, Model: aya-23-8B, Shot: fewshot
      F1: 0.5271     Accuracy: 0.5625, Samples: 80
 
-  📁 nli_new/cotr/single_prompt/zs/sw/Qwen2_5_7B_Instruct/results_cotr_single_prompt_zs_nli_sw_Qwen2_5_7B_Instruct.csv
+  nli_new/cotr/single_prompt/zs/sw/Qwen2_5_7B_Instruct/results_cotr_single_prompt_zs_nli_sw_Qwen2_5_7B_Instruct.csv
      Approach: cotr_single, Language: sw, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.5183     Accuracy: 0.5375, Samples: 80
 
-  📁 nli_new/cotr/single_prompt/zs/en/aya_23_8B/results_cotr_single_prompt_zs_nli_en_aya_23_8B.csv
+  nli_new/cotr/single_prompt/zs/en/aya_23_8B/results_cotr_single_prompt_zs_nli_en_aya_23_8B.csv
      Approach: cotr_single, Language: en, Model: aya-23-8B, Shot: zeroshot
      F1: 0.4978     Accuracy: 0.5750, Samples: 80
 
-  📁 nli_new/cotr/single_prompt/fs/ur/aya_23_8B/results_cotr_single_prompt_fs_nli_ur_aya_23_8B.csv
+  nli_new/cotr/single_prompt/fs/ur/aya_23_8B/results_cotr_single_prompt_fs_nli_ur_aya_23_8B.csv
      Approach: cotr_single, Language: ur, Model: aya-23-8B, Shot: fewshot
      F1: 0.4872     Accuracy: 0.4875, Samples: 80
 
-  📁 nli_new/cotr/multi_prompt/zs/fr/aya_23_8B/results_cotr_multi_prompt_zs_nli_fr_aya_23_8B.csv
+  nli_new/cotr/multi_prompt/zs/fr/aya_23_8B/results_cotr_multi_prompt_zs_nli_fr_aya_23_8B.csv
      Approach: cotr_multi, Language: fr, Model: aya-23-8B, Shot: zeroshot
      F1: 0.4785     Accuracy: 0.5125, Samples: 80
 
-  📁 nli_new/cotr/multi_prompt/zs/sw/Qwen2_5_7B_Instruct/results_cotr_multi_prompt_zs_nli_sw_Qwen2_5_7B_Instruct.csv
+  nli_new/cotr/multi_prompt/zs/sw/Qwen2_5_7B_Instruct/results_cotr_multi_prompt_zs_nli_sw_Qwen2_5_7B_Instruct.csv
      Approach: cotr_multi, Language: sw, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.4717     Accuracy: 0.5000, Samples: 80
 
-  📁 nli_new/cotr/single_prompt/fs/sw/aya_23_8B/results_cotr_single_prompt_fs_nli_sw_aya_23_8B.csv
+  nli_new/cotr/single_prompt/fs/sw/aya_23_8B/results_cotr_single_prompt_fs_nli_sw_aya_23_8B.csv
      Approach: cotr_single, Language: sw, Model: aya-23-8B, Shot: fewshot
      F1: 0.4423     Accuracy: 0.4375, Samples: 80
 
-  📁 nli_new/cotr/single_prompt/zs/sw/aya_23_8B/results_cotr_single_prompt_zs_nli_sw_aya_23_8B.csv
+  nli_new/cotr/single_prompt/zs/sw/aya_23_8B/results_cotr_single_prompt_zs_nli_sw_aya_23_8B.csv
      Approach: cotr_single, Language: sw, Model: aya-23-8B, Shot: zeroshot
      F1: 0.4381     Accuracy: 0.4750, Samples: 80
 
-  📁 nli_new/cotr/multi_prompt/fs/sw/Qwen2_5_7B_Instruct/results_cotr_multi_prompt_fs_nli_sw_Qwen2_5_7B_Instruct.csv
+  nli_new/cotr/multi_prompt/fs/sw/Qwen2_5_7B_Instruct/results_cotr_multi_prompt_fs_nli_sw_Qwen2_5_7B_Instruct.csv
      Approach: cotr_multi, Language: sw, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.4119     Accuracy: 0.5000, Samples: 80
 
-  📁 nli_new/baseline/results_nli_baseline_en_CohereLabs_aya-23-8B_zero_shot_EN-instruct.csv
+  nli_new/baseline/results_nli_baseline_en_CohereLabs_aya-23-8B_zero_shot_EN-instruct.csv
      Approach: baseline, Language: en, Model: aya-23-8B, Shot: zeroshot
      F1: 0.3709     Accuracy: 0.4625, Samples: 80
 
-  📁 nli_new/baseline/results_nli_baseline_ur_Qwen_Qwen2.5-7B-Instruct_few_shot_LRL-instruct.csv
+  nli_new/baseline/results_nli_baseline_ur_Qwen_Qwen2.5-7B-Instruct_few_shot_LRL-instruct.csv
      Approach: baseline, Language: ur, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.3545     Accuracy: 0.4625, Samples: 80
 
-  📁 nli_new/cotr/multi_prompt/fs/ur/aya_23_8B/results_cotr_multi_prompt_fs_nli_ur_aya_23_8B.csv
+  nli_new/cotr/multi_prompt/fs/ur/aya_23_8B/results_cotr_multi_prompt_fs_nli_ur_aya_23_8B.csv
      Approach: cotr_multi, Language: ur, Model: aya-23-8B, Shot: fewshot
      F1: 0.3429     Accuracy: 0.4250, Samples: 80
 
-  📁 nli_new/baseline/results_nli_baseline_ur_Qwen_Qwen2.5-7B-Instruct_zero_shot_LRL-instruct.csv
+  nli_new/baseline/results_nli_baseline_ur_Qwen_Qwen2.5-7B-Instruct_zero_shot_LRL-instruct.csv
      Approach: baseline, Language: ur, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.3409     Accuracy: 0.4625, Samples: 80
 
-  📁 nli_new/cotr/single_prompt/zs/fr/aya_23_8B/results_cotr_single_prompt_zs_nli_fr_aya_23_8B.csv
+  nli_new/cotr/single_prompt/zs/fr/aya_23_8B/results_cotr_single_prompt_zs_nli_fr_aya_23_8B.csv
      Approach: cotr_single, Language: fr, Model: aya-23-8B, Shot: zeroshot
      F1: 0.3403     Accuracy: 0.4375, Samples: 80
 
-  📁 nli_new/baseline/results_nli_baseline_en_CohereLabs_aya-23-8B_few_shot_EN-instruct.csv
+  nli_new/baseline/results_nli_baseline_en_CohereLabs_aya-23-8B_few_shot_EN-instruct.csv
      Approach: baseline, Language: en, Model: aya-23-8B, Shot: fewshot
      F1: 0.3226     Accuracy: 0.3875, Samples: 80
 
-  📁 nli_new/cotr/multi_prompt/zs/ur/aya_23_8B/results_cotr_multi_prompt_zs_nli_ur_aya_23_8B.csv
+  nli_new/cotr/multi_prompt/zs/ur/aya_23_8B/results_cotr_multi_prompt_zs_nli_ur_aya_23_8B.csv
      Approach: cotr_multi, Language: ur, Model: aya-23-8B, Shot: zeroshot
      F1: 0.2995     Accuracy: 0.4000, Samples: 80
 
-  📁 nli_new/baseline/results_nli_baseline_fr_CohereLabs_aya-23-8B_few_shot_LRL-instruct.csv
+  nli_new/baseline/results_nli_baseline_fr_CohereLabs_aya-23-8B_few_shot_LRL-instruct.csv
      Approach: baseline, Language: fr, Model: aya-23-8B, Shot: fewshot
      F1: 0.2891     Accuracy: 0.3500, Samples: 80
 
-  📁 nli_new/cotr/single_prompt/zs/ur/aya_23_8B/results_cotr_single_prompt_zs_nli_ur_aya_23_8B.csv
+  nli_new/cotr/single_prompt/zs/ur/aya_23_8B/results_cotr_single_prompt_zs_nli_ur_aya_23_8B.csv
      Approach: cotr_single, Language: ur, Model: aya-23-8B, Shot: zeroshot
      F1: 0.2874     Accuracy: 0.3750, Samples: 80
 
-  📁 nli_new/cotr/multi_prompt/zs/sw/aya_23_8B/results_cotr_multi_prompt_zs_nli_sw_aya_23_8B.csv
+  nli_new/cotr/multi_prompt/zs/sw/aya_23_8B/results_cotr_multi_prompt_zs_nli_sw_aya_23_8B.csv
      Approach: cotr_multi, Language: sw, Model: aya-23-8B, Shot: zeroshot
      F1: 0.2865     Accuracy: 0.3500, Samples: 80
 
-  📁 nli_new/cotr/multi_prompt/fs/sw/aya_23_8B/results_cotr_multi_prompt_fs_nli_sw_aya_23_8B.csv
+  nli_new/cotr/multi_prompt/fs/sw/aya_23_8B/results_cotr_multi_prompt_fs_nli_sw_aya_23_8B.csv
      Approach: cotr_multi, Language: sw, Model: aya-23-8B, Shot: fewshot
      F1: 0.2793     Accuracy: 0.3500, Samples: 80
 
-  📁 nli_new/baseline/results_nli_baseline_ur_CohereLabs_aya-23-8B_zero_shot_LRL-instruct.csv
+  nli_new/baseline/results_nli_baseline_ur_CohereLabs_aya-23-8B_zero_shot_LRL-instruct.csv
      Approach: baseline, Language: ur, Model: aya-23-8B, Shot: zeroshot
      F1: 0.2697     Accuracy: 0.2875, Samples: 80
 
-  📁 nli_new/baseline/results_nli_baseline_sw_Qwen_Qwen2.5-7B-Instruct_zero_shot_LRL-instruct.csv
+  nli_new/baseline/results_nli_baseline_sw_Qwen_Qwen2.5-7B-Instruct_zero_shot_LRL-instruct.csv
      Approach: baseline, Language: sw, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.2409     Accuracy: 0.4125, Samples: 80
 
-  📁 nli_new/baseline/results_nli_baseline_sw_Qwen_Qwen2.5-7B-Instruct_few_shot_LRL-instruct.csv
+  nli_new/baseline/results_nli_baseline_sw_Qwen_Qwen2.5-7B-Instruct_few_shot_LRL-instruct.csv
      Approach: baseline, Language: sw, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.2380     Accuracy: 0.3750, Samples: 80
 
-  📁 nli_new/baseline/results_nli_baseline_ur_CohereLabs_aya-23-8B_few_shot_LRL-instruct.csv
+  nli_new/baseline/results_nli_baseline_ur_CohereLabs_aya-23-8B_few_shot_LRL-instruct.csv
      Approach: baseline, Language: ur, Model: aya-23-8B, Shot: fewshot
      F1: 0.1719     Accuracy: 0.2125, Samples: 80
 
-  📁 nli_new/baseline/results_nli_baseline_sw_CohereLabs_aya-23-8B_zero_shot_LRL-instruct.csv
+  nli_new/baseline/results_nli_baseline_sw_CohereLabs_aya-23-8B_zero_shot_LRL-instruct.csv
      Approach: baseline, Language: sw, Model: aya-23-8B, Shot: zeroshot
      F1: 0.1092     Accuracy: 0.2625, Samples: 80
 
-  📁 nli_new/baseline/results_nli_baseline_sw_CohereLabs_aya-23-8B_few_shot_LRL-instruct.csv
+  nli_new/baseline/results_nli_baseline_sw_CohereLabs_aya-23-8B_few_shot_LRL-instruct.csv
      Approach: baseline, Language: sw, Model: aya-23-8B, Shot: fewshot
      F1: 0.1084     Accuracy: 0.2375, Samples: 80
 
-  📁 nli_new/baseline/results_nli_baseline_fr_CohereLabs_aya-23-8B_zero_shot_LRL-instruct.csv
+  nli_new/baseline/results_nli_baseline_fr_CohereLabs_aya-23-8B_zero_shot_LRL-instruct.csv
      Approach: baseline, Language: fr, Model: aya-23-8B, Shot: zeroshot
      F1: 0.0975     Accuracy: 0.1625, Samples: 80
 
 
 ## SENTIMENT DETAILED RESULTS
-  📁 sentiment_new/baseline/detailed_results/CohereLabs_aya-23-8B/pt/LRL-instruct/zero_shot/results_sentiment_baseline_new_pt_LRL-instruct_zero_shot.csv
+  sentiment_new/baseline/detailed_results/CohereLabs_aya-23-8B/pt/LRL-instruct/zero_shot/results_sentiment_baseline_new_pt_LRL-instruct_zero_shot.csv
      Approach: baseline, Language: pt, Model: aya-23-8B, Shot: zeroshot
      F1: 0.5593     Accuracy: 0.6375, Samples: 80
 
-  📁 sentiment_new/cotr/results/single_prompt/zs/pt/aya-23-8B/results_sentiment_cotr_sp_zs_pt_aya-23-8B.csv
+  sentiment_new/cotr/results/single_prompt/zs/pt/aya-23-8B/results_sentiment_cotr_sp_zs_pt_aya-23-8B.csv
      Approach: cotr_sp, Language: pt, Model: aya-23-8B, Shot: zeroshot
      F1: 0.5235     Accuracy: 0.4750, Samples: 80
 
-  📁 sentiment_new/baseline/detailed_results/CohereLabs_aya-23-8B/pt/LRL-instruct/few_shot/results_sentiment_baseline_new_pt_LRL-instruct_few_shot.csv
+  sentiment_new/baseline/detailed_results/CohereLabs_aya-23-8B/pt/LRL-instruct/few_shot/results_sentiment_baseline_new_pt_LRL-instruct_few_shot.csv
      Approach: baseline, Language: pt, Model: aya-23-8B, Shot: fewshot
      F1: 0.5222     Accuracy: 0.5125, Samples: 80
 
-  📁 sentiment_new/cotr/results/multi_prompt/zs/pt/aya-23-8B/results_sentiment_cotr_mp_zs_pt_aya-23-8B.csv
+  sentiment_new/cotr/results/multi_prompt/zs/pt/aya-23-8B/results_sentiment_cotr_mp_zs_pt_aya-23-8B.csv
      Approach: cotr_mp, Language: pt, Model: aya-23-8B, Shot: zeroshot
      F1: 0.5162     Accuracy: 0.4875, Samples: 80
 
-  📁 sentiment_new/cotr/results/multi_prompt/fs/pt/aya-23-8B/results_sentiment_cotr_mp_fs_pt_aya-23-8B.csv
+  sentiment_new/cotr/results/multi_prompt/fs/pt/aya-23-8B/results_sentiment_cotr_mp_fs_pt_aya-23-8B.csv
      Approach: cotr_mp, Language: pt, Model: aya-23-8B, Shot: fewshot
      F1: 0.4969     Accuracy: 0.4625, Samples: 80
 
-  📁 sentiment_new/cotr/results/multi_prompt/fs/sw/aya-23-8B/results_sentiment_cotr_mp_fs_sw_aya-23-8B.csv
+  sentiment_new/cotr/results/multi_prompt/fs/sw/aya-23-8B/results_sentiment_cotr_mp_fs_sw_aya-23-8B.csv
      Approach: cotr_mp, Language: sw, Model: aya-23-8B, Shot: fewshot
      F1: 0.4683     Accuracy: 0.4875, Samples: 80
 
-  📁 sentiment_new/cotr/results/single_prompt/zs/sw/Qwen2.5-7B-Instruct/results_sentiment_cotr_sp_zs_sw_Qwen2.5-7B-Instruct.csv
+  sentiment_new/cotr/results/single_prompt/zs/sw/Qwen2.5-7B-Instruct/results_sentiment_cotr_sp_zs_sw_Qwen2.5-7B-Instruct.csv
      Approach: cotr_sp, Language: sw, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.4555     Accuracy: 0.4250, Samples: 80
 
-  📁 sentiment_new/cotr/results/multi_prompt/zs/pt/Qwen2.5-7B-Instruct/results_sentiment_cotr_mp_zs_pt_Qwen2.5-7B-Instruct.csv
+  sentiment_new/cotr/results/multi_prompt/zs/pt/Qwen2.5-7B-Instruct/results_sentiment_cotr_mp_zs_pt_Qwen2.5-7B-Instruct.csv
      Approach: cotr_mp, Language: pt, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.4403     Accuracy: 0.3625, Samples: 80
 
-  📁 sentiment_new/cotr/results/multi_prompt/fs/pt/Qwen2.5-7B-Instruct/results_sentiment_cotr_mp_fs_pt_Qwen2.5-7B-Instruct.csv
+  sentiment_new/cotr/results/multi_prompt/fs/pt/Qwen2.5-7B-Instruct/results_sentiment_cotr_mp_fs_pt_Qwen2.5-7B-Instruct.csv
      Approach: cotr_mp, Language: pt, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.4249     Accuracy: 0.3500, Samples: 80
 
-  📁 sentiment_new/cotr/results/multi_prompt/fs/sw/Qwen2.5-7B-Instruct/results_sentiment_cotr_mp_fs_sw_Qwen2.5-7B-Instruct.csv
+  sentiment_new/cotr/results/multi_prompt/fs/sw/Qwen2.5-7B-Instruct/results_sentiment_cotr_mp_fs_sw_Qwen2.5-7B-Instruct.csv
      Approach: cotr_mp, Language: sw, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.3866     Accuracy: 0.3750, Samples: 80
 
-  📁 sentiment_new/cotr/results/single_prompt/fs/sw/Qwen2.5-7B-Instruct/results_sentiment_cotr_sp_fs_sw_Qwen2.5-7B-Instruct.csv
+  sentiment_new/cotr/results/single_prompt/fs/sw/Qwen2.5-7B-Instruct/results_sentiment_cotr_sp_fs_sw_Qwen2.5-7B-Instruct.csv
      Approach: cotr_sp, Language: sw, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.3844     Accuracy: 0.3750, Samples: 80
 
-  📁 sentiment_new/cotr/results/single_prompt/zs/pt/Qwen2.5-7B-Instruct/results_sentiment_cotr_sp_zs_pt_Qwen2.5-7B-Instruct.csv
+  sentiment_new/cotr/results/single_prompt/zs/pt/Qwen2.5-7B-Instruct/results_sentiment_cotr_sp_zs_pt_Qwen2.5-7B-Instruct.csv
      Approach: cotr_sp, Language: pt, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.3833     Accuracy: 0.2875, Samples: 80
 
-  📁 sentiment_new/cotr/results/single_prompt/fs/pt/aya-23-8B/results_sentiment_cotr_sp_fs_pt_aya-23-8B.csv
+  sentiment_new/cotr/results/single_prompt/fs/pt/aya-23-8B/results_sentiment_cotr_sp_fs_pt_aya-23-8B.csv
      Approach: cotr_sp, Language: pt, Model: aya-23-8B, Shot: fewshot
      F1: 0.3787     Accuracy: 0.2875, Samples: 80
 
-  📁 sentiment_new/cotr/results/multi_prompt/zs/sw/aya-23-8B/results_sentiment_cotr_mp_zs_sw_aya-23-8B.csv
+  sentiment_new/cotr/results/multi_prompt/zs/sw/aya-23-8B/results_sentiment_cotr_mp_zs_sw_aya-23-8B.csv
      Approach: cotr_mp, Language: sw, Model: aya-23-8B, Shot: zeroshot
      F1: 0.3780     Accuracy: 0.3500, Samples: 80
 
-  📁 sentiment_new/cotr/results/multi_prompt/zs/sw/Qwen2.5-7B-Instruct/results_sentiment_cotr_mp_zs_sw_Qwen2.5-7B-Instruct.csv
+  sentiment_new/cotr/results/multi_prompt/zs/sw/Qwen2.5-7B-Instruct/results_sentiment_cotr_mp_zs_sw_Qwen2.5-7B-Instruct.csv
      Approach: cotr_mp, Language: sw, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.3737     Accuracy: 0.3625, Samples: 80
 
-  📁 sentiment_new/cotr/results/single_prompt/fs/sw/aya-23-8B/results_sentiment_cotr_sp_fs_sw_aya-23-8B.csv
+  sentiment_new/cotr/results/single_prompt/fs/sw/aya-23-8B/results_sentiment_cotr_sp_fs_sw_aya-23-8B.csv
      Approach: cotr_sp, Language: sw, Model: aya-23-8B, Shot: fewshot
      F1: 0.3730     Accuracy: 0.3125, Samples: 80
 
-  📁 sentiment_new/cotr/results/single_prompt/zs/sw/aya-23-8B/results_sentiment_cotr_sp_zs_sw_aya-23-8B.csv
+  sentiment_new/cotr/results/single_prompt/zs/sw/aya-23-8B/results_sentiment_cotr_sp_zs_sw_aya-23-8B.csv
      Approach: cotr_sp, Language: sw, Model: aya-23-8B, Shot: zeroshot
      F1: 0.3719     Accuracy: 0.3625, Samples: 80
 
-  📁 sentiment_new/cotr/results/single_prompt/fs/ha/Qwen2.5-7B-Instruct/results_sentiment_cotr_sp_fs_ha_Qwen2.5-7B-Instruct.csv
+  sentiment_new/cotr/results/single_prompt/fs/ha/Qwen2.5-7B-Instruct/results_sentiment_cotr_sp_fs_ha_Qwen2.5-7B-Instruct.csv
      Approach: cotr_sp, Language: ha, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.3642     Accuracy: 0.3875, Samples: 80
 
-  📁 sentiment_new/cotr/results/multi_prompt/fs/ha/aya-23-8B/results_sentiment_cotr_mp_fs_ha_aya-23-8B.csv
+  sentiment_new/cotr/results/multi_prompt/fs/ha/aya-23-8B/results_sentiment_cotr_mp_fs_ha_aya-23-8B.csv
      Approach: cotr_mp, Language: ha, Model: aya-23-8B, Shot: fewshot
      F1: 0.3483     Accuracy: 0.4250, Samples: 80
 
-  📁 sentiment_new/cotr/results/single_prompt/zs/ha/Qwen2.5-7B-Instruct/results_sentiment_cotr_sp_zs_ha_Qwen2.5-7B-Instruct.csv
+  sentiment_new/cotr/results/single_prompt/zs/ha/Qwen2.5-7B-Instruct/results_sentiment_cotr_sp_zs_ha_Qwen2.5-7B-Instruct.csv
      Approach: cotr_sp, Language: ha, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.3183     Accuracy: 0.3375, Samples: 80
 
-  📁 sentiment_new/cotr/results/multi_prompt/zs/ha/aya-23-8B/results_sentiment_cotr_mp_zs_ha_aya-23-8B.csv
+  sentiment_new/cotr/results/multi_prompt/zs/ha/aya-23-8B/results_sentiment_cotr_mp_zs_ha_aya-23-8B.csv
      Approach: cotr_mp, Language: ha, Model: aya-23-8B, Shot: zeroshot
      F1: 0.3155     Accuracy: 0.3500, Samples: 80
 
-  📁 sentiment_new/cotr/results/single_prompt/fs/pt/Qwen2.5-7B-Instruct/results_sentiment_cotr_sp_fs_pt_Qwen2.5-7B-Instruct.csv
+  sentiment_new/cotr/results/single_prompt/fs/pt/Qwen2.5-7B-Instruct/results_sentiment_cotr_sp_fs_pt_Qwen2.5-7B-Instruct.csv
      Approach: cotr_sp, Language: pt, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.3060     Accuracy: 0.2125, Samples: 80
 
-  📁 sentiment_new/baseline/detailed_results/Qwen_Qwen2.5-7B-Instruct/pt/LRL-instruct/zero_shot/results_sentiment_baseline_new_pt_LRL-instruct_zero_shot.csv
+  sentiment_new/baseline/detailed_results/Qwen_Qwen2.5-7B-Instruct/pt/LRL-instruct/zero_shot/results_sentiment_baseline_new_pt_LRL-instruct_zero_shot.csv
      Approach: baseline, Language: pt, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.2998     Accuracy: 0.2125, Samples: 80
 
-  📁 sentiment_new/cotr/results/single_prompt/zs/ha/aya-23-8B/results_sentiment_cotr_sp_zs_ha_aya-23-8B.csv
+  sentiment_new/cotr/results/single_prompt/zs/ha/aya-23-8B/results_sentiment_cotr_sp_zs_ha_aya-23-8B.csv
      Approach: cotr_sp, Language: ha, Model: aya-23-8B, Shot: zeroshot
      F1: 0.2651     Accuracy: 0.3000, Samples: 80
 
-  📁 sentiment_new/cotr/results/multi_prompt/zs/ha/Qwen2.5-7B-Instruct/results_sentiment_cotr_mp_zs_ha_Qwen2.5-7B-Instruct.csv
+  sentiment_new/cotr/results/multi_prompt/zs/ha/Qwen2.5-7B-Instruct/results_sentiment_cotr_mp_zs_ha_Qwen2.5-7B-Instruct.csv
      Approach: cotr_mp, Language: ha, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.2639     Accuracy: 0.3000, Samples: 80
 
-  📁 sentiment_new/baseline/detailed_results/Qwen_Qwen2.5-7B-Instruct/pt/LRL-instruct/few_shot/results_sentiment_baseline_new_pt_LRL-instruct_few_shot.csv
+  sentiment_new/baseline/detailed_results/Qwen_Qwen2.5-7B-Instruct/pt/LRL-instruct/few_shot/results_sentiment_baseline_new_pt_LRL-instruct_few_shot.csv
      Approach: baseline, Language: pt, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.2592     Accuracy: 0.1750, Samples: 80
 
-  📁 sentiment_new/cotr/results/multi_prompt/fs/ha/Qwen2.5-7B-Instruct/results_sentiment_cotr_mp_fs_ha_Qwen2.5-7B-Instruct.csv
+  sentiment_new/cotr/results/multi_prompt/fs/ha/Qwen2.5-7B-Instruct/results_sentiment_cotr_mp_fs_ha_Qwen2.5-7B-Instruct.csv
      Approach: cotr_mp, Language: ha, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.2292     Accuracy: 0.2625, Samples: 80
 
-  📁 sentiment_new/cotr/results/single_prompt/fs/ha/aya-23-8B/results_sentiment_cotr_sp_fs_ha_aya-23-8B.csv
+  sentiment_new/cotr/results/single_prompt/fs/ha/aya-23-8B/results_sentiment_cotr_sp_fs_ha_aya-23-8B.csv
      Approach: cotr_sp, Language: ha, Model: aya-23-8B, Shot: fewshot
      F1: 0.2125     Accuracy: 0.2375, Samples: 80
 
-  📁 sentiment_new/baseline/detailed_results/Qwen_Qwen2.5-7B-Instruct/ha/LRL-instruct/zero_shot/results_sentiment_baseline_new_ha_LRL-instruct_zero_shot.csv
+  sentiment_new/baseline/detailed_results/Qwen_Qwen2.5-7B-Instruct/ha/LRL-instruct/zero_shot/results_sentiment_baseline_new_ha_LRL-instruct_zero_shot.csv
      Approach: baseline, Language: ha, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.1736     Accuracy: 0.2625, Samples: 80
 
-  📁 sentiment_new/baseline/detailed_results/CohereLabs_aya-23-8B/sw/LRL-instruct/few_shot/results_sentiment_baseline_new_sw_LRL-instruct_few_shot.csv
+  sentiment_new/baseline/detailed_results/CohereLabs_aya-23-8B/sw/LRL-instruct/few_shot/results_sentiment_baseline_new_sw_LRL-instruct_few_shot.csv
      Approach: baseline, Language: sw, Model: aya-23-8B, Shot: fewshot
      F1: 0.1541     Accuracy: 0.1500, Samples: 80
 
-  📁 sentiment_new/baseline/detailed_results/CohereLabs_aya-23-8B/ha/LRL-instruct/few_shot/results_sentiment_baseline_new_ha_LRL-instruct_few_shot.csv
+  sentiment_new/baseline/detailed_results/CohereLabs_aya-23-8B/ha/LRL-instruct/few_shot/results_sentiment_baseline_new_ha_LRL-instruct_few_shot.csv
      Approach: baseline, Language: ha, Model: aya-23-8B, Shot: fewshot
      F1: 0.1532     Accuracy: 0.3125, Samples: 80
 
-  📁 sentiment_new/baseline/detailed_results/CohereLabs_aya-23-8B/ha/LRL-instruct/zero_shot/results_sentiment_baseline_new_ha_LRL-instruct_zero_shot.csv
+  sentiment_new/baseline/detailed_results/CohereLabs_aya-23-8B/ha/LRL-instruct/zero_shot/results_sentiment_baseline_new_ha_LRL-instruct_zero_shot.csv
      Approach: baseline, Language: ha, Model: aya-23-8B, Shot: zeroshot
      F1: 0.1344     Accuracy: 0.2500, Samples: 80
 
-  📁 sentiment_new/baseline/detailed_results/Qwen_Qwen2.5-7B-Instruct/ha/LRL-instruct/few_shot/results_sentiment_baseline_new_ha_LRL-instruct_few_shot.csv
+  sentiment_new/baseline/detailed_results/Qwen_Qwen2.5-7B-Instruct/ha/LRL-instruct/few_shot/results_sentiment_baseline_new_ha_LRL-instruct_few_shot.csv
      Approach: baseline, Language: ha, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.1282     Accuracy: 0.1750, Samples: 80
 
-  📁 sentiment_new/baseline/detailed_results/Qwen_Qwen2.5-7B-Instruct/sw/LRL-instruct/zero_shot/results_sentiment_baseline_new_sw_LRL-instruct_zero_shot.csv
+  sentiment_new/baseline/detailed_results/Qwen_Qwen2.5-7B-Instruct/sw/LRL-instruct/zero_shot/results_sentiment_baseline_new_sw_LRL-instruct_zero_shot.csv
      Approach: baseline, Language: sw, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.1042     Accuracy: 0.1250, Samples: 80
 
-  📁 sentiment_new/baseline/detailed_results/Qwen_Qwen2.5-7B-Instruct/sw/LRL-instruct/few_shot/results_sentiment_baseline_new_sw_LRL-instruct_few_shot.csv
+  sentiment_new/baseline/detailed_results/Qwen_Qwen2.5-7B-Instruct/sw/LRL-instruct/few_shot/results_sentiment_baseline_new_sw_LRL-instruct_few_shot.csv
      Approach: baseline, Language: sw, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.0893     Accuracy: 0.0500, Samples: 80
 
-  📁 sentiment_new/baseline/detailed_results/CohereLabs_aya-23-8B/sw/LRL-instruct/zero_shot/results_sentiment_baseline_new_sw_LRL-instruct_zero_shot.csv
+  sentiment_new/baseline/detailed_results/CohereLabs_aya-23-8B/sw/LRL-instruct/zero_shot/results_sentiment_baseline_new_sw_LRL-instruct_zero_shot.csv
      Approach: baseline, Language: sw, Model: aya-23-8B, Shot: zeroshot
      F1: 0.0074     Accuracy: 0.0625, Samples: 80
 
 
 ## CLASSIFICATION DETAILED RESULTS
-  📁 classification_new/cotr/multi_prompt/fs/en/Qwen2.5-7B-Instruct/results_cotr_classification_en.csv
+  classification_new/cotr/multi_prompt/fs/en/Qwen2.5-7B-Instruct/results_cotr_classification_en.csv
      Approach: cotr_mp, Language: en, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.8203     Accuracy: 0.8125, Samples: 80
 
-  📁 classification_new/cotr/multi_prompt/zs/en/Qwen2.5-7B-Instruct/results_cotr_classification_en.csv
+  classification_new/cotr/multi_prompt/zs/en/Qwen2.5-7B-Instruct/results_cotr_classification_en.csv
      Approach: cotr_mp, Language: en, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.8196     Accuracy: 0.8125, Samples: 80
 
-  📁 classification_new/baseline/en/fs/en/Qwen2.5-7B-Instruct/results_baseline_classification_en.csv
+  classification_new/baseline/en/fs/en/Qwen2.5-7B-Instruct/results_baseline_classification_en.csv
      Approach: baseline, Language: en, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.7736     Accuracy: 0.7625, Samples: 80
 
-  📁 classification_new/baseline/lrl/zs/sw/Qwen2.5-7B-Instruct/results_baseline_classification_sw.csv
+  classification_new/baseline/lrl/zs/sw/Qwen2.5-7B-Instruct/results_baseline_classification_sw.csv
      Approach: baseline, Language: sw, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.7669     Accuracy: 0.7625, Samples: 80
 
-  📁 classification_new/cotr/multi_prompt/fs/sw/Qwen2.5-7B-Instruct/results_cotr_classification_sw.csv
+  classification_new/cotr/multi_prompt/fs/sw/Qwen2.5-7B-Instruct/results_cotr_classification_sw.csv
      Approach: cotr_mp, Language: sw, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.7642     Accuracy: 0.7500, Samples: 80
 
-  📁 classification_new/cotr/multi_prompt/zs/sw/Qwen2.5-7B-Instruct/results_cotr_classification_sw.csv
+  classification_new/cotr/multi_prompt/zs/sw/Qwen2.5-7B-Instruct/results_cotr_classification_sw.csv
      Approach: cotr_mp, Language: sw, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.7147     Accuracy: 0.7125, Samples: 80
 
-  📁 classification_new/baseline/en/zs/en/aya-23-8B/results_baseline_classification_en.csv
+  classification_new/baseline/en/zs/en/aya-23-8B/results_baseline_classification_en.csv
      Approach: baseline, Language: en, Model: aya-23-8B, Shot: zeroshot
      F1: 0.7053     Accuracy: 0.7000, Samples: 80
 
-  📁 classification_new/baseline/en/zs/en/Qwen2.5-7B-Instruct/results_baseline_classification_en.csv
+  classification_new/baseline/en/zs/en/Qwen2.5-7B-Instruct/results_baseline_classification_en.csv
      Approach: baseline, Language: en, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.7006     Accuracy: 0.7000, Samples: 80
 
-  📁 classification_new/baseline/en/fs/en/aya-23-8B/results_baseline_classification_en.csv
+  classification_new/baseline/en/fs/en/aya-23-8B/results_baseline_classification_en.csv
      Approach: baseline, Language: en, Model: aya-23-8B, Shot: fewshot
      F1: 0.6911     Accuracy: 0.6750, Samples: 80
 
-  📁 classification_new/cotr/multi_prompt/zs/en/aya-23-8B/results_cotr_classification_en.csv
+  classification_new/cotr/multi_prompt/zs/en/aya-23-8B/results_cotr_classification_en.csv
      Approach: cotr_mp, Language: en, Model: aya-23-8B, Shot: zeroshot
      F1: 0.6861     Accuracy: 0.6500, Samples: 80
 
-  📁 classification_new/cotr/multi_prompt/fs/ha/Qwen2.5-7B-Instruct/results_cotr_classification_ha.csv
+  classification_new/cotr/multi_prompt/fs/ha/Qwen2.5-7B-Instruct/results_cotr_classification_ha.csv
      Approach: cotr_mp, Language: ha, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.6823     Accuracy: 0.6750, Samples: 80
 
-  📁 classification_new/baseline/lrl/fs/sw/Qwen2.5-7B-Instruct/results_baseline_classification_sw.csv
+  classification_new/baseline/lrl/fs/sw/Qwen2.5-7B-Instruct/results_baseline_classification_sw.csv
      Approach: baseline, Language: sw, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.6823     Accuracy: 0.6875, Samples: 80
 
-  📁 classification_new/baseline/lrl/zs/ha/Qwen2.5-7B-Instruct/results_baseline_classification_ha.csv
+  classification_new/baseline/lrl/zs/ha/Qwen2.5-7B-Instruct/results_baseline_classification_ha.csv
      Approach: baseline, Language: ha, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.6613     Accuracy: 0.6875, Samples: 80
 
-  📁 classification_new/cotr/multi_prompt/zs/ha/Qwen2.5-7B-Instruct/results_cotr_classification_ha.csv
+  classification_new/cotr/multi_prompt/zs/ha/Qwen2.5-7B-Instruct/results_cotr_classification_ha.csv
      Approach: cotr_mp, Language: ha, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.6361     Accuracy: 0.6500, Samples: 80
 
-  📁 classification_new/cotr/single_prompt/zs/en/Qwen2.5-7B-Instruct/results_cotr_classification_en.csv
+  classification_new/cotr/single_prompt/zs/en/Qwen2.5-7B-Instruct/results_cotr_classification_en.csv
      Approach: cotr_sp, Language: en, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.5868     Accuracy: 0.5000, Samples: 80
 
-  📁 classification_new/cotr/multi_prompt/zs/ha/aya-23-8B/results_cotr_classification_ha.csv
+  classification_new/cotr/multi_prompt/zs/ha/aya-23-8B/results_cotr_classification_ha.csv
      Approach: cotr_mp, Language: ha, Model: aya-23-8B, Shot: zeroshot
      F1: 0.5504     Accuracy: 0.5500, Samples: 80
 
-  📁 classification_new/cotr/single_prompt/zs/en/aya-23-8B/results_cotr_classification_en.csv
+  classification_new/cotr/single_prompt/zs/en/aya-23-8B/results_cotr_classification_en.csv
      Approach: cotr_sp, Language: en, Model: aya-23-8B, Shot: zeroshot
      F1: 0.5156     Accuracy: 0.4375, Samples: 80
 
-  📁 classification_new/baseline/lrl/fs/ha/Qwen2.5-7B-Instruct/results_baseline_classification_ha.csv
+  classification_new/baseline/lrl/fs/ha/Qwen2.5-7B-Instruct/results_baseline_classification_ha.csv
      Approach: baseline, Language: ha, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.5148     Accuracy: 0.5500, Samples: 80
 
-  📁 classification_new/cotr/single_prompt/fs/en/aya-23-8B/results_cotr_classification_en.csv
+  classification_new/cotr/single_prompt/fs/en/aya-23-8B/results_cotr_classification_en.csv
      Approach: cotr_sp, Language: en, Model: aya-23-8B, Shot: fewshot
      F1: 0.5002     Accuracy: 0.4500, Samples: 80
 
-  📁 classification_new/cotr/single_prompt/fs/en/Qwen2.5-7B-Instruct/results_cotr_classification_en.csv
+  classification_new/cotr/single_prompt/fs/en/Qwen2.5-7B-Instruct/results_cotr_classification_en.csv
      Approach: cotr_sp, Language: en, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.4982     Accuracy: 0.4125, Samples: 80
 
-  📁 classification_new/cotr/multi_prompt/zs/sw/aya-23-8B/results_cotr_classification_sw.csv
+  classification_new/cotr/multi_prompt/zs/sw/aya-23-8B/results_cotr_classification_sw.csv
      Approach: cotr_mp, Language: sw, Model: aya-23-8B, Shot: zeroshot
      F1: 0.4901     Accuracy: 0.4500, Samples: 80
 
-  📁 classification_new/cotr/multi_prompt/fs/ha/aya-23-8B/results_cotr_classification_ha.csv
+  classification_new/cotr/multi_prompt/fs/ha/aya-23-8B/results_cotr_classification_ha.csv
      Approach: cotr_mp, Language: ha, Model: aya-23-8B, Shot: fewshot
      F1: 0.3600     Accuracy: 0.3500, Samples: 80
 
-  📁 classification_new/cotr/multi_prompt/fs/en/aya-23-8B/results_cotr_classification_en.csv
+  classification_new/cotr/multi_prompt/fs/en/aya-23-8B/results_cotr_classification_en.csv
      Approach: cotr_mp, Language: en, Model: aya-23-8B, Shot: fewshot
      F1: 0.3486     Accuracy: 0.2750, Samples: 80
 
-  📁 classification_new/cotr/single_prompt/zs/ha/aya-23-8B/results_cotr_classification_ha.csv
+  classification_new/cotr/single_prompt/zs/ha/aya-23-8B/results_cotr_classification_ha.csv
      Approach: cotr_sp, Language: ha, Model: aya-23-8B, Shot: zeroshot
      F1: 0.2664     Accuracy: 0.1875, Samples: 80
 
-  📁 classification_new/cotr/multi_prompt/fs/sw/aya-23-8B/results_cotr_classification_sw.csv
+  classification_new/cotr/multi_prompt/fs/sw/aya-23-8B/results_cotr_classification_sw.csv
      Approach: cotr_mp, Language: sw, Model: aya-23-8B, Shot: fewshot
      F1: 0.2433     Accuracy: 0.2500, Samples: 80
 
-  📁 classification_new/cotr/single_prompt/zs/sw/Qwen2.5-7B-Instruct/results_cotr_classification_sw.csv
+  classification_new/cotr/single_prompt/zs/sw/Qwen2.5-7B-Instruct/results_cotr_classification_sw.csv
      Approach: cotr_sp, Language: sw, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.2334     Accuracy: 0.1875, Samples: 80
 
-  📁 classification_new/cotr/single_prompt/zs/sw/aya-23-8B/results_cotr_classification_sw.csv
+  classification_new/cotr/single_prompt/zs/sw/aya-23-8B/results_cotr_classification_sw.csv
      Approach: cotr_sp, Language: sw, Model: aya-23-8B, Shot: zeroshot
      F1: 0.1701     Accuracy: 0.1000, Samples: 80
 
-  📁 classification_new/cotr/single_prompt/fs/sw/aya-23-8B/results_cotr_classification_sw.csv
+  classification_new/cotr/single_prompt/fs/sw/aya-23-8B/results_cotr_classification_sw.csv
      Approach: cotr_sp, Language: sw, Model: aya-23-8B, Shot: fewshot
      F1: 0.1058     Accuracy: 0.0625, Samples: 80
 
-  📁 classification_new/cotr/single_prompt/fs/sw/Qwen2.5-7B-Instruct/results_cotr_classification_sw.csv
+  classification_new/cotr/single_prompt/fs/sw/Qwen2.5-7B-Instruct/results_cotr_classification_sw.csv
      Approach: cotr_sp, Language: sw, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.0828     Accuracy: 0.0500, Samples: 80
 
-  📁 classification_new/cotr/single_prompt/zs/ha/Qwen2.5-7B-Instruct/results_cotr_classification_ha.csv
+  classification_new/cotr/single_prompt/zs/ha/Qwen2.5-7B-Instruct/results_cotr_classification_ha.csv
      Approach: cotr_sp, Language: ha, Model: Qwen2.5-7B-Instruct, Shot: zeroshot
      F1: 0.0774     Accuracy: 0.0500, Samples: 80
 
-  📁 classification_new/cotr/single_prompt/fs/ha/Qwen2.5-7B-Instruct/results_cotr_classification_ha.csv
+  classification_new/cotr/single_prompt/fs/ha/Qwen2.5-7B-Instruct/results_cotr_classification_ha.csv
      Approach: cotr_sp, Language: ha, Model: Qwen2.5-7B-Instruct, Shot: fewshot
      F1: 0.0676     Accuracy: 0.0375, Samples: 80
 
-  📁 classification_new/baseline/lrl/fs/ha/aya-23-8B/results_baseline_classification_ha.csv
+  classification_new/baseline/lrl/fs/ha/aya-23-8B/results_baseline_classification_ha.csv
      Approach: baseline, Language: ha, Model: aya-23-8B, Shot: fewshot
      F1: 0.0531     Accuracy: 0.0500, Samples: 80
 
-  📁 classification_new/cotr/single_prompt/fs/ha/aya-23-8B/results_cotr_classification_ha.csv
+  classification_new/cotr/single_prompt/fs/ha/aya-23-8B/results_cotr_classification_ha.csv
      Approach: cotr_sp, Language: ha, Model: aya-23-8B, Shot: fewshot
      F1: 0.0463     Accuracy: 0.0250, Samples: 80
 
-  📁 classification_new/baseline/lrl/fs/sw/aya-23-8B/results_baseline_classification_sw.csv
+  classification_new/baseline/lrl/fs/sw/aya-23-8B/results_baseline_classification_sw.csv
      Approach: baseline, Language: sw, Model: aya-23-8B, Shot: fewshot
      F1: 0.0233     Accuracy: 0.0125, Samples: 80
 
-  📁 classification_new/baseline/lrl/zs/sw/aya-23-8B/results_baseline_classification_sw.csv
+  classification_new/baseline/lrl/zs/sw/aya-23-8B/results_baseline_classification_sw.csv
      Approach: baseline, Language: sw, Model: aya-23-8B, Shot: zeroshot
      F1: 0.0233     Accuracy: 0.0125, Samples: 80
 
-  📁 classification_new/baseline/lrl/zs/ha/aya-23-8B/results_baseline_classification_ha.csv
+  classification_new/baseline/lrl/zs/ha/aya-23-8B/results_baseline_classification_ha.csv
      Approach: baseline, Language: ha, Model: aya-23-8B, Shot: zeroshot
      F1: 0.0000     Accuracy: 0.0000, Samples: 80
 

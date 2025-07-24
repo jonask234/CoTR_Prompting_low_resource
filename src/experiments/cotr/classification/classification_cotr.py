@@ -1,39 +1,30 @@
-import logging
 import torch
 import pandas as pd
 from tqdm import tqdm
 import os
 import sys
 import re
-from typing import Any, Dict, List, Tuple, Optional
 import time
 
-# Add project root to path
+# Projekt-Root zum Pfad hinzufügen
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', '..'))
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
-# initialize_model will be defined in this file
+# Modell und Tokenizer importieren
 from transformers import AutoTokenizer, AutoModelForCausalLM
-# COMET utilities removed - translation evaluation done separately with NLLB
 
-# --- Global Logger ---
-logger = logging.getLogger(__name__)
-
-# Define language names globally (using consistent codes like 'sw', 'ha')
+# Sprachnamen definieren
 LANG_NAMES = {
     "en": "English",
     "sw": "Swahili",
-    "ha": "Hausa",
-    "te": "Telugu",
-    "fr": "French"
-    # Add other potential languages if needed
+    "ha": "Hausa"
 }
 
-# Define English labels for MasakhaNEWS
+# Englische Labels für die Kategorien
 CLASS_LABELS_ENGLISH = ['business', 'entertainment', 'health', 'politics', 'religion', 'sports', 'technology']
 
-# LRL translations of these English MasakhaNEWS labels
+# Übersetzungen der englischen Labels
 CLASS_LABELS_LRL = {
     "sw": {
         "health": "afya", "religion": "dini", "politics": "siasa",
@@ -44,25 +35,15 @@ CLASS_LABELS_LRL = {
         "health": "lafiya", "religion": "addini", "politics": "siyasa",
         "sports": "wasanni", "business": "kasuwanci",
         "entertainment": "nishadi", "technology": "fasaha"
-    },
-    "te": {
-        "health": "ఆరోగ్యం", "religion": "మతం", "politics": "రాజకీయాలు",
-        "sports": "క్రీడలు", "business": "వ్యాపారం",
-        "entertainment": "వినోదం", "technology": "సాంకేతికత"
-    },
-    "fr": {
-        "health": "santé", "religion": "religion", "politics": "politique",
-        "sports": "sport", "business": "affaires",
-        "entertainment": "divertissement", "technology": "technologie"
     }
 }
 
-def get_language_name(lang_code: str) -> str:
-    """Get full language name from language code, using LANG_NAMES."""
+def get_language_name(lang_code):
+    # Gibt den vollen Sprachnamen zurück
     return LANG_NAMES.get(lang_code.lower(), lang_code.capitalize())
 
-def generate_translation_prompt(text: str, source_lang: str, target_lang: str, is_label: bool = False) -> str:
-    """Generate a prompt for translation (text or label)."""
+def generate_translation_prompt(text, source_lang, target_lang, is_label = False):
+    # Erstellt einen Prompt für die Übersetzung
     source_name = get_language_name(source_lang)
     target_name = get_language_name(target_lang)
     if is_label:
@@ -70,29 +51,21 @@ def generate_translation_prompt(text: str, source_lang: str, target_lang: str, i
     else:
         return f"Translate the following {source_name} text to {target_name}. Preserve the original meaning precisely.\nProvide only the direct translation.\nOriginal Text ({source_name}): '{text}'\n{target_name} Translation:"
 
-def _escape_fstring_val(value: str) -> str:
-    """Escapes single quotes for safe inclusion in an f-string that itself uses single quotes."""
-    return str(value).replace("'", "\\'")
-
-def generate_classification_prompt_english(text_en: str, possible_labels: List[str], use_few_shot: bool = True) -> str:
-    """Generate a prompt for English classification, asking for an English label."""
-    # Escape labels before using them in f-strings
-    escaped_labels_for_prompt = [_escape_fstring_val(l) for l in possible_labels]
-    labels_str = ", ".join([f"'{l}'" for l in escaped_labels_for_prompt])
+def generate_classification_prompt_english(text_en, possible_labels, use_few_shot = True):
+    # Erstellt einen Prompt für die Klassifizierung auf Englisch
+    labels_str = ", ".join([f"'{l}'" for l in possible_labels])
     
     instruction_segment = f"Classify the following English text into one of these categories: {labels_str}.\\nRespond with only the English category label."
     
-    escaped_text_en = _escape_fstring_val(text_en)
-    
     prompt_parts = []
-    prompt_parts.append(f"Text: '{escaped_text_en}'") # Use escaped text_en
+    prompt_parts.append(f"Text: '{text_en}'")
     prompt_parts.append("\\n") 
     prompt_parts.append(instruction_segment)
     
     examples_segment = ""
     if use_few_shot:
         example_lines = ["\\n\\nExamples:"]
-        # Updated to include all 7 MasakhaNEWS categories
+        # Beispiele für alle 7 Kategorien
         example_lines.append(f"\\nText: 'The new healthcare bill was debated in parliament today, focusing on hospital funding and patient care.'\\nCategory: health")
         example_lines.append(f"\\nText: 'Local elections are scheduled for next month, with several candidates vying for the mayoral position.'\\nCategory: politics")  
         example_lines.append(f"\\nText: 'The home team secured a stunning victory in the final minutes of the match.'\\nCategory: sports")
@@ -107,9 +80,9 @@ def generate_classification_prompt_english(text_en: str, possible_labels: List[s
     prompt_parts.append("\\n\\nCategory:") 
     return "".join(prompt_parts)
 
-def extract_classification_label_cotr(output_text: str, expected_labels_en: List[str]) -> str:
-    """Extracts English classification label from model output."""
-    default_fallback_label = "[Unknown Label]"  # Use a fallback that's not part of the dataset
+def extract_classification_label_cotr(output_text, expected_labels_en):
+    # Extrahiert das Label aus der Modell-Ausgabe
+    default_fallback_label = "[Unknown Label]"
     if not output_text or not isinstance(output_text, str):
         return default_fallback_label
 
@@ -121,12 +94,12 @@ def extract_classification_label_cotr(output_text: str, expected_labels_en: List
             text_lower = text_lower[len(prefix):].strip()
     text_lower = text_lower.strip('\'".().[]{}!?;' )
 
-    # Exact match first
+    # Exakte Übereinstimmung zuerst
     for label in expected_labels_en:
         if label.lower() == text_lower:
             return label
 
-    # More careful substring check: only if it's a clear standalone word
+    # Teilstring-Prüfung
     for label in expected_labels_en:
         if re.search(r'\b' + re.escape(label.lower()) + r'\b', text_lower):
             return label
@@ -134,13 +107,10 @@ def extract_classification_label_cotr(output_text: str, expected_labels_en: List
     return default_fallback_label
 
 def translate_text(
-    model: Any, tokenizer: Any, text: str, source_lang: str, target_lang: str,
-    is_label: bool = False, generation_params: Optional[Dict] = None
-) -> Tuple[str, Optional[str], float]:
-    """
-    Translate text or a label using the model.
-    Returns: (translated_text, raw_model_output, duration_seconds)
-    """
+    model, tokenizer, text, source_lang, target_lang,
+    is_label = False, generation_params = None
+):
+    # Übersetzt einen Text oder ein Label
     start_time = time.time()
     if not text or not text.strip():
         return "[Empty input to translate]", "[Empty input to translate]", time.time() - start_time
@@ -171,7 +141,7 @@ def translate_text(
             outputs = model.generate(**inputs, **effective_gen_params, pad_token_id=tokenizer.eos_token_id)
         raw_model_output_str = tokenizer.decode(outputs[0][inputs["input_ids"].shape[-1]:], skip_special_tokens=True)
     except Exception as e:
-        logger.error(f"Error during model.generate in translate_text ({source_lang}->{target_lang}): {e}", exc_info=True)
+        print(f"Error during model.generate in translate_text ({source_lang}->{target_lang}): {e}")
         raw_model_output_str = f"[Generation Error: {e}]"
         return raw_model_output_str, raw_model_output_str, time.time() - start_time
 
@@ -192,10 +162,10 @@ def translate_text(
     return final_translation, raw_model_output_str, duration
 
 def process_classification_english(
-    model: Any, tokenizer: Any, text_en: str, possible_labels_en: List[str],
-    use_few_shot: bool, generation_params: Optional[Dict] = None
-) -> str:
-    """Classify English text, expecting an English label."""
+    model, tokenizer, text_en, possible_labels_en,
+    use_few_shot, generation_params = None
+):
+    # Klassifiziert englischen Text
     prompt = generate_classification_prompt_english(text_en, possible_labels_en, use_few_shot)
     default_gen_params = {
         "temperature": 0.2, "top_p": 0.9, "top_k": 30,
@@ -221,19 +191,20 @@ def process_classification_english(
             outputs = model.generate(**inputs, **effective_gen_params, pad_token_id=tokenizer.eos_token_id)
         response_str = tokenizer.decode(outputs[0][inputs["input_ids"].shape[-1]:], skip_special_tokens=True)
     except Exception as e:
-        logger.error(f"Error during model.generate in process_classification_english: {e}", exc_info=True)
+        print(f"Error during model.generate in process_classification_english: {e}")
         return "[Classification Error]"
 
     return extract_classification_label_cotr(response_str, possible_labels_en)
 
 def evaluate_classification_cotr_multi_prompt(
-    model: Any, tokenizer: Any, samples_df: pd.DataFrame, lang_code: str,
-    possible_labels_en: List[str], use_few_shot: bool,
-    text_translation_params: Dict,
-    classification_params: Dict,
-    label_translation_params: Dict,
-    model_name: Optional[str] = None
-) -> pd.DataFrame:
+    model, tokenizer, samples_df, lang_code,
+    possible_labels_en, use_few_shot,
+    text_translation_params,
+    classification_params,
+    label_translation_params,
+    model_name = None
+):
+    # Führt die CoTR-Klassifizierung mit mehreren Prompts aus
     results = []
     active_possible_labels_en = possible_labels_en if possible_labels_en else CLASS_LABELS_ENGLISH
 
@@ -273,8 +244,8 @@ def evaluate_classification_cotr_multi_prompt(
         })
     return pd.DataFrame(results)
 
-def generate_single_prompt_classification_cotr(lrl_text: str, lang_code: str, possible_labels_en: List[str], use_few_shot: bool = True) -> str:
-    """Generates a single CoTR prompt for classification, instructing all steps in English."""
+def generate_single_prompt_classification_cotr(lrl_text, lang_code, possible_labels_en, use_few_shot = True):
+    # Erstellt einen einzelnen CoTR-Prompt
     original_lrl_name = get_language_name(lang_code)
     english_labels_str = ", ".join(f"'{label}'" for label in possible_labels_en)
 
@@ -301,7 +272,7 @@ Original {original_lrl_name} Text:
 '{lrl_text}'
 """
     if use_few_shot:
-        # Updated to include all 7 MasakhaNEWS categories
+        # Beispiele für alle 7 Kategorien
         examples = [
             {
                 "text": "The new healthcare bill was debated in parliament today, focusing on hospital funding and patient care.",
@@ -351,29 +322,27 @@ English Category: {ex_cat_en}
     prompt += "\nNow, generate all the above steps for the Original Text provided at the beginning:"
     return prompt
 
-def extract_lrl_classification_from_single_prompt(response_text: str, lang_code: str, possible_labels_en: List[str]) -> str:
-    """Extracts the final LRL classification label, then maps to EN for metrics."""
+def extract_lrl_classification_from_single_prompt(response_text, lang_code, possible_labels_en):
+    # Extrahiert das Label aus dem einzelnen Prompt
     lrl_name = get_language_name(lang_code)
-    fallback_label = "[Unknown Label]"  # Use a fallback that's not part of the dataset
+    fallback_label = "[Unknown Label]"
 
     match_lrl = re.search(rf"{re.escape(lrl_name)}\s*Category\s*:\s*(.+?)(?:\n\s*(?:\S|$)|$)", response_text, re.IGNORECASE | re.DOTALL)
     if match_lrl:
         lrl_label_pred_raw = match_lrl.group(1).strip().lower()
         lrl_to_en_map = {v.lower(): k for k, v_list in CLASS_LABELS_LRL.get(lang_code, {}).items() for v in (v_list if isinstance(v_list, list) else [v_list]) if k.lower() in [lbl.lower() for lbl in possible_labels_en]}
-        # More direct mapping: lookup based on CLASS_LABELS_LRL
+        # Direkte Zuordnung
         for en_label_orig_case, lrl_translation_val in CLASS_LABELS_LRL.get(lang_code, {}).items():
-            # Ensure en_label_orig_case is one of the possible_labels_en (case-insensitive check)
             if en_label_orig_case.lower() not in [pl.lower() for pl in possible_labels_en]:
                 continue
-            # Handle if lrl_translation_val is a list or string
             lrl_options = [lrl_translation_val] if isinstance(lrl_translation_val, str) else lrl_translation_val
             if lrl_label_pred_raw in [opt.lower() for opt in lrl_options]:
-                return en_label_orig_case # Return the original case English label
+                return en_label_orig_case
 
         if lrl_label_pred_raw in [l.lower() for l in possible_labels_en]:
             for en_l in possible_labels_en: 
                 if en_l.lower() == lrl_label_pred_raw: return en_l
-        logger.debug(f"SP Extract: LRL '{lrl_label_pred_raw}' not mapped. Checking English step.")
+        print(f"SP Extract: LRL '{lrl_label_pred_raw}' not mapped. Checking English step.")
 
     match_eng = re.search(rf"English\s*Category\s*:\s*(.+?)(?:\n\s*{re.escape(lrl_name)}\s*Category\s*:|$)", response_text, re.IGNORECASE | re.DOTALL)
     if match_eng:
@@ -383,14 +352,15 @@ def extract_lrl_classification_from_single_prompt(response_text: str, lang_code:
                 if en_l.lower() == eng_label_pred: return en_l
         return fallback_label
 
-    logger.warning(f"SP Extract: Failed to extract LRL/English label from: '{response_text[:150]}...'. Fallback: '{fallback_label}'.")
+    print(f"SP Extract: Failed to extract LRL/English label from: '{response_text[:150]}...'. Fallback: '{fallback_label}'.")
     return fallback_label
 
 def evaluate_classification_cotr_single_prompt(
-    model: Any, tokenizer: Any, samples_df: pd.DataFrame, lang_code: str,
-    possible_labels_en: List[str], use_few_shot: bool, generation_params: Dict,
-    model_name: Optional[str] = None
-) -> pd.DataFrame:
+    model, tokenizer, samples_df, lang_code,
+    possible_labels_en, use_few_shot, generation_params,
+    model_name = None
+):
+    # Führt die CoTR-Klassifizierung mit einem einzelnen Prompt aus
     results = []
     active_possible_labels_en = possible_labels_en if possible_labels_en else CLASS_LABELS_ENGLISH
 
@@ -430,7 +400,7 @@ def evaluate_classification_cotr_single_prompt(
             match_raw = re.search(rf"{re.escape(lrl_name_match)}\s*Category\s*:\s*(.+?)(?:\n\s*(?:\S|$)|$)", response_text, re.IGNORECASE | re.DOTALL)
             if match_raw: raw_lrl_pred_from_response = match_raw.group(1).strip()
         except Exception as e_gen:
-            logger.error(f"Error in SP generation (sample {row.get('id', idx)}): {e_gen}", exc_info=True)
+            print(f"Error in SP generation (sample {row.get('id', idx)}): {e_gen}")
             time_generation = time.time() - start_gen_time
 
         predicted_label_mapped_en = extract_lrl_classification_from_single_prompt(response_text, lang_code, active_possible_labels_en)
@@ -443,8 +413,7 @@ def evaluate_classification_cotr_single_prompt(
         current_result = {
             'id': row.get('id', idx), 'text_lrl': original_text, 'text_en_translated': intermediate_en_text, 'label_lrl_ground_truth': ground_truth_label, 
             'label_en_predicted_intermediate': intermediate_en_label, 'label_lrl_predicted_final': raw_lrl_pred_from_response,
-            'predicted_label_accuracy': predicted_label_mapped_en, # For accuracy calculation (always English)
-            # Raw translation and classification outputs for debugging
+            'predicted_label_accuracy': predicted_label_mapped_en,
             'raw_text_translation_output': None, 'raw_classification_output': response_text,
             'raw_label_translation_output': None,
             'error_message': None, 'runtime_sec': time_generation
@@ -452,9 +421,9 @@ def evaluate_classification_cotr_single_prompt(
         results.append(current_result)
     return pd.DataFrame(results)
 
-def initialize_model(model_name: str) -> Tuple[Any, Any]:
-    """Initialize the model and tokenizer (from user-provided code)."""
-    logger.info(f"Initializing model: {model_name} (using provided initialize_model)")
+def initialize_model(model_name):
+    # Initialisiert das Modell und den Tokenizer
+    print(f"Initializing model: {model_name}")
     cache_path = "/work/bbd6522/cache_dir"
     
     tokenizer = AutoTokenizer.from_pretrained(
@@ -462,47 +431,21 @@ def initialize_model(model_name: str) -> Tuple[Any, Any]:
         trust_remote_code=True,
         cache_dir=cache_path
     )
-    try:
-        model = AutoModelForCausalLM.from_pretrained(
-            model_name,
-            torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
-            device_map="auto",
-            trust_remote_code=True,
-            cache_dir=cache_path
-        )
-    except Exception as e_load_auto_fp16:
-        logger.error(f"Failed to load model {model_name} with device_map='auto' and float16. Error: {e_load_auto_fp16}")
-        logger.info(f"Attempting to load {model_name} without device_map and with default dtype...")
-        try:
-            model = AutoModelForCausalLM.from_pretrained(
-                model_name,
-                trust_remote_code=True,
-                cache_dir=cache_path
-            )
-            if torch.cuda.is_available():
-                logger.info(f"Manually moving {model_name} to CUDA and attempting float16 conversion.")
-                try:
-                    model = model.to("cuda").half()
-                except Exception as e_cuda_half:
-                    logger.error(f"Failed to move to CUDA and convert to float16: {e_cuda_half}. Using full precision on CUDA if possible.")
-                    model = model.to("cuda") # Try moving to CUDA without half()
-        except Exception as e_load_fallback:
-            logger.critical(f"CRITICAL: Fallback loading for {model_name} also failed: {e_load_fallback}. Cannot proceed with this model.")
-            raise # Re-raise critical error
+    
+    model = AutoModelForCausalLM.from_pretrained(
+        model_name,
+        torch_dtype=torch.float16,
+        device_map="auto",
+        trust_remote_code=True,
+        cache_dir=cache_path
+    )
 
+    # Setzt das Padding-Token
     if tokenizer.pad_token is None:
-        if tokenizer.eos_token is not None:
-            tokenizer.pad_token = tokenizer.eos_token
-            logger.info(f"Set tokenizer.pad_token to eos_token ('{tokenizer.eos_token}')")
-        else:
-            new_pad_token = '[PAD]'
-            tokenizer.add_special_tokens({'pad_token': new_pad_token})
-            model.resize_token_embeddings(len(tokenizer))
-            logger.warning(f"Added new pad_token: '{new_pad_token}' and resized embeddings.")
+        tokenizer.pad_token = tokenizer.eos_token
 
     if model.config.pad_token_id is None:
-        model.config.pad_token_id = tokenizer.pad_token_id if tokenizer.pad_token_id is not None else (tokenizer.eos_token_id if tokenizer.eos_token_id is not None else model.config.eos_token_id)
-        logger.info(f"Set model.config.pad_token_id to {model.config.pad_token_id}")
+        model.config.pad_token_id = tokenizer.pad_token_id
     
-    logger.info(f"Successfully loaded {model_name}. Tokenizer pad: {tokenizer.pad_token} (ID: {tokenizer.pad_token_id}). Model pad_token_id: {model.config.pad_token_id}")
+    print(f"Successfully loaded {model_name}.")
     return tokenizer, model 

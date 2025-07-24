@@ -16,18 +16,14 @@ import pandas as pd
 import numpy as np
 from scipy import stats
 from scipy.stats import ttest_rel, pearsonr
-import warnings
-from typing import Dict, List, Tuple, Optional
-from pathlib import Path
+import os
 
-warnings.filterwarnings('ignore')
-
-# Configuration constants
+# Konfigurationskonstanten
 ALPHA = 0.05
 COMPREHENSIVE_METRICS_FILE = "/home/bbd6522/code/CoTR_Prompting_low_resource/results/analysis/comprehensive_metrics.json"
 
-def normalize_language_code(lang_code: str) -> str:
-    """Normalize language codes for proper matching"""
+def normalize_language_code(lang_code):
+    # Normalisiert Sprachcodes für eine korrekte Zuordnung
     normalization_map = {
         'hau': 'ha',  # Hausa: MasakhaNER → ISO  
         'swa': 'sw',  # Swahili: MasakhaNER → ISO
@@ -41,10 +37,10 @@ def normalize_language_code(lang_code: str) -> str:
     }
     return normalization_map.get(lang_code.lower(), lang_code.lower())
 
-def load_and_prepare_data() -> pd.DataFrame:
-    """Load and prepare the data with proper language code normalization"""
+def load_and_prepare_data():
+    # Lädt und bereitet die Daten mit korrekter Normalisierung der Sprachcodes vor
     
-    print("🔄 LOADING DATA FOR SIMPLIFIED STATISTICAL ANALYSIS")
+    print("LOADING DATA FOR SIMPLIFIED STATISTICAL ANALYSIS")
     print("=" * 70)
     
     with open(COMPREHENSIVE_METRICS_FILE, 'r') as f:
@@ -54,7 +50,7 @@ def load_and_prepare_data() -> pd.DataFrame:
     
     for task, configs in data.items():
         for config in configs:
-            # Normalize approach names
+            # Normalisiert Ansatznamen
             approach = config['approach']
             if approach in ['cotr_sp', 'cotr_single']:
                 approach = 'cotr'
@@ -66,28 +62,28 @@ def load_and_prepare_data() -> pd.DataFrame:
                 approach = 'baseline'
                 pipeline = 'baseline'
             
-            # Normalize shot types
+            # Normalisiert Schusstypen
             shot_type = config['shot_type']
             if shot_type in ['zeroshot', 'zero-shot', 'zs']:
                 shot_type = 'zero_shot'
             elif shot_type in ['fewshot', 'few-shot', 'fs']:
                 shot_type = 'few_shot'
             
-            # CRITICAL FIX: Normalize language codes
+            # KRITISCHE FIX: Normalisiert Sprachcodes
             language = normalize_language_code(config['language'])
             
-            # Create row
+            # Erstellt Zeile
             row = {
                 'task': task,
                 'approach': approach,
                 'pipeline': pipeline,
                 'model': config['model'],
-                'language': language,  # Now normalized
+                'language': language,  # Jetzt normalisiert
                 'shot_type': shot_type,
                 'sample_count': config.get('sample_count', 0)
             }
             
-            # Add available metrics
+            # Fügt verfügbare Metriken hinzu
             if 'accuracy' in config:
                 row['accuracy'] = config['accuracy']
             if 'f1_score' in config:
@@ -97,29 +93,29 @@ def load_and_prepare_data() -> pd.DataFrame:
     
     df = pd.DataFrame(all_rows)
     
-    print(f"✅ Loaded {len(df)} configurations across {df['task'].nunique()} tasks")
+    print(f" Loaded {len(df)} configurations across {df['task'].nunique()} tasks")
     print(f"   Baseline: {len(df[df['approach'] == 'baseline'])}")
     print(f"   CoTR: {len(df[df['approach'] == 'cotr'])}")
     print(f"   Languages: {sorted(df['language'].unique())}")
     
     return df
 
-def create_matched_pairs(df: pd.DataFrame) -> pd.DataFrame:
-    """Create matched pairs for paired t-tests"""
+def create_matched_pairs(df):
+    # Erstellt passende Paare für gepaarte t-Tests
     
-    print(f"\n🔗 CREATING MATCHED PAIRS WITH NORMALIZED LANGUAGE CODES")
+    print(f"\nCREATING MATCHED PAIRS WITH NORMALIZED LANGUAGE CODES")
     
-    # Separate baseline and CoTR
+    # Trennt Baseline und CoTR
     baseline_df = df[df['approach'] == 'baseline'].copy()
     cotr_df = df[df['approach'] == 'cotr'].copy()
     
     matched_pairs = []
     
     for _, cotr_row in cotr_df.iterrows():
-        # Find matching baseline: same model, language, shot_type, task
+        # Findet passende Baseline: gleiches Modell, Sprache, Schusstyp, Aufgabe
         matching_baseline = baseline_df[
             (baseline_df['model'] == cotr_row['model']) &
-            (baseline_df['language'] == cotr_row['language']) &  # Now properly normalized
+            (baseline_df['language'] == cotr_row['language']) &  # Jetzt korrekt normalisiert
             (baseline_df['shot_type'] == cotr_row['shot_type']) &
             (baseline_df['task'] == cotr_row['task'])
         ]
@@ -135,7 +131,7 @@ def create_matched_pairs(df: pd.DataFrame) -> pd.DataFrame:
                 'pipeline': cotr_row['pipeline']
             }
             
-            # Add metrics
+            # Fügt Metriken hinzu
             if 'accuracy' in baseline_row and 'accuracy' in cotr_row and pd.notna(baseline_row['accuracy']) and pd.notna(cotr_row['accuracy']):
                 pair['baseline_accuracy'] = baseline_row['accuracy']
                 pair['cotr_accuracy'] = cotr_row['accuracy']
@@ -150,24 +146,24 @@ def create_matched_pairs(df: pd.DataFrame) -> pd.DataFrame:
     
     pairs_df = pd.DataFrame(matched_pairs)
     
-    print(f"✅ Created {len(pairs_df)} matched pairs")
+    print(f" Created {len(pairs_df)} matched pairs")
     print(f"   Tasks: {sorted(pairs_df['task'].unique())}")
     print(f"   Task counts: {pairs_df['task'].value_counts().to_dict()}")
     
     return pairs_df
 
-def analyze_h1_cotr_vs_baseline(pairs_df: pd.DataFrame) -> Dict:
+def analyze_h1_cotr_vs_baseline(pairs_df):
     """
-    H1: Does CoTR significantly improve performance vs baseline?
-    Uses paired t-tests on matched pairs as described.
+    H1: Verbessert CoTR die Leistung im Vergleich zur Baseline signifikant?
+    Verwendet gepaarte t-Tests für passende Paare, wie beschrieben.
     """
     
-    print(f"\n📊 H1: CoTR vs Baseline Performance (Paired T-Tests)")
+    print(f"\nH1: CoTR vs Baseline Performance (Paired T-Tests)")
     print("=" * 60)
     
     results = {'hypothesis': 'H1_CoTR_vs_Baseline'}
     
-    # Overall analysis across all tasks
+    # Gesamtanalyse über alle Aufgaben hinweg
     for metric in ['accuracy', 'f1']:
         diff_col = f'diff_{metric}'
         baseline_col = f'baseline_{metric}'
@@ -181,10 +177,10 @@ def analyze_h1_cotr_vs_baseline(pairs_df: pd.DataFrame) -> Dict:
                 cotr_scores = valid_pairs[cotr_col].values
                 differences = valid_pairs[diff_col].values
                 
-                # Paired t-test
+                # Gepaarter t-Test
                 t_stat, p_value = ttest_rel(cotr_scores, baseline_scores)
                 
-                # Basic statistics
+                # Grundlegende Statistiken
                 mean_baseline = np.mean(baseline_scores)
                 mean_cotr = np.mean(cotr_scores)
                 mean_improvement = np.mean(differences)
@@ -210,24 +206,24 @@ def analyze_h1_cotr_vs_baseline(pairs_df: pd.DataFrame) -> Dict:
                 print(f"  • Mean improvement: {mean_improvement:+.4f} ({result['relative_improvement_pct']:+.1f}%)")
                 print(f"  • t-statistic: {t_stat:.4f}")
                 print(f"  • p-value: {p_value:.4f}")
-                print(f"  • Significant: {'✅ YES' if result['significant'] else '❌ NO'}")
+                print(f"  • Significant: {'YES' if result['significant'] else 'NO'}")
     
     return results
 
-def analyze_h2_translation_quality(pairs_df: pd.DataFrame) -> Dict:
+def analyze_h2_translation_quality(pairs_df):
     """
-    H2: Relationship between translation quality and task performance
-    Uses Pearson correlation analysis as described.
-    Note: This requires BLEU scores which may not be available in current data.
+    H2: Beziehung zwischen Übersetzungsqualität und Aufgabenleistung
+    Verwendet Pearson-Korrelationsanalyse, wie beschrieben.
+    Hinweis: Dies erfordert BLEU-Scores, die in den aktuellen Daten möglicherweise nicht verfügbar sind.
     """
     
-    print(f"\n📊 H2: Translation Quality Correlation Analysis")
+    print(f"\nH2: Translation Quality Correlation Analysis")
     print("=" * 60)
     
     results = {'hypothesis': 'H2_Translation_Quality'}
     
-    # Note: BLEU scores would need to be added to the data
-    print("ℹ️  Translation quality analysis requires BLEU scores from translation steps.")
+    # Hinweis: BLEU-Scores müssten zu den Daten hinzugefügt werden
+    print("Translation quality analysis requires BLEU scores from translation steps.")
     print("    This analysis would correlate BLEU scores with task performance metrics.")
     print("    Implementation placeholder - requires separate translation evaluation.")
     
@@ -236,18 +232,18 @@ def analyze_h2_translation_quality(pairs_df: pd.DataFrame) -> Dict:
     
     return results
 
-def analyze_h3_task_effectiveness(pairs_df: pd.DataFrame) -> Dict:
+def analyze_h3_task_effectiveness(pairs_df):
     """
-    H3: Task-specific effectiveness of CoTR
-    Comparative analysis of H1 results across different tasks.
+    H3: Aufgabenspezifische Wirksamkeit von CoTR
+    Vergleichende Analyse der H1-Ergebnisse über verschiedene Aufgaben hinweg.
     """
     
-    print(f"\n📊 H3: Task-Specific Effectiveness Analysis")
+    print(f"\nH3: Task-Specific Effectiveness Analysis")
     print("=" * 60)
     
     results = {'hypothesis': 'H3_Task_Effectiveness'}
     
-    # Per-task analysis
+    # Pro-Aufgaben-Analyse
     task_results = {}
     
     for task in pairs_df['task'].unique():
@@ -272,7 +268,7 @@ def analyze_h3_task_effectiveness(pairs_df: pd.DataFrame) -> Dict:
                     # Paired t-test per task
                     t_stat, p_value = ttest_rel(cotr_scores, baseline_scores)
                     
-                    # Basic statistics
+                    # Grundlegende Statistiken
                     mean_baseline = np.mean(baseline_scores)
                     mean_cotr = np.mean(cotr_scores)
                     mean_improvement = np.mean(differences)
@@ -288,12 +284,12 @@ def analyze_h3_task_effectiveness(pairs_df: pd.DataFrame) -> Dict:
                     
                     task_results[task][metric] = task_result
                     
-                    print(f"  • {metric}: {mean_improvement:+.4f} ({task_result['relative_improvement_pct']:+.1f}%), p={p_value:.4f} {'✅' if task_result['significant'] else '❌'}")
+                    print(f"  • {metric}: {mean_improvement:+.4f} ({task_result['relative_improvement_pct']:+.1f}%), p={p_value:.4f} {'YES' if task_result['significant'] else 'NO'}")
     
     results['task_specific'] = task_results
     
-    # Summary of task effectiveness
-    print(f"\n📋 TASK EFFECTIVENESS SUMMARY:")
+    # Zusammenfassung der aufgabenspezifischen Wirksamkeit
+    print(f"\nTASK EFFECTIVENESS SUMMARY:")
     
     for task in task_results:
         if 'f1' in task_results[task]:
@@ -303,17 +299,17 @@ def analyze_h3_task_effectiveness(pairs_df: pd.DataFrame) -> Dict:
     
     return results
 
-def analyze_pipeline_effects(pairs_df: pd.DataFrame) -> Dict:
+def analyze_pipeline_effects(pairs_df):
     """
-    Additional analysis: Single-prompt vs Multi-prompt pipeline effectiveness
+    Zusätzliche Analyse: Wirksamkeit der Single-Prompt- vs. Multi-Prompt-Pipeline
     """
     
-    print(f"\n📊 PIPELINE ANALYSIS: Single vs Multi-prompt")
+    print(f"\nPIPELINE ANALYSIS: Single vs Multi-prompt")
     print("=" * 60)
     
     results = {'analysis': 'Pipeline_Effects'}
     
-    # Separate by pipeline type
+    # Trennt nach Pipeline-Typ
     single_prompt = pairs_df[pairs_df['pipeline'] == 'single_prompt']
     multi_prompt = pairs_df[pairs_df['pipeline'] == 'multi_prompt']
     
@@ -351,12 +347,12 @@ def analyze_pipeline_effects(pairs_df: pd.DataFrame) -> Dict:
                         
                         results[pipeline_type][metric] = result
                         
-                        print(f"  • {metric}: {mean_improvement:+.4f} ({result['relative_improvement_pct']:+.1f}%), p={p_value:.4f} {'✅' if result['significant'] else '❌'}")
+                        print(f"  • {metric}: {mean_improvement:+.4f} ({result['relative_improvement_pct']:+.1f}%), p={p_value:.4f} {'YES' if result['significant'] else 'NO'}")
     
     return results
 
-def create_summary_report(h1_results: Dict, h2_results: Dict, h3_results: Dict, pipeline_results: Dict, pairs_df: pd.DataFrame) -> Dict:
-    """Create a comprehensive summary of the statistical analysis"""
+def create_summary_report(h1_results, h2_results, h3_results, pipeline_results, pairs_df):
+    # Erstellt eine umfassende Zusammenfassung der statistischen Analyse
     
     summary = {
         'analysis_type': 'Simplified Statistical Analysis',
@@ -377,25 +373,26 @@ def create_summary_report(h1_results: Dict, h2_results: Dict, h3_results: Dict, 
     
     return summary
 
-def save_results(summary: Dict, pairs_df: pd.DataFrame):
-    """Save the analysis results and matched pairs dataset"""
+def save_results(summary, pairs_df):
+    # Speichert die Analyseergebnisse und das Dataset der passenden Paare
     
-    output_dir = Path("evaluation/statistical_analysis/simplified_results")
-    output_dir.mkdir(exist_ok=True)
+    output_dir = "evaluation/statistical_analysis/simplified_results"
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
     
-    # Save matched pairs dataset
-    pairs_file = output_dir / "matched_pairs_corrected.csv"
+    # Speichert das Dataset der passenden Paare
+    pairs_file = os.path.join(output_dir, "matched_pairs_corrected.csv")
     pairs_df.to_csv(pairs_file, index=False)
-    print(f"\n💾 Matched pairs saved to: {pairs_file}")
+    print(f"\nMatched pairs saved to: {pairs_file}")
     
-    # Save statistical results
-    results_file = output_dir / "simplified_statistical_results.json"
+    # Speichert die statistischen Ergebnisse
+    results_file = os.path.join(output_dir, "simplified_statistical_results.json")
     with open(results_file, 'w') as f:
         json.dump(summary, f, indent=2, default=str)
-    print(f"💾 Results saved to: {results_file}")
+    print(f"Results saved to: {results_file}")
     
-    # Save summary report
-    summary_file = output_dir / "statistical_summary.txt"
+    # Speichert den Zusammenfassungsbericht
+    summary_file = os.path.join(output_dir, "statistical_summary.txt")
     with open(summary_file, 'w') as f:
         f.write("SIMPLIFIED STATISTICAL ANALYSIS SUMMARY\n")
         f.write("=" * 50 + "\n\n")
@@ -411,11 +408,11 @@ def save_results(summary: Dict, pairs_df: pd.DataFrame):
         if 'overall_f1' in h1:
             result = h1['overall_f1']
             f.write(f"F1 Score: {result['mean_improvement']:+.4f} ({result['relative_improvement_pct']:+.1f}%), ")
-            f.write(f"p={result['p_value']:.4f} {'✅ Significant' if result['significant'] else '❌ Not significant'}\n")
+            f.write(f"p={result['p_value']:.4f} {'Significant' if result['significant'] else 'Not significant'}\n")
         if 'overall_accuracy' in h1:
             result = h1['overall_accuracy']
             f.write(f"Accuracy: {result['mean_improvement']:+.4f} ({result['relative_improvement_pct']:+.1f}%), ")
-            f.write(f"p={result['p_value']:.4f} {'✅ Significant' if result['significant'] else '❌ Not significant'}\n")
+            f.write(f"p={result['p_value']:.4f} {'Significant' if result['significant'] else 'Not significant'}\n")
         
         f.write("\nH3: Task-Specific Results\n")
         f.write("-" * 25 + "\n")
@@ -425,14 +422,14 @@ def save_results(summary: Dict, pairs_df: pd.DataFrame):
                 if 'f1' in task_data:
                     result = task_data['f1']
                     f.write(f"{task.upper()}: {result['relative_improvement_pct']:+.1f}% F1, ")
-                    f.write(f"p={result['p_value']:.4f} {'✅' if result['significant'] else '❌'}\n")
+                    f.write(f"p={result['p_value']:.4f} {'accurate' if result['significant'] else 'not accurate'}\n")
     
-    print(f"💾 Summary saved to: {summary_file}")
+    print(f"Summary saved to: {summary_file}")
 
 def main():
-    """Main analysis function"""
+    # Hauptanalysefunktion
     
-    print("🚀 SIMPLIFIED STATISTICAL ANALYSIS FOR CoTR")
+    print("SIMPLIFIED STATISTICAL ANALYSIS FOR CoTR")
     print("=" * 80)
     print("Analyzing three core hypotheses:")
     print("H1: CoTR vs Baseline effectiveness (paired t-tests)")
@@ -440,34 +437,34 @@ def main():
     print("H3: Task-specific effectiveness (comparative analysis)")
     print("=" * 80)
     
-    # Load and prepare data with language code normalization
+    # Lädt und bereitet Daten mit Normalisierung der Sprachcodes vor
     df = load_and_prepare_data()
     
-    # Create matched pairs
+    # Erstellt passende Paare
     pairs_df = create_matched_pairs(df)
     
     if len(pairs_df) == 0:
-        print("❌ No matched pairs found. Cannot proceed with analysis.")
+        print(" No matched pairs found. Cannot proceed with analysis.")
         return
     
-    # Conduct hypothesis tests
+    # Führt Hypothesentests durch
     h1_results = analyze_h1_cotr_vs_baseline(pairs_df)
     h2_results = analyze_h2_translation_quality(pairs_df)
     h3_results = analyze_h3_task_effectiveness(pairs_df)
     
-    # Additional analysis
+    # Zusätzliche Analyse
     pipeline_results = analyze_pipeline_effects(pairs_df)
     
-    # Create summary
+    # Erstellt Zusammenfassung
     summary = create_summary_report(h1_results, h2_results, h3_results, pipeline_results, pairs_df)
     
-    # Save results
+    # Speichert Ergebnisse
     save_results(summary, pairs_df)
     
-    print(f"\n✅ ANALYSIS COMPLETE")
-    print(f"   📊 {len(pairs_df)} matched pairs analyzed")
-    print(f"   📋 {len(pairs_df['task'].unique())} tasks covered")
-    print(f"   🌍 {len(pairs_df['language'].unique())} languages covered")
+    print(f"\nANALYSIS COMPLETE")
+    print(f"    {len(pairs_df)} matched pairs analyzed")
+    print(f"    {len(pairs_df['task'].unique())} tasks covered")
+    print(f"    {len(pairs_df['language'].unique())} languages covered")
 
 if __name__ == "__main__":
     main() 

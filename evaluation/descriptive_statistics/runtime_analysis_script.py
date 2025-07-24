@@ -24,17 +24,9 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from pathlib import Path
 import re
-from typing import Dict, List, Tuple, Optional
-import logging
-from collections import defaultdict
 
-# Configure logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
-
-# Define result directories
+# Definiert die Ergebnisverzeichnisse
 RESULT_DIRS = {
     'classification': '/home/bbd6522/code/CoTR_Prompting_low_resource/results/classification_new',
     'ner': '/home/bbd6522/code/CoTR_Prompting_low_resource/results/ner_new', 
@@ -43,7 +35,7 @@ RESULT_DIRS = {
     'sentiment': '/home/bbd6522/code/CoTR_Prompting_low_resource/results/sentiment_new'
 }
 
-# Runtime column mappings for different tasks
+# Spaltenzuordnungen für Laufzeit für verschiedene Aufgaben
 RUNTIME_COLUMNS = {
     'runtime_seconds': 'runtime_seconds',
     'runtime_sec': 'runtime_seconds', 
@@ -51,8 +43,8 @@ RUNTIME_COLUMNS = {
     'duration': 'runtime_seconds'
 }
 
-def normalize_model_name(model_name: str) -> str:
-    """Normalize model names for consistent comparison"""
+def normalize_model_name(model_name):
+    # Normalisiert Modellnamen für einen konsistenten Vergleich
     if 'aya' in model_name.lower():
         return 'Aya-23-8B'
     elif 'qwen' in model_name.lower():
@@ -60,8 +52,8 @@ def normalize_model_name(model_name: str) -> str:
     else:
         return model_name.split('/')[-1] if '/' in model_name else model_name
 
-def parse_file_info(file_path: str) -> Dict[str, str]:
-    """Extract experiment information from file path and name"""
+def parse_file_info(file_path):
+    # Extrahiert Experimentinformationen aus dem Dateipfad und -namen
     path_parts = file_path.split('/')
     filename = os.path.basename(file_path)
     
@@ -74,38 +66,38 @@ def parse_file_info(file_path: str) -> Dict[str, str]:
         'model': None
     }
     
-    # Extract task
+    # Extrahiert die Aufgabe
     for task in RESULT_DIRS.keys():
         if task in file_path:
             info['task'] = task
             break
     
-    # Extract approach (baseline or cotr)
+    # Extrahiert den Ansatz (Baseline oder CoTR)
     if '/baseline/' in file_path:
         info['approach'] = 'baseline'
     elif '/cotr/' in file_path:
         info['approach'] = 'cotr'
     
-    # Extract pipeline type for CoTR
+    # Extrahiert den Pipeline-Typ für CoTR
     if 'mp_' in filename or 'multi_prompt' in filename:
         info['pipeline'] = 'multi_prompt'
     elif 'sp_' in filename or 'single_prompt' in filename:
         info['pipeline'] = 'single_prompt'
     
-    # Extract shot type
+    # Extrahiert den Schusstyp
     if '/fs/' in file_path or '_fs_' in filename or 'few_shot' in filename:
         info['shot_type'] = 'few_shot'
     elif '/zs/' in file_path or '_zs_' in filename or 'zero_shot' in filename:
         info['shot_type'] = 'zero_shot'
     
-    # Extract language from path (look for language codes)
+    # Extrahiert die Sprache aus dem Pfad (sucht nach Sprachcodes)
     lang_codes = ['en', 'sw', 'fi', 'ha', 'pt', 'ur', 'fr', 'te']
     for part in path_parts:
         if part in lang_codes:
             info['language'] = part
             break
     
-    # Extract model name from path
+    # Extrahiert den Modellnamen aus dem Pfad
     model_indicators = ['aya', 'qwen', 'Aya', 'Qwen']
     for part in path_parts:
         for indicator in model_indicators:
@@ -117,72 +109,75 @@ def parse_file_info(file_path: str) -> Dict[str, str]:
     
     return info
 
-def load_runtime_data(result_dirs: Dict[str, str]) -> pd.DataFrame:
-    """Load runtime data from all result files"""
+def load_runtime_data(result_dirs):
+    # Lädt Laufzeitdaten aus allen Ergebnisdateien
     all_data = []
     
     for task, base_dir in result_dirs.items():
-        logger.info(f"Processing {task} results from {base_dir}")
+        print(f"Processing {task} results from {base_dir}")
         
         if not os.path.exists(base_dir):
-            logger.warning(f"Directory {base_dir} does not exist, skipping {task}")
+            print(f"Directory {base_dir} does not exist, skipping {task}")
             continue
         
-        # Find all CSV files recursively
-        for csv_file in Path(base_dir).rglob("*.csv"):
-            try:
-                # Parse file information
-                file_info = parse_file_info(str(csv_file))
-                file_info['file_path'] = str(csv_file)
-                
-                # Load the CSV file
-                df = pd.read_csv(csv_file)
-                
-                if df.empty:
-                    continue
-                
-                # Find runtime column
-                runtime_col = None
-                for col in df.columns:
-                    col_lower = col.lower()
-                    if any(rt_col in col_lower for rt_col in RUNTIME_COLUMNS.keys()):
-                        runtime_col = col
-                        break
-                
-                if runtime_col is None:
-                    logger.warning(f"No runtime column found in {csv_file}")
-                    continue
-                
-                # Extract runtime statistics
-                valid_runtimes = df[runtime_col].dropna()
-                if len(valid_runtimes) == 0:
-                    continue
-                
-                runtime_stats = {
-                    'mean_runtime': valid_runtimes.mean(),
-                    'median_runtime': valid_runtimes.median(),
-                    'std_runtime': valid_runtimes.std(),
-                    'min_runtime': valid_runtimes.min(),
-                    'max_runtime': valid_runtimes.max(),
-                    'total_runtime': valid_runtimes.sum(),
-                    'sample_count': len(valid_runtimes)
-                }
-                
-                # Combine file info with runtime stats
-                record = {**file_info, **runtime_stats}
-                all_data.append(record)
-                
-            except Exception as e:
-                logger.error(f"Error processing {csv_file}: {e}")
-                continue
+        # Findet alle CSV-Dateien rekursiv
+        for root, _, files in os.walk(base_dir):
+            for file in files:
+                if file.endswith(".csv"):
+                    csv_file = os.path.join(root, file)
+                    try:
+                        # Parst Dateiinformationen
+                        file_info = parse_file_info(str(csv_file))
+                        file_info['file_path'] = str(csv_file)
+                        
+                        # Lädt die CSV-Datei
+                        df = pd.read_csv(csv_file)
+                        
+                        if df.empty:
+                            continue
+                        
+                        # Findet die Laufzeitspalte
+                        runtime_col = None
+                        for col in df.columns:
+                            col_lower = col.lower()
+                            if any(rt_col in col_lower for rt_col in RUNTIME_COLUMNS.keys()):
+                                runtime_col = col
+                                break
+                        
+                        if runtime_col is None:
+                            print(f"No runtime column found in {csv_file}")
+                            continue
+                        
+                        # Extrahiert Laufzeitstatistiken
+                        valid_runtimes = df[runtime_col].dropna()
+                        if len(valid_runtimes) == 0:
+                            continue
+                        
+                        runtime_stats = {
+                            'mean_runtime': valid_runtimes.mean(),
+                            'median_runtime': valid_runtimes.median(),
+                            'std_runtime': valid_runtimes.std(),
+                            'min_runtime': valid_runtimes.min(),
+                            'max_runtime': valid_runtimes.max(),
+                            'total_runtime': valid_runtimes.sum(),
+                            'sample_count': len(valid_runtimes)
+                        }
+                        
+                        # Kombiniert Dateiinformationen mit Laufzeitstatistiken
+                        record = {**file_info, **runtime_stats}
+                        all_data.append(record)
+                        
+                    except Exception as e:
+                        print(f"Error processing {csv_file}: {e}")
+                        continue
     
     return pd.DataFrame(all_data)
 
-def calculate_efficiency_metrics(df: pd.DataFrame) -> pd.DataFrame:
-    """Calculate efficiency metrics comparing CoTR to baseline"""
+def calculate_efficiency_metrics(df):
+    # Berechnet Effizienzmetriken, die CoTR mit der Baseline vergleichen
     efficiency_data = []
     
-    # Group by task, model, language, shot_type
+    # Gruppiert nach Aufgabe, Modell, Sprache, Schusstyp
     grouping_cols = ['task', 'model', 'language', 'shot_type']
     
     for group_key, group_df in df.groupby(grouping_cols):
@@ -191,7 +186,7 @@ def calculate_efficiency_metrics(df: pd.DataFrame) -> pd.DataFrame:
             
         task, model, language, shot_type = group_key
         
-        # Get baseline and CoTR data
+        # Holt Baseline- und CoTR-Daten
         baseline_data = group_df[group_df['approach'] == 'baseline']
         cotr_data = group_df[group_df['approach'] == 'cotr']
         
@@ -200,7 +195,7 @@ def calculate_efficiency_metrics(df: pd.DataFrame) -> pd.DataFrame:
         
         baseline_runtime = baseline_data['mean_runtime'].iloc[0]
         
-        # Compare with different CoTR pipelines
+        # Vergleicht mit verschiedenen CoTR-Pipelines
         for _, cotr_row in cotr_data.iterrows():
             cotr_runtime = cotr_row['mean_runtime']
             overhead_ratio = cotr_runtime / baseline_runtime
@@ -222,15 +217,15 @@ def calculate_efficiency_metrics(df: pd.DataFrame) -> pd.DataFrame:
     
     return pd.DataFrame(efficiency_data)
 
-def create_runtime_plots(df: pd.DataFrame, efficiency_df: pd.DataFrame, output_dir: str):
-    """Create comprehensive runtime analysis plots"""
+def create_runtime_plots(df, efficiency_df, output_dir):
+    # Erstellt umfassende Laufzeitanalyse-Plots
     os.makedirs(output_dir, exist_ok=True)
     
-    # Set style
+    # Setzt den Stil
     plt.style.use('default')
     sns.set_palette("husl")
     
-    # 1. Runtime comparison by task and approach
+    # 1. Laufzeitvergleich nach Aufgabe und Ansatz
     plt.figure(figsize=(15, 8))
     plot_df = df[df['approach'].isin(['baseline', 'cotr'])].copy()
     sns.boxplot(data=plot_df, x='task', y='mean_runtime', hue='approach')
@@ -243,7 +238,7 @@ def create_runtime_plots(df: pd.DataFrame, efficiency_df: pd.DataFrame, output_d
     plt.savefig(os.path.join(output_dir, 'runtime_by_task.png'), dpi=300, bbox_inches='tight')
     plt.close()
     
-    # 2. CoTR pipeline comparison
+    # 2. CoTR-Pipeline-Vergleich
     plt.figure(figsize=(15, 8))
     cotr_df = df[df['approach'] == 'cotr'].copy()
     if not cotr_df.empty:
@@ -257,7 +252,7 @@ def create_runtime_plots(df: pd.DataFrame, efficiency_df: pd.DataFrame, output_d
         plt.savefig(os.path.join(output_dir, 'cotr_pipeline_comparison.png'), dpi=300, bbox_inches='tight')
     plt.close()
     
-    # 3. Overhead analysis
+    # 3. Overhead-Analyse
     if not efficiency_df.empty:
         plt.figure(figsize=(15, 8))
         sns.barplot(data=efficiency_df, x='task', y='overhead_percentage', hue='pipeline')
@@ -271,7 +266,7 @@ def create_runtime_plots(df: pd.DataFrame, efficiency_df: pd.DataFrame, output_d
         plt.savefig(os.path.join(output_dir, 'overhead_analysis.png'), dpi=300, bbox_inches='tight')
         plt.close()
     
-    # 4. Model comparison
+    # 4. Modellvergleich
     plt.figure(figsize=(15, 8))
     model_df = df.dropna(subset=['model'])
     if not model_df.empty:
@@ -285,7 +280,7 @@ def create_runtime_plots(df: pd.DataFrame, efficiency_df: pd.DataFrame, output_d
         plt.savefig(os.path.join(output_dir, 'runtime_by_model.png'), dpi=300, bbox_inches='tight')
     plt.close()
     
-    # 5. Language-specific analysis
+    # 5. Sprachspezifische Analyse
     plt.figure(figsize=(15, 8))
     lang_df = df.dropna(subset=['language'])
     if not lang_df.empty:
@@ -299,15 +294,15 @@ def create_runtime_plots(df: pd.DataFrame, efficiency_df: pd.DataFrame, output_d
         plt.savefig(os.path.join(output_dir, 'runtime_by_language.png'), dpi=300, bbox_inches='tight')
     plt.close()
 
-def generate_runtime_summary(df: pd.DataFrame, efficiency_df: pd.DataFrame) -> str:
-    """Generate a comprehensive runtime analysis summary"""
+def generate_runtime_summary(df, efficiency_df):
+    # Erstellt eine umfassende Zusammenfassung der Laufzeitanalyse
     summary = []
     summary.append("=" * 80)
     summary.append("RUNTIME COMPARISON ANALYSIS: BASELINE vs CoTR")
     summary.append("=" * 80)
     summary.append("")
     
-    # Overall statistics
+    # Gesamtstatistiken
     baseline_df = df[df['approach'] == 'baseline']
     cotr_df = df[df['approach'] == 'cotr']
     
@@ -322,7 +317,7 @@ def generate_runtime_summary(df: pd.DataFrame, efficiency_df: pd.DataFrame) -> s
         summary.append(f"  • Overall CoTR Overhead: {overall_overhead:.1f}%")
         summary.append("")
     
-    # Task-specific analysis
+    # Aufgabenspezifische Analyse
     summary.append("TASK-SPECIFIC ANALYSIS:")
     for task in df['task'].unique():
         if pd.isna(task):
@@ -339,7 +334,7 @@ def generate_runtime_summary(df: pd.DataFrame, efficiency_df: pd.DataFrame) -> s
             summary.append(f"    - Overhead: {task_overhead:.1f}%")
     summary.append("")
     
-    # Pipeline comparison
+    # Pipeline-Vergleich
     if not efficiency_df.empty:
         summary.append("PIPELINE COMPARISON:")
         pipeline_stats = efficiency_df.groupby('pipeline')['overhead_percentage'].agg(['mean', 'std']).round(1)
@@ -347,7 +342,7 @@ def generate_runtime_summary(df: pd.DataFrame, efficiency_df: pd.DataFrame) -> s
             summary.append(f"  • {pipeline}: {stats['mean']:.1f}% ± {stats['std']:.1f}% overhead")
         summary.append("")
     
-    # Model comparison
+    # Modellvergleich
     summary.append("MODEL COMPARISON:")
     for model in df['model'].unique():
         if pd.isna(model):
@@ -364,11 +359,11 @@ def generate_runtime_summary(df: pd.DataFrame, efficiency_df: pd.DataFrame) -> s
             summary.append(f"    - Overhead: {model_overhead:.1f}%")
     summary.append("")
     
-    # Efficiency insights
+    # Effizienzeinblicke
     if not efficiency_df.empty:
         summary.append("KEY INSIGHTS:")
         
-        # Best performing configurations
+        # Am besten abschneidende Konfigurationen
         best_overhead = efficiency_df.loc[efficiency_df['overhead_percentage'].idxmin()]
         worst_overhead = efficiency_df.loc[efficiency_df['overhead_percentage'].idxmax()]
         
@@ -377,7 +372,7 @@ def generate_runtime_summary(df: pd.DataFrame, efficiency_df: pd.DataFrame) -> s
         summary.append(f"  • Least Efficient CoTR: {worst_overhead['task']}/{worst_overhead['pipeline']} ")
         summary.append(f"    ({worst_overhead['overhead_percentage']:.1f}% overhead)")
         
-        # Pipeline preferences
+        # Pipeline-Präferenzen
         avg_overhead_by_pipeline = efficiency_df.groupby('pipeline')['overhead_percentage'].mean()
         if 'single_prompt' in avg_overhead_by_pipeline.index and 'multi_prompt' in avg_overhead_by_pipeline.index:
             sp_overhead = avg_overhead_by_pipeline['single_prompt']
@@ -393,46 +388,46 @@ def generate_runtime_summary(df: pd.DataFrame, efficiency_df: pd.DataFrame) -> s
     return "\n".join(summary)
 
 def main():
-    """Main function to run the runtime comparison analysis"""
+    # Hauptfunktion zur Ausführung der Laufzeitvergleichsanalyse
     output_dir = "runtime_analysis_results"
     os.makedirs(output_dir, exist_ok=True)
     
-    logger.info("Starting runtime comparison analysis...")
+    print("Starting runtime comparison analysis...")
     
-    # Load data
-    logger.info("Loading runtime data from all result files...")
+    # Daten laden
+    print("Loading runtime data from all result files...")
     runtime_df = load_runtime_data(RESULT_DIRS)
     
     if runtime_df.empty:
-        logger.error("No runtime data found!")
+        print("No runtime data found!")
         return
     
-    logger.info(f"Loaded {len(runtime_df)} runtime records")
+    print(f"Loaded {len(runtime_df)} runtime records")
     
-    # Calculate efficiency metrics
-    logger.info("Calculating efficiency metrics...")
+    # Effizienzmetriken berechnen
+    print("Calculating efficiency metrics...")
     efficiency_df = calculate_efficiency_metrics(runtime_df)
     
-    # Save data
+    # Daten speichern
     runtime_df.to_csv(os.path.join(output_dir, "runtime_data.csv"), index=False)
     if not efficiency_df.empty:
         efficiency_df.to_csv(os.path.join(output_dir, "efficiency_metrics.csv"), index=False)
     
-    # Generate plots
-    logger.info("Creating runtime analysis plots...")
+    # Plots erstellen
+    print("Creating runtime analysis plots...")
     create_runtime_plots(runtime_df, efficiency_df, output_dir)
     
-    # Generate summary
+    # Zusammenfassung erstellen
     summary = generate_runtime_summary(runtime_df, efficiency_df)
     
-    # Save summary
+    # Zusammenfassung speichern
     with open(os.path.join(output_dir, "runtime_analysis_summary.txt"), "w") as f:
         f.write(summary)
     
-    # Print summary
+    # Zusammenfassung drucken
     print(summary)
     
-    logger.info(f"Runtime analysis complete! Results saved to {output_dir}/")
+    print(f"Runtime analysis complete! Results saved to {output_dir}/")
     print(f"\nGenerated files:")
     print(f"  • {output_dir}/runtime_data.csv - Raw runtime statistics")
     print(f"  • {output_dir}/efficiency_metrics.csv - Overhead calculations")

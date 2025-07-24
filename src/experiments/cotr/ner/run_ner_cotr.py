@@ -14,15 +14,12 @@ import itertools
 import logging
 from typing import Any, Dict, Optional
 
-# Add project root to Python path BEFORE other project imports
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', '..'))
-if project_root not in sys.path: # Optional: prevent adding multiple times
+if project_root not in sys.path: 
     sys.path.insert(0, project_root)
 
-# Disable tokenizer parallelism to avoid warnings
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
-# Import utility functions
 from src.experiments.cotr.ner.ner_cotr import (
     initialize_model,
     evaluate_ner_cotr,
@@ -34,8 +31,7 @@ from huggingface_hub import login
 from config import get_token
 from src.experiments.cotr.language_information import get_language_information
 
-# Set of standardized parameters that will be consistent across baseline and CoTR
-# IMPORTANT: These must match the parameters in baseline/ner/run_ner_baseline.py
+
 STANDARD_PARAMETERS = {
     "sw": {  # Swahili
         "temperature": 0.3,
@@ -65,9 +61,8 @@ STANDARD_PARAMETERS = {
     }
 }
 
-# Model-specific parameter overrides
 MODEL_PARAMETERS = {
-    "qwen": {  # Parameters for Qwen models
+    "qwen": { 
         "temperature": 0.2,
         "top_p": 0.8,
         "top_k": 30,
@@ -78,9 +73,9 @@ MODEL_PARAMETERS = {
         "trans_top_k": 30,
         "max_trans_tokens": 256,
         "trans_repetition_penalty": 1.2,
-        "num_beams": 4  # Use beam search for more consistent JSON
+        "num_beams": 4 
     },
-    "aya": {  # Parameters for Aya models
+    "aya": {  
         "temperature": 0.2,
         "top_p": 0.85,
         "top_k": 35,
@@ -91,12 +86,12 @@ MODEL_PARAMETERS = {
         "trans_top_k": 35,
         "max_trans_tokens": 256,
         "trans_repetition_penalty": 1.1,
-        "num_beams": 3  # Use beam search for more consistent JSON
+        "num_beams": 3  
     }
 }
 
 LANGUAGE_PARAMETERS = {
-    "sw": {  # Swahili (Example - Adjust as needed)
+    "sw": {  
         "temperature": 0.25,
         "top_p": 0.85,
         "top_k": 35,
@@ -108,7 +103,7 @@ LANGUAGE_PARAMETERS = {
         "max_trans_tokens": 256,
         "trans_repetition_penalty": 1.05
     },
-    "ha": {  # Hausa (Example - Adjust as needed)
+    "ha": {  
         "temperature": 0.25,
         "top_p": 0.85,
         "top_k": 35,
@@ -120,7 +115,6 @@ LANGUAGE_PARAMETERS = {
         "max_trans_tokens": 256,
         "trans_repetition_penalty": 1.05
     }
-    # Add other languages if tuning is done
 }
 
 def run_experiment(
@@ -132,15 +126,10 @@ def run_experiment(
     base_results_path: str,
     pipeline_type: str,
     use_few_shot: bool,
-    # Dictionaries for parameters
     ner_params: Dict[str, Any],
     trans_params: Dict[str, Any],
-    # num_beams is now inside the dictionaries
 ) -> Optional[Dict[str, Any]]:
-    """
-    Run a specific NER CoTR experiment configuration using parameter dictionaries.
-    """
-    # Apply language-specific parameter overrides
+    
     if lang_code in LANGUAGE_PARAMETERS:
         lang_params = LANGUAGE_PARAMETERS[lang_code]
         ner_params['temperature'] = lang_params.get("temperature", ner_params['temperature'])
@@ -155,11 +144,9 @@ def run_experiment(
         trans_params['repetition_penalty'] = lang_params.get("trans_repetition_penalty", trans_params['repetition_penalty'])
         print(f"Using language-specific parameters for {lang_code}")
 
-    # Apply model-specific parameters from MODEL_PARAMETERS based on model name
     model_lower = model_name.lower()
     model_key = None
     
-    # Determine which model family this belongs to
     if "qwen" in model_lower:
         model_key = "qwen"
     elif "aya" in model_lower:
@@ -167,7 +154,6 @@ def run_experiment(
         
     if model_key and model_key in MODEL_PARAMETERS:
         model_params = MODEL_PARAMETERS[model_key]
-        # Apply model params with priority over language params
         ner_params['temperature'] = model_params.get("temperature", ner_params['temperature'])
         ner_params['top_p'] = model_params.get("top_p", ner_params['top_p'])
         ner_params['top_k'] = model_params.get("top_k", ner_params['top_k'])
@@ -175,7 +161,6 @@ def run_experiment(
         ner_params['repetition_penalty'] = model_params.get("repetition_penalty", ner_params['repetition_penalty'])
         ner_params['num_beams'] = model_params.get("num_beams", ner_params.get("num_beams", 1))
         
-        # Also apply to translation params if we're in multi-prompt mode
         if pipeline_type == "multi_prompt":
             trans_params['temperature'] = model_params.get("trans_temp", trans_params['temperature'])
             trans_params['top_p'] = model_params.get("trans_top_p", trans_params['top_p'])
@@ -186,8 +171,7 @@ def run_experiment(
             
         print(f"Applied {model_key} model-specific parameters")
 
-    # Apply model-specific adjustments (on top of language/standard)
-    # These specific adjustments are kept for backward compatibility
+   
     ner_temp_final = ner_params['temperature']
     ner_top_p_final = ner_params['top_p']
     ner_top_k_final = ner_params['top_k']
@@ -197,39 +181,32 @@ def run_experiment(
     trans_top_k_final = trans_params['top_k']
     trans_rep_penalty_final = trans_params['repetition_penalty']
     
-    # For single prompt mode, always ensure we use do_sample=False with beam search for Qwen models
     if "qwen" in model_name.lower() and pipeline_type == "single_prompt":
         ner_params['num_beams'] = max(4, ner_params.get('num_beams', 1))
         ner_params['do_sample'] = False
         print(f"Forcing beam search (num_beams={ner_params['num_beams']}, do_sample=False) for Qwen model in single prompt mode")
     
-    # Create directories if they don't exist
     results_dir = os.path.join(base_results_path, "results")
     summaries_dir = os.path.join(base_results_path, "summaries")
     os.makedirs(results_dir, exist_ok=True)
     os.makedirs(summaries_dir, exist_ok=True)
 
-    # Define file paths
     model_short = model_name.split('/')[-1]
     shot_type_str = "fs" if use_few_shot else "zs"
     pipeline_short = "mp" if pipeline_type == "multi_prompt" else "sp"
     results_file = os.path.join(results_dir, f"results_cotr_{pipeline_short}_{shot_type_str}_ner_{lang_code}_{model_short}.csv")
     summary_file = os.path.join(summaries_dir, f"summary_cotr_{pipeline_short}_{shot_type_str}_ner_{lang_code}_{model_short}.csv")
 
-    # Skip if results exist (optional, add --overwrite flag later if needed)
     if os.path.exists(results_file):
         print(f"Results file exists, skipping: {results_file}")
-        # Try to load summary if results exist but summary doesn't
         if not os.path.exists(summary_file):
             try:
                 print(f"Attempting to load existing results from {results_file} to generate summary...")
                 results_df = pd.read_csv(results_file)
-                # Recalculate metrics from loaded data
             except Exception as e:
                 print(f"Could not load existing results to regenerate summary: {e}")
-                return None # Cannot proceed
+                return None 
         else:
-            # Load existing summary data if both exist
             try:
                 existing_summary_df = pd.read_csv(summary_file)
                 print(f"Loaded existing summary from {summary_file}")
@@ -238,11 +215,10 @@ def run_experiment(
                 print(f"Could not load existing summary file {summary_file}: {e}")
                 return None
     else:
-        # Run the experiment
         print(f"Running experiment: {model_name} on {lang_code} ({pipeline_type}, {shot_type_str})")
         try:
-            if pipeline_type == 'multi_prompt':
-                results_df = evaluate_ner_cotr(
+        if pipeline_type == 'multi_prompt':
+            results_df = evaluate_ner_cotr(
                     model_name=model_name,
                     tokenizer=tokenizer,
                     model=model,
@@ -250,88 +226,77 @@ def run_experiment(
                     lang_code=lang_code,
                     use_few_shot=use_few_shot,
                     translation_params=trans_params,
-                    ner_params=ner_params,
-                )
+                ner_params=ner_params,
+            )
             else: # single_prompt
-                # Single prompt uses a single set of parameters, we'll use ner_params
-                results_df = evaluate_ner_cotr_single_prompt(
+            results_df = evaluate_ner_cotr_single_prompt(
                     model_name=model_name,
                     tokenizer=tokenizer,
                     model=model,
                     samples_df=samples_df,
                     lang_code=lang_code,
                     use_few_shot=use_few_shot,
-                    temperature=ner_params['temperature'],
-                    top_p=ner_params['top_p'],
-                    top_k=ner_params['top_k'],
+                temperature=ner_params['temperature'],
+                top_p=ner_params['top_p'],
+                top_k=ner_params['top_k'],
                     max_tokens=ner_params['max_new_tokens'],
-                    repetition_penalty=ner_params['repetition_penalty'],
-                    num_beams=ner_params.get('num_beams', 1) # Get num_beams from dict
-                )
-            
-            if results_df.empty:
+                repetition_penalty=ner_params['repetition_penalty'],
+                    num_beams=ner_params.get('num_beams', 1) 
+            )
+
+        if results_df.empty:
                 print("ERROR: Evaluation returned empty DataFrame.")
-                return None
-        
-            results_df.to_csv(results_file, index=False)
-            print(f"Results saved to {results_file}")
+            return None
+
+        results_df.to_csv(results_file, index=False)
+        print(f"Results saved to {results_file}")
 
         except Exception as e:
             logging.error(f"Error during NER CoTR evaluation for {lang_code}, {model_short}, {pipeline_type}, {shot_type_str}: {e}", exc_info=True)
-            return None # Indicate failure
+            return None
         
-    # Calculate metrics from results_df (whether loaded or newly generated)
     print(f"Calculating metrics for {results_file}...")
     precisions, recalls, f1s = [], [], []
     successful_samples = 0
 
-    # Convert string representation of lists/tuples back if loaded from CSV
-    # This is crucial if loading existing results
+    
     needs_conversion = False
-    # Check the type of the first non-null element using the correct column name
     first_gold = results_df['ground_truth_entities'].dropna().iloc[0] if not results_df['ground_truth_entities'].dropna().empty else None
     if first_gold is not None and isinstance(first_gold, str):
         needs_conversion = True
         print("Converting entity strings from CSV back to lists/tuples...")
         import ast
-        def safe_literal_eval(val):
-            # Handles potential errors during eval more gracefully
+def safe_literal_eval(val):
             if pd.isna(val): return []
             try:
                 evaluated = ast.literal_eval(val)
-                # Ensure it's a list after eval
                 return evaluated if isinstance(evaluated, list) else []
             except (ValueError, SyntaxError, TypeError):
                 print(f"Warning: Could not evaluate entity string: {val[:50]}...")
-                return [] # Return empty list on error
-
+                return []
+            
     for idx, row in results_df.iterrows():
         try:
-            # Apply conversion if needed, using the correct column name
             gold = safe_literal_eval(row['ground_truth_entities']) if needs_conversion else row['ground_truth_entities']
             pred = safe_literal_eval(row['predicted_entities']) if needs_conversion else row['predicted_entities']
 
-            # Ensure data types are list before passing to metrics
             if not isinstance(gold, list): gold = []
             if not isinstance(pred, list): pred = []
             
-            # Use the metrics function from ner_cotr.py (or baseline if identical)
-            metrics = calculate_ner_metrics(gold, pred) # Ensure this function is defined/imported correctly
+            metrics = calculate_ner_metrics(gold, pred) 
             precisions.append(metrics['precision'])
             recalls.append(metrics['recall'])
-            f1s.append(metrics.get('f1', 0.0)) # Use .get() for safety
+            f1s.append(metrics.get('f1', 0.0)) 
             successful_samples += 1
 
         except Exception as e_metric:
             print(f"Error calculating metrics for row {idx}: {e_metric}")
-            # Append default values on error to avoid crashing
             precisions.append(0.0); recalls.append(0.0); f1s.append(0.0)
     
     avg_precision = np.mean(precisions) if precisions else 0.0
     avg_recall = np.mean(recalls) if recalls else 0.0
     avg_f1 = np.mean(f1s) if f1s else 0.0
 
-    # Prepare summary data
     summary_data = {
         'model': model_short,
         'language': lang_code,
@@ -342,7 +307,6 @@ def run_experiment(
         'f1': float(avg_f1),
         'num_samples': len(samples_df),
         'num_successful': successful_samples,
-        # Store final effective parameters
         'ner_temp': ner_params['temperature'],
         'ner_top_p': ner_params['top_p'],
         'ner_top_k': ner_params['top_k'],
@@ -361,22 +325,10 @@ def run_experiment(
     print(f"Summary metrics saved to {summary_file}")
     print(summary_df.to_string())
         
-    return summary_data # Return dict for overall aggregation
+    return summary_data 
 
 def run_grid_search(args, models, lang_codes, base_results_path, masakhaner_samples, pipeline_type_for_grid, use_few_shot_for_grid):
-    """
-    Run a grid search over different parameter combinations.
     
-    Args:
-        args: Command-line arguments
-        models: List of models to evaluate
-        lang_codes: List of language codes
-        base_results_path: Base path for saving results
-        masakhaner_samples: Dictionary of DataFrames with samples
-        pipeline_type_for_grid: Specific pipeline type for this grid search
-        use_few_shot_for_grid: Specific shot setting for this grid search
-    """
-    # Define parameter grid - MAKE SURE THIS MATCHES the baseline grid search
     param_grid = {
         "temperature": [0.2, 0.3, 0.4],
         "top_p": [0.8, 0.9, 1.0],
@@ -385,7 +337,6 @@ def run_grid_search(args, models, lang_codes, base_results_path, masakhaner_samp
         "num_beams": [1, 2]
     }
     
-    # Optional: Reduce grid size for faster searching
     if args.compact_grid:
         param_grid = {
             "temperature": [0.3],
@@ -395,7 +346,6 @@ def run_grid_search(args, models, lang_codes, base_results_path, masakhaner_samp
             "num_beams": [1]
         }
     
-    # Generate all parameter combinations
     param_combinations = list(itertools.product(
         param_grid["temperature"],
         param_grid["top_p"],
@@ -406,17 +356,15 @@ def run_grid_search(args, models, lang_codes, base_results_path, masakhaner_samp
     
     print(f"Running grid search with {len(param_combinations)} parameter combinations")
     
-    # Track best parameters
     best_params = {}
     
     for lang_code in lang_codes:
         best_params[lang_code] = {
             "model": None,
             "params": None,
-            "f1": -1  # Initialize with a low value
+            "f1": -1  
         }
-    
-    # Run experiments with each parameter combination
+
     for model_name in models:
         print(f"\n====== Starting experiments for model: {model_name} ======")
         model_initialized = False
@@ -445,8 +393,8 @@ def run_grid_search(args, models, lang_codes, base_results_path, masakhaner_samp
                         samples_df=masakhaner_samples[lang_code],
                         lang_code=lang_code,
                         base_results_path=base_results_path,
-                        pipeline_type=pipeline_type_for_grid,
-                        use_few_shot=use_few_shot_for_grid,
+                    pipeline_type=pipeline_type_for_grid,
+                    use_few_shot=use_few_shot_for_grid,
                         ner_params={
                             "temperature": temp,
                             "top_p": top_p,
@@ -468,7 +416,6 @@ def run_grid_search(args, models, lang_codes, base_results_path, masakhaner_samp
                     if result_df is not None and not result_df.empty:
                         avg_f1 = result_df["f1"].mean()
                         
-                        # Check if this is the best result so far for this language
                         if avg_f1 > best_params[lang_code]["f1"]:
                             best_params[lang_code] = {
                                 "model": model_name,
@@ -490,12 +437,11 @@ def run_grid_search(args, models, lang_codes, base_results_path, masakhaner_samp
         del model
         del tokenizer
         if torch.cuda.is_available():
-            torch.cuda.empty_cache()
+        torch.cuda.empty_cache()
             print("GPU memory cache cleared.")
         else:
             print(f"Model {model_name} was not initialized, no cleanup needed.")
         
-    # Save best parameters
     best_params_path = os.path.join(base_results_path, "best_params")
     os.makedirs(best_params_path, exist_ok=True)
     
@@ -504,7 +450,6 @@ def run_grid_search(args, models, lang_codes, base_results_path, masakhaner_samp
     
     print("\nBest parameters saved to best_params_cotr.json")
     
-    # Print summary of best parameters
     print("\n--- Best parameters summary ---")
     for lang_code, params in best_params.items():
         print(f"\n{lang_code}:")
@@ -513,7 +458,6 @@ def run_grid_search(args, models, lang_codes, base_results_path, masakhaner_samp
         print(f"  Parameters: {params['params']}")
 
 def main():
-    """Main function."""
     parser = argparse.ArgumentParser(description="Run NER CoTR experiments")
     parser.add_argument("--models", type=str, default="CohereLabs/aya-23-8B,Qwen/Qwen2.5-7B-Instruct", help="Model to use, comma-separated if multiple models")
     parser.add_argument("--languages", type=str, default="sw,ha", help="Language code(s), comma-separated if multiple")
@@ -533,8 +477,7 @@ def main():
     
     args = parser.parse_args()
     
-    # Determine effective generation parameters from args or defaults
-    # These will be used by run_experiment if not overridden by language/model logic inside it
+   
     current_temp = args.temperature
     current_top_p = args.top_p
     current_top_k = args.top_k
@@ -542,28 +485,23 @@ def main():
     current_repetition_penalty = args.repetition_penalty
     current_num_beams = args.num_beams
     
-    # Get Hugging Face token
     token = get_token()
     login(token=token)
     
-    # Define models to test
     if "," in args.models:
         models = args.models.split(",")
     else:
         models = [args.models]
     
-    # Define language codes
     if "," in args.languages:
         lang_codes = args.languages.split(",")
     else:
         lang_codes = [args.languages]
-    
-    # Define base results path
+
     base_results_path = args.base_output_dir
     os.makedirs(base_results_path, exist_ok=True)
     os.makedirs(os.path.join(base_results_path, 'summaries'), exist_ok=True)
     
-    # Load MasakhaNER samples - Load ONCE outside the model loop
     print("\n--- Loading MasakhaNER Data ---")
     masakhaner_samples = {}
     for lang_code in lang_codes:
@@ -571,7 +509,7 @@ def main():
         samples_df_full = load_masakhaner_samples(
             lang_code=lang_code,
             split=args.split,
-            num_samples=None, # Load all first
+            num_samples=None,
             seed=args.seed
         )
         if samples_df_full.empty:
@@ -585,15 +523,13 @@ def main():
                 masakhaner_samples[lang_code] = samples_df_full
             print(f"Using {len(masakhaner_samples[lang_code])} samples for {lang_code}.")
 
-            # --- Check for required columns after loading --- #
-            required_cols = ['text', 'entities'] # Assuming 'text' is now created by loader if needed
+            required_cols = ['text', 'entities'] 
             if not all(col in masakhaner_samples[lang_code].columns for col in required_cols):
                 print(f"ERROR: Loaded data for {lang_code} is missing required columns ({required_cols}). Skipping this language.")
-                masakhaner_samples[lang_code] = pd.DataFrame() # Mark as empty
+                masakhaner_samples[lang_code] = pd.DataFrame() 
 
     all_experiment_summaries = []
 
-    # --- Main Experiment Loop Structure --- #
     for model_name_str in models:
         print(f"\n====== Starting experiments for model: {model_name_str} ======")
         model_initialized = False
@@ -605,32 +541,28 @@ def main():
             print(f"Model {model_name_str} initialized successfully.")
         except Exception as e_init:
             print(f"ERROR: Failed to initialize model {model_name_str}: {e_init}. Skipping this model.")
-            continue # Skip to the next model if initialization fails
+            continue #
 
-        model_language_results = [] # Store results for this specific model
+        model_language_results = [] 
 
         for lang_code in lang_codes:
             print(f"\n--- Processing Language: {lang_code} for model {model_name_str} ---")
-            # Check if samples are valid for this language
             if lang_code not in masakhaner_samples or masakhaner_samples[lang_code].empty:
                 print(f"  Skipping {lang_code} due to missing or invalid data.")
-                continue # Skip to the next language
+                continue
 
             current_samples_df = masakhaner_samples[lang_code]
 
-            # Determine effective parameters for this lang, considering command-line overrides
-            # Use STANDARD_PARAMETERS as the ultimate fallback if lang not in LANGUAGE_PARAMETERS
+           
             default_lang_params = STANDARD_PARAMETERS.get(lang_code, STANDARD_PARAMETERS.get('sw', {})) # Default to sw if lang unknown
             lang_specific_params = LANGUAGE_PARAMETERS.get(lang_code, default_lang_params) # Get lang specific, or default
 
-            # NER step parameters
             effective_temp = current_temp if current_temp is not None else lang_specific_params.get("temperature", default_lang_params.get("temperature"))
             effective_top_p = current_top_p if current_top_p is not None else lang_specific_params.get("top_p", default_lang_params.get("top_p"))
             effective_top_k = current_top_k if current_top_k is not None else lang_specific_params.get("top_k", default_lang_params.get("top_k"))
             effective_max_tokens = current_max_tokens if current_max_tokens is not None else lang_specific_params.get("max_tokens", default_lang_params.get("max_tokens"))
             effective_rep_penalty = current_repetition_penalty if current_repetition_penalty is not None else lang_specific_params.get("repetition_penalty", default_lang_params.get("repetition_penalty"))
 
-            # Translation step parameters (relevant for multi-prompt)
             effective_trans_temp = args.temperature if args.temperature is not None else lang_specific_params.get("trans_temp", default_lang_params.get("trans_temp"))
             effective_trans_top_p = args.top_p if args.top_p is not None else lang_specific_params.get("trans_top_p", default_lang_params.get("trans_top_p"))
             effective_trans_top_k = args.top_k if args.top_k is not None else lang_specific_params.get("trans_top_k", default_lang_params.get("trans_top_k"))
@@ -640,7 +572,6 @@ def main():
             print(f"  Base Params: Temp={effective_temp:.2f}, TopP={effective_top_p:.2f}, TopK={effective_top_k}, MaxTok={effective_max_tokens}, RepPen={effective_rep_penalty:.2f}")
             print(f"  Trans Params: Temp={effective_trans_temp:.2f}, TopP={effective_trans_top_p:.2f}, TopK={effective_trans_top_k}, MaxTok={effective_max_trans_tokens}, RepPen={effective_trans_rep_penalty:.2f}")
 
-            # Loop through pipeline types and shot settings
             for pipeline_type_to_run in args.pipeline_types:
                 for shot_setting_str in args.shot_settings:
                     use_few_shot_to_run = (shot_setting_str == 'few_shot')
@@ -649,9 +580,7 @@ def main():
                     if pipeline_type_to_run == 'multi_prompt':
                         print(f"      Effective Translation Params: temp={effective_trans_temp:.2f}, top_p={effective_trans_top_p:.2f}, top_k={effective_trans_top_k}, max_tokens={effective_max_trans_tokens}, rep_penalty={effective_trans_rep_penalty:.2f}")
                     
-                    # Call run_experiment with all determined parameters as dictionaries
                     
-                    # Create the parameter dictionaries
                     ner_params_dict = {
                         "temperature": effective_temp,
                         "top_p": effective_top_p,
@@ -689,24 +618,18 @@ def main():
                         all_experiment_summaries.append(summary_result)
                     else:
                         print(f"    FAILURE/SKIP: Experiment returned None for {lang_code}, {pipeline_type_to_run}, {shot_setting_str}.")
-                # End shot_setting loop
-            # End pipeline_type loop
-        # End lang_code loop
-
-        # Clean up model and tokenizer after processing all languages for it
+            
         if model_initialized:
             print(f"\n====== Finished experiments for model {model_name_str}. Unloading... ======")
             del model
-            del tokenizer
-            model, tokenizer = None, None # Prevent potential use after del
+        del tokenizer
+            model, tokenizer = None, None 
             if torch.cuda.is_available():
-                torch.cuda.empty_cache()
+        torch.cuda.empty_cache()
                 print("GPU memory cache cleared.")
             else:
                 print(f"Model {model_name_str} was not initialized, no cleanup needed.")
-    # End model loop
 
-    # --- Aggregate and Save Overall Summary --- #
     if all_experiment_summaries:
         print("\n--- Aggregating Overall Summary --- ")
         overall_summary_df = pd.DataFrame(all_experiment_summaries)
@@ -718,12 +641,6 @@ def main():
             print(overall_summary_df.to_string())
         except Exception as e_save:
             print(f"ERROR saving overall summary to {overall_summary_path}: {e_save}")
-
-        # Optional: Add plotting here based on overall_summary_df
-        # try:
-        #     plot_ner_metrics(overall_summary_df, os.path.join(base_results_path, 'plots'))
-        # except Exception as e_plot:
-        #     print(f"Error generating plots: {e_plot}")
 
     else:
         print("\nNo successful experiments were completed. No overall summary generated.")

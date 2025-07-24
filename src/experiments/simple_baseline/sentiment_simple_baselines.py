@@ -1,13 +1,11 @@
+# -*- coding: utf-8 -*-
 import argparse
 import pandas as pd
 import os
 import sys
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, classification_report
-from typing import List, Dict, Any 
-import numpy as np 
-from collections import Counter # Added for potential majority baseline if needed in future, though not for fixed predict
 
-# Add project root to Python path
+# Fügt das Projektverzeichnis zum Python-Pfad hinzu
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.abspath(os.path.join(SCRIPT_DIR, '..', '..', '..'))
 if project_root not in sys.path:
@@ -15,7 +13,7 @@ if project_root not in sys.path:
 
 from src.utils.data_loaders.load_afrisenti import load_afrisenti_samples
 
-SENTIMENT_LABELS = ['positive', 'neutral', 'negative'] # Standard sentiment labels
+SENTIMENT_LABELS = ['positive', 'neutral', 'negative']
 
 def main():
     parser = argparse.ArgumentParser(description="Run Simple Sentiment Analysis Baselines (Fixed Prediction for each class).")
@@ -64,15 +62,14 @@ def main():
             print(f"No ground truth labels found for {lang_code} after processing. Skipping.")
             continue
         
-        # This baseline always predicts one of the known SENTIMENT_LABELS
-        # It does not have an 'unable to answer' state, as it's a fixed prediction.
+        # Iteriert durch jedes mögliche Sentiment-Label
         for fixed_label_to_predict in SENTIMENT_LABELS:
             print(f"  Evaluating fixed prediction of: '{fixed_label_to_predict}' for {lang_code}")
             
             predicted_labels = [fixed_label_to_predict] * len(ground_truth_labels)
 
             accuracy = accuracy_score(ground_truth_labels, predicted_labels)
-            # For metrics, ensure all SENTIMENT_LABELS are considered, even if not present in predictions or GT for a small sample
+            # Stellt sicher, dass alle Labels berücksichtigt werden
             macro_f1 = f1_score(ground_truth_labels, predicted_labels, labels=SENTIMENT_LABELS, average='macro', zero_division=0)
             macro_precision = precision_score(ground_truth_labels, predicted_labels, labels=SENTIMENT_LABELS, average='macro', zero_division=0)
             macro_recall = recall_score(ground_truth_labels, predicted_labels, labels=SENTIMENT_LABELS, average='macro', zero_division=0)

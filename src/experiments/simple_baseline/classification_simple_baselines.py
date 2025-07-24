@@ -1,20 +1,19 @@
+# -*- coding: utf-8 -*-
 import argparse
 import pandas as pd
 import os
 import sys
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, classification_report
-from typing import List, Dict, Any
-import numpy as np # Added for potential future use and consistency
 
-# Add project root to Python path
+# Fügt das Projektverzeichnis zum Python-Pfad hinzu
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..'))
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
-# Import the specific data loader for MasakhaNEWS
+# Lädt die Daten
 from src.utils.data_loaders.load_masakhanews import load_masakhanews_samples
 
-# Define the known labels for MasakhaNEWS - this should be the single source of truth
+# Definiert die Labels für MasakhaNEWS
 MASAKHANEWS_LABELS = ['business', 'entertainment', 'health', 'politics', 'religion', 'sports', 'technology']
 
 def main():
@@ -64,15 +63,13 @@ def main():
             print(f"No ground truth labels found for {lang_code} after processing. Skipping.")
             continue
         
-        # Iterate through each possible MasakhaNEWS label and predict it for all samples
+        # Iteriert durch jedes mögliche MasakhaNEWS-Label
         for fixed_label_to_predict in MASAKHANEWS_LABELS:
             print(f"  Evaluating fixed prediction of: '{fixed_label_to_predict}' for {lang_code}")
             
             predicted_labels = [fixed_label_to_predict] * len(ground_truth_labels)
 
-            # Using MASAKHANEWS_LABELS as the `labels` parameter for scikit-learn metrics
-            # ensures all classes are considered, even if not present in ground_truth_labels or predicted_labels for a small sample.
-
+            # Stellt sicher, dass alle Klassen berücksichtigt werden
             accuracy = accuracy_score(ground_truth_labels, predicted_labels)
             macro_f1 = f1_score(ground_truth_labels, predicted_labels, labels=MASAKHANEWS_LABELS, average='macro', zero_division=0)
             macro_precision = precision_score(ground_truth_labels, predicted_labels, labels=MASAKHANEWS_LABELS, average='macro', zero_division=0)
@@ -87,7 +84,7 @@ def main():
             print(f"    Macro F1: {macro_f1:.4f}, Precision: {macro_precision:.4f}, Recall: {macro_recall:.4f}")
             print(f"    Weighted F1: {weighted_f1:.4f}, Precision: {weighted_precision:.4f}, Recall: {weighted_recall:.4f}")
 
-            # Detailed classification report (per-class P, R, F1)
+            # Detaillierter Klassifikationsbericht
             report_dict = classification_report(ground_truth_labels, predicted_labels, labels=MASAKHANEWS_LABELS, output_dict=True, zero_division=0)
 
             summary_entry = {
@@ -103,7 +100,7 @@ def main():
             "weighted_recall": weighted_recall,
         }
             
-            # Add per-class metrics from the report
+            # Metriken pro Klasse aus dem Bericht hinzufügen
             for label_name in MASAKHANEWS_LABELS:
                 metrics = report_dict.get(label_name, {'precision': 0, 'recall': 0, 'f1-score': 0})
                 summary_entry[f"{label_name}_precision"] = metrics['precision']

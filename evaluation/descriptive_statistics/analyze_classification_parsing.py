@@ -1,18 +1,20 @@
 #!/usr/bin/env python3
 """
-Analyze sample-level parsing success rates for classification tasks.
+Dieses Skript analysiert die Erfolgsraten beim Parsen von Textklassifizierungs-Ergebnissen.
+Es zählt, wie oft ein gültiges Label vorhergesagt wurde.
 """
 
 import os
 import pandas as pd
 import glob
-from collections import defaultdict
 
 def analyze_classification_parsing(base_results_dir="results"):
-    """Analyze sample-level parsing success rates for classification."""
+    """Analysiert die Erfolgsraten auf Sample-Ebene für Klassifizierungsaufgaben."""
     
+    # Dies sind die einzigen Labels, die als gültig angesehen werden.
     valid_labels = ["politics", "sports", "health", "business", "religion", "entertainment", "technology"]
     
+    # Ein Dictionary, um die Ergebnisse zu speichern.
     results = {
         'baseline': {'total_samples': 0, 'valid_samples': 0, 'files_processed': 0},
         'cotr_mp': {'total_samples': 0, 'valid_samples': 0, 'files_processed': 0},
@@ -21,7 +23,7 @@ def analyze_classification_parsing(base_results_dir="results"):
     
     detailed_results = []
     
-    # Process baseline files
+    # Verarbeite die Baseline-Dateien.
     baseline_pattern = f"{base_results_dir}/classification_new/baseline/**/*.csv"
     baseline_files = glob.glob(baseline_pattern, recursive=True)
     
@@ -33,8 +35,7 @@ def analyze_classification_parsing(base_results_dir="results"):
                 total_samples = len(df)
                 valid_samples = df['final_predicted_label'].isin(valid_labels).sum()
                 
-                # Extract details from file path
-                path_parts = file_path.split('/')
+                # Extrahiere Details aus dem Dateipfad.
                 model = "unknown"
                 language = "unknown"
                 shot_type = "unknown"
@@ -71,13 +72,13 @@ def analyze_classification_parsing(base_results_dir="results"):
                     'success_rate': valid_samples / total_samples if total_samples > 0 else 0
                 })
                 
-                print(f"  {file_path}: {valid_samples}/{total_samples} ({100*valid_samples/total_samples:.1f}%)")
+                print(f"  {file_path}: {valid_samples}/{total_samples} ({round(100*valid_samples/total_samples, 1)}%)")
             else:
                 print(f"  {file_path}: No 'final_predicted_label' column found")
         except Exception as e:
             print(f"  Error processing {file_path}: {e}")
     
-    # Process CoTR multi-prompt files
+    # Verarbeite die CoTR Multi-Prompt Dateien.
     cotr_mp_pattern = f"{base_results_dir}/classification_new/cotr/multi_prompt/**/*.csv"
     cotr_mp_files = glob.glob(cotr_mp_pattern, recursive=True)
     
@@ -89,7 +90,7 @@ def analyze_classification_parsing(base_results_dir="results"):
                 total_samples = len(df)
                 valid_samples = df['predicted_label_eng_model'].isin(valid_labels).sum()
                 
-                # Extract details
+                # Extrahiere Details.
                 model = "unknown"
                 language = "unknown" 
                 shot_type = "unknown"
@@ -126,11 +127,11 @@ def analyze_classification_parsing(base_results_dir="results"):
                     'success_rate': valid_samples / total_samples if total_samples > 0 else 0
                 })
                 
-                print(f"  {file_path}: {valid_samples}/{total_samples} ({100*valid_samples/total_samples:.1f}%)")
+                print(f"  {file_path}: {valid_samples}/{total_samples} ({round(100*valid_samples/total_samples, 1)}%)")
         except Exception as e:
             print(f"  Error processing {file_path}: {e}")
     
-    # Process CoTR single-prompt files
+    # Verarbeite die CoTR Single-Prompt Dateien.
     cotr_sp_pattern = f"{base_results_dir}/classification_new/cotr/single_prompt/**/*.csv"
     cotr_sp_files = glob.glob(cotr_sp_pattern, recursive=True)
     
@@ -138,7 +139,7 @@ def analyze_classification_parsing(base_results_dir="results"):
     for file_path in cotr_sp_files:
         try:
             df = pd.read_csv(file_path)
-            # Check for the column that single-prompt uses
+            # Prüfe, welche Spalte für das Label verwendet wird.
             label_col = None
             if 'label_lrl_predicted_final' in df.columns:
                 label_col = 'label_lrl_predicted_final'
@@ -153,7 +154,7 @@ def analyze_classification_parsing(base_results_dir="results"):
             
             if label_col:
                 total_samples = len(df)
-                # Count valid samples - excluding "[Unknown Label]", "N/A", NaN, etc.
+                # Zähle gültige Samples und schließe ungültige aus.
                 valid_mask = (
                     df[label_col].isin(valid_labels) &
                     df[label_col].notna() &
@@ -163,7 +164,7 @@ def analyze_classification_parsing(base_results_dir="results"):
                 )
                 valid_samples = valid_mask.sum()
                 
-                # Extract details
+                # Extrahiere Details.
                 model = "unknown"
                 language = "unknown"
                 shot_type = "unknown"
@@ -200,13 +201,13 @@ def analyze_classification_parsing(base_results_dir="results"):
                     'success_rate': valid_samples / total_samples if total_samples > 0 else 0
                 })
                 
-                print(f"  {file_path}: {valid_samples}/{total_samples} ({100*valid_samples/total_samples:.1f}%) using column '{label_col}'")
+                print(f"  {file_path}: {valid_samples}/{total_samples} ({round(100*valid_samples/total_samples, 1)}%) using column '{label_col}'")
             else:
                 print(f"  {file_path}: No valid label column found")
         except Exception as e:
             print(f"  Error processing {file_path}: {e}")
     
-    # Print summary
+    # Gib eine Zusammenfassung aus.
     print("\n" + "="*80)
     print("CLASSIFICATION SAMPLE-LEVEL PARSING SUMMARY")
     print("="*80)
@@ -218,21 +219,30 @@ def analyze_classification_parsing(base_results_dir="results"):
             print(f"  Files processed: {data['files_processed']}")
             print(f"  Total samples: {data['total_samples']}")
             print(f"  Valid samples: {data['valid_samples']}")
-            print(f"  Success rate: {success_rate:.1%}")
+            print(f"  Success rate: {round(success_rate * 100, 1)}%")
     
-    # Detailed breakdown by model and language
+    # Detaillierte Aufschlüsselung nach Modell und Sprache.
     print("\n" + "="*80)
     print("DETAILED BREAKDOWN")
     print("="*80)
     
-    # Group by approach, model, language
-    from collections import defaultdict
-    grouped = defaultdict(lambda: defaultdict(lambda: defaultdict(lambda: {'total': 0, 'valid': 0})))
+    # Gruppiere die Ergebnisse, um sie leichter anzuzeigen.
+    grouped = {}
     
     for result in detailed_results:
-        key = (result['approach'], result['model'], result['language'])
-        grouped[result['approach']][result['model']][result['language']]['total'] += result['total_samples']
-        grouped[result['approach']][result['model']][result['language']]['valid'] += result['valid_samples']
+        approach = result['approach']
+        model = result['model']
+        language = result['language']
+
+        if approach not in grouped:
+            grouped[approach] = {}
+        if model not in grouped[approach]:
+            grouped[approach][model] = {}
+        if language not in grouped[approach][model]:
+            grouped[approach][model][language] = {'total': 0, 'valid': 0}
+            
+        grouped[approach][model][language]['total'] += result['total_samples']
+        grouped[approach][model][language]['valid'] += result['valid_samples']
     
     for approach in ['baseline', 'cotr_mp', 'cotr_sp']:
         if approach in grouped:
@@ -243,7 +253,7 @@ def analyze_classification_parsing(base_results_dir="results"):
                     data = grouped[approach][model][language]
                     if data['total'] > 0:
                         rate = data['valid'] / data['total']
-                        print(f"    {language}: {data['valid']}/{data['total']} ({rate:.1%})")
+                        print(f"    {language}: {data['valid']}/{data['total']} ({round(rate * 100, 1)}%)")
 
 if __name__ == "__main__":
     analyze_classification_parsing() 

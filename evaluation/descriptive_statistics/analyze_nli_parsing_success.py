@@ -2,42 +2,28 @@ import pandas as pd
 import json
 import os
 import re
-from pathlib import Path
-from typing import Dict, List, Tuple, Optional
 import numpy as np
-from collections import defaultdict
-import logging
 
-# Set up logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-
-def analyze_nli_parsing_success(comprehensive_metrics_path: str) -> Dict[str, any]:
+def analyze_nli_parsing_success(comprehensive_metrics_path):
     """
-    Analyze NLI parsing success rates by examining raw model outputs.
-    
-    Args:
-        comprehensive_metrics_path: Path to comprehensive metrics JSON file
-        
-    Returns:
-        Dictionary with parsing success analysis
+    Analysiert die Erfolgsraten des NLI-Parsings durch Untersuchung der rohen Modellausgaben.
     """
     
-    # Load comprehensive metrics
+    # Laedt die umfassenden Metriken
     with open(comprehensive_metrics_path, 'r') as f:
         metrics_data = json.load(f)
     
     nli_configs = metrics_data.get('nli', [])
     
-    # Initialize tracking variables
+    # Initialisiert Variablen, um die Ergebnisse zu verfolgen
     parsing_results = []
     total_samples = 0
     total_valid_labels = 0
     
-    # Valid NLI labels (as strings and integers)
+    # Gueltige NLI-Labels (als Text oder Zahlen)
     valid_labels = {'0', '1', '2', 'entailment', 'neutral', 'contradiction'}
     
-    # Process each NLI configuration
+    # Verarbeitet jede NLI-Konfiguration
     for config in nli_configs:
         file_path = config['file_path']
         approach = config['approach']
@@ -45,21 +31,21 @@ def analyze_nli_parsing_success(comprehensive_metrics_path: str) -> Dict[str, an
         model = config['model']
         shot_type = config['shot_type']
         
-        # Try to read the actual results file
+        # Versucht, die Ergebnisdatei zu lesen
         full_path = os.path.join("/home/bbd6522/code/CoTR_Prompting_low_resource/results", file_path)
         
         if not os.path.exists(full_path):
-            logger.warning(f"File not found: {full_path}")
+            print(f"File not found: {full_path}")
             continue
             
         try:
             df = pd.read_csv(full_path)
             
-            # Count valid parsing for this configuration
+            # Zaehlt die gueltigen Parsings fuer diese Konfiguration
             valid_count = 0
             total_count = len(df)
             
-            # Check for predicted labels column
+            # Sucht nach der Spalte mit den vorhergesagten Labels
             pred_col = None
             for col in df.columns:
                 if 'predicted' in col.lower() or 'label' in col.lower():
@@ -67,17 +53,27 @@ def analyze_nli_parsing_success(comprehensive_metrics_path: str) -> Dict[str, an
                     break
             
             if pred_col is None:
-                logger.warning(f"No predicted label column found in {full_path}")
+                print(f"No predicted label column found in {full_path}")
                 continue
                 
-            # Count valid labels
+            # Zaehlt die gueltigen Labels
             for _, row in df.iterrows():
                 pred_label = str(row[pred_col]).strip().lower()
                 
-                # Check if it's a valid NLI label
-                if (pred_label in valid_labels or 
-                    re.match(r'^[0-2]$', pred_label) or
-                    any(label in pred_label for label in ['entailment', 'neutral', 'contradiction'])):
+                # Prueft, ob es ein gueltiges NLI-Label ist
+                is_valid = False
+                if pred_label in valid_labels:
+                    is_valid = True
+                elif pred_label in ['0', '1', '2']: # Einfacher Check fuer Zahlen
+                    is_valid = True
+                else:
+                    # Prueft, ob das Label einen der Begriffe enthaelt
+                    for label_part in ['entailment', 'neutral', 'contradiction']:
+                        if label_part in pred_label:
+                            is_valid = True
+                            break
+                
+                if is_valid:
                     valid_count += 1
             
             parsing_success_rate = valid_count / total_count if total_count > 0 else 0
@@ -99,46 +95,46 @@ def analyze_nli_parsing_success(comprehensive_metrics_path: str) -> Dict[str, an
             total_valid_labels += valid_count
             
         except Exception as e:
-            logger.error(f"Error processing {full_path}: {e}")
+            print(f"Error processing {full_path}: {e}")
             continue
     
-    # Calculate overall statistics
+    # Berechnet die Gesamtstatistik
     overall_parsing_success = total_valid_labels / total_samples if total_samples > 0 else 0
     
-    # Create summary by different dimensions
+    # Erstellt Zusammenfassungen nach verschiedenen Dimensionen
     results_df = pd.DataFrame(parsing_results)
     
-    # Summary by approach
+    # Zusammenfassung nach Ansatz
     approach_summary = results_df.groupby('approach').agg({
         'parsing_success_rate': 'mean',
         'accuracy': 'mean',
         'f1_score': 'mean',
         'total_samples': 'sum'
-    }).round(4)
+    })
     
-    # Summary by language
+    # Zusammenfassung nach Sprache
     language_summary = results_df.groupby('language').agg({
         'parsing_success_rate': 'mean',
         'accuracy': 'mean',
         'f1_score': 'mean',
         'total_samples': 'sum'
-    }).round(4)
+    })
     
-    # Summary by model
+    # Zusammenfassung nach Modell
     model_summary = results_df.groupby('model').agg({
         'parsing_success_rate': 'mean',
         'accuracy': 'mean',
         'f1_score': 'mean',
         'total_samples': 'sum'
-    }).round(4)
+    })
     
-    # Summary by shot type
+    # Zusammenfassung nach "shot type"
     shot_summary = results_df.groupby('shot_type').agg({
         'parsing_success_rate': 'mean',
         'accuracy': 'mean',
         'f1_score': 'mean',
         'total_samples': 'sum'
-    }).round(4)
+    })
     
     return {
         'overall_parsing_success': overall_parsing_success,
@@ -152,24 +148,18 @@ def analyze_nli_parsing_success(comprehensive_metrics_path: str) -> Dict[str, an
         'results_df': results_df
     }
 
-def create_nli_comprehensive_analysis(comprehensive_metrics_path: str) -> Dict[str, any]:
+def create_nli_comprehensive_analysis(comprehensive_metrics_path):
     """
-    Create comprehensive NLI analysis combining parsing success with performance metrics.
-    
-    Args:
-        comprehensive_metrics_path: Path to comprehensive metrics JSON file
-        
-    Returns:
-        Dictionary with comprehensive analysis
+    Erstellt eine umfassende NLI-Analyse, die den Parsing-Erfolg mit Leistungsmetriken kombiniert.
     """
     
-    # Load comprehensive metrics
+    # Laedt die umfassenden Metriken
     with open(comprehensive_metrics_path, 'r') as f:
         metrics_data = json.load(f)
     
     nli_configs = metrics_data.get('nli', [])
     
-    # Extract baseline and CoTR results
+    # Extrahiert Baseline- und CoTR-Ergebnisse
     baseline_results = []
     cotr_results = []
     
@@ -190,11 +180,11 @@ def create_nli_comprehensive_analysis(comprehensive_metrics_path: str) -> Dict[s
         else:
             cotr_results.append(entry)
     
-    # Create DataFrames
+    # Erstellt DataFrames
     baseline_df = pd.DataFrame(baseline_results)
     cotr_df = pd.DataFrame(cotr_results)
     
-    # Calculate summaries
+    # Berechnet Zusammenfassungen
     baseline_summary = {
         'total_configs': len(baseline_df),
         'avg_accuracy': baseline_df['accuracy'].mean(),
@@ -215,7 +205,7 @@ def create_nli_comprehensive_analysis(comprehensive_metrics_path: str) -> Dict[s
         'worst_f1': cotr_df['f1_score'].min()
     }
     
-    # Language-specific analysis
+    # Sprachspezifische Analyse
     languages = ['en', 'fr', 'sw', 'ur']
     language_analysis = {}
     
@@ -232,7 +222,7 @@ def create_nli_comprehensive_analysis(comprehensive_metrics_path: str) -> Dict[s
             'cotr_configs': len(cotr_lang)
         }
     
-    # Model-specific analysis
+    # Modellspezifische Analyse
     models = ['aya-23-8B', 'Qwen2.5-7B-Instruct']
     model_analysis = {}
     
@@ -249,7 +239,7 @@ def create_nli_comprehensive_analysis(comprehensive_metrics_path: str) -> Dict[s
             'cotr_configs': len(cotr_model)
         }
     
-    # Shot type analysis
+    # "Shot type" Analyse
     shot_types = ['zeroshot', 'fewshot']
     shot_analysis = {}
     
@@ -266,7 +256,7 @@ def create_nli_comprehensive_analysis(comprehensive_metrics_path: str) -> Dict[s
             'cotr_configs': len(cotr_shot)
         }
     
-    # Pipeline analysis for CoTR
+    # Pipeline-Analyse für CoTR
     cotr_single = cotr_df[cotr_df['approach'] == 'cotr_single']
     cotr_multi = cotr_df[cotr_df['approach'] == 'cotr_multi']
     
@@ -296,70 +286,70 @@ def create_nli_comprehensive_analysis(comprehensive_metrics_path: str) -> Dict[s
     }
 
 def main():
-    """Main function to run the analysis."""
+    """Hauptfunktion zum Ausfuehren der Analyse."""
     
-    # Path to comprehensive metrics
+    # Pfad zu den umfassenden Metriken
     comprehensive_metrics_path = "/home/bbd6522/code/CoTR_Prompting_low_resource/results/analysis/comprehensive_metrics.json"
     
-    print("🔍 Analyzing NLI parsing success rates...")
+    print("Analyzing NLI parsing success rates...")
     parsing_analysis = analyze_nli_parsing_success(comprehensive_metrics_path)
     
-    print("\n📊 Creating comprehensive NLI analysis...")
+    print("\nCreating comprehensive NLI analysis...")
     comprehensive_analysis = create_nli_comprehensive_analysis(comprehensive_metrics_path)
     
-    # Print key findings
+    # Gibt die wichtigsten Ergebnisse aus
     print("\n" + "="*60)
-    print("📋 NLI COMPREHENSIVE ANALYSIS SUMMARY")
+    print("NLI COMPREHENSIVE ANALYSIS SUMMARY")
     print("="*60)
     
-    print(f"\n📊 OVERALL PARSING SUCCESS: {parsing_analysis['overall_parsing_success']:.1%}")
-    print(f"📊 TOTAL SAMPLES ANALYZED: {parsing_analysis['total_samples']}")
-    print(f"📊 TOTAL VALID LABELS: {parsing_analysis['total_valid_labels']}")
+    print(f"\nOVERALL PARSING SUCCESS: {round(parsing_analysis['overall_parsing_success'] * 100, 1)}%")
+    print(f"TOTAL SAMPLES ANALYZED: {parsing_analysis['total_samples']}")
+    print(f"TOTAL VALID LABELS: {parsing_analysis['total_valid_labels']}")
     
-    print(f"\n🎯 BASELINE PERFORMANCE:")
+    print(f"\nBASELINE PERFORMANCE:")
     baseline_summary = comprehensive_analysis['baseline_summary']
-    print(f"   Average Accuracy: {baseline_summary['avg_accuracy']:.1%}")
-    print(f"   Average F1: {baseline_summary['avg_f1']:.3f}")
-    print(f"   Best Accuracy: {baseline_summary['best_accuracy']:.1%}")
-    print(f"   Worst Accuracy: {baseline_summary['worst_accuracy']:.1%}")
+    print(f"   Average Accuracy: {round(baseline_summary['avg_accuracy'] * 100, 1)}%")
+    print(f"   Average F1: {round(baseline_summary['avg_f1'], 3)}")
+    print(f"   Best Accuracy: {round(baseline_summary['best_accuracy'] * 100, 1)}%")
+    print(f"   Worst Accuracy: {round(baseline_summary['worst_accuracy'] * 100, 1)}%")
     print(f"   Configurations: {baseline_summary['total_configs']}")
     
-    print(f"\n🔄 COTR PERFORMANCE:")
+    print(f"\nCOTR PERFORMANCE:")
     cotr_summary = comprehensive_analysis['cotr_summary']
-    print(f"   Average Accuracy: {cotr_summary['avg_accuracy']:.1%}")
-    print(f"   Average F1: {cotr_summary['avg_f1']:.3f}")
-    print(f"   Best Accuracy: {cotr_summary['best_accuracy']:.1%}")
-    print(f"   Worst Accuracy: {cotr_summary['worst_accuracy']:.1%}")
+    print(f"   Average Accuracy: {round(cotr_summary['avg_accuracy'] * 100, 1)}%")
+    print(f"   Average F1: {round(cotr_summary['avg_f1'], 3)}")
+    print(f"   Best Accuracy: {round(cotr_summary['best_accuracy'] * 100, 1)}%")
+    print(f"   Worst Accuracy: {round(cotr_summary['worst_accuracy'] * 100, 1)}%")
     print(f"   Configurations: {cotr_summary['total_configs']}")
     
-    print(f"\n🌍 LANGUAGE PERFORMANCE:")
+    print(f"\nLANGUAGE PERFORMANCE:")
     for lang, stats in comprehensive_analysis['language_analysis'].items():
-        print(f"   {lang.upper()}: Baseline {stats['baseline_accuracy']:.1%} | CoTR {stats['cotr_accuracy']:.1%}")
+        print(f"   {lang.upper()}: Baseline {round(stats['baseline_accuracy'] * 100, 1)}% | CoTR {round(stats['cotr_accuracy'] * 100, 1)}%")
     
-    print(f"\n🤖 MODEL PERFORMANCE:")
+    print(f"\nMODEL PERFORMANCE:")
     for model, stats in comprehensive_analysis['model_analysis'].items():
         model_short = model.split('-')[0] if '-' in model else model
-        print(f"   {model_short}: Baseline {stats['baseline_accuracy']:.1%} | CoTR {stats['cotr_accuracy']:.1%}")
+        print(f"   {model_short}: Baseline {round(stats['baseline_accuracy'] * 100, 1)}% | CoTR {round(stats['cotr_accuracy'] * 100, 1)}%")
     
-    print(f"\n🎯 SHOT TYPE PERFORMANCE:")
+    print(f"\nSHOT TYPE PERFORMANCE:")
     for shot, stats in comprehensive_analysis['shot_analysis'].items():
-        print(f"   {shot.title()}: Baseline {stats['baseline_accuracy']:.1%} | CoTR {stats['cotr_accuracy']:.1%}")
+        print(f"   {shot.title()}: Baseline {round(stats['baseline_accuracy'] * 100, 1)}% | CoTR {round(stats['cotr_accuracy'] * 100, 1)}%")
     
-    print(f"\n🔄 PIPELINE PERFORMANCE:")
+    print(f"\nPIPELINE PERFORMANCE:")
     pipeline_stats = comprehensive_analysis['pipeline_analysis']
-    print(f"   Single-prompt: {pipeline_stats['single_prompt']['accuracy']:.1%}")
-    print(f"   Multi-prompt: {pipeline_stats['multi_prompt']['accuracy']:.1%}")
+    print(f"   Single-prompt: {round(pipeline_stats['single_prompt']['accuracy'] * 100, 1)}%")
+    print(f"   Multi-prompt: {round(pipeline_stats['multi_prompt']['accuracy'] * 100, 1)}%")
     
-    # Save detailed results
-    print("\n💾 Saving detailed results...")
+    # Speichert die detaillierten Ergebnisse
+    print("\nSaving detailed results...")
     
-    # Save parsing success analysis
+    # Speichert die Analyse des Parsing-Erfolgs
     results_df = parsing_analysis['results_df']
     results_df.to_csv('nli_parsing_success_analysis.csv', index=False)
     
-    # Save comprehensive analysis
+    # Speichert die umfassende Analyse
     with open('nli_comprehensive_analysis.json', 'w') as f:
-        # Convert DataFrames to dictionaries for JSON serialization
+        # Konvertiert DataFrames in Dictionaries fuer die JSON-Speicherung
         analysis_for_json = {
             'baseline_summary': comprehensive_analysis['baseline_summary'],
             'cotr_summary': comprehensive_analysis['cotr_summary'],
@@ -375,7 +365,7 @@ def main():
         }
         json.dump(analysis_for_json, f, indent=2)
     
-    print("✅ Analysis complete! Results saved to:")
+    print("Analysis complete! Results saved to:")
     print("   - nli_parsing_success_analysis.csv")
     print("   - nli_comprehensive_analysis.json")
     

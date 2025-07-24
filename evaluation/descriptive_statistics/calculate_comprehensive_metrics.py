@@ -1,8 +1,3 @@
-#!/usr/bin/env python3
-"""
-Comprehensive and accurate metrics calculation script.
-Handles all observed data formats correctly.
-"""
 
 import json
 import ast
@@ -17,12 +12,11 @@ import logging
 from collections import defaultdict
 import os
 
-# Set up logging
+# Logging einrichten
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 def parse_entities_correctly(entities_str: str) -> List[Tuple[str, str]]:
-    """Parse entities from JSON format correctly."""
     if not entities_str or pd.isna(entities_str) or entities_str.strip() == '':
         return []
     
@@ -30,11 +24,9 @@ def parse_entities_correctly(entities_str: str) -> List[Tuple[str, str]]:
     entities_str = str(entities_str).strip()
     
     try:
-        # Try JSON format first (double quotes)
         if entities_str.startswith('[{') and entities_str.endswith('}]'):
             try:
                 entities_list = json.loads(entities_str)
-                # Handle both formats: 'text'/'type' and 'entity'/'type'
                 for e in entities_list:
                     if isinstance(e, dict):
                         text_key = e.get('text') or e.get('entity')
@@ -43,10 +35,8 @@ def parse_entities_correctly(entities_str: str) -> List[Tuple[str, str]]:
                             entities.append((str(text_key).lower().strip(), str(type_key).upper()))
                 return entities
             except json.JSONDecodeError:
-                # Try with ast.literal_eval for single quotes
                 try:
                     entities_list = ast.literal_eval(entities_str)
-                    # Handle both formats: 'text'/'type' and 'entity'/'type'
                     for e in entities_list:
                         if isinstance(e, dict):
                             text_key = e.get('text') or e.get('entity')
@@ -57,13 +47,11 @@ def parse_entities_correctly(entities_str: str) -> List[Tuple[str, str]]:
                 except:
                     pass
         
-        # Try parsing bracket format: [LOC: entity] [PER: entity]
         bracket_pattern = r'\[([A-Z]+):\s*([^\]]+)\]'
         matches = re.findall(bracket_pattern, entities_str)
         if matches:
             return [(match[1].strip().lower(), match[0].upper()) for match in matches]
             
-        # Try simple list format
         if entities_str.startswith('[') and entities_str.endswith(']'):
             try:
                 simple_list = ast.literal_eval(entities_str)
@@ -78,10 +66,8 @@ def parse_entities_correctly(entities_str: str) -> List[Tuple[str, str]]:
     return []
 
 def find_all_result_files(base_dir):
-    """Find all result CSV files across different tasks and approaches."""
     result_files = []
     
-    # Walk through all directories and find CSV files
     for root, dirs, files in os.walk(base_dir):
         for file in files:
             if file.endswith('.csv'):
@@ -92,9 +78,8 @@ def find_all_result_files(base_dir):
     return result_files
 
 def extract_file_info(file_path):
-    """Extract task, approach, language, model, and shot info from file path."""
+    """Extrahiert Aufgabe, Ansatz, Sprache, Modell und Shot-Typ aus dem Dateipfad."""
     
-    # Handle QA baseline patterns: qa_new/baseline/ZeroShot/en/baseline_zs_qa_tydiqa_en_Qwen2.5-7B-Instruct.csv
     if 'qa_new/baseline/' in file_path:
         parts = file_path.split('/')
         shot_type = parts[2].lower()  # ZeroShot/FewShot
@@ -104,7 +89,6 @@ def extract_file_info(file_path):
         model = model_match.group(1) if model_match else 'unknown'
         return 'qa', 'baseline', language, model, shot_type
     
-    # Handle QA CoTR patterns: qa_new/cotr/results_cotr_sp_fs_qa_tydiqa_fi_Qwen2.5-7B-Instruct.csv
     elif 'qa_new/cotr/' in file_path and 'results_cotr_' in file_path:
         filename = os.path.basename(file_path)
         match = re.search(r'results_cotr_(mp|sp)_(fs|zs)_qa_tydiqa_([a-z]+)_(aya-23-8B|Qwen2\.5-7B-Instruct)\.csv', filename)
@@ -114,7 +98,6 @@ def extract_file_info(file_path):
             approach = f'cotr_{pipeline}'
             return 'qa', approach, language, model, shot_type
     
-    # Handle NER baseline patterns: ner_new/baseline/results_baseline_fs_ner_swa_aya-23-8B.csv
     elif 'ner_new/baseline/' in file_path and 'results_baseline_' in file_path:
         filename = os.path.basename(file_path)
         match = re.search(r'results_baseline_(fs|zs)_ner_([a-z]+)_(aya-23-8B|Qwen2\.5-7B-Instruct)\.csv', filename)
@@ -123,7 +106,6 @@ def extract_file_info(file_path):
             shot_type = 'fewshot' if shot == 'fs' else 'zeroshot'
             return 'ner', 'baseline', language, model, shot_type
     
-    # Handle NER baseline patterns: ner_new/baseline/_baseline_fs_ner_swa_aya-23-8B.csv
     elif 'ner_new/baseline/' in file_path and '_baseline_' in file_path:
         filename = os.path.basename(file_path)
         match = re.search(r'_baseline_(fs|zs)_ner_([a-z]+)_(aya-23-8B|Qwen2\.5-7B-Instruct)\.csv', filename)
@@ -132,7 +114,7 @@ def extract_file_info(file_path):
             shot_type = 'fewshot' if shot == 'fs' else 'zeroshot'
             return 'ner', 'baseline', language, model, shot_type
     
-    # Handle NER CoTR patterns: ner_new/cotr/results_cotr_mp_zs_ner_ha_aya-23-8B.csv
+    # Behandle NER-CoTR-Muster: ner_new/cotr/results_cotr_mp_zs_ner_ha_aya-23-8B.csv
     elif 'ner_new/cotr/' in file_path and 'results_cotr_' in file_path:
         filename = os.path.basename(file_path)
         match = re.search(r'results_cotr_(mp|sp)_(fs|zs)_ner_([a-z]+)_(aya-23-8B|Qwen2\.5-7B-Instruct)\.csv', filename)
@@ -142,7 +124,7 @@ def extract_file_info(file_path):
             approach = f'cotr_{pipeline}'
             return 'ner', approach, language, model, shot_type
     
-    # Handle NER CoTR patterns: ner_new/cotr/_cotr_mp_fs_ner_sw_Qwen2.5-7B-Instruct.csv
+    # Behandle NER-CoTR-Muster: ner_new/cotr/_cotr_mp_fs_ner_sw_Qwen2.5-7B-Instruct.csv
     elif 'ner_new/cotr/' in file_path and '_cotr_' in file_path:
         filename = os.path.basename(file_path)
         match = re.search(r'_cotr_(mp|sp)_(fs|zs)_ner_([a-z]+)_(aya-23-8B|Qwen2\.5-7B-Instruct)\.csv', filename)
@@ -152,11 +134,11 @@ def extract_file_info(file_path):
             approach = f'cotr_{pipeline}'
             return 'ner', approach, language, model, shot_type
     
-    # Handle Classification baseline patterns: classification_new/baseline/*/results_baseline_classification_*.csv
+    # Behandle Klassifizierungs-Baseline-Muster: classification_new/baseline/*/results_baseline_classification_*.csv
     elif 'classification_new/baseline/' in file_path and 'results_baseline_classification_' in file_path:
-        # Extract language from path structure
+        # Extrahiere die Sprache aus der Pfadstruktur
         path_parts = file_path.split('/')
-        # Look for language code in path parts
+        # Suche nach dem Sprachcode in den Pfadteilen
         language = 'unknown'
         for part in path_parts:
             if part in ['en', 'sw', 'ha', 'fr', 'pt', 'ur']:
@@ -167,16 +149,16 @@ def extract_file_info(file_path):
         model_match = re.search(r'(aya-23-8B|Qwen2\.5-7B-Instruct)', file_path)
         model = model_match.group(1) if model_match else 'unknown'
         
-        # Determine shot type from path
+        # Bestimme den Shot-Typ aus dem Pfad
         shot_type = 'fewshot' if '/fs/' in file_path else 'zeroshot'
         
         return 'classification', 'baseline', language, model, shot_type
     
-    # Handle Classification baseline patterns: classification_new/baseline/*/_baseline_classification_*.csv
+    # Behandle Klassifizierungs-Baseline-Muster: classification_new/baseline/*/_baseline_classification_*.csv
     elif 'classification_new/baseline/' in file_path and '_baseline_classification_' in file_path:
-        # Extract language from path structure
+        # Extrahiere die Sprache aus der Pfadstruktur
         path_parts = file_path.split('/')
-        # Look for language code in path parts
+        # Suche nach dem Sprachcode in den Pfadteilen
         language = 'unknown'
         for part in path_parts:
             if part in ['en', 'sw', 'ha', 'fr', 'pt', 'ur']:
@@ -187,14 +169,14 @@ def extract_file_info(file_path):
         model_match = re.search(r'(aya-23-8B|Qwen2\.5-7B-Instruct)', file_path)
         model = model_match.group(1) if model_match else 'unknown'
         
-        # Determine shot type from path
+        # Bestimme den Shot-Typ aus dem Pfad
         shot_type = 'fewshot' if '/fs/' in file_path else 'zeroshot'
         
         return 'classification', 'baseline', language, model, shot_type
     
-    # Handle Classification CoTR patterns: classification_new/cotr/*/results_cotr_classification_*.csv
+    # Behandle Klassifizierungs-CoTR-Muster: classification_new/cotr/*/results_cotr_classification_*.csv
     elif 'classification_new/cotr/' in file_path and 'results_cotr_classification_' in file_path:
-        # Extract language from path structure and filename
+        # Extrahiere die Sprache aus der Pfadstruktur und dem Dateinamen
         path_parts = file_path.split('/')
         language = 'unknown'
         for part in path_parts:
@@ -202,8 +184,8 @@ def extract_file_info(file_path):
                 language = part
                 break
         
-        # Determine pipeline and shot type from path
-        pipeline = 'sp' if 'single_prompt' in file_path else 'mp'  # single_prompt or multi_prompt
+        # Bestimme Pipeline und Shot-Typ aus dem Pfad
+        pipeline = 'sp' if 'single_prompt' in file_path else 'mp'  # single_prompt oder multi_prompt
         shot_type = 'fewshot' if '/fs/' in file_path else 'zeroshot'
         
         model_match = re.search(r'(aya-23-8B|Qwen2\.5-7B-Instruct)', file_path)
@@ -212,7 +194,7 @@ def extract_file_info(file_path):
         approach = f'cotr_{pipeline}'
         return 'classification', approach, language, model, shot_type
     
-    # Handle NLI baseline patterns: results_nli_baseline_en_Qwen_Qwen2.5-7B-Instruct_few_shot_EN-instruct.csv
+    # Behandle NLI-Baseline-Muster: results_nli_baseline_en_Qwen_Qwen2.5-7B-Instruct_few_shot_EN-instruct.csv
     elif 'nli_new/baseline/' in file_path and 'results_nli_baseline_' in file_path:
         filename = os.path.basename(file_path)
         match = re.search(r'results_nli_baseline_([a-z]+)_(CohereLabs_aya-23-8B|Qwen_Qwen2\.5-7B-Instruct)_(zero_shot|few_shot)_', filename)
@@ -222,7 +204,7 @@ def extract_file_info(file_path):
             shot_type = shot.replace('_', '')
             return 'nli', 'baseline', language, model, shot_type
     
-    # Handle NLI CoTR patterns: results_cotr_single_prompt_fs_nli_sw_aya_23_8B.csv
+    # Behandle NLI-CoTR-Muster: results_cotr_single_prompt_fs_nli_sw_aya_23_8B.csv
     elif 'nli_new/cotr/' in file_path and 'results_cotr_' in file_path:
         filename = os.path.basename(file_path)
         match = re.search(r'results_cotr_(single_prompt|multi_prompt)_(fs|zs)_nli_([a-z]+)_(aya_23_8B|Qwen2_5_7B_Instruct)\.csv', filename)
@@ -230,40 +212,39 @@ def extract_file_info(file_path):
             pipeline, shot, language, model_raw = match.groups()
             model = 'aya-23-8B' if 'aya' in model_raw else 'Qwen2.5-7B-Instruct'
             shot_type = 'fewshot' if shot == 'fs' else 'zeroshot'
-            approach = f'cotr_{pipeline.replace("_prompt", "")}'  # cotr_single or cotr_multi
+            approach = f'cotr_{pipeline.replace("_prompt", "")}'  # cotr_single oder cotr_multi
             return 'nli', approach, language, model, shot_type
     
-    # Handle Sentiment baseline patterns: results_sentiment_baseline_new_ha_LRL-instruct_few_shot.csv
+    # Behandle Sentiment-Baseline-Muster: results_sentiment_baseline_new_ha_LRL-instruct_few_shot.csv
     elif 'sentiment_new/baseline/' in file_path and 'results_sentiment_baseline_new_' in file_path:
         filename = os.path.basename(file_path)
         match = re.search(r'results_sentiment_baseline_new_([a-z]+)_[^_]+_(zero_shot|few_shot)\.csv', filename)
         if match:
             language, shot = match.groups()
-            # Extract model from path structure
+            # Extrahiere das Modell aus der Pfadstruktur
             model = 'aya-23-8B' if 'aya' in file_path else 'Qwen2.5-7B-Instruct'
             shot_type = shot.replace('_', '')
             return 'sentiment', 'baseline', language, model, shot_type
     
-    # Handle Sentiment CoTR patterns: results_sentiment_cotr_sp_fs_ha_aya-23-8B.csv
+    # Behandle Sentiment-CoTR-Muster: results_sentiment_cotr_sp_fs_ha_aya-23-8B.csv
     elif 'sentiment_new/cotr/' in file_path and 'results_sentiment_cotr_' in file_path:
         filename = os.path.basename(file_path)
         match = re.search(r'results_sentiment_cotr_(sp|mp)_(fs|zs)_([a-z]+)_(aya-23-8B|Qwen2\.5-7B-Instruct)\.csv', filename)
         if match:
             pipeline, shot, language, model = match.groups()
             shot_type = 'fewshot' if shot == 'fs' else 'zeroshot'
-            approach = f'cotr_{pipeline}'  # cotr_sp or cotr_mp 
+            approach = f'cotr_{pipeline}'  # cotr_sp oder cotr_mp 
             return 'sentiment', approach, language, model, shot_type
     
-    # If no pattern matches, try to extract basic info
+    # Wenn kein Muster übereinstimmt, versuche, grundlegende Informationen zu extrahieren
     logging.warning(f"Unknown file pattern: {file_path}")
     return 'unknown', 'unknown', 'unknown', 'unknown', 'unknown'
 
 def process_qa_file(file_path: str, relative_path: str) -> Optional[Dict[str, Any]]:
-    """Process a single QA result file."""
     try:
         df = pd.read_csv(file_path)
         
-        # QA baseline files use these column names
+        # QA-Baseline-Dateien verwenden diese Spaltennamen
         if 'ground_truth' in df.columns and 'predicted_answer' in df.columns:
             f1_scores = []
             for _, row in df.iterrows():
@@ -276,12 +257,12 @@ def process_qa_file(file_path: str, relative_path: str) -> Optional[Dict[str, An
                 'sample_count': len(df)
             }
             
-        # QA CoTR files use different column names
+        # QA-CoTR-Dateien verwenden andere Spaltennamen
         elif 'lrl_ground_truth_answers_list' in df.columns and 'lrl_answer_model_final' in df.columns:
             f1_scores = []
             for _, row in df.iterrows():
                 try:
-                    # Parse ground truth list (it's usually a string representation of a list)
+                    # Parse die Ground-Truth-Liste (normalerweise eine String-Repräsentation einer Liste)
                     import ast
                     gt_list = ast.literal_eval(str(row['lrl_ground_truth_answers_list']))
                     gt_text = gt_list[0] if gt_list and isinstance(gt_list, list) else str(row['lrl_ground_truth_answers_list'])
@@ -306,7 +287,6 @@ def process_qa_file(file_path: str, relative_path: str) -> Optional[Dict[str, An
         return None
 
 def calculate_qa_f1_score(ground_truth: str, predicted: str) -> float:
-    """Calculate token-based F1 score for QA."""
     if not ground_truth or pd.isna(ground_truth):
         ground_truth = ""
     if not predicted or pd.isna(predicted):
@@ -320,7 +300,7 @@ def calculate_qa_f1_score(ground_truth: str, predicted: str) -> float:
     if not gt_normalized or not pred_normalized:
         return 0.0
     
-    # Token-based F1
+    # Token-basierter F1
     gt_tokens = set(gt_normalized.split())
     pred_tokens = set(pred_normalized.split())
     
@@ -340,7 +320,6 @@ def calculate_qa_f1_score(ground_truth: str, predicted: str) -> float:
     return f1
 
 def process_ner_file(file_path: str, relative_path: str) -> Optional[Dict[str, Any]]:
-    """Process a single NER result file."""
     try:
         df = pd.read_csv(file_path)
         
@@ -371,11 +350,11 @@ def calculate_ner_f1_score(gt_entities: List[Tuple[str, str]], pred_entities: Li
     gt_set = set(gt_entities)
     pred_set = set(pred_entities)
     
-    # If both are empty, perfect match
+    # Wenn beide leer sind, perfekte Übereinstimmung
     if not gt_set and not pred_set:
         return 1.0
     
-    # If one is empty but the other isn't, no match
+    # Wenn eine leer ist, die andere aber nicht, keine Übereinstimmung
     if not gt_set or not pred_set:
         return 0.0
     
@@ -390,28 +369,27 @@ def calculate_ner_f1_score(gt_entities: List[Tuple[str, str]], pred_entities: Li
     return f1
 
 def process_classification_file(file_path: str, relative_path: str) -> Optional[Dict[str, Any]]:
-    """Process a single Classification result file."""
     try:
         df = pd.read_csv(file_path)
         
-        # Look for ground truth and prediction columns
+        # Suche nach Ground-Truth- und Vorhersagespalten
         ground_truth_col = None
         prediction_col = None
         
-        # Classification baseline uses these columns
+        # Klassifizierungs-Baseline verwendet diese Spalten
         for col in ['ground_truth', 'true_label', 'label', 'actual', 'target', 'ground_truth_label']:
             if col in df.columns:
                 ground_truth_col = col
                 break
         
-        # Classification single_prompt CoTR uses different column names
+        # Klassifizierung single_prompt CoTR verwendet andere Spaltennamen
         if not ground_truth_col:
             for col in ['label_lrl_ground_truth']:
                 if col in df.columns:
                     ground_truth_col = col
                     break
         
-        # Classification multi_prompt CoTR uses different column names
+        # Klassifizierung multi_prompt CoTR verwendet andere Spaltennamen
         if not ground_truth_col:
             for col in ['ground_truth_label_eng']:
                 if col in df.columns:
@@ -423,14 +401,14 @@ def process_classification_file(file_path: str, relative_path: str) -> Optional[
                 prediction_col = col
                 break
         
-        # Classification single_prompt CoTR uses different column names  
+        # Klassifizierung single_prompt CoTR verwendet andere Spaltennamen
         if not prediction_col:
             for col in ['label_lrl_predicted_final']:
                 if col in df.columns:
                     prediction_col = col
                     break
         
-        # Classification multi_prompt CoTR uses different column names
+        # Klassifizierung multi_prompt CoTR verwendet andere Spaltennamen
         if not prediction_col:
             for col in ['predicted_label_eng_model']:
                 if col in df.columns:
@@ -445,7 +423,7 @@ def process_classification_file(file_path: str, relative_path: str) -> Optional[
                 gt = str(row[ground_truth_col]).lower().strip() if not pd.isna(row[ground_truth_col]) else ""
                 pred = str(row[prediction_col]).lower().strip() if not pd.isna(row[prediction_col]) else ""
                 
-                # Try to extract classification from raw output if prediction is empty or unknown
+                # Versuche, die Klassifizierung aus der Roh-Ausgabe zu extrahieren, wenn die Vorhersage leer oder unbekannt ist
                 if not pred or pred in ['[unknown label]', 'unknown', '']:
                     if 'raw_model_output' in df.columns:
                         raw_output = str(row['raw_model_output']) if not pd.isna(row['raw_model_output']) else ""
@@ -454,7 +432,7 @@ def process_classification_file(file_path: str, relative_path: str) -> Optional[
                         raw_output = str(row['raw_classification_output']) if not pd.isna(row['raw_classification_output']) else ""
                         pred = extract_classification_label(raw_output)
                 
-                if gt:  # Only include non-empty ground truths
+                if gt:  # Nur nicht-leere Ground-Truths einschließen
                     ground_truths.append(gt)
                     predictions.append(pred)
             
@@ -476,34 +454,33 @@ def process_classification_file(file_path: str, relative_path: str) -> Optional[
         return None
 
 def extract_classification_label(raw_output: str) -> str:
-    """Extract classification label from raw model output."""
     if not raw_output or pd.isna(raw_output):
         return "unknown"
     
     raw_lower = str(raw_output).lower()
     
-    # Common classification labels
+    # Gängige Klassifizierungslabels
     common_labels = [
         'politics', 'business', 'technology', 'entertainment', 'sports', 'health',
         'science', 'education', 'travel', 'lifestyle', 'finance', 'economy',
         'society', 'culture', 'environment', 'international', 'national', 'local'
     ]
     
-    # Look for explicit predictions
+    # Suche nach expliziten Vorhersagen
     for label in common_labels:
         if f'prediction: {label}' in raw_lower or f'answer: {label}' in raw_lower:
             return label
         if f'category: {label}' in raw_lower or f'class: {label}' in raw_lower:
             return label
     
-    # Look for labels at the end of the text
+    # Suche nach Labels am Ende des Textes
     words = raw_lower.split()
     if words:
         last_word = words[-1].strip('.,!?:')
         if last_word in common_labels:
             return last_word
     
-    # Search for any occurrence of common labels
+    # Suche nach jedem Vorkommen von gängigen Labels
     for label in common_labels:
         if label in raw_lower:
             return label
@@ -511,21 +488,20 @@ def extract_classification_label(raw_output: str) -> str:
     return "unknown"
 
 def process_nli_file(file_path: str, relative_path: str) -> Optional[Dict[str, Any]]:
-    """Process a single NLI result file."""
     try:
         df = pd.read_csv(file_path)
         
-        # Look for ground truth and prediction columns for NLI
+        # Suche nach Ground-Truth- und Vorhersagespalten für NLI
         ground_truth_col = None
         prediction_col = None
         
-        # NLI baseline files use these columns
+        # NLI-Baseline-Dateien verwenden diese Spalten
         for col in ['ground_truth', 'true_label', 'label', 'actual', 'target', 'gold_label', 'ground_truth_label']:
             if col in df.columns:
                 ground_truth_col = col
                 break
         
-        # NLI CoTR files use different column names
+        # NLI-CoTR-Dateien verwenden andere Spaltennamen
         if not ground_truth_col:
             for col in ['original_gt_label_int']:
                 if col in df.columns:
@@ -537,7 +513,7 @@ def process_nli_file(file_path: str, relative_path: str) -> Optional[Dict[str, A
                 prediction_col = col
                 break
         
-        # NLI CoTR files use different column names
+        # NLI-CoTR-Dateien verwenden andere Spaltennamen
         if not prediction_col:
             for col in ['predicted_label_for_accuracy']:
                 if col in df.columns:
@@ -552,7 +528,7 @@ def process_nli_file(file_path: str, relative_path: str) -> Optional[Dict[str, A
                 gt = str(row[ground_truth_col]).lower().strip() if not pd.isna(row[ground_truth_col]) else ""
                 pred = str(row[prediction_col]).lower().strip() if not pd.isna(row[prediction_col]) else ""
                 
-                # Convert integer labels to text for CoTR files
+                # Konvertiere Integer-Labels in Text für CoTR-Dateien
                 if ground_truth_col == 'original_gt_label_int':
                     gt_int = int(float(gt)) if gt.replace('.','').isdigit() else -1
                     if gt_int == 0:
@@ -564,7 +540,7 @@ def process_nli_file(file_path: str, relative_path: str) -> Optional[Dict[str, A
                     else:
                         gt = ""
                 
-                if gt:  # Only include non-empty ground truths
+                if gt:  # Nur nicht-leere Ground-Truths einschließen
                     ground_truths.append(gt)
                     predictions.append(pred)
             
@@ -586,11 +562,10 @@ def process_nli_file(file_path: str, relative_path: str) -> Optional[Dict[str, A
         return None
 
 def process_sentiment_file(file_path: str, relative_path: str) -> Optional[Dict[str, Any]]:
-    """Process a single Sentiment result file."""
     try:
         df = pd.read_csv(file_path)
         
-        # Look for ground truth and prediction columns for sentiment
+        # Suche nach Ground-Truth- und Vorhersagespalten für Sentiment
         ground_truth_col = None
         prediction_col = None
         
@@ -612,7 +587,7 @@ def process_sentiment_file(file_path: str, relative_path: str) -> Optional[Dict[
                 gt = str(row[ground_truth_col]).lower().strip() if not pd.isna(row[ground_truth_col]) else ""
                 pred = str(row[prediction_col]).lower().strip() if not pd.isna(row[prediction_col]) else ""
                 
-                if gt:  # Only include non-empty ground truths
+                if gt:  # Nur nicht-leere Ground-Truths einschließen
                     ground_truths.append(gt)
                     predictions.append(pred)
             
@@ -634,7 +609,6 @@ def process_sentiment_file(file_path: str, relative_path: str) -> Optional[Dict[
         return None
 
 def process_results_files(base_results_dir: str) -> Tuple[Dict[str, Any], Dict[str, Any]]:
-    """Process all result files and calculate metrics."""
     
     all_files = find_all_result_files(base_results_dir)
     logging.info(f"Found {len(all_files)} CSV files total")
@@ -742,28 +716,27 @@ def process_results_files(base_results_dir: str) -> Tuple[Dict[str, Any], Dict[s
     return dict(task_results), dict(task_stats)
 
 def generate_summary_report(metrics: Dict[str, Any], task_stats: Dict[str, Any], output_dir: Path) -> None:
-    """Generate a comprehensive summary report."""
     summary_file = output_dir / "comprehensive_summary.txt"
     
     with open(summary_file, 'w') as f:
         f.write("=== COMPREHENSIVE METRICS REPORT ===\n")
         f.write("Generated from corrected analysis\n\n")
         
-        # Overall statistics
+        # Gesamtstatistik
         f.write("=== OVERALL STATISTICS ===\n\n")
         total_files = sum(stats['total_files'] for stats in task_stats.values() if 'total_files' in stats)
         total_parsed = sum(stats['parsed_files'] for stats in task_stats.values() if 'parsed_files' in stats)
         total_failed = sum(stats['failed_files'] for stats in task_stats.values() if 'failed_files' in stats)
         overall_success_rate = (total_parsed / total_files * 100) if total_files > 0 else 0
         
-        f.write(f"📁 **TOTAL FILES FOUND**: {total_files}\n")
-        f.write(f"✅ **SUCCESSFULLY PARSED**: {total_parsed}\n")
-        f.write(f"❌ **FAILED TO PARSE**: {total_failed}\n")
-        f.write(f"📊 **OVERALL SUCCESS RATE**: {overall_success_rate:.1f}%\n\n")
+        f.write(f" **TOTAL FILES FOUND**: {total_files}\n")
+        f.write(f" **SUCCESSFULLY PARSED**: {total_parsed}\n")
+        f.write(f" **FAILED TO PARSE**: {total_failed}\n")
+        f.write(f" **OVERALL SUCCESS RATE**: {overall_success_rate:.1f}%\n\n")
         
         f.write("=== SUMMARY BY TASK ===\n\n")
         
-        # Task-specific summaries
+        # Aufgaben-spezifische Zusammenfassungen
         for task, results in metrics.items():
             if not results:
                 continue
@@ -771,7 +744,7 @@ def generate_summary_report(metrics: Dict[str, Any], task_stats: Dict[str, Any],
             stats = task_stats.get(task, {})
             success_rate = (stats.get('parsed_files', 0) / stats.get('total_files', 1) * 100) if stats.get('total_files', 0) > 0 else 0
             
-            f.write(f"📊 **{task.upper()} TASK**\n")
+            f.write(f" **{task.upper()} TASK**\n")
             f.write(f"  Configurations processed: {len(results)}\n")
             f.write(f"  Files found: {stats.get('total_files', 0)}\n")
             f.write(f"  Success rate: {success_rate:.1f}%\n")
@@ -807,7 +780,7 @@ def generate_summary_report(metrics: Dict[str, Any], task_stats: Dict[str, Any],
             
             f.write("\n")
         
-        # Detailed breakdown by configuration
+        # Detaillierte Aufschlüsselung nach Konfiguration
         f.write("=== DETAILED BREAKDOWN ===\n\n")
         for task, results in metrics.items():
             if not results:
@@ -815,7 +788,7 @@ def generate_summary_report(metrics: Dict[str, Any], task_stats: Dict[str, Any],
                 
             f.write(f"## {task.upper()} DETAILED RESULTS\n")
             for result in sorted(results, key=lambda x: x.get('f1_score', x.get('accuracy', 0)), reverse=True):
-                f.write(f"  📁 {result['file_path']}\n")
+                f.write(f"  {result['file_path']}\n")
                 f.write(f"     Approach: {result['approach']}, Language: {result['language']}, Model: {result['model']}, Shot: {result['shot_type']}\n")
                 if 'f1_score' in result:
                     f.write(f"     F1: {result['f1_score']:.4f}")
@@ -824,7 +797,7 @@ def generate_summary_report(metrics: Dict[str, Any], task_stats: Dict[str, Any],
                 f.write(f", Samples: {result.get('sample_count', 'N/A')}\n\n")
             f.write("\n")
         
-        # Add parsing failures if any
+        # Parsing-Fehler hinzufügen, falls vorhanden
         if any(stats.get('failed_files', 0) > 0 for stats in task_stats.values()):
             f.write("=== PARSING FAILURES ===\n\n")
             for task, stats in task_stats.items():
@@ -840,20 +813,20 @@ def main():
     
     args = parser.parse_args()
     
-    # Create output directory
+    # Ausgabeverzeichnis erstellen
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     
-    # Process all results
+    # Alle Ergebnisse verarbeiten
     logger.info("Starting comprehensive metrics calculation...")
     metrics, task_stats = process_results_files(args.base_results_dir)
     
-    # Save detailed metrics
+    # Detaillierte Metriken speichern
     detailed_file = output_dir / "comprehensive_metrics.json"
     with open(detailed_file, 'w') as f:
         json.dump(metrics, f, indent=2)
     
-    # Generate summary report
+    # Zusammenfassungsbericht erstellen
     generate_summary_report(metrics, task_stats, output_dir)
     
     logger.info("Comprehensive metrics calculation completed successfully!")

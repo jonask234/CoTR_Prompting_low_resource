@@ -8,13 +8,13 @@ Models: Qwen2.5-7B-Instruct, aya-23-8B
 
 H1: CoTR vs Baseline
 --------------------
-F1 Score: +0.0572 (+18.4%), p=0.0039 ✅ Significant
-Accuracy: +0.0756 (+19.4%), p=0.0039 ✅ Significant
+F1 Score: +0.0572 (+18.4%), p=0.0039 Significant
+Accuracy: +0.0756 (+19.4%), p=0.0039 Significant
 
 H3: Task-Specific Results
 -------------------------
-QA: -53.4% F1, p=0.0148 ✅
-NER: -13.7% F1, p=0.0831 ❌
-NLI: +54.7% F1, p=0.0000 ✅
-SENTIMENT: +73.7% F1, p=0.0000 ✅
-CLASSIFICATION: -8.3% F1, p=0.5516 ❌
+QA: -53.4% F1, p=0.0148 accurate
+NER: -13.7% F1, p=0.0831 not accurate
+NLI: +54.7% F1, p=0.0000 accurate
+SENTIMENT: +73.7% F1, p=0.0000 accurate
+CLASSIFICATION: -8.3% F1, p=0.5516 not accurate

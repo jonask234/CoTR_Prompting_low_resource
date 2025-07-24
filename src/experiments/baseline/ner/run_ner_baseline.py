@@ -17,12 +17,12 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import gc
 
-# Add project root to Python path
+# Fügt das Projekt-Stammverzeichnis zum Python-Pfad hinzu
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', '..'))
-if project_root not in sys.path: # Prevent duplicates
+if project_root not in sys.path: # Verhindert Duplikate
     sys.path.insert(0, project_root)
 
-# Import necessary functions
+# Importiert notwendige Funktionen
 from src.utils.data_loaders.load_masakhaner import load_masakhaner_samples
 from src.experiments.baseline.ner.ner_baseline import (
     initialize_model,
@@ -33,27 +33,27 @@ from src.experiments.baseline.ner.ner_baseline import (
 from config import get_token
 from huggingface_hub import login
 
-# Disable tokenizers parallelism warning
+# Deaktiviert die Parallelitätswarnung für Tokenizer
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
-# --- Unified Generation Parameters ---
-# Default values for core generation parameters
+# --- Vereinheitlichte Generierungsparameter ---
+# Standardwerte für Kern-Generierungsparameter
 UNIFIED_GENERATION_PARAMETERS_CORE = {
-    "temperature": 0.2,  # Slightly lower for more deterministic NER
+    "temperature": 0.2,  # Etwas niedriger für deterministischere NER
     "top_p": 0.85,
     "top_k": 35,
     "repetition_penalty": 1.1,
-    "do_sample": True # Default to sampling, temp will control it
+    "do_sample": True # Standardmäßig Sampling, Temp wird es steuern
 }
 
-# Default task-specific max_tokens for Baseline NER (for the generated entity list)
+# Standardmäßige aufgabenspezifische max_tokens für Baseline NER (für die generierte Entitätenliste)
 MAX_TOKENS_BASELINE_NER_OUTPUT = 150 
 
-# --- Model-Specific Overrides ---
-# These can override UNIFIED_GENERATION_PARAMETERS_CORE or MAX_TOKENS_BASELINE_NER_OUTPUT
+# --- Modellspezifische Überschreibungen ---
+# Diese können UNIFIED_GENERATION_PARAMETERS_CORE oder MAX_TOKENS_BASELINE_NER_OUTPUT überschreiben
 MODEL_SPECIFIC_OVERRIDES_BASELINE = {
     "CohereLabs/aya-expanse-8b": {
-        "temperature": 0.225, # Stricter for Aya (example)
+        "temperature": 0.225, # Strenger für Aya (Beispiel)
         "repetition_penalty": 1.15,
         "max_tokens": 180, 
         "top_p": 0.85,
@@ -68,8 +68,8 @@ MODEL_SPECIFIC_OVERRIDES_BASELINE = {
 
 logger = logging.getLogger(__name__)
 
-# Model-specific adjustments (can be expanded)
-# These are base settings that can be overridden by CLI arguments.
+# Modellspezifische Anpassungen (können erweitert werden)
+# Dies sind Basiseinstellungen, die durch CLI-Argumente überschrieben werden können.
 MODEL_SPECIFIC_ADJUSTMENTS = {
     "CohereLabs/aya-expanse-8b": {
         "temperature": 0.2,
@@ -85,7 +85,7 @@ MODEL_SPECIFIC_ADJUSTMENTS = {
         "repetition_penalty": 1.05,
         "max_tokens": 160
     }
-    # Add other models as needed
+    # Füge bei Bedarf weitere Modelle hinzu
 }
 
 def parse_cli_args():
@@ -98,8 +98,8 @@ def parse_cli_args():
     parser.add_argument("--seed", type=int, default=42, help="Random seed for sampling and reproducibility.")
     parser.add_argument(
         "--prompt_in_lrl", 
-        action=argparse.BooleanOptionalAction, # Allows --prompt_in_lrl and --no-prompt_in_lrl
-        default=True, # Set default to True
+        action=argparse.BooleanOptionalAction, # Ermöglicht --prompt_in_lrl und --no-prompt_in_lrl
+        default=True, # Setzt den Standardwert auf True
         help="If set, prompt instructions will be in LRL (few-shot examples remain in English). Default: True (LRL instructions)."
     )
     parser.add_argument("--shot_settings", nargs='+', default=['zero_shot', 'few_shot'], choices=['zero_shot', 'few_shot'], help="Prompting strategies.")
@@ -135,7 +135,7 @@ def parse_cli_args():
         action="store_true",
         help="Run in test mode: uses a very small number of samples (e.g., 5) for quick testing."
     )
-    # Generation parameter arguments
+    # Argumente für Generierungsparameter
     parser.add_argument("--temperature", type=float, default=None, help="Generation temperature.")
     parser.add_argument("--top_p", type=float, default=None, help="Nucleus sampling top_p.")
     parser.add_argument("--top_k", type=int, default=None, help="Top-k filtering.")
@@ -144,7 +144,7 @@ def parse_cli_args():
     parser.add_argument(
         "--do_sample", 
         type=lambda x: (str(x).lower() == 'true'), 
-        default=None,  # Default to None, so it can be derived from temperature if not set
+        default=None,  # Standardmäßig None, damit es bei Nichtfestlegung aus der Temperatur abgeleitet werden kann
         help="Global override for do_sample (True/False). If not set, derived from temperature."
     )
     parser.add_argument("--log_level", type=str, default="INFO", choices=["DEBUG", "INFO", "WARNING", "ERROR"], help="Set the logging level.")
@@ -152,25 +152,25 @@ def parse_cli_args():
     args = parser.parse_args()
     return args
 
-# --- Standardized Parameters (Aligned with CoTR) ---
+# --- Standardisierte Parameter (abgestimmt mit CoTR) ---
 STANDARD_PARAMETERS = {
     "temperature": 0.3, "top_p": 0.9, "top_k": 40, "max_tokens": 200, "repetition_penalty": 1.1
 }
 
-# Language-specific parameters (Aligned with CoTR)
+# Sprachspezifische Parameter (abgestimmt mit CoTR)
 LANGUAGE_PARAMETERS = {
-    "sw": { # Swahili (Example - Adjust as needed)
+    "sw": { # Swahili (Beispiel - bei Bedarf anpassen)
         "temperature": 0.25, "top_p": 0.85, "top_k": 35, "max_tokens": 180, "repetition_penalty": 1.15
     },
-    "ha": { # Hausa (Example - Adjust as needed)
+    "ha": { # Hausa (Beispiel - bei Bedarf anpassen)
         "temperature": 0.25, "top_p": 0.85, "top_k": 35, "max_tokens": 180, "repetition_penalty": 1.15
     }
-    # Add other languages if tuning is done
+    # Füge weitere Sprachen hinzu, wenn eine Feinabstimmung erfolgt
 }
 
-# --- Model Specific Adjustments (Function) ---
+# --- Modellspezifische Anpassungen (Funktion) ---
 def apply_model_specific_adjustments(params: Dict, model_name: str) -> Dict:
-    """Applies model-specific adjustments to parameters."""
+    """Wendet modellspezifische Anpassungen auf Parameter an."""
     adjusted_params = params.copy()
     if "aya" in model_name.lower():
         adjusted_params["temperature"] = max(0.1, adjusted_params["temperature"] * 0.9)
@@ -181,7 +181,7 @@ def apply_model_specific_adjustments(params: Dict, model_name: str) -> Dict:
         print(f"  Applied Qwen adjustments: TopP={adjusted_params['top_p']:.2f}, TopK={adjusted_params['top_k']}")
     return adjusted_params
 
-# --- Refactored Experiment Runner Function ---
+# --- Umstrukturierte Experiment-Runner-Funktion ---
 def run_experiment(
     model_name: str,
     tokenizer: Any,
@@ -193,9 +193,9 @@ def run_experiment(
     effective_params: Dict[str, Any],
     overwrite_results: bool,
     prompt_in_lrl_cli: bool
-) -> Optional[Dict[str, Any]]: # Return summary dict or None
-    """Run a single NER experiment for a given model, language, and configuration."""
-    experiment_start_time = time.time() # Initialize at the start of the function
+) -> Optional[Dict[str, Any]]: # Gibt Zusammenfassungs-Dict oder None zurück
+    """Führt ein einzelnes NER-Experiment für ein bestimmtes Modell, eine Sprache und eine Konfiguration aus."""
+    experiment_start_time = time.time() # Initialisiert am Anfang der Funktion
 
     if samples_df.empty:
         logger.warning(f"No samples for {lang_code}, skipping {model_name}.")
@@ -203,26 +203,26 @@ def run_experiment(
 
     model_short_name = model_name.split('/')[-1]
 
-    # Simplified: Baseline now always uses EN-instruct prompts
+    # Vereinfacht: Baseline verwendet jetzt immer EN-instruct Prompts
     shot_setting_str = "few_shot" if use_few_shot else "zero_shot"
-    # Determine prompt language string based on the passed-in flag
+    # Bestimmt den Prompt-Sprachstring basierend auf dem übergebenen Flag
     if prompt_in_lrl_cli:
         prompt_lang_str = f"{lang_code}-instruct"
     else:
         prompt_lang_str = "EN-instruct" 
-    logger.info(f"Prompt language for this run: {prompt_lang_str}") # Added log
+    logger.info(f"Prompt language for this run: {prompt_lang_str}") # Log hinzugefügt
     
     results_dir_for_run = os.path.join(base_results_path, "results")
     summaries_dir_for_run = os.path.join(base_results_path, "summaries")
     os.makedirs(results_dir_for_run, exist_ok=True)
     os.makedirs(summaries_dir_for_run, exist_ok=True)
 
-    # Define file paths (consistent naming)
+    # Definiert Dateipfade (konsistente Benennung)
     results_file_for_run = os.path.join(results_dir_for_run, f"results_baseline_{shot_setting_str[0]}s_ner_{lang_code}_{model_short_name}.csv")
     summary_file_for_run = os.path.join(summaries_dir_for_run, f"summary_baseline_{shot_setting_str[0]}s_ner_{lang_code}_{model_short_name}.csv")
 
-    # --- Loading/Running Logic ---
-    results_df = pd.DataFrame() # Initialize as empty
+    # --- Lade-/Ausführungslogik ---
+    results_df = pd.DataFrame() # Initialisiert als leer
     run_evaluation_and_save = False
 
     if overwrite_results:
@@ -231,12 +231,12 @@ def run_experiment(
     elif not os.path.exists(results_file_for_run):
         logging.info(f"Results file does not exist: {results_file_for_run}. Will run experiment for {model_name}, {lang_code}, {shot_setting_str}.")
         run_evaluation_and_save = True
-    else: # File exists and overwrite_results is False
+    else: # Datei existiert und overwrite_results ist False
         logging.info(f"Results file exists: {results_file_for_run} and overwrite_results is False. Attempting to load.")
         try:
             loaded_df = pd.read_csv(results_file_for_run)
             logging.info(f"Successfully loaded existing results from {results_file_for_run}.")
-            # Check for the target column 'ground_truth_entities'
+            # Prüft auf die Zielspalte 'ground_truth_entities'
             if 'ground_truth_entities' in loaded_df.columns:
                 results_df = loaded_df
             elif 'entities' in loaded_df.columns: # Fallback 1: 'entities'
@@ -306,30 +306,30 @@ def run_experiment(
         needs_conversion = True
         print("Converting entity strings from CSV back to lists/tuples...")
         def safe_literal_eval(val):
-            # Handles potential errors during eval more gracefully
+            # Behandelt potenzielle Fehler während der Auswertung eleganter
             if pd.isna(val): return []
             try:
                 evaluated = ast.literal_eval(val)
-                # Ensure it's a list after eval
+                # Stellt sicher, dass es nach der Auswertung eine Liste ist
                 return evaluated if isinstance(evaluated, list) else []
             except (ValueError, SyntaxError, TypeError):
                 print(f"Warning: Could not evaluate entity string: {str(val)[:50]}...")
-                return [] # Return empty list on error
+                return [] # Gibt leere Liste zurück, wenn ein Fehler auftritt
 
-    # Check for predicted_entities column and its type for conversion
+    # Prüft auf die Spalte 'predicted_entities' und ihren Typ für die Konvertierung
     needs_pred_conversion = False
     if 'predicted_entities' in results_df.columns:
         first_pred = results_df['predicted_entities'].dropna().iloc[0] if not results_df['predicted_entities'].dropna().empty else None
         if first_pred is not None and isinstance(first_pred, str):
             needs_pred_conversion = True
-            if not needs_conversion: # Only print this if not already printed for gold entities
+            if not needs_conversion: # Nur diesen Text drucken, wenn er nicht bereits für gold_entities gedruckt wurde
                 print("Converting predicted entity strings from CSV back to lists/tuples...")
     else:
-        # Fallback for 'predicted_entities' if missing
+        # Fallback für 'predicted_entities' falls fehlend
         if 'predictions' in results_df.columns:
             logging.info("Found 'predictions' column in existing CSV; renaming to 'predicted_entities'.")
             results_df.rename(columns={'predictions': 'predicted_entities'}, inplace=True)
-            # Re-check for conversion after renaming
+            # Prüft erneut auf Konvertierung nach Umbenennung
             first_pred = results_df['predicted_entities'].dropna().iloc[0] if not results_df['predicted_entities'].dropna().empty else None
             if first_pred is not None and isinstance(first_pred, str):
                 needs_pred_conversion = True
@@ -338,51 +338,51 @@ def run_experiment(
                 f"'predicted_entities' (and fallback 'predictions') column not found in results_df. "
                 f"Columns present: {results_df.columns.tolist()}. Metrics for predictions will be 0."
             )
-            results_df['predicted_entities'] = [[] for _ in range(len(results_df))] # Fill with empty lists
+            results_df['predicted_entities'] = [[] for _ in range(len(results_df))] # Füllt mit leeren Listen
 
     for idx, row in results_df.iterrows():
         try:
-            # Apply conversion if needed
+            # Wendet Konvertierung an, falls erforderlich
             gold = safe_literal_eval(row['ground_truth_entities']) if needs_conversion else row['ground_truth_entities']
             
-            # Handle predicted_entities conversion or missing column
+            # Behandelt die Konvertierung von 'predicted_entities' oder fehlende Spalte
             if 'predicted_entities' in row:
                 pred = safe_literal_eval(row['predicted_entities']) if needs_pred_conversion else row['predicted_entities']
-            else: # Should be handled by the column creation above, but as a safeguard
+            else: # Sollte durch die Spaltenerstellung oben behandelt werden, aber als Schutzmaßnahme
                 pred = []
 
-            # Ensure data types are list before passing to metrics
+            # Stellt sicher, dass die Datentypen Listen sind, bevor sie an Metriken übergeben werden
             if not isinstance(gold, list): gold = []
             if not isinstance(pred, list): pred = []
 
-            # Use the metrics function from ner_baseline.py
+            # Verwendet die Metriken-Funktion aus ner_baseline.py
             metrics = calculate_ner_metrics(gold, pred)
             precisions.append(metrics['precision'])
             recalls.append(metrics['recall'])
-            # Ensure the key matches what calculate_ner_metrics returns ('f1_score')
-            f1s.append(metrics.get('f1_score', 0.0)) # Use .get() for safety
+            # Stellt sicher, dass der Schlüssel mit dem übereinstimmt, was calculate_ner_metrics zurückgibt ('f1_score')
+            f1s.append(metrics.get('f1_score', 0.0)) # Verwendet .get() für Sicherheit
             successful_samples += 1
         except Exception as e_metric:
             print(f"Error calculating metrics for row {idx}: {e_metric}")
-            # Append default values on error to avoid crashing
+            # Fügt Standardwerte an, um abstürzen zu vermeiden
             precisions.append(0.0); recalls.append(0.0); f1s.append(0.0)
 
     avg_precision = np.mean(precisions) if precisions else 0.0
     avg_recall = np.mean(recalls) if recalls else 0.0
     avg_f1 = np.mean(f1s) if f1s else 0.0
-    total_runtime = time.time() - experiment_start_time # Calculate total runtime
+    total_runtime = time.time() - experiment_start_time # Berechnet Gesamtlaufzeit
 
     summary_data = {
         "model_name": model_short_name, 
         "language": lang_code,
-        "prompt_lang": prompt_lang_str, # This is now dynamic
+        "prompt_lang": prompt_lang_str, # Dies ist jetzt dynamisch
         "shot_setting": shot_setting_str,
         "num_samples_processed": len(results_df),
         "precision": avg_precision,
         "recall": avg_recall,
         "f1_score": avg_f1,
         "runtime_seconds": total_runtime,
-        **effective_params # Log all effective generation params used for this run
+        **effective_params # Loggt alle effektiven Generierungsparameter, die für diesen Lauf verwendet wurden
     }
 
     summary_df = pd.DataFrame([summary_data])
@@ -393,13 +393,15 @@ def run_experiment(
     except Exception as e_save_sum:
         print(f"ERROR saving summary file {summary_path}: {e_save_sum}")
 
-    return summary_data # Return the dictionary for aggregation
+    return summary_data # Gibt das Dictionary zurück, um es für die Aggregation zu verwenden
 
-# --- Main Function ---
+# --- Hauptfunktion ---
 def main():
+    """Main function to orchestrate NER baseline experiments."""
     args = parse_cli_args()
-    logging.basicConfig(level=getattr(logging, args.log_level.upper(), logging.INFO), 
-                        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+    # Konfiguriert das Logging-Level
+    logging.basicConfig(level=getattr(logging, args.log_level.upper(), logging.INFO), format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
     # Setup seeds
     random.seed(args.seed)
@@ -438,19 +440,17 @@ def main():
     for model_name_str in model_names_list:
         logging.info(f"\n===== Initializing Model: {model_name_str} =====")
         
-        # Explicitly delete previous model and tokenizer, and clear cache
-        # This ensures resources from a previous model (even if it failed to load fully)
-        # are released before attempting to load the next one.
+        # Initialisiert das Modell einmal pro Schleife
         model = None
         tokenizer = None
         del model
         del tokenizer
-        gc.collect() # Suggest garbage collection
+        gc.collect() # Vorschlägt Garbage Collection
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
             logging.info(f"Cleared CUDA cache and called gc.collect() before initializing {model_name_str}")
             
-        current_model_tokenizer, current_model_object = None, None # Initialize for this iteration
+        current_model_tokenizer, current_model_object = None, None # Initialisiert für diese Iteration
         try:
             current_model_tokenizer, current_model_object = initialize_model(model_name_str)
         except Exception as e_init:
@@ -458,20 +458,20 @@ def main():
             if current_model_object is not None: del current_model_object
             if current_model_tokenizer is not None: del current_model_tokenizer
             if torch.cuda.is_available(): torch.cuda.empty_cache()
-            gc.collect() # Ensure garbage collection after del and cache clear
-            continue # Skip to the next model
+            gc.collect() # Stellt sicher, dass Garbage Collection nach del und Cache-Leerung aufgerufen wird
+            continue # Springt zum nächsten Modell
 
         # Defensive check: Ensure model and tokenizer are loaded before proceeding
         if current_model_tokenizer is None or current_model_object is None:
             logging.critical(f"Model or tokenizer is None for {model_name_str} even after initialize_model call did not raise an exception. This should not happen. Skipping model.")
-            # Perform cleanup similar to the exception block
+            # Führt die Bereinigung ähnlich dem Ausnahmefall durch
             if current_model_object is not None: del current_model_object
             if current_model_tokenizer is not None: del current_model_tokenizer
             if torch.cuda.is_available(): torch.cuda.empty_cache()
             gc.collect()
-            continue # Skip to the next model
+            continue # Springt zum nächsten Modell
             
-        # If we are here, initialize_model succeeded, and model/tokenizer are not None.
+        # Wenn wir hier sind, hat initialize_model erfolgreich abgeschlossen, und model/tokenizer sind nicht None.
         effective_gen_params = get_effective_generation_params(model_name_str, args)
 
         for lang_code in lang_codes_list:
@@ -490,16 +490,16 @@ def main():
             else:
                 logger.info(f"Loaded {len(current_samples_df)} samples for {lang_code} (split {args.data_split}).")
 
-            # Fixed prompt language configuration: EN-instruct only for baseline simplification
+            # Feste Prompt-Sprachkonfiguration: Nur EN-instruct für Baseline-Vereinfachung
             prompt_lang_code_fixed = "EN"
             use_lrl_prompt_bool_fixed = False
-            prompt_lang_str_fixed = "EN-instruct" # This is determined by use_lrl_prompt_bool_fixed
+            prompt_lang_str_fixed = "EN-instruct" # Dies wird durch use_lrl_prompt_bool_fixed bestimmt
 
-            # Iterate through specified shot settings from CLI
-            for shot_setting_str in args.shot_settings: # e.g., ["zero_shot", "few_shot"]
+            # Iteriert durch die angegebenen Shot-Einstellungen aus dem CLI
+            for shot_setting_str in args.shot_settings: # z.B. ["zero_shot", "few_shot"]
                 use_few_shot_bool = (shot_setting_str == "few_shot")
                 
-                # Determine the actual prompt language string for logging/summary based on args.prompt_in_lrl
+                # Bestimmt den tatsächlichen Prompt-Sprachstring für Protokollierung/Zusammenfassung basierend auf args.prompt_in_lrl
                 actual_prompt_lang_for_log = f"{lang_code}-instruct" if args.prompt_in_lrl else "EN-instruct"
                 
                 exp_config_tuple = (lang_code, model_name_str, shot_setting_str, prompt_lang_str_fixed)
@@ -519,7 +519,7 @@ def main():
                     "prompt_in_lrl_cli": args.prompt_in_lrl
                 }
                 
-                # Call run_experiment
+                # Ruft run_experiment auf
                 summary_data = run_experiment(**experiment_details_for_run)
                 
                 if summary_data:
@@ -527,16 +527,16 @@ def main():
             # End of shot_setting_str loop
         # End of lang_code loop
         
-        # Correctly indented model cleanup block:
+        # Korrekt eingerückte Modell-Bereinigungsblock:
         logging.info(f"Finished all experiments for model {model_name_str}. Model and tokenizer unloaded, cache cleared.")
         if current_model_object is not None:
             del current_model_object
-            current_model_object = None # Ensure it's None after del
+            current_model_object = None # Stellt sicher, dass es None ist, nachdem del aufgerufen wurde
         if current_model_tokenizer is not None:
             del current_model_tokenizer
-            current_model_tokenizer = None # Ensure it's None after del
+            current_model_tokenizer = None # Stellt sicher, dass es None ist, nachdem del aufgerufen wurde
         
-        # Suggest garbage collection more aggressively
+        # Vorschlägt aggressiveres Garbage Collection
         gc.collect()
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
@@ -545,7 +545,7 @@ def main():
     if all_experiment_summaries:
         overall_summary_df = pd.DataFrame(all_experiment_summaries)
         if not overall_summary_df.empty:
-            # Ensure numeric columns are numeric for plotting and display
+            # Stellt sicher, dass numerische Spalten numerisch sind für das Plotten und Anzeigen
             numeric_cols_for_summary = ['num_samples_processed', 'avg_runtime_seconds_per_sample', 'precision', 'recall', 'f1_score',
                                  'temperature', 'top_p', 'top_k', 'max_tokens', 'repetition_penalty']
             for nc in numeric_cols_for_summary:
@@ -565,7 +565,7 @@ def main():
 
             # Plotting (example for F1 score)
             if 'f1_score' in overall_summary_df.columns:
-                # Create 'experiment_key' for a unique x-axis identifier
+                # Erstellt 'experiment_key' für eine einzigartige x-Achse-Kennung
                 overall_summary_df['experiment_key'] = overall_summary_df['model_name'] + "_" + \
                                                        overall_summary_df['language'] + "_" + \
                                                        overall_summary_df['shot_setting']
@@ -584,7 +584,7 @@ def main():
                 except Exception as e_plot:
                     logging.error(f"Failed to save F1 plot: {e_plot}")
                 finally:
-                    plt.close() # Ensure plot is closed
+                    plt.close() # Stellt sicher, dass das Diagramm geschlossen wird
             else:
                 logging.warning("'f1_score' column not found in overall summary. Skipping plot.")
         else:
@@ -595,73 +595,82 @@ def main():
     logging.info("\nAll NER Baseline experiments completed.")
 
 def get_effective_generation_params(model_name_str: str, cli_args: argparse.Namespace) -> Dict[str, Any]:
-    """Get effective generation parameters, prioritizing CLI, then model-specific, then defaults."""
+    """Holt und kombiniert Generierungsparameter aus verschiedenen Quellen."""
     
-    # Start with model-specific settings, or an empty dict if model not listed
-    params = MODEL_SPECIFIC_ADJUSTMENTS.get(model_name_str, {}).copy()
+    # Beginnt mit den Standardparametern des Systems
+    params = UNIFIED_GENERATION_PARAMETERS_CORE.copy()
+    params["max_tokens"] = MAX_TOKENS_BASELINE_NER_OUTPUT
+
+    # Wendet modellspezifische Überschreibungen an
+    model_overrides = MODEL_SPECIFIC_OVERRIDES_BASELINE.get(model_name_str, {})
+    params.update(model_overrides)
+
+    # Wendet sprachspezifische Überschreibungen an
+    lang_overrides = LANGUAGE_PARAMETERS.get(cli_args.langs, {}) # Angenommen, langs ist hier ein einzelner Code
+    params.update(lang_overrides)
+
+    # Wendet globale CLI-Überschreibungen an
+    if cli_args.temperature is not None: params["temperature"] = cli_args.temperature
+    if cli_args.top_p is not None: params["top_p"] = cli_args.top_p
+    if cli_args.top_k is not None: params["top_k"] = cli_args.top_k
+    if cli_args.max_tokens is not None: params["max_tokens"] = cli_args.max_tokens
+    if cli_args.repetition_penalty is not None: params["repetition_penalty"] = cli_args.repetition_penalty
     
-    # Fallback defaults if not in model-specific (or if model-specific is empty)
-    # These are general defaults if a model isn't in MODEL_SPECIFIC_ADJUSTMENTS
-    # or if certain params are missing from its specific config.
-    default_fallbacks = {
-        "temperature": 0.3,
-        "top_p": 0.9,
-        "top_k": 40,
-        "repetition_penalty": 1.0,
-        "max_tokens": 150, # Default max_tokens for NER output
-        "do_sample": True # Default do_sample, will be adjusted by temperature later
-    }
-    for key, value in default_fallbacks.items():
-        params.setdefault(key, value)
+    # Leitet do_sample ab, wenn es nicht explizit festgelegt ist
+    if cli_args.do_sample is not None:
+        params["do_sample"] = cli_args.do_sample
+    else:
+        # Wenn die Temperatur > 0 ist, ist Sampling wahrscheinlich beabsichtigt
+        params["do_sample"] = params.get("temperature", 0) > 0.0
 
-    # Apply CLI overrides (highest priority)
-    cli_overrides = {
-        "temperature": cli_args.temperature,
-        "top_p": cli_args.top_p,
-        "top_k": cli_args.top_k,
-        "repetition_penalty": cli_args.repetition_penalty,
-        "max_tokens": cli_args.max_tokens # This now refers to max_new_tokens for generation
-    }
-    if cli_args.do_sample is not None: # Explicitly handle do_sample from CLI
-        cli_overrides["do_sample"] = cli_args.do_sample
-
-    for key, value in cli_overrides.items():
-        if value is not None:
-            params[key] = value
-            
-    # If do_sample was not set by CLI, derive it from the final temperature
-    if cli_args.do_sample is None:
-        if params["temperature"] is not None and params["temperature"] <= 0.01: # or exactly 0
-            params["do_sample"] = False
-        else:
-            params["do_sample"] = True # Explicitly set if temperature suggests sampling
-    
-    # Ensure max_tokens is suitable for NER (short responses generally)
-    # This also acts as a final default if no other max_tokens was set.
-    params["max_tokens"] = params.get("max_tokens", 150) 
-
-    logging.debug(f"Effective generation parameters for {model_name_str}: {params}")
     return params
 
 def plot_ner_metrics(summary_df: pd.DataFrame, plots_dir: str):
-    """Generate and save plots for NER metrics."""
+    """Erstellt und speichert Diagramme, die NER-Metriken zusammenfassen."""
     if summary_df.empty:
-        logger.info("Summary DataFrame is empty. Skipping plotting.")
+        logging.warning("Summary DataFrame is empty. Skipping plotting.")
         return
 
-    # Define required columns for plotting
-    # 'experiment_config' is typically generated by config_to_str, so ensure source columns are present.
-    required_cols = ['model_name', 'language', 'shot_setting', 'prompt_lang', 'f1_score'] 
+    # Verbessert die Lesbarkeit von Modellnamen
+    summary_df['model_short'] = summary_df['model'].apply(lambda x: x.split('/')[-1])
+    
+    # Diagramm 1: F1-Score nach Modell und Sprache
+    plt.figure(figsize=(12, 7))
+    sns.barplot(data=summary_df, x='model_short', y='avg_f1_score', hue='language', dodge=True)
+    plt.title('Average F1-Score by Model and Language')
+    plt.ylabel('Average F1-Score')
+    plt.xlabel('Model')
+    plt.xticks(rotation=45, ha='right')
+    plt.legend(title='Language')
+    plt.tight_layout()
+    plt.savefig(os.path.join(plots_dir, 'f1_by_model_language.png'))
+    plt.close()
 
-    # Check if necessary columns are present
-    if not all(col in summary_df.columns for col in required_cols):
-        logger.warning(f"One or more required columns ({required_cols}) not found in summary_df. Skipping plotting.")
-        logger.debug(f"Available columns: {summary_df.columns.tolist()}")
-        return
+    # Diagramm 2: F1-Score nach Shot-Einstellung
+    if 'shot_setting' in summary_df.columns:
+        plt.figure(figsize=(10, 6))
+        sns.boxplot(data=summary_df, x='shot_setting', y='avg_f1_score')
+        plt.title('F1-Score Distribution by Shot Setting')
+        plt.ylabel('Average F1-Score')
+        plt.xlabel('Shot Setting')
+        plt.tight_layout()
+        plt.savefig(os.path.join(plots_dir, 'f1_by_shot_setting.png'))
+        plt.close()
 
-    # Ensure f1_score is numeric
-    # ... (rest of the function remains unchanged)
+    # Diagramm 3: Laufzeit nach Modell
+    if 'avg_runtime_seconds' in summary_df.columns:
+        plt.figure(figsize=(10, 6))
+        sns.barplot(data=summary_df, x='model_short', y='avg_runtime_seconds', dodge=False)
+        plt.title('Average Runtime per Sample by Model')
+        plt.ylabel('Average Runtime (seconds)')
+        plt.xlabel('Model')
+        plt.xticks(rotation=45, ha='right')
+        plt.tight_layout()
+        plt.savefig(os.path.join(plots_dir, 'runtime_by_model.png'))
+        plt.close()
+        
+    logging.info(f"Plots saved to {plots_dir}")
 
-# --- Entry Point ---
+# --- Einstiegspunkt ---
 if __name__ == "__main__":
     main() 

@@ -14,48 +14,43 @@ import logging
 from typing import Dict, Any, Optional
 from sklearn.metrics import accuracy_score, f1_score
 
-# Add project root to Python path BEFORE other project imports
+# Fügt das Projekt-Stammverzeichnis zum Python-Pfad hinzu, BEVOR andere Projekt-Importe erfolgen
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', '..'))
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
-# Disable tokenizer parallelism to avoid warnings
+# Deaktiviert die Tokenizer-Parallelität, um Warnungen zu vermeiden
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
-# Import CoTR sentiment functions
+# Importiert CoTR-Sentiment-Funktionen
 from src.experiments.cotr.sentiment.sentiment_cotr import (
     initialize_model,
     evaluate_sentiment_cotr_multi_prompt,
     evaluate_sentiment_cotr_single_prompt,
-    SENTIMENT_LABELS_EN, # Import for consistency
-    LANG_NAMES as LANG_NAMES_SENTIMENT # Import lang_names used in sentiment_cotr # Renamed to avoid conflict
+    SENTIMENT_LABELS_EN, # Import für Konsistenz
+    LANG_NAMES as LANG_NAMES_SENTIMENT 
 )
 
-# Import data loader
-from src.utils.data_loaders.load_afrisenti import load_afrisenti_samples # CHANGED: Use AfriSenti loader
-from datasets import load_dataset as hf_load_dataset, get_dataset_split_names # For getting dataset size
+from src.utils.data_loaders.load_afrisenti import load_afrisenti_samples 
+from datasets import load_dataset as hf_load_dataset, get_dataset_split_names 
 
-# Import metrics calculation
+# Importiert die Metrikberechnung
 from evaluation.sentiment_metrics import calculate_sentiment_metrics
 
 # Hugging Face Login
 from huggingface_hub import login
 from config import get_token
 
-# Define LRL sentiment labels for mapping (must match labels in your datasets)
-# This is crucial for consistent metric calculation.
-# Example: If your Swahili data has "Chanya", "Hasi", "Kati" for Positive, Negative, Neutral.
+
 SENTIMENT_LABELS_LRL = {
     "sw": {"Positive": "Chanya", "Negative": "Hasi", "Neutral": "Kati"},
-    "ha": {"Positive": "Tabbatacce", "Negative": "Korau", "Neutral": "Tsaka-tsaki"}, # Verify actual Hausa labels
-    "yo": {"Positive": "Rere", "Negative": "Buburu", "Neutral": "Dede"}, # Verify actual Yoruba labels
-    "am": {"Positive": "አዎንታዊ", "Negative": "አሉታዊ", "Neutral": "ገለልተኛ"}, # Verify actual Amharic labels
-    "pcm": {"Positive": "Positive", "Negative": "Negative", "Neutral": "Neutral"}, # Pidgin might use English directly
-    # Add other languages and their specific sentiment labels as used in your datasets
+    "ha": {"Positive": "Tabbatacce", "Negative": "Korau", "Neutral": "Tsaka-tsaki"}, 
+    "yo": {"Positive": "Rere", "Negative": "Buburu", "Neutral": "Dede"}, 
+    "am": {"Positive": "አዎንታዊ", "Negative": "አሉታዊ", "Neutral": "ገለልተኛ"}, 
+    "pcm": {"Positive": "Positive", "Negative": "Negative", "Neutral": "Neutral"}, 
 }
 
-# --- Standardized Parameters --- (To be consistent with baseline if applicable)
-# These are defaults if not overridden by CLI or language-specific settings.
+
 STANDARD_PARAMETERS = {
     "text_translation": {"temperature": 0.5, "top_p": 0.9, "top_k": 40, "max_new_tokens": 512, "repetition_penalty": 1.05},
     "sentiment_classification": {"temperature": 0.2, "top_p": 0.9, "top_k": 30, "max_new_tokens": 10, "repetition_penalty": 1.1},
@@ -76,7 +71,6 @@ LANGUAGE_PARAMETERS = {
         "label_translation": {"temperature": 0.25, "max_new_tokens": 15},
         "single_prompt_cotr": {"temperature": 0.25, "max_new_tokens": 120}
     },
-    # Add other LRLs like 'te' if specific tuning is done
 }
 
 MODEL_ADJUSTMENTS = {
@@ -94,20 +88,21 @@ MODEL_ADJUSTMENTS = {
     }
 }
 
-AFRISENTI_LANGS = ['am', 'dz', 'ha', 'ig', 'ma', 'pcm', 'pt', 'sw', 'yo', 'multi'] # Added pt to AfriSenti langs
+AFRISENTI_LANGS = ['am', 'dz', 'ha', 'ig', 'ma', 'pcm', 'pt', 'sw', 'yo', 'multi'] 
+
 
 def get_effective_params(step_name: str, lang_code: str, model_name_str: str, cli_args: argparse.Namespace) -> Dict:
-    """Determines effective generation parameters for a given step."""
+    """Determines the effective generation parameters for a specific step."""
     base_params = STANDARD_PARAMETERS.get(step_name, {}).copy()
-    # Correctly identify model short name for MODEL_ADJUSTMENTS
-    model_short_name = model_name_str.split('/')[-1].split('-')[0].lower() # e.g. "aya" or "qwen"
+    # Correct identification of the model short name for MODEL_ADJUSTMENTS
+    model_short_name = model_name_str.split('/')[-1].split('-')[0].lower() # e.g., "aya" or "qwen"
     lang_params = LANGUAGE_PARAMETERS.get(lang_code, {}).get(step_name, {}).copy()
     model_adjust = MODEL_ADJUSTMENTS.get(model_short_name, {}).get(step_name, {}).copy()
 
-    # Start with standard, override with lang-specific, then apply model adjustments
+    # Begin with standard, override with language-specific, then apply model adjustments
     effective_params = {**base_params, **lang_params}
 
-    # Apply model-specific multiplicative factors or direct sets
+    # Apply model-specific multiplicative factors or direct settings
     if 'temperature_factor' in model_adjust:
         effective_params["temperature"] *= model_adjust['temperature_factor']
     if 'top_p_factor' in model_adjust:
@@ -115,15 +110,7 @@ def get_effective_params(step_name: str, lang_code: str, model_name_str: str, cl
     if 'top_k_set' in model_adjust:
         effective_params["top_k"] = model_adjust['top_k_set']
     
-    # Override with CLI arguments if provided for the specific step
-    # Example for text_translation step (needs to be adapted for how CLI args are named)
-    # This part needs careful mapping from general CLI args to step-specific ones.
-    # For simplicity, this example assumes CLI args might be step-specific or general.
-    # A more robust way is to have CLI args like --text_translation_temp, --sentiment_temp etc.
-    # Or, apply general CLI args as overrides to all steps if that's the intent.
     
-    # Simplified: If a general CLI param exists, it overrides the current effective param for that key
-    if cli_args.temperature is not None: effective_params["temperature"] = cli_args.temperature
     if cli_args.top_p is not None: effective_params["top_p"] = cli_args.top_p
     if cli_args.top_k is not None: effective_params["top_k"] = cli_args.top_k
     if cli_args.max_sentiment_tokens is not None and step_name == "sentiment_classification":
@@ -190,7 +177,7 @@ def run_single_experiment_config(
             print(f"Successfully loaded results from existing file: {results_file}")
         except Exception as e:
             print(f"Could not read results file {results_file} ({e}). Will run experiment.")
-            results_df_loaded_from_file = False # Explicitly set back
+            results_df_loaded_from_file = False # Explizit zurücksetzen
     
     if not results_df_loaded_from_file:
         print(f"Running Sentiment CoTR: M={model_name_str}, L={lang_code}, Pipe={pipeline_type}, Shot={shot_type_str}")
@@ -217,17 +204,17 @@ def run_single_experiment_config(
         print(f"Results saved to: {results_file}")
 
     # AfriSenti provides labels directly in English and lowercase (e.g., "positive", "negative")
-    # The 'ground_truth_english_label' in the CoTR evaluation functions already expects this.
-    # If the loaded 'label' column is not already the English GT, it needs mapping.
-    # Here, we assume 'label' from load_afrisenti_samples is the English GT.
+    # The 'ground_truth_english_label' in the CoTR evaluation functions expects this already.
+    # If the loaded 'label' column is not already the English GT, it needs to be mapped.
+    # We assume that 'label' from load_afrisenti_samples is the English GT.
     if 'label' in results_df.columns:
         results_df['ground_truth_english_label'] = results_df['label'].astype(str).str.lower().str.strip()
     else:
-        # This case should ideally not happen if data loading is correct.
-        # Fallback or error if 'label' column is missing from CoTR output DF.
-        # The CoTR functions save 'ground_truth_english_label' based on input 'label' from samples_df.
-        # So, this re-processing might be redundant if CoTR functions handle it,
-        # but good for verification if results_df is loaded from file.
+        # This case should ideally not occur if data loading is correct.
+        # Fallback or error if the 'label' column is missing in the CoTR output DF.
+        # The CoTR functions save 'ground_truth_english_label' based on the 'label' input from samples_df.
+        # Therefore, this reprocessing might be redundant if the CoTR functions handle it,
+        # but good for verification if results_df is loaded from a file.
         if 'ground_truth_english_label' not in results_df.columns:
             print(f"CRITICAL: 'label' column missing from initial CoTR output and 'ground_truth_english_label' not set. Metrics will be incorrect.")
             results_df['ground_truth_english_label'] = "unknown" # Placeholder
@@ -263,7 +250,7 @@ def run_single_experiment_config(
     summary_data = {
         'model': model_name_str.split('/')[-1], 'language': lang_code, 'pipeline': pipeline_type, 'shot_type': shot_type_str,
         'samples': len(results_df), 'accuracy': sentiment_metrics['accuracy'], 'macro_f1': sentiment_metrics['macro_f1'],
-        'weighted_f1': sentiment_metrics['weighted_f1'],  # Add weighted F1 for completeness
+        'weighted_f1': sentiment_metrics['weighted_f1'],  # Add Weighted F1 for completeness
         'generation_params': generation_params
     }
     
@@ -287,7 +274,7 @@ def plot_sentiment_metrics(summary_df: pd.DataFrame, plots_dir: str, metric_col:
     plt.yticks(fontsize=10)
     plt.title(f'Sentiment CoTR: Average {metric_name}', fontsize=16)
     plt.ylabel(f'Average {metric_name}', fontsize=12)
-    plt.xlabel('Experiment Configuration (Lang_Model_Pipeline_Shot)', fontsize=12)
+    plt.xlabel('Experiment Configuration (Language_Model_Pipeline_Shot)', fontsize=12)
     plt.legend(title='Language', bbox_to_anchor=(1.02, 1), loc='upper left')
     plt.tight_layout(rect=[0, 0, 0.9, 1])
     
@@ -312,12 +299,12 @@ def main():
     parser.add_argument("--top_k", type=int, default=None, help="Global top-k for generation.")
     parser.add_argument("--repetition_penalty", type=float, default=None, help="Global repetition penalty.")
     
-    parser.add_argument("--max_sentiment_tokens", type=int, default=None, help="Max tokens for sentiment classification step.")
-    parser.add_argument("--max_text_trans_tokens", type=int, default=None, help="Max tokens for LRL text to English translation.")
-    parser.add_argument("--max_label_trans_tokens", type=int, default=None, help="Max tokens for English label to LRL translation.")
-    parser.add_argument("--max_single_prompt_tokens", type=int, default=None, help="Max tokens for the entire single-prompt CoTR generation.")
+    parser.add_argument("--max_sentiment_tokens", type=int, default=None, help="Maximum tokens for sentiment classification step.")
+    parser.add_argument("--max_text_trans_tokens", type=int, default=None, help="Maximum tokens for LRL text to English translation.")
+    parser.add_argument("--max_label_trans_tokens", type=int, default=None, help="Maximum tokens for English label to LRL translation.")
+    parser.add_argument("--max_single_prompt_tokens", type=int, default=None, help="Maximum tokens for the entire single CoTR generation.")
 
-    parser.add_argument("--hf_token", type=str, default=None, help="Hugging Face token for gated models.")
+    parser.add_argument("--hf_token", type=str, default=None, help="Hugging Face token for closed models.")
     parser.add_argument("--seed", type=int, default=42, help="Random seed for reproducibility.")
     parser.add_argument("--test_mode", action='store_true', help="Run with a small subset of data (5 samples).")
     parser.add_argument("--overwrite_results", action='store_true', help="Overwrite existing results and summary files.")
@@ -343,14 +330,14 @@ def main():
     all_summaries = []
     
     for model_name_str in models_list:
-        logging.info(f"\n===== Initializing Model: {model_name_str} =====")
+        logging.info(f"\n===== Initializing model: {model_name_str} =====")
         model_initialized = False
         try:
             tokenizer, model = initialize_model(model_name_str)
             model_initialized = True
-            logging.info(f"Model {model_name_str} initialized successfully.")
+            logging.info(f"Model {model_name_str} successfully initialized.")
         except Exception as e_init:
-            logging.error(f"Failed to initialize model {model_name_str}: {e_init}. Skipping this model.")
+            logging.error(f"Model {model_name_str} could not be initialized: {e_init}. Skipping model.")
             if model is not None: del model
             if tokenizer is not None: del tokenizer
             if torch.cuda.is_available(): torch.cuda.empty_cache()
@@ -360,9 +347,9 @@ def main():
             logging.info(f"\n--- Loading data for {lang_code} (Sentiment CoTR) ---")
             
             target_num_samples = args.num_samples
-            if args.test_mode: # Was previously over-indented
-                logging.info(f"    TEST MODE: Overriding sample count to 5 for {lang_code}.") # Was previously over-indented
-                target_num_samples = 5 # Was previously over-indented
+            if args.test_mode: # This line was moved
+                logging.info(f"    TEST MODE: Overriding sample count to 5 for {lang_code}.") # This line was moved
+                target_num_samples = 5 # This line was moved
             
             # Data split is passed to load_afrisenti_samples
             samples_df_for_lang = load_afrisenti_samples(
@@ -373,7 +360,7 @@ def main():
             ) 
 
             if samples_df_for_lang.empty:
-                logging.warning(f"No samples for {lang_code} after attempting to load/sample for split '{args.data_split}'. Skipping language for model {model_name_str}.")
+                logging.warning(f"No samples for {lang_code} after attempting to load data/samples for split '{args.data_split}'. Skipping model {model_name_str}.")
                 continue
             
             if 'label' in samples_df_for_lang.columns:
@@ -382,7 +369,7 @@ def main():
             for pipeline_type in args.pipeline_types:
                 for shot_setting in args.shot_settings:
                     use_few_shot = (shot_setting == 'few_shot')
-                    logging.info(f"Running: Model={model_name_str}, Lang={lang_code}, Pipeline={pipeline_type}, Shot={shot_setting}")
+                    logging.info(f"Running: Model={model_name_str}, Language={lang_code}, Pipeline={pipeline_type}, Shot={shot_setting}")
                     
                     if pipeline_type == "multi_prompt":
                         text_trans_params = get_effective_params("text_translation", lang_code, model_name_str, args)
@@ -405,24 +392,24 @@ def main():
                         all_summaries.append(summary)
         
         if model_initialized:
-            logging.info(f"===== Finished all experiments for model {model_name_str}. Unloading... =====")
+            logging.info(f"===== All experiments for model {model_name_str} completed. Unloading... =====")
             del model
             del tokenizer
             if torch.cuda.is_available():
                 torch.cuda.empty_cache()
                 logging.info("GPU memory cache cleared.")
 
-    # Prepare for overall summary and plotting
+    # Preparation for overall summary and plotting
     if all_summaries:
         overall_summary_df = pd.DataFrame(all_summaries)
         if not overall_summary_df.empty:
             # Save overall summary
             timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
             overall_summary_filename = os.path.join(args.base_output_dir, "summaries", f"sentiment_cotr_ALL_experiments_summary_{timestamp}.csv")
-            # Make sure the directory exists
+            # Ensure directory exists
             os.makedirs(os.path.join(args.base_output_dir, "summaries"), exist_ok=True)
             overall_summary_df.to_csv(overall_summary_filename, index=False, float_format='%.4f')
-            logging.info(f"\nOverall summary of Sentiment CoTR experiments saved to: {overall_summary_filename}")
+            logging.info(f"\nOverall Sentiment CoTR experiment summary saved to: {overall_summary_filename}")
             print(overall_summary_df.to_string(max_rows=None, max_cols=None)) # Print full summary
 
             # Generate and save plots
@@ -432,7 +419,7 @@ def main():
             plot_sentiment_metrics(overall_summary_df, plots_output_dir, 'macro_f1', 'Macro F1-Score')
             plot_sentiment_metrics(overall_summary_df, plots_output_dir, 'weighted_f1', 'Weighted F1-Score')
         else:
-            logging.info("Overall summary DataFrame for Sentiment CoTR is empty. No plots generated.")
+            logging.info("Overall Sentiment CoTR summary DataFrame is empty. No plots generated.")
     else:
         logging.info("No summaries collected for Sentiment CoTR. Skipping overall summary and plot generation.")
 

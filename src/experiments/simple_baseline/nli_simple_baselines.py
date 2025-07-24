@@ -1,29 +1,25 @@
+# -*- coding: utf-8 -*-
 import sys
 import os
 import argparse
 import pandas as pd
-import numpy as np
 from sklearn.metrics import accuracy_score, f1_score, classification_report, confusion_matrix, precision_score, recall_score
 import matplotlib.pyplot as plt
 import seaborn as sns
-import random
-from collections import Counter
-import time
-from typing import List, Dict, Any
 
-# Add project root to Python path
+# Fügt das Projektverzeichnis zum Python-Pfad hinzu
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..'))
 sys.path.insert(0, project_root)
 
-# Import utility functions
+# Lädt die Daten
 from src.utils.data_loaders.load_xnli import load_xnli_samples
 
 NLI_LABELS = ['entailment', 'neutral', 'contradiction']
-# Mapping from numeric XNLI labels if they appear (0: entailment, 1: neutral, 2: contradiction)
+# Mappt numerische XNLI-Labels
 XNLI_NUMERIC_TO_STR_LABEL_MAP = {0: 'entailment', 1: 'neutral', 2: 'contradiction'}
 
 def parse_args():
-    """Parse command line arguments."""
+    # Parst Kommandozeilenargumente
     parser = argparse.ArgumentParser(description="Run NLI Fixed Prediction Baselines.")
     parser.add_argument("--langs", nargs='+', default=['en', 'ur', 'sw', 'fr'], 
                         help="Languages to test (default: en, ur, sw, fr for XNLI).")
@@ -133,57 +129,32 @@ def main():
         print("\nSummary Table:")
         print(summary_df.to_string())
         
-        # Add plotting call
+        # Fügt den Plot-Aufruf hinzu
         create_distribution_plot(summary_df, args.output_dir)
     else:
         print("\nNo NLI summary data generated.")
 
 def create_distribution_plot(summary_df, output_dir):
-    """
-    Creates and saves a single grouped bar plot visualizing the label distribution for all languages.
-    """
-    print("\n--- Generating New Visualization ---")
-
-    # Define the custom color palette from your file
-    custom_colors = ['#2d5477', '#4e8a86', '#76a990', '#316e7e', '#40726f', '#254562', '#628c77', '#285b68']
-
-    # Prepare data for plotting
+    # Erstellt und speichert ein gruppiertes Balkendiagramm
     summary_df['Fixed Prediction Strategy'] = summary_df['baseline_strategy'].str.replace('fixed_predict_', '')
     summary_df['Accuracy (%)'] = summary_df['accuracy'] * 100
 
-    # Create a new figure
     plt.figure(figsize=(12, 7))
     
-    ax = sns.barplot(
+    sns.barplot(
         data=summary_df,
         x='language',
         y='Accuracy (%)',
         hue='Fixed Prediction Strategy',
-        palette=custom_colors,
-        hue_order=NLI_LABELS # Ensure consistent legend order
+        hue_order=NLI_LABELS
     )
 
-    # --- Styling as per your request ---
-
-    # 1. No titles
-    ax.set_title("")
-    
-    # 2. Y-axis title and whole number labels
-    ax.set_ylabel("Accuracy (%)", fontsize=12)
-    ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda y, _: f'{int(y)}'))
-    
-    # 3. No x-axis title
-    ax.set_xlabel("")
-
-    # 4. Legend inside visual with no frame
-    ax.legend(title="", loc='upper right', frameon=False)
-    
-    # Remove top and right spines for a cleaner look
-    sns.despine()
-
+    plt.ylabel("Accuracy (%)")
+    plt.xlabel("Language")
+    plt.title("NLI Fixed Prediction Accuracy by Language")
     plt.tight_layout()
 
-    # Save the plot
+    # Speichert das Diagramm
     plot_file_path = os.path.join(output_dir, "nli_label_distribution_clustered_viz.png")
     plt.savefig(plot_file_path, dpi=300)
     plt.close()
