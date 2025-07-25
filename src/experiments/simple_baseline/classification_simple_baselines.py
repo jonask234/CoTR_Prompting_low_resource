@@ -1,8 +1,9 @@
-# -*- coding: utf-8 -*-
 import argparse
 import pandas as pd
 import os
 import sys
+import matplotlib.pyplot as plt
+import numpy as np
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, classification_report
 
 # Fügt das Projektverzeichnis zum Python-Pfad hinzu
@@ -15,6 +16,74 @@ from src.utils.data_loaders.load_masakhanews import load_masakhanews_samples
 
 # Definiert die Labels für MasakhaNEWS
 MASAKHANEWS_LABELS = ['business', 'entertainment', 'health', 'politics', 'religion', 'sports', 'technology']
+
+def create_distribution_plot(summary_df, output_dir):
+    """Create distribution plot with consistent formatting matching QA visualization style."""
+    
+    # Set consistent formatting parameters
+    plt.rcParams.update({
+        'font.size': 16,
+        'axes.labelsize': 16,
+        'xtick.labelsize': 14,
+        'ytick.labelsize': 14,
+        'legend.fontsize': 14,
+        'axes.titlesize': 16,
+        'font.family': 'sans-serif'
+    })
+    
+    # Color scheme matching QA visualization
+    colors = ['#2d5477', '#4e8a86', '#76a990', '#316e7e', '#40726f', '#254562', '#628c77', '#285b68']
+    
+    # Prepare data for plotting
+    summary_df['Fixed Prediction Strategy'] = summary_df['baseline_strategy'].str.replace('fixed_predict_', '')
+    summary_df['Accuracy (%)'] = summary_df['accuracy'] * 100
+    
+    # Language mapping for better labels
+    lang_map = {'en': 'English', 'sw': 'Swahili', 'ha': 'Hausa', 'te': 'Telugu'}
+    summary_df['Language'] = summary_df['language'].map(lang_map)
+    
+    fig, ax = plt.subplots(1, 1, figsize=(14, 8))
+    fig.set_facecolor('white')
+    
+    # Create grouped bar plot
+    languages = summary_df['Language'].unique()
+    x = np.arange(len(languages))
+    width = 0.12  # Thinner bars to prevent overlap
+    multiplier = 0
+    
+    for i, label in enumerate(MASAKHANEWS_LABELS):
+        offset = width * multiplier
+        data = summary_df[summary_df['Fixed Prediction Strategy'] == label]['Accuracy (%)']
+        if len(data) > 0:
+            bars = ax.bar(x + offset, data, width, label=label.capitalize(), 
+                         color=colors[i % len(colors)], alpha=0.8)
+            # Add value labels on bars with 45 degree rotation
+            for bar in bars:
+                height = bar.get_height()
+                ax.text(bar.get_x() + bar.get_width()/2., height + 0.5,
+                       f'{height:.1f}%', ha='center', va='bottom', fontsize=10, rotation=45)
+        multiplier += 1
+    
+    ax.set_ylabel('Accuracy (%)', fontsize=16)
+    ax.set_xticks(x + width * (len(MASAKHANEWS_LABELS) - 1) / 2)
+    ax.set_xticklabels(languages, fontsize=14)
+    ax.legend(bbox_to_anchor=(1.05, 1), loc='upper left', fontsize=12, frameon=False)
+    ax.set_ylim(0, 20)  # Set y-axis range to 20% for classification
+    
+    # Remove grid and set clean background
+    ax.grid(False)
+    ax.set_facecolor('white')
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    
+    plt.tight_layout()
+    
+    # Save the plot
+    plot_file_path = os.path.join(output_dir, "classification_label_distribution_clustered_viz.png")
+    fig.savefig(plot_file_path, dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    print(f"Classification distribution visualization saved to {plot_file_path}")
 
 def main():
     parser = argparse.ArgumentParser(description="Run Simple Text Classification Baselines (Fixed Prediction for each class).")
@@ -116,6 +185,11 @@ def main():
     if not summary_df.empty:
         print("Summary Table:")
         print(summary_df.to_string())
+        
+        # Add plotting functionality
+        create_distribution_plot(summary_df, args.output_dir)
+    else:
+        print("No classification summary data generated.")
 
 if __name__ == "__main__":
     main() 

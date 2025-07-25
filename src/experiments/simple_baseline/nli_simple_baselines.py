@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import sys
 import os
 import argparse
@@ -6,6 +5,7 @@ import pandas as pd
 from sklearn.metrics import accuracy_score, f1_score, classification_report, confusion_matrix, precision_score, recall_score
 import matplotlib.pyplot as plt
 import seaborn as sns
+import numpy as np
 
 # Fügt das Projektverzeichnis zum Python-Pfad hinzu
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..'))
@@ -32,6 +32,74 @@ def parse_args():
     parser.add_argument("--seed", type=int, default=42,
                         help="Random seed for reproducibility in sampling.")
     return parser.parse_args()
+
+def create_distribution_plot(summary_df, output_dir):
+    """Create distribution plot with consistent formatting matching QA visualization style."""
+    
+    # Set consistent formatting parameters
+    plt.rcParams.update({
+        'font.size': 16,
+        'axes.labelsize': 16,
+        'xtick.labelsize': 14,
+        'ytick.labelsize': 14,
+        'legend.fontsize': 14,
+        'axes.titlesize': 16,
+        'font.family': 'sans-serif'
+    })
+    
+    # Color scheme matching QA visualization
+    colors = ['#2d5477', '#4e8a86', '#76a990', '#316e7e', '#40726f', '#254562', '#628c77', '#285b68']
+    
+    # Prepare data for plotting
+    summary_df['Fixed Prediction Strategy'] = summary_df['baseline_strategy'].str.replace('fixed_predict_', '')
+    summary_df['Accuracy (%)'] = summary_df['accuracy'] * 100
+    
+    # Language mapping for better labels
+    lang_map = {'en': 'English', 'ur': 'Urdu', 'sw': 'Swahili', 'fr': 'French'}
+    summary_df['Language'] = summary_df['language'].map(lang_map)
+    
+    fig, ax = plt.subplots(1, 1, figsize=(12, 8))
+    fig.set_facecolor('white')
+    
+    # Create grouped bar plot
+    languages = summary_df['Language'].unique()
+    x = np.arange(len(languages))
+    width = 0.25  # Width of bars
+    multiplier = 0
+    
+    for i, label in enumerate(NLI_LABELS):
+        offset = width * multiplier
+        data = summary_df[summary_df['Fixed Prediction Strategy'] == label]['Accuracy (%)']
+        if len(data) > 0:
+            bars = ax.bar(x + offset, data, width, label=label.capitalize(), 
+                         color=colors[i % len(colors)], alpha=0.8)
+            # Add value labels on bars
+            for bar in bars:
+                height = bar.get_height()
+                ax.text(bar.get_x() + bar.get_width()/2., height + 0.5,
+                       f'{height:.1f}%', ha='center', va='bottom', fontsize=10)
+        multiplier += 1
+    
+    ax.set_ylabel('Accuracy (%)', fontsize=16)
+    ax.set_xticks(x + width * (len(NLI_LABELS) - 1) / 2)
+    ax.set_xticklabels(languages, fontsize=14)
+    ax.legend(bbox_to_anchor=(1.05, 1), loc='upper left', fontsize=12, frameon=False)
+    ax.set_ylim(0, 50)  # Set y-axis range to 50% for NLI
+    
+    # Remove grid and set clean background
+    ax.grid(False)
+    ax.set_facecolor('white')
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    
+    plt.tight_layout()
+    
+    # Save the plot
+    plot_file_path = os.path.join(output_dir, "nli_label_distribution_clustered_viz.png")
+    fig.savefig(plot_file_path, dpi=300, bbox_inches='tight')
+    plt.close()
+    
+    print(f"NLI distribution visualization saved to {plot_file_path}")
 
 def main():
     args = parse_args()
@@ -129,38 +197,10 @@ def main():
         print("\nSummary Table:")
         print(summary_df.to_string())
         
-        # Fügt den Plot-Aufruf hinzu
+        # Add plotting functionality with updated formatting
         create_distribution_plot(summary_df, args.output_dir)
     else:
         print("\nNo NLI summary data generated.")
-
-def create_distribution_plot(summary_df, output_dir):
-    # Erstellt und speichert ein gruppiertes Balkendiagramm
-    summary_df['Fixed Prediction Strategy'] = summary_df['baseline_strategy'].str.replace('fixed_predict_', '')
-    summary_df['Accuracy (%)'] = summary_df['accuracy'] * 100
-
-    plt.figure(figsize=(12, 7))
-    
-    sns.barplot(
-        data=summary_df,
-        x='language',
-        y='Accuracy (%)',
-        hue='Fixed Prediction Strategy',
-        hue_order=NLI_LABELS
-    )
-
-    plt.ylabel("Accuracy (%)")
-    plt.xlabel("Language")
-    plt.title("NLI Fixed Prediction Accuracy by Language")
-    plt.tight_layout()
-
-    # Speichert das Diagramm
-    plot_file_path = os.path.join(output_dir, "nli_label_distribution_clustered_viz.png")
-    plt.savefig(plot_file_path, dpi=300)
-    plt.close()
-
-    print(f"New clustered visualization saved to {plot_file_path}")
-
 
 if __name__ == "__main__":
     main() 
